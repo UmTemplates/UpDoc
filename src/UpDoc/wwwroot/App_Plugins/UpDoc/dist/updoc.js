@@ -95,7 +95,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.AreaPickerModal",
     name: "Area Picker Modal",
-    element: () => import("./area-picker-modal.element-C8Oe3nsZ.js")
+    element: () => import("./area-picker-modal.element-QA4TPO-f.js")
   },
   {
     type: "modal",

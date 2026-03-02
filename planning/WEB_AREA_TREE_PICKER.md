@@ -128,17 +128,13 @@ The current two-pane layout (containers left, areas right with include/exclude c
 
 PDF sources continue to use the existing area picker (or a simplified version with just include/exclude, since PDF areas are detected from visual clustering, not DOM structure).
 
-### 8. Tree component — `uui-menu-item`, not `umb-tree`
+### 8. Tree component — custom tree with existing UpDoc patterns
 
-Use `uui-menu-item` directly for tree node rendering. It provides the correct chevron, hover states, font styling, and expand/collapse via `hasChildren`/`showChildren` props — all inherited from Umbraco's design system.
+Use the same custom collapsible tree pattern already used in the Extracted tab (`section-box-header` divs with `uui-icon` chevrons, indentation via CSS). This keeps the tree picker visually consistent with the rest of UpDoc's UI.
 
-Do NOT use `umb-tree` / `umb-tree-item` — those are Umbraco's content tree infrastructure with lazy loading, entity actions, repositories, and data sources. Overkill for a read-only DOM visualisation in a modal.
-
-### 9. Visual alignment prerequisite
-
-Before building the DOM tree picker, align all existing collapsible tree UI in UpDoc (Extracted tab sections, Destination tab, etc.) to use `uui-menu-item` instead of custom `section-box-header` divs. This ensures the new tree picker matches the rest of the UI and avoids building more misaligned custom trees.
-
-**Scope:** Only align the interfaces directly relevant to the tree picker work — not a full project audit.
+**Rejected alternatives:**
+- `uui-menu-item` — too opinionated. It inherits font styling from the parent context (`font-family: inherit`, `font-size: inherit`, `font-weight: inherit`) which means it looks different depending on where it's rendered. Investigated in the previous session and abandoned.
+- `umb-tree` / `umb-tree-item` — Umbraco's full tree infrastructure with lazy loading, entity actions, repositories, and data sources. Overkill for a read-only DOM visualisation in a modal.
 
 ## Data Model Changes
 
@@ -162,19 +158,10 @@ Options:
 
 ## Implementation Approach
 
-### Phase 0: Visual alignment — `uui-menu-item` migration
-
-**Prerequisite.** Before building the tree picker, align existing collapsible UI to use `uui-menu-item`:
-- Extracted tab (PDF + web): section groups, part boxes
-- Destination tab: field/block sections
-- Any other collapsible tree UI directly relevant to the tree picker
-
-Scope is limited to interfaces that feed into the tree picker work — not a full project audit.
-
 ### Phase 1: Tree rendering in the area picker modal
 
-- Modify `area-picker-modal.element.ts` to render `ContainerTreeNode[]` as a collapsible tree using `uui-menu-item`
-- `uui-menu-item` handles indentation via `--uui-menu-item-indent` CSS variable, expand/collapse via `hasChildren`/`showChildren`
+- Modify `area-picker-modal.element.ts` to render `ContainerTreeNode[]` as a collapsible tree using the existing custom tree pattern (same as Extracted tab's `section-box-header` approach)
+- Indentation via CSS padding based on `depth`, expand/collapse via `uui-icon` chevrons and click handlers
 - Add "Named containers only" filter toggle (default ON)
 - Highlight semantic HTML5 landmarks (`<main>`, `<nav>`, `<aside>`, `<header>`, `<footer>`, `<section>`, `<article>`) with subtle yellow background
 - Keep the right panel (areas list) as-is — it shows the result of user selections
@@ -221,9 +208,13 @@ The main backend change is supporting `areaMode: 'inclusive'` — when set, area
 
 2. **~~Nesting conflict resolution?~~** RESOLVED: Last click wins. Silent merge if no rules; confirmation listing affected rules if they exist. See Decision #5.
 
-3. **~~Tree component choice?~~** RESOLVED: `uui-menu-item` directly, not `umb-tree`. See Decision #8.
+3. **~~Tree component choice?~~** RESOLVED: Custom tree with existing UpDoc patterns. `uui-menu-item` was investigated but abandoned — too opinionated with inherited font styling that renders differently depending on context. `umb-tree` is overkill. See Decision #8.
 
 4. **~~Phase 2/3 coupling?~~** RESOLVED: Merged into single phase. See Implementation Phase 2.
+
+## UI Polish Notes
+
+1. **Area label editing should be on the right panel, not inline on the tree row.** Currently the label input appears next to the "Area" tag on the tree node. It should instead be editable in the Areas list on the right — matching how the PDF workflow's area picker handles label editing. The tree row should just show the "Area" badge (no inline input).
 
 ## Open Questions
 

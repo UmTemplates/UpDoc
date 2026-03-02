@@ -5,14 +5,8 @@ import { html, css, nothing, state, customElement } from '@umbraco-cms/backoffic
 import { UmbModalBaseElement } from '@umbraco-cms/backoffice/modal';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
 
-/** Flattened container for display in the UI. */
-interface FlatContainer {
-	path: string;
-	cssSelector: string;
-	elementCount: number;
-	area: string;
-	depth: number;
-}
+/** Semantic HTML5 landmark tags that get a yellow highlight for orientation. */
+const LANDMARK_TAGS = new Set(['main', 'nav', 'aside', 'header', 'footer', 'section', 'article']);
 
 /** An area entry for the right panel (original or promoted). */
 interface EffectiveArea {
@@ -30,54 +24,37 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 	@state() private _excluded = new Set<string>();
 	@state() private _overrides: ContainerOverride[] = [];
 	@state() private _selectedContainers = new Set<string>();
-	@state() private _flatContainers: FlatContainer[] = [];
-	@state() private _collapsedGroups = new Set<string>();
+	@state() private _collapsedNodes = new Set<string>();
+	@state() private _showAllContainers = false;
 
 	override connectedCallback() {
 		super.connectedCallback();
 		this._excluded = new Set(this.data?.excludedAreas ?? []);
 		this._overrides = [...(this.data?.containerOverrides ?? [])];
-		this._flatContainers = this.#flattenContainers(this.data?.containers ?? null);
 	}
 
 	// =========================================================================
 	// Data helpers
 	// =========================================================================
 
-	/** Flatten container tree, keeping only nodes with a class or id (not bare divs/spans). */
-	#flattenContainers(nodes: ContainerTreeNode[] | null | undefined): FlatContainer[] {
-		if (!nodes) return [];
-		const result: FlatContainer[] = [];
-		const walk = (node: ContainerTreeNode) => {
-			if (node.className || node.id) {
-				result.push({
-					path: node.path,
-					cssSelector: node.cssSelector,
-					elementCount: node.elementCount,
-					area: node.area || 'Unknown',
-					depth: node.depth,
-				});
-			}
-			if (node.children) {
-				for (const child of node.children) {
-					walk(child);
-				}
-			}
-		};
-		for (const node of nodes) {
-			walk(node);
-		}
-		return result;
+	/** Check whether a node passes the current filter (named containers only, or all). */
+	#passesFilter(node: ContainerTreeNode): boolean {
+		if (this._showAllContainers) return true;
+		return !!(node.className || node.id);
 	}
 
-	/** Get the effective area for a container, considering promoteToArea overrides. */
-	#getEffectiveArea(container: FlatContainer): string {
-		for (const override of this._overrides) {
-			if (override.action === 'promoteToArea' && container.path.startsWith(override.containerPath)) {
-				return override.label || container.area;
-			}
+	/** Check whether a node or any descendant passes the filter (so we don't hide branches with named children). */
+	#hasVisibleDescendant(node: ContainerTreeNode): boolean {
+		if (this.#passesFilter(node)) return true;
+		for (const child of node.children ?? []) {
+			if (this.#hasVisibleDescendant(child)) return true;
 		}
-		return container.area;
+		return false;
+	}
+
+	/** Get the filtered container tree roots. */
+	get #containers(): ContainerTreeNode[] {
+		return this.data?.containers ?? [];
 	}
 
 	/** Build the effective area list: original areas + any newly promoted areas. */
@@ -94,12 +71,10 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 		for (const override of this._overrides) {
 			if (override.action === 'promoteToArea' && override.label) {
 				if (!areas.some((a) => a.name === override.label)) {
-					const matchingContainer = this._flatContainers.find(
-						(c) => c.path === override.containerPath
-					);
+					const node = this.#findNodeByPath(this.#containers, override.containerPath);
 					areas.push({
 						name: override.label,
-						elementCount: matchingContainer?.elementCount ?? 0,
+						elementCount: node?.elementCount ?? 0,
 						color: '#FFCC80',
 						isPromoted: true,
 					});
@@ -110,42 +85,16 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 		return areas;
 	}
 
-	/** Group containers by their effective area, maintaining area order. */
-	get #containersByArea(): Array<{ areaName: string; color: string; containers: FlatContainer[] }> {
-		const effectiveAreas = this.#effectiveAreas;
-		const groups = new Map<string, FlatContainer[]>();
-
-		for (const container of this._flatContainers) {
-			const area = this.#getEffectiveArea(container);
-			if (!groups.has(area)) {
-				groups.set(area, []);
-			}
-			groups.get(area)!.push(container);
-		}
-
-		// Return in area order, then any remaining groups
-		const result: Array<{ areaName: string; color: string; containers: FlatContainer[] }> = [];
-		const seen = new Set<string>();
-
-		for (const area of effectiveAreas) {
-			if (groups.has(area.name)) {
-				result.push({
-					areaName: area.name,
-					color: area.color,
-					containers: groups.get(area.name)!,
-				});
-				seen.add(area.name);
+	/** Find a node in the tree by its path. */
+	#findNodeByPath(nodes: ContainerTreeNode[], path: string): ContainerTreeNode | null {
+		for (const node of nodes) {
+			if (node.path === path) return node;
+			if (node.children) {
+				const found = this.#findNodeByPath(node.children, path);
+				if (found) return found;
 			}
 		}
-
-		// Any groups not in the area list (shouldn't happen, but safety)
-		for (const [areaName, containers] of groups) {
-			if (!seen.has(areaName)) {
-				result.push({ areaName, color: '#999999', containers });
-			}
-		}
-
-		return result;
+		return null;
 	}
 
 	// =========================================================================
@@ -172,14 +121,14 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 		this._selectedContainers = next;
 	}
 
-	#toggleGroup(areaName: string) {
-		const next = new Set(this._collapsedGroups);
-		if (next.has(areaName)) {
-			next.delete(areaName);
+	#toggleNode(path: string) {
+		const next = new Set(this._collapsedNodes);
+		if (next.has(path)) {
+			next.delete(path);
 		} else {
-			next.add(areaName);
+			next.add(path);
 		}
-		this._collapsedGroups = next;
+		this._collapsedNodes = next;
 	}
 
 	#getOverride(path: string): ContainerOverride | undefined {
@@ -243,7 +192,7 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 	// =========================================================================
 
 	override render() {
-		const hasContainers = this._flatContainers.length > 0;
+		const hasContainers = (this.data?.containers?.length ?? 0) > 0;
 
 		return html`
 			<umb-body-layout headline="Define Areas">
@@ -277,33 +226,44 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 		`;
 	}
 
-	/** Two-pane layout: containers on left, areas on right. */
+	/** Two-pane layout: tree on left, areas on right. */
 	#renderTwoPaneLayout() {
 		return html`
 			<div class="editor-layout">
-				${this.#renderContainerPanel()}
+				${this.#renderTreePanel()}
 				${this.#renderAreaPanel()}
 			</div>
 		`;
 	}
 
 	// =========================================================================
-	// Left panel: Containers grouped by area
+	// Left panel: DOM tree
 	// =========================================================================
 
-	#renderContainerPanel() {
-		const groups = this.#containersByArea;
+	#renderTreePanel() {
 		const selectedCount = this._selectedContainers.size;
 		const hasSelectedWithOverride = [...this._selectedContainers].some((p) => this.#getOverride(p));
 
 		return html`
-			<div class="container-panel">
-				<p class="description">
-					Promote containers to independent areas, or mark them as section boundaries.
-				</p>
+			<div class="tree-panel">
+				<div class="tree-toolbar">
+					<p class="description">
+						Select containers to promote to areas or mark as section boundaries.
+					</p>
+					<label class="filter-toggle">
+						<uui-toggle
+							label="Named containers only"
+							?checked=${!this._showAllContainers}
+							@change=${(e: Event) => {
+								this._showAllContainers = !(e.target as any).checked;
+							}}>
+						</uui-toggle>
+						Named containers only
+					</label>
+				</div>
 
-				<div class="container-groups">
-					${groups.map((group) => this.#renderContainerGroup(group))}
+				<div class="tree-container">
+					${this.#containers.map((node) => this.#renderTreeNode(node))}
 				</div>
 
 				${selectedCount > 0 ? html`
@@ -341,69 +301,59 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 		`;
 	}
 
-	#renderContainerGroup(group: { areaName: string; color: string; containers: FlatContainer[] }) {
-		const collapsed = this._collapsedGroups.has(group.areaName);
-		const overrideCount = group.containers.filter((c) => this.#getOverride(c.path)).length;
+	#renderTreeNode(node: ContainerTreeNode): unknown {
+		// Skip nodes that don't pass the filter and have no visible descendants
+		if (!this.#hasVisibleDescendant(node)) return nothing;
+
+		const visibleChildren = (node.children ?? []).filter((c) => this.#hasVisibleDescendant(c));
+		const hasChildren = visibleChildren.length > 0;
+		const isCollapsed = this._collapsedNodes.has(node.path);
+		const isSelected = this._selectedContainers.has(node.path);
+		const override = this.#getOverride(node.path);
+		const isLandmark = LANDMARK_TAGS.has(node.tag);
+		const passesFilter = this.#passesFilter(node);
+		const indent = node.depth - 1; // depth 1 = root level, no indent
 
 		return html`
-			<div class="container-group">
-				<div class="group-header" @click=${() => this.#toggleGroup(group.areaName)}>
-					<uui-icon name=${collapsed ? 'icon-navigation-right' : 'icon-navigation-down'}></uui-icon>
-					<span class="area-color" style="background: ${group.color};"></span>
-					<span class="group-name">${group.areaName}</span>
-					<span class="group-meta">
-						${group.containers.length} container${group.containers.length !== 1 ? 's' : ''}
-						${overrideCount > 0 ? html`<span class="override-count">${overrideCount} override${overrideCount !== 1 ? 's' : ''}</span>` : nothing}
-					</span>
-				</div>
-
-				${!collapsed ? html`
-					<div class="group-containers">
-						${group.containers.map((c) => this.#renderContainerRow(c))}
+			<div class="tree-node" style="--node-indent: ${indent}">
+				<div
+					class="tree-node-row ${isSelected ? 'selected' : ''} ${override ? 'has-override' : ''} ${isLandmark ? 'landmark' : ''} ${!passesFilter ? 'unnamed' : ''}"
+					@click=${(e: Event) => {
+						// Only select if clicking the row itself, not the chevron
+						if (!(e.target as HTMLElement).closest('.tree-chevron')) {
+							this.#toggleContainer(node.path);
+						}
+					}}>
+					<div class="tree-chevron" @click=${() => hasChildren && this.#toggleNode(node.path)}>
+						${hasChildren
+							? html`<uui-icon name="${isCollapsed ? 'icon-navigation-right' : 'icon-navigation-down'}"></uui-icon>`
+							: html`<span class="tree-chevron-spacer"></span>`}
 					</div>
-				` : nothing}
-			</div>
-		`;
-	}
-
-	#renderContainerRow(c: FlatContainer) {
-		const override = this.#getOverride(c.path);
-		const selected = this._selectedContainers.has(c.path);
-
-		return html`
-			<div
-				class="container-row ${selected ? 'selected' : ''} ${override ? 'has-override' : ''}"
-				@click=${() => this.#toggleContainer(c.path)}>
-				<uui-checkbox
-					label="${c.cssSelector}"
-					?checked=${selected}
-					@change=${(e: Event) => { e.stopPropagation(); this.#toggleContainer(c.path); }}>
-				</uui-checkbox>
-				<div class="container-info">
-					<span class="container-selector">${c.cssSelector}</span>
-					<span class="container-meta">
-						${c.elementCount} element${c.elementCount !== 1 ? 's' : ''}
-					</span>
+					<span class="tree-node-selector">${node.cssSelector}</span>
+					<span class="tree-node-meta">${node.elementCount} el</span>
+					${override ? html`
+						<div class="override-badge">
+							${override.action === 'promoteToArea' ? html`
+								<uui-tag color="warning" look="primary" compact>Area</uui-tag>
+								<input
+									class="label-input"
+									type="text"
+									.value=${override.label || ''}
+									placeholder="Label..."
+									@click=${(e: Event) => e.stopPropagation()}
+									@input=${(e: Event) => {
+										const input = e.target as HTMLInputElement;
+										this.#updateLabel(node.path, input.value);
+									}} />
+							` : html`
+								<uui-tag color="positive" look="primary" compact>Section</uui-tag>
+							`}
+						</div>
+					` : nothing}
 				</div>
-				${override ? html`
-					<div class="override-badge">
-						${override.action === 'promoteToArea' ? html`
-							<uui-tag color="warning" look="primary" compact>
-								Area
-							</uui-tag>
-							<input
-								class="label-input"
-								type="text"
-								.value=${override.label || ''}
-								placeholder="Label..."
-								@click=${(e: Event) => e.stopPropagation()}
-								@input=${(e: Event) => {
-									const input = e.target as HTMLInputElement;
-									this.#updateLabel(c.path, input.value);
-								}} />
-						` : html`
-							<uui-tag color="positive" look="primary" compact>Section</uui-tag>
-						`}
+				${hasChildren && !isCollapsed ? html`
+					<div class="tree-node-children">
+						${visibleChildren.map((child) => this.#renderTreeNode(child))}
 					</div>
 				` : nothing}
 			</div>
@@ -476,8 +426,8 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 				min-height: 0;
 			}
 
-			/* Left panel: Containers */
-			.container-panel {
+			/* Left panel: Tree */
+			.tree-panel {
 				flex: 1;
 				display: flex;
 				flex-direction: column;
@@ -486,106 +436,108 @@ export class UpDocAreaPickerModalElement extends UmbModalBaseElement<
 				padding: var(--uui-size-space-4);
 			}
 
-			.container-groups {
-				flex: 1;
+			.tree-toolbar {
 				display: flex;
 				flex-direction: column;
 				gap: var(--uui-size-space-2);
+				margin-bottom: var(--uui-size-space-4);
 			}
 
-			.container-group {
-				border: 1px solid var(--uui-color-border);
-				border-radius: var(--uui-border-radius);
-				overflow: hidden;
-			}
-
-			.group-header {
+			.filter-toggle {
 				display: flex;
 				align-items: center;
 				gap: var(--uui-size-space-2);
-				padding: var(--uui-size-space-3) var(--uui-size-space-4);
-				background: var(--uui-color-surface-alt);
+				font-size: var(--uui-type-small-size);
+				color: var(--uui-color-text-alt);
 				cursor: pointer;
 				user-select: none;
 			}
 
-			.group-header:hover {
-				background: var(--uui-color-surface-emphasis);
-			}
-
-			.group-header uui-icon {
-				font-size: 10px;
-				flex-shrink: 0;
-			}
-
-			.group-name {
-				font-weight: 600;
+			.tree-container {
 				flex: 1;
+				overflow-y: auto;
 			}
 
-			.group-meta {
-				color: var(--uui-color-text-alt);
-				font-size: var(--uui-type-small-size);
+			/* Tree node rows */
+			.tree-node-row {
 				display: flex;
 				align-items: center;
-				gap: var(--uui-size-space-3);
-			}
-
-			.override-count {
-				color: var(--uui-color-warning-emphasis);
-				font-weight: 500;
-			}
-
-			.group-containers {
-				display: flex;
-				flex-direction: column;
-			}
-
-			/* Container rows */
-			.container-row {
-				display: flex;
-				align-items: center;
-				gap: var(--uui-size-space-3);
-				padding: var(--uui-size-space-3) var(--uui-size-space-4);
-				padding-left: var(--uui-size-space-6);
-				border-top: 1px solid var(--uui-color-border);
+				gap: var(--uui-size-space-2);
+				padding: 4px 8px;
+				padding-left: calc(var(--node-indent, 0) * 20px + 8px);
 				cursor: pointer;
-				transition: background-color 120ms;
+				user-select: none;
+				border-radius: var(--uui-border-radius);
+				transition: background-color 80ms;
 			}
 
-			.container-row:hover {
+			.tree-node-row:hover {
 				background: var(--uui-color-surface-emphasis);
 			}
 
-			.container-row.selected {
+			.tree-node-row.selected {
 				background: var(--uui-color-selected);
 			}
 
-			.container-row.has-override {
+			.tree-node-row.has-override {
 				border-left: 3px solid var(--uui-color-warning);
 			}
 
-			.container-info {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				gap: 2px;
-				min-width: 0;
+			.tree-node-row.landmark {
+				background: rgba(255, 235, 59, 0.12);
 			}
 
-			.container-selector {
-				font-weight: 500;
+			.tree-node-row.landmark:hover {
+				background: rgba(255, 235, 59, 0.22);
+			}
+
+			.tree-node-row.landmark.selected {
+				background: var(--uui-color-selected);
+			}
+
+			.tree-node-row.unnamed {
+				opacity: 0.5;
+			}
+
+			/* Chevron */
+			.tree-chevron {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 16px;
+				height: 16px;
+				flex-shrink: 0;
+				cursor: pointer;
+			}
+
+			.tree-chevron uui-icon {
+				font-size: 10px;
+			}
+
+			.tree-chevron-spacer {
+				display: block;
+				width: 16px;
+			}
+
+			/* Node content */
+			.tree-node-selector {
 				font-size: var(--uui-type-small-size);
+				font-weight: 500;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+				flex: 1;
+				min-width: 0;
 			}
 
-			.container-meta {
+			.tree-node-meta {
 				color: var(--uui-color-text-alt);
 				font-size: 11px;
+				flex-shrink: 0;
+				white-space: nowrap;
 			}
 
+			/* Override badges (shared with old layout) */
 			.override-badge {
 				display: flex;
 				align-items: center;

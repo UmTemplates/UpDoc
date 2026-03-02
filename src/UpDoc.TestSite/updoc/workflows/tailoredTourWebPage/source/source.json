@@ -8,10 +8,75 @@
   "pages": "all",
   "sections": [],
   "sectionRules": null,
-  "areaRules": null,
+  "areaRules": {
+    "page-header": {
+      "groups": [],
+      "rules": [
+        {
+          "role": "Tour Title",
+          "part": "title",
+          "action": null,
+          "format": "heading1",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "htmlTagEquals",
+              "value": "h1"
+            },
+            {
+              "type": "fontSizeEquals",
+              "value": 22.5
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF"
+            },
+            {
+              "type": "htmlContainerPathContains",
+              "value": "div.tour_name"
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null
+        },
+        {
+          "role": "Tour Description",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "htmlTagEquals",
+              "value": "div"
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF"
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null
+        }
+      ]
+    }
+  },
   "excludedAreas": [
     "navigation",
     "header",
-    "footer"
+    "footer",
+    "main-content",
+    "ungrouped"
+  ],
+  "containerOverrides": [
+    {
+      "containerPath": "div.header-container/div#header/div#right_banner",
+      "action": "makeSection"
+    },
+    {
+      "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left",
+      "action": "promoteToArea",
+      "label": "Page Header"
+    }
   ]
 }

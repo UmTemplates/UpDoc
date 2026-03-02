@@ -455,6 +455,8 @@ export interface RichExtractionResult {
 	sourceType: string;
 	source: ExtractionSource;
 	elements: ExtractionElement[];
+	/** For web sources: hierarchical container tree representing the HTML structure. */
+	containers?: ContainerTreeNode[] | null;
 }
 
 export interface ExtractionSource {
@@ -481,6 +483,10 @@ export interface ElementMetadata {
 	color: string;
 	/** For web sources: auto-detected HTML area (e.g., "Header", "Main Content", "Footer"). */
 	htmlArea?: string;
+	/** For web sources: actual HTML tag (e.g., "p", "div", "h2", "li"). */
+	htmlTag?: string;
+	/** For web sources: slash-delimited CSS selector path of ancestor containers. */
+	htmlContainerPath?: string;
 }
 
 // ============================================================================
@@ -529,6 +535,23 @@ export interface AreaElement {
 	fontName: string;
 	color: string;
 	boundingBox: { left: number; top: number; width: number; height: number };
+	/** For web sources: actual HTML tag (e.g., "p", "div", "h2"). */
+	htmlTag?: string;
+	/** For web sources: slash-delimited CSS selector path of ancestor containers. */
+	htmlContainerPath?: string;
+}
+
+/** A node in the container tree representing an HTML element that contains extracted content. */
+export interface ContainerTreeNode {
+	tag: string;
+	id?: string | null;
+	className?: string | null;
+	cssSelector: string;
+	path: string;
+	depth: number;
+	elementCount: number;
+	area?: string | null;
+	children?: ContainerTreeNode[] | null;
 }
 
 export interface AreaDiagnosticInfo {

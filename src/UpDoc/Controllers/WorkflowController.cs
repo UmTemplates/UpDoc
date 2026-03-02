@@ -1253,6 +1253,8 @@ public class WorkflowController : ControllerBase
                 FontName = element.Metadata.FontName,
                 Color = element.Metadata.Color,
                 BoundingBox = element.Metadata.BoundingBox,
+                HtmlTag = element.Metadata.HtmlTag,
+                HtmlContainerPath = element.Metadata.HtmlContainerPath,
             };
 
             if (isHeading)

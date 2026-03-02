@@ -984,15 +984,22 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 	#renderAreaElement(element: AreaElement, role?: 'heading') {
 		const textType = role === 'heading' ? 'heading' : this.#classifyText(element.text);
 		const badgeLabel = textType === 'heading' ? 'Heading' : textType === 'list' ? 'List Item' : 'Paragraph';
+		// For web sources: show htmlTag instead of fontName, and add container badge
+		const isWeb = !!element.htmlTag;
+		const tagLabel = element.htmlTag || element.fontName;
+		const containerLabel = element.htmlContainerPath
+			? element.htmlContainerPath.split('/').pop() ?? ''
+			: '';
 		return html`
 			<div class="element-item">
 				<div class="element-content">
 					<div class="element-text">${element.text}</div>
 					<div class="element-meta">
 						<span class="meta-badge text-type ${textType}">${badgeLabel}</span>
-						<span class="meta-badge font-size">${element.fontSize}pt</span>
-						<span class="meta-badge font-name">${element.fontName}</span>
+						${!isWeb ? html`<span class="meta-badge font-size">${element.fontSize}pt</span>` : nothing}
+						<span class="meta-badge font-name">${tagLabel}</span>
 						<span class="meta-badge color" style="border-left: 3px solid ${element.color};">${element.color}</span>
+						${containerLabel ? html`<span class="meta-badge container-path" title="${element.htmlContainerPath ?? ''}">${containerLabel}</span>` : nothing}
 						${element.text === element.text.toUpperCase() && element.text !== element.text.toLowerCase() ? html`<span class="meta-badge text-case">UPPERCASE</span>` : nothing}
 					</div>
 				</div>
@@ -1093,6 +1100,11 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const isMatching = this._inferenceResult?.matchingElementIds?.includes(element.id) ?? false;
 		const textType = this.#classifyText(element.text);
 		const badgeLabel = textType === 'list' ? 'List Item' : 'Paragraph';
+		const isWeb = !!element.htmlTag;
+		const tagLabel = element.htmlTag || element.fontName;
+		const containerLabel = element.htmlContainerPath
+			? element.htmlContainerPath.split('/').pop() ?? ''
+			: '';
 		return html`
 			<div class="element-item teach-element ${isClicked ? 'teach-clicked' : ''} ${isMatching ? 'teach-matched' : ''}"
 				@click=${() => this.#onTeachElementClick(element.id)}>
@@ -1100,9 +1112,10 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 					<div class="element-text">${element.text}</div>
 					<div class="element-meta">
 						<span class="meta-badge text-type ${textType}">${badgeLabel}</span>
-						<span class="meta-badge font-size">${element.fontSize}pt</span>
-						<span class="meta-badge font-name">${element.fontName}</span>
+						${!isWeb ? html`<span class="meta-badge font-size">${element.fontSize}pt</span>` : nothing}
+						<span class="meta-badge font-name">${tagLabel}</span>
 						<span class="meta-badge color" style="border-left: 3px solid ${element.color};">${element.color}</span>
+						${containerLabel ? html`<span class="meta-badge container-path" title="${element.htmlContainerPath ?? ''}">${containerLabel}</span>` : nothing}
 						${element.text === element.text.toUpperCase() && element.text !== element.text.toLowerCase() ? html`<span class="meta-badge text-case">UPPERCASE</span>` : nothing}
 					</div>
 				</div>
@@ -2262,6 +2275,16 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			.meta-badge.font-size {
 				font-weight: 600;
 				color: var(--uui-color-text);
+			}
+
+			.meta-badge.container-path {
+				color: var(--uui-color-interactive);
+				font-style: italic;
+				max-width: 200px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				cursor: help;
 			}
 
 			.meta-badge.text-case {

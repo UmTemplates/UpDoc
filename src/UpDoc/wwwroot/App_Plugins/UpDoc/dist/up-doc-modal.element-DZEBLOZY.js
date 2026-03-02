@@ -1,5 +1,5 @@
 import { a as N } from "./workflow.types-sXs8a86t.js";
-import { a as ot, t as D } from "./workflow.service-8opy21oM.js";
+import { a as ot, t as D } from "./workflow.service-Cpncb616.js";
 import { r as at, g as nt, a as rt, b as st } from "./destination-utils-DUfOJy5W.js";
 import { s as L } from "./transforms-BkZeboOX.js";
 import { html as u, css as ct, state as b, customElement as ut, nothing as A } from "@umbraco-cms/backoffice/external/lit";
@@ -731,4 +731,4 @@ export {
   d as UpDocModalElement,
   $t as default
 };
-//# sourceMappingURL=up-doc-modal.element-BLIpRVBi.js.map
+//# sourceMappingURL=up-doc-modal.element-DZEBLOZY.js.map

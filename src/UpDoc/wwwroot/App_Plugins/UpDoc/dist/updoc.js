@@ -8,7 +8,7 @@ const o = [
     alias: "UpDoc.EntityAction",
     name: "UpDoc Entity Action",
     weight: 1100,
-    api: () => import("./up-doc-action-3V3nY55t.js"),
+    api: () => import("./up-doc-action-CZkunQ_h.js"),
     forEntityTypes: ["document"],
     meta: {
       icon: "icon-document",
@@ -30,7 +30,7 @@ const o = [
     type: "condition",
     alias: "UpDoc.Condition.HasAvailableWorkflows",
     name: "Has Available Workflows",
-    api: () => import("./up-doc-has-workflows.condition-DlNz6rDJ.js")
+    api: () => import("./up-doc-has-workflows.condition-CzdYyly1.js")
   },
   // =====================================================================
   // Collection Action — "Create from Source" button in collection toolbar
@@ -40,7 +40,7 @@ const o = [
     kind: "button",
     alias: "UpDoc.CollectionAction",
     name: "UpDoc Collection Action",
-    element: () => import("./up-doc-collection-action.element-DnEIQVJK.js"),
+    element: () => import("./up-doc-collection-action.element-DMznXAqh.js"),
     weight: 50,
     meta: {
       label: "Create from Source"
@@ -59,7 +59,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.Modal",
     name: "UpDoc Modal",
-    element: () => import("./up-doc-modal.element-BLIpRVBi.js")
+    element: () => import("./up-doc-modal.element-DZEBLOZY.js")
   },
   {
     type: "modal",
@@ -71,13 +71,13 @@ const o = [
     type: "modal",
     alias: "UpDoc.CreateWorkflowSidebar",
     name: "Create Workflow Sidebar",
-    element: () => import("./create-workflow-sidebar.element-CMHl0OA0.js")
+    element: () => import("./create-workflow-sidebar.element-C9xLNbW2.js")
   },
   {
     type: "modal",
     alias: "UpDoc.WorkflowDetailModal",
     name: "Workflow Detail Modal",
-    element: () => import("./up-doc-workflow-detail-modal.element-Cw7fcEBp.js")
+    element: () => import("./up-doc-workflow-detail-modal.element-UPey30wL.js")
   },
   {
     type: "modal",
@@ -89,7 +89,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.AreaEditorModal",
     name: "Area Editor Modal",
-    element: () => import("./pdf-area-editor-modal.element-BJIArdCS.js")
+    element: () => import("./pdf-area-editor-modal.element-DGqaKPjh.js")
   },
   {
     type: "modal",
@@ -120,7 +120,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Destination",
     name: "Destination",
-    element: () => import("./up-doc-workflow-destination-view.element-D2MlYd25.js"),
+    element: () => import("./up-doc-workflow-destination-view.element-IC0Np1aF.js"),
     weight: 300,
     meta: {
       label: "Destination",
@@ -138,7 +138,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Source",
     name: "UpDoc Workflow Source View",
-    element: () => import("./up-doc-workflow-source-view.element-mX53OE8U.js"),
+    element: () => import("./up-doc-workflow-source-view.element-DxN6DktO.js"),
     weight: 200,
     meta: {
       label: "Source",
@@ -156,7 +156,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Map",
     name: "UpDoc Workflow Map View",
-    element: () => import("./up-doc-workflow-map-view.element-Bw9g-ZPk.js"),
+    element: () => import("./up-doc-workflow-map-view.element-CL2dIIo_.js"),
     weight: 100,
     meta: {
       label: "Map",
@@ -302,7 +302,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkspaceView.Workflows",
     name: "Workflows",
-    element: () => import("./up-doc-workflows-view.element-CD8qXk_i.js"),
+    element: () => import("./up-doc-workflows-view.element-Bo3r_smx.js"),
     weight: 300,
     meta: {
       label: "Workflows",

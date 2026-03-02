@@ -47,6 +47,13 @@ public class SourceConfig
     public Dictionary<string, AreaRules>? AreaRules { get; set; }
 
     /// <summary>
+    /// Areas excluded from extraction/transform output.
+    /// Keyed by area name in kebab-case (e.g., "navigation", "footer").
+    /// </summary>
+    [JsonPropertyName("excludedAreas")]
+    public List<string>? ExcludedAreas { get; set; }
+
+    /// <summary>
     /// Resolves the list of page numbers to process, given the total page count.
     /// Returns null if all pages should be processed.
     /// </summary>

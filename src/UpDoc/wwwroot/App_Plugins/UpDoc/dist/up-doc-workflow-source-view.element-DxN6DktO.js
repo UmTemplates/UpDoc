@@ -1,16 +1,16 @@
 import { a as ze } from "./workflow.types-sXs8a86t.js";
-import { g as at, b as st, h as ot, i as T, j as E, k as nt, l as ee, m as G, s as te, n as rt, o as lt, p as Ce, u as ct, q as ut } from "./workflow.service-8opy21oM.js";
-import { m as C, n as ie } from "./transforms-BkZeboOX.js";
+import { g as at, b as st, h as ot, i as E, j as M, k as nt, l as te, m as q, s as ie, n as rt, o as lt, p as Ae, q as ct, u as ut, r as dt } from "./workflow.service-Cpncb616.js";
+import { m as A, n as B } from "./transforms-BkZeboOX.js";
 import { g as $e } from "./destination-utils-DUfOJy5W.js";
 import { UmbModalToken as ae, UMB_MODAL_MANAGER_CONTEXT as I } from "@umbraco-cms/backoffice/modal";
-import { U as dt } from "./page-picker-modal.token-B0CgP9f1.js";
-import { html as l, nothing as d, unsafeHTML as A, css as pt, state as x, customElement as ht } from "@umbraco-cms/backoffice/external/lit";
-import { UmbLitElement as ft } from "@umbraco-cms/backoffice/lit-element";
-import { UmbTextStyles as mt } from "@umbraco-cms/backoffice/style";
+import { U as pt } from "./page-picker-modal.token-B0CgP9f1.js";
+import { html as l, nothing as d, unsafeHTML as C, css as ht, state as x, customElement as ft } from "@umbraco-cms/backoffice/external/lit";
+import { UmbLitElement as mt } from "@umbraco-cms/backoffice/lit-element";
+import { UmbTextStyles as gt } from "@umbraco-cms/backoffice/style";
 import { UMB_AUTH_CONTEXT as se } from "@umbraco-cms/backoffice/auth";
-import { UMB_WORKSPACE_CONTEXT as gt } from "@umbraco-cms/backoffice/workspace";
-import { UMB_MEDIA_PICKER_MODAL as bt } from "@umbraco-cms/backoffice/media";
-const vt = new ae(
+import { UMB_WORKSPACE_CONTEXT as bt } from "@umbraco-cms/backoffice/workspace";
+import { UMB_MEDIA_PICKER_MODAL as vt } from "@umbraco-cms/backoffice/media";
+const xt = new ae(
   "UpDoc.AreaEditorModal",
   {
     modal: {
@@ -18,7 +18,7 @@ const vt = new ae(
       size: "large"
     }
   }
-), xt = new ae(
+), _t = new ae(
   "UpDoc.SectionRulesEditorModal",
   {
     modal: {
@@ -26,25 +26,25 @@ const vt = new ae(
       size: "medium"
     }
   }
-), _t = new ae("UpDoc.DestinationPickerModal", {
+), wt = new ae("UpDoc.DestinationPickerModal", {
   modal: {
     type: "sidebar",
     size: "medium"
   }
 });
-var wt = Object.defineProperty, yt = Object.getOwnPropertyDescriptor, Ae = (e) => {
+var yt = Object.defineProperty, $t = Object.getOwnPropertyDescriptor, Ce = (e) => {
   throw TypeError(e);
 }, v = (e, t, i, o) => {
-  for (var n = o > 1 ? void 0 : o ? yt(t, i) : t, r = e.length - 1, u; r >= 0; r--)
+  for (var n = o > 1 ? void 0 : o ? $t(t, i) : t, r = e.length - 1, u; r >= 0; r--)
     (u = e[r]) && (n = (o ? u(t, i, n) : u(n)) || n);
-  return o && n && wt(t, i, n), n;
-}, oe = (e, t, i) => t.has(e) || Ae("Cannot " + i), p = (e, t, i) => (oe(e, t, "read from private field"), i ? i.call(e) : t.get(e)), V = (e, t, i) => t.has(e) ? Ae("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), ke = (e, t, i, o) => (oe(e, t, "write to private field"), t.set(e, i), i), s = (e, t, i) => (oe(e, t, "access private method"), i), b, D, a, $, Se, ne, re, le, Me, Pe, ce, z, M, ue, de, q, U, Re, Te, Ee, X, pe, De, L, he, N, P, Ie, J, fe, Q, Ue, W, Le, Ne, Oe, Y, me, Ke, ge, S, We, Be, be, Z, Fe, He, je, Ve, Ge, qe, B, F, O, Xe, Je, Qe, H, k, Ye, Ze, et, tt, ve, K, it, R;
-let m = class extends ft {
+  return o && n && yt(t, i, n), n;
+}, oe = (e, t, i) => t.has(e) || Ce("Cannot " + i), p = (e, t, i) => (oe(e, t, "read from private field"), i ? i.call(e) : t.get(e)), G = (e, t, i) => t.has(e) ? Ce("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), ke = (e, t, i, o) => (oe(e, t, "write to private field"), t.set(e, i), i), s = (e, t, i) => (oe(e, t, "access private method"), i), m, D, a, $, Se, ne, re, le, Me, Pe, ce, z, P, ue, de, X, U, Re, Te, Ee, J, pe, De, L, he, N, R, Ie, Q, fe, Y, Ue, W, Le, Ne, Oe, Z, me, Ke, ge, S, We, Be, be, ee, Fe, He, je, Ve, Ge, qe, F, H, O, Xe, Je, Qe, j, k, Ye, Ze, et, tt, ve, K, it, T;
+let g = class extends mt {
   constructor() {
-    super(...arguments), V(this, a), this._extraction = null, this._areaDetection = null, this._config = null, this._workflowAlias = null, this._loading = !0, this._extracting = !1, this._error = null, this._successMessage = null, this._collapsed = /* @__PURE__ */ new Set(), this._transformResult = null, this._viewMode = "elements", this._sourceConfig = null, this._pageMode = "all", this._pageInputValue = "", this._collapsePopoverOpen = !1, this._excludedAreas = /* @__PURE__ */ new Set(), this._areaTemplate = null, this._sectionPickerOpen = !1, this._teachingAreaIndex = null, this._inferenceResult = null, this._inferring = !1, this._sampleUrl = "", V(this, b, ""), V(this, D, /* @__PURE__ */ new Set());
+    super(...arguments), G(this, a), this._extraction = null, this._areaDetection = null, this._config = null, this._workflowAlias = null, this._loading = !0, this._extracting = !1, this._error = null, this._successMessage = null, this._collapsed = /* @__PURE__ */ new Set(), this._transformResult = null, this._viewMode = "elements", this._sourceConfig = null, this._pageMode = "all", this._pageInputValue = "", this._collapsePopoverOpen = !1, this._excludedAreas = /* @__PURE__ */ new Set(), this._areaTemplate = null, this._sectionPickerOpen = !1, this._teachingAreaIndex = null, this._inferenceResult = null, this._inferring = !1, this._sampleUrl = "", G(this, m, ""), G(this, D, /* @__PURE__ */ new Set());
   }
   connectedCallback() {
-    super.connectedCallback(), this.consumeContext(gt, (e) => {
+    super.connectedCallback(), this.consumeContext(bt, (e) => {
       e && (e.setRefreshHandler(() => s(this, a, L).call(this)), this.observe(e.unique, (t) => {
         t && (this._workflowAlias = decodeURIComponent(t), s(this, a, Se).call(this));
       }));
@@ -64,7 +64,7 @@ let m = class extends ft {
 				<umb-body-layout header-fit-height>
 					${i ? s(this, a, O).call(this) : d}
 					${i && this._viewMode === "elements" ? s(this, a, Ye).call(this) : d}
-					${s(this, a, q).call(this)}
+					${s(this, a, X).call(this)}
 					${this._successMessage ? l`<div class="success-banner"><uui-icon name="icon-check"></uui-icon> ${this._successMessage}</div>` : d}
 					${i ? s(this, a, Ze).call(this) : s(this, a, K).call(this)}
 				</umb-body-layout>
@@ -72,7 +72,7 @@ let m = class extends ft {
 				<umb-body-layout header-fit-height>
 					${i ? s(this, a, O).call(this) : d}
 					${i && this._viewMode === "elements" ? s(this, a, et).call(this) : d}
-					${s(this, a, q).call(this)}
+					${s(this, a, X).call(this)}
 					${this._successMessage ? l`<div class="success-banner"><uui-icon name="icon-check"></uui-icon> ${this._successMessage}</div>` : d}
 					${i ? s(this, a, tt).call(this) : s(this, a, K).call(this)}
 				</umb-body-layout>
@@ -86,7 +86,7 @@ let m = class extends ft {
 		`;
   }
 };
-b = /* @__PURE__ */ new WeakMap();
+m = /* @__PURE__ */ new WeakMap();
 D = /* @__PURE__ */ new WeakMap();
 a = /* @__PURE__ */ new WeakSet();
 $ = function() {
@@ -97,41 +97,41 @@ Se = async function() {
     this._loading = !0, this._error = null;
     try {
       const e = await this.getContext(se);
-      ke(this, b, await e.getLatestToken());
+      ke(this, m, await e.getLatestToken());
       const [t, i, o] = await Promise.all([
-        at(this._workflowAlias, p(this, b)),
-        st(this._workflowAlias, p(this, b)),
-        ot(this._workflowAlias, p(this, b))
+        at(this._workflowAlias, p(this, m)),
+        st(this._workflowAlias, p(this, m)),
+        ot(this._workflowAlias, p(this, m))
       ]);
-      this._extraction = t, this._config = i, this._sourceConfig = o, ke(this, D, /* @__PURE__ */ new Set());
+      this._extraction = t, this._config = i, this._sourceConfig = o, this._excludedAreas = new Set(o?.excludedAreas ?? []), ke(this, D, /* @__PURE__ */ new Set());
       for (const u of i?.validationWarnings ?? []) {
         const c = u.match(/blockKey '([^']+)' for target '([^']+)'/);
         c && p(this, D).add(`${c[1]}:${c[2]}`);
       }
       const n = (o?.sourceTypes?.[0] ?? "pdf") === "pdf", r = o?.sourceTypes?.[0] === "web";
       if (n) {
-        const [u, c, g] = await Promise.all([
-          T(this._workflowAlias, p(this, b)),
-          E(this._workflowAlias, p(this, b)),
-          nt(this._workflowAlias, p(this, b))
+        const [u, c, b] = await Promise.all([
+          E(this._workflowAlias, p(this, m)),
+          M(this._workflowAlias, p(this, m)),
+          nt(this._workflowAlias, p(this, m))
         ]);
-        this._areaDetection = u, this._transformResult = c, this._areaTemplate = g;
+        this._areaDetection = u, this._transformResult = c, this._areaTemplate = b;
         const h = t?.source.mediaKey;
         if (h && u) {
-          const f = await ee(this._workflowAlias, h, p(this, b));
+          const f = await te(this._workflowAlias, h, p(this, m));
           f && (this._transformResult = f);
         }
         o?.pages && Array.isArray(o.pages) && o.pages.length > 0 ? (this._pageMode = "custom", this._pageInputValue = s(this, a, re).call(this, o.pages)) : (this._pageMode = "all", this._pageInputValue = "");
       } else if (r) {
         const [u, c] = await Promise.all([
-          T(this._workflowAlias, p(this, b)),
-          E(this._workflowAlias, p(this, b))
+          E(this._workflowAlias, p(this, m)),
+          M(this._workflowAlias, p(this, m))
         ]);
         this._areaDetection = u, this._transformResult = c;
       } else {
         const [u, c] = await Promise.all([
-          T(this._workflowAlias, p(this, b)),
-          E(this._workflowAlias, p(this, b))
+          E(this._workflowAlias, p(this, m)),
+          M(this._workflowAlias, p(this, m))
         ]);
         this._areaDetection = u, this._transformResult = c;
       }
@@ -177,7 +177,7 @@ Me = function(e) {
 Pe = async function() {
   if (!this._workflowAlias) return;
   const e = s(this, a, le).call(this);
-  await rt(this._workflowAlias, e, p(this, b));
+  await rt(this._workflowAlias, e, p(this, m));
 };
 ce = function(e) {
   if (!this._areaDetection) return [];
@@ -196,7 +196,7 @@ z = function(e) {
   const t = s(this, a, ce).call(this, e);
   return t.length > 0 && t.every((i) => this._collapsed.has(i));
 };
-M = function(e) {
+P = function(e) {
   const t = s(this, a, ce).call(this, e), i = s(this, a, z).call(this, e), o = new Set(this._collapsed);
   for (const n of t)
     i ? o.delete(n) : o.add(n);
@@ -208,7 +208,7 @@ ue = function() {
 de = function(e) {
   this._collapsePopoverOpen = e.newState === "open";
 };
-q = function() {
+X = function() {
   return !this._areaDetection || this._viewMode !== "elements" ? d : l`
 			<div class="collapse-row">
 				<uui-button
@@ -231,12 +231,12 @@ q = function() {
 						</uui-menu-item>
 						<uui-menu-item
 							label="${s(this, a, z).call(this, "areas") ? "Expand" : "Collapse"} Areas"
-							@click=${() => s(this, a, M).call(this, "areas")}>
+							@click=${() => s(this, a, P).call(this, "areas")}>
 							<uui-icon slot="icon" name="icon-grid"></uui-icon>
 						</uui-menu-item>
 						<uui-menu-item
 							label="${s(this, a, z).call(this, "sections") ? "Expand" : "Collapse"} Sections"
-							@click=${() => s(this, a, M).call(this, "sections")}>
+							@click=${() => s(this, a, P).call(this, "sections")}>
 							<uui-icon slot="icon" name="icon-thumbnail-list"></uui-icon>
 						</uui-menu-item>
 					</umb-popover-layout>
@@ -246,7 +246,7 @@ q = function() {
 };
 U = async function() {
   if (!this._workflowAlias) return;
-  const i = await (await this.getContext(I)).open(this, bt, {
+  const i = await (await this.getContext(I)).open(this, vt, {
     data: {
       multiple: !1
     }
@@ -257,7 +257,7 @@ U = async function() {
 };
 Re = async function() {
   if (!this._workflowAlias) return;
-  const t = (await this.getContext(I)).open(this, vt, {
+  const t = (await this.getContext(I)).open(this, xt, {
     data: {
       workflowAlias: this._workflowAlias,
       existingTemplate: this._areaTemplate,
@@ -267,7 +267,7 @@ Re = async function() {
   try {
     const i = await t.onSubmit();
     if (i?.template) {
-      const o = await te(this._workflowAlias, i.template, p(this, b));
+      const o = await ie(this._workflowAlias, i.template, p(this, m));
       o && (this._areaTemplate = o, await s(this, a, L).call(this));
     }
   } catch {
@@ -278,34 +278,34 @@ Te = function() {
   const e = [], t = /* @__PURE__ */ new Set();
   for (const i of this._areaDetection.pages)
     for (const o of i.areas) {
-      const n = o.name || "Area", r = ie(n);
+      const n = o.name || "Area", r = B(n);
       if (t.has(r)) continue;
       t.add(r);
-      const u = s(this, a, W).call(this, o), c = this._sourceConfig?.areaRules?.[r], g = !!c && ((c.groups?.length ?? 0) > 0 || (c.rules?.length ?? 0) > 0);
-      e.push({ areaKey: r, areaName: n, elements: u, hasRules: g });
+      const u = s(this, a, W).call(this, o), c = this._sourceConfig?.areaRules?.[r], b = !!c && ((c.groups?.length ?? 0) > 0 || (c.rules?.length ?? 0) > 0);
+      e.push({ areaKey: r, areaName: n, elements: u, hasRules: b });
     }
   return e;
 };
 Ee = function(e) {
   this._sectionPickerOpen = e.newState === "open";
 };
-X = async function(e, t) {
+J = async function(e, t) {
   if (!this._workflowAlias) return;
   const i = {
     ...this._sourceConfig?.areaRules ?? {}
   };
   t.groups.length > 0 || t.rules.length > 0 ? i[e] = t : delete i[e];
-  const n = await lt(this._workflowAlias, i, p(this, b));
+  const n = await lt(this._workflowAlias, i, p(this, m));
   n && this._sourceConfig && (this._sourceConfig = { ...this._sourceConfig, areaRules: n });
   const r = this._extraction?.source.mediaKey;
   if (r) {
-    const u = await ee(this._workflowAlias, r, p(this, b));
+    const u = await te(this._workflowAlias, r, p(this, m));
     u && (this._transformResult = u);
   }
 };
 pe = async function(e, t, i, o) {
   if (!this._workflowAlias) return;
-  const n = this._sourceConfig?.areaRules?.[e] ?? null, u = (await this.getContext(I)).open(this, xt, {
+  const n = this._sourceConfig?.areaRules?.[e] ?? null, u = (await this.getContext(I)).open(this, _t, {
     data: {
       workflowAlias: this._workflowAlias,
       sectionId: e,
@@ -314,13 +314,13 @@ pe = async function(e, t, i, o) {
       existingRules: n,
       sectionCount: o,
       onSave: async (c) => {
-        await s(this, a, X).call(this, e, c);
+        await s(this, a, J).call(this, e, c);
       }
     }
   });
   try {
     const c = await u.onSubmit();
-    c?.rules && await s(this, a, X).call(this, e, c.rules);
+    c?.rules && await s(this, a, J).call(this, e, c.rules);
   } catch {
   }
 };
@@ -329,7 +329,7 @@ De = async function() {
   if (!e) return;
   const t = this._areaDetection?.totalPages ?? this._extraction?.source.totalPages ?? 0;
   if (t === 0) return;
-  const i = s(this, a, le).call(this), r = await (await this.getContext(I)).open(this, dt, {
+  const i = s(this, a, le).call(this), r = await (await this.getContext(I)).open(this, pt, {
     data: { mediaKey: e, totalPages: t, selectedPages: i }
   }).onSubmit().catch(() => null);
   r !== null && (r.selectedPages === null ? (this._pageMode = "all", this._pageInputValue = "") : (this._pageMode = "custom", this._pageInputValue = s(this, a, re).call(this, r.selectedPages)), await s(this, a, Pe).call(this));
@@ -337,7 +337,7 @@ De = async function() {
 L = async function() {
   if (p(this, a, $) === "web") {
     const t = this._extraction?.source.fileName;
-    return t ? s(this, a, R).call(this, t) : void 0;
+    return t ? s(this, a, T).call(this, t) : void 0;
   }
   const e = this._extraction?.source.mediaKey;
   if (!e)
@@ -351,25 +351,25 @@ he = async function(e) {
       const i = await (await this.getContext(se)).getLatestToken();
       if (p(this, a, $) === "pdf") {
         const [n, r] = await Promise.all([
-          G(this._workflowAlias, e, i),
-          ee(this._workflowAlias, e, i)
+          q(this._workflowAlias, e, i),
+          te(this._workflowAlias, e, i)
         ]);
         if (n && (this._extraction = n), r) {
           this._transformResult = r;
-          const u = await T(this._workflowAlias, i);
+          const u = await E(this._workflowAlias, i);
           this._areaDetection = u;
-          const c = r.diagnostics, g = c.roleSections > 0 ? `, ${c.roleSections} role` : "";
-          this._successMessage = `Content extracted — ${c.totalSections} sections (${c.bulletListSections} bullet, ${c.paragraphSections} paragraph, ${c.subHeadedSections} sub-headed${g})`, setTimeout(() => {
+          const c = r.diagnostics, b = c.roleSections > 0 ? `, ${c.roleSections} role` : "";
+          this._successMessage = `Content extracted — ${c.totalSections} sections (${c.bulletListSections} bullet, ${c.paragraphSections} paragraph, ${c.subHeadedSections} sub-headed${b})`, setTimeout(() => {
             this._successMessage = null;
           }, 5e3);
         } else n ? (this._successMessage = `Content extracted — ${n.elements.length} elements (transform unavailable)`, setTimeout(() => {
           this._successMessage = null;
         }, 5e3)) : this._error = "Extraction failed. Check that the selected media item is a PDF.";
       } else {
-        const n = await G(this._workflowAlias, e, i);
+        const n = await q(this._workflowAlias, e, i);
         if (n) {
           this._extraction = n;
-          const r = await E(this._workflowAlias, i);
+          const r = await M(this._workflowAlias, i);
           this._transformResult = r, this._successMessage = `Content extracted — ${n.elements.length} elements`, setTimeout(() => {
             this._successMessage = null;
           }, 5e3);
@@ -386,16 +386,16 @@ he = async function(e) {
 N = function(e) {
   return this._collapsed.has(e);
 };
-P = function(e) {
+R = function(e) {
   const t = new Set(this._collapsed);
   t.has(e) ? t.delete(e) : t.add(e), this._collapsed = t;
 };
 Ie = function(e) {
   return this._transformResult ? ze(this._transformResult).find((i) => i.id === e)?.included ?? !0 : !0;
 };
-J = async function(e, t) {
+Q = async function(e, t) {
   if (!this._workflowAlias) return;
-  const i = await ct(this._workflowAlias, e, t, p(this, b));
+  const i = await ut(this._workflowAlias, e, t, p(this, m));
   i && (this._transformResult = i);
 };
 fe = function(e) {
@@ -407,7 +407,7 @@ fe = function(e) {
         t.push(o);
   return t;
 };
-Q = function(e) {
+Y = function(e) {
   if (!this._config?.destination) return e.target;
   if (e.blockKey)
     for (const i of $e(this._config.destination)) {
@@ -445,11 +445,11 @@ Le = async function(e) {
   if (!(this._teachingAreaIndex === null || !this._workflowAlias || this._inferring)) {
     this._inferring = !0, this._inferenceResult = null;
     try {
-      const t = await ut(
+      const t = await dt(
         this._workflowAlias,
         this._teachingAreaIndex,
         e,
-        p(this, b)
+        p(this, m)
       );
       this._inferenceResult = t;
     } catch (t) {
@@ -465,7 +465,7 @@ Ne = async function() {
   if (e < 0 || e >= this._areaTemplate.areas.length) return;
   const t = [...this._areaTemplate.areas];
   t[e] = { ...t[e], sectionPattern: this._inferenceResult.pattern };
-  const i = { ...this._areaTemplate, areas: t }, o = await te(this._workflowAlias, i, p(this, b));
+  const i = { ...this._areaTemplate, areas: t }, o = await ie(this._workflowAlias, i, p(this, m));
   o && (this._areaTemplate = o, this._teachingAreaIndex = null, this._inferenceResult = null, await s(this, a, L).call(this));
 };
 Oe = async function() {
@@ -474,14 +474,14 @@ Oe = async function() {
   if (e < 0 || e >= this._areaTemplate.areas.length) return;
   const t = [...this._areaTemplate.areas];
   t[e] = { ...t[e], sectionPattern: { conditions: [] } };
-  const i = { ...this._areaTemplate, areas: t }, o = await te(this._workflowAlias, i, p(this, b));
+  const i = { ...this._areaTemplate, areas: t }, o = await ie(this._workflowAlias, i, p(this, m));
   o && (this._areaTemplate = o, this._teachingAreaIndex = null, this._inferenceResult = null, await s(this, a, L).call(this));
 };
-Y = function() {
+Z = function() {
   this._teachingAreaIndex = null, this._inferenceResult = null, this._inferring = !1;
 };
 me = function(e) {
-  return ie(e.name || "");
+  return B(e.name || "");
 };
 Ke = function(e) {
   const t = s(this, a, me).call(this, e), i = this._sourceConfig?.areaRules?.[t];
@@ -500,7 +500,7 @@ ge = function(e, t) {
 };
 S = async function(e, t = "content") {
   if (!this._workflowAlias || !this._config?.destination) return;
-  const o = (await this.getContext(I)).open(this, _t, {
+  const o = (await this.getContext(I)).open(this, wt, {
     data: {
       destination: this._config.destination,
       existingMappings: this._config.map?.mappings ?? []
@@ -517,10 +517,10 @@ S = async function(e, t = "content") {
     source: r,
     destinations: n.selectedTargets.map((y) => ({ target: y.target, blockKey: y.blockKey, contentTypeKey: y.contentTypeKey })),
     enabled: !0
-  }, g = u.findIndex((y) => y.source === r), h = g >= 0 ? u.map((y, xe) => xe === g ? c : y) : [...u, c], f = {
+  }, b = u.findIndex((y) => y.source === r), h = b >= 0 ? u.map((y, xe) => xe === b ? c : y) : [...u, c], f = {
     ...this._config.map ?? { version: "1.0", mappings: [] },
     mappings: h
-  }, _ = await Ce(this._workflowAlias, f, p(this, b));
+  }, _ = await Ae(this._workflowAlias, f, p(this, m));
   _ && (this._config = { ...this._config, map: _ });
 };
 We = async function(e, t) {
@@ -534,14 +534,14 @@ We = async function(e, t) {
   r.length === 0 ? u = i.filter((h, f) => f !== o) : u = i.map(
     (h, f) => f === o ? { ...h, destinations: r } : h
   );
-  const c = { ...this._config.map, mappings: u }, g = await Ce(this._workflowAlias, c, p(this, b));
-  g && (this._config = { ...this._config, map: g });
+  const c = { ...this._config.map, mappings: u }, b = await Ae(this._workflowAlias, c, p(this, m));
+  b && (this._config = { ...this._config, map: b });
 };
 Be = function(e) {
   const t = ["content", "heading", "title", "description", "summary"], i = t.some((c) => s(this, a, fe).call(this, `${e.id}.${c}`).length > 0), o = `composed-${e.id}`, n = s(this, a, N).call(this, o), r = e.groupName ?? e.ruleName ?? (e.areaName ? `${e.areaName} - Section` : "Section"), u = !!e.groupName;
   return l`
 			<div class="section-box">
-				<div class="section-box-header" @click=${() => s(this, a, P).call(this, o)}>
+				<div class="section-box-header" @click=${() => s(this, a, R).call(this, o)}>
 					<uui-icon class="collapse-chevron" name="${n ? "icon-navigation-right" : "icon-navigation-down"}"></uui-icon>
 					<uui-icon class="level-icon" name="icon-thumbnail-list"></uui-icon>
 					<span class="section-box-label">${r}</span>
@@ -555,7 +555,7 @@ Be = function(e) {
 								<div class="part-box">
 									<div class="part-box-row">
 										<span class="part-box-label">Title</span>
-										<div class="part-box-content">${A(C(e.heading))}</div>
+										<div class="part-box-content">${C(A(e.heading))}</div>
 										<div class="part-box-actions">
 											${s(this, a, k).call(this, `${e.id}.title`)}
 											${s(this, a, k).call(this, `${e.id}.heading`)}
@@ -571,7 +571,7 @@ Be = function(e) {
 								<div class="part-box">
 									<div class="part-box-row">
 										<span class="part-box-label">Content</span>
-										<div class="part-box-content">${A(C(e.content))}</div>
+										<div class="part-box-content">${C(A(e.content))}</div>
 										<div class="part-box-actions">
 											${s(this, a, k).call(this, `${e.id}.content`)}
 											<uui-button class="md-map-btn" look="outline" compact label="Map"
@@ -586,7 +586,7 @@ Be = function(e) {
 								<div class="part-box">
 									<div class="part-box-row">
 										<span class="part-box-label">Description</span>
-										<div class="part-box-content">${A(C(e.description))}</div>
+										<div class="part-box-content">${C(A(e.description))}</div>
 										<div class="part-box-actions">
 											${s(this, a, k).call(this, `${e.id}.description`)}
 											<uui-button class="md-map-btn" look="outline" compact label="Map"
@@ -601,7 +601,7 @@ Be = function(e) {
 								<div class="part-box">
 									<div class="part-box-row">
 										<span class="part-box-label">Summary</span>
-										<div class="part-box-content">${A(C(e.summary))}</div>
+										<div class="part-box-content">${C(A(e.summary))}</div>
 										<div class="part-box-actions">
 											${s(this, a, k).call(this, `${e.id}.summary`)}
 											<uui-button class="md-map-btn" look="outline" compact label="Map"
@@ -615,7 +615,7 @@ Be = function(e) {
 						` : l`
 							${e.content ? l`
 								<div class="part-box-row">
-									<div class="part-box-content">${A(C(e.content))}</div>
+									<div class="part-box-content">${C(A(e.content))}</div>
 									<div class="part-box-actions">
 										${t.map((c) => s(this, a, k).call(this, `${e.id}.${c}`))}
 										<uui-button class="md-map-btn" look="outline" compact label="Map"
@@ -635,7 +635,7 @@ be = function(e) {
   const t = e.trimStart();
   return /^[•\-\*▪▸▶►●○◦‣⁃]/.test(t) || /^\d+[\.\)]\s/.test(t) ? "list" : "paragraph";
 };
-Z = function(e, t) {
+ee = function(e, t) {
   const i = t === "heading" ? "heading" : s(this, a, be).call(this, e.text), o = i === "heading" ? "Heading" : i === "list" ? "List Item" : "Paragraph";
   return l`
 			<div class="element-item">
@@ -653,11 +653,11 @@ Z = function(e, t) {
 		`;
 };
 Fe = function(e, t, i, o) {
-  const n = s(this, a, N).call(this, t), r = e.heading ? ie(e.heading.text) : `preamble-p${i}-a${o}`, u = s(this, a, Ie).call(this, r);
+  const n = s(this, a, N).call(this, t), r = e.heading ? B(e.heading.text) : `preamble-p${i}-a${o}`, u = s(this, a, Ie).call(this, r);
   if (!e.heading)
     return l`
 				<div class="area-section ${u ? "" : "excluded"}">
-					<div class="section-heading preamble" @click=${() => s(this, a, P).call(this, t)}>
+					<div class="section-heading preamble" @click=${() => s(this, a, R).call(this, t)}>
 						<uui-icon class="collapse-chevron" name="${n ? "icon-navigation-right" : "icon-navigation-down"}"></uui-icon>
 						<span class="heading-text preamble-label">Content</span>
 						<span class="group-count">${e.children.length} element${e.children.length !== 1 ? "s" : ""}</span>
@@ -665,47 +665,52 @@ Fe = function(e, t, i, o) {
 							label="${u ? "Included" : "Excluded"}"
 							?checked=${u}
 							@click=${(f) => f.stopPropagation()}
-							@change=${(f) => s(this, a, J).call(this, r, f.target.checked)}>
+							@change=${(f) => s(this, a, Q).call(this, r, f.target.checked)}>
 						</uui-toggle>
 					</div>
 					${u && !n ? l`
-						${e.children.map((f) => s(this, a, Z).call(this, f))}
+						${e.children.map((f) => s(this, a, ee).call(this, f))}
 					` : d}
 				</div>
 			`;
-  const c = e.heading, g = e.children.length, h = g > 0;
+  const c = e.heading, b = e.children.length, h = b > 0;
   return l`
 			<div class="area-section ${u ? "" : "excluded"}">
-				<div class="section-heading" @click=${h ? () => s(this, a, P).call(this, t) : d}>
+				<div class="section-heading" @click=${h ? () => s(this, a, R).call(this, t) : d}>
 					${h ? l`<uui-icon class="collapse-chevron" name="${n ? "icon-navigation-right" : "icon-navigation-down"}"></uui-icon>` : l`<uui-icon class="collapse-chevron placeholder"></uui-icon>`}
 					<uui-icon class="level-icon" name="icon-thumbnail-list"></uui-icon>
 					<span class="heading-text" title="${c.text}">${c.text}</span>
-					${h ? l`<span class="group-count">${g} element${g !== 1 ? "s" : ""}</span>` : d}
+					${h ? l`<span class="group-count">${b} element${b !== 1 ? "s" : ""}</span>` : d}
 					<uui-toggle
 						label="${u ? "Included" : "Excluded"}"
 						?checked=${u}
 						@click=${(f) => f.stopPropagation()}
-						@change=${(f) => s(this, a, J).call(this, r, f.target.checked)}>
+						@change=${(f) => s(this, a, Q).call(this, r, f.target.checked)}>
 					</uui-toggle>
 				</div>
 				${h && !n && u ? l`
 					<div class="section-children">
-						${e.children.map((f) => s(this, a, Z).call(this, f))}
+						${e.children.map((f) => s(this, a, ee).call(this, f))}
 					</div>
 				` : d}
 			</div>
 		`;
 };
-He = function(e) {
-  const t = new Set(this._excludedAreas);
-  if (t.has(e))
-    t.delete(e);
+He = async function(e, t) {
+  const i = B(e), o = new Set(this._excludedAreas);
+  if (o.has(i))
+    o.delete(i);
   else {
-    t.add(e);
-    const i = new Set(this._collapsed);
-    i.add(e), this._collapsed = i;
+    o.add(i);
+    const n = new Set(this._collapsed);
+    n.add(t), this._collapsed = n;
   }
-  this._excludedAreas = t;
+  if (this._excludedAreas = o, this._workflowAlias) {
+    const n = await ct(this._workflowAlias, [...o], p(this, m));
+    n != null && this._sourceConfig && (this._sourceConfig = { ...this._sourceConfig, excludedAreas: n });
+    const r = await M(this._workflowAlias, p(this, m));
+    r && (this._transformResult = r);
+  }
 };
 je = function(e) {
   const t = this._inferenceResult?.clickedElementId === e.id, i = this._inferenceResult?.matchingElementIds?.includes(e.id) ?? !1, o = s(this, a, be).call(this, e.text), n = o === "list" ? "List Item" : "Paragraph";
@@ -739,7 +744,7 @@ Ve = function() {
 						<uui-button look="primary" color="default" label="Confirm" @click=${() => s(this, a, Ne).call(this)}>
 							<uui-icon name="icon-check"></uui-icon> Confirm
 						</uui-button>
-						<uui-button look="secondary" label="Cancel" @click=${() => s(this, a, Y).call(this)}>Cancel</uui-button>
+						<uui-button look="secondary" label="Cancel" @click=${() => s(this, a, Z).call(this)}>Cancel</uui-button>
 					</div>
 				</div>
 			`;
@@ -754,16 +759,16 @@ Ve = function() {
 						title="This area has no repeating section structure">
 						No Sections
 					</uui-button>
-					<uui-button look="default" compact label="Cancel" @click=${() => s(this, a, Y).call(this)}>Cancel</uui-button>
+					<uui-button look="default" compact label="Cancel" @click=${() => s(this, a, Z).call(this)}>Cancel</uui-button>
 				</div>
 			</div>
 		`;
 };
 Ge = function(e, t, i) {
-  const o = `area-p${t}-a${i}`, n = s(this, a, Ue).call(this, t, i), r = this._teachingAreaIndex === n, u = r ? !1 : s(this, a, N).call(this, o), c = !this._excludedAreas.has(o), g = s(this, a, me).call(this, e), h = s(this, a, Ke).call(this, e), f = h && this._transformResult ? s(this, a, ge).call(this, e, t) : [], _ = h && f.length > 0, y = _ ? f.length : e.sections.length, _e = e.sectionPattern != null ? e.sectionPattern.conditions.length > 0 ? "Configured" : "Flat" : null, we = this._sourceConfig?.areaRules?.[g], ye = (we?.rules?.length ?? 0) + (we?.groups?.reduce((w, j) => w + j.rules.length, 0) ?? 0);
+  const o = `area-p${t}-a${i}`, n = s(this, a, Ue).call(this, t, i), r = this._teachingAreaIndex === n, u = r ? !1 : s(this, a, N).call(this, o), c = s(this, a, me).call(this, e), b = !this._excludedAreas.has(c), h = s(this, a, Ke).call(this, e), f = h && this._transformResult ? s(this, a, ge).call(this, e, t) : [], _ = h && f.length > 0, y = _ ? f.length : e.sections.length, _e = e.sectionPattern != null ? e.sectionPattern.conditions.length > 0 ? "Configured" : "Flat" : null, we = this._sourceConfig?.areaRules?.[c], ye = (we?.rules?.length ?? 0) + (we?.groups?.reduce((w, V) => w + V.rules.length, 0) ?? 0);
   return l`
-			<div class="detected-area ${c ? "" : "area-excluded"} ${r ? "area-teaching" : ""}" style="border-left-color: ${e.color};">
-				<div class="area-header" @click=${() => !r && s(this, a, P).call(this, o)}>
+			<div class="detected-area ${b ? "" : "area-excluded"} ${r ? "area-teaching" : ""}" style="border-left-color: ${e.color};">
+				<div class="area-header" @click=${() => !r && s(this, a, R).call(this, o)}>
 					<uui-icon class="collapse-chevron" name="${u ? "icon-navigation-right" : "icon-navigation-down"}"></uui-icon>
 					<uui-icon class="level-icon" name="icon-grid"></uui-icon>
 					<span class="area-name">${e.name || `${i + 1}`}</span>
@@ -776,7 +781,7 @@ Ge = function(e, t, i) {
 							color="default"
 							label="Sections"
 							@click=${(w) => {
-    w.stopPropagation(), s(this, a, pe).call(this, g, e.name || "", s(this, a, W).call(this, e), y);
+    w.stopPropagation(), s(this, a, pe).call(this, c, e.name || "", s(this, a, W).call(this, e), y);
   }}
 							?disabled=${this._teachingAreaIndex !== null}>
 							<uui-icon name="icon-thumbnail-list"></uui-icon>
@@ -786,10 +791,10 @@ Ge = function(e, t, i) {
 					`}
 					${h ? d : l`
 						<uui-toggle
-							label="${c ? "Included" : "Excluded"}"
-							?checked=${c}
+							label="${b ? "Included" : "Excluded"}"
+							?checked=${b}
 							@click=${(w) => w.stopPropagation()}
-							@change=${() => s(this, a, He).call(this, o)}>
+							@change=${() => s(this, a, He).call(this, e.name || "", o)}>
 						</uui-toggle>
 					`}
 				</div>
@@ -805,7 +810,7 @@ Ge = function(e, t, i) {
 						</div>
 					` : l`
 						${e.sections.map(
-    (w, j) => s(this, a, Fe).call(this, w, `p${t}-a${i}-s${j}`, t, i)
+    (w, V) => s(this, a, Fe).call(this, w, `p${t}-a${i}-s${V}`, t, i)
   )}
 					`}
 				`}
@@ -813,10 +818,10 @@ Ge = function(e, t, i) {
 		`;
 };
 qe = function(e, t) {
-  const i = `page-${e}`, o = s(this, a, N).call(this, i), n = t.length, r = t.reduce((c, g) => c + g.sections.length, 0), u = s(this, a, Me).call(this, e);
+  const i = `page-${e}`, o = s(this, a, N).call(this, i), n = t.length, r = t.reduce((c, b) => c + b.sections.length, 0), u = s(this, a, Me).call(this, e);
   return l`
 			<uui-box class="page-box ${u ? "" : "page-excluded"}">
-				<div slot="header" class="tree-header" @click=${() => s(this, a, P).call(this, i)}>
+				<div slot="header" class="tree-header" @click=${() => s(this, a, R).call(this, i)}>
 					<uui-icon class="collapse-chevron" name="${o ? "icon-navigation-right" : "icon-navigation-down"}"></uui-icon>
 					<uui-icon class="level-icon" name="icon-document"></uui-icon>
 					<strong class="page-title">Page ${e}</strong>
@@ -825,19 +830,19 @@ qe = function(e, t) {
 					<span class="group-count">${r} section${r !== 1 ? "s" : ""}, ${n} area${n !== 1 ? "s" : ""}</span>
 				</div>
 				${o ? d : l`
-					${t.map((c, g) => s(this, a, Ge).call(this, c, e, g))}
+					${t.map((c, b) => s(this, a, Ge).call(this, c, e, b))}
 				`}
 			</uui-box>
 		`;
 };
-B = function() {
+F = function() {
   return this._areaDetection ? l`
 			${this._areaDetection.pages.map(
     (e) => s(this, a, qe).call(this, e.page, e.areas)
   )}
 		` : d;
 };
-F = function() {
+H = function() {
   return this._areaDetection ? this._areaDetection.pages.reduce((e, t) => e + t.areas.reduce((i, o) => i + o.sections.length, 0), 0) : 0;
 };
 O = function() {
@@ -857,7 +862,7 @@ O = function() {
 Xe = function() {
   const e = this._areaDetection !== null, t = this._extraction !== null;
   if (!e && !t) return d;
-  const i = this._areaDetection?.totalPages ?? (t ? this._extraction.source.totalPages : 0), o = this._sourceConfig?.pages, n = Array.isArray(o) && o.length > 0, r = n ? o.length : i, u = n && i > 0 ? `${r} of ${i}` : `${i}`, c = e ? this._areaDetection.diagnostics.areasDetected : 0, g = e ? s(this, a, F).call(this) : 0, h = t ? this._extraction.source.fileName : "", f = t ? new Date(this._extraction.source.extractedDate).toLocaleString() : "";
+  const i = this._areaDetection?.totalPages ?? (t ? this._extraction.source.totalPages : 0), o = this._sourceConfig?.pages, n = Array.isArray(o) && o.length > 0, r = n ? o.length : i, u = n && i > 0 ? `${r} of ${i}` : `${i}`, c = e ? this._areaDetection.diagnostics.areasDetected : 0, b = e ? s(this, a, H).call(this) : 0, h = t ? this._extraction.source.fileName : "", f = t ? new Date(this._extraction.source.extractedDate).toLocaleString() : "";
   return l`
 			<div class="info-boxes">
 				<uui-box class="info-box-item">
@@ -906,7 +911,7 @@ Xe = function() {
 				<uui-box headline="Sections" class="info-box-item">
 					<div class="box-content">
 						<uui-icon name="icon-thumbnail-list" class="box-icon"></uui-icon>
-						<span class="box-stat">${g}</span>
+						<span class="box-stat">${b}</span>
 						${this._transformResult && this._areaDetection ? l`
 							<div class="box-buttons">
 								<uui-button
@@ -961,17 +966,17 @@ Xe = function() {
 							</uui-menu-item>
 							<uui-menu-item
 								label="${s(this, a, z).call(this, "pages") ? "Expand" : "Collapse"} Pages"
-								@click=${() => s(this, a, M).call(this, "pages")}>
+								@click=${() => s(this, a, P).call(this, "pages")}>
 								<uui-icon slot="icon" name="icon-document"></uui-icon>
 							</uui-menu-item>
 							<uui-menu-item
 								label="${s(this, a, z).call(this, "areas") ? "Expand" : "Collapse"} Areas"
-								@click=${() => s(this, a, M).call(this, "areas")}>
+								@click=${() => s(this, a, P).call(this, "areas")}>
 								<uui-icon slot="icon" name="icon-grid"></uui-icon>
 							</uui-menu-item>
 							<uui-menu-item
 								label="${s(this, a, z).call(this, "sections") ? "Expand" : "Collapse"} Sections"
-								@click=${() => s(this, a, M).call(this, "sections")}>
+								@click=${() => s(this, a, P).call(this, "sections")}>
 								<uui-icon slot="icon" name="icon-thumbnail-list"></uui-icon>
 							</uui-menu-item>
 						</umb-popover-layout>
@@ -982,7 +987,7 @@ Xe = function() {
 };
 Je = function() {
   const e = this._areaDetection !== null;
-  return this._viewMode === "elements" ? e ? s(this, a, B).call(this) : d : s(this, a, H).call(this);
+  return this._viewMode === "elements" ? e ? s(this, a, F).call(this) : d : s(this, a, j).call(this);
 };
 Qe = function() {
   if (!this._transformResult) return "";
@@ -992,7 +997,7 @@ Qe = function() {
   return t.join(`
 `);
 };
-H = function() {
+j = function() {
   if (!this._transformResult)
     return l`
 				<div class="empty-state">
@@ -1010,10 +1015,10 @@ H = function() {
 					<p>All sections are excluded. Include at least one section to see the preview.</p>
 				</div>
 			`;
-  const t = C(e);
+  const t = A(e);
   return l`
 			<div class="transformed-preview">
-				<div class="md-section-content">${A(t)}</div>
+				<div class="md-section-content">${C(t)}</div>
 			</div>
 		`;
 };
@@ -1021,8 +1026,8 @@ k = function(e) {
   const t = s(this, a, fe).call(this, e);
   return t.length === 0 ? d : t.map((i) => {
     const n = i.blockKey && p(this, D).has(`${i.blockKey}:${i.target}`) ? "warning" : "positive";
-    return l`<uui-tag color="${n}" look="primary" class="mapped-tag" title="${s(this, a, Q).call(this, i)}">
-				${s(this, a, Q).call(this, i)}
+    return l`<uui-tag color="${n}" look="primary" class="mapped-tag" title="${s(this, a, Y).call(this, i)}">
+				${s(this, a, Y).call(this, i)}
 				<button class="unmap-x" title="Remove mapping" @click=${(r) => {
       r.stopPropagation(), s(this, a, We).call(this, e, i);
     }}>&times;</button>
@@ -1031,7 +1036,7 @@ k = function(e) {
 };
 Ye = function() {
   if (!this._extraction) return d;
-  const e = this._extraction.source.fileName ?? "", t = new Date(this._extraction.source.extractedDate).toLocaleString(), i = this._areaDetection !== null, o = i ? this._areaDetection.diagnostics.areasDetected : 0, n = i ? s(this, a, F).call(this) : 0;
+  const e = this._extraction.source.fileName ?? "", t = new Date(this._extraction.source.extractedDate).toLocaleString(), i = this._areaDetection !== null, o = i ? this._areaDetection.diagnostics.areasDetected : 0, n = i ? s(this, a, H).call(this) : 0;
   return l`
 			<div class="info-boxes">
 				<uui-box class="info-box-item">
@@ -1078,11 +1083,11 @@ Ye = function() {
 		`;
 };
 Ze = function() {
-  return this._viewMode === "transformed" ? s(this, a, H).call(this) : this._areaDetection ? s(this, a, B).call(this) : s(this, a, ve).call(this);
+  return this._viewMode === "transformed" ? s(this, a, j).call(this) : this._areaDetection ? s(this, a, F).call(this) : s(this, a, ve).call(this);
 };
 et = function() {
   if (!this._extraction) return d;
-  const e = this._extraction.source.fileName ?? "", t = new Date(this._extraction.source.extractedDate).toLocaleString(), i = this._areaDetection !== null, o = i ? this._areaDetection.diagnostics.areasDetected : 0, n = i ? s(this, a, F).call(this) : 0;
+  const e = this._extraction.source.fileName ?? "", t = new Date(this._extraction.source.extractedDate).toLocaleString(), i = this._areaDetection !== null, o = i ? this._areaDetection.diagnostics.areasDetected : 0, n = i ? s(this, a, H).call(this) : 0;
   return l`
 			<div class="info-boxes">
 				<uui-box class="info-box-item">
@@ -1101,12 +1106,12 @@ et = function() {
     this._sampleUrl = r.target.value;
   }}
 							@keydown=${(r) => {
-    r.key === "Enter" && this._sampleUrl && s(this, a, R).call(this, this._sampleUrl);
+    r.key === "Enter" && this._sampleUrl && s(this, a, T).call(this, this._sampleUrl);
   }}>
 						</uui-input>
 						<div class="box-buttons">
 							<uui-button look="primary" color="default" label="Choose Source"
-								@click=${() => s(this, a, R).call(this, this._sampleUrl || e)}
+								@click=${() => s(this, a, T).call(this, this._sampleUrl || e)}
 								?disabled=${this._extracting}>
 								<uui-icon name="icon-globe"></uui-icon> Choose Source
 							</uui-button>
@@ -1141,7 +1146,7 @@ et = function() {
 		`;
 };
 tt = function() {
-  return this._viewMode === "transformed" ? s(this, a, H).call(this) : this._areaDetection ? s(this, a, B).call(this) : s(this, a, ve).call(this);
+  return this._viewMode === "transformed" ? s(this, a, j).call(this) : this._areaDetection ? s(this, a, F).call(this) : s(this, a, ve).call(this);
 };
 ve = function() {
   return this._extraction?.elements?.length ? l`
@@ -1193,30 +1198,30 @@ it = function() {
     this._sampleUrl = e.target.value;
   }}
 						@keydown=${(e) => {
-    e.key === "Enter" && this._sampleUrl && s(this, a, R).call(this, this._sampleUrl);
+    e.key === "Enter" && this._sampleUrl && s(this, a, T).call(this, this._sampleUrl);
   }}>
 					</uui-input>
 					<uui-button
 						look="primary"
 						label="Extract"
 						?disabled=${!this._sampleUrl || this._extracting}
-						@click=${() => s(this, a, R).call(this, this._sampleUrl)}>
+						@click=${() => s(this, a, T).call(this, this._sampleUrl)}>
 						${this._extracting ? l`<uui-loader-bar></uui-loader-bar>` : "Extract"}
 					</uui-button>
 				</div>
 			</div>
 		`;
 };
-R = async function(e) {
+T = async function(e) {
   if (!(!this._workflowAlias || !e)) {
     this._extracting = !0, this._error = null;
     try {
-      const i = await (await this.getContext(se)).getLatestToken(), o = await G(this._workflowAlias, "", i, e);
+      const i = await (await this.getContext(se)).getLatestToken(), o = await q(this._workflowAlias, "", i, e);
       if (o) {
         this._extraction = o;
         const [n, r] = await Promise.all([
-          T(this._workflowAlias, i),
-          E(this._workflowAlias, i)
+          E(this._workflowAlias, i),
+          M(this._workflowAlias, i)
         ]);
         this._areaDetection = n, this._transformResult = r;
         const u = n?.diagnostics?.areasDetected ?? 0;
@@ -1232,9 +1237,9 @@ R = async function(e) {
     }
   }
 };
-m.styles = [
-  mt,
-  pt`
+g.styles = [
+  gt,
+  ht`
 			:host {
 				display: block;
 				height: 100%;
@@ -2111,76 +2116,76 @@ m.styles = [
 ];
 v([
   x()
-], m.prototype, "_extraction", 2);
+], g.prototype, "_extraction", 2);
 v([
   x()
-], m.prototype, "_areaDetection", 2);
+], g.prototype, "_areaDetection", 2);
 v([
   x()
-], m.prototype, "_config", 2);
+], g.prototype, "_config", 2);
 v([
   x()
-], m.prototype, "_workflowAlias", 2);
+], g.prototype, "_workflowAlias", 2);
 v([
   x()
-], m.prototype, "_loading", 2);
+], g.prototype, "_loading", 2);
 v([
   x()
-], m.prototype, "_extracting", 2);
+], g.prototype, "_extracting", 2);
 v([
   x()
-], m.prototype, "_error", 2);
+], g.prototype, "_error", 2);
 v([
   x()
-], m.prototype, "_successMessage", 2);
+], g.prototype, "_successMessage", 2);
 v([
   x()
-], m.prototype, "_collapsed", 2);
+], g.prototype, "_collapsed", 2);
 v([
   x()
-], m.prototype, "_transformResult", 2);
+], g.prototype, "_transformResult", 2);
 v([
   x()
-], m.prototype, "_viewMode", 2);
+], g.prototype, "_viewMode", 2);
 v([
   x()
-], m.prototype, "_sourceConfig", 2);
+], g.prototype, "_sourceConfig", 2);
 v([
   x()
-], m.prototype, "_pageMode", 2);
+], g.prototype, "_pageMode", 2);
 v([
   x()
-], m.prototype, "_pageInputValue", 2);
+], g.prototype, "_pageInputValue", 2);
 v([
   x()
-], m.prototype, "_collapsePopoverOpen", 2);
+], g.prototype, "_collapsePopoverOpen", 2);
 v([
   x()
-], m.prototype, "_excludedAreas", 2);
+], g.prototype, "_excludedAreas", 2);
 v([
   x()
-], m.prototype, "_areaTemplate", 2);
+], g.prototype, "_areaTemplate", 2);
 v([
   x()
-], m.prototype, "_sectionPickerOpen", 2);
+], g.prototype, "_sectionPickerOpen", 2);
 v([
   x()
-], m.prototype, "_teachingAreaIndex", 2);
+], g.prototype, "_teachingAreaIndex", 2);
 v([
   x()
-], m.prototype, "_inferenceResult", 2);
+], g.prototype, "_inferenceResult", 2);
 v([
   x()
-], m.prototype, "_inferring", 2);
+], g.prototype, "_inferring", 2);
 v([
   x()
-], m.prototype, "_sampleUrl", 2);
-m = v([
-  ht("up-doc-workflow-source-view")
-], m);
-const It = m;
+], g.prototype, "_sampleUrl", 2);
+g = v([
+  ft("up-doc-workflow-source-view")
+], g);
+const Ut = g;
 export {
-  m as UpDocWorkflowSourceViewElement,
-  It as default
+  g as UpDocWorkflowSourceViewElement,
+  Ut as default
 };
-//# sourceMappingURL=up-doc-workflow-source-view.element-mX53OE8U.js.map
+//# sourceMappingURL=up-doc-workflow-source-view.element-DxN6DktO.js.map

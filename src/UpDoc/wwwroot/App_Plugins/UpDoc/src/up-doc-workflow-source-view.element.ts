@@ -1,6 +1,6 @@
 import type { RichExtractionResult, DocumentTypeConfig, MappingDestination, AreaDetectionResult, DetectedArea, DetectedSection, AreaElement, TransformResult, TransformedSection, SourceConfig, AreaTemplate, AreaRules, InferSectionPatternResponse, MapConfig, SectionMapping } from './workflow.types.js';
 import { allTransformSections } from './workflow.types.js';
-import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, fetchTransformResult, updateSectionInclusion, savePageSelection, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
+import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, fetchTransformResult, updateSectionInclusion, savePageSelection, saveExcludedAreas, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
 import { normalizeToKebabCase, markdownToHtml } from './transforms.js';
 import { getAllBlockContainers } from './destination-utils.js';
 import { UMB_AREA_EDITOR_MODAL } from './pdf-area-editor-modal.token.js';
@@ -85,6 +85,8 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			this._extraction = extraction;
 			this._config = config;
 			this._sourceConfig = sourceConfig;
+			// Initialize excluded areas from source config
+			this._excludedAreas = new Set(sourceConfig?.excludedAreas ?? []);
 			// Build set of orphaned destinations from validation warnings
 			this.#orphanedKeys = new Set<string>();
 			for (const w of config?.validationWarnings ?? []) {
@@ -1017,18 +1019,32 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		`;
 	}
 
-	#toggleAreaExclusion(areaKey: string) {
+	async #toggleAreaExclusion(areaName: string, collapseKey: string) {
+		const kebabName = normalizeToKebabCase(areaName);
 		const next = new Set(this._excludedAreas);
-		if (next.has(areaKey)) {
-			next.delete(areaKey);
+		if (next.has(kebabName)) {
+			next.delete(kebabName);
 		} else {
-			next.add(areaKey);
+			next.add(kebabName);
 			// Auto-collapse excluded areas to reduce noise
 			const collapsed = new Set(this._collapsed);
-			collapsed.add(areaKey);
+			collapsed.add(collapseKey);
 			this._collapsed = collapsed;
 		}
 		this._excludedAreas = next;
+
+		// Persist and regenerate transform
+		if (this._workflowAlias) {
+			const saved = await saveExcludedAreas(this._workflowAlias, [...next], this.#token);
+			if (saved != null && this._sourceConfig) {
+				this._sourceConfig = { ...this._sourceConfig, excludedAreas: saved };
+			}
+			// Reload transform to reflect excluded areas
+			const transform = await fetchTransformResult(this._workflowAlias, this.#token);
+			if (transform) {
+				this._transformResult = transform;
+			}
+		}
 	}
 
 	#renderTeachElement(element: AreaElement) {
@@ -1099,10 +1115,10 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const globalIdx = this.#getGlobalAreaIndex(pageNum, areaIndex);
 		const isTeaching = this._teachingAreaIndex === globalIdx;
 		const isCollapsed = isTeaching ? false : this.#isCollapsed(areaKey);
-		const isIncluded = !this._excludedAreas.has(areaKey);
+		const rulesAreaKey = this.#getAreaRulesKey(area);
+		const isIncluded = !this._excludedAreas.has(rulesAreaKey);
 
 		// Check if area has rules defined (from section rules editor)
-		const rulesAreaKey = this.#getAreaRulesKey(area);
 		const hasRules = this.#hasAreaRules(area);
 
 		// When rules exist and transform is available, use composed sections from transform
@@ -1148,7 +1164,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 							label="${isIncluded ? 'Included' : 'Excluded'}"
 							?checked=${isIncluded}
 							@click=${(e: Event) => e.stopPropagation()}
-							@change=${() => this.#toggleAreaExclusion(areaKey)}>
+							@change=${() => this.#toggleAreaExclusion(area.name || '', areaKey)}>
 						</uui-toggle>
 					` : nothing}
 				</div>

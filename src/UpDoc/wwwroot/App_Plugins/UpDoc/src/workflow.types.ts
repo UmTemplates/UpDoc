@@ -14,6 +14,8 @@ export interface SourceConfig {
 	/** Rules for breaking area elements into individually-mappable sections, keyed by area name in kebab-case.
 	 * Supports both old flat format { rules: [...] } and new grouped format { groups: [...], rules: [...] }. */
 	areaRules?: Record<string, AreaRules>;
+	/** Areas excluded from extraction/transform output, keyed by area name in kebab-case. */
+	excludedAreas?: string[];
 }
 
 // ============================================================================

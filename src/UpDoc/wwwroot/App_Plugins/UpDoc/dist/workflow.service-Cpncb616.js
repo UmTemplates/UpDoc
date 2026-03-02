@@ -1,6 +1,6 @@
 const p = /* @__PURE__ */ new Map();
 let s = null, c = null;
-async function m(o) {
+async function d(o) {
   return s || (c || (c = (async () => {
     try {
       const n = await fetch("/umbraco/management/api/v1/updoc/workflows/active", {
@@ -17,7 +17,7 @@ async function m(o) {
     return c = null, s;
   })()), c);
 }
-async function d(o, n) {
+async function m(o, n) {
   const e = p.get(o);
   if (e) return e;
   const t = await fetch(
@@ -104,7 +104,7 @@ async function g(o, n, e, t) {
   }
   return r.json();
 }
-async function k(o, n) {
+async function j(o, n) {
   const e = await fetch(
     `/umbraco/management/api/v1/updoc/extract-rich?mediaKey=${o}`,
     {
@@ -117,7 +117,7 @@ async function k(o, n) {
   );
   return e.ok ? e.json() : null;
 }
-async function j(o, n) {
+async function k(o, n) {
   const e = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/area-detection`,
     {
@@ -227,7 +227,25 @@ async function A(o, n, e) {
   }
   return u(), !0;
 }
-async function S(o, n) {
+async function S(o, n, e) {
+  const t = await fetch(
+    `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/excluded-areas`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${e}`
+      },
+      body: JSON.stringify({ excludedAreas: n })
+    }
+  );
+  if (!t.ok) {
+    const r = await t.json();
+    return console.error("Save excluded areas failed:", r), null;
+  }
+  return u(), (await t.json()).excludedAreas ?? [];
+}
+async function U(o, n) {
   const e = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/source`,
     {
@@ -238,7 +256,7 @@ async function S(o, n) {
   );
   return e.ok ? e.json() : null;
 }
-async function U(o, n) {
+async function B(o, n) {
   const e = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/area-template`,
     {
@@ -249,7 +267,7 @@ async function U(o, n) {
   );
   return e.ok ? e.json() : null;
 }
-async function B(o, n, e) {
+async function R(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/area-template`,
     {
@@ -267,7 +285,7 @@ async function B(o, n, e) {
   }
   return t.json();
 }
-async function R(o, n) {
+async function z(o, n) {
   const e = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/pdf`,
     {
@@ -278,7 +296,7 @@ async function R(o, n) {
   );
   return e.ok ? e.blob() : null;
 }
-async function z(o, n, e) {
+async function I(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/area-rules`,
     {
@@ -296,7 +314,7 @@ async function z(o, n, e) {
   }
   return u(), t.json();
 }
-async function I(o, n, e, t) {
+async function O(o, n, e, t) {
   const a = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/infer-section-pattern`,
     {
@@ -318,26 +336,27 @@ function u() {
   p.clear(), s = null, c = null;
 }
 export {
-  d as a,
+  m as a,
   h as b,
-  R as c,
+  z as c,
   w as d,
-  k as e,
-  m as f,
+  j as e,
+  d as f,
   y as g,
-  S as h,
-  j as i,
+  U as h,
+  k as i,
   C as j,
-  U as k,
+  B as k,
   $ as l,
   g as m,
   A as n,
-  z as o,
+  I as o,
   v as p,
-  I as q,
-  u as r,
-  B as s,
+  S as q,
+  O as r,
+  R as s,
   T as t,
-  b as u
+  b as u,
+  u as v
 };
-//# sourceMappingURL=workflow.service-8opy21oM.js.map
+//# sourceMappingURL=workflow.service-Cpncb616.js.map

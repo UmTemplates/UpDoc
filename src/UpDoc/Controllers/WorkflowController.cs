@@ -386,8 +386,9 @@ public class WorkflowController : ControllerBase
                 var areaDetection = BuildAreaDetectionFromWeb(result, sourceConfig?.ContainerOverrides);
                 _workflowService.SaveAreaDetection(alias, areaDetection);
 
-                // Generate transform from area-grouped content (respects excluded areas + container overrides)
-                var transformResult = ConvertStructuredToTransformResult(result, sourceConfig?.ExcludedAreas, sourceConfig?.ContainerOverrides);
+                // Run rule-based transform (same path as PDF) so section rules are applied
+                var previousTransform = _workflowService.GetTransformResult(alias);
+                var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig?.AreaRules, previousTransform);
                 _workflowService.SaveTransformResult(alias, transformResult);
             }
             else if (sourceType == "markdown")
@@ -396,8 +397,9 @@ public class WorkflowController : ControllerBase
                 var areaDetection = BuildAreaDetectionFromMarkdown(result);
                 _workflowService.SaveAreaDetection(alias, areaDetection);
 
-                // Auto-generate transform for markdown (heading-based grouping)
-                var transformResult = ConvertStructuredToTransformResult(result);
+                // Run rule-based transform (same path as PDF) so section rules are applied
+                var previousTransform = _workflowService.GetTransformResult(alias);
+                var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig?.AreaRules, previousTransform);
                 _workflowService.SaveTransformResult(alias, transformResult);
             }
         }
@@ -743,7 +745,9 @@ public class WorkflowController : ControllerBase
                     return BadRequest(new { error = "URL or media key is required for web extraction" });
                 }
 
-                var result = ConvertStructuredToTransformResult(extraction, sourceConfig?.ExcludedAreas, sourceConfig?.ContainerOverrides);
+                var areaDetection = BuildAreaDetectionFromWeb(extraction, sourceConfig?.ContainerOverrides);
+                var previousTransform = _workflowService.GetTransformResult(alias);
+                var result = _contentTransformService.Transform(areaDetection, sourceConfig?.AreaRules, previousTransform);
                 return Ok(result);
             }
             else if (sourceType == "markdown")
@@ -752,7 +756,9 @@ public class WorkflowController : ControllerBase
                 if (absolutePath == null)
                     return NotFound(new { error = "Media item not found or file not on disk" });
                 var extraction = _markdownExtractionService.ExtractRich(absolutePath);
-                var result = ConvertStructuredToTransformResult(extraction);
+                var areaDetection = BuildAreaDetectionFromMarkdown(extraction);
+                var previousTransform = _workflowService.GetTransformResult(alias);
+                var result = _contentTransformService.Transform(areaDetection, sourceConfig?.AreaRules, previousTransform);
                 return Ok(result);
             }
             else
@@ -829,10 +835,11 @@ public class WorkflowController : ControllerBase
         _workflowService.SaveSourceConfig(alias, sourceConfig);
 
         // Regenerate transform so excluded areas take effect (also respects container overrides)
-        var extraction = _workflowService.GetSampleExtraction(alias);
-        if (extraction != null)
+        var areaDetection = _workflowService.GetAreaDetection(alias);
+        if (areaDetection != null)
         {
-            var transformResult = ConvertStructuredToTransformResult(extraction, sourceConfig.ExcludedAreas, sourceConfig.ContainerOverrides);
+            var previousTransform = _workflowService.GetTransformResult(alias);
+            var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig.AreaRules, previousTransform);
             _workflowService.SaveTransformResult(alias, transformResult);
         }
 
@@ -861,7 +868,8 @@ public class WorkflowController : ControllerBase
             var areaDetection = BuildAreaDetectionFromWeb(extraction, sourceConfig.ContainerOverrides);
             _workflowService.SaveAreaDetection(alias, areaDetection);
 
-            var transformResult = ConvertStructuredToTransformResult(extraction, sourceConfig.ExcludedAreas, sourceConfig.ContainerOverrides);
+            var previousTransform = _workflowService.GetTransformResult(alias);
+            var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig.AreaRules, previousTransform);
             _workflowService.SaveTransformResult(alias, transformResult);
         }
 
@@ -883,6 +891,15 @@ public class WorkflowController : ControllerBase
         sourceConfig.SectionRules = sectionRules;
         _workflowService.SaveSourceConfig(alias, sourceConfig);
 
+        // Regenerate transform so updated rules take effect
+        var areaDetection = _workflowService.GetAreaDetection(alias);
+        if (areaDetection != null)
+        {
+            var previousTransform = _workflowService.GetTransformResult(alias);
+            var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig.AreaRules, previousTransform);
+            _workflowService.SaveTransformResult(alias, transformResult);
+        }
+
         _logger.LogInformation("Updated section rules for workflow '{Alias}': {Count} sections with rules",
             alias, sectionRules.Count);
 
@@ -900,6 +917,15 @@ public class WorkflowController : ControllerBase
 
         sourceConfig.AreaRules = areaRules;
         _workflowService.SaveSourceConfig(alias, sourceConfig);
+
+        // Regenerate transform so updated rules take effect
+        var areaDetection = _workflowService.GetAreaDetection(alias);
+        if (areaDetection != null)
+        {
+            var previousTransform = _workflowService.GetTransformResult(alias);
+            var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig.AreaRules, previousTransform);
+            _workflowService.SaveTransformResult(alias, transformResult);
+        }
 
         _logger.LogInformation("Updated area rules for workflow '{Alias}': {Count} areas with rules",
             alias, areaRules.Count);

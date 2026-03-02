@@ -50,3 +50,13 @@ The area detection result from `BuildAreaDetectionFromWeb()` produces the same `
 ## Scope
 
 Small, targeted fix. The rendering code (`up-doc-workflow-source-view.element.ts`) and the rules editor UI are both working correctly — only the backend transform generation needs changing.
+
+## Status: FIXED (commit pending)
+
+Core fix applied — web/markdown sources now route through `ContentTransformService.Transform()`. Rules are applied and named sections appear in the Extracted and Transformed tabs.
+
+## Follow-Up Issues (not blocking)
+
+1. **Rule ordering not respected in output.** Sections appear in DOM order (Tour Description before Tour Title) instead of rule order. The drag-and-drop ordering in the rules editor should control output order. This affects both PDF and web — PDF just happens to have elements in the "right" order naturally. `ContentTransformService.TransformAreaWithRules()` processes elements in document order; it should respect rule ordering instead.
+
+2. **Multi-match concatenation.** Two elements matching the same rule (e.g., "5 days from" and "£899" both matching Tour Description) produce two separate sections instead of one concatenated section ("5 days from £899"). The transform service should merge consecutive elements matched by the same ungrouped rule into a single section.

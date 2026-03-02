@@ -237,7 +237,11 @@ export type RuleConditionType =
 	| 'fontNameEquals'
 	| 'colorEquals'
 	| 'positionFirst'
-	| 'positionLast';
+	| 'positionLast'
+	// HTML-specific (web sources)
+	| 'htmlTagEquals'
+	| 'cssClassContains'
+	| 'htmlContainerPathContains';
 
 /**
  * Pattern for identifying section heading elements within an area.
@@ -503,6 +507,8 @@ export interface ElementMetadata {
 	htmlTag?: string;
 	/** For web sources: slash-delimited CSS selector path of ancestor containers. */
 	htmlContainerPath?: string;
+	/** For web sources: space-separated CSS class names on this element. */
+	cssClasses?: string;
 }
 
 // ============================================================================
@@ -555,6 +561,8 @@ export interface AreaElement {
 	htmlTag?: string;
 	/** For web sources: slash-delimited CSS selector path of ancestor containers. */
 	htmlContainerPath?: string;
+	/** For web sources: space-separated CSS class names on this element. */
+	cssClasses?: string;
 }
 
 /** A node in the container tree representing an HTML element that contains extracted content. */

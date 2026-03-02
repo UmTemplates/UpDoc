@@ -4,7 +4,7 @@
   "source": {
     "fileName": "https://www.tailored-travel.co.uk/dublin-s-art-literature",
     "mediaKey": "",
-    "extractedDate": "2026-03-02T09:35:02.9126536Z",
+    "extractedDate": "2026-03-02T15:00:41.4945315Z",
     "totalPages": 1
   },
   "elements": [
@@ -13,8 +13,8 @@
       "page": 1,
       "text": "View Your Tour",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "a",
+        "fontSize": 11.2,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -25,10 +25,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "a",
-        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.home-view-your-tour/a.home-view-tour-button"
+        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.home-view-your-tour/a.home-view-tour-button",
+        "cssClasses": "home-view-tour-button"
       }
     },
     {
@@ -36,8 +37,8 @@
       "page": 1,
       "text": "To discuss your group\u2019s tailor made tour",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "span",
+        "fontSize": 12.8,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -48,10 +49,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "span",
-        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.callus/span.call"
+        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.callus/span.call",
+        "cssClasses": "call"
       }
     },
     {
@@ -59,8 +61,8 @@
       "page": 1,
       "text": "Call 020 7064 4970",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "span",
+        "fontSize": 18,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -71,10 +73,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "span",
-        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.callus/span.phone"
+        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.callus/span.phone",
+        "cssClasses": "phone"
       }
     },
     {
@@ -82,8 +85,8 @@
       "page": 1,
       "text": "Menu",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "span",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -94,10 +97,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Navigation",
         "htmlTag": "span",
-        "htmlContainerPath": "div.header-container/div#header/nav/a.mobile-menu/span.sb-toggle-right"
+        "htmlContainerPath": "div.header-container/div#header/nav/a.mobile-menu/span.sb-toggle-right",
+        "cssClasses": "sb-toggle-right menu_icon3"
       }
     },
     {
@@ -105,8 +109,8 @@
       "page": 1,
       "text": "Call us",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "span",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -117,10 +121,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "span",
-        "htmlContainerPath": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-smallest"
+        "htmlContainerPath": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-smallest",
+        "cssClasses": "call-us-text-smallest"
       }
     },
     {
@@ -128,8 +133,8 @@
       "page": 1,
       "text": "on 020 7064 4970",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "span",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -140,10 +145,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "span",
-        "htmlContainerPath": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-number"
+        "htmlContainerPath": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-number",
+        "cssClasses": "call-us-text-number"
       }
     },
     {
@@ -151,8 +157,8 @@
       "page": 1,
       "text": "- Home",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -163,10 +169,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Navigation",
         "htmlTag": "li",
-        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+        "cssClasses": ""
       }
     },
     {
@@ -174,8 +181,8 @@
       "page": 1,
       "text": "- Group Tours",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -186,10 +193,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Navigation",
         "htmlTag": "li",
-        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+        "cssClasses": ""
       }
     },
     {
@@ -197,8 +205,8 @@
       "page": 1,
       "text": "- Group Organisers",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -209,10 +217,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Navigation",
         "htmlTag": "li",
-        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+        "cssClasses": ""
       }
     },
     {
@@ -220,8 +229,8 @@
       "page": 1,
       "text": "- News",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -232,10 +241,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Navigation",
         "htmlTag": "li",
-        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+        "cssClasses": ""
       }
     },
     {
@@ -243,8 +253,8 @@
       "page": 1,
       "text": "- About Us",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -255,10 +265,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Navigation",
         "htmlTag": "li",
-        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+        "cssClasses": ""
       }
     },
     {
@@ -266,8 +277,8 @@
       "page": 1,
       "text": "- Contact Us",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -278,10 +289,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Navigation",
         "htmlTag": "li",
-        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+        "cssClasses": ""
       }
     },
     {
@@ -289,8 +301,8 @@
       "page": 1,
       "text": "5 days from",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 12.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -301,10 +313,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_days"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_days",
+        "cssClasses": "tour_days"
       }
     },
     {
@@ -312,8 +325,8 @@
       "page": 1,
       "text": "\u00A3899",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 21,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -324,10 +337,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_price"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_price",
+        "cssClasses": "tour_price"
       }
     },
     {
@@ -335,8 +349,8 @@
       "page": 1,
       "text": "Dublin\u2019s Fair City",
       "metadata": {
-        "fontSize": 24,
-        "fontName": "heading-1",
+        "fontSize": 22.5,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -347,10 +361,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "h1",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.tour_name"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.tour_name",
+        "cssClasses": ""
       }
     },
     {
@@ -358,8 +373,8 @@
       "page": 1,
       "text": "\u201CThank you on behalf of our Society for an excellent tour. The guide was a delight - very informative and such fun and gave us a wonderful overview of Dublin. The day in the Wicklow Mountains was perfect particularly as we were blessed with wonderful weather. Our guides at the National Gallery were superlative - everyone remarked that they\u0027d never had better. All in all we had a memorable holiday.\u201D",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 9,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -370,10 +385,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_quote"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_quote",
+        "cssClasses": "tour_banner_quote"
       }
     },
     {
@@ -381,8 +397,8 @@
       "page": 1,
       "text": "SB, Huddersfield",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 9,
+        "fontName": "ClarendonLTStdLight",
         "position": {
           "x": 0,
           "y": 0
@@ -393,10 +409,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_sig"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_sig",
+        "cssClasses": "tour_banner_sig"
       }
     },
     {
@@ -404,8 +421,8 @@
       "page": 1,
       "text": "Home",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "a",
+        "fontSize": 8.2,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -416,10 +433,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#6C8CBD",
         "htmlArea": "Main Content",
         "htmlTag": "a",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+        "cssClasses": ""
       }
     },
     {
@@ -427,8 +445,8 @@
       "page": 1,
       "text": "Group Tours",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "a",
+        "fontSize": 8.2,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -439,10 +457,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#6C8CBD",
         "htmlArea": "Main Content",
         "htmlTag": "a",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+        "cssClasses": ""
       }
     },
     {
@@ -450,8 +469,8 @@
       "page": 1,
       "text": "Ireland",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "a",
+        "fontSize": 8.2,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -462,10 +481,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#6C8CBD",
         "htmlArea": "Main Content",
         "htmlTag": "a",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+        "cssClasses": ""
       }
     },
     {
@@ -473,8 +493,8 @@
       "page": 1,
       "text": "Dublin\u2019s Fair City",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "span",
+        "fontSize": 8.2,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -485,10 +505,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#6C8CBD",
         "htmlArea": "Main Content",
         "htmlTag": "span",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/span.lastitem"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/span.lastitem",
+        "cssClasses": "lastitem"
       }
     },
     {
@@ -496,8 +517,8 @@
       "page": 1,
       "text": "- Suggested itinerary",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -508,10 +529,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "cssClasses": ""
       }
     },
     {
@@ -519,8 +541,8 @@
       "page": 1,
       "text": "- Featuring",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -531,10 +553,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "cssClasses": ""
       }
     },
     {
@@ -542,8 +565,8 @@
       "page": 1,
       "text": "- Hotel",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -554,10 +577,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "cssClasses": ""
       }
     },
     {
@@ -565,8 +589,8 @@
       "page": 1,
       "text": "- Extras",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -577,10 +601,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "cssClasses": ""
       }
     },
     {
@@ -588,8 +613,8 @@
       "page": 1,
       "text": "- Tailor-make this tour",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -600,10 +625,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "cssClasses": ""
       }
     },
     {
@@ -611,8 +637,8 @@
       "page": 1,
       "text": "- Reviews",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -623,10 +649,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "cssClasses": ""
       }
     },
     {
@@ -634,8 +661,8 @@
       "page": 1,
       "text": "Suggested Itinerary",
       "metadata": {
-        "fontSize": 16,
-        "fontName": "heading-3",
+        "fontSize": 10.5,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -646,10 +673,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
+        "cssClasses": ""
       }
     },
     {
@@ -657,8 +685,8 @@
       "page": 1,
       "text": "Day 1 \u2013 Dublin city tour",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -669,10 +697,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -680,8 +709,8 @@
       "page": 1,
       "text": "Scheduled flight to Dublin from your preferred airport \u2013 tour of Dublin with our local guide in our private executive coach giving us a great introduction to the city of writers and poets taking in such sights as Ha\u2019penny Bridge, O\u2019Connell Street and Christchurch Cathedral \u2013 transfer to the central 3* Academy Plaza Hotel in Dublin.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -692,10 +721,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -703,8 +733,8 @@
       "page": 1,
       "text": "Day 2 \u2013 Dublin Castle, Chester Beatty Library, the State Apartments \u0026 Kilmainham Gaol",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -715,10 +745,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -726,8 +757,8 @@
       "page": 1,
       "text": "A guided tour of Dublin Castle, dating back to 1230 and located in the heart of the city, is followed by a visit to the Chester Beatty Library containing a rich collection of manuscripts, prints, miniature paintings and early printed books \u2013 the State Apartments at Dublin Castle were the former private and public rooms of the Viceroys and the Viceregal Court, the seat of the executive and the focus of fashionable social life and a guided tour also takes in the Medieval Undercroft and the Chapel Royal \u2013 guided tour of the museum at Kilmainham Gaol, one of the largest unoccupied jails in Europe, focuses on some of the most heroic and tragic events in Ireland\u2019s emergence as a modern nation from the 1780s to the 1920s.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -738,10 +769,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -749,8 +781,8 @@
       "page": 1,
       "text": "Day 3 \u2013 Wicklow Mountains, Powerscourt House and Gardens, Glendalough \u0026 Avoca",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -761,10 +793,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -772,8 +805,8 @@
       "page": 1,
       "text": "Travel with our guide into the Wicklow Mountains, known as the \u2018garden of Ireland\u2019 \u2013 Powerscourt House and Gardens is set in 14,000 acres with delightful lakes, ornamental hedges and gardens while the entrance hall now features an exhibition bringing to life the rich history of the estate and the double height Georgian ballroom has been completely restored to its former glory \u2013 Glendalough is a 6th century monastic site founded by St Kevin and once a major seat of learning in medieval Europe \u2013 Avoca is the subject of Thomas More\u2019s poem, \u2018The Meeting of the Waters\u2019.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -784,10 +817,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -795,8 +829,8 @@
       "page": 1,
       "text": "Day 4 \u2013 National Gallery of Ireland, Book of Kells \u0026 Newman House",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -807,10 +841,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -818,8 +853,8 @@
       "page": 1,
       "text": "Guided tour of the National Gallery of Ireland, housing 13,000 works of art, including works by Titian, Caravaggio, Rembrandt, Poussin and Gainsborough \u2013 visit Trinity College with our guide to see the Book of Kells, one of the most beautifully illuminated manuscripts in the world which was written around the year 800 AD \u2013 Newman House consists of two Georgian houses displaying examples of Dublin\u2019s finest 18th century plasterwork.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -830,10 +865,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -841,8 +877,8 @@
       "page": 1,
       "text": "Day 5 \u2013 EPIC The Irish Emigration Museum",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -853,10 +889,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -864,8 +901,8 @@
       "page": 1,
       "text": "Guided tour of EPIC The Irish Emigration Museum which depicts the moving and unforgettable stories of those who left the island of Ireland, and how they influenced and shaped the world \u2013 transfer to Dublin airport for our scheduled flight back home.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -876,10 +913,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -887,8 +925,8 @@
       "page": 1,
       "text": "Tour Features",
       "metadata": {
-        "fontSize": 16,
-        "fontName": "heading-3",
+        "fontSize": 10.5,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -899,10 +937,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading",
+        "cssClasses": ""
       }
     },
     {
@@ -910,8 +949,8 @@
       "page": 1,
       "text": "All excursions \u0026 guided tours included",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -922,10 +961,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "cssClasses": ""
       }
     },
     {
@@ -933,8 +973,8 @@
       "page": 1,
       "text": "Professional local guide in Ireland",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -945,10 +985,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "cssClasses": ""
       }
     },
     {
@@ -956,8 +997,8 @@
       "page": 1,
       "text": "Scheduled flights to Dublin",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -968,10 +1009,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "cssClasses": ""
       }
     },
     {
@@ -979,8 +1021,8 @@
       "page": 1,
       "text": "Executive coach in Ireland",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -991,10 +1033,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "cssClasses": ""
       }
     },
     {
@@ -1002,8 +1045,8 @@
       "page": 1,
       "text": "One free place per 10 paying passengers",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1014,10 +1057,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "cssClasses": ""
       }
     },
     {
@@ -1025,8 +1069,8 @@
       "page": 1,
       "text": "Introductory tour of Dublin",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1037,10 +1081,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1048,8 +1093,8 @@
       "page": 1,
       "text": "Dublin Castle - Chester Beatty Library \u0026 the State Apartments",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1060,10 +1105,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1071,8 +1117,8 @@
       "page": 1,
       "text": "Kilmainham Gaol",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1083,10 +1129,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1094,8 +1141,8 @@
       "page": 1,
       "text": "Wicklow Mountains, the \u2018garden of Ireland\u2019",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1106,10 +1153,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1117,8 +1165,8 @@
       "page": 1,
       "text": "Powerscourt House \u0026 Gardens",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1129,10 +1177,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1140,8 +1189,8 @@
       "page": 1,
       "text": "Glendalough",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1152,10 +1201,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1163,8 +1213,8 @@
       "page": 1,
       "text": "Avoca",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1175,10 +1225,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1186,8 +1237,8 @@
       "page": 1,
       "text": "National Gallery of Ireland - guided tour",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1198,10 +1249,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1209,8 +1261,8 @@
       "page": 1,
       "text": "Trinity College \u0026 Book of Kells",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1221,10 +1273,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1232,8 +1285,8 @@
       "page": 1,
       "text": "Newman House",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1244,10 +1297,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1255,8 +1309,8 @@
       "page": 1,
       "text": "EPIC The Irish Emigration Museum",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1267,10 +1321,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
       }
     },
     {
@@ -1278,8 +1333,8 @@
       "page": 1,
       "text": "Hotel",
       "metadata": {
-        "fontSize": 16,
-        "fontName": "heading-3",
+        "fontSize": 10.5,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1290,10 +1345,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading",
+        "cssClasses": ""
       }
     },
     {
@@ -1301,8 +1357,8 @@
       "page": 1,
       "text": "Four nights on bed and breakfast basis at the centrally located 3* Academy PlazaHotel in Dublin. Located near O\u2019Connell Street, the hotel offers easy access to the city\u2019s main attractions. Facilities include a restaurant and a bar and all rooms are en suite.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1313,10 +1369,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -1324,8 +1381,8 @@
       "page": 1,
       "text": "Extras",
       "metadata": {
-        "fontSize": 16,
-        "fontName": "heading-3",
+        "fontSize": 10.5,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1336,10 +1393,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading",
+        "cssClasses": ""
       }
     },
     {
@@ -1347,8 +1405,8 @@
       "page": 1,
       "text": "Single room supplement \u00A3169",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1359,10 +1417,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -1370,8 +1429,8 @@
       "page": 1,
       "text": "Insurance",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1382,10 +1441,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -1393,8 +1453,8 @@
       "page": 1,
       "text": "Entrance fees to places of interest",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1405,10 +1465,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -1416,8 +1477,8 @@
       "page": 1,
       "text": "Audio headphones",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1428,10 +1489,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -1439,8 +1501,8 @@
       "page": 1,
       "text": "Gratuities",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1451,10 +1513,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -1462,8 +1525,8 @@
       "page": 1,
       "text": "Tailor-make this tour",
       "metadata": {
-        "fontSize": 16,
-        "fontName": "heading-3",
+        "fontSize": 10.5,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1474,10 +1537,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading",
+        "cssClasses": ""
       }
     },
     {
@@ -1485,8 +1549,8 @@
       "page": 1,
       "text": "Your tailor made tour",
       "metadata": {
-        "fontSize": 14,
-        "fontName": "heading-4",
+        "fontSize": 10.5,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -1497,10 +1561,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h4",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
+        "cssClasses": ""
       }
     },
     {
@@ -1508,8 +1573,8 @@
       "page": 1,
       "text": "Here are some more suggested places of interest you might like to include:",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1520,10 +1585,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
+        "cssClasses": ""
       }
     },
     {
@@ -1531,8 +1597,8 @@
       "page": 1,
       "text": "- National Botanic Gardens - home to approximately 20,000 species and cultivars, a rose garden, the arboretum and stunning herbaceous displays",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1543,10 +1609,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -1554,8 +1621,8 @@
       "page": 1,
       "text": "- Russborough House - built in 1741 by Joseph Leeson, the house has been described as \u2018arguably the most beautiful house in Ireland\u2019 and is home to a fine collection of art, silverware and porcelain",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1566,10 +1633,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -1577,8 +1645,8 @@
       "page": 1,
       "text": "Tour Reviews",
       "metadata": {
-        "fontSize": 16,
-        "fontName": "heading-3",
+        "fontSize": 10.5,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1589,10 +1657,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading",
+        "cssClasses": ""
       }
     },
     {
@@ -1600,8 +1669,8 @@
       "page": 1,
       "text": "Reviews for Dublin\u2019s Fair City",
       "metadata": {
-        "fontSize": 16,
-        "fontName": "heading-3",
+        "fontSize": 10.5,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1612,10 +1681,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper",
+        "cssClasses": ""
       }
     },
     {
@@ -1623,8 +1693,8 @@
       "page": 1,
       "text": "Date of tour: July 2017",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1635,10 +1705,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1646,8 +1717,8 @@
       "page": 1,
       "text": "Just a note to let you know that our tour to Dublin was a huge success. The hotel was good, coach was always on time with friendly and helpful drivers. All of the venues were welcoming and our tour manager was a delight. Thank you for your patience and help in planning the trip - one of our best ever.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1658,10 +1729,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1669,8 +1741,8 @@
       "page": 1,
       "text": "IC, Halstead",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1681,10 +1753,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1692,8 +1765,8 @@
       "page": 1,
       "text": "Date of tour: May 2014",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1704,10 +1777,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1715,8 +1789,8 @@
       "page": 1,
       "text": "Thank you on behalf of our Society for an excellent Tour. Please pass on my gratitude to Damian for his help and patience putting together our itinerary which was well balanced and met with approval. We packed quite a lot into a short space of time. The administration from beginning to end was faultless. The bar staff were most accommodating and dealt with my request to offer pre dinner drink very efficiently. The dinner was standard but the beef apparently was disappointing. Being on half board was definitely the best option. Rooms were clean and staff very pleasant. The guide was a delight - very informative and such fun and gave us a wonderful overview of Dublin. The day in the Wicklow Mountains was perfect particularly as we were blessed with wonderful weather. Our guides at the National Gallery were superlative - everyone remarked that they\u0027d never had better. The guide at the Castle was another young girl who was excellent. Finally Paul, our driver, got us there and back in very good time and was always most helpful. All in all we had a memorable holiday and I hope we\u0027ll be planning another.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1727,10 +1801,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1738,8 +1813,8 @@
       "page": 1,
       "text": "SB, Huddersfield",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1750,10 +1825,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1761,8 +1837,8 @@
       "page": 1,
       "text": "Date of tour: June 2011",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1773,10 +1849,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1784,8 +1861,8 @@
       "page": 1,
       "text": "Just a line to let you know that all went very well indeed with the tour to Dublin. Clodagh was a darling, would want her again. The hotel very good, the weather was pretty kind really, chilly and rain showers but we saw the sun too. Gardens and owners all wonderful. Tailored Travel came out of the whole thing with glowing colours. Thanks for all your hard work, it came together beautifully and I had a lot of praise and many people said it was the best trip they had ever been on.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1796,10 +1873,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1807,8 +1885,8 @@
       "page": 1,
       "text": "ML, Haywards Heath",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1819,10 +1897,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
@@ -1830,8 +1909,8 @@
       "page": 1,
       "text": "Back to all Ireland Tours",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "span",
+        "fontSize": 10.5,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -1842,10 +1921,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "span",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary/a.button-link/span.back-button"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary/a.button-link/span.back-button",
+        "cssClasses": "back-button"
       }
     },
     {
@@ -1853,8 +1933,8 @@
       "page": 1,
       "text": "Call us on 020 7064 4970to tailor this tourfor your group",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 10.5,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -1865,10 +1945,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.panel-wrapper/div.panel-inner-line/div.panel-call-us"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.panel-wrapper/div.panel-inner-line/div.panel-call-us",
+        "cssClasses": ""
       }
     },
     {
@@ -1876,8 +1957,8 @@
       "page": 1,
       "text": "Tailor make your group tour",
       "metadata": {
-        "fontSize": 14,
-        "fontName": "heading-4",
+        "fontSize": 10.5,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -1888,10 +1969,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h4",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour",
+        "cssClasses": ""
       }
     },
     {
@@ -1899,8 +1981,8 @@
       "page": 1,
       "text": "Remember this itinerary is just our suggestion. Tailor make this tour exclusively for your group to suit your members\u2019 budget or preferences. You could:",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1911,10 +1993,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour",
+        "cssClasses": ""
       }
     },
     {
@@ -1922,8 +2005,8 @@
       "page": 1,
       "text": "- stay at a 4* hotel",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1934,10 +2017,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -1945,8 +2029,8 @@
       "page": 1,
       "text": "- with more dinners included",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1957,10 +2041,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -1968,8 +2053,8 @@
       "page": 1,
       "text": "- for more (or fewer) days",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -1980,10 +2065,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -1991,8 +2077,8 @@
       "page": 1,
       "text": "- include different excursions \u2013 see \u2018Tailor-make this tour\u2019 tab for suggestions",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -2003,10 +2089,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -2014,8 +2101,8 @@
       "page": 1,
       "text": "- include UK airport coach transfers",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -2026,10 +2113,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -2037,8 +2125,8 @@
       "page": 1,
       "text": "- bring a specialist lecturer",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -2049,10 +2137,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -2060,8 +2149,8 @@
       "page": 1,
       "text": "- include all entrance fees \u0026 gratuities",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -2072,10 +2161,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+        "cssClasses": ""
       }
     },
     {
@@ -2083,8 +2173,8 @@
       "page": 1,
       "text": "Back to all Ireland Tours",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "a",
+        "fontSize": 10.5,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2095,10 +2185,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "a",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+        "cssClasses": "button-link ireland-back"
       }
     },
     {
@@ -2106,8 +2197,8 @@
       "page": 1,
       "text": "Back to all Destinations",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "a",
+        "fontSize": 10.5,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2118,10 +2209,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "a",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+        "cssClasses": "button-link about-our-tours"
       }
     },
     {
@@ -2129,8 +2221,8 @@
       "page": 1,
       "text": "Request a Quote",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "a",
+        "fontSize": 10.5,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2141,10 +2233,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "a",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+        "cssClasses": "button-link request-a-quote"
       }
     },
     {
@@ -2152,8 +2245,8 @@
       "page": 1,
       "text": "Request a Brochure",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "a",
+        "fontSize": 10.5,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2164,10 +2257,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "a",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+        "cssClasses": "button-link request-a-brochure"
       }
     },
     {
@@ -2175,8 +2269,8 @@
       "page": 1,
       "text": "Call us on 020 7064 4970to tailor make the perfect tourfor your group",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 10.5,
+        "fontName": "ClarendonLTStdRoman",
         "position": {
           "x": 0,
           "y": 0
@@ -2187,10 +2281,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div#mobile-panel-wrapper/div.panel-inner-line/div.panel-call-us"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div#mobile-panel-wrapper/div.panel-inner-line/div.panel-call-us",
+        "cssClasses": ""
       }
     },
     {
@@ -2198,8 +2293,8 @@
       "page": 1,
       "text": "Back to all Ireland Tours",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "span",
+        "fontSize": 10.5,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2210,10 +2305,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#FFFFFF",
         "htmlArea": "Main Content",
         "htmlTag": "span",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary/a.button-link/span.back-button"
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary/a.button-link/span.back-button",
+        "cssClasses": "back-button"
       }
     },
     {
@@ -2221,8 +2317,8 @@
       "page": 1,
       "text": "020 7064 4970",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2233,10 +2329,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+        "cssClasses": ""
       }
     },
     {
@@ -2244,8 +2341,8 @@
       "page": 1,
       "text": "info@tailored-travel.co.uk",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2256,10 +2353,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+        "cssClasses": ""
       }
     },
     {
@@ -2267,8 +2365,8 @@
       "page": 1,
       "text": "12 Jamaica Road",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2279,10 +2377,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+        "cssClasses": ""
       }
     },
     {
@@ -2290,8 +2389,8 @@
       "page": 1,
       "text": "London",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2302,10 +2401,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+        "cssClasses": ""
       }
     },
     {
@@ -2313,8 +2413,8 @@
       "page": 1,
       "text": "SE1 2RN",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2325,10 +2425,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+        "cssClasses": ""
       }
     },
     {
@@ -2336,8 +2437,8 @@
       "page": 1,
       "text": "Tailored Travel holds a current ATOL licence. Air holiday packages shown are ATOL protected by the Civil Aviation Authority. Our ATOL number is ATOL 5605.",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "p",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2348,10 +2449,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div#accreditations/div.atol-description"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div#accreditations/div.atol-description",
+        "cssClasses": ""
       }
     },
     {
@@ -2359,8 +2461,8 @@
       "page": 1,
       "text": "Information",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 12,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2371,10 +2473,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/div.ft_header"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/div.ft_header",
+        "cssClasses": "ft_header"
       }
     },
     {
@@ -2382,8 +2485,8 @@
       "page": 1,
       "text": "- Sitemap",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2394,10 +2497,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2405,8 +2509,8 @@
       "page": 1,
       "text": "- Terms \u0026 Conditions",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2417,10 +2521,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2428,8 +2533,8 @@
       "page": 1,
       "text": "- Privacy Policy",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2440,10 +2545,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2451,8 +2557,8 @@
       "page": 1,
       "text": "- Cookies",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2463,10 +2569,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2474,8 +2581,8 @@
       "page": 1,
       "text": "- Booking Conditions",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2486,10 +2593,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2497,8 +2605,8 @@
       "page": 1,
       "text": "- Insurance",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2509,10 +2617,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2520,8 +2629,8 @@
       "page": 1,
       "text": "- Financial Security",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2532,10 +2641,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2543,8 +2653,8 @@
       "page": 1,
       "text": "Types of Holiday",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 12,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2555,10 +2665,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/div.ft_header"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/div.ft_header",
+        "cssClasses": "ft_header"
       }
     },
     {
@@ -2566,8 +2677,8 @@
       "page": 1,
       "text": "- Tailor Made Tours for Groups",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2578,10 +2689,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide",
+        "cssClasses": ""
       }
     },
     {
@@ -2589,8 +2701,8 @@
       "page": 1,
       "text": "- School \u0026 College tours",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2601,10 +2713,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide",
+        "cssClasses": ""
       }
     },
     {
@@ -2612,8 +2725,8 @@
       "page": 1,
       "text": "- Tours for Individuals",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2624,10 +2737,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide",
+        "cssClasses": ""
       }
     },
     {
@@ -2635,8 +2749,8 @@
       "page": 1,
       "text": "Destinations",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 12,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2647,10 +2761,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/div.ft_header"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/div.ft_header",
+        "cssClasses": "ft_header"
       }
     },
     {
@@ -2658,8 +2773,8 @@
       "page": 1,
       "text": "- UK",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2670,10 +2785,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2681,8 +2797,8 @@
       "page": 1,
       "text": "- France",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2693,10 +2809,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2704,8 +2821,8 @@
       "page": 1,
       "text": "- Holland",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2716,10 +2833,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2727,8 +2845,8 @@
       "page": 1,
       "text": "- Portugal",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2739,10 +2857,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2750,8 +2869,8 @@
       "page": 1,
       "text": "- Belgium",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2762,10 +2881,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2773,8 +2893,8 @@
       "page": 1,
       "text": "- Southern Europe",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2785,10 +2905,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2796,8 +2917,8 @@
       "page": 1,
       "text": "- Italy",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2808,10 +2929,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2819,8 +2941,8 @@
       "page": 1,
       "text": "- Germany",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2831,10 +2953,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2842,8 +2965,8 @@
       "page": 1,
       "text": "- Spain",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2854,10 +2977,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2865,8 +2989,8 @@
       "page": 1,
       "text": "- Austria",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2877,10 +3001,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2888,8 +3013,8 @@
       "page": 1,
       "text": "- Ireland",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2900,10 +3025,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2911,8 +3037,8 @@
       "page": 1,
       "text": "- Central \u0026 Eastern Europe",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2923,10 +3049,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2934,8 +3061,8 @@
       "page": 1,
       "text": "- Worldwide",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2946,10 +3073,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -2957,8 +3085,8 @@
       "page": 1,
       "text": "Destinations",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 12,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2969,10 +3097,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/div.ft_header"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/div.ft_header",
+        "cssClasses": "ft_header"
       }
     },
     {
@@ -2980,8 +3109,8 @@
       "page": 1,
       "text": "- UK",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -2992,10 +3121,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3003,8 +3133,8 @@
       "page": 1,
       "text": "- Italy",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3015,10 +3145,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3026,8 +3157,8 @@
       "page": 1,
       "text": "- France",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3038,10 +3169,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3049,8 +3181,8 @@
       "page": 1,
       "text": "- Germany",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3061,10 +3193,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3072,8 +3205,8 @@
       "page": 1,
       "text": "- Holland",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3084,10 +3217,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3095,8 +3229,8 @@
       "page": 1,
       "text": "- Spain",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3107,10 +3241,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3118,8 +3253,8 @@
       "page": 1,
       "text": "- Portugal",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3130,10 +3265,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3141,8 +3277,8 @@
       "page": 1,
       "text": "- Austria",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3153,10 +3289,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3164,8 +3301,8 @@
       "page": 1,
       "text": "- Belgium",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3176,10 +3313,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3187,8 +3325,8 @@
       "page": 1,
       "text": "- Ireland",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3199,10 +3337,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3210,8 +3349,8 @@
       "page": 1,
       "text": "- Southern Europe",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3222,10 +3361,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3233,8 +3373,8 @@
       "page": 1,
       "text": "- Central \u0026 Eastern Europe",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3245,10 +3385,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3256,8 +3397,8 @@
       "page": 1,
       "text": "- Worldwide",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3268,10 +3409,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+        "cssClasses": ""
       }
     },
     {
@@ -3279,8 +3421,8 @@
       "page": 1,
       "text": "Types of Holiday",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "div",
+        "fontSize": 12,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3291,10 +3433,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Header",
         "htmlTag": "div",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/div.ft_header"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/div.ft_header",
+        "cssClasses": "ft_header"
       }
     },
     {
@@ -3302,8 +3445,8 @@
       "page": 1,
       "text": "- Tailor Made Tours for Groups",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3314,10 +3457,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide",
+        "cssClasses": ""
       }
     },
     {
@@ -3325,8 +3469,8 @@
       "page": 1,
       "text": "- School \u0026 College tours",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3337,10 +3481,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide",
+        "cssClasses": ""
       }
     },
     {
@@ -3348,8 +3493,8 @@
       "page": 1,
       "text": "- Tours for Individuals",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Open Sans",
         "position": {
           "x": 0,
           "y": 0
@@ -3360,10 +3505,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Footer",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide"
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide",
+        "cssClasses": ""
       }
     },
     {
@@ -3371,8 +3517,8 @@
       "page": 1,
       "text": "- Home",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3383,10 +3529,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3394,8 +3541,8 @@
       "page": 1,
       "text": "- Group Tours",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3406,10 +3553,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3417,8 +3565,8 @@
       "page": 1,
       "text": "- Group Organisers",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3429,10 +3577,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3440,8 +3589,8 @@
       "page": 1,
       "text": "- Testimonials",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3452,10 +3601,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3463,8 +3613,8 @@
       "page": 1,
       "text": "- Request a Brochure",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3475,10 +3625,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3486,8 +3637,8 @@
       "page": 1,
       "text": "- Request a Quote",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3498,10 +3649,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3509,8 +3661,8 @@
       "page": 1,
       "text": "- News",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3521,10 +3673,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3532,8 +3685,8 @@
       "page": 1,
       "text": "- About Us",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3544,10 +3697,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3555,8 +3709,8 @@
       "page": 1,
       "text": "- Contact Us",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3567,10 +3721,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     },
     {
@@ -3578,8 +3733,8 @@
       "page": 1,
       "text": "- View Your Tour",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3590,10 +3745,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close view-your-tour-menu"
       }
     },
     {
@@ -3601,8 +3757,8 @@
       "page": 1,
       "text": "- Close",
       "metadata": {
-        "fontSize": 0,
-        "fontName": "li",
+        "fontSize": 9.8,
+        "fontName": "Arial",
         "position": {
           "x": 0,
           "y": 0
@@ -3613,10 +3769,11 @@
           "width": 0,
           "height": 0
         },
-        "color": "#000000",
+        "color": "#2E5BA1",
         "htmlArea": "Ungrouped",
         "htmlTag": "li",
-        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+        "cssClasses": "sb-close"
       }
     }
   ],

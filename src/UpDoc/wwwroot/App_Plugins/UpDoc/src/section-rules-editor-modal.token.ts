@@ -13,6 +13,8 @@ export interface SectionRulesEditorModalData {
 	sectionCount?: number;
 	/** Callback for "Save" (persist without closing). Called with the current rules value. */
 	onSave?: (rules: AreaRules) => Promise<void>;
+	/** Source type of the workflow: 'pdf', 'web', 'markdown'. Used for source-aware auto-populate. */
+	sourceType?: string;
 }
 
 export interface SectionRulesEditorModalValue {

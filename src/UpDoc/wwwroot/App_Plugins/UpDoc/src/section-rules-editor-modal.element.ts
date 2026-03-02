@@ -39,6 +39,10 @@ const CONDITION_LABELS: Record<RuleConditionType, string> = {
 	colorEquals: 'Color equals',
 	positionFirst: 'Position: first',
 	positionLast: 'Position: last',
+	// HTML-specific (web sources)
+	htmlTagEquals: 'HTML tag equals',
+	cssClassContains: 'CSS class contains',
+	htmlContainerPathContains: 'Container path contains',
 };
 
 /** Condition types that don't need a value input */
@@ -50,6 +54,8 @@ const ALL_CONDITION_TYPES: RuleConditionType[] = [
 	'fontSizeEquals', 'fontSizeAbove', 'fontSizeBelow', 'fontSizeRange',
 	'fontNameContains', 'fontNameEquals', 'colorEquals',
 	'positionFirst', 'positionLast',
+	// HTML-specific (web sources)
+	'htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains',
 ];
 
 /** Friendly labels for rule parts */
@@ -228,6 +234,20 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		return this.data?.elements ?? [];
 	}
 
+	get #sourceType(): string {
+		return this.data?.sourceType ?? 'pdf';
+	}
+
+	/** Condition types sorted by source-type relevance. Web-specific types first for web, last for PDF. */
+	get #conditionTypes(): RuleConditionType[] {
+		if (this.#sourceType === 'web') {
+			const webTypes: RuleConditionType[] = ['htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains'];
+			return [...webTypes, ...ALL_CONDITION_TYPES.filter((t) => !webTypes.includes(t))];
+		}
+		// PDF: web types at end (already the default order)
+		return ALL_CONDITION_TYPES;
+	}
+
 	get #sectionHeading(): string {
 		return this.data?.sectionHeading ?? 'Section';
 	}
@@ -321,6 +341,13 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				return index === 0;
 			case 'positionLast':
 				return index === total - 1;
+			// HTML-specific (web sources)
+			case 'htmlTagEquals':
+				return (el.htmlTag ?? '').toLowerCase() === val.toLowerCase();
+			case 'cssClassContains':
+				return (el.cssClasses ?? '').toLowerCase().includes(val.toLowerCase());
+			case 'htmlContainerPathContains':
+				return (el.htmlContainerPath ?? '').toLowerCase().includes(val.toLowerCase());
 			default:
 				return false;
 		}
@@ -329,6 +356,53 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	// ===== Auto-populate conditions from an element =====
 
 	#autoPopulateConditions(el: AreaElement, elIndex: number, total: number): RuleCondition[] {
+		if (this.#sourceType === 'web') {
+			return this.#autoPopulateWebConditions(el);
+		}
+		return this.#autoPopulatePdfConditions(el, elIndex, total);
+	}
+
+	/** Auto-populate conditions for web sources using HTML structure + computed CSS. */
+	#autoPopulateWebConditions(el: AreaElement): RuleCondition[] {
+		const conditions: RuleCondition[] = [];
+
+		// HTML tag (primary structural identifier for web)
+		if (el.htmlTag) {
+			conditions.push({ type: 'htmlTagEquals', value: el.htmlTag });
+		}
+
+		// Font size (real computed CSS value)
+		if (el.fontSize > 0) {
+			conditions.push({ type: 'fontSizeEquals', value: el.fontSize });
+		}
+
+		// CSS classes (first class as a condition)
+		if (el.cssClasses) {
+			const firstClass = el.cssClasses.split(' ')[0];
+			if (firstClass) {
+				conditions.push({ type: 'cssClassContains', value: firstClass });
+			}
+		}
+
+		// Color (skip black as it's the default)
+		if (el.color && el.color.toLowerCase() !== '#000000' && el.color.toLowerCase() !== '#000') {
+			conditions.push({ type: 'colorEquals', value: el.color });
+		}
+
+		// Container path (last segment — most specific container)
+		if (el.htmlContainerPath) {
+			const segments = el.htmlContainerPath.split('/');
+			const lastSegment = segments[segments.length - 1];
+			if (lastSegment) {
+				conditions.push({ type: 'htmlContainerPathContains', value: lastSegment });
+			}
+		}
+
+		return conditions;
+	}
+
+	/** Auto-populate conditions for PDF sources using font metrics and position. */
+	#autoPopulatePdfConditions(el: AreaElement, elIndex: number, total: number): RuleCondition[] {
 		const conditions: RuleCondition[] = [];
 
 		// Font size
@@ -739,7 +813,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 					class="condition-type-select"
 					.value=${condition.type}
 					@change=${(e: Event) => this.#updateConditionType(ruleId, condIdx, (e.target as HTMLSelectElement).value as RuleConditionType)}>
-					${ALL_CONDITION_TYPES.map((t) => html`
+					${this.#conditionTypes.map((t) => html`
 						<option value=${t} ?selected=${t === condition.type}>${CONDITION_LABELS[t]}</option>
 					`)}
 				</select>
@@ -784,7 +858,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 					class="condition-type-select"
 					.value=${exception.type}
 					@change=${(e: Event) => this.#updateExceptionType(ruleId, excIdx, (e.target as HTMLSelectElement).value as RuleConditionType)}>
-					${ALL_CONDITION_TYPES.map((t) => html`
+					${this.#conditionTypes.map((t) => html`
 						<option value=${t} ?selected=${t === exception.type}>${CONDITION_LABELS[t]}</option>
 					`)}
 				</select>
@@ -1117,9 +1191,19 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 						<div class="unmatched-element">
 							<div class="unmatched-text">${this.#truncate(el.text, 80)}</div>
 							<div class="unmatched-meta">
-								<span class="meta-badge">${el.fontSize}pt</span>
-								<span class="meta-badge">${el.fontName}</span>
-								${el.color !== '#000000' ? html`<span class="meta-badge" style="border-left: 3px solid ${el.color};">${el.color}</span>` : nothing}
+								${this.#sourceType === 'web'
+									? html`
+										${el.htmlTag ? html`<span class="meta-badge tag-badge">&lt;${el.htmlTag}&gt;</span>` : nothing}
+										<span class="meta-badge">${el.fontSize}pt</span>
+										${el.cssClasses ? html`<span class="meta-badge class-badge">.${el.cssClasses.split(' ')[0]}</span>` : nothing}
+										${el.color !== '#000000' ? html`<span class="meta-badge" style="border-left: 3px solid ${el.color};">${el.color}</span>` : nothing}
+									`
+									: html`
+										<span class="meta-badge">${el.fontSize}pt</span>
+										<span class="meta-badge">${el.fontName}</span>
+										${el.color !== '#000000' ? html`<span class="meta-badge" style="border-left: 3px solid ${el.color};">${el.color}</span>` : nothing}
+									`
+								}
 							</div>
 							<uui-button
 								compact
@@ -1274,6 +1358,14 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				border-radius: var(--uui-border-radius);
 				background: var(--uui-color-surface-alt);
 				color: var(--uui-color-text-alt);
+			}
+			.tag-badge {
+				background: var(--uui-color-violet-light);
+				color: var(--uui-color-violet-standalone);
+			}
+			.class-badge {
+				background: var(--uui-color-warning-light);
+				color: var(--uui-color-warning-standalone);
 			}
 
 			/* Group containers */

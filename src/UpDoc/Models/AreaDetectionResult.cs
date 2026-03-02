@@ -119,6 +119,14 @@ public class AreaElement
     [JsonPropertyName("htmlContainerPath")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public string HtmlContainerPath { get; set; } = string.Empty;
+
+    /// <summary>
+    /// For web sources: space-separated CSS class names on this element.
+    /// Empty for PDF/markdown sources.
+    /// </summary>
+    [JsonPropertyName("cssClasses")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string CssClasses { get; set; } = string.Empty;
 }
 
 /// <summary>

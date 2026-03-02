@@ -142,6 +142,14 @@ public class ElementMetadata
     [JsonPropertyName("htmlContainerPath")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public string HtmlContainerPath { get; set; } = string.Empty;
+
+    /// <summary>
+    /// For web sources: space-separated CSS class names on this element.
+    /// Empty string for PDF/markdown sources or elements with no classes.
+    /// </summary>
+    [JsonPropertyName("cssClasses")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string CssClasses { get; set; } = string.Empty;
 }
 
 /// <summary>

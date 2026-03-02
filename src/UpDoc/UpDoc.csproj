@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.4.0" />
+    <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.154" />
     <PackageReference Include="UglyToad.PdfPig" Version="1.7.0-custom-5" />
     <PackageReference Include="Umbraco.Cms.Web.Common" Version="17.1.0" />
     <PackageReference Include="Umbraco.Cms.Api.Common" Version="17.1.0" />

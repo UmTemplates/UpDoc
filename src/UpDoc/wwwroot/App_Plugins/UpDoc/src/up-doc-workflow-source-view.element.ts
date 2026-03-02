@@ -494,6 +494,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 				elements,
 				existingRules,
 				sectionCount,
+				sourceType: this.#sourceType,
 				onSave: async (rules: AreaRules) => {
 					await this.#saveAreaRulesForKey(areaKey, rules);
 				},
@@ -1010,7 +1011,6 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const textType = role === 'heading' ? 'heading' : this.#classifyText(element.text);
 		const badgeLabel = textType === 'heading' ? 'Heading' : textType === 'list' ? 'List Item' : 'Paragraph';
 		// For web sources: show htmlTag instead of fontName, and add container badge
-		const isWeb = !!element.htmlTag;
 		const tagLabel = element.htmlTag || element.fontName;
 		const containerLabel = element.htmlContainerPath
 			? element.htmlContainerPath.split('/').pop() ?? ''
@@ -1021,7 +1021,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 					<div class="element-text">${element.text}</div>
 					<div class="element-meta">
 						<span class="meta-badge text-type ${textType}">${badgeLabel}</span>
-						${!isWeb ? html`<span class="meta-badge font-size">${element.fontSize}pt</span>` : nothing}
+						<span class="meta-badge font-size">${element.fontSize}pt</span>
 						<span class="meta-badge font-name">${tagLabel}</span>
 						<span class="meta-badge color" style="border-left: 3px solid ${element.color};">${element.color}</span>
 						${containerLabel ? html`<span class="meta-badge container-path" title="${element.htmlContainerPath ?? ''}">${containerLabel}</span>` : nothing}
@@ -1097,7 +1097,6 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const isMatching = this._inferenceResult?.matchingElementIds?.includes(element.id) ?? false;
 		const textType = this.#classifyText(element.text);
 		const badgeLabel = textType === 'list' ? 'List Item' : 'Paragraph';
-		const isWeb = !!element.htmlTag;
 		const tagLabel = element.htmlTag || element.fontName;
 		const containerLabel = element.htmlContainerPath
 			? element.htmlContainerPath.split('/').pop() ?? ''
@@ -1109,7 +1108,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 					<div class="element-text">${element.text}</div>
 					<div class="element-meta">
 						<span class="meta-badge text-type ${textType}">${badgeLabel}</span>
-						${!isWeb ? html`<span class="meta-badge font-size">${element.fontSize}pt</span>` : nothing}
+						<span class="meta-badge font-size">${element.fontSize}pt</span>
 						<span class="meta-badge font-name">${tagLabel}</span>
 						<span class="meta-badge color" style="border-left: 3px solid ${element.color};">${element.color}</span>
 						${containerLabel ? html`<span class="meta-badge container-path" title="${element.htmlContainerPath ?? ''}">${containerLabel}</span>` : nothing}
@@ -1715,8 +1714,13 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		return html`
 			<div class="simple-elements">
 				${this._extraction.elements.map((el) => {
-					const isHeading = el.metadata?.fontName?.startsWith('heading-');
-					const headingLevel = isHeading ? parseInt(el.metadata.fontName.replace('heading-', ''), 10) : 0;
+					const isHeading = el.metadata?.fontName?.startsWith('heading-')
+						|| /^h[1-6]$/.test(el.metadata?.htmlTag ?? '');
+					const headingLevel = isHeading
+						? (el.metadata?.fontName?.startsWith('heading-')
+							? parseInt(el.metadata.fontName.replace('heading-', ''), 10)
+							: parseInt((el.metadata?.htmlTag ?? 'h6').substring(1), 10))
+						: 0;
 					return html`
 						<div class="simple-element ${isHeading ? 'simple-element-heading' : ''}">
 							<div class="simple-element-text" style="${isHeading ? `font-size: ${24 - (headingLevel - 1) * 2}px; font-weight: bold;` : ''}">

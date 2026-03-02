@@ -671,6 +671,11 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
             "positionFirst" => index == 0,
             "positionLast" => index >= 0 && index == total - 1,
 
+            // HTML-specific conditions (web sources)
+            "htmlTagEquals" => element.HtmlTag.Equals(valueStr, StringComparison.OrdinalIgnoreCase),
+            "cssClassContains" => element.CssClasses.Contains(valueStr, StringComparison.OrdinalIgnoreCase),
+            "htmlContainerPathContains" => element.HtmlContainerPath.Contains(valueStr, StringComparison.OrdinalIgnoreCase),
+
             _ => false // Unknown condition type — does not match
         };
     }

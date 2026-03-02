@@ -1,4 +1,7 @@
+using System.Globalization;
+using System.Text.RegularExpressions;
 using AngleSharp;
+using AngleSharp.Css.Dom;
 using AngleSharp.Dom;
 using Microsoft.Extensions.Logging;
 using UpDoc.Models;
@@ -26,15 +29,14 @@ public class HtmlExtractionService : IHtmlExtractionService
 
     /// <summary>
     /// Fetches HTML from a URL and extracts structured content.
+    /// Uses AngleSharp to open the URL directly so it can discover and fetch
+    /// external stylesheets, enabling accurate CSS computed style resolution.
     /// </summary>
     public async Task<RichExtractionResult> ExtractRichFromUrl(string url)
     {
         try
         {
-            var client = _httpClientFactory.CreateClient("UpDocHtml");
-            var html = await client.GetStringAsync(url);
-
-            return await ExtractRichFromHtml(html, url);
+            return await ExtractRichFromUrlDirect(url);
         }
         catch (Exception ex)
         {
@@ -45,6 +47,29 @@ public class HtmlExtractionService : IHtmlExtractionService
                 Error = $"Failed to fetch URL: {ex.Message}"
             };
         }
+    }
+
+    /// <summary>
+    /// Opens a URL directly via AngleSharp's browsing context so that external
+    /// stylesheets are automatically discovered, fetched, and parsed.
+    /// This gives ComputeCurrentStyle() access to all CSS rules.
+    /// </summary>
+    private async Task<RichExtractionResult> ExtractRichFromUrlDirect(string url)
+    {
+        var config = Configuration.Default
+            .WithCss()
+            .WithRenderDevice(new AngleSharp.Css.DefaultRenderDevice { DeviceWidth = 1920, DeviceHeight = 1080, ViewPortWidth = 1920, ViewPortHeight = 1080 })
+            .WithDefaultLoader(new AngleSharp.Io.LoaderOptions { IsResourceLoadingEnabled = true });
+        var context = BrowsingContext.New(config);
+
+        // Let AngleSharp navigate to the URL — it will fetch HTML, discover <link> stylesheets,
+        // and load them automatically because IsResourceLoadingEnabled is true.
+        var document = await context.OpenAsync(url);
+
+        _logger.LogInformation("AngleSharp.Css loaded {StyleSheetCount} stylesheets for {Source}",
+            document.StyleSheets.Length, url);
+
+        return ExtractFromDocument(document, url);
     }
 
     /// <summary>
@@ -69,13 +94,31 @@ public class HtmlExtractionService : IHtmlExtractionService
         }
     }
 
+    /// <summary>
+    /// Parses an HTML string (from file upload) with AngleSharp.Css.
+    /// Without a base URL, external stylesheets won't be fetched — computed
+    /// styles will be limited to inline styles, style blocks, and UA defaults.
+    /// </summary>
     private async Task<RichExtractionResult> ExtractRichFromHtml(string html, string source)
     {
-        var config = Configuration.Default;
+        var config = Configuration.Default
+            .WithCss()
+            .WithDefaultLoader(new AngleSharp.Io.LoaderOptions { IsResourceLoadingEnabled = true });
         var context = BrowsingContext.New(config);
         var document = await context.OpenAsync(req => req.Content(html));
 
-        // Extract from the full body — area detection tags each element with its container area.
+        _logger.LogInformation("AngleSharp.Css loaded {StyleSheetCount} stylesheets from HTML string for {Source}",
+            document.StyleSheets.Length, source);
+
+        return ExtractFromDocument(document, source);
+    }
+
+    /// <summary>
+    /// Shared document processing: walks the DOM, extracts elements with computed CSS metadata,
+    /// builds the container tree, and returns the extraction result.
+    /// </summary>
+    private RichExtractionResult ExtractFromDocument(IDocument document, string source)
+    {
         var body = document.Body ?? document.DocumentElement;
 
         var elements = new List<ExtractionElement>();
@@ -148,7 +191,6 @@ public class HtmlExtractionService : IHtmlExtractionService
             // Headings
             if (tagName is "h1" or "h2" or "h3" or "h4" or "h5" or "h6")
             {
-                var level = tagName[1] - '0';
                 var text = CleanText(node.TextContent);
                 if (!string.IsNullOrWhiteSpace(text))
                 {
@@ -157,22 +199,7 @@ public class HtmlExtractionService : IHtmlExtractionService
                         Id = $"html-{elementIndex++}",
                         Page = 1,
                         Text = text,
-                        Metadata = new ElementMetadata
-                        {
-                            FontSize = level switch
-                            {
-                                1 => 24,
-                                2 => 20,
-                                3 => 16,
-                                4 => 14,
-                                5 => 12,
-                                _ => 10
-                            },
-                            FontName = $"heading-{level}",
-                            HtmlArea = areaForChildren,
-                            HtmlTag = tagName,
-                            HtmlContainerPath = containerPath
-                        }
+                        Metadata = BuildMetadata(node, areaForChildren, tagName, containerPath)
                     });
                 }
                 continue;
@@ -189,13 +216,7 @@ public class HtmlExtractionService : IHtmlExtractionService
                         Id = $"html-{elementIndex++}",
                         Page = 1,
                         Text = text,
-                        Metadata = new ElementMetadata
-                        {
-                            FontName = "p",
-                            HtmlArea = areaForChildren,
-                            HtmlTag = "p",
-                            HtmlContainerPath = containerPath
-                        }
+                        Metadata = BuildMetadata(node, areaForChildren, "p", containerPath)
                     });
                 }
                 continue;
@@ -212,13 +233,7 @@ public class HtmlExtractionService : IHtmlExtractionService
                         Id = $"html-{elementIndex++}",
                         Page = 1,
                         Text = $"- {text}",
-                        Metadata = new ElementMetadata
-                        {
-                            FontName = "li",
-                            HtmlArea = areaForChildren,
-                            HtmlTag = "li",
-                            HtmlContainerPath = containerPath
-                        }
+                        Metadata = BuildMetadata(node, areaForChildren, "li", containerPath)
                     });
                 }
                 continue;
@@ -235,13 +250,7 @@ public class HtmlExtractionService : IHtmlExtractionService
                         Id = $"html-{elementIndex++}",
                         Page = 1,
                         Text = text,
-                        Metadata = new ElementMetadata
-                        {
-                            FontName = tagName,
-                            HtmlArea = areaForChildren,
-                            HtmlTag = tagName,
-                            HtmlContainerPath = containerPath
-                        }
+                        Metadata = BuildMetadata(node, areaForChildren, tagName, containerPath)
                     });
                 }
                 continue;
@@ -281,13 +290,7 @@ public class HtmlExtractionService : IHtmlExtractionService
                         Id = $"html-{elementIndex++}",
                         Page = 1,
                         Text = text,
-                        Metadata = new ElementMetadata
-                        {
-                            FontName = tagName,
-                            HtmlArea = areaForChildren,
-                            HtmlTag = tagName,
-                            HtmlContainerPath = childPath
-                        }
+                        Metadata = BuildMetadata(node, areaForChildren, tagName, childPath)
                     });
                 }
             }
@@ -298,6 +301,148 @@ public class HtmlExtractionService : IHtmlExtractionService
                     childPath, containerNode);
             }
         }
+    }
+
+    /// <summary>
+    /// Builds ElementMetadata with real computed CSS values from AngleSharp.Css.
+    /// Falls back to sensible defaults when computed styles are unavailable.
+    /// </summary>
+    private static ElementMetadata BuildMetadata(IElement node, string area, string htmlTag, string containerPath)
+    {
+        var fontSize = GetComputedFontSizeInPoints(node);
+        var fontName = GetComputedFontFamily(node);
+        var color = GetComputedColorHex(node);
+        var cssClasses = GetCssClasses(node);
+
+        return new ElementMetadata
+        {
+            FontSize = fontSize,
+            FontName = fontName,
+            Color = color,
+            HtmlArea = area,
+            HtmlTag = htmlTag,
+            HtmlContainerPath = containerPath,
+            CssClasses = cssClasses,
+        };
+    }
+
+    /// <summary>
+    /// Gets the computed font-size in points from CSS.
+    /// CSS returns px; convert to pt via pt = px * 0.75.
+    /// </summary>
+    private static double GetComputedFontSizeInPoints(IElement element)
+    {
+        try
+        {
+            var style = element.ComputeCurrentStyle();
+            var fontSizeValue = style?.GetPropertyValue("font-size");
+            if (string.IsNullOrEmpty(fontSizeValue)) return 0;
+
+            // ComputeCurrentStyle typically resolves to px values
+            if (fontSizeValue.EndsWith("px", StringComparison.OrdinalIgnoreCase) &&
+                double.TryParse(fontSizeValue[..^2], NumberStyles.Any, CultureInfo.InvariantCulture, out var px))
+            {
+                return Math.Round(px * 0.75, 1); // px to pt
+            }
+
+            // Handle pt values directly
+            if (fontSizeValue.EndsWith("pt", StringComparison.OrdinalIgnoreCase) &&
+                double.TryParse(fontSizeValue[..^2], NumberStyles.Any, CultureInfo.InvariantCulture, out var pt))
+            {
+                return Math.Round(pt, 1);
+            }
+
+            // Try parsing as bare number (some CSS engines return unitless)
+            if (double.TryParse(fontSizeValue, NumberStyles.Any, CultureInfo.InvariantCulture, out var bare))
+            {
+                return Math.Round(bare * 0.75, 1);
+            }
+        }
+        catch
+        {
+            // ComputeCurrentStyle may throw if CSS context is not available
+        }
+
+        return 0;
+    }
+
+    /// <summary>
+    /// Gets the computed font-family from CSS.
+    /// Returns the first family name, stripping quotes.
+    /// </summary>
+    private static string GetComputedFontFamily(IElement element)
+    {
+        try
+        {
+            var style = element.ComputeCurrentStyle();
+            var fontFamily = style?.GetPropertyValue("font-family");
+            if (string.IsNullOrEmpty(fontFamily)) return string.Empty;
+
+            // Take first family name: "'ClarendonLTStdRoman', Arial, sans-serif" → "ClarendonLTStdRoman"
+            var first = fontFamily.Split(',')[0].Trim().Trim('\'', '"');
+            return string.IsNullOrEmpty(first) ? string.Empty : first;
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    }
+
+    /// <summary>
+    /// Gets the computed color from CSS as a hex string.
+    /// CSS may return rgb(r,g,b), rgba(r,g,b,a), or hex values.
+    /// </summary>
+    private static string GetComputedColorHex(IElement element)
+    {
+        try
+        {
+            var style = element.ComputeCurrentStyle();
+            var colorValue = style?.GetPropertyValue("color");
+            if (string.IsNullOrEmpty(colorValue)) return "#000000";
+
+            return ParseCssColorToHex(colorValue);
+        }
+        catch
+        {
+            return "#000000";
+        }
+    }
+
+    /// <summary>
+    /// Parses a CSS color value to hex format.
+    /// Handles rgb(r,g,b), rgba(r,g,b,a), and hex values.
+    /// </summary>
+    private static string ParseCssColorToHex(string cssColor)
+    {
+        if (string.IsNullOrEmpty(cssColor)) return "#000000";
+
+        // Already hex
+        if (cssColor.StartsWith('#'))
+            return cssColor.Length == 4
+                ? $"#{cssColor[1]}{cssColor[1]}{cssColor[2]}{cssColor[2]}{cssColor[3]}{cssColor[3]}"
+                : cssColor.ToUpperInvariant();
+
+        // rgb(r, g, b) or rgba(r, g, b, a)
+        var match = Regex.Match(cssColor, @"rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)");
+        if (match.Success)
+        {
+            var r = int.Parse(match.Groups[1].Value);
+            var g = int.Parse(match.Groups[2].Value);
+            var b = int.Parse(match.Groups[3].Value);
+            return $"#{r:X2}{g:X2}{b:X2}";
+        }
+
+        return "#000000";
+    }
+
+    /// <summary>
+    /// Gets CSS class names from the element as a space-separated string.
+    /// </summary>
+    private static string GetCssClasses(IElement element)
+    {
+        return element.ClassList.Length > 0
+            ? string.Join(" ", element.ClassList)
+            : string.Empty;
     }
 
     /// <summary>
@@ -492,7 +637,7 @@ public class HtmlExtractionService : IHtmlExtractionService
         if (string.IsNullOrEmpty(text)) return string.Empty;
 
         // Collapse all whitespace (including newlines) to single spaces
-        var cleaned = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ");
+        var cleaned = Regex.Replace(text, @"\s+", " ");
         return cleaned.Trim();
     }
 

@@ -1308,7 +1308,8 @@ public class WorkflowController : ControllerBase
 
         foreach (var element in elements)
         {
-            var isHeading = element.Metadata.FontName.StartsWith("heading-");
+            var isHeading = element.Metadata.FontName.StartsWith("heading-")
+                || element.Metadata.HtmlTag is "h1" or "h2" or "h3" or "h4" or "h5" or "h6";
 
             var areaElement = new AreaElement
             {
@@ -1320,6 +1321,7 @@ public class WorkflowController : ControllerBase
                 BoundingBox = element.Metadata.BoundingBox,
                 HtmlTag = element.Metadata.HtmlTag,
                 HtmlContainerPath = element.Metadata.HtmlContainerPath,
+                CssClasses = element.Metadata.CssClasses,
             };
 
             if (isHeading)
@@ -1689,7 +1691,8 @@ public class WorkflowController : ControllerBase
 
         foreach (var element in elements)
         {
-            var isHeading = element.Metadata.FontName.StartsWith("heading-");
+            var isHeading = element.Metadata.FontName.StartsWith("heading-")
+                || element.Metadata.HtmlTag is "h1" or "h2" or "h3" or "h4" or "h5" or "h6";
 
             if (isHeading)
             {

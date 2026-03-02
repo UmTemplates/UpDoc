@@ -200,3 +200,70 @@ Each sub-sprint gets its own commit. Feature branch: `feature/web-container-over
 - **Excluded promoted areas** — If user promotes to "Banner" then excludes it, the existing `excludedAreas` filter handles it (works on area names)
 - **Save ordering** — Container overrides saved first (regenerates area-detection + transform), then excluded areas (regenerates transform only). Second call overwrites first's transform, which is correct since it includes both overrides and exclusions.
 - **Element ordering** — Promoted areas get sort position based on their original position or a default (near Main Content). Unknown area names sort at position 3 in `GetAreaSortOrder`.
+
+---
+
+## UI Redesign Notes (from testing session, March 2026)
+
+### Problem: Flat container list is unusable
+
+The current 3d implementation uses a small sidebar with a flat list of all containers below the area checkboxes. Issues observed:
+
+1. **Too many containers** — The Dublin page has ~40 containers with class/id. Scrolling through a flat list to find `div.country-banner` is painful.
+2. **Action bar off-screen** — When a container is selected far down the list, the action bar ("Promote to Area" / "Make Section") appears at the top, completely off-screen.
+3. **No spatial context** — Containers listed alphabetically/by-depth give no sense of which area they belong to or where they sit in the page structure.
+
+### Solution: Two-pane layout (modelled on PDF area editor)
+
+Reference: The **Define Areas** modal for PDFs (`pdf-area-editor-modal.element.ts`) uses a wide sidebar with two panes — PDF preview on the left, area list on the right. This is the proven UX pattern.
+
+**Proposed layout for web container overrides:**
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  Define Areas                                                       │
+├────────────────────────────────────────┬────────────────────────────┤
+│  LEFT PANEL: Containers by area        │  RIGHT PANEL: Areas        │
+│                                        │                            │
+│  ▼ Header (10 elements)               │  Areas on this page        │
+│    ☐ div.header-container  12 el      │                            │
+│    ☐ div#header            6 el       │  ● Header          10 el  │
+│    ☐ div#right_banner      3 el       │  ● Navigation       7 el  │
+│    ☐ div.callus            2 el       │  ● Main Content    79 el  │
+│                                        │  ● Country Banner   5 el  │ ← appears live
+│  ▼ Navigation (7 elements)            │  ● Footer          45 el  │
+│    ☐ a.mobile-menu         1 el       │  ● Ungrouped       11 el  │
+│    ☐ span.sb-toggle-right  1 el       │                            │
+│                                        │  [Include/exclude toggles] │
+│  ▼ Main Content (79 elements)         │                            │
+│    ☐ div#body_content      84 el      │                            │
+│    ☐ div.country-banner    5 el  🟠   │                            │
+│    ☐ div.featuring_col1    5 el       │                            │
+│    ☐ div.featuring_col2    11 el      │                            │
+│    ☐ div#tab1              11 el      │                            │
+│    ...                                 │                            │
+│                                        │                            │
+│  [Promote to Area] [Make Section]      │                            │
+│  [Remove Override]                     │                            │
+├────────────────────────────────────────┴────────────────────────────┤
+│                                                    [Save] [Cancel]  │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**Key UX improvements over current flat list:**
+- **Containers grouped by area** — collapsible sections, easy to find what you're looking for
+- **Live area list on right** — as you promote a container, the new area appears immediately in the right panel
+- **Action buttons always visible** — sticky at bottom of left panel or floating
+- **Wide sidebar** — use `size: 'large'` or `size: 'full'` to give enough room for two panes
+- **Include/exclude toggles on right** — area management stays visible while browsing containers
+- **Override badges inline** — amber dot/badge on containers that have overrides (visible in left panel)
+
+**Implementation approach:**
+- Reuse the sidebar modal pattern but switch to `size: 'large'`
+- Left panel: accordion/collapsible groups by area name, each containing filtered containers
+- Right panel: area list with include/exclude toggles + element counts (mirrors current area rows)
+- Action buttons: sticky at bottom of left panel, activated when checkboxes are selected
+- On promote: right panel area list updates immediately (local state), left panel shows badge
+- On save: persist overrides + excluded areas, regenerate server-side
+
+**This is a separate task** — the current 3d implementation works functionally but needs this UX overhaul before it's production-ready.

@@ -1,6 +1,6 @@
 import type { RichExtractionResult, DocumentTypeConfig, MappingDestination, AreaDetectionResult, DetectedArea, DetectedSection, AreaElement, TransformResult, TransformedSection, SourceConfig, AreaTemplate, AreaRules, InferSectionPatternResponse, MapConfig, SectionMapping } from './workflow.types.js';
 import { allTransformSections } from './workflow.types.js';
-import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, fetchTransformResult, updateSectionInclusion, savePageSelection, saveExcludedAreas, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
+import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, fetchTransformResult, updateSectionInclusion, savePageSelection, saveExcludedAreas, saveContainerOverrides, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
 import { normalizeToKebabCase, markdownToHtml } from './transforms.js';
 import { getAllBlockContainers } from './destination-utils.js';
 import { UMB_AREA_EDITOR_MODAL } from './pdf-area-editor-modal.token.js';
@@ -375,21 +375,46 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			data: {
 				areas,
 				excludedAreas: [...this._excludedAreas],
+				containers: this._extraction?.containers ?? null,
+				containerOverrides: this._sourceConfig?.containerOverrides ?? [],
 			},
 		});
 
 		try {
 			const result = await modal.onSubmit();
 			if (result) {
-				this._excludedAreas = new Set(result.excludedAreas);
-				// Persist and regenerate transform
-				const saved = await saveExcludedAreas(this._workflowAlias, result.excludedAreas, this.#token);
-				if (saved != null && this._sourceConfig) {
-					this._sourceConfig = { ...this._sourceConfig, excludedAreas: saved };
+				// Save container overrides first (regenerates area-detection + transform)
+				const overridesChanged = JSON.stringify(result.containerOverrides ?? [])
+					!== JSON.stringify(this._sourceConfig?.containerOverrides ?? []);
+				if (overridesChanged) {
+					const savedOverrides = await saveContainerOverrides(
+						this._workflowAlias, result.containerOverrides ?? [], this.#token
+					);
+					if (savedOverrides != null && this._sourceConfig) {
+						this._sourceConfig = { ...this._sourceConfig, containerOverrides: savedOverrides };
+					}
+					// Re-fetch area detection and transform (regenerated server-side)
+					const [areaDetection, transform] = await Promise.all([
+						fetchAreaDetection(this._workflowAlias, this.#token),
+						fetchTransformResult(this._workflowAlias, this.#token),
+					]);
+					if (areaDetection) this._areaDetection = areaDetection;
+					if (transform) this._transformResult = transform;
 				}
-				const transform = await fetchTransformResult(this._workflowAlias, this.#token);
-				if (transform) {
-					this._transformResult = transform;
+
+				// Save excluded areas (regenerates transform only)
+				const excludedChanged = JSON.stringify([...result.excludedAreas].sort())
+					!== JSON.stringify([...this._excludedAreas].sort());
+				if (excludedChanged) {
+					this._excludedAreas = new Set(result.excludedAreas);
+					const saved = await saveExcludedAreas(this._workflowAlias, result.excludedAreas, this.#token);
+					if (saved != null && this._sourceConfig) {
+						this._sourceConfig = { ...this._sourceConfig, excludedAreas: saved };
+					}
+					const transform = await fetchTransformResult(this._workflowAlias, this.#token);
+					if (transform) {
+						this._transformResult = transform;
+					}
 				}
 			}
 		} catch {

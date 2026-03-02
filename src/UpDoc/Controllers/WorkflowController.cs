@@ -382,12 +382,12 @@ public class WorkflowController : ControllerBase
 
             if (sourceType == "web")
             {
-                // Build area detection result from htmlArea tags on elements
-                var areaDetection = BuildAreaDetectionFromWeb(result);
+                // Build area detection result from htmlArea tags on elements (respects container promotions)
+                var areaDetection = BuildAreaDetectionFromWeb(result, sourceConfig?.ContainerOverrides);
                 _workflowService.SaveAreaDetection(alias, areaDetection);
 
-                // Generate transform from area-grouped content (respects excluded areas)
-                var transformResult = ConvertStructuredToTransformResult(result, sourceConfig?.ExcludedAreas);
+                // Generate transform from area-grouped content (respects excluded areas + container overrides)
+                var transformResult = ConvertStructuredToTransformResult(result, sourceConfig?.ExcludedAreas, sourceConfig?.ContainerOverrides);
                 _workflowService.SaveTransformResult(alias, transformResult);
             }
             else if (sourceType == "markdown")
@@ -743,7 +743,7 @@ public class WorkflowController : ControllerBase
                     return BadRequest(new { error = "URL or media key is required for web extraction" });
                 }
 
-                var result = ConvertStructuredToTransformResult(extraction, sourceConfig?.ExcludedAreas);
+                var result = ConvertStructuredToTransformResult(extraction, sourceConfig?.ExcludedAreas, sourceConfig?.ContainerOverrides);
                 return Ok(result);
             }
             else if (sourceType == "markdown")
@@ -828,11 +828,11 @@ public class WorkflowController : ControllerBase
         sourceConfig.ExcludedAreas = request.ExcludedAreas?.Count > 0 ? request.ExcludedAreas : null;
         _workflowService.SaveSourceConfig(alias, sourceConfig);
 
-        // Regenerate transform so excluded areas take effect
+        // Regenerate transform so excluded areas take effect (also respects container overrides)
         var extraction = _workflowService.GetSampleExtraction(alias);
         if (extraction != null)
         {
-            var transformResult = ConvertStructuredToTransformResult(extraction, sourceConfig.ExcludedAreas);
+            var transformResult = ConvertStructuredToTransformResult(extraction, sourceConfig.ExcludedAreas, sourceConfig.ContainerOverrides);
             _workflowService.SaveTransformResult(alias, transformResult);
         }
 
@@ -840,6 +840,35 @@ public class WorkflowController : ControllerBase
             alias, sourceConfig.ExcludedAreas != null ? string.Join(", ", sourceConfig.ExcludedAreas) : "none");
 
         return Ok(new { excludedAreas = sourceConfig.ExcludedAreas ?? new List<string>() });
+    }
+
+    [HttpPut("{alias}/container-overrides")]
+    public IActionResult UpdateContainerOverrides(string alias, [FromBody] ContainerOverridesRequest request)
+    {
+        var sourceConfig = _workflowService.GetSourceConfig(alias);
+        if (sourceConfig == null)
+        {
+            return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
+        }
+
+        sourceConfig.ContainerOverrides = request.Overrides?.Count > 0 ? request.Overrides : null;
+        _workflowService.SaveSourceConfig(alias, sourceConfig);
+
+        // Regenerate area detection and transform with the new overrides
+        var extraction = _workflowService.GetSampleExtraction(alias);
+        if (extraction != null && extraction.SourceType == "web")
+        {
+            var areaDetection = BuildAreaDetectionFromWeb(extraction, sourceConfig.ContainerOverrides);
+            _workflowService.SaveAreaDetection(alias, areaDetection);
+
+            var transformResult = ConvertStructuredToTransformResult(extraction, sourceConfig.ExcludedAreas, sourceConfig.ContainerOverrides);
+            _workflowService.SaveTransformResult(alias, transformResult);
+        }
+
+        _logger.LogInformation("Updated container overrides for workflow '{Alias}': {Count} overrides",
+            alias, sourceConfig.ContainerOverrides?.Count ?? 0);
+
+        return Ok(new { containerOverrides = sourceConfig.ContainerOverrides ?? new List<ContainerOverride>() });
     }
 
     [HttpPut("{alias}/section-rules")]
@@ -1138,10 +1167,15 @@ public class WorkflowController : ControllerBase
     /// with htmlArea metadata. Groups elements by their area, then within each area
     /// groups into sections by headings.
     /// </summary>
-    private static AreaDetectionResult BuildAreaDetectionFromWeb(RichExtractionResult extraction)
+    private static AreaDetectionResult BuildAreaDetectionFromWeb(
+        RichExtractionResult extraction,
+        List<ContainerOverride>? containerOverrides = null)
     {
+        // Apply promotions before grouping (operates on cloned elements)
+        var elements = ApplyPromotions(extraction.Elements, containerOverrides);
+
         // Group elements by their htmlArea
-        var areaGroups = extraction.Elements
+        var areaGroups = elements
             .GroupBy(e => string.IsNullOrEmpty(e.Metadata.HtmlArea) ? "Ungrouped" : e.Metadata.HtmlArea)
             .OrderBy(g => GetAreaSortOrder(g.Key));
 
@@ -1157,15 +1191,18 @@ public class WorkflowController : ControllerBase
             ["Ungrouped"] = "#B0BEC5",
         };
 
+        // Default color for user-promoted areas
+        const string promotedAreaColor = "#FFCC80";
+
         foreach (var group in areaGroups)
         {
             var areaElements = group.ToList();
-            var sections = GroupElementsIntoSections(areaElements);
+            var sections = GroupElementsIntoSections(areaElements, containerOverrides);
 
             areas.Add(new DetectedArea
             {
                 Name = group.Key,
-                Color = areaColors.GetValueOrDefault(group.Key, "#B0BEC5"),
+                Color = areaColors.GetValueOrDefault(group.Key, promotedAreaColor),
                 BoundingBox = new ElementBoundingBox(), // Not applicable for web
                 Page = 1,
                 Sections = sections,
@@ -1233,10 +1270,38 @@ public class WorkflowController : ControllerBase
     }
 
     /// <summary>
-    /// Groups extraction elements into sections based on headings.
+    /// Groups extraction elements into sections based on headings and optional container overrides.
     /// Each heading starts a new section; body elements between headings are children.
+    /// When "makeSection" overrides are present, elements are first partitioned by their
+    /// matching container, then heading-based splitting is applied within each partition.
     /// </summary>
-    private static List<DetectedSection> GroupElementsIntoSections(List<ExtractionElement> elements)
+    private static List<DetectedSection> GroupElementsIntoSections(
+        List<ExtractionElement> elements,
+        List<ContainerOverride>? containerOverrides = null)
+    {
+        var sectionContainers = containerOverrides?
+            .Where(o => o.Action == "makeSection")
+            .ToList();
+
+        if (sectionContainers == null || sectionContainers.Count == 0)
+        {
+            return GroupElementsByHeading(elements);
+        }
+
+        // Partition elements by their makeSection container
+        var partitions = PartitionByContainer(elements, sectionContainers);
+        var allSections = new List<DetectedSection>();
+        foreach (var partition in partitions)
+        {
+            allSections.AddRange(GroupElementsByHeading(partition));
+        }
+        return allSections;
+    }
+
+    /// <summary>
+    /// Groups extraction elements into sections based on heading boundaries only.
+    /// </summary>
+    private static List<DetectedSection> GroupElementsByHeading(List<ExtractionElement> elements)
     {
         var sections = new List<DetectedSection>();
         DetectedSection? currentSection = null;
@@ -1292,6 +1357,65 @@ public class WorkflowController : ControllerBase
     }
 
     /// <summary>
+    /// Partitions elements into groups based on "makeSection" container paths.
+    /// Elements under a matching container form one partition; elements not under any
+    /// matching container go into adjacent default partitions. Consecutive elements
+    /// in the same container (or both not matching) stay together.
+    /// </summary>
+    private static List<List<ExtractionElement>> PartitionByContainer(
+        List<ExtractionElement> elements,
+        List<ContainerOverride> sectionContainers)
+    {
+        var partitions = new List<List<ExtractionElement>>();
+        string? currentContainerKey = null; // null = no matching container
+        var currentBucket = new List<ExtractionElement>();
+
+        foreach (var element in elements)
+        {
+            var containerKey = GetMatchingSectionContainer(element, sectionContainers);
+
+            if (containerKey != currentContainerKey && currentBucket.Count > 0)
+            {
+                partitions.Add(currentBucket);
+                currentBucket = new List<ExtractionElement>();
+            }
+
+            currentContainerKey = containerKey;
+            currentBucket.Add(element);
+        }
+
+        if (currentBucket.Count > 0)
+            partitions.Add(currentBucket);
+
+        return partitions;
+    }
+
+    /// <summary>
+    /// Returns the matching "makeSection" container path for an element, or null if none match.
+    /// When multiple containers match, the most specific (longest path) wins.
+    /// </summary>
+    private static string? GetMatchingSectionContainer(
+        ExtractionElement element,
+        List<ContainerOverride> sectionContainers)
+    {
+        var path = element.Metadata.HtmlContainerPath;
+        if (string.IsNullOrEmpty(path)) return null;
+
+        string? bestMatch = null;
+        foreach (var container in sectionContainers)
+        {
+            if (path.Equals(container.ContainerPath, StringComparison.Ordinal)
+                || path.StartsWith(container.ContainerPath + "/", StringComparison.Ordinal))
+            {
+                if (bestMatch == null || container.ContainerPath.Length > bestMatch.Length)
+                    bestMatch = container.ContainerPath;
+            }
+        }
+
+        return bestMatch;
+    }
+
+    /// <summary>
     /// Sort order for areas so they appear in a logical reading order.
     /// </summary>
     private static int GetAreaSortOrder(string areaName) => areaName switch
@@ -1303,8 +1427,101 @@ public class WorkflowController : ControllerBase
         "Sidebar" => 4,
         "Footer" => 5,
         "Ungrouped" => 6,
-        _ => 3 // Unknown areas sort near main content
+        _ => 3 // Unknown/promoted areas sort near main content
     };
+
+    /// <summary>
+    /// Applies "promoteToArea" container overrides to extraction elements.
+    /// For each promotion, elements whose htmlContainerPath starts with (or equals)
+    /// the promoted container's path get their HtmlArea overridden to the promotion label.
+    /// Longest paths match first (most specific wins).
+    /// Operates on a cloned list to avoid mutating the persisted sample extraction.
+    /// </summary>
+    private static List<ExtractionElement> ApplyPromotions(
+        List<ExtractionElement> elements,
+        List<ContainerOverride>? overrides)
+    {
+        if (overrides == null || overrides.Count == 0)
+            return elements;
+
+        var promotions = overrides
+            .Where(o => o.Action == "promoteToArea")
+            .OrderByDescending(o => o.ContainerPath.Length) // most specific first
+            .ToList();
+
+        if (promotions.Count == 0)
+            return elements;
+
+        // Deep-clone element metadata so we don't mutate the persisted extraction
+        var cloned = elements.Select(e => new ExtractionElement
+        {
+            Id = e.Id,
+            Page = e.Page,
+            Text = e.Text,
+            Metadata = new ElementMetadata
+            {
+                FontSize = e.Metadata.FontSize,
+                FontName = e.Metadata.FontName,
+                Position = e.Metadata.Position,
+                BoundingBox = e.Metadata.BoundingBox,
+                Color = e.Metadata.Color,
+                HtmlArea = e.Metadata.HtmlArea,
+                HtmlTag = e.Metadata.HtmlTag,
+                HtmlContainerPath = e.Metadata.HtmlContainerPath,
+            }
+        }).ToList();
+
+        foreach (var element in cloned)
+        {
+            var path = element.Metadata.HtmlContainerPath;
+            if (string.IsNullOrEmpty(path)) continue;
+
+            foreach (var promo in promotions)
+            {
+                if (path.Equals(promo.ContainerPath, StringComparison.Ordinal)
+                    || path.StartsWith(promo.ContainerPath + "/", StringComparison.Ordinal))
+                {
+                    element.Metadata.HtmlArea = promo.Label ?? DeriveLabel(promo.ContainerPath);
+                    break; // first (most specific) match wins
+                }
+            }
+        }
+
+        return cloned;
+    }
+
+    /// <summary>
+    /// Derives a human-readable label from the last segment of a container CSS selector path.
+    /// "div.country-banner" → "Country Banner", "div#tab2" → "Tab 2".
+    /// </summary>
+    private static string DeriveLabel(string containerPath)
+    {
+        // Take the last segment of the path
+        var lastSegment = containerPath.Contains('/')
+            ? containerPath[(containerPath.LastIndexOf('/') + 1)..]
+            : containerPath;
+
+        // Extract the class or id part (after the first . or #)
+        string identifier;
+        var dotIndex = lastSegment.IndexOf('.');
+        var hashIndex = lastSegment.IndexOf('#');
+
+        if (dotIndex >= 0)
+            identifier = lastSegment[(dotIndex + 1)..];
+        else if (hashIndex >= 0)
+            identifier = lastSegment[(hashIndex + 1)..];
+        else
+            identifier = lastSegment; // bare tag
+
+        // Convert kebab-case/underscore-case to title case
+        var words = identifier
+            .Replace('-', ' ')
+            .Replace('_', ' ')
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        return string.Join(" ", words.Select(w =>
+            char.ToUpper(w[0]) + (w.Length > 1 ? w[1..] : "")));
+    }
 
     /// <summary>
     /// Converts a structured RichExtractionResult (markdown or HTML) into a TransformResult.
@@ -1313,7 +1530,10 @@ public class WorkflowController : ControllerBase
     /// For web sources with htmlArea metadata, creates one TransformArea per detected area.
     /// Works for any source type that uses "heading-N" font names (markdown, HTML).
     /// </summary>
-    private static TransformResult ConvertStructuredToTransformResult(RichExtractionResult extraction, List<string>? excludedAreas = null)
+    private static TransformResult ConvertStructuredToTransformResult(
+        RichExtractionResult extraction,
+        List<string>? excludedAreas = null,
+        List<ContainerOverride>? containerOverrides = null)
     {
         // Check if this is a web extraction with area metadata
         var hasAreas = extraction.SourceType == "web"
@@ -1321,7 +1541,7 @@ public class WorkflowController : ControllerBase
 
         if (hasAreas)
         {
-            return ConvertWebToTransformResult(extraction, excludedAreas);
+            return ConvertWebToTransformResult(extraction, excludedAreas, containerOverrides);
         }
 
         // Original path for markdown and web-without-areas
@@ -1333,17 +1553,23 @@ public class WorkflowController : ControllerBase
     /// Groups elements by htmlArea first, then by heading within each area.
     /// Excluded areas (by kebab-case name) are filtered out of the output.
     /// </summary>
-    private static TransformResult ConvertWebToTransformResult(RichExtractionResult extraction, List<string>? excludedAreas = null)
+    private static TransformResult ConvertWebToTransformResult(
+        RichExtractionResult extraction,
+        List<string>? excludedAreas = null,
+        List<ContainerOverride>? containerOverrides = null)
     {
         var seenIds = new Dictionary<string, int>();
         var areas = new List<TransformArea>();
+
+        // Apply promotions before grouping (operates on cloned elements)
+        var elements = ApplyPromotions(extraction.Elements, containerOverrides);
 
         // Build a set of excluded area names for fast lookup (kebab-case → original name)
         var excludedSet = excludedAreas != null && excludedAreas.Count > 0
             ? new HashSet<string>(excludedAreas, StringComparer.OrdinalIgnoreCase)
             : null;
 
-        var areaGroups = extraction.Elements
+        var areaGroups = elements
             .GroupBy(e => string.IsNullOrEmpty(e.Metadata.HtmlArea) ? "Ungrouped" : e.Metadata.HtmlArea)
             .OrderBy(g => GetAreaSortOrder(g.Key));
 
@@ -1353,7 +1579,7 @@ public class WorkflowController : ControllerBase
             var kebabName = NormalizeToKebabCase(areaGroup.Key);
             if (excludedSet != null && excludedSet.Contains(kebabName))
                 continue;
-            var sections = ConvertElementsToSections(areaGroup.ToList(), seenIds);
+            var sections = ConvertElementsToSections(areaGroup.ToList(), seenIds, containerOverrides);
             areas.Add(new TransformArea
             {
                 Name = areaGroup.Key,
@@ -1404,8 +1630,37 @@ public class WorkflowController : ControllerBase
     /// <summary>
     /// Converts a list of extraction elements into TransformedSections.
     /// Each heading starts a new section with a kebab-case ID.
+    /// When "makeSection" overrides are present, elements are first partitioned by container,
+    /// then heading-based splitting is applied within each partition.
     /// </summary>
     private static List<TransformedSection> ConvertElementsToSections(
+        List<ExtractionElement> elements,
+        Dictionary<string, int> seenIds,
+        List<ContainerOverride>? containerOverrides = null)
+    {
+        var sectionContainers = containerOverrides?
+            .Where(o => o.Action == "makeSection")
+            .ToList();
+
+        if (sectionContainers == null || sectionContainers.Count == 0)
+        {
+            return ConvertElementsByHeading(elements, seenIds);
+        }
+
+        // Partition elements by their makeSection container, then heading-split within each
+        var partitions = PartitionByContainer(elements, sectionContainers);
+        var allSections = new List<TransformedSection>();
+        foreach (var partition in partitions)
+        {
+            allSections.AddRange(ConvertElementsByHeading(partition, seenIds));
+        }
+        return allSections;
+    }
+
+    /// <summary>
+    /// Converts extraction elements into TransformedSections based on heading boundaries only.
+    /// </summary>
+    private static List<TransformedSection> ConvertElementsByHeading(
         List<ExtractionElement> elements, Dictionary<string, int> seenIds)
     {
         var sections = new List<TransformedSection>();
@@ -1569,6 +1824,14 @@ public class ExcludedAreasRequest
     /// List of area names (kebab-case) to exclude from transform output. Null or empty = include all.
     /// </summary>
     public List<string>? ExcludedAreas { get; set; }
+}
+
+public class ContainerOverridesRequest
+{
+    /// <summary>
+    /// List of container overrides (promote to area, make section). Null or empty = clear all overrides.
+    /// </summary>
+    public List<ContainerOverride>? Overrides { get; set; }
 }
 
 public class InferSectionPatternRequest

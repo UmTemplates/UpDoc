@@ -1,4 +1,4 @@
-import type { DocumentTypeConfig, ExtractSectionsResponse, MapConfig, RichExtractionResult, SectionRuleSet, AreaRules, TransformResult, AreaDetectionResult, AreaTemplate, InferSectionPatternResponse } from './workflow.types.js';
+import type { DocumentTypeConfig, ExtractSectionsResponse, MapConfig, RichExtractionResult, SectionRuleSet, AreaRules, TransformResult, AreaDetectionResult, AreaTemplate, InferSectionPatternResponse, ContainerOverride } from './workflow.types.js';
 
 const configCache = new Map<string, DocumentTypeConfig>();
 
@@ -497,6 +497,38 @@ export async function saveExcludedAreas(
 	clearConfigCache();
 	const result = await response.json();
 	return result.excludedAreas ?? [];
+}
+
+/**
+ * Saves container overrides for a workflow. Pass null or empty array to clear all overrides.
+ * Returns the updated container overrides list on success.
+ */
+export async function saveContainerOverrides(
+	workflowAlias: string,
+	overrides: ContainerOverride[] | null,
+	token: string
+): Promise<ContainerOverride[] | null> {
+	const response = await fetch(
+		`/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(workflowAlias)}/container-overrides`,
+		{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify({ overrides: overrides ?? [] }),
+		}
+	);
+
+	if (!response.ok) {
+		const error = await response.json();
+		console.error('Save container overrides failed:', error);
+		return null;
+	}
+
+	clearConfigCache();
+	const result = await response.json();
+	return result.containerOverrides ?? [];
 }
 
 /**

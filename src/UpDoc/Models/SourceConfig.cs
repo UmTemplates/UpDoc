@@ -54,6 +54,15 @@ public class SourceConfig
     public List<string>? ExcludedAreas { get; set; }
 
     /// <summary>
+    /// User-defined overrides for container behaviour (web sources only).
+    /// Each override targets a container by its path and specifies an action
+    /// (promote to independent area, or use as section boundary within parent area).
+    /// </summary>
+    [JsonPropertyName("containerOverrides")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<ContainerOverride>? ContainerOverrides { get; set; }
+
+    /// <summary>
     /// Resolves the list of page numbers to process, given the total page count.
     /// Returns null if all pages should be processed.
     /// </summary>
@@ -331,4 +340,35 @@ public class PageEndConverter : JsonConverter<PageEnd>
             writer.WriteNumberValue(value.PageNumber.Value);
         }
     }
+}
+
+/// <summary>
+/// A user-defined override for a web container's behaviour.
+/// Targets a container by its full path (slash-delimited CSS selector path)
+/// and specifies whether to promote it to an area or use it as a section boundary.
+/// </summary>
+public class ContainerOverride
+{
+    /// <summary>
+    /// The container's full path (slash-delimited CSS selector path).
+    /// Must match ContainerTreeNode.Path or be a prefix of ElementMetadata.HtmlContainerPath.
+    /// Example: "div#sb-site/div.body-wrapper/div#body_content/div.country-banner"
+    /// </summary>
+    [JsonPropertyName("containerPath")]
+    public string ContainerPath { get; set; } = string.Empty;
+
+    /// <summary>
+    /// The action to apply: "promoteToArea" or "makeSection".
+    /// </summary>
+    [JsonPropertyName("action")]
+    public string Action { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Optional human-readable label for the promoted area or section.
+    /// If null, auto-derived from the container's CSS selector
+    /// (e.g., "div.country-banner" → "Country Banner").
+    /// </summary>
+    [JsonPropertyName("label")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Label { get; set; }
 }

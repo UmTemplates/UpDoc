@@ -1,0 +1,17 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "sourceTypes": [
+    "web"
+  ],
+  "globals": null,
+  "pages": "all",
+  "sections": [],
+  "sectionRules": null,
+  "areaRules": null,
+  "excludedAreas": [
+    "navigation",
+    "footer",
+    "header"
+  ]
+}

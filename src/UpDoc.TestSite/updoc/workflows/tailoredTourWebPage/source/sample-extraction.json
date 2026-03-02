@@ -1,0 +1,4950 @@
+{
+  "version": "1.0",
+  "sourceType": "web",
+  "source": {
+    "fileName": "https://www.tailored-travel.co.uk/dublin-s-art-literature",
+    "mediaKey": "",
+    "extractedDate": "2026-03-02T09:35:02.9126536Z",
+    "totalPages": 1
+  },
+  "elements": [
+    {
+      "id": "html-0",
+      "page": 1,
+      "text": "View Your Tour",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "a",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "a",
+        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.home-view-your-tour/a.home-view-tour-button"
+      }
+    },
+    {
+      "id": "html-1",
+      "page": 1,
+      "text": "To discuss your group\u2019s tailor made tour",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "span",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "span",
+        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.callus/span.call"
+      }
+    },
+    {
+      "id": "html-2",
+      "page": 1,
+      "text": "Call 020 7064 4970",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "span",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "span",
+        "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.callus/span.phone"
+      }
+    },
+    {
+      "id": "html-3",
+      "page": 1,
+      "text": "Menu",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "span",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Navigation",
+        "htmlTag": "span",
+        "htmlContainerPath": "div.header-container/div#header/nav/a.mobile-menu/span.sb-toggle-right"
+      }
+    },
+    {
+      "id": "html-4",
+      "page": 1,
+      "text": "Call us",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "span",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "span",
+        "htmlContainerPath": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-smallest"
+      }
+    },
+    {
+      "id": "html-5",
+      "page": 1,
+      "text": "on 020 7064 4970",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "span",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "span",
+        "htmlContainerPath": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-number"
+      }
+    },
+    {
+      "id": "html-6",
+      "page": 1,
+      "text": "- Home",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Navigation",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+      }
+    },
+    {
+      "id": "html-7",
+      "page": 1,
+      "text": "- Group Tours",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Navigation",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+      }
+    },
+    {
+      "id": "html-8",
+      "page": 1,
+      "text": "- Group Organisers",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Navigation",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+      }
+    },
+    {
+      "id": "html-9",
+      "page": 1,
+      "text": "- News",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Navigation",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+      }
+    },
+    {
+      "id": "html-10",
+      "page": 1,
+      "text": "- About Us",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Navigation",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+      }
+    },
+    {
+      "id": "html-11",
+      "page": 1,
+      "text": "- Contact Us",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Navigation",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list"
+      }
+    },
+    {
+      "id": "html-12",
+      "page": 1,
+      "text": "5 days from",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_days"
+      }
+    },
+    {
+      "id": "html-13",
+      "page": 1,
+      "text": "\u00A3899",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_price"
+      }
+    },
+    {
+      "id": "html-14",
+      "page": 1,
+      "text": "Dublin\u2019s Fair City",
+      "metadata": {
+        "fontSize": 24,
+        "fontName": "heading-1",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h1",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.tour_name"
+      }
+    },
+    {
+      "id": "html-15",
+      "page": 1,
+      "text": "\u201CThank you on behalf of our Society for an excellent tour. The guide was a delight - very informative and such fun and gave us a wonderful overview of Dublin. The day in the Wicklow Mountains was perfect particularly as we were blessed with wonderful weather. Our guides at the National Gallery were superlative - everyone remarked that they\u0027d never had better. All in all we had a memorable holiday.\u201D",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_quote"
+      }
+    },
+    {
+      "id": "html-16",
+      "page": 1,
+      "text": "SB, Huddersfield",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_sig"
+      }
+    },
+    {
+      "id": "html-17",
+      "page": 1,
+      "text": "Home",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "a",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "a",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a"
+      }
+    },
+    {
+      "id": "html-18",
+      "page": 1,
+      "text": "Group Tours",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "a",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "a",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a"
+      }
+    },
+    {
+      "id": "html-19",
+      "page": 1,
+      "text": "Ireland",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "a",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "a",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a"
+      }
+    },
+    {
+      "id": "html-20",
+      "page": 1,
+      "text": "Dublin\u2019s Fair City",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "span",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "span",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/span.lastitem"
+      }
+    },
+    {
+      "id": "html-21",
+      "page": 1,
+      "text": "- Suggested itinerary",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+      }
+    },
+    {
+      "id": "html-22",
+      "page": 1,
+      "text": "- Featuring",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+      }
+    },
+    {
+      "id": "html-23",
+      "page": 1,
+      "text": "- Hotel",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+      }
+    },
+    {
+      "id": "html-24",
+      "page": 1,
+      "text": "- Extras",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+      }
+    },
+    {
+      "id": "html-25",
+      "page": 1,
+      "text": "- Tailor-make this tour",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+      }
+    },
+    {
+      "id": "html-26",
+      "page": 1,
+      "text": "- Reviews",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs"
+      }
+    },
+    {
+      "id": "html-27",
+      "page": 1,
+      "text": "Suggested Itinerary",
+      "metadata": {
+        "fontSize": 16,
+        "fontName": "heading-3",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h3",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading"
+      }
+    },
+    {
+      "id": "html-28",
+      "page": 1,
+      "text": "Day 1 \u2013 Dublin city tour",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-29",
+      "page": 1,
+      "text": "Scheduled flight to Dublin from your preferred airport \u2013 tour of Dublin with our local guide in our private executive coach giving us a great introduction to the city of writers and poets taking in such sights as Ha\u2019penny Bridge, O\u2019Connell Street and Christchurch Cathedral \u2013 transfer to the central 3* Academy Plaza Hotel in Dublin.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-30",
+      "page": 1,
+      "text": "Day 2 \u2013 Dublin Castle, Chester Beatty Library, the State Apartments \u0026 Kilmainham Gaol",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-31",
+      "page": 1,
+      "text": "A guided tour of Dublin Castle, dating back to 1230 and located in the heart of the city, is followed by a visit to the Chester Beatty Library containing a rich collection of manuscripts, prints, miniature paintings and early printed books \u2013 the State Apartments at Dublin Castle were the former private and public rooms of the Viceroys and the Viceregal Court, the seat of the executive and the focus of fashionable social life and a guided tour also takes in the Medieval Undercroft and the Chapel Royal \u2013 guided tour of the museum at Kilmainham Gaol, one of the largest unoccupied jails in Europe, focuses on some of the most heroic and tragic events in Ireland\u2019s emergence as a modern nation from the 1780s to the 1920s.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-32",
+      "page": 1,
+      "text": "Day 3 \u2013 Wicklow Mountains, Powerscourt House and Gardens, Glendalough \u0026 Avoca",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-33",
+      "page": 1,
+      "text": "Travel with our guide into the Wicklow Mountains, known as the \u2018garden of Ireland\u2019 \u2013 Powerscourt House and Gardens is set in 14,000 acres with delightful lakes, ornamental hedges and gardens while the entrance hall now features an exhibition bringing to life the rich history of the estate and the double height Georgian ballroom has been completely restored to its former glory \u2013 Glendalough is a 6th century monastic site founded by St Kevin and once a major seat of learning in medieval Europe \u2013 Avoca is the subject of Thomas More\u2019s poem, \u2018The Meeting of the Waters\u2019.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-34",
+      "page": 1,
+      "text": "Day 4 \u2013 National Gallery of Ireland, Book of Kells \u0026 Newman House",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-35",
+      "page": 1,
+      "text": "Guided tour of the National Gallery of Ireland, housing 13,000 works of art, including works by Titian, Caravaggio, Rembrandt, Poussin and Gainsborough \u2013 visit Trinity College with our guide to see the Book of Kells, one of the most beautifully illuminated manuscripts in the world which was written around the year 800 AD \u2013 Newman House consists of two Georgian houses displaying examples of Dublin\u2019s finest 18th century plasterwork.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-36",
+      "page": 1,
+      "text": "Day 5 \u2013 EPIC The Irish Emigration Museum",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-37",
+      "page": 1,
+      "text": "Guided tour of EPIC The Irish Emigration Museum which depicts the moving and unforgettable stories of those who left the island of Ireland, and how they influenced and shaped the world \u2013 transfer to Dublin airport for our scheduled flight back home.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-38",
+      "page": 1,
+      "text": "Tour Features",
+      "metadata": {
+        "fontSize": 16,
+        "fontName": "heading-3",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h3",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading"
+      }
+    },
+    {
+      "id": "html-39",
+      "page": 1,
+      "text": "All excursions \u0026 guided tours included",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+      }
+    },
+    {
+      "id": "html-40",
+      "page": 1,
+      "text": "Professional local guide in Ireland",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+      }
+    },
+    {
+      "id": "html-41",
+      "page": 1,
+      "text": "Scheduled flights to Dublin",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+      }
+    },
+    {
+      "id": "html-42",
+      "page": 1,
+      "text": "Executive coach in Ireland",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+      }
+    },
+    {
+      "id": "html-43",
+      "page": 1,
+      "text": "One free place per 10 paying passengers",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1"
+      }
+    },
+    {
+      "id": "html-44",
+      "page": 1,
+      "text": "Introductory tour of Dublin",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-45",
+      "page": 1,
+      "text": "Dublin Castle - Chester Beatty Library \u0026 the State Apartments",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-46",
+      "page": 1,
+      "text": "Kilmainham Gaol",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-47",
+      "page": 1,
+      "text": "Wicklow Mountains, the \u2018garden of Ireland\u2019",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-48",
+      "page": 1,
+      "text": "Powerscourt House \u0026 Gardens",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-49",
+      "page": 1,
+      "text": "Glendalough",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-50",
+      "page": 1,
+      "text": "Avoca",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-51",
+      "page": 1,
+      "text": "National Gallery of Ireland - guided tour",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-52",
+      "page": 1,
+      "text": "Trinity College \u0026 Book of Kells",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-53",
+      "page": 1,
+      "text": "Newman House",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-54",
+      "page": 1,
+      "text": "EPIC The Irish Emigration Museum",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2"
+      }
+    },
+    {
+      "id": "html-55",
+      "page": 1,
+      "text": "Hotel",
+      "metadata": {
+        "fontSize": 16,
+        "fontName": "heading-3",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h3",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading"
+      }
+    },
+    {
+      "id": "html-56",
+      "page": 1,
+      "text": "Four nights on bed and breakfast basis at the centrally located 3* Academy PlazaHotel in Dublin. Located near O\u2019Connell Street, the hotel offers easy access to the city\u2019s main attractions. Facilities include a restaurant and a bar and all rooms are en suite.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-57",
+      "page": 1,
+      "text": "Extras",
+      "metadata": {
+        "fontSize": 16,
+        "fontName": "heading-3",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h3",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading"
+      }
+    },
+    {
+      "id": "html-58",
+      "page": 1,
+      "text": "Single room supplement \u00A3169",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-59",
+      "page": 1,
+      "text": "Insurance",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-60",
+      "page": 1,
+      "text": "Entrance fees to places of interest",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-61",
+      "page": 1,
+      "text": "Audio headphones",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-62",
+      "page": 1,
+      "text": "Gratuities",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-63",
+      "page": 1,
+      "text": "Tailor-make this tour",
+      "metadata": {
+        "fontSize": 16,
+        "fontName": "heading-3",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h3",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading"
+      }
+    },
+    {
+      "id": "html-64",
+      "page": 1,
+      "text": "Your tailor made tour",
+      "metadata": {
+        "fontSize": 14,
+        "fontName": "heading-4",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h4",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour"
+      }
+    },
+    {
+      "id": "html-65",
+      "page": 1,
+      "text": "Here are some more suggested places of interest you might like to include:",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour"
+      }
+    },
+    {
+      "id": "html-66",
+      "page": 1,
+      "text": "- National Botanic Gardens - home to approximately 20,000 species and cultivars, a rose garden, the arboretum and stunning herbaceous displays",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul"
+      }
+    },
+    {
+      "id": "html-67",
+      "page": 1,
+      "text": "- Russborough House - built in 1741 by Joseph Leeson, the house has been described as \u2018arguably the most beautiful house in Ireland\u2019 and is home to a fine collection of art, silverware and porcelain",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul"
+      }
+    },
+    {
+      "id": "html-68",
+      "page": 1,
+      "text": "Tour Reviews",
+      "metadata": {
+        "fontSize": 16,
+        "fontName": "heading-3",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h3",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading"
+      }
+    },
+    {
+      "id": "html-69",
+      "page": 1,
+      "text": "Reviews for Dublin\u2019s Fair City",
+      "metadata": {
+        "fontSize": 16,
+        "fontName": "heading-3",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h3",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper"
+      }
+    },
+    {
+      "id": "html-70",
+      "page": 1,
+      "text": "Date of tour: July 2017",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-71",
+      "page": 1,
+      "text": "Just a note to let you know that our tour to Dublin was a huge success. The hotel was good, coach was always on time with friendly and helpful drivers. All of the venues were welcoming and our tour manager was a delight. Thank you for your patience and help in planning the trip - one of our best ever.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-72",
+      "page": 1,
+      "text": "IC, Halstead",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-73",
+      "page": 1,
+      "text": "Date of tour: May 2014",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-74",
+      "page": 1,
+      "text": "Thank you on behalf of our Society for an excellent Tour. Please pass on my gratitude to Damian for his help and patience putting together our itinerary which was well balanced and met with approval. We packed quite a lot into a short space of time. The administration from beginning to end was faultless. The bar staff were most accommodating and dealt with my request to offer pre dinner drink very efficiently. The dinner was standard but the beef apparently was disappointing. Being on half board was definitely the best option. Rooms were clean and staff very pleasant. The guide was a delight - very informative and such fun and gave us a wonderful overview of Dublin. The day in the Wicklow Mountains was perfect particularly as we were blessed with wonderful weather. Our guides at the National Gallery were superlative - everyone remarked that they\u0027d never had better. The guide at the Castle was another young girl who was excellent. Finally Paul, our driver, got us there and back in very good time and was always most helpful. All in all we had a memorable holiday and I hope we\u0027ll be planning another.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-75",
+      "page": 1,
+      "text": "SB, Huddersfield",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-76",
+      "page": 1,
+      "text": "Date of tour: June 2011",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-77",
+      "page": 1,
+      "text": "Just a line to let you know that all went very well indeed with the tour to Dublin. Clodagh was a darling, would want her again. The hotel very good, the weather was pretty kind really, chilly and rain showers but we saw the sun too. Gardens and owners all wonderful. Tailored Travel came out of the whole thing with glowing colours. Thanks for all your hard work, it came together beautifully and I had a lot of praise and many people said it was the best trip they had ever been on.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-78",
+      "page": 1,
+      "text": "ML, Haywards Heath",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review"
+      }
+    },
+    {
+      "id": "html-79",
+      "page": 1,
+      "text": "Back to all Ireland Tours",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "span",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "span",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary/a.button-link/span.back-button"
+      }
+    },
+    {
+      "id": "html-80",
+      "page": 1,
+      "text": "Call us on 020 7064 4970to tailor this tourfor your group",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.panel-wrapper/div.panel-inner-line/div.panel-call-us"
+      }
+    },
+    {
+      "id": "html-81",
+      "page": 1,
+      "text": "Tailor make your group tour",
+      "metadata": {
+        "fontSize": 14,
+        "fontName": "heading-4",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "h4",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour"
+      }
+    },
+    {
+      "id": "html-82",
+      "page": 1,
+      "text": "Remember this itinerary is just our suggestion. Tailor make this tour exclusively for your group to suit your members\u2019 budget or preferences. You could:",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour"
+      }
+    },
+    {
+      "id": "html-83",
+      "page": 1,
+      "text": "- stay at a 4* hotel",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+      }
+    },
+    {
+      "id": "html-84",
+      "page": 1,
+      "text": "- with more dinners included",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+      }
+    },
+    {
+      "id": "html-85",
+      "page": 1,
+      "text": "- for more (or fewer) days",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+      }
+    },
+    {
+      "id": "html-86",
+      "page": 1,
+      "text": "- include different excursions \u2013 see \u2018Tailor-make this tour\u2019 tab for suggestions",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+      }
+    },
+    {
+      "id": "html-87",
+      "page": 1,
+      "text": "- include UK airport coach transfers",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+      }
+    },
+    {
+      "id": "html-88",
+      "page": 1,
+      "text": "- bring a specialist lecturer",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+      }
+    },
+    {
+      "id": "html-89",
+      "page": 1,
+      "text": "- include all entrance fees \u0026 gratuities",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul"
+      }
+    },
+    {
+      "id": "html-90",
+      "page": 1,
+      "text": "Back to all Ireland Tours",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "a",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "a",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link"
+      }
+    },
+    {
+      "id": "html-91",
+      "page": 1,
+      "text": "Back to all Destinations",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "a",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "a",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link"
+      }
+    },
+    {
+      "id": "html-92",
+      "page": 1,
+      "text": "Request a Quote",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "a",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "a",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link"
+      }
+    },
+    {
+      "id": "html-93",
+      "page": 1,
+      "text": "Request a Brochure",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "a",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "a",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link"
+      }
+    },
+    {
+      "id": "html-94",
+      "page": 1,
+      "text": "Call us on 020 7064 4970to tailor make the perfect tourfor your group",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div#mobile-panel-wrapper/div.panel-inner-line/div.panel-call-us"
+      }
+    },
+    {
+      "id": "html-95",
+      "page": 1,
+      "text": "Back to all Ireland Tours",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "span",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Main Content",
+        "htmlTag": "span",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary/a.button-link/span.back-button"
+      }
+    },
+    {
+      "id": "html-96",
+      "page": 1,
+      "text": "020 7064 4970",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+      }
+    },
+    {
+      "id": "html-97",
+      "page": 1,
+      "text": "info@tailored-travel.co.uk",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+      }
+    },
+    {
+      "id": "html-98",
+      "page": 1,
+      "text": "12 Jamaica Road",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+      }
+    },
+    {
+      "id": "html-99",
+      "page": 1,
+      "text": "London",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+      }
+    },
+    {
+      "id": "html-100",
+      "page": 1,
+      "text": "SE1 2RN",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address"
+      }
+    },
+    {
+      "id": "html-101",
+      "page": 1,
+      "text": "Tailored Travel holds a current ATOL licence. Air holiday packages shown are ATOL protected by the Civil Aviation Authority. Our ATOL number is ATOL 5605.",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "p",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div#accreditations/div.atol-description"
+      }
+    },
+    {
+      "id": "html-102",
+      "page": 1,
+      "text": "Information",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/div.ft_header"
+      }
+    },
+    {
+      "id": "html-103",
+      "page": 1,
+      "text": "- Sitemap",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+      }
+    },
+    {
+      "id": "html-104",
+      "page": 1,
+      "text": "- Terms \u0026 Conditions",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+      }
+    },
+    {
+      "id": "html-105",
+      "page": 1,
+      "text": "- Privacy Policy",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+      }
+    },
+    {
+      "id": "html-106",
+      "page": 1,
+      "text": "- Cookies",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+      }
+    },
+    {
+      "id": "html-107",
+      "page": 1,
+      "text": "- Booking Conditions",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+      }
+    },
+    {
+      "id": "html-108",
+      "page": 1,
+      "text": "- Insurance",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+      }
+    },
+    {
+      "id": "html-109",
+      "page": 1,
+      "text": "- Financial Security",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft"
+      }
+    },
+    {
+      "id": "html-110",
+      "page": 1,
+      "text": "Types of Holiday",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/div.ft_header"
+      }
+    },
+    {
+      "id": "html-111",
+      "page": 1,
+      "text": "- Tailor Made Tours for Groups",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide"
+      }
+    },
+    {
+      "id": "html-112",
+      "page": 1,
+      "text": "- School \u0026 College tours",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide"
+      }
+    },
+    {
+      "id": "html-113",
+      "page": 1,
+      "text": "- Tours for Individuals",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide"
+      }
+    },
+    {
+      "id": "html-114",
+      "page": 1,
+      "text": "Destinations",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/div.ft_header"
+      }
+    },
+    {
+      "id": "html-115",
+      "page": 1,
+      "text": "- UK",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-116",
+      "page": 1,
+      "text": "- France",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-117",
+      "page": 1,
+      "text": "- Holland",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-118",
+      "page": 1,
+      "text": "- Portugal",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-119",
+      "page": 1,
+      "text": "- Belgium",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-120",
+      "page": 1,
+      "text": "- Southern Europe",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-121",
+      "page": 1,
+      "text": "- Italy",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-122",
+      "page": 1,
+      "text": "- Germany",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-123",
+      "page": 1,
+      "text": "- Spain",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-124",
+      "page": 1,
+      "text": "- Austria",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-125",
+      "page": 1,
+      "text": "- Ireland",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-126",
+      "page": 1,
+      "text": "- Central \u0026 Eastern Europe",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-127",
+      "page": 1,
+      "text": "- Worldwide",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-128",
+      "page": 1,
+      "text": "Destinations",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/div.ft_header"
+      }
+    },
+    {
+      "id": "html-129",
+      "page": 1,
+      "text": "- UK",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-130",
+      "page": 1,
+      "text": "- Italy",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-131",
+      "page": 1,
+      "text": "- France",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-132",
+      "page": 1,
+      "text": "- Germany",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-133",
+      "page": 1,
+      "text": "- Holland",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-134",
+      "page": 1,
+      "text": "- Spain",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-135",
+      "page": 1,
+      "text": "- Portugal",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-136",
+      "page": 1,
+      "text": "- Austria",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-137",
+      "page": 1,
+      "text": "- Belgium",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-138",
+      "page": 1,
+      "text": "- Ireland",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-139",
+      "page": 1,
+      "text": "- Southern Europe",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-140",
+      "page": 1,
+      "text": "- Central \u0026 Eastern Europe",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-141",
+      "page": 1,
+      "text": "- Worldwide",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft"
+      }
+    },
+    {
+      "id": "html-142",
+      "page": 1,
+      "text": "Types of Holiday",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "div",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Header",
+        "htmlTag": "div",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/div.ft_header"
+      }
+    },
+    {
+      "id": "html-143",
+      "page": 1,
+      "text": "- Tailor Made Tours for Groups",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide"
+      }
+    },
+    {
+      "id": "html-144",
+      "page": 1,
+      "text": "- School \u0026 College tours",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide"
+      }
+    },
+    {
+      "id": "html-145",
+      "page": 1,
+      "text": "- Tours for Individuals",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Footer",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide"
+      }
+    },
+    {
+      "id": "html-146",
+      "page": 1,
+      "text": "- Home",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-147",
+      "page": 1,
+      "text": "- Group Tours",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-148",
+      "page": 1,
+      "text": "- Group Organisers",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-149",
+      "page": 1,
+      "text": "- Testimonials",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-150",
+      "page": 1,
+      "text": "- Request a Brochure",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-151",
+      "page": 1,
+      "text": "- Request a Quote",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-152",
+      "page": 1,
+      "text": "- News",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-153",
+      "page": 1,
+      "text": "- About Us",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-154",
+      "page": 1,
+      "text": "- Contact Us",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-155",
+      "page": 1,
+      "text": "- View Your Tour",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    },
+    {
+      "id": "html-156",
+      "page": 1,
+      "text": "- Close",
+      "metadata": {
+        "fontSize": 0,
+        "fontName": "li",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#000000",
+        "htmlArea": "Ungrouped",
+        "htmlTag": "li",
+        "htmlContainerPath": "div.sb-slidebar/ul.sb-menu"
+      }
+    }
+  ],
+  "containers": [
+    {
+      "tag": "div",
+      "className": "header-container",
+      "cssSelector": "div.header-container",
+      "path": "div.header-container",
+      "depth": 1,
+      "elementCount": 12,
+      "area": "Header",
+      "children": [
+        {
+          "tag": "div",
+          "id": "header",
+          "cssSelector": "div#header",
+          "path": "div.header-container/div#header",
+          "depth": 2,
+          "elementCount": 6,
+          "area": "Header",
+          "children": [
+            {
+              "tag": "div",
+              "id": "right_banner",
+              "cssSelector": "div#right_banner",
+              "path": "div.header-container/div#header/div#right_banner",
+              "depth": 3,
+              "elementCount": 3,
+              "area": "Header",
+              "children": [
+                {
+                  "tag": "div",
+                  "className": "home-view-your-tour",
+                  "cssSelector": "div.home-view-your-tour",
+                  "path": "div.header-container/div#header/div#right_banner/div.home-view-your-tour",
+                  "depth": 4,
+                  "elementCount": 1,
+                  "area": "Header",
+                  "children": [
+                    {
+                      "tag": "a",
+                      "className": "home-view-tour-button",
+                      "cssSelector": "a.home-view-tour-button",
+                      "path": "div.header-container/div#header/div#right_banner/div.home-view-your-tour/a.home-view-tour-button",
+                      "depth": 5,
+                      "elementCount": 1,
+                      "area": "Header"
+                    }
+                  ]
+                },
+                {
+                  "tag": "div",
+                  "className": "callus",
+                  "cssSelector": "div.callus",
+                  "path": "div.header-container/div#header/div#right_banner/div.callus",
+                  "depth": 4,
+                  "elementCount": 2,
+                  "area": "Header",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "className": "call",
+                      "cssSelector": "span.call",
+                      "path": "div.header-container/div#header/div#right_banner/div.callus/span.call",
+                      "depth": 5,
+                      "elementCount": 1,
+                      "area": "Header"
+                    },
+                    {
+                      "tag": "span",
+                      "className": "phone",
+                      "cssSelector": "span.phone",
+                      "path": "div.header-container/div#header/div#right_banner/div.callus/span.phone",
+                      "depth": 5,
+                      "elementCount": 1,
+                      "area": "Header"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "nav",
+              "cssSelector": "nav",
+              "path": "div.header-container/div#header/nav",
+              "depth": 3,
+              "elementCount": 1,
+              "area": "Navigation",
+              "children": [
+                {
+                  "tag": "a",
+                  "className": "mobile-menu",
+                  "cssSelector": "a.mobile-menu",
+                  "path": "div.header-container/div#header/nav/a.mobile-menu",
+                  "depth": 4,
+                  "elementCount": 1,
+                  "area": "Navigation",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "className": "sb-toggle-right menu_icon3",
+                      "cssSelector": "span.sb-toggle-right",
+                      "path": "div.header-container/div#header/nav/a.mobile-menu/span.sb-toggle-right",
+                      "depth": 5,
+                      "elementCount": 1,
+                      "area": "Navigation"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "a",
+              "className": "mobile-call-us-wrapper",
+              "cssSelector": "a.mobile-call-us-wrapper",
+              "path": "div.header-container/div#header/a.mobile-call-us-wrapper",
+              "depth": 3,
+              "elementCount": 2,
+              "area": "Header",
+              "children": [
+                {
+                  "tag": "span",
+                  "className": "mobile-call-us",
+                  "cssSelector": "span.mobile-call-us",
+                  "path": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us",
+                  "depth": 4,
+                  "elementCount": 2,
+                  "area": "Header",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "className": "call-us-text-smallest",
+                      "cssSelector": "span.call-us-text-smallest",
+                      "path": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-smallest",
+                      "depth": 5,
+                      "elementCount": 1,
+                      "area": "Header"
+                    },
+                    {
+                      "tag": "span",
+                      "className": "call-us-text-number",
+                      "cssSelector": "span.call-us-text-number",
+                      "path": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-number",
+                      "depth": 5,
+                      "elementCount": 1,
+                      "area": "Header"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "className": "top-nav-container-wrapper",
+          "cssSelector": "div.top-nav-container-wrapper",
+          "path": "div.header-container/div.top-nav-container-wrapper",
+          "depth": 2,
+          "elementCount": 6,
+          "area": "Navigation",
+          "children": [
+            {
+              "tag": "div",
+              "className": "top-nav-container",
+              "cssSelector": "div.top-nav-container",
+              "path": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container",
+              "depth": 3,
+              "elementCount": 6,
+              "area": "Navigation",
+              "children": [
+                {
+                  "tag": "div",
+                  "className": "top-nav",
+                  "cssSelector": "div.top-nav",
+                  "path": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav",
+                  "depth": 4,
+                  "elementCount": 6,
+                  "area": "Navigation",
+                  "children": [
+                    {
+                      "tag": "ul",
+                      "className": "top-nav-list",
+                      "cssSelector": "ul.top-nav-list",
+                      "path": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+                      "depth": 5,
+                      "elementCount": 6,
+                      "area": "Navigation"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "div",
+      "id": "sb-site",
+      "cssSelector": "div#sb-site",
+      "path": "div#sb-site",
+      "depth": 1,
+      "elementCount": 134,
+      "area": "Ungrouped",
+      "children": [
+        {
+          "tag": "div",
+          "className": "body-wrapper",
+          "cssSelector": "div.body-wrapper",
+          "path": "div#sb-site/div.body-wrapper",
+          "depth": 2,
+          "elementCount": 84,
+          "area": "Ungrouped",
+          "children": [
+            {
+              "tag": "div",
+              "id": "body_content",
+              "cssSelector": "div#body_content",
+              "path": "div#sb-site/div.body-wrapper/div#body_content",
+              "depth": 3,
+              "elementCount": 84,
+              "area": "Main Content",
+              "children": [
+                {
+                  "tag": "div",
+                  "className": "country-banner ireland-banner",
+                  "cssSelector": "div.country-banner",
+                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner",
+                  "depth": 4,
+                  "elementCount": 5,
+                  "area": "Main Content",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "className": "country-banner-left",
+                      "cssSelector": "div.country-banner-left",
+                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left",
+                      "depth": 5,
+                      "elementCount": 3,
+                      "area": "Main Content",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "id": "banner_overlap_wrapper",
+                          "cssSelector": "div#banner_overlap_wrapper",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper",
+                          "depth": 6,
+                          "elementCount": 3,
+                          "area": "Main Content",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "price-name-wrapper",
+                              "cssSelector": "div.price-name-wrapper",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper",
+                              "depth": 7,
+                              "elementCount": 3,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "div",
+                                  "className": "day_price_wrapper",
+                                  "cssSelector": "div.day_price_wrapper",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper",
+                                  "depth": 8,
+                                  "elementCount": 2,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "div",
+                                      "className": "tour_days",
+                                      "cssSelector": "div.tour_days",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_days",
+                                      "depth": 9,
+                                      "elementCount": 1,
+                                      "area": "Main Content"
+                                    },
+                                    {
+                                      "tag": "div",
+                                      "className": "tour_price",
+                                      "cssSelector": "div.tour_price",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_price",
+                                      "depth": 9,
+                                      "elementCount": 1,
+                                      "area": "Main Content"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tag": "div",
+                                  "className": "tour_name",
+                                  "cssSelector": "div.tour_name",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.tour_name",
+                                  "depth": 8,
+                                  "elementCount": 1,
+                                  "area": "Main Content"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "div",
+                      "className": "country-banner-right",
+                      "cssSelector": "div.country-banner-right",
+                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right",
+                      "depth": 5,
+                      "elementCount": 2,
+                      "area": "Main Content",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "id": "banner-overlap-wrapper-top",
+                          "cssSelector": "div#banner-overlap-wrapper-top",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top",
+                          "depth": 6,
+                          "elementCount": 2,
+                          "area": "Main Content",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "banner_text_wrapper ireland_tour",
+                              "cssSelector": "div.banner_text_wrapper",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper",
+                              "depth": 7,
+                              "elementCount": 2,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "div",
+                                  "className": "tour_banner_quote",
+                                  "cssSelector": "div.tour_banner_quote",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_quote",
+                                  "depth": 8,
+                                  "elementCount": 1,
+                                  "area": "Main Content"
+                                },
+                                {
+                                  "tag": "div",
+                                  "className": "tour_banner_sig",
+                                  "cssSelector": "div.tour_banner_sig",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_sig",
+                                  "depth": 8,
+                                  "elementCount": 1,
+                                  "area": "Main Content"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "div",
+                  "className": "main-column ireland-main-column",
+                  "cssSelector": "div.main-column",
+                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column",
+                  "depth": 4,
+                  "elementCount": 79,
+                  "area": "Main Content",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "id": "breadcrumb",
+                      "cssSelector": "div#breadcrumb",
+                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb",
+                      "depth": 5,
+                      "elementCount": 4,
+                      "area": "Main Content",
+                      "children": [
+                        {
+                          "tag": "a",
+                          "cssSelector": "a",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+                          "depth": 6,
+                          "elementCount": 3,
+                          "area": "Main Content"
+                        },
+                        {
+                          "tag": "a",
+                          "cssSelector": "a",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+                          "depth": 6,
+                          "elementCount": 3,
+                          "area": "Main Content"
+                        },
+                        {
+                          "tag": "a",
+                          "cssSelector": "a",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+                          "depth": 6,
+                          "elementCount": 3,
+                          "area": "Main Content"
+                        },
+                        {
+                          "tag": "span",
+                          "className": "lastitem",
+                          "cssSelector": "span.lastitem",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/span.lastitem",
+                          "depth": 6,
+                          "elementCount": 1,
+                          "area": "Main Content"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "div",
+                      "id": "tour_wrapper",
+                      "cssSelector": "div#tour_wrapper",
+                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper",
+                      "depth": 5,
+                      "elementCount": 75,
+                      "area": "Main Content",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "className": "left-column",
+                          "cssSelector": "div.left-column",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column",
+                          "depth": 6,
+                          "elementCount": 59,
+                          "area": "Main Content",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "id": "tab_wrapper",
+                              "cssSelector": "div#tab_wrapper",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper",
+                              "depth": 7,
+                              "elementCount": 58,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "ul",
+                                  "className": "ireland_tabs tabs",
+                                  "cssSelector": "ul.ireland_tabs",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+                                  "depth": 8,
+                                  "elementCount": 6,
+                                  "area": "Main Content"
+                                },
+                                {
+                                  "tag": "div",
+                                  "className": "ireland_tab_container tab_container",
+                                  "cssSelector": "div.ireland_tab_container",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container",
+                                  "depth": 8,
+                                  "elementCount": 52,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "div",
+                                      "id": "tab1",
+                                      "className": "tab_content",
+                                      "cssSelector": "div#tab1",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1",
+                                      "depth": 9,
+                                      "elementCount": 11,
+                                      "area": "Main Content",
+                                      "children": [
+                                        {
+                                          "tag": "a",
+                                          "className": "heading-link",
+                                          "cssSelector": "a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link",
+                                          "depth": 10,
+                                          "elementCount": 1,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "span",
+                                              "className": "tab-mob-heading",
+                                              "cssSelector": "span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
+                                              "depth": 11,
+                                              "elementCount": 1,
+                                              "area": "Main Content"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "tag": "div",
+                                          "className": "tab-wrapper",
+                                          "cssSelector": "div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                                          "depth": 10,
+                                          "elementCount": 10,
+                                          "area": "Main Content"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "tag": "div",
+                                      "id": "tab2",
+                                      "className": "tab_content",
+                                      "cssSelector": "div#tab2",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2",
+                                      "depth": 9,
+                                      "elementCount": 17,
+                                      "area": "Main Content",
+                                      "children": [
+                                        {
+                                          "tag": "a",
+                                          "className": "heading-link",
+                                          "cssSelector": "a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link",
+                                          "depth": 10,
+                                          "elementCount": 1,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "span",
+                                              "className": "tab-mob-heading",
+                                              "cssSelector": "span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading",
+                                              "depth": 11,
+                                              "elementCount": 1,
+                                              "area": "Main Content"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "tag": "div",
+                                          "className": "tab-wrapper",
+                                          "cssSelector": "div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper",
+                                          "depth": 10,
+                                          "elementCount": 16,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "div",
+                                              "className": "featuring_col1",
+                                              "cssSelector": "div.featuring_col1",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+                                              "depth": 11,
+                                              "elementCount": 5,
+                                              "area": "Main Content"
+                                            },
+                                            {
+                                              "tag": "div",
+                                              "className": "featuring_col2",
+                                              "cssSelector": "div.featuring_col2",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                                              "depth": 11,
+                                              "elementCount": 11,
+                                              "area": "Main Content"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "tag": "div",
+                                      "id": "tab3",
+                                      "className": "tab_content",
+                                      "cssSelector": "div#tab3",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3",
+                                      "depth": 9,
+                                      "elementCount": 2,
+                                      "area": "Main Content",
+                                      "children": [
+                                        {
+                                          "tag": "a",
+                                          "className": "heading-link",
+                                          "cssSelector": "a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link",
+                                          "depth": 10,
+                                          "elementCount": 1,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "span",
+                                              "className": "tab-mob-heading",
+                                              "cssSelector": "span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading",
+                                              "depth": 11,
+                                              "elementCount": 1,
+                                              "area": "Main Content"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "tag": "div",
+                                          "className": "tab-wrapper",
+                                          "cssSelector": "div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/div.tab-wrapper",
+                                          "depth": 10,
+                                          "elementCount": 1,
+                                          "area": "Main Content"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "tag": "div",
+                                      "id": "tab4",
+                                      "className": "tab_content",
+                                      "cssSelector": "div#tab4",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4",
+                                      "depth": 9,
+                                      "elementCount": 6,
+                                      "area": "Main Content",
+                                      "children": [
+                                        {
+                                          "tag": "a",
+                                          "className": "heading-link",
+                                          "cssSelector": "a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link",
+                                          "depth": 10,
+                                          "elementCount": 1,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "span",
+                                              "className": "tab-mob-heading",
+                                              "cssSelector": "span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading",
+                                              "depth": 11,
+                                              "elementCount": 1,
+                                              "area": "Main Content"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "tag": "div",
+                                          "className": "tab-wrapper",
+                                          "cssSelector": "div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+                                          "depth": 10,
+                                          "elementCount": 5,
+                                          "area": "Main Content"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "tag": "div",
+                                      "id": "tab5",
+                                      "className": "tab_content",
+                                      "cssSelector": "div#tab5",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5",
+                                      "depth": 9,
+                                      "elementCount": 5,
+                                      "area": "Main Content",
+                                      "children": [
+                                        {
+                                          "tag": "a",
+                                          "className": "heading-link",
+                                          "cssSelector": "a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link",
+                                          "depth": 10,
+                                          "elementCount": 1,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "span",
+                                              "className": "tab-mob-heading",
+                                              "cssSelector": "span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading",
+                                              "depth": 11,
+                                              "elementCount": 1,
+                                              "area": "Main Content"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "tag": "div",
+                                          "className": "tab-wrapper",
+                                          "cssSelector": "div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper",
+                                          "depth": 10,
+                                          "elementCount": 4,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "div",
+                                              "className": "your-tailor-made-tour",
+                                              "cssSelector": "div.your-tailor-made-tour",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
+                                              "depth": 11,
+                                              "elementCount": 4,
+                                              "area": "Main Content",
+                                              "children": [
+                                                {
+                                                  "tag": "ul",
+                                                  "cssSelector": "ul",
+                                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+                                                  "depth": 12,
+                                                  "elementCount": 2,
+                                                  "area": "Main Content"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "tag": "div",
+                                      "id": "tab6",
+                                      "className": "tab_content",
+                                      "cssSelector": "div#tab6",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6",
+                                      "depth": 9,
+                                      "elementCount": 11,
+                                      "area": "Main Content",
+                                      "children": [
+                                        {
+                                          "tag": "a",
+                                          "className": "heading-link",
+                                          "cssSelector": "a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link",
+                                          "depth": 10,
+                                          "elementCount": 1,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "span",
+                                              "className": "tab-mob-heading",
+                                              "cssSelector": "span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading",
+                                              "depth": 11,
+                                              "elementCount": 1,
+                                              "area": "Main Content"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "tag": "div",
+                                          "className": "tab-wrapper",
+                                          "cssSelector": "div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper",
+                                          "depth": 10,
+                                          "elementCount": 10,
+                                          "area": "Main Content",
+                                          "children": [
+                                            {
+                                              "tag": "div",
+                                              "className": "review",
+                                              "cssSelector": "div.review",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                                              "depth": 11,
+                                              "elementCount": 9,
+                                              "area": "Main Content"
+                                            },
+                                            {
+                                              "tag": "div",
+                                              "className": "review",
+                                              "cssSelector": "div.review",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                                              "depth": 11,
+                                              "elementCount": 9,
+                                              "area": "Main Content"
+                                            },
+                                            {
+                                              "tag": "div",
+                                              "className": "review",
+                                              "cssSelector": "div.review",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                                              "depth": 11,
+                                              "elementCount": 9,
+                                              "area": "Main Content"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "tag": "div",
+                              "className": "tour-back-button",
+                              "cssSelector": "div.tour-back-button",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "div",
+                                  "className": "button-secondary ireland-tour-button",
+                                  "cssSelector": "div.button-secondary",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary",
+                                  "depth": 8,
+                                  "elementCount": 1,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "a",
+                                      "className": "button-link button-link-back ireland-back",
+                                      "cssSelector": "a.button-link",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary/a.button-link",
+                                      "depth": 9,
+                                      "elementCount": 1,
+                                      "area": "Main Content",
+                                      "children": [
+                                        {
+                                          "tag": "span",
+                                          "className": "back-button",
+                                          "cssSelector": "span.back-button",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary/a.button-link/span.back-button",
+                                          "depth": 10,
+                                          "elementCount": 1,
+                                          "area": "Main Content"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "div",
+                          "className": "right-column",
+                          "cssSelector": "div.right-column",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column",
+                          "depth": 6,
+                          "elementCount": 14,
+                          "area": "Main Content",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "panel-wrapper",
+                              "cssSelector": "div.panel-wrapper",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.panel-wrapper",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "div",
+                                  "className": "panel-inner-line",
+                                  "cssSelector": "div.panel-inner-line",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.panel-wrapper/div.panel-inner-line",
+                                  "depth": 8,
+                                  "elementCount": 1,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "div",
+                                      "className": "panel-call-us",
+                                      "cssSelector": "div.panel-call-us",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.panel-wrapper/div.panel-inner-line/div.panel-call-us",
+                                      "depth": 9,
+                                      "elementCount": 1,
+                                      "area": "Main Content"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "tag": "div",
+                              "className": "tailor-make-your-tour tailor-make-ireland",
+                              "cssSelector": "div.tailor-make-your-tour",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour",
+                              "depth": 7,
+                              "elementCount": 9,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "ul",
+                                  "cssSelector": "ul",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+                                  "depth": 8,
+                                  "elementCount": 7,
+                                  "area": "Main Content"
+                                }
+                              ]
+                            },
+                            {
+                              "tag": "div",
+                              "className": "right-column-button-wrapper",
+                              "cssSelector": "div.right-column-button-wrapper",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper",
+                              "depth": 7,
+                              "elementCount": 4,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "div",
+                                  "className": "button-secondary",
+                                  "cssSelector": "div.button-secondary",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary",
+                                  "depth": 8,
+                                  "elementCount": 4,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "a",
+                                      "className": "button-link ireland-back",
+                                      "cssSelector": "a.button-link",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                                      "depth": 9,
+                                      "elementCount": 4,
+                                      "area": "Main Content"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tag": "div",
+                                  "className": "button-secondary",
+                                  "cssSelector": "div.button-secondary",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary",
+                                  "depth": 8,
+                                  "elementCount": 4,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "a",
+                                      "className": "button-link about-our-tours",
+                                      "cssSelector": "a.button-link",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                                      "depth": 9,
+                                      "elementCount": 4,
+                                      "area": "Main Content"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tag": "div",
+                                  "className": "button-secondary",
+                                  "cssSelector": "div.button-secondary",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary",
+                                  "depth": 8,
+                                  "elementCount": 4,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "a",
+                                      "className": "button-link request-a-quote",
+                                      "cssSelector": "a.button-link",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                                      "depth": 9,
+                                      "elementCount": 4,
+                                      "area": "Main Content"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tag": "div",
+                                  "className": "button-secondary",
+                                  "cssSelector": "div.button-secondary",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary",
+                                  "depth": 8,
+                                  "elementCount": 4,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "a",
+                                      "className": "button-link request-a-brochure",
+                                      "cssSelector": "a.button-link",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                                      "depth": 9,
+                                      "elementCount": 4,
+                                      "area": "Main Content"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "div",
+                          "id": "mobile-panel-wrapper",
+                          "className": "panel-wrapper",
+                          "cssSelector": "div#mobile-panel-wrapper",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div#mobile-panel-wrapper",
+                          "depth": 6,
+                          "elementCount": 1,
+                          "area": "Main Content",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "panel-inner-line",
+                              "cssSelector": "div.panel-inner-line",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div#mobile-panel-wrapper/div.panel-inner-line",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "div",
+                                  "className": "panel-call-us",
+                                  "cssSelector": "div.panel-call-us",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div#mobile-panel-wrapper/div.panel-inner-line/div.panel-call-us",
+                                  "depth": 8,
+                                  "elementCount": 1,
+                                  "area": "Main Content"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "div",
+                          "className": "mobile-back-button",
+                          "cssSelector": "div.mobile-back-button",
+                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button",
+                          "depth": 6,
+                          "elementCount": 1,
+                          "area": "Main Content",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "button-secondary ireland-tour-button",
+                              "cssSelector": "div.button-secondary",
+                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Main Content",
+                              "children": [
+                                {
+                                  "tag": "a",
+                                  "className": "button-link button-link-back ireland-back",
+                                  "cssSelector": "a.button-link",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary/a.button-link",
+                                  "depth": 8,
+                                  "elementCount": 1,
+                                  "area": "Main Content",
+                                  "children": [
+                                    {
+                                      "tag": "span",
+                                      "className": "back-button",
+                                      "cssSelector": "span.back-button",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary/a.button-link/span.back-button",
+                                      "depth": 9,
+                                      "elementCount": 1,
+                                      "area": "Main Content"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "id": "footer_wrapper",
+          "cssSelector": "div#footer_wrapper",
+          "path": "div#sb-site/div#footer_wrapper",
+          "depth": 2,
+          "elementCount": 50,
+          "area": "Footer",
+          "children": [
+            {
+              "tag": "div",
+              "id": "footer",
+              "cssSelector": "div#footer",
+              "path": "div#sb-site/div#footer_wrapper/div#footer",
+              "depth": 3,
+              "elementCount": 50,
+              "area": "Footer",
+              "children": [
+                {
+                  "tag": "div",
+                  "className": "footer-part-one",
+                  "cssSelector": "div.footer-part-one",
+                  "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one",
+                  "depth": 4,
+                  "elementCount": 6,
+                  "area": "Footer",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "className": "footer-address",
+                      "cssSelector": "div.footer-address",
+                      "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+                      "depth": 5,
+                      "elementCount": 5,
+                      "area": "Footer"
+                    },
+                    {
+                      "tag": "div",
+                      "id": "accreditations",
+                      "cssSelector": "div#accreditations",
+                      "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div#accreditations",
+                      "depth": 5,
+                      "elementCount": 1,
+                      "area": "Footer",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "className": "atol-description",
+                          "cssSelector": "div.atol-description",
+                          "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div#accreditations/div.atol-description",
+                          "depth": 6,
+                          "elementCount": 1,
+                          "area": "Footer"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "div",
+                  "className": "footer-part-two",
+                  "cssSelector": "div.footer-part-two",
+                  "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two",
+                  "depth": 4,
+                  "elementCount": 44,
+                  "area": "Footer",
+                  "children": [
+                    {
+                      "tag": "div",
+                      "className": "footer-part-two-left-column",
+                      "cssSelector": "div.footer-part-two-left-column",
+                      "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column",
+                      "depth": 5,
+                      "elementCount": 44,
+                      "area": "Footer",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "id": "ft_info",
+                          "className": "section",
+                          "cssSelector": "div#ft_info",
+                          "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info",
+                          "depth": 6,
+                          "elementCount": 8,
+                          "area": "Footer",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "ft_header",
+                              "cssSelector": "div.ft_header",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/div.ft_header",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Header"
+                            },
+                            {
+                              "tag": "ul",
+                              "className": "listLeft",
+                              "cssSelector": "ul.listLeft",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+                              "depth": 7,
+                              "elementCount": 7,
+                              "area": "Footer"
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "div",
+                          "id": "ft_types_of_holidays-mob",
+                          "cssSelector": "div#ft_types_of_holidays-mob",
+                          "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob",
+                          "depth": 6,
+                          "elementCount": 4,
+                          "area": "Footer",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "ft_header",
+                              "cssSelector": "div.ft_header",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/div.ft_header",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Header"
+                            },
+                            {
+                              "tag": "ul",
+                              "className": "listLeftWide",
+                              "cssSelector": "ul.listLeftWide",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide",
+                              "depth": 7,
+                              "elementCount": 3,
+                              "area": "Footer"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "div",
+                      "className": "footer-part-two-left-column",
+                      "cssSelector": "div.footer-part-two-left-column",
+                      "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column",
+                      "depth": 5,
+                      "elementCount": 44,
+                      "area": "Footer",
+                      "children": [
+                        {
+                          "tag": "div",
+                          "id": "ft_destinations",
+                          "className": "section",
+                          "cssSelector": "div#ft_destinations",
+                          "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations",
+                          "depth": 6,
+                          "elementCount": 14,
+                          "area": "Footer",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "ft_header",
+                              "cssSelector": "div.ft_header",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/div.ft_header",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Header"
+                            },
+                            {
+                              "tag": "ul",
+                              "className": "destlistLeft",
+                              "cssSelector": "ul.destlistLeft",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                              "depth": 7,
+                              "elementCount": 13,
+                              "area": "Footer"
+                            },
+                            {
+                              "tag": "ul",
+                              "className": "destlistLeft",
+                              "cssSelector": "ul.destlistLeft",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                              "depth": 7,
+                              "elementCount": 13,
+                              "area": "Footer"
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "div",
+                          "id": "footer-destinations-mob",
+                          "className": "section",
+                          "cssSelector": "div#footer-destinations-mob",
+                          "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob",
+                          "depth": 6,
+                          "elementCount": 14,
+                          "area": "Footer",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "ft_header",
+                              "cssSelector": "div.ft_header",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/div.ft_header",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Header"
+                            },
+                            {
+                              "tag": "ul",
+                              "className": "destlistLeft",
+                              "cssSelector": "ul.destlistLeft",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                              "depth": 7,
+                              "elementCount": 13,
+                              "area": "Footer"
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "div",
+                          "id": "ft_types_of_holidays",
+                          "className": "section",
+                          "cssSelector": "div#ft_types_of_holidays",
+                          "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays",
+                          "depth": 6,
+                          "elementCount": 4,
+                          "area": "Footer",
+                          "children": [
+                            {
+                              "tag": "div",
+                              "className": "ft_header",
+                              "cssSelector": "div.ft_header",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/div.ft_header",
+                              "depth": 7,
+                              "elementCount": 1,
+                              "area": "Header"
+                            },
+                            {
+                              "tag": "ul",
+                              "className": "listLeftWide",
+                              "cssSelector": "ul.listLeftWide",
+                              "path": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide",
+                              "depth": 7,
+                              "elementCount": 3,
+                              "area": "Footer"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "div",
+      "className": "sb-slidebar sb-style-overlay sb-right sb-width-thin ",
+      "cssSelector": "div.sb-slidebar",
+      "path": "div.sb-slidebar",
+      "depth": 1,
+      "elementCount": 11,
+      "area": "Ungrouped",
+      "children": [
+        {
+          "tag": "ul",
+          "className": "sb-menu",
+          "cssSelector": "ul.sb-menu",
+          "path": "div.sb-slidebar/ul.sb-menu",
+          "depth": 2,
+          "elementCount": 11,
+          "area": "Ungrouped"
+        }
+      ]
+    }
+  ]
+}

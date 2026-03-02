@@ -4,7 +4,7 @@ import { UmbTextStyles as M } from "@umbraco-cms/backoffice/style";
 import { UMB_AUTH_CONTEXT as y } from "@umbraco-cms/backoffice/auth";
 import { UmbModalToken as R, umbOpenModal as v, UMB_MODAL_MANAGER_CONTEXT as P, UMB_CONFIRM_MODAL as I } from "@umbraco-cms/backoffice/modal";
 import { U as L } from "./blueprint-picker-modal.token-mXZoRNwG.js";
-import { m as z, l as F, v as j } from "./workflow.service-Cpncb616.js";
+import { m as z, l as F, v as j } from "./workflow.service-BQrmRF66.js";
 const q = new R(
   "UpDoc.CreateWorkflowSidebar",
   {
@@ -319,4 +319,4 @@ export {
   c as UpDocWorkflowsViewElement,
   oe as default
 };
-//# sourceMappingURL=up-doc-workflows-view.element-Bo3r_smx.js.map
+//# sourceMappingURL=up-doc-workflows-view.element-CEzU1qVw.js.map

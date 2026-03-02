@@ -4,6 +4,7 @@ import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, f
 import { normalizeToKebabCase, markdownToHtml } from './transforms.js';
 import { getAllBlockContainers } from './destination-utils.js';
 import { UMB_AREA_EDITOR_MODAL } from './pdf-area-editor-modal.token.js';
+import { UMB_AREA_PICKER_MODAL } from './area-picker-modal.token.js';
 import { UMB_PAGE_PICKER_MODAL } from './page-picker-modal.token.js';
 import { UMB_SECTION_RULES_EDITOR_MODAL } from './section-rules-editor-modal.token.js';
 import { html, css, state, nothing, unsafeHTML } from '@umbraco-cms/backoffice/external/lit';
@@ -353,6 +354,46 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			}
 		} catch {
 			// Modal was cancelled — do nothing
+		}
+	}
+
+	/** Opens the area picker modal for web/markdown sources to include/exclude areas. */
+	async #onOpenAreaPicker() {
+		if (!this._workflowAlias || !this._areaDetection) return;
+
+		// Build area list from detection result
+		const areas = this._areaDetection.pages.flatMap((page) =>
+			page.areas.map((area) => ({
+				name: area.name || 'Unnamed',
+				elementCount: area.totalElements,
+				color: area.color,
+			}))
+		);
+
+		const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
+		const modal = modalManager.open(this, UMB_AREA_PICKER_MODAL, {
+			data: {
+				areas,
+				excludedAreas: [...this._excludedAreas],
+			},
+		});
+
+		try {
+			const result = await modal.onSubmit();
+			if (result) {
+				this._excludedAreas = new Set(result.excludedAreas);
+				// Persist and regenerate transform
+				const saved = await saveExcludedAreas(this._workflowAlias, result.excludedAreas, this.#token);
+				if (saved != null && this._sourceConfig) {
+					this._sourceConfig = { ...this._sourceConfig, excludedAreas: saved };
+				}
+				const transform = await fetchTransformResult(this._workflowAlias, this.#token);
+				if (transform) {
+					this._transformResult = transform;
+				}
+			}
+		} catch {
+			// Modal was cancelled
 		}
 	}
 
@@ -1576,7 +1617,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 						<uui-icon name="icon-grid" class="box-icon"></uui-icon>
 						<span class="box-stat">${areaCount}</span>
 						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Choose Areas" disabled>
+							<uui-button look="primary" color="default" label="Choose Areas" @click=${this.#onOpenAreaPicker}>
 								<uui-icon name="icon-grid"></uui-icon> Choose Areas
 							</uui-button>
 						</div>

@@ -25,6 +25,6 @@ export const UMB_AREA_PICKER_MODAL = new UmbModalToken<
 >('UpDoc.AreaPickerModal', {
 	modal: {
 		type: 'sidebar',
-		size: 'small',
+		size: 'large',
 	},
 });

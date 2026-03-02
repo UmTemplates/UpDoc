@@ -95,7 +95,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.AreaPickerModal",
     name: "Area Picker Modal",
-    element: () => import("./area-picker-modal.element-CiOogYJo.js")
+    element: () => import("./area-picker-modal.element-C8Oe3nsZ.js")
   },
   {
     type: "modal",
@@ -144,7 +144,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Source",
     name: "UpDoc Workflow Source View",
-    element: () => import("./up-doc-workflow-source-view.element-8t8WzO9U.js"),
+    element: () => import("./up-doc-workflow-source-view.element-CEorNNjH.js"),
     weight: 200,
     meta: {
       label: "Source",

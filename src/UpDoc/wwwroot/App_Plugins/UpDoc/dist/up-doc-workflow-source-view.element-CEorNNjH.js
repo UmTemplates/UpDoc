@@ -21,7 +21,7 @@ const wt = new F(
 ), yt = new F("UpDoc.AreaPickerModal", {
   modal: {
     type: "sidebar",
-    size: "small"
+    size: "large"
   }
 }), $t = new F(
   "UpDoc.SectionRulesEditorModal",
@@ -2248,4 +2248,4 @@ export {
   b as UpDocWorkflowSourceViewElement,
   Nt as default
 };
-//# sourceMappingURL=up-doc-workflow-source-view.element-8t8WzO9U.js.map
+//# sourceMappingURL=up-doc-workflow-source-view.element-CEorNNjH.js.map

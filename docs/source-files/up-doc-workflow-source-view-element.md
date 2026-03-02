@@ -11,7 +11,7 @@ Displays the sample extraction for a workflow in two modes:
 
 All three source types share the same Extracted/Transformed tab pair and info box layout for a consistent user experience. PDF uses a rich four-level hierarchy with area detection; Markdown and Web use a simpler flat element display on the Extracted tab but share the same Transformed tab rendering.
 
-Users can include/exclude sections (via toggle), include/exclude pages, map sections to destination fields, collapse/expand any level, and re-extract from a different source.
+Users can include/exclude sections (via toggle), include/exclude pages, map sections to destination fields, collapse/expand any level, and re-extract from a different source. For web sources, excluded areas (managed via the area picker modal) are filtered out entirely — they don't render on the Extracted tab, matching PDF behaviour.
 
 ## How it works
 
@@ -61,7 +61,7 @@ On load, the component:
 Elements are displayed in a four-level collapsible hierarchy:
 
 1. **Page** — `uui-box` with "Page N" headline, section/area counts, page include toggle, and collapse chevron in `header-actions` slot. Excluded pages are dimmed.
-2. **Area** — colour-coded left border with area name label, section count, and collapse chevron. Areas with rules show an "N rules" badge and "Edit Rules" button. Areas without rules show a "Flat"/"Configured" structure badge and "Define Structure"/"Redefine" button plus an include/exclude toggle. For areas with rules, composed sections from the transform pipeline are rendered instead of raw elements, showing role name, content preview, and mapping status badges.
+2. **Area** — colour-coded left border with area name label, section count, and collapse chevron. Excluded areas (managed via area picker modal) are filtered out entirely and don't render. Areas with rules show an "N rules" badge and "Edit Rules" button. Areas without rules show a "Flat"/"Configured" structure badge and "Define Structure"/"Redefine" button. For areas with rules, composed sections from the transform pipeline are rendered instead of raw elements, showing role name, content preview, and mapping status badges.
 3. **Section** — structural label "Section – {name}" with include/exclude toggle, element count, and collapse chevron. The heading text from the PDF is rendered as the first child element (with a HEADING badge), not as the section header itself. This separates our structural UI from the actual PDF content. Preamble sections (no heading) show "Content" as the structural label.
 4. **Element** — individual elements with semantic role badge (Heading/List Item/Paragraph), font size, font name, and colour badges.
 
@@ -147,13 +147,14 @@ When no sample extraction exists, shows a source-appropriate empty state:
 | `#renderExtractionHeader()` | Tab group slotted into header |
 | `#renderInfoBoxes()` | Four equal-height uui-box cards (Source, Pages, Areas, Sections) |
 | `#renderExtractionContent()` | Dispatches to area detection or transformed view |
-| `#renderAreaPage()` | Renders a page with toggle, area count, and collapse |
+| `#renderAreaPage()` | Renders a page with toggle, area count, and collapse. Filters out excluded areas before rendering; returns nothing if all areas on the page are excluded. |
 | `#renderArea()` | Renders "Area N" with sections and collapse |
 | `#renderUndefinedArea()` | Renders "Undefined" area for unclassified content |
 | `#renderSection()` | Renders a section with toggle, heading, children, collapse |
 | `#renderAreaElement()` | Renders individual text element with type + metadata badges |
 | `#classifyText()` | Classifies text as 'list' or 'paragraph' by leading pattern |
 | `#renderTransformedSection()` | Renders an assembled section with pattern badge and mapping |
+| `#computeSectionCount()` | Counts total sections across all pages, filtering out excluded areas |
 | `#renderNonPdfInfoBoxes()` | Four info boxes for markdown/web: functional Source box + 3 placeholders |
 | `#renderNonPdfContent()` | Routes non-PDF between `#renderSimpleElements()` (Extracted) and `#renderTransformed()` (Transformed) |
 | `#renderMappingBadges()` | Shows Map button or green mapped-target badges |

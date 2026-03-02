@@ -11,7 +11,7 @@
   "areaRules": null,
   "excludedAreas": [
     "navigation",
-    "footer",
-    "header"
+    "header",
+    "footer"
   ]
 }

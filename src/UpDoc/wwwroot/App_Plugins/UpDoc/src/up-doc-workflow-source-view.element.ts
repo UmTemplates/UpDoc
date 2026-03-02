@@ -1092,34 +1092,6 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		`;
 	}
 
-	async #toggleAreaExclusion(areaName: string, collapseKey: string) {
-		const kebabName = normalizeToKebabCase(areaName);
-		const next = new Set(this._excludedAreas);
-		if (next.has(kebabName)) {
-			next.delete(kebabName);
-		} else {
-			next.add(kebabName);
-			// Auto-collapse excluded areas to reduce noise
-			const collapsed = new Set(this._collapsed);
-			collapsed.add(collapseKey);
-			this._collapsed = collapsed;
-		}
-		this._excludedAreas = next;
-
-		// Persist and regenerate transform
-		if (this._workflowAlias) {
-			const saved = await saveExcludedAreas(this._workflowAlias, [...next], this.#token);
-			if (saved != null && this._sourceConfig) {
-				this._sourceConfig = { ...this._sourceConfig, excludedAreas: saved };
-			}
-			// Reload transform to reflect excluded areas
-			const transform = await fetchTransformResult(this._workflowAlias, this.#token);
-			if (transform) {
-				this._transformResult = transform;
-			}
-		}
-	}
-
 	#renderTeachElement(element: AreaElement) {
 		const isClicked = this._inferenceResult?.clickedElementId === element.id;
 		const isMatching = this._inferenceResult?.matchingElementIds?.includes(element.id) ?? false;
@@ -1195,7 +1167,6 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const isTeaching = this._teachingAreaIndex === globalIdx;
 		const isCollapsed = isTeaching ? false : this.#isCollapsed(areaKey);
 		const rulesAreaKey = this.#getAreaRulesKey(area);
-		const isIncluded = !this._excludedAreas.has(rulesAreaKey);
 
 		// Check if area has rules defined (from section rules editor)
 		const hasRules = this.#hasAreaRules(area);
@@ -1218,7 +1189,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const ruleCount = (areaRulesObj?.rules?.length ?? 0) + (areaRulesObj?.groups?.reduce((sum, g) => sum + g.rules.length, 0) ?? 0);
 
 		return html`
-			<div class="detected-area ${!isIncluded ? 'area-excluded' : ''} ${isTeaching ? 'area-teaching' : ''}" style="border-left-color: ${area.color};">
+			<div class="detected-area ${isTeaching ? 'area-teaching' : ''}" style="border-left-color: ${area.color};">
 				<div class="area-header" @click=${() => !isTeaching && this.#toggleCollapse(areaKey)}>
 					<uui-icon class="collapse-chevron" name="${isCollapsed ? 'icon-navigation-right' : 'icon-navigation-down'}"></uui-icon>
 					<uui-icon class="level-icon" name="icon-grid"></uui-icon>
@@ -1237,14 +1208,6 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 							Sections
 							<uui-badge color="danger" look="primary">${sectionCount}</uui-badge>
 						</uui-button>
-					` : nothing}
-					${!hasRules ? html`
-						<uui-toggle
-							label="${isIncluded ? 'Included' : 'Excluded'}"
-							?checked=${isIncluded}
-							@click=${(e: Event) => e.stopPropagation()}
-							@change=${() => this.#toggleAreaExclusion(area.name || '', areaKey)}>
-						</uui-toggle>
 					` : nothing}
 				</div>
 				${!isCollapsed ? html`
@@ -1268,10 +1231,17 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 	}
 
 	#renderAreaPage(pageNum: number, areas: DetectedArea[]) {
+		// Filter out excluded areas — exclusion is managed via the area picker modal
+		const includedAreas = areas.filter((area) => {
+			const rulesKey = this.#getAreaRulesKey(area);
+			return !this._excludedAreas.has(rulesKey);
+		});
+		if (includedAreas.length === 0) return nothing;
+
 		const pageKey = `page-${pageNum}`;
 		const isCollapsed = this.#isCollapsed(pageKey);
-		const areaCount = areas.length;
-		const sectionCount = areas.reduce((sum, a) => sum + a.sections.length, 0);
+		const areaCount = includedAreas.length;
+		const sectionCount = includedAreas.reduce((sum, a) => sum + a.sections.length, 0);
 		const isIncluded = this.#isPageIncluded(pageNum);
 		return html`
 			<uui-box class="page-box ${!isIncluded ? 'page-excluded' : ''}">
@@ -1284,7 +1254,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 					<span class="group-count">${sectionCount} section${sectionCount !== 1 ? 's' : ''}, ${areaCount} area${areaCount !== 1 ? 's' : ''}</span>
 				</div>
 				${!isCollapsed ? html`
-					${areas.map((area, idx) => this.#renderArea(area, pageNum, idx))}
+					${includedAreas.map((area, idx) => this.#renderArea(area, pageNum, idx))}
 				` : nothing}
 			</uui-box>
 		`;
@@ -1303,7 +1273,9 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 	#computeSectionCount(): number {
 		if (!this._areaDetection) return 0;
 		return this._areaDetection.pages.reduce((sum, page) =>
-			sum + page.areas.reduce((aSum, area) => aSum + area.sections.length, 0), 0);
+			sum + page.areas
+				.filter((area) => !this._excludedAreas.has(this.#getAreaRulesKey(area)))
+				.reduce((aSum, area) => aSum + area.sections.length, 0), 0);
 	}
 
 
@@ -1331,7 +1303,10 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const pagesLabel = hasSavedPageSelection && totalPages > 0
 			? `${selectedCount} of ${totalPages}`
 			: `${totalPages}`;
-		const areas = hasAreas ? this._areaDetection!.diagnostics.areasDetected : 0;
+		const areas = hasAreas
+			? this._areaDetection!.pages.reduce((sum, page) =>
+				sum + page.areas.filter((a) => !this._excludedAreas.has(this.#getAreaRulesKey(a))).length, 0)
+			: 0;
 		const sections = hasAreas ? this.#computeSectionCount() : 0;
 		const fileName = hasExtraction ? this._extraction!.source.fileName : '';
 		const extractedDate = hasExtraction
@@ -1550,7 +1525,10 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const fileName = this._extraction.source.fileName ?? '';
 		const extractedDate = new Date(this._extraction.source.extractedDate).toLocaleString();
 		const hasAreas = this._areaDetection !== null;
-		const areaCount = hasAreas ? this._areaDetection!.diagnostics.areasDetected : 0;
+		const areaCount = hasAreas
+			? this._areaDetection!.pages.reduce((sum, page) =>
+				sum + page.areas.filter((a) => !this._excludedAreas.has(this.#getAreaRulesKey(a))).length, 0)
+			: 0;
 		const sectionCount = hasAreas ? this.#computeSectionCount() : 0;
 
 		return html`
@@ -1618,7 +1596,10 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const url = this._extraction.source.fileName ?? '';
 		const extractedDate = new Date(this._extraction.source.extractedDate).toLocaleString();
 		const hasAreas = this._areaDetection !== null;
-		const areaCount = hasAreas ? this._areaDetection!.diagnostics.areasDetected : 0;
+		const areaCount = hasAreas
+			? this._areaDetection!.pages.reduce((sum, page) =>
+				sum + page.areas.filter((a) => !this._excludedAreas.has(this.#getAreaRulesKey(a))).length, 0)
+			: 0;
 		const sectionCount = hasAreas ? this.#computeSectionCount() : 0;
 
 		return html`
@@ -2146,10 +2127,6 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 				border-left: 4px solid var(--uui-color-border);
 				margin: var(--uui-size-space-4) 0;
 				margin-left: var(--uui-size-space-3);
-			}
-
-			.detected-area.area-excluded {
-				opacity: 0.4;
 			}
 
 			.area-header {

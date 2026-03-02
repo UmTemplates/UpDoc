@@ -468,6 +468,38 @@ export async function savePageSelection(
 }
 
 /**
+ * Saves excluded areas for a workflow. Pass null or empty array to include all areas.
+ * Returns the updated excluded areas list on success.
+ */
+export async function saveExcludedAreas(
+	workflowAlias: string,
+	excludedAreas: string[] | null,
+	token: string
+): Promise<string[] | null> {
+	const response = await fetch(
+		`/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(workflowAlias)}/excluded-areas`,
+		{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify({ excludedAreas }),
+		}
+	);
+
+	if (!response.ok) {
+		const error = await response.json();
+		console.error('Save excluded areas failed:', error);
+		return null;
+	}
+
+	clearConfigCache();
+	const result = await response.json();
+	return result.excludedAreas ?? [];
+}
+
+/**
  * Fetches the source config for a workflow.
  */
 export async function fetchSourceConfig(

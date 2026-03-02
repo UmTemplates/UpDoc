@@ -386,8 +386,8 @@ public class WorkflowController : ControllerBase
                 var areaDetection = BuildAreaDetectionFromWeb(result);
                 _workflowService.SaveAreaDetection(alias, areaDetection);
 
-                // Generate transform from area-grouped content (respects area structure)
-                var transformResult = ConvertStructuredToTransformResult(result);
+                // Generate transform from area-grouped content (respects excluded areas)
+                var transformResult = ConvertStructuredToTransformResult(result, sourceConfig?.ExcludedAreas);
                 _workflowService.SaveTransformResult(alias, transformResult);
             }
             else if (sourceType == "markdown")
@@ -743,7 +743,7 @@ public class WorkflowController : ControllerBase
                     return BadRequest(new { error = "URL or media key is required for web extraction" });
                 }
 
-                var result = ConvertStructuredToTransformResult(extraction);
+                var result = ConvertStructuredToTransformResult(extraction, sourceConfig?.ExcludedAreas);
                 return Ok(result);
             }
             else if (sourceType == "markdown")
@@ -814,6 +814,32 @@ public class WorkflowController : ControllerBase
             alias, sourceConfig.Pages.IsAll ? "all" : string.Join(", ", sourceConfig.Pages.PageNumbers!));
 
         return Ok(new { pages = sourceConfig.Pages });
+    }
+
+    [HttpPut("{alias}/excluded-areas")]
+    public IActionResult UpdateExcludedAreas(string alias, [FromBody] ExcludedAreasRequest request)
+    {
+        var sourceConfig = _workflowService.GetSourceConfig(alias);
+        if (sourceConfig == null)
+        {
+            return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
+        }
+
+        sourceConfig.ExcludedAreas = request.ExcludedAreas?.Count > 0 ? request.ExcludedAreas : null;
+        _workflowService.SaveSourceConfig(alias, sourceConfig);
+
+        // Regenerate transform so excluded areas take effect
+        var extraction = _workflowService.GetSampleExtraction(alias);
+        if (extraction != null)
+        {
+            var transformResult = ConvertStructuredToTransformResult(extraction, sourceConfig.ExcludedAreas);
+            _workflowService.SaveTransformResult(alias, transformResult);
+        }
+
+        _logger.LogInformation("Updated excluded areas for workflow '{Alias}': {Areas}",
+            alias, sourceConfig.ExcludedAreas != null ? string.Join(", ", sourceConfig.ExcludedAreas) : "none");
+
+        return Ok(new { excludedAreas = sourceConfig.ExcludedAreas ?? new List<string>() });
     }
 
     [HttpPut("{alias}/section-rules")]
@@ -1227,6 +1253,8 @@ public class WorkflowController : ControllerBase
                 FontName = element.Metadata.FontName,
                 Color = element.Metadata.Color,
                 BoundingBox = element.Metadata.BoundingBox,
+                HtmlTag = element.Metadata.HtmlTag,
+                HtmlContainerPath = element.Metadata.HtmlContainerPath,
             };
 
             if (isHeading)
@@ -1285,7 +1313,7 @@ public class WorkflowController : ControllerBase
     /// For web sources with htmlArea metadata, creates one TransformArea per detected area.
     /// Works for any source type that uses "heading-N" font names (markdown, HTML).
     /// </summary>
-    private static TransformResult ConvertStructuredToTransformResult(RichExtractionResult extraction)
+    private static TransformResult ConvertStructuredToTransformResult(RichExtractionResult extraction, List<string>? excludedAreas = null)
     {
         // Check if this is a web extraction with area metadata
         var hasAreas = extraction.SourceType == "web"
@@ -1293,7 +1321,7 @@ public class WorkflowController : ControllerBase
 
         if (hasAreas)
         {
-            return ConvertWebToTransformResult(extraction);
+            return ConvertWebToTransformResult(extraction, excludedAreas);
         }
 
         // Original path for markdown and web-without-areas
@@ -1303,11 +1331,17 @@ public class WorkflowController : ControllerBase
     /// <summary>
     /// Converts web extraction with area metadata into a TransformResult.
     /// Groups elements by htmlArea first, then by heading within each area.
+    /// Excluded areas (by kebab-case name) are filtered out of the output.
     /// </summary>
-    private static TransformResult ConvertWebToTransformResult(RichExtractionResult extraction)
+    private static TransformResult ConvertWebToTransformResult(RichExtractionResult extraction, List<string>? excludedAreas = null)
     {
         var seenIds = new Dictionary<string, int>();
         var areas = new List<TransformArea>();
+
+        // Build a set of excluded area names for fast lookup (kebab-case → original name)
+        var excludedSet = excludedAreas != null && excludedAreas.Count > 0
+            ? new HashSet<string>(excludedAreas, StringComparer.OrdinalIgnoreCase)
+            : null;
 
         var areaGroups = extraction.Elements
             .GroupBy(e => string.IsNullOrEmpty(e.Metadata.HtmlArea) ? "Ungrouped" : e.Metadata.HtmlArea)
@@ -1315,6 +1349,10 @@ public class WorkflowController : ControllerBase
 
         foreach (var areaGroup in areaGroups)
         {
+            // Skip excluded areas (compare kebab-case of area name to excluded list)
+            var kebabName = NormalizeToKebabCase(areaGroup.Key);
+            if (excludedSet != null && excludedSet.Contains(kebabName))
+                continue;
             var sections = ConvertElementsToSections(areaGroup.ToList(), seenIds);
             areas.Add(new TransformArea
             {
@@ -1523,6 +1561,14 @@ public class PageSelectionRequest
     /// List of page numbers to include in extraction. Null or empty = all pages.
     /// </summary>
     public List<int>? Pages { get; set; }
+}
+
+public class ExcludedAreasRequest
+{
+    /// <summary>
+    /// List of area names (kebab-case) to exclude from transform output. Null or empty = include all.
+    /// </summary>
+    public List<string>? ExcludedAreas { get; set; }
 }
 
 public class InferSectionPatternRequest

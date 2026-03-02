@@ -1,9 +1,10 @@
 import type { RichExtractionResult, DocumentTypeConfig, MappingDestination, AreaDetectionResult, DetectedArea, DetectedSection, AreaElement, TransformResult, TransformedSection, SourceConfig, AreaTemplate, AreaRules, InferSectionPatternResponse, MapConfig, SectionMapping } from './workflow.types.js';
 import { allTransformSections } from './workflow.types.js';
-import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, fetchTransformResult, updateSectionInclusion, savePageSelection, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
+import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, fetchTransformResult, updateSectionInclusion, savePageSelection, saveExcludedAreas, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
 import { normalizeToKebabCase, markdownToHtml } from './transforms.js';
 import { getAllBlockContainers } from './destination-utils.js';
 import { UMB_AREA_EDITOR_MODAL } from './pdf-area-editor-modal.token.js';
+import { UMB_AREA_PICKER_MODAL } from './area-picker-modal.token.js';
 import { UMB_PAGE_PICKER_MODAL } from './page-picker-modal.token.js';
 import { UMB_SECTION_RULES_EDITOR_MODAL } from './section-rules-editor-modal.token.js';
 import { html, css, state, nothing, unsafeHTML } from '@umbraco-cms/backoffice/external/lit';
@@ -85,6 +86,8 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			this._extraction = extraction;
 			this._config = config;
 			this._sourceConfig = sourceConfig;
+			// Initialize excluded areas from source config
+			this._excludedAreas = new Set(sourceConfig?.excludedAreas ?? []);
 			// Build set of orphaned destinations from validation warnings
 			this.#orphanedKeys = new Set<string>();
 			for (const w of config?.validationWarnings ?? []) {
@@ -351,6 +354,46 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			}
 		} catch {
 			// Modal was cancelled — do nothing
+		}
+	}
+
+	/** Opens the area picker modal for web/markdown sources to include/exclude areas. */
+	async #onOpenAreaPicker() {
+		if (!this._workflowAlias || !this._areaDetection) return;
+
+		// Build area list from detection result
+		const areas = this._areaDetection.pages.flatMap((page) =>
+			page.areas.map((area) => ({
+				name: area.name || 'Unnamed',
+				elementCount: area.totalElements,
+				color: area.color,
+			}))
+		);
+
+		const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
+		const modal = modalManager.open(this, UMB_AREA_PICKER_MODAL, {
+			data: {
+				areas,
+				excludedAreas: [...this._excludedAreas],
+			},
+		});
+
+		try {
+			const result = await modal.onSubmit();
+			if (result) {
+				this._excludedAreas = new Set(result.excludedAreas);
+				// Persist and regenerate transform
+				const saved = await saveExcludedAreas(this._workflowAlias, result.excludedAreas, this.#token);
+				if (saved != null && this._sourceConfig) {
+					this._sourceConfig = { ...this._sourceConfig, excludedAreas: saved };
+				}
+				const transform = await fetchTransformResult(this._workflowAlias, this.#token);
+				if (transform) {
+					this._transformResult = transform;
+				}
+			}
+		} catch {
+			// Modal was cancelled
 		}
 	}
 
@@ -941,15 +984,22 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 	#renderAreaElement(element: AreaElement, role?: 'heading') {
 		const textType = role === 'heading' ? 'heading' : this.#classifyText(element.text);
 		const badgeLabel = textType === 'heading' ? 'Heading' : textType === 'list' ? 'List Item' : 'Paragraph';
+		// For web sources: show htmlTag instead of fontName, and add container badge
+		const isWeb = !!element.htmlTag;
+		const tagLabel = element.htmlTag || element.fontName;
+		const containerLabel = element.htmlContainerPath
+			? element.htmlContainerPath.split('/').pop() ?? ''
+			: '';
 		return html`
 			<div class="element-item">
 				<div class="element-content">
 					<div class="element-text">${element.text}</div>
 					<div class="element-meta">
 						<span class="meta-badge text-type ${textType}">${badgeLabel}</span>
-						<span class="meta-badge font-size">${element.fontSize}pt</span>
-						<span class="meta-badge font-name">${element.fontName}</span>
+						${!isWeb ? html`<span class="meta-badge font-size">${element.fontSize}pt</span>` : nothing}
+						<span class="meta-badge font-name">${tagLabel}</span>
 						<span class="meta-badge color" style="border-left: 3px solid ${element.color};">${element.color}</span>
+						${containerLabel ? html`<span class="meta-badge container-path" title="${element.htmlContainerPath ?? ''}">${containerLabel}</span>` : nothing}
 						${element.text === element.text.toUpperCase() && element.text !== element.text.toLowerCase() ? html`<span class="meta-badge text-case">UPPERCASE</span>` : nothing}
 					</div>
 				</div>
@@ -1017,18 +1067,32 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		`;
 	}
 
-	#toggleAreaExclusion(areaKey: string) {
+	async #toggleAreaExclusion(areaName: string, collapseKey: string) {
+		const kebabName = normalizeToKebabCase(areaName);
 		const next = new Set(this._excludedAreas);
-		if (next.has(areaKey)) {
-			next.delete(areaKey);
+		if (next.has(kebabName)) {
+			next.delete(kebabName);
 		} else {
-			next.add(areaKey);
+			next.add(kebabName);
 			// Auto-collapse excluded areas to reduce noise
 			const collapsed = new Set(this._collapsed);
-			collapsed.add(areaKey);
+			collapsed.add(collapseKey);
 			this._collapsed = collapsed;
 		}
 		this._excludedAreas = next;
+
+		// Persist and regenerate transform
+		if (this._workflowAlias) {
+			const saved = await saveExcludedAreas(this._workflowAlias, [...next], this.#token);
+			if (saved != null && this._sourceConfig) {
+				this._sourceConfig = { ...this._sourceConfig, excludedAreas: saved };
+			}
+			// Reload transform to reflect excluded areas
+			const transform = await fetchTransformResult(this._workflowAlias, this.#token);
+			if (transform) {
+				this._transformResult = transform;
+			}
+		}
 	}
 
 	#renderTeachElement(element: AreaElement) {
@@ -1036,6 +1100,11 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const isMatching = this._inferenceResult?.matchingElementIds?.includes(element.id) ?? false;
 		const textType = this.#classifyText(element.text);
 		const badgeLabel = textType === 'list' ? 'List Item' : 'Paragraph';
+		const isWeb = !!element.htmlTag;
+		const tagLabel = element.htmlTag || element.fontName;
+		const containerLabel = element.htmlContainerPath
+			? element.htmlContainerPath.split('/').pop() ?? ''
+			: '';
 		return html`
 			<div class="element-item teach-element ${isClicked ? 'teach-clicked' : ''} ${isMatching ? 'teach-matched' : ''}"
 				@click=${() => this.#onTeachElementClick(element.id)}>
@@ -1043,9 +1112,10 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 					<div class="element-text">${element.text}</div>
 					<div class="element-meta">
 						<span class="meta-badge text-type ${textType}">${badgeLabel}</span>
-						<span class="meta-badge font-size">${element.fontSize}pt</span>
-						<span class="meta-badge font-name">${element.fontName}</span>
+						${!isWeb ? html`<span class="meta-badge font-size">${element.fontSize}pt</span>` : nothing}
+						<span class="meta-badge font-name">${tagLabel}</span>
 						<span class="meta-badge color" style="border-left: 3px solid ${element.color};">${element.color}</span>
+						${containerLabel ? html`<span class="meta-badge container-path" title="${element.htmlContainerPath ?? ''}">${containerLabel}</span>` : nothing}
 						${element.text === element.text.toUpperCase() && element.text !== element.text.toLowerCase() ? html`<span class="meta-badge text-case">UPPERCASE</span>` : nothing}
 					</div>
 				</div>
@@ -1099,10 +1169,10 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		const globalIdx = this.#getGlobalAreaIndex(pageNum, areaIndex);
 		const isTeaching = this._teachingAreaIndex === globalIdx;
 		const isCollapsed = isTeaching ? false : this.#isCollapsed(areaKey);
-		const isIncluded = !this._excludedAreas.has(areaKey);
+		const rulesAreaKey = this.#getAreaRulesKey(area);
+		const isIncluded = !this._excludedAreas.has(rulesAreaKey);
 
 		// Check if area has rules defined (from section rules editor)
-		const rulesAreaKey = this.#getAreaRulesKey(area);
 		const hasRules = this.#hasAreaRules(area);
 
 		// When rules exist and transform is available, use composed sections from transform
@@ -1148,7 +1218,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 							label="${isIncluded ? 'Included' : 'Excluded'}"
 							?checked=${isIncluded}
 							@click=${(e: Event) => e.stopPropagation()}
-							@change=${() => this.#toggleAreaExclusion(areaKey)}>
+							@change=${() => this.#toggleAreaExclusion(area.name || '', areaKey)}>
 						</uui-toggle>
 					` : nothing}
 				</div>
@@ -1560,7 +1630,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 						<uui-icon name="icon-grid" class="box-icon"></uui-icon>
 						<span class="box-stat">${areaCount}</span>
 						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Choose Areas" disabled>
+							<uui-button look="primary" color="default" label="Choose Areas" @click=${this.#onOpenAreaPicker}>
 								<uui-icon name="icon-grid"></uui-icon> Choose Areas
 							</uui-button>
 						</div>
@@ -2205,6 +2275,16 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			.meta-badge.font-size {
 				font-weight: 600;
 				color: var(--uui-color-text);
+			}
+
+			.meta-badge.container-path {
+				color: var(--uui-color-interactive);
+				font-style: italic;
+				max-width: 200px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				cursor: help;
 			}
 
 			.meta-badge.text-case {

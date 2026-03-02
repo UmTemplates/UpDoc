@@ -102,6 +102,23 @@ public class AreaElement
 
     [JsonPropertyName("boundingBox")]
     public ElementBoundingBox BoundingBox { get; set; } = new();
+
+    /// <summary>
+    /// For web sources: the actual HTML tag (e.g., "p", "div", "h2", "li").
+    /// Empty for PDF/markdown sources.
+    /// </summary>
+    [JsonPropertyName("htmlTag")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string HtmlTag { get; set; } = string.Empty;
+
+    /// <summary>
+    /// For web sources: slash-delimited CSS selector path of ancestor containers
+    /// (e.g., "div.country-banner/div.price-name-wrapper").
+    /// Empty for PDF/markdown sources.
+    /// </summary>
+    [JsonPropertyName("htmlContainerPath")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string HtmlContainerPath { get; set; } = string.Empty;
 }
 
 /// <summary>

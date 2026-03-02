@@ -22,6 +22,14 @@ public class RichExtractionResult
     [JsonPropertyName("elements")]
     public List<ExtractionElement> Elements { get; set; } = new();
 
+    /// <summary>
+    /// For web sources: the container tree representing the HTML structure.
+    /// Null for PDF/markdown sources.
+    /// </summary>
+    [JsonPropertyName("containers")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<ContainerTreeNode>? Containers { get; set; }
+
     [JsonIgnore]
     public string? Error { get; set; }
 }
@@ -117,6 +125,23 @@ public class ElementMetadata
     [JsonPropertyName("htmlArea")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public string HtmlArea { get; set; } = string.Empty;
+
+    /// <summary>
+    /// For web sources: the actual HTML tag this text was extracted from (e.g., "p", "span", "div", "h2").
+    /// Empty string for PDF/markdown sources.
+    /// </summary>
+    [JsonPropertyName("htmlTag")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string HtmlTag { get; set; } = string.Empty;
+
+    /// <summary>
+    /// For web sources: slash-delimited CSS selector path of ancestor containers
+    /// (e.g., "div.country-banner/div.price-name-wrapper").
+    /// Empty string for PDF/markdown sources.
+    /// </summary>
+    [JsonPropertyName("htmlContainerPath")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string HtmlContainerPath { get; set; } = string.Empty;
 }
 
 /// <summary>
@@ -147,4 +172,57 @@ public class ElementBoundingBox
 
     [JsonPropertyName("height")]
     public double Height { get; set; }
+}
+
+/// <summary>
+/// A node in the container tree representing an HTML element that contains extracted content.
+/// Used for web sources to expose the DOM hierarchy to the UI for area promotion and section splitting.
+/// </summary>
+public class ContainerTreeNode
+{
+    [JsonPropertyName("tag")]
+    public string Tag { get; set; } = string.Empty;
+
+    [JsonPropertyName("id")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Id { get; set; }
+
+    [JsonPropertyName("className")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? ClassName { get; set; }
+
+    /// <summary>
+    /// CSS-like selector for this container (e.g., "div.country-banner", "section#main-content").
+    /// </summary>
+    [JsonPropertyName("cssSelector")]
+    public string CssSelector { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Full path from root to this container (e.g., "div.body-wrapper/div#body_content/div.country-banner").
+    /// </summary>
+    [JsonPropertyName("path")]
+    public string Path { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Nesting depth in the container tree (0 = direct child of body).
+    /// </summary>
+    [JsonPropertyName("depth")]
+    public int Depth { get; set; }
+
+    /// <summary>
+    /// Number of extracted text elements within this container (including descendants).
+    /// </summary>
+    [JsonPropertyName("elementCount")]
+    public int ElementCount { get; set; }
+
+    /// <summary>
+    /// The auto-detected area this container belongs to (inherited from ancestors or self-detected).
+    /// </summary>
+    [JsonPropertyName("area")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Area { get; set; }
+
+    [JsonPropertyName("children")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<ContainerTreeNode>? Children { get; set; }
 }

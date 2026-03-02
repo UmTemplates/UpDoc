@@ -1,6 +1,6 @@
-import { b as R, g as V, p as F } from "./workflow.service-8opy21oM.js";
+import { b as R, g as V, q as F } from "./workflow.service-BQrmRF66.js";
 import { b as I, r as X, a as j, g as C } from "./destination-utils-DUfOJy5W.js";
-import { html as s, nothing as w, css as H, state as $, customElement as q } from "@umbraco-cms/backoffice/external/lit";
+import { html as s, nothing as w, css as q, state as $, customElement as H } from "@umbraco-cms/backoffice/external/lit";
 import { UmbLitElement as J } from "@umbraco-cms/backoffice/lit-element";
 import { UmbTextStyles as Q } from "@umbraco-cms/backoffice/style";
 import { UMB_AUTH_CONTEXT as Y } from "@umbraco-cms/backoffice/auth";
@@ -205,7 +205,7 @@ G = function() {
 };
 p.styles = [
   Q,
-  H`
+  q`
 			:host {
 				display: block;
 				height: 100%;
@@ -348,11 +348,11 @@ x([
   $()
 ], p.prototype, "_error", 2);
 p = x([
-  q("up-doc-workflow-map-view")
+  H("up-doc-workflow-map-view")
 ], p);
 const ct = p;
 export {
   p as UpDocWorkflowMapViewElement,
   ct as default
 };
-//# sourceMappingURL=up-doc-workflow-map-view.element-Bw9g-ZPk.js.map
+//# sourceMappingURL=up-doc-workflow-map-view.element-CTLMjNA5.js.map

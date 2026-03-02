@@ -96,6 +96,12 @@ export const manifests: Array<UmbExtensionManifest> = [
 	},
 	{
 		type: 'modal',
+		alias: 'UpDoc.AreaPickerModal',
+		name: 'Area Picker Modal',
+		element: () => import('./area-picker-modal.element.js'),
+	},
+	{
+		type: 'modal',
 		alias: 'UpDoc.PagePickerModal',
 		name: 'Page Picker Modal',
 		element: () => import('./page-picker-modal.element.js'),

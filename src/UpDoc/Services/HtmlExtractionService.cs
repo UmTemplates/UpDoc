@@ -76,17 +76,28 @@ public class HtmlExtractionService : IHtmlExtractionService
         var document = await context.OpenAsync(req => req.Content(html));
 
         // Extract from the full body — area detection tags each element with its container area.
-        // Previous approach used FindContentRoot() which discarded header/footer/sidebar content.
-        // Now we keep everything and let the UI's include/exclude toggles handle filtering.
         var body = document.Body ?? document.DocumentElement;
 
         var elements = new List<ExtractionElement>();
+        var containerRoot = new ContainerTreeNode
+        {
+            Tag = "body",
+            CssSelector = "body",
+            Path = "body",
+            Depth = 0
+        };
         var elementIndex = 0;
 
-        ExtractElements(body, elements, ref elementIndex, "Ungrouped");
+        ExtractElements(body, elements, ref elementIndex, "Ungrouped", "", containerRoot);
 
         // Strip empty elements
         elements = elements.Where(e => !string.IsNullOrWhiteSpace(e.Text)).ToList();
+
+        // Update element counts up the container tree
+        UpdateElementCounts(containerRoot, elements);
+
+        // Prune containers with no extracted elements
+        PruneEmptyContainers(containerRoot);
 
         _logger.LogInformation("Extracted {Count} elements from HTML: {Source}",
             elements.Count, source);
@@ -107,17 +118,20 @@ public class HtmlExtractionService : IHtmlExtractionService
                 TotalPages = 1,
                 FileName = source,
             },
-            Elements = elements
+            Elements = elements,
+            Containers = containerRoot.Children
         };
     }
 
     /// <summary>
-    /// Recursively walks the DOM tree extracting headings, paragraphs, and list items.
-    /// Each element is tagged with its containing HTML area (header, nav, main, sidebar, footer, etc.).
-    /// Skips script, style, svg, iframe, form inputs, and other non-content elements.
+    /// Recursively walks the DOM tree extracting content elements.
+    /// Each element is tagged with its containing HTML area and container path.
+    /// Captures text from headings, paragraphs, list items, table cells,
+    /// and direct text containers (innermost divs/spans with text but no child elements containing text).
     /// </summary>
     private static void ExtractElements(IElement root, List<ExtractionElement> elements,
-        ref int elementIndex, string currentArea)
+        ref int elementIndex, string currentArea, string containerPath,
+        ContainerTreeNode parentContainer)
     {
         foreach (var node in root.Children)
         {
@@ -155,11 +169,13 @@ public class HtmlExtractionService : IHtmlExtractionService
                                 _ => 10
                             },
                             FontName = $"heading-{level}",
-                            HtmlArea = areaForChildren
+                            HtmlArea = areaForChildren,
+                            HtmlTag = tagName,
+                            HtmlContainerPath = containerPath
                         }
                     });
                 }
-                continue; // Don't recurse into headings
+                continue;
             }
 
             // Paragraphs
@@ -176,7 +192,9 @@ public class HtmlExtractionService : IHtmlExtractionService
                         Metadata = new ElementMetadata
                         {
                             FontName = "p",
-                            HtmlArea = areaForChildren
+                            HtmlArea = areaForChildren,
+                            HtmlTag = "p",
+                            HtmlContainerPath = containerPath
                         }
                     });
                 }
@@ -197,7 +215,9 @@ public class HtmlExtractionService : IHtmlExtractionService
                         Metadata = new ElementMetadata
                         {
                             FontName = "li",
-                            HtmlArea = areaForChildren
+                            HtmlArea = areaForChildren,
+                            HtmlTag = "li",
+                            HtmlContainerPath = containerPath
                         }
                     });
                 }
@@ -218,16 +238,140 @@ public class HtmlExtractionService : IHtmlExtractionService
                         Metadata = new ElementMetadata
                         {
                             FontName = tagName,
-                            HtmlArea = areaForChildren
+                            HtmlArea = areaForChildren,
+                            HtmlTag = tagName,
+                            HtmlContainerPath = containerPath
                         }
                     });
                 }
                 continue;
             }
 
-            // For container elements (div, section, article, etc.), recurse
-            ExtractElements(node, elements, ref elementIndex, areaForChildren);
+            // Container elements (div, section, article, span, etc.) — build container
+            // path and tree node, then either extract leaf text or recurse into children.
+            var containerSelector = BuildCssSelector(node);
+            var childPath = string.IsNullOrEmpty(containerPath)
+                ? containerSelector
+                : $"{containerPath}/{containerSelector}";
+
+            var containerNode = new ContainerTreeNode
+            {
+                Tag = tagName,
+                Id = string.IsNullOrWhiteSpace(node.Id) ? null : node.Id,
+                ClassName = string.IsNullOrWhiteSpace(node.ClassName) ? null : node.ClassName,
+                CssSelector = containerSelector,
+                Path = childPath,
+                Depth = parentContainer.Depth + 1,
+                Area = areaForChildren
+            };
+
+            parentContainer.Children ??= new List<ContainerTreeNode>();
+            parentContainer.Children.Add(containerNode);
+
+            // Check if this is a direct text container — an innermost container
+            // with text but no child elements that themselves contain text.
+            // Example: <div class="price">5 days from £899</div>
+            if (IsDirectTextContainer(node))
+            {
+                var text = CleanText(node.TextContent);
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    elements.Add(new ExtractionElement
+                    {
+                        Id = $"html-{elementIndex++}",
+                        Page = 1,
+                        Text = text,
+                        Metadata = new ElementMetadata
+                        {
+                            FontName = tagName,
+                            HtmlArea = areaForChildren,
+                            HtmlTag = tagName,
+                            HtmlContainerPath = childPath
+                        }
+                    });
+                }
+            }
+            else
+            {
+                // Recurse into children
+                ExtractElements(node, elements, ref elementIndex, areaForChildren,
+                    childPath, containerNode);
+            }
         }
+    }
+
+    /// <summary>
+    /// Builds a CSS-like selector for a container element.
+    /// Uses tag + first meaningful class or id (e.g., "div.country-banner", "section#main-content").
+    /// </summary>
+    private static string BuildCssSelector(IElement element)
+    {
+        var tagName = element.TagName.ToLowerInvariant();
+
+        // Prefer id (more specific)
+        if (!string.IsNullOrWhiteSpace(element.Id))
+            return $"{tagName}#{element.Id.Trim()}";
+
+        // Use first class name if available
+        if (!string.IsNullOrWhiteSpace(element.ClassName))
+        {
+            var firstClass = element.ClassName.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (firstClass.Length > 0)
+                return $"{tagName}.{firstClass[0]}";
+        }
+
+        return tagName;
+    }
+
+    /// <summary>
+    /// Checks if a container element is a "direct text container" — the innermost
+    /// container that has text content but no child elements with their own text.
+    /// This catches text in bare divs/spans that would otherwise be lost, e.g.:
+    ///   &lt;div class="price"&gt;5 days from £899&lt;/div&gt;
+    ///
+    /// A container is NOT direct text if:
+    /// - It has child elements that are content producers (p, h1-h6, li, td/th, lists, tables)
+    /// - It has child containers (div, span, section, a, etc.) that themselves contain text
+    /// - It has more than 3 child elements (too structural to be a simple text wrapper)
+    /// </summary>
+    private static bool IsDirectTextContainer(IElement element)
+    {
+        // Must have some text content
+        if (string.IsNullOrWhiteSpace(element.TextContent))
+            return false;
+
+        // Too many children = structural container, not a text wrapper
+        if (element.Children.Length > 3)
+            return false;
+
+        foreach (var child in element.Children)
+        {
+            var childTag = child.TagName.ToLowerInvariant();
+
+            // Skip non-content children
+            if (IsSkippableElement(childTag))
+                continue;
+
+            // If child is a content-producing element, this is not a direct text container
+            if (childTag is "p" or "h1" or "h2" or "h3" or "h4" or "h5" or "h6"
+                or "li" or "td" or "th")
+                return false;
+
+            // If child is a list or table container, not a direct text container
+            if (childTag is "ul" or "ol" or "table" or "tr" or "tbody" or "thead")
+                return false;
+
+            // If child is any element with text content, this container should
+            // let recursion handle it — it's not the innermost text holder
+            if (childTag is "div" or "section" or "article" or "span" or "a"
+                or "strong" or "em" or "b" or "i")
+            {
+                if (!string.IsNullOrWhiteSpace(child.TextContent))
+                    return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -350,5 +494,47 @@ public class HtmlExtractionService : IHtmlExtractionService
         // Collapse all whitespace (including newlines) to single spaces
         var cleaned = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ");
         return cleaned.Trim();
+    }
+
+    /// <summary>
+    /// Walks the container tree and sets ElementCount on each node
+    /// by counting how many extracted elements have a container path
+    /// that starts with (or equals) this container's path.
+    /// </summary>
+    private static void UpdateElementCounts(ContainerTreeNode node, List<ExtractionElement> elements)
+    {
+        node.ElementCount = elements.Count(e =>
+            !string.IsNullOrEmpty(e.Metadata.HtmlContainerPath) &&
+            (e.Metadata.HtmlContainerPath == node.Path ||
+             e.Metadata.HtmlContainerPath.StartsWith(node.Path + "/", StringComparison.Ordinal)));
+
+        if (node.Children == null) return;
+        foreach (var child in node.Children)
+        {
+            UpdateElementCounts(child, elements);
+        }
+    }
+
+    /// <summary>
+    /// Removes container nodes that have zero extracted elements and no children with elements.
+    /// Keeps the tree focused on containers that actually hold content.
+    /// </summary>
+    private static void PruneEmptyContainers(ContainerTreeNode node)
+    {
+        if (node.Children == null) return;
+
+        // Recurse first so children are pruned before we check them
+        foreach (var child in node.Children)
+        {
+            PruneEmptyContainers(child);
+        }
+
+        // Remove children with no elements and no remaining grandchildren
+        node.Children = node.Children
+            .Where(c => c.ElementCount > 0 || (c.Children != null && c.Children.Count > 0))
+            .ToList();
+
+        if (node.Children.Count == 0)
+            node.Children = null;
     }
 }

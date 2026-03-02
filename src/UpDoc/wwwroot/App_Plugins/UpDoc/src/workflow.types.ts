@@ -16,6 +16,22 @@ export interface SourceConfig {
 	areaRules?: Record<string, AreaRules>;
 	/** Areas excluded from extraction/transform output, keyed by area name in kebab-case. */
 	excludedAreas?: string[];
+	/** User-defined overrides for container behaviour (web sources only). */
+	containerOverrides?: ContainerOverride[];
+}
+
+// ============================================================================
+// Container Override Types (stored in source.json under containerOverrides)
+// ============================================================================
+
+/** A user-defined override for a web container's behaviour. */
+export interface ContainerOverride {
+	/** Full slash-delimited CSS selector path of the container. */
+	containerPath: string;
+	/** Action to apply: promote to a top-level area, or mark as a section boundary. */
+	action: 'promoteToArea' | 'makeSection';
+	/** Optional human-readable label. Auto-derived from CSS selector if omitted. */
+	label?: string;
 }
 
 // ============================================================================

@@ -253,6 +253,8 @@ export type RuleConditionType =
     | 'fontSizeEquals' | 'fontSizeRange' | 'fontSizeAbove' | 'fontSizeBelow'
     | 'fontNameContains'
     | 'colorEquals'
+    | 'isBoldEquals'
+    | 'htmlTagEquals' | 'cssClassContains' | 'htmlContainerPathContains'
     | 'positionFirst' | 'positionLast';
 ```
 
@@ -264,6 +266,10 @@ export type RuleConditionType =
 | `fontSizeBelow` | Font size less than value | number |
 | `fontNameContains` | Font name contains value (case-sensitive) | string |
 | `colorEquals` | Color hex matches | string |
+| `isBoldEquals` | Element is bold (true/false) | boolean |
+| `htmlTagEquals` | HTML tag name matches (web sources) | string |
+| `cssClassContains` | CSS class list contains value (web sources) | string |
+| `htmlContainerPathContains` | HTML container path contains value (web sources) | string |
 | `positionFirst` | First element in section | (none) |
 | `positionLast` | Last element in section | (none) |
 | `textBeginsWith` | Element text starts with value | string |

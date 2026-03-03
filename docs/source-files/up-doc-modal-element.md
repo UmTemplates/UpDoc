@@ -16,7 +16,7 @@ Provides the UI for users to:
 8. Check the destination document type and blueprint in the **Destination tab**
 9. Submit or cancel the operation
 
-PDF and Markdown source types are fully functional. Web Page and Word Document source types show their respective UI (URL input and media picker) but display "not yet available" messages and the Create button remains disabled.
+PDF, Markdown, and Web source types are fully functional. Word Document source type shows its UI (media picker) but displays "not yet available" messages and the Create button remains disabled.
 
 The source type dropdown is **dynamically populated** from the workflow config. When the modal opens, it fetches the config for the selected blueprint and only shows source types that have config files (e.g., if only `source-pdf.json` exists, only "PDF Document" appears). If only one source type is available, it is auto-selected.
 
@@ -61,7 +61,8 @@ export class UpDocModalElement extends UmbModalBaseElement<
 The modal stores:
 - `_activeTab` -- tracks which tab is currently active ('source', 'content', or 'destination')
 - `_extractedSections` -- a `Record<string, string>` holding all extracted values keyed by **element ID** (e.g., `p1-e2`, `p1-e3`). These IDs match the source keys in `map.json`.
-- `_config` -- the full `DocumentTypeConfig` loaded once at startup via `fetchConfig()`, containing source, destination, and map configs
+- `_config` -- the full `DocumentTypeConfig` loaded once at startup via `fetchConfig()`, containing source, destination, and map configs (merged across all workflows for the blueprint)
+- `_workflowConfig` -- per-workflow `DocumentTypeConfig` fetched via `fetchWorkflowByAlias()` during extraction. Contains the correct map.json for the specific source type. Preferred over `_config` when available.
 
 ## Key concepts
 
@@ -78,17 +79,26 @@ The `#extractFromSource` method calls `transformAdhoc` from `workflow.service.ts
 1. Calls `transformAdhoc(workflowName, mediaUnique, token)` to get the transform result
 2. Flattens all areas/groups/sections via `allTransformSections()`
 3. Builds a `sectionLookup` record mapping composite keys (e.g., `features.content`, `features.title`) to text values
-4. Pre-fills the document name from mapped title sections (with `stripMarkdown` applied)
+4. Fetches per-workflow config via `fetchWorkflowByAlias()` and stores in `_workflowConfig`
+5. Pre-fills the document name from mapped title sections (with `stripMarkdown` applied)
 
-The config is loaded once at modal startup (not per-extraction), so `_config` is already available when extraction completes.
+The merged config (`_config`) is loaded once at modal startup. Per-workflow config (`_workflowConfig`) is fetched during extraction to ensure the correct map.json is used for the specific source type.
+
+### Per-workflow config vs merged config
+
+When multiple workflows share the same blueprint (e.g., "Group Tour from PDF" and "Group Tour from Web"), `fetchConfig()` returns a merged config that combines sources from all workflows but only includes the **first** workflow's map.json and destination.json. This is incorrect for document creation — each source type has its own mapping rules.
+
+The fix: during extraction, `fetchWorkflowByAlias()` retrieves the source-type-specific workflow config. `#handleSave` uses `this._workflowConfig ?? this._config` (per-workflow preferred). This pattern is used in both `#extractFromSource` (PDF/Markdown) and `#extractFromUrl` (Web) extraction methods.
 
 ### Document name pre-fill
 
-The `#prefillDocumentName` method finds the first top-level (non-block) destination target in `map.json`, collects text from all sections mapped to that target, strips any markdown formatting, and joins them with spaces.
+The `#prefillDocumentName` method finds the `pageTitle` destination target in `map.json` first, then falls back to the first top-level (non-block) destination target. It collects text from all sections mapped to that target, strips any markdown formatting, and joins them with spaces.
 
 The method applies `stripMarkdown()` to remove heading prefixes (e.g., `# Title` → `Title`) since extracted content may contain markdown formatting that shouldn't appear in the document name.
 
 This handles cases like a title split across two PDF lines (e.g., "Flemish Masters –" + "Bruges, Antwerp & Ghent" → "Flemish Masters – Bruges, Antwerp & Ghent"). If no mapping-based name is found, it falls back to the first non-empty section value (also stripped of markdown).
+
+The method uses `effectiveConfig` (per-workflow config preferred over merged config) to ensure the correct map.json is consulted.
 
 ### Content tab with grouped preview
 
@@ -230,7 +240,7 @@ The `uui-select` dropdown shows "Choose a source..." when no source type is sele
 Each source type renders its own UI via `#renderSourceUI()`:
 - **PDF** (`#renderPdfSource()`) -- Media picker + extraction status (fully functional)
 - **Markdown** (`#renderMarkdownSource()`) -- Media picker + extraction status (fully functional, same pattern as PDF)
-- **Web** (`#renderWebSource()`) -- URL input + "not yet available" message
+- **Web** (`#renderWebSource()`) -- URL input + Extract button (fully functional)
 - **Doc** (`#renderDocSource()`) -- Media picker + "not yet available" message
 
 ### Create button enablement
@@ -238,19 +248,21 @@ Each source type renders its own UI via `#renderSourceUI()`:
 The `#getCanCreate()` method controls when the Create button is enabled:
 - Requires a document name and no active extraction
 - For PDF and Markdown: also requires a selected media item
-- For Web and Doc: always returns false (not yet functional)
+- For Web: also requires a source URL
+- For Doc: always returns false (not yet functional)
 
 ### Modal context methods
 
 ```typescript
 #handleSave() {
+    const effectiveConfig = this._workflowConfig ?? this._config;
     this.value = {
         name: this._documentName,
         sourceType: this._sourceType as SourceType,
         mediaUnique: this._selectedMediaUnique,
         sourceUrl: this._sourceUrl || null,
-        extractedSections: this._extractedSections,
-        config: this._config,
+        sectionLookup: this._sectionLookup,
+        config: effectiveConfig,
     };
     this._submitModal();
 }
@@ -260,7 +272,7 @@ The `#getCanCreate()` method controls when the Create button is enabled:
 }
 ```
 
-The `#handleSave` method returns `extractedSections` (element ID → text lookup) and `config` so the action has everything needed to apply mappings.
+The `#handleSave` method returns `sectionLookup` (composite key → text lookup) and the effective config (per-workflow preferred) so the action has everything needed to apply mappings.
 
 ## Template structure
 
@@ -313,7 +325,7 @@ The modal shows visual feedback during and after extraction:
 ```typescript
 import type { UmbUpDocModalData, UmbUpDocModalValue, SourceType } from './up-doc-modal.token.js';
 import type { DocumentTypeConfig } from './workflow.types.js';
-import { transformAdhoc, allTransformSections, fetchConfig } from './workflow.service.js';
+import { transformAdhoc, allTransformSections, fetchConfig, fetchWorkflowByAlias } from './workflow.service.js';
 import { getDestinationTabs, resolveDestinationTab, resolveBlockLabel } from './destination-utils.js';
 import { stripMarkdown } from './transforms.js';
 import { html, customElement, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';

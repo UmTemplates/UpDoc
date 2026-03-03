@@ -21,6 +21,8 @@ ASP.NET Core API controller for UpDoc workflow CRUD operations.
 | PUT | `/{name}/map` | Saves updated map.json |
 | POST | `/{name}/transform` | Runs area detection and content transform on the workflow's sample extraction |
 | GET | `/{name}/transform` | Returns the saved transform result |
+| POST | `/{name}/transform-adhoc` | Runs extract + transform against a media item or URL for a specific workflow (used by Create from Source modal) |
+| GET | `/by-alias/{alias}` | Returns full configuration for a workflow matching a source type alias (per-workflow config for document creation) |
 
 ### GET /{name} — Direct config loading with auto-regeneration
 

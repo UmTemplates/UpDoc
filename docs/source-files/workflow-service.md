@@ -37,11 +37,19 @@ public interface IWorkflowService
 
 ## Key concepts
 
-### GetConfigByName vs GetAllConfigs
+### GetConfigByName vs GetAllConfigs vs GetConfigForBlueprint
 
 `GetAllConfigs()` runs `ValidateConfig()` which checks that all map.json targets exist in destination.json. Workflows that fail validation are skipped — this is correct for the collection view (only show complete workflows).
 
 `GetConfigByName(name)` loads directly from disk without validation — the workflow workspace needs to edit partially-complete workflows where mappings may reference targets that haven't been fully validated yet.
+
+`GetConfigForBlueprint(blueprintId)` finds all workflows matching a blueprint and **merges** them into a single `DocumentTypeConfig`. Sources from all workflows are combined, but map.json and destination.json come from the **first** matching workflow only. This is used by the Create from Source modal to discover available source types, but is **not** suitable for document creation — use per-workflow config instead.
+
+### Per-workflow config for document creation
+
+When multiple workflows share the same blueprint (e.g., "Group Tour from PDF" and "Group Tour from Web"), each has its own map.json with source-type-specific mappings. The merged config from `GetConfigForBlueprint` only includes the first workflow's map.json, which is incorrect for non-first source types.
+
+The frontend workaround: during extraction, the modal fetches per-workflow config via `fetchWorkflowByAlias()` and uses it for `#handleSave`. The C# merge logic in `GetConfigForBlueprint` is a known limitation — the frontend-side per-workflow fetch is the correct approach per the planning docs (DESTINATION_DRIVEN_MAPPING.md Decision #1: "Workflows are per-source-type").
 
 ### Validation fix
 

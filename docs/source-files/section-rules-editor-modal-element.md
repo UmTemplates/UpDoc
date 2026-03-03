@@ -35,20 +35,37 @@ Allows the workflow author to define rules for a single section (e.g., "Organise
 | `fontSizeBelow` | Font size less than value | number |
 | `fontNameContains` | Font name contains value | string |
 | `colorEquals` | Color hex matches | string |
+| `isBoldEquals` | Element is bold (true/false) | boolean |
+| `htmlTagEquals` | HTML tag name matches | string |
+| `cssClassContains` | CSS class list contains value | string |
+| `htmlContainerPathContains` | HTML container path contains value | string |
 | `positionFirst` | First element in section | (none) |
 | `positionLast` | Last element in section | (none) |
 
 ## Auto-populate
 
-Clicking "Create rule" on an unmatched element pre-fills conditions from **all** its metadata:
+Clicking "Create rule" on an unmatched element pre-fills conditions from **all** its metadata. The conditions offered are **source-type aware** — PDF and web sources offer different condition types:
 
+**All sources:**
 - Font size (always)
 - Font name (always)
 - Color (if not black)
 - Text prefix (if text contains a colon within first 30 chars)
 - Position (if first or last element)
 
+**Web sources additionally:**
+- Bold detection (`isBoldEquals`)
+- HTML tag (`htmlTagEquals`)
+- CSS classes (`cssClassContains`)
+- Container path (`htmlContainerPathContains`)
+
+The condition type dropdown is sorted with the most relevant conditions first (source-type-specific conditions appear before generic ones for web sources).
+
 Role name is auto-suggested from the first few words of the element text (kebab-case).
+
+## Move to group
+
+When rules belong to a group, each rule card has a "Move to..." dropdown allowing the rule to be moved to a different group or to "Ungrouped". This serves as a workaround for the drag-and-drop dead zone between sortable containers caused by the group title dividers.
 
 ## UI layout
 

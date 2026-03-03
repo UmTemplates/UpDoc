@@ -192,6 +192,10 @@ Supported condition types:
 | `fontSizeBelow` | `element.FontSize < value` |
 | `fontNameContains` | Case-insensitive substring match on font name |
 | `colorEquals` | Case-insensitive hex color comparison |
+| `isBoldEquals` | Compares `element.IsBold` to parsed boolean value |
+| `htmlTagEquals` | Case-insensitive match on `element.HtmlTag` |
+| `cssClassContains` | Case-insensitive substring match on `element.CssClasses` |
+| `htmlContainerPathContains` | Case-insensitive substring match on `element.ContainerPath` |
 | `positionFirst` | `index == 0` |
 | `positionLast` | `index == total - 1` |
 | `textBeginsWith` | Case-insensitive `StartsWith` on element text |

@@ -158,6 +158,75 @@
         }
       ],
       "rules": []
+    },
+    "main-content": {
+      "groups": [
+        {
+          "name": "Features",
+          "rules": [
+            {
+              "role": "Features Content",
+              "part": "content",
+              "action": null,
+              "format": "bulletListItem",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.featuring_col1"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        },
+        {
+          "name": "Sights",
+          "rules": [
+            {
+              "role": "Sights Content",
+              "part": "content",
+              "action": null,
+              "format": "bulletListItem",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.featuring_col2"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        }
+      ],
+      "rules": []
     }
   },
   "excludedAreas": [

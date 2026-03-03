@@ -422,7 +422,12 @@ public class ContentTransformService : IContentTransformService
                         break;
 
                     case "content":
-                        // Capture group name from first grouped element if not already set (covers content-only groups)
+                        // Flush when the group changes (e.g., Features → Sights, both content-only)
+                        if (elementGroupNames[i] != null && currentGroupName != null
+                            && elementGroupNames[i] != currentGroupName)
+                        {
+                            FlushSection();
+                        }
                         if (currentGroupName == null && elementGroupNames[i] != null)
                             currentGroupName = elementGroupNames[i];
                         var contentLine = FormatContentLine(elements[i].Text, format, ref numberedListCounter);
@@ -430,6 +435,11 @@ public class ContentTransformService : IContentTransformService
                         break;
 
                     case "description":
+                        if (elementGroupNames[i] != null && currentGroupName != null
+                            && elementGroupNames[i] != currentGroupName)
+                        {
+                            FlushSection();
+                        }
                         if (currentGroupName == null && elementGroupNames[i] != null)
                             currentGroupName = elementGroupNames[i];
                         var descLine = FormatContentLine(elements[i].Text, format, ref numberedListCounter);
@@ -437,6 +447,11 @@ public class ContentTransformService : IContentTransformService
                         break;
 
                     case "summary":
+                        if (elementGroupNames[i] != null && currentGroupName != null
+                            && elementGroupNames[i] != currentGroupName)
+                        {
+                            FlushSection();
+                        }
                         if (currentGroupName == null && elementGroupNames[i] != null)
                             currentGroupName = elementGroupNames[i];
                         var summaryLine = FormatContentLine(elements[i].Text, format, ref numberedListCounter);

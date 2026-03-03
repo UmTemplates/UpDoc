@@ -1,10 +1,10 @@
-import { g as De, b as Ue } from "./workflow.types-CVkhzFGj.js";
-import { UmbSorterController as He } from "@umbraco-cms/backoffice/sorter";
-import { css as A, property as O, state as g, customElement as U, nothing as d, repeat as Ye, html as u } from "@umbraco-cms/backoffice/external/lit";
-import { UmbLitElement as Ie } from "@umbraco-cms/backoffice/lit-element";
-import { UmbModalBaseElement as Ke } from "@umbraco-cms/backoffice/modal";
-import { UmbTextStyles as je } from "@umbraco-cms/backoffice/style";
-const H = A`
+import { g as Ue, b as He } from "./workflow.types-CVkhzFGj.js";
+import { UmbSorterController as Ye } from "@umbraco-cms/backoffice/sorter";
+import { css as N, property as T, state as b, customElement as W, nothing as d, repeat as Ke, html as u } from "@umbraco-cms/backoffice/external/lit";
+import { UmbLitElement as je } from "@umbraco-cms/backoffice/lit-element";
+import { UmbModalBaseElement as Qe } from "@umbraco-cms/backoffice/modal";
+import { UmbTextStyles as Ie } from "@umbraco-cms/backoffice/style";
+const D = N`
 	/* Collapsed rule row */
 	.rule-row {
 		display: flex;
@@ -355,16 +355,16 @@ const H = A`
 		font-weight: 600;
 	}
 `;
-var Qe = Object.defineProperty, Je = Object.getOwnPropertyDescriptor, Y = (e) => {
+var Je = Object.defineProperty, Xe = Object.getOwnPropertyDescriptor, U = (e) => {
   throw TypeError(e);
-}, $ = (e, t, i, o) => {
-  for (var a = o > 1 ? void 0 : o ? Je(t, i) : t, n = e.length - 1, l; n >= 0; n--)
+}, y = (e, t, i, o) => {
+  for (var a = o > 1 ? void 0 : o ? Xe(t, i) : t, n = e.length - 1, l; n >= 0; n--)
     (l = e[n]) && (a = (o ? l(t, i, a) : l(a)) || a);
-  return o && a && Qe(t, i, a), a;
-}, Xe = (e, t, i) => t.has(e) || Y("Cannot " + i), Ze = (e, t, i) => (Xe(e, t, "read from private field"), i ? i.call(e) : t.get(e)), et = (e, t, i) => t.has(e) ? Y("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), k;
-let v = class extends Ie {
+  return o && a && Je(t, i, a), a;
+}, Ze = (e, t, i) => t.has(e) || U("Cannot " + i), et = (e, t, i) => (Ze(e, t, "read from private field"), i ? i.call(e) : t.get(e)), tt = (e, t, i) => t.has(e) ? U("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), S;
+let g = class extends je {
   constructor() {
-    super(...arguments), et(this, k, new He(this, {
+    super(...arguments), tt(this, S, new Ye(this, {
       getUniqueOfElement: (e) => e.dataset.sortId ?? "",
       getUniqueOfModel: (e) => e._id,
       identifier: "updoc-rules-sorter",
@@ -383,7 +383,7 @@ let v = class extends Ie {
     })), this._rules = [], this.expandedIds = /* @__PURE__ */ new Set();
   }
   set rules(e) {
-    this._rules = e, Ze(this, k).setModel(e);
+    this._rules = e, et(this, S).setModel(e);
   }
   get rules() {
     return this._rules;
@@ -391,7 +391,7 @@ let v = class extends Ie {
   render() {
     return this._rules.length === 0 && !this.renderItem ? d : u`
 			<div class="rules-container">
-				${Ye(
+				${Ke(
       this._rules,
       (e) => e._id,
       (e) => u`
@@ -406,10 +406,10 @@ let v = class extends Ie {
 		`;
   }
 };
-k = /* @__PURE__ */ new WeakMap();
-v.styles = [
-  H,
-  A`
+S = /* @__PURE__ */ new WeakMap();
+g.styles = [
+  D,
+  N`
 			:host {
 				display: block;
 			}
@@ -426,33 +426,33 @@ v.styles = [
 			}
 		`
 ];
-$([
-  O({ attribute: !1 })
-], v.prototype, "rules", 1);
-$([
-  g()
-], v.prototype, "_rules", 2);
-$([
-  O({ attribute: !1 })
-], v.prototype, "expandedIds", 2);
-$([
-  O({ attribute: !1 })
-], v.prototype, "renderItem", 2);
-v = $([
-  U("updoc-sortable-rules")
-], v);
-var tt = Object.defineProperty, it = Object.getOwnPropertyDescriptor, I = (e) => {
+y([
+  T({ attribute: !1 })
+], g.prototype, "rules", 1);
+y([
+  b()
+], g.prototype, "_rules", 2);
+y([
+  T({ attribute: !1 })
+], g.prototype, "expandedIds", 2);
+y([
+  T({ attribute: !1 })
+], g.prototype, "renderItem", 2);
+g = y([
+  W("updoc-sortable-rules")
+], g);
+var it = Object.defineProperty, at = Object.getOwnPropertyDescriptor, H = (e) => {
   throw TypeError(e);
-}, b = (e, t, i, o) => {
-  for (var a = o > 1 ? void 0 : o ? it(t, i) : t, n = e.length - 1, l; n >= 0; n--)
+}, x = (e, t, i, o) => {
+  for (var a = o > 1 ? void 0 : o ? at(t, i) : t, n = e.length - 1, l; n >= 0; n--)
     (l = e[n]) && (a = (o ? l(t, i, a) : l(a)) || a);
-  return o && a && tt(t, i, a), a;
-}, K = (e, t, i) => t.has(e) || I("Cannot " + i), p = (e, t, i) => (K(e, t, "read from private field"), i ? i.call(e) : t.get(e)), at = (e, t, i) => t.has(e) ? I("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), r = (e, t, i) => (K(e, t, "access private method"), i), s, h, x, j, y, P, S, m, z, B, Q, J, X, Z, q, ee, te, ie, c, R, F, ae, oe, se, ne, re, le, ue, w, E, ce, N, de, pe, he, fe, me, ve, ge, be, L, xe, _e, $e, ye, we, ze, Ce, ke, Se, T, M, Re, Ee, Ne, Le, Te, Ae, Oe, Pe, Be, qe, V, Fe, Me;
-let ot = 0;
-function G() {
-  return `r-${++ot}`;
+  return o && a && it(t, i, a), a;
+}, Y = (e, t, i) => t.has(e) || H("Cannot " + i), p = (e, t, i) => (Y(e, t, "read from private field"), i ? i.call(e) : t.get(e)), ot = (e, t, i) => t.has(e) ? H("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), r = (e, t, i) => (Y(e, t, "access private method"), i), s, f, _, K, w, O, R, m, C, A, j, Q, I, J, P, X, Z, ee, c, te, B, ie, ae, oe, se, ne, re, le, z, E, ue, ce, de, pe, he, fe, ve, me, ge, be, L, xe, _e, $e, ye, we, ze, Ce, ke, Se, Re, q, Ee, Le, Ne, Te, Oe, Ae, Pe, Be, qe, Fe, F, Me, Ve;
+let st = 0;
+function M() {
+  return `r-${++st}`;
 }
-const Ve = {
+const Ge = {
   textBeginsWith: "Text begins with",
   textEndsWith: "Text ends with",
   textContains: "Text contains",
@@ -472,7 +472,7 @@ const Ve = {
   cssClassContains: "CSS class contains",
   htmlContainerPathContains: "Container path contains",
   isBoldEquals: "Is bold"
-}, C = ["positionFirst", "positionLast", "isBoldEquals"], W = [
+}, k = ["positionFirst", "positionLast", "isBoldEquals"], V = [
   "textBeginsWith",
   "textEndsWith",
   "textContains",
@@ -492,15 +492,15 @@ const Ve = {
   "cssClassContains",
   "htmlContainerPathContains",
   "isBoldEquals"
-], Ge = {
+], We = {
   title: "Title",
   content: "Content",
   description: "Description",
   summary: "Summary"
-}, st = ["title", "content", "description", "summary"], nt = {
+}, nt = ["title", "content", "description", "summary"], rt = {
   block: "Block",
   style: "Style"
-}, rt = ["block", "style"], lt = {
+}, lt = ["block", "style"], ut = {
   auto: "Auto",
   paragraph: "Paragraph",
   heading1: "Heading 1",
@@ -512,7 +512,7 @@ const Ve = {
   bulletListItem: "Bullet List",
   numberedListItem: "Numbered List",
   quote: "Quote"
-}, ut = [
+}, ct = [
   "auto",
   "paragraph",
   "heading1",
@@ -524,39 +524,43 @@ const Ve = {
   "bulletListItem",
   "numberedListItem",
   "quote"
-], ct = {
+], dt = {
   bold: "Bold",
   italic: "Italic",
   strikethrough: "Strikethrough",
   code: "Code",
   highlight: "Highlight"
-}, dt = ["bold", "italic", "strikethrough", "code", "highlight"], pt = {
+}, pt = ["bold", "italic", "strikethrough", "code", "highlight"], h = "Ungrouped", ht = {
   textBeginsWith: "Text begins with",
   textEndsWith: "Text ends with",
   textContains: "Text contains"
-}, ht = ["textBeginsWith", "textEndsWith", "textContains"], D = {
+}, ft = ["textBeginsWith", "textEndsWith", "textContains"], G = {
   replaceWith: "Replace with",
   replaceAll: "Replace all with"
 };
-let f = class extends Ke {
+let v = class extends Qe {
   constructor() {
-    super(...arguments), at(this, s), this._rules = [], this._groupOrder = [], this._expandedSections = /* @__PURE__ */ new Set(), this._expandedRules = /* @__PURE__ */ new Set(), this._renamingGroup = null, this._renameValue = "";
+    super(...arguments), ot(this, s), this._rules = [], this._groupOrder = [], this._expandedSections = /* @__PURE__ */ new Set(), this._expandedRules = /* @__PURE__ */ new Set(), this._renamingGroup = null, this._renameValue = "";
   }
   firstUpdated() {
     const e = this.data?.existingRules;
     if (!e) return;
     const t = [], i = [];
-    for (const o of e.groups ?? []) {
-      i.push(o.name);
-      for (const a of o.rules)
-        t.push(r(this, s, S).call(this, a, o.name));
+    for (const a of e.groups ?? []) {
+      i.push(a.name);
+      for (const n of a.rules)
+        t.push(r(this, s, R).call(this, n, a.name));
     }
-    for (const o of e.rules ?? [])
-      t.push(r(this, s, S).call(this, o, null));
+    const o = e.rules ?? [];
+    if (o.length > 0) {
+      i.push(h);
+      for (const a of o)
+        t.push(r(this, s, R).call(this, a, h));
+    }
     this._rules = t, this._groupOrder = i;
   }
   render() {
-    const e = r(this, s, X).call(this), t = /* @__PURE__ */ new Map();
+    const e = r(this, s, I).call(this), t = /* @__PURE__ */ new Map();
     for (const [o, a] of e) {
       const n = p(this, s, m).find((l) => l.id === o);
       if (n) {
@@ -564,9 +568,9 @@ let f = class extends Ke {
         l.push(n), t.set(a, l);
       }
     }
-    const i = p(this, s, J);
+    const i = p(this, s, Q);
     return u`
-			<umb-body-layout headline="Edit Sections: ${p(this, s, Q)}">
+			<umb-body-layout headline="Edit Sections: ${p(this, s, j)}">
 				<div id="main">
 					<div class="section-info">
 						${this.data?.sectionCount != null ? u`<span class="meta-badge">${this.data.sectionCount} section${this.data.sectionCount !== 1 ? "s" : ""}</span>` : d}
@@ -574,54 +578,44 @@ let f = class extends Ke {
 						<span class="meta-badge">${this._rules.length} rules</span>
 						<span class="meta-badge">${e.size} matched</span>
 						<span class="meta-badge">${p(this, s, m).length - e.size} unmatched</span>
-						${this._groupOrder.length > 0 ? u`<span class="meta-badge">${this._groupOrder.length} group${this._groupOrder.length !== 1 ? "s" : ""}</span>` : d}
+						${(() => {
+      const o = this._groupOrder.filter((a) => a !== h).length;
+      return o > 0 ? u`<span class="meta-badge">${o} group${o !== 1 ? "s" : ""}</span>` : d;
+    })()}
 					</div>
 
 					${i.map((o) => {
-      const a = (n) => r(this, s, Pe).call(this, n, t.get(n._id) ?? []);
-      return o.group !== null ? u`
-								<div class="group-container">
-									${r(this, s, Fe).call(this, o.group)}
-									<div class="group-rules">
-										<updoc-sortable-rules
-											.rules=${o.rules}
-											.expandedIds=${this._expandedRules}
-											.renderItem=${a}
-											@sort-change=${(n) => r(this, s, N).call(this, o.group, n)}
-										></updoc-sortable-rules>
-										<uui-button
-											look="placeholder"
-											label="Add rule to ${o.group}"
-											@click=${() => r(this, s, R).call(this, o.group)}>
-											+ Add rule
-										</uui-button>
-									</div>
+      const a = (n) => r(this, s, Be).call(this, n, t.get(n._id) ?? []);
+      return u`
+							<div class="group-container">
+								${r(this, s, Me).call(this, o.group)}
+								<div class="group-rules">
+									<updoc-sortable-rules
+										.rules=${o.rules}
+										.expandedIds=${this._expandedRules}
+										.renderItem=${a}
+										@sort-change=${(n) => r(this, s, ce).call(this, o.group, n)}
+									></updoc-sortable-rules>
+									<uui-button
+										look="placeholder"
+										label="Add rule to ${o.group}"
+										@click=${() => r(this, s, te).call(this, o.group)}>
+										+ Add rule
+									</uui-button>
 								</div>
-							` : u`
-							<updoc-sortable-rules
-								.rules=${o.rules}
-								.expandedIds=${this._expandedRules}
-								.renderItem=${a}
-								@sort-change=${(n) => r(this, s, N).call(this, null, n)}
-							></updoc-sortable-rules>
-							<uui-button
-								look="placeholder"
-								label="Add rule"
-								@click=${() => r(this, s, R).call(this, null)}>
-								+ Add rule
-							</uui-button>
+							</div>
 						`;
     })}
 
 					<uui-button
 						look="outline"
 						label="Add group"
-						@click=${() => r(this, s, le).call(this)}>
+						@click=${() => r(this, s, re).call(this)}>
 						<uui-icon name="icon-add"></uui-icon>
 						Add group
 					</uui-button>
 
-					${r(this, s, Me).call(this, e)}
+					${r(this, s, Ve).call(this, e)}
 				</div>
 
 				<div slot="actions">
@@ -629,14 +623,14 @@ let f = class extends Ke {
 					<uui-button
 						label="Save"
 						look="secondary"
-						@click=${r(this, s, Re)}>
+						@click=${r(this, s, Ee)}>
 						Save
 					</uui-button>
 					<uui-button
 						label="Save and Close"
 						look="primary"
 						color="positive"
-						@click=${r(this, s, Ee)}>
+						@click=${r(this, s, Le)}>
 						Save and Close
 					</uui-button>
 				</div>
@@ -645,79 +639,76 @@ let f = class extends Ke {
   }
 };
 s = /* @__PURE__ */ new WeakSet();
-h = function(e, t) {
+f = function(e, t) {
   return this._expandedSections.has(`${e}-${t}`);
 };
-x = function(e, t) {
+_ = function(e, t) {
   const i = `${e}-${t}`, o = new Set(this._expandedSections);
   o.has(i) ? o.delete(i) : o.add(i), this._expandedSections = o;
 };
-j = function(e) {
+K = function(e) {
   return this._expandedRules.has(e);
 };
-y = function(e) {
+w = function(e) {
   const t = new Set(this._expandedRules);
   t.has(e) ? t.delete(e) : t.add(e), this._expandedRules = t;
 };
-P = function(e) {
+O = function(e) {
   if (!this._expandedRules.has(e)) {
     const t = new Set(this._expandedRules);
     t.add(e), this._expandedRules = t;
   }
 };
-S = function(e, t) {
+R = function(e, t) {
   let i = e.part, o = e.exclude ?? !1;
   if (!i && !o) {
-    const n = De(e);
+    const n = Ue(e);
     n === "exclude" ? o = !0 : i = n;
   }
   let a = e.formats;
-  return (!a || a.length === 0) && (a = [{ type: "block", value: e.format ?? Ue(e) }]), {
+  return (!a || a.length === 0) && (a = [{ type: "block", value: e.format ?? He(e) }]), {
     ...e,
     part: i,
     exclude: o,
     formats: a,
-    _id: G(),
+    _id: M(),
     _groupName: t
   };
 };
 m = function() {
   return this.data?.elements ?? [];
 };
-z = function() {
+C = function() {
   return this.data?.sourceType ?? "pdf";
 };
-B = function() {
-  if (p(this, s, z) === "web") {
+A = function() {
+  if (p(this, s, C) === "web") {
     const e = ["htmlTagEquals", "cssClassContains", "htmlContainerPathContains"];
-    return [...e, ...W.filter((t) => !e.includes(t))];
+    return [...e, ...V.filter((t) => !e.includes(t))];
   }
-  return W;
+  return V;
 };
-Q = function() {
+j = function() {
   return this.data?.sectionHeading ?? "Section";
 };
-J = function() {
+Q = function() {
   const e = [];
   for (const t of this._groupOrder)
     e.push({
       group: t,
       rules: this._rules.filter((i) => i._groupName === t)
     });
-  return e.push({
-    group: null,
-    rules: this._rules.filter((t) => t._groupName === null)
-  }), e;
+  return e;
 };
-X = function() {
+I = function() {
   const e = /* @__PURE__ */ new Map(), t = p(this, s, m);
   for (const i of this._rules)
     if (i.conditions.length !== 0)
       for (let o = 0; o < t.length; o++) {
         const a = t[o];
-        if (!e.has(a.id) && r(this, s, Z).call(this, a, i.conditions, o, t.length)) {
+        if (!e.has(a.id) && r(this, s, J).call(this, a, i.conditions, o, t.length)) {
           if (i.exceptions?.length && i.exceptions.some(
-            (l) => r(this, s, q).call(this, a, l, o, t.length)
+            (l) => r(this, s, P).call(this, a, l, o, t.length)
           ))
             continue;
           e.set(a.id, i._id);
@@ -725,10 +716,10 @@ X = function() {
       }
   return e;
 };
-Z = function(e, t, i, o) {
-  return t.every((a) => r(this, s, q).call(this, e, a, i, o));
+J = function(e, t, i, o) {
+  return t.every((a) => r(this, s, P).call(this, e, a, i, o));
 };
-q = function(e, t, i, o) {
+P = function(e, t, i, o) {
   const a = String(t.value ?? ""), n = Number(t.value);
   switch (t.type) {
     case "textBeginsWith":
@@ -773,10 +764,10 @@ q = function(e, t, i, o) {
       return !1;
   }
 };
-ee = function(e, t, i) {
-  return p(this, s, z) === "web" ? r(this, s, te).call(this, e) : r(this, s, ie).call(this, e, t, i);
+X = function(e, t, i) {
+  return p(this, s, C) === "web" ? r(this, s, Z).call(this, e) : r(this, s, ee).call(this, e, t, i);
 };
-te = function(e) {
+Z = function(e) {
   const t = [];
   if (e.htmlTag && t.push({ type: "htmlTagEquals", value: e.htmlTag }), e.fontSize > 0 && t.push({ type: "fontSizeEquals", value: e.fontSize }), e.cssClasses) {
     const i = e.cssClasses.split(" ")[0];
@@ -788,7 +779,7 @@ te = function(e) {
   }
   return e.isBold && t.push({ type: "isBoldEquals", value: "true" }), t;
 };
-ie = function(e, t, i) {
+ee = function(e, t, i) {
   const o = [];
   if (o.push({ type: "fontSizeEquals", value: e.fontSize }), e.fontName) {
     const n = e.fontName.includes("+") ? e.fontName.substring(e.fontName.indexOf("+") + 1) : e.fontName;
@@ -801,8 +792,9 @@ ie = function(e, t, i) {
 c = function(e, t) {
   this._rules = this._rules.map((i) => i._id === e ? t(i) : i);
 };
-R = function(e = null) {
-  const t = G();
+te = function(e = h) {
+  this._groupOrder.includes(e) || (this._groupOrder = [...this._groupOrder, e]);
+  const t = M();
   this._rules = [...this._rules, {
     role: "",
     part: "content",
@@ -810,44 +802,44 @@ R = function(e = null) {
     formats: [{ type: "block", value: "auto" }],
     _id: t,
     _groupName: e
-  }], r(this, s, P).call(this, t);
+  }], r(this, s, O).call(this, t);
 };
-F = function(e) {
+B = function(e) {
   this._rules = this._rules.filter((t) => t._id !== e);
 };
-ae = function(e, t) {
-  const i = r(this, s, ee).call(this, e, t, p(this, s, m).length), o = e.text.split(/[\s:,]+/).slice(0, 3).join("-").toLowerCase().replace(/[^a-z0-9-]/g, ""), a = G();
-  this._rules = [...this._rules, {
+ie = function(e, t) {
+  const i = r(this, s, X).call(this, e, t, p(this, s, m).length), o = e.text.split(/[\s:,]+/).slice(0, 3).join("-").toLowerCase().replace(/[^a-z0-9-]/g, ""), a = M();
+  this._groupOrder.includes(h) || (this._groupOrder = [...this._groupOrder, h]), this._rules = [...this._rules, {
     role: o,
     part: "content",
     conditions: i,
     formats: [{ type: "block", value: "auto" }],
     _id: a,
-    _groupName: null
-  }], r(this, s, P).call(this, a);
+    _groupName: h
+  }], r(this, s, O).call(this, a);
 };
-oe = function(e, t) {
+ae = function(e, t) {
   r(this, s, c).call(this, e, (i) => ({ ...i, role: t }));
 };
-se = function(e, t) {
+oe = function(e, t) {
   r(this, s, c).call(this, e, (i) => ({ ...i, part: t }));
 };
-ne = function(e, t) {
+se = function(e, t) {
   r(this, s, c).call(this, e, (i) => ({ ...i, exclude: t }));
 };
-re = function(e, t) {
+ne = function(e, t) {
   r(this, s, c).call(this, e, (i) => ({ ...i, _groupName: t }));
 };
-le = function() {
+re = function() {
   let e = "New Group", t = 1;
   for (; this._groupOrder.includes(e); )
     e = `New Group ${++t}`;
   this._groupOrder = [...this._groupOrder, e], this._renamingGroup = e, this._renameValue = e;
 };
-ue = function(e) {
+le = function(e) {
   this._renamingGroup = e, this._renameValue = e;
 };
-w = function() {
+z = function() {
   if (!this._renamingGroup || !this._renameValue.trim()) return;
   const e = this._renamingGroup, t = this._renameValue.trim();
   e !== t && (this._groupOrder = this._groupOrder.map((i) => i === e ? t : i), this._rules = this._rules.map(
@@ -857,16 +849,16 @@ w = function() {
 E = function() {
   this._renamingGroup = null, this._renameValue = "";
 };
-ce = function(e) {
+ue = function(e) {
   this._rules = this._rules.map(
-    (t) => t._groupName === e ? { ...t, _groupName: null } : t
-  ), this._groupOrder = this._groupOrder.filter((t) => t !== e);
+    (t) => t._groupName === e ? { ...t, _groupName: h } : t
+  ), this._groupOrder = this._groupOrder.filter((t) => t !== e), this._groupOrder.includes(h) || (this._groupOrder = [...this._groupOrder, h]);
 };
-N = function(e, t) {
+ce = function(e, t) {
   const i = t.detail.rules, o = new Set(i.map((n) => n._id)), a = [];
   for (const n of this._groupOrder)
     n === e ? a.push(...i.map((l) => ({ ...l, _groupName: n }))) : a.push(...this._rules.filter((l) => l._groupName === n && !o.has(l._id)));
-  e === null ? a.push(...i.map((n) => ({ ...n, _groupName: null }))) : a.push(...this._rules.filter((n) => n._groupName === null && !o.has(n._id))), this._rules = a;
+  this._rules = a;
 };
 de = function(e) {
   r(this, s, c).call(this, e, (t) => ({
@@ -893,13 +885,13 @@ fe = function(e, t, i) {
     return a[t] = { ...a[t], value: i }, { ...o, formats: a };
   });
 };
-me = function(e) {
+ve = function(e) {
   r(this, s, c).call(this, e, (t) => ({
     ...t,
     conditions: [...t.conditions, { type: "textBeginsWith", value: "" }]
   }));
 };
-ve = function(e, t) {
+me = function(e, t) {
   r(this, s, c).call(this, e, (i) => ({
     ...i,
     conditions: i.conditions.filter((o, a) => a !== t)
@@ -909,7 +901,7 @@ ge = function(e, t, i) {
   r(this, s, c).call(this, e, (o) => {
     const a = [...o.conditions];
     let n;
-    return C.includes(i) ? n = void 0 : i === "fontSizeRange" ? n = { min: 0, max: 100 } : n = a[t].value, a[t] = { type: i, value: n }, { ...o, conditions: a };
+    return k.includes(i) ? n = void 0 : i === "fontSizeRange" ? n = { min: 0, max: 100 } : n = a[t].value, a[t] = { type: i, value: n }, { ...o, conditions: a };
   });
 };
 be = function(e, t, i) {
@@ -920,8 +912,8 @@ be = function(e, t, i) {
 };
 L = function(e, t, i, o) {
   r(this, s, c).call(this, e, (a) => {
-    const n = [...a.conditions], l = n[t], _ = l.value && typeof l.value == "object" ? l.value : { min: 0, max: 100 }, We = isNaN(Number(o)) ? 0 : Number(o);
-    return n[t] = { ...l, value: { ..._, [i]: We } }, { ...a, conditions: n };
+    const n = [...a.conditions], l = n[t], $ = l.value && typeof l.value == "object" ? l.value : { min: 0, max: 100 }, De = isNaN(Number(o)) ? 0 : Number(o);
+    return n[t] = { ...l, value: { ...$, [i]: De } }, { ...a, conditions: n };
   });
 };
 xe = function(e) {
@@ -941,7 +933,7 @@ $e = function(e, t, i) {
     const a = [...o.exceptions ?? []];
     return a[t] = {
       type: i,
-      value: C.includes(i) ? void 0 : a[t].value
+      value: k.includes(i) ? void 0 : a[t].value
     }, { ...o, exceptions: a };
   });
 };
@@ -981,44 +973,44 @@ Se = function(e, t, i) {
     return a[t] = { ...a[t], replace: i }, { ...o, textReplacements: a };
   });
 };
-T = function(e) {
+Re = function(e) {
   const t = (e.formats ?? []).find((l) => l.type === "block"), { _id: i, _groupName: o, action: a, ...n } = e;
   return {
     ...n,
     format: t?.value ?? "auto"
   };
 };
-M = function() {
-  this._renamingGroup && r(this, s, w).call(this);
+q = function() {
+  this._renamingGroup && r(this, s, z).call(this);
   const e = [];
+  let t = [];
   for (const i of this._groupOrder) {
-    const o = this._rules.filter((a) => a._groupName === i).map((a) => r(this, s, T).call(this, a));
-    e.push({ name: i, rules: o });
+    const o = this._rules.filter((a) => a._groupName === i).map((a) => r(this, s, Re).call(this, a));
+    i === h ? t = o : e.push({ name: i, rules: o });
   }
-  const t = this._rules.filter((i) => i._groupName === null).map((i) => r(this, s, T).call(this, i));
   return { groups: e, rules: t };
 };
-Re = async function() {
-  const e = r(this, s, M).call(this);
+Ee = async function() {
+  const e = r(this, s, q).call(this);
   this.data?.onSave && await this.data.onSave(e);
 };
-Ee = function() {
-  const e = r(this, s, M).call(this);
+Le = function() {
+  const e = r(this, s, q).call(this);
   this.value = { rules: e }, this.modalContext?.submit();
 };
 Ne = function() {
   this.modalContext?.reject();
 };
-Le = function(e, t, i) {
-  const o = C.includes(i.type), a = i.type === "fontSizeRange", n = a && i.value && typeof i.value == "object" ? i.value : { min: 0, max: 100 };
+Te = function(e, t, i) {
+  const o = k.includes(i.type), a = i.type === "fontSizeRange", n = a && i.value && typeof i.value == "object" ? i.value : { min: 0, max: 100 };
   return u`
 			<div class="condition-row">
 				<select
 					class="condition-type-select"
 					.value=${i.type}
 					@change=${(l) => r(this, s, ge).call(this, e, t, l.target.value)}>
-					${p(this, s, B).map((l) => u`
-						<option value=${l} ?selected=${l === i.type}>${Ve[l]}</option>
+					${p(this, s, A).map((l) => u`
+						<option value=${l} ?selected=${l === i.type}>${Ge[l]}</option>
 					`)}
 				</select>
 				${a ? u`
@@ -1047,22 +1039,22 @@ Le = function(e, t, i) {
 					compact
 					look="secondary"
 					label="Remove condition"
-					@click=${() => r(this, s, ve).call(this, e, t)}>
+					@click=${() => r(this, s, me).call(this, e, t)}>
 					<uui-icon name="icon-trash"></uui-icon>
 				</uui-button>
 			</div>
 		`;
 };
-Te = function(e, t, i) {
-  const o = C.includes(i.type);
+Oe = function(e, t, i) {
+  const o = k.includes(i.type);
   return u`
 			<div class="condition-row">
 				<select
 					class="condition-type-select"
 					.value=${i.type}
 					@change=${(a) => r(this, s, $e).call(this, e, t, a.target.value)}>
-					${p(this, s, B).map((a) => u`
-						<option value=${a} ?selected=${a === i.type}>${Ve[a]}</option>
+					${p(this, s, A).map((a) => u`
+						<option value=${a} ?selected=${a === i.type}>${Ge[a]}</option>
 					`)}
 				</select>
 				${o ? d : u`
@@ -1084,15 +1076,15 @@ Te = function(e, t, i) {
 		`;
 };
 Ae = function(e, t, i) {
-  const o = i.type === "block" ? ut : dt, a = i.type === "block" ? lt : ct;
+  const o = i.type === "block" ? ct : pt, a = i.type === "block" ? ut : dt;
   return u`
 			<div class="condition-row">
 				<select
 					class="format-type-select"
 					.value=${i.type}
 					@change=${(n) => r(this, s, he).call(this, e, t, n.target.value)}>
-					${rt.map((n) => u`
-						<option value=${n} ?selected=${n === i.type}>${nt[n]}</option>
+					${lt.map((n) => u`
+						<option value=${n} ?selected=${n === i.type}>${rt[n]}</option>
 					`)}
 				</select>
 				<select
@@ -1113,8 +1105,8 @@ Ae = function(e, t, i) {
 			</div>
 		`;
 };
-Oe = function(e, t, i) {
-  const o = i.findType === "textContains" ? D.replaceAll : D.replaceWith;
+Pe = function(e, t, i) {
+  const o = i.findType === "textContains" ? G.replaceAll : G.replaceWith;
   return u`
 			<div class="find-replace-entry">
 				<div class="condition-row">
@@ -1122,8 +1114,8 @@ Oe = function(e, t, i) {
 						class="condition-type-select"
 						.value=${i.findType}
 						@change=${(a) => r(this, s, Ce).call(this, e, t, a.target.value)}>
-						${ht.map((a) => u`
-							<option value=${a} ?selected=${a === i.findType}>${pt[a]}</option>
+						${ft.map((a) => u`
+							<option value=${a} ?selected=${a === i.findType}>${ht[a]}</option>
 						`)}
 					</select>
 					<input
@@ -1152,65 +1144,64 @@ Oe = function(e, t, i) {
 			</div>
 		`;
 };
-Pe = function(e, t) {
-  return r(this, s, j).call(this, e._id) ? r(this, s, qe).call(this, e, t) : r(this, s, Be).call(this, e, t);
-};
 Be = function(e, t) {
-  const i = e.exclude, o = e.part ?? "content", a = i ? "Exclude" : Ge[o] ?? o, n = t.length, l = e.role || "(unnamed rule)";
+  return r(this, s, K).call(this, e._id) ? r(this, s, Fe).call(this, e, t) : r(this, s, qe).call(this, e, t);
+};
+qe = function(e, t) {
+  const i = e.exclude, o = e.part ?? "content", a = i ? "Exclude" : We[o] ?? o, n = t.length, l = e.role || "(unnamed rule)";
   return u`
-			<div class="rule-row" @click=${() => r(this, s, y).call(this, e._id)}>
-				<span class="rule-grip" title="Drag to reorder" @click=${(_) => _.stopPropagation()}>⠿</span>
+			<div class="rule-row" @click=${() => r(this, s, w).call(this, e._id)}>
+				<span class="rule-grip" title="Drag to reorder" @click=${($) => $.stopPropagation()}>⠿</span>
 				<span class="rule-row-name">${l}</span>
 				<span class="rule-row-part ${i ? "excluded" : ""}">${a}</span>
 				${n > 0 ? u`<span class="rule-row-match ${i ? "excluded" : "matched"}">${n}&times;</span>` : u`<span class="rule-row-match no-match">0</span>`}
 				<uui-action-bar class="rule-row-actions"
-					@click=${(_) => _.stopPropagation()}>
+					@click=${($) => $.stopPropagation()}>
 					<uui-button pristine look="primary" label="Edit rule"
-						@click=${() => r(this, s, y).call(this, e._id)}>
+						@click=${() => r(this, s, w).call(this, e._id)}>
 						<uui-icon name="icon-edit"></uui-icon>
 					</uui-button>
 					<uui-button pristine look="primary" label="Delete rule"
-						@click=${() => r(this, s, F).call(this, e._id)}>
+						@click=${() => r(this, s, B).call(this, e._id)}>
 						<uui-icon name="icon-trash"></uui-icon>
 					</uui-button>
 				</uui-action-bar>
 			</div>
 		`;
 };
-qe = function(e, t) {
+Fe = function(e, t) {
   const i = e.exclude, o = e.part ?? "content", a = e._id;
   return u`
 			<div class="rule-card">
 				<div class="rule-header">
 					<uui-icon class="rule-row-chevron expanded" name="icon-navigation-down"
-						@click=${() => r(this, s, y).call(this, a)}
+						@click=${() => r(this, s, w).call(this, a)}
 						style="cursor:pointer"></uui-icon>
 					<input
 						type="text"
 						class="role-name-input"
 						placeholder="Section name (e.g. tour-title)"
 						.value=${e.role}
-						@input=${(n) => r(this, s, oe).call(this, a, n.target.value)} />
+						@input=${(n) => r(this, s, ae).call(this, a, n.target.value)} />
 					<uui-button
 						compact
 						look="secondary"
 						color="danger"
 						label="Remove rule"
-						@click=${() => r(this, s, F).call(this, a)}>
+						@click=${() => r(this, s, B).call(this, a)}>
 						<uui-icon name="icon-trash"></uui-icon>
 					</uui-button>
 				</div>
 
-				${this._groupOrder.length > 0 ? u`
+				${this._groupOrder.length > 1 ? u`
 				<div class="group-move-area">
 					<label class="group-move-label">Group</label>
 					<select
 						class="group-move-select"
 						@change=${(n) => {
     const l = n.target.value;
-    r(this, s, re).call(this, a, l === "" ? null : l);
+    r(this, s, ne).call(this, a, l);
   }}>
-						<option value="" ?selected=${e._groupName === null}>Ungrouped</option>
 						${this._groupOrder.map((n) => u`
 							<option value=${n} ?selected=${n === e._groupName}>${n}</option>
 						`)}
@@ -1219,29 +1210,29 @@ qe = function(e, t) {
 				` : d}
 
 				<div class="conditions-area">
-					<div class="section-header collapsible" @click=${() => r(this, s, x).call(this, "conditions", a)}>
-						<uui-icon name=${r(this, s, h).call(this, "conditions", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
+					<div class="section-header collapsible" @click=${() => r(this, s, _).call(this, "conditions", a)}>
+						<uui-icon name=${r(this, s, f).call(this, "conditions", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
 						Conditions${e.conditions.length > 0 ? ` (${e.conditions.length})` : ""}
 					</div>
-					${r(this, s, h).call(this, "conditions", a) ? u`
-						${e.conditions.map((n, l) => r(this, s, Le).call(this, a, l, n))}
+					${r(this, s, f).call(this, "conditions", a) ? u`
+						${e.conditions.map((n, l) => r(this, s, Te).call(this, a, l, n))}
 						<uui-button
 							compact
 							look="placeholder"
 							label="Add condition"
-							@click=${() => r(this, s, me).call(this, a)}>
+							@click=${() => r(this, s, ve).call(this, a)}>
 							+ Add condition
 						</uui-button>
 					` : d}
 				</div>
 
 				<div class="exceptions-area">
-					<div class="section-header collapsible" @click=${() => r(this, s, x).call(this, "exceptions", a)}>
-						<uui-icon name=${r(this, s, h).call(this, "exceptions", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
+					<div class="section-header collapsible" @click=${() => r(this, s, _).call(this, "exceptions", a)}>
+						<uui-icon name=${r(this, s, f).call(this, "exceptions", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
 						Exceptions${(e.exceptions ?? []).length > 0 ? ` (${(e.exceptions ?? []).length})` : ""}
 					</div>
-					${r(this, s, h).call(this, "exceptions", a) ? u`
-						${(e.exceptions ?? []).map((n, l) => r(this, s, Te).call(this, a, l, n))}
+					${r(this, s, f).call(this, "exceptions", a) ? u`
+						${(e.exceptions ?? []).map((n, l) => r(this, s, Oe).call(this, a, l, n))}
 						<uui-button
 							compact
 							look="placeholder"
@@ -1253,26 +1244,26 @@ qe = function(e, t) {
 				</div>
 
 				<div class="part-area">
-					<div class="section-header collapsible" @click=${() => r(this, s, x).call(this, "part", a)}>
-						<uui-icon name=${r(this, s, h).call(this, "part", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
+					<div class="section-header collapsible" @click=${() => r(this, s, _).call(this, "part", a)}>
+						<uui-icon name=${r(this, s, f).call(this, "part", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
 						Part
 					</div>
-					${r(this, s, h).call(this, "part", a) ? u`
+					${r(this, s, f).call(this, "part", a) ? u`
 						<div class="part-controls">
 							<select
 								class="part-select"
 								.value=${o}
 								?disabled=${i}
-								@change=${(n) => r(this, s, se).call(this, a, n.target.value)}>
-								${st.map((n) => u`
-									<option value=${n} ?selected=${n === o}>${Ge[n]}</option>
+								@change=${(n) => r(this, s, oe).call(this, a, n.target.value)}>
+								${nt.map((n) => u`
+									<option value=${n} ?selected=${n === o}>${We[n]}</option>
 								`)}
 							</select>
 							<label class="exclude-label">
 								<input
 									type="checkbox"
 									.checked=${i}
-									@change=${(n) => r(this, s, ne).call(this, a, n.target.checked)} />
+									@change=${(n) => r(this, s, se).call(this, a, n.target.checked)} />
 								Exclude
 							</label>
 						</div>
@@ -1281,11 +1272,11 @@ qe = function(e, t) {
 
 				${i ? d : u`
 				<div class="format-area">
-					<div class="section-header collapsible" @click=${() => r(this, s, x).call(this, "format", a)}>
-						<uui-icon name=${r(this, s, h).call(this, "format", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
+					<div class="section-header collapsible" @click=${() => r(this, s, _).call(this, "format", a)}>
+						<uui-icon name=${r(this, s, f).call(this, "format", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
 						Format${(e.formats ?? []).length > 0 ? ` (${(e.formats ?? []).length})` : ""}
 					</div>
-					${r(this, s, h).call(this, "format", a) ? u`
+					${r(this, s, f).call(this, "format", a) ? u`
 						${(e.formats ?? []).map((n, l) => r(this, s, Ae).call(this, a, l, n))}
 						<uui-button
 							compact
@@ -1300,12 +1291,12 @@ qe = function(e, t) {
 
 				${i ? d : u`
 				<div class="format-area">
-					<div class="section-header collapsible" @click=${() => r(this, s, x).call(this, "findReplace", a)}>
-						<uui-icon name=${r(this, s, h).call(this, "findReplace", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
+					<div class="section-header collapsible" @click=${() => r(this, s, _).call(this, "findReplace", a)}>
+						<uui-icon name=${r(this, s, f).call(this, "findReplace", a) ? "icon-navigation-down" : "icon-navigation-right"}></uui-icon>
 						Find &amp; Replace${(e.textReplacements ?? []).length > 0 ? ` (${(e.textReplacements ?? []).length})` : ""}
 					</div>
-					${r(this, s, h).call(this, "findReplace", a) ? u`
-						${(e.textReplacements ?? []).map((n, l) => r(this, s, Oe).call(this, a, l, n))}
+					${r(this, s, f).call(this, "findReplace", a) ? u`
+						${(e.textReplacements ?? []).map((n, l) => r(this, s, Pe).call(this, a, l, n))}
 						<uui-button
 							compact
 							look="placeholder"
@@ -1318,16 +1309,20 @@ qe = function(e, t) {
 				`}
 
 				<div class="match-preview ${t.length > 0 ? i ? "excluded" : "matched" : "no-match"}">
-					${t.length > 0 ? u`<uui-icon name=${i ? "icon-block" : "icon-check"}></uui-icon> ${i ? "Excluded" : "Matched"} <strong>${t.length}&times;</strong>${t.length <= 5 ? u`: ${t.map((n, l) => u`${l > 0 ? u`, ` : d}<strong>${r(this, s, V).call(this, n.text, 40)}</strong>`)}` : d}` : u`<uui-icon name="icon-alert"></uui-icon> ${e.conditions.length === 0 ? "Add conditions to match elements" : "No match"}`}
+					${t.length > 0 ? u`<uui-icon name=${i ? "icon-block" : "icon-check"}></uui-icon> ${i ? "Excluded" : "Matched"} <strong>${t.length}&times;</strong>${t.length <= 5 ? u`: ${t.map((n, l) => u`${l > 0 ? u`, ` : d}<strong>${r(this, s, F).call(this, n.text, 40)}</strong>`)}` : d}` : u`<uui-icon name="icon-alert"></uui-icon> ${e.conditions.length === 0 ? "Add conditions to match elements" : "No match"}`}
 				</div>
 			</div>
 		`;
 };
-V = function(e, t) {
+F = function(e, t) {
   return e.length > t ? e.substring(0, t) + "..." : e;
 };
-Fe = function(e) {
-  return this._renamingGroup === e ? u`
+Me = function(e) {
+  return e === h ? u`
+				<div class="group-header">
+					<strong class="group-name">${e}</strong>
+				</div>
+			` : this._renamingGroup === e ? u`
 				<div class="group-header">
 					<input
 						type="text"
@@ -1337,9 +1332,9 @@ Fe = function(e) {
     this._renameValue = t.target.value;
   }}
 						@keydown=${(t) => {
-    t.key === "Enter" && r(this, s, w).call(this), t.key === "Escape" && r(this, s, E).call(this);
+    t.key === "Enter" && r(this, s, z).call(this), t.key === "Escape" && r(this, s, E).call(this);
   }} />
-					<uui-button compact look="primary" label="Confirm" @click=${() => r(this, s, w).call(this)}>
+					<uui-button compact look="primary" label="Confirm" @click=${() => r(this, s, z).call(this)}>
 						<uui-icon name="icon-check"></uui-icon>
 					</uui-button>
 					<uui-button compact look="secondary" label="Cancel" @click=${() => r(this, s, E).call(this)}>
@@ -1351,19 +1346,19 @@ Fe = function(e) {
 				<strong class="group-name">${e}</strong>
 				<span class="header-spacer"></span>
 				<uui-action-bar class="group-header-actions">
-					<uui-button pristine look="primary" label="Rename" @click=${() => r(this, s, ue).call(this, e)}>
+					<uui-button pristine look="primary" label="Rename" @click=${() => r(this, s, le).call(this, e)}>
 						<uui-icon name="icon-edit"></uui-icon>
 					</uui-button>
 					<uui-button pristine look="primary" label="Delete group"
 						title="Delete group (rules move to ungrouped)"
-						@click=${() => r(this, s, ce).call(this, e)}>
+						@click=${() => r(this, s, ue).call(this, e)}>
 						<uui-icon name="icon-trash"></uui-icon>
 					</uui-button>
 				</uui-action-bar>
 			</div>
 		`;
 };
-Me = function(e) {
+Ve = function(e) {
   const t = p(this, s, m), i = t.filter((o) => !e.has(o.id));
   return i.length === 0 ? d : u`
 			<div class="unmatched-section">
@@ -1372,9 +1367,9 @@ Me = function(e) {
     const a = t.indexOf(o);
     return u`
 						<div class="unmatched-element">
-							<div class="unmatched-text">${r(this, s, V).call(this, o.text, 80)}</div>
+							<div class="unmatched-text">${r(this, s, F).call(this, o.text, 80)}</div>
 							<div class="unmatched-meta">
-								${p(this, s, z) === "web" ? u`
+								${p(this, s, C) === "web" ? u`
 										${o.htmlTag ? u`<span class="meta-badge tag-badge">&lt;${o.htmlTag}&gt;</span>` : d}
 										<span class="meta-badge">${o.fontSize}pt</span>
 										${o.isBold ? u`<span class="meta-badge tag-badge"><b>B</b></span>` : d}
@@ -1390,7 +1385,7 @@ Me = function(e) {
 								compact
 								look="outline"
 								label="Define rule from this"
-								@click=${() => r(this, s, ae).call(this, o, a)}>
+								@click=${() => r(this, s, ie).call(this, o, a)}>
 								Define rule
 							</uui-button>
 						</div>
@@ -1399,10 +1394,10 @@ Me = function(e) {
 			</div>
 		`;
 };
-f.styles = [
-  je,
-  H,
-  A`
+v.styles = [
+  Ie,
+  D,
+  N`
 			:host {
 				display: block;
 				height: 100%;
@@ -1561,30 +1556,30 @@ f.styles = [
 			}
 		`
 ];
-b([
-  g()
-], f.prototype, "_rules", 2);
-b([
-  g()
-], f.prototype, "_groupOrder", 2);
-b([
-  g()
-], f.prototype, "_expandedSections", 2);
-b([
-  g()
-], f.prototype, "_expandedRules", 2);
-b([
-  g()
-], f.prototype, "_renamingGroup", 2);
-b([
-  g()
-], f.prototype, "_renameValue", 2);
-f = b([
-  U("up-doc-section-rules-editor-modal")
-], f);
-const _t = f;
+x([
+  b()
+], v.prototype, "_rules", 2);
+x([
+  b()
+], v.prototype, "_groupOrder", 2);
+x([
+  b()
+], v.prototype, "_expandedSections", 2);
+x([
+  b()
+], v.prototype, "_expandedRules", 2);
+x([
+  b()
+], v.prototype, "_renamingGroup", 2);
+x([
+  b()
+], v.prototype, "_renameValue", 2);
+v = x([
+  W("up-doc-section-rules-editor-modal")
+], v);
+const $t = v;
 export {
-  f as UpDocSectionRulesEditorModalElement,
-  _t as default
+  v as UpDocSectionRulesEditorModalElement,
+  $t as default
 };
-//# sourceMappingURL=section-rules-editor-modal.element-B6_sZxmg.js.map
+//# sourceMappingURL=section-rules-editor-modal.element-CtKs-5bX.js.map

@@ -15,7 +15,7 @@ import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
  */
 interface EditableRule extends SectionRule {
 	_id: string;
-	_groupName: string | null;
+	_groupName: string;
 }
 
 let _nextRuleId = 0;
@@ -109,6 +109,9 @@ const STYLE_FORMAT_LABELS: Record<string, string> = {
 
 const ALL_STYLE_FORMATS: string[] = ['bold', 'italic', 'strikethrough', 'code', 'highlight'];
 
+/** Sentinel group name for ungrouped rules. Rendered as a real group container for drag-and-drop. */
+const UNGROUPED_GROUP = 'Ungrouped';
+
 /** Find type labels for text replacements */
 const FIND_TYPE_LABELS: Record<FindType, string> = {
 	textBeginsWith: 'Text begins with',
@@ -190,9 +193,13 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 			}
 		}
 
-		// Ungrouped rules
-		for (const rule of (areaRules.rules ?? [])) {
-			editableRules.push(this.#normalizeRule(rule, null));
+		// Ungrouped rules → put into the "Ungrouped" sentinel group
+		const ungrouped = areaRules.rules ?? [];
+		if (ungrouped.length > 0) {
+			groupOrder.push(UNGROUPED_GROUP);
+			for (const rule of ungrouped) {
+				editableRules.push(this.#normalizeRule(rule, UNGROUPED_GROUP));
+			}
 		}
 
 		this._rules = editableRules;
@@ -200,7 +207,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	}
 
 	/** Normalize a rule on load: derive part from legacy action, migrate formats. */
-	#normalizeRule(rule: SectionRule, groupName: string | null): EditableRule {
+	#normalizeRule(rule: SectionRule, groupName: string): EditableRule {
 		let part = rule.part as RulePart | undefined;
 		let exclude = rule.exclude ?? false;
 
@@ -256,22 +263,15 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	/**
 	 * Returns a grouped view for rendering: groups in order, then ungrouped.
 	 */
-	get #groupedView(): Array<{ group: string | null; rules: EditableRule[] }> {
-		const result: Array<{ group: string | null; rules: EditableRule[] }> = [];
+	get #groupedView(): Array<{ group: string; rules: EditableRule[] }> {
+		const result: Array<{ group: string; rules: EditableRule[] }> = [];
 
-		// Groups in order
 		for (const name of this._groupOrder) {
 			result.push({
 				group: name,
 				rules: this._rules.filter((r) => r._groupName === name),
 			});
 		}
-
-		// Ungrouped
-		result.push({
-			group: null,
-			rules: this._rules.filter((r) => r._groupName === null),
-		});
 
 		return result;
 	}
@@ -450,7 +450,11 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		this._rules = this._rules.map((r) => r._id === id ? updater(r) : r);
 	}
 
-	#addRule(groupName: string | null = null) {
+	#addRule(groupName: string = UNGROUPED_GROUP) {
+		// Ensure group exists (covers Ungrouped and first-time creation)
+		if (!this._groupOrder.includes(groupName)) {
+			this._groupOrder = [...this._groupOrder, groupName];
+		}
 		const id = generateRuleId();
 		this._rules = [...this._rules, {
 			role: '',
@@ -478,13 +482,17 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 			.toLowerCase()
 			.replace(/[^a-z0-9-]/g, '');
 		const id = generateRuleId();
+		// Ensure Ungrouped group exists for the new rule
+		if (!this._groupOrder.includes(UNGROUPED_GROUP)) {
+			this._groupOrder = [...this._groupOrder, UNGROUPED_GROUP];
+		}
 		this._rules = [...this._rules, {
 			role: roleSuggestion,
 			part: 'content' as RulePart,
 			conditions,
 			formats: [{ type: 'block' as FormatEntryType, value: 'auto' }],
 			_id: id,
-			_groupName: null,
+			_groupName: UNGROUPED_GROUP,
 		}];
 		// Auto-expand so user can review auto-populated conditions
 		this.#expandRule(id);
@@ -502,7 +510,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		this.#updateRuleById(id, (r) => ({ ...r, exclude: value }));
 	}
 
-	#moveRuleToGroup(id: string, groupName: string | null) {
+	#moveRuleToGroup(id: string, groupName: string) {
 		this.#updateRuleById(id, (r) => ({ ...r, _groupName: groupName }));
 	}
 
@@ -548,11 +556,15 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	}
 
 	#deleteGroup(name: string) {
-		// Move all rules from this group to ungrouped
+		// Move all rules from this group to Ungrouped
 		this._rules = this._rules.map((r) =>
-			r._groupName === name ? { ...r, _groupName: null } : r,
+			r._groupName === name ? { ...r, _groupName: UNGROUPED_GROUP } : r,
 		);
 		this._groupOrder = this._groupOrder.filter((n) => n !== name);
+		// Ensure Ungrouped group exists
+		if (!this._groupOrder.includes(UNGROUPED_GROUP)) {
+			this._groupOrder = [...this._groupOrder, UNGROUPED_GROUP];
+		}
 	}
 
 	// ===== Drag-and-drop sort handling =====
@@ -563,11 +575,11 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	 * their _groupName set; rules no longer in this container but still in
 	 * _rules keep their existing _groupName.
 	 */
-	#onSortChange(groupName: string | null, e: CustomEvent<SortChangeDetail>) {
+	#onSortChange(groupName: string, e: CustomEvent<SortChangeDetail>) {
 		const newRules = e.detail.rules as EditableRule[];
 		const newRuleIds = new Set(newRules.map((r) => r._id));
 
-		// Rebuild flat array: groups in order, then ungrouped
+		// Rebuild flat array: all groups in order
 		const allRules: EditableRule[] = [];
 
 		for (const gName of this._groupOrder) {
@@ -578,13 +590,6 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				// Keep existing rules for other groups, exclude any that moved into the changed container
 				allRules.push(...this._rules.filter((r) => r._groupName === gName && !newRuleIds.has(r._id)));
 			}
-		}
-
-		// Ungrouped
-		if (groupName === null) {
-			allRules.push(...newRules.map((r) => ({ ...r, _groupName: null })));
-		} else {
-			allRules.push(...this._rules.filter((r) => r._groupName === null && !newRuleIds.has(r._id)));
 		}
 
 		this._rules = allRules;
@@ -781,15 +786,19 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		}
 
 		const groups: RuleGroup[] = [];
+		let ungroupedRules: SectionRule[] = [];
+
 		for (const name of this._groupOrder) {
 			const groupRules = this._rules
 				.filter((r) => r._groupName === name)
 				.map((r) => this.#cleanRule(r));
-			groups.push({ name, rules: groupRules });
+			if (name === UNGROUPED_GROUP) {
+				// "Ungrouped" sentinel → save as top-level rules (not a named group)
+				ungroupedRules = groupRules;
+			} else {
+				groups.push({ name, rules: groupRules });
+			}
 		}
-		const ungroupedRules = this._rules
-			.filter((r) => r._groupName === null)
-			.map((r) => this.#cleanRule(r));
 
 		return { groups, rules: ungroupedRules };
 	}
@@ -1036,16 +1045,15 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 					</uui-button>
 				</div>
 
-				${this._groupOrder.length > 0 ? html`
+				${this._groupOrder.length > 1 ? html`
 				<div class="group-move-area">
 					<label class="group-move-label">Group</label>
 					<select
 						class="group-move-select"
 						@change=${(e: Event) => {
 							const val = (e.target as HTMLSelectElement).value;
-							this.#moveRuleToGroup(id, val === '' ? null : val);
+							this.#moveRuleToGroup(id, val);
 						}}>
-						<option value="" ?selected=${rule._groupName === null}>Ungrouped</option>
 						${this._groupOrder.map((g) => html`
 							<option value=${g} ?selected=${g === rule._groupName}>${g}</option>
 						`)}
@@ -1166,6 +1174,15 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	}
 
 	#renderGroupHeader(name: string) {
+		// Ungrouped sentinel: simple header, no rename/delete
+		if (name === UNGROUPED_GROUP) {
+			return html`
+				<div class="group-header">
+					<strong class="group-name">${name}</strong>
+				</div>
+			`;
+		}
+
 		if (this._renamingGroup === name) {
 			return html`
 				<div class="group-header">
@@ -1276,52 +1293,36 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 						<span class="meta-badge">${this._rules.length} rules</span>
 						<span class="meta-badge">${claimed.size} matched</span>
 						<span class="meta-badge">${this.#elements.length - claimed.size} unmatched</span>
-						${this._groupOrder.length > 0
-							? html`<span class="meta-badge">${this._groupOrder.length} group${this._groupOrder.length !== 1 ? 's' : ''}</span>`
-							: nothing}
+						${(() => {
+							const realGroups = this._groupOrder.filter((g) => g !== UNGROUPED_GROUP).length;
+							return realGroups > 0
+								? html`<span class="meta-badge">${realGroups} group${realGroups !== 1 ? 's' : ''}</span>`
+								: nothing;
+						})()}
 					</div>
 
 					${groupedView.map((entry) => {
 						const renderItemCb = (rule: SortableRule) =>
 							this.#renderRuleCard(rule as EditableRule, ruleMatches.get(rule._id) ?? []);
 
-						if (entry.group !== null) {
-							// Render a named group
-							return html`
-								<div class="group-container">
-									${this.#renderGroupHeader(entry.group)}
-									<div class="group-rules">
-										<updoc-sortable-rules
-											.rules=${entry.rules}
-											.expandedIds=${this._expandedRules}
-											.renderItem=${renderItemCb}
-											@sort-change=${(e: CustomEvent<SortChangeDetail>) => this.#onSortChange(entry.group, e)}
-										></updoc-sortable-rules>
-										<uui-button
-											look="placeholder"
-											label="Add rule to ${entry.group}"
-											@click=${() => this.#addRule(entry.group)}>
-											+ Add rule
-										</uui-button>
-									</div>
-								</div>
-							`;
-						}
-
-						// Render ungrouped rules
 						return html`
-							<updoc-sortable-rules
-								.rules=${entry.rules}
-								.expandedIds=${this._expandedRules}
-								.renderItem=${renderItemCb}
-								@sort-change=${(e: CustomEvent<SortChangeDetail>) => this.#onSortChange(null, e)}
-							></updoc-sortable-rules>
-							<uui-button
-								look="placeholder"
-								label="Add rule"
-								@click=${() => this.#addRule(null)}>
-								+ Add rule
-							</uui-button>
+							<div class="group-container">
+								${this.#renderGroupHeader(entry.group)}
+								<div class="group-rules">
+									<updoc-sortable-rules
+										.rules=${entry.rules}
+										.expandedIds=${this._expandedRules}
+										.renderItem=${renderItemCb}
+										@sort-change=${(e: CustomEvent<SortChangeDetail>) => this.#onSortChange(entry.group, e)}
+									></updoc-sortable-rules>
+									<uui-button
+										look="placeholder"
+										label="Add rule to ${entry.group}"
+										@click=${() => this.#addRule(entry.group)}>
+										+ Add rule
+									</uui-button>
+								</div>
+							</div>
 						`;
 					})}
 

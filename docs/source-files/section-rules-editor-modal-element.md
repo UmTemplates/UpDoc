@@ -63,9 +63,20 @@ The condition type dropdown is sorted with the most relevant conditions first (s
 
 Role name is auto-suggested from the first few words of the element text (kebab-case).
 
+## Group management
+
+Rules are organized into named groups plus a special "Ungrouped" sentinel group. All rules — including ungrouped ones — live inside `<updoc-sortable-rules>` containers, which enables cross-container drag-and-drop via `UmbSorterController`. See [Drag-and-drop dead zone](../errors/drag-drop-dead-zone.md) for the technical background.
+
+The "Ungrouped" group:
+
+- Renders with a simple header (no rename/delete buttons)
+- On save, its rules are written to the top-level `rules[]` array in JSON (not as a named group)
+- On load, top-level rules are loaded into the "Ungrouped" group
+- The group count badge in the area header excludes "Ungrouped"
+
 ## Move to group
 
-When rules belong to a group, each rule card has a "Move to..." dropdown allowing the rule to be moved to a different group or to "Ungrouped". This serves as a workaround for the drag-and-drop dead zone between sortable containers caused by the group title dividers.
+Each rule card has a "Move to..." dropdown (visible when there are 2+ groups) allowing the rule to be moved to a different group. This serves as a reliable fallback alongside drag-and-drop.
 
 ## UI layout
 

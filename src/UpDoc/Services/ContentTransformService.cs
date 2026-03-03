@@ -311,7 +311,7 @@ public class ContentTransformService : IContentTransformService
                 }
 
                 var content = currentContentLines.Count > 0
-                    ? string.Join("\n", currentContentLines)
+                    ? string.Join("\n\n", currentContentLines)
                     : (currentHeadingText ?? string.Empty);
 
                 // Detect pattern from content shape
@@ -406,6 +406,10 @@ public class ContentTransformService : IContentTransformService
 
                 // Ungrouped rules already emitted in rule order above — skip
                 if (isUngrouped)
+                    continue;
+
+                // Elements with no matching rule are unmatched — skip in part-driven mode
+                if (elementRules[i] == null)
                     continue;
 
                 switch (part)

@@ -1,16 +1,16 @@
 import { a as ze } from "./workflow.types-CVkhzFGj.js";
-import { g as it, b as at, h as st, i as T, j as z, k as ot, l as oe, m as Y, s as ne, n as nt, o as rt, p as lt, q as ct, r as Ce, u as ut, v as dt } from "./workflow.service-DcrxYgqr.js";
+import { g as it, b as at, h as st, i as T, j as z, k as ot, l as oe, m as Y, s as ne, n as nt, o as rt, p as lt, q as ct, r as ut, u as Ce, v as dt, w as pt } from "./workflow.service-DXCyU5bG.js";
 import { m as M, n as H } from "./transforms-BkZeboOX.js";
 import { g as ke } from "./destination-utils-DUfOJy5W.js";
 import { UmbModalToken as j, UMB_MODAL_MANAGER_CONTEXT as U } from "@umbraco-cms/backoffice/modal";
-import { U as pt } from "./page-picker-modal.token-B0CgP9f1.js";
-import { html as u, nothing as d, unsafeHTML as P, css as ht, state as x, customElement as ft } from "@umbraco-cms/backoffice/external/lit";
-import { UmbLitElement as mt } from "@umbraco-cms/backoffice/lit-element";
-import { UmbTextStyles as gt } from "@umbraco-cms/backoffice/style";
+import { U as ht } from "./page-picker-modal.token-B0CgP9f1.js";
+import { html as u, nothing as d, unsafeHTML as P, css as ft, state as x, customElement as mt } from "@umbraco-cms/backoffice/external/lit";
+import { UmbLitElement as gt } from "@umbraco-cms/backoffice/lit-element";
+import { UmbTextStyles as bt } from "@umbraco-cms/backoffice/style";
 import { UMB_AUTH_CONTEXT as re } from "@umbraco-cms/backoffice/auth";
-import { UMB_WORKSPACE_CONTEXT as bt } from "@umbraco-cms/backoffice/workspace";
-import { UMB_MEDIA_PICKER_MODAL as vt } from "@umbraco-cms/backoffice/media";
-const xt = new j(
+import { UMB_WORKSPACE_CONTEXT as vt } from "@umbraco-cms/backoffice/workspace";
+import { UMB_MEDIA_PICKER_MODAL as xt } from "@umbraco-cms/backoffice/media";
+const _t = new j(
   "UpDoc.AreaEditorModal",
   {
     modal: {
@@ -18,12 +18,12 @@ const xt = new j(
       size: "large"
     }
   }
-), _t = new j("UpDoc.AreaPickerModal", {
+), wt = new j("UpDoc.AreaPickerModal", {
   modal: {
     type: "sidebar",
     size: "large"
   }
-}), wt = new j(
+}), yt = new j(
   "UpDoc.SectionRulesEditorModal",
   {
     modal: {
@@ -31,25 +31,25 @@ const xt = new j(
       size: "medium"
     }
   }
-), yt = new j("UpDoc.DestinationPickerModal", {
+), $t = new j("UpDoc.DestinationPickerModal", {
   modal: {
     type: "sidebar",
     size: "medium"
   }
 });
-var $t = Object.defineProperty, kt = Object.getOwnPropertyDescriptor, Se = (e) => {
+var kt = Object.defineProperty, At = Object.getOwnPropertyDescriptor, Se = (e) => {
   throw TypeError(e);
 }, v = (e, t, i, o) => {
-  for (var n = o > 1 ? void 0 : o ? kt(t, i) : t, r = e.length - 1, l; r >= 0; r--)
+  for (var n = o > 1 ? void 0 : o ? At(t, i) : t, r = e.length - 1, l; r >= 0; r--)
     (l = e[r]) && (n = (o ? l(t, i, n) : l(n)) || n);
-  return o && n && $t(t, i, n), n;
+  return o && n && kt(t, i, n), n;
 }, le = (e, t, i) => t.has(e) || Se("Cannot " + i), p = (e, t, i) => (le(e, t, "read from private field"), i ? i.call(e) : t.get(e)), Q = (e, t, i) => t.has(e) ? Se("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), Ae = (e, t, i, o) => (le(e, t, "write to private field"), t.set(e, i), i), s = (e, t, i) => (le(e, t, "access private method"), i), m, L, a, w, Me, ce, ue, de, Pe, Re, pe, C, E, he, fe, Z, N, Te, Ee, me, ge, ee, V, De, O, be, K, D, Ie, te, ve, ie, Ue, F, Le, Ne, Oe, ae, A, Ke, xe, R, We, Be, _e, se, Fe, He, je, Ve, Ge, G, q, W, qe, Je, Xe, J, k, Qe, Ye, Ze, et, we, B, tt, I;
-let g = class extends mt {
+let g = class extends gt {
   constructor() {
     super(...arguments), Q(this, a), this._extraction = null, this._areaDetection = null, this._config = null, this._workflowAlias = null, this._loading = !0, this._extracting = !1, this._error = null, this._successMessage = null, this._collapsed = /* @__PURE__ */ new Set(), this._transformResult = null, this._viewMode = "elements", this._sourceConfig = null, this._pageMode = "all", this._pageInputValue = "", this._collapsePopoverOpen = !1, this._excludedAreas = /* @__PURE__ */ new Set(), this._areaTemplate = null, this._sectionPickerOpen = !1, this._teachingAreaIndex = null, this._inferenceResult = null, this._inferring = !1, this._sampleUrl = "", Q(this, m, ""), Q(this, L, /* @__PURE__ */ new Set());
   }
   connectedCallback() {
-    super.connectedCallback(), this.consumeContext(bt, (e) => {
+    super.connectedCallback(), this.consumeContext(vt, (e) => {
       e && (e.setRefreshHandler(() => s(this, a, O).call(this)), this.observe(e.unique, (t) => {
         t && (this._workflowAlias = decodeURIComponent(t), s(this, a, Me).call(this));
       }));
@@ -251,7 +251,7 @@ Z = function() {
 };
 N = async function() {
   if (!this._workflowAlias) return;
-  const i = await (await this.getContext(U)).open(this, vt, {
+  const i = await (await this.getContext(U)).open(this, xt, {
     data: {
       multiple: !1
     }
@@ -262,7 +262,7 @@ N = async function() {
 };
 Te = async function() {
   if (!this._workflowAlias) return;
-  const t = (await this.getContext(U)).open(this, xt, {
+  const t = (await this.getContext(U)).open(this, _t, {
     data: {
       workflowAlias: this._workflowAlias,
       existingTemplate: this._areaTemplate,
@@ -286,7 +286,7 @@ Ee = async function() {
       elementCount: n.totalElements,
       color: n.color
     }))
-  ), i = (await this.getContext(U)).open(this, _t, {
+  ), i = (await this.getContext(U)).open(this, wt, {
     data: {
       areas: e,
       excludedAreas: [...this._excludedAreas],
@@ -349,11 +349,14 @@ ee = async function(e, t) {
   if (r) {
     const l = await oe(this._workflowAlias, r, p(this, m));
     l && (this._transformResult = l);
+  } else {
+    const l = await ut(this._workflowAlias, p(this, m));
+    l && (this._transformResult = l);
   }
 };
 V = async function(e, t, i, o) {
   if (!this._workflowAlias) return;
-  const n = this._sourceConfig?.areaRules?.[e] ?? null, l = (await this.getContext(U)).open(this, wt, {
+  const n = this._sourceConfig?.areaRules?.[e] ?? null, l = (await this.getContext(U)).open(this, yt, {
     data: {
       workflowAlias: this._workflowAlias,
       sectionId: e,
@@ -378,7 +381,7 @@ De = async function() {
   if (!e) return;
   const t = this._areaDetection?.totalPages ?? this._extraction?.source.totalPages ?? 0;
   if (t === 0) return;
-  const i = s(this, a, de).call(this), r = await (await this.getContext(U)).open(this, pt, {
+  const i = s(this, a, de).call(this), r = await (await this.getContext(U)).open(this, ht, {
     data: { mediaKey: e, totalPages: t, selectedPages: i }
   }).onSubmit().catch(() => null);
   r !== null && (r.selectedPages === null ? (this._pageMode = "all", this._pageInputValue = "") : (this._pageMode = "custom", this._pageInputValue = s(this, a, ue).call(this, r.selectedPages)), await s(this, a, Re).call(this));
@@ -444,7 +447,7 @@ Ie = function(e) {
 };
 te = async function(e, t) {
   if (!this._workflowAlias) return;
-  const i = await ut(this._workflowAlias, e, t, p(this, m));
+  const i = await dt(this._workflowAlias, e, t, p(this, m));
   i && (this._transformResult = i);
 };
 ve = function(e) {
@@ -494,7 +497,7 @@ Le = async function(e) {
   if (!(this._teachingAreaIndex === null || !this._workflowAlias || this._inferring)) {
     this._inferring = !0, this._inferenceResult = null;
     try {
-      const t = await dt(
+      const t = await pt(
         this._workflowAlias,
         this._teachingAreaIndex,
         e,
@@ -549,7 +552,7 @@ xe = function(e, t) {
 };
 R = async function(e, t = "content") {
   if (!this._workflowAlias || !this._config?.destination) return;
-  const o = (await this.getContext(U)).open(this, yt, {
+  const o = (await this.getContext(U)).open(this, $t, {
     data: {
       destination: this._config.destination,
       existingMappings: this._config.map?.mappings ?? []
@@ -1305,8 +1308,8 @@ I = async function(e) {
   }
 };
 g.styles = [
-  gt,
-  ht`
+  bt,
+  ft`
 			:host {
 				display: block;
 				height: 100%;
@@ -2264,11 +2267,11 @@ v([
   x()
 ], g.prototype, "_sampleUrl", 2);
 g = v([
-  ft("up-doc-workflow-source-view")
+  mt("up-doc-workflow-source-view")
 ], g);
-const Lt = g;
+const Nt = g;
 export {
   g as UpDocWorkflowSourceViewElement,
-  Lt as default
+  Nt as default
 };
-//# sourceMappingURL=up-doc-workflow-source-view.element-Db-z2sfU.js.map
+//# sourceMappingURL=up-doc-workflow-source-view.element-O1iMOEm3.js.map

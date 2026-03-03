@@ -706,6 +706,31 @@ public class WorkflowController : ControllerBase
         return Ok(transformResult);
     }
 
+    /// <summary>
+    /// Re-runs the transform from saved area detection and source config (no re-extraction needed).
+    /// Used by web/markdown sources after saving area rules, since they don't have a mediaKey.
+    /// </summary>
+    [HttpPost("{alias}/retransform")]
+    public IActionResult Retransform(string alias)
+    {
+        var areaDetection = _workflowService.GetAreaDetection(alias);
+        if (areaDetection == null)
+        {
+            return NotFound(new { error = $"No area detection found for workflow '{alias}'." });
+        }
+
+        var sourceConfig = _workflowService.GetSourceConfig(alias);
+        var previousTransform = _workflowService.GetTransformResult(alias);
+        var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig?.AreaRules, previousTransform);
+        _workflowService.SaveTransformResult(alias, transformResult);
+
+        _logger.LogInformation(
+            "Retransform saved for workflow '{Alias}': {Sections} sections",
+            alias, transformResult.Diagnostics.TotalSections);
+
+        return Ok(transformResult);
+    }
+
     [HttpGet("{alias}/transform")]
     public IActionResult GetTransform(string alias)
     {

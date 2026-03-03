@@ -1310,9 +1310,6 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 
 						// Render ungrouped rules
 						return html`
-							${this._groupOrder.length > 0 ? html`
-								<div class="ungrouped-label">Ungrouped</div>
-							` : nothing}
 							<updoc-sortable-rules
 								.rules=${entry.rules}
 								.expandedIds=${this._expandedRules}
@@ -1477,14 +1474,6 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				color: var(--uui-color-text);
 			}
 
-			.ungrouped-label {
-				font-size: 11px;
-				font-weight: 700;
-				text-transform: uppercase;
-				letter-spacing: 0.5px;
-				color: var(--uui-color-text-alt);
-				padding-top: var(--uui-size-space-2);
-			}
 
 			/* Unmatched elements */
 			.unmatched-section {

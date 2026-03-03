@@ -161,7 +161,24 @@ async function $(o, n, e) {
   }
   return t.json();
 }
-async function T(o, n, e, t) {
+async function T(o, n) {
+  const e = await fetch(
+    `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/retransform`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${n}`
+      }
+    }
+  );
+  if (!e.ok) {
+    const t = await e.json();
+    return console.error("Retransform failed:", t), null;
+  }
+  return e.json();
+}
+async function v(o, n, e, t) {
   const a = {};
   n && (a.mediaKey = n), t && (a.url = t);
   const r = await fetch(
@@ -177,7 +194,7 @@ async function T(o, n, e, t) {
   );
   return r.ok ? r.json() : null;
 }
-async function v(o, n, e, t) {
+async function b(o, n, e, t) {
   const a = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/transform/sections/${encodeURIComponent(n)}/included`,
     {
@@ -191,7 +208,7 @@ async function v(o, n, e, t) {
   );
   return a.ok ? a.json() : null;
 }
-async function b(o, n, e) {
+async function A(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/map`,
     {
@@ -209,7 +226,7 @@ async function b(o, n, e) {
   }
   return i(), t.json();
 }
-async function A(o, n, e) {
+async function S(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/pages`,
     {
@@ -227,7 +244,7 @@ async function A(o, n, e) {
   }
   return i(), !0;
 }
-async function S(o, n, e) {
+async function U(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/excluded-areas`,
     {
@@ -245,7 +262,7 @@ async function S(o, n, e) {
   }
   return i(), (await t.json()).excludedAreas ?? [];
 }
-async function U(o, n, e) {
+async function B(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/container-overrides`,
     {
@@ -263,7 +280,7 @@ async function U(o, n, e) {
   }
   return i(), (await t.json()).containerOverrides ?? [];
 }
-async function B(o, n) {
+async function R(o, n) {
   const e = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/source`,
     {
@@ -274,7 +291,7 @@ async function B(o, n) {
   );
   return e.ok ? e.json() : null;
 }
-async function R(o, n) {
+async function z(o, n) {
   const e = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/area-template`,
     {
@@ -285,7 +302,7 @@ async function R(o, n) {
   );
   return e.ok ? e.json() : null;
 }
-async function z(o, n, e) {
+async function I(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/area-template`,
     {
@@ -303,7 +320,7 @@ async function z(o, n, e) {
   }
   return t.json();
 }
-async function I(o, n) {
+async function O(o, n) {
   const e = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/pdf`,
     {
@@ -314,7 +331,7 @@ async function I(o, n) {
   );
   return e.ok ? e.blob() : null;
 }
-async function O(o, n, e) {
+async function P(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/area-rules`,
     {
@@ -332,7 +349,7 @@ async function O(o, n, e) {
   }
   return i(), t.json();
 }
-async function P(o, n, e, t) {
+async function N(o, n, e, t) {
   const a = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/infer-section-pattern`,
     {
@@ -356,26 +373,27 @@ function i() {
 export {
   m as a,
   h as b,
-  I as c,
+  O as c,
   w as d,
   j as e,
   d as f,
   y as g,
-  B as h,
+  R as h,
   k as i,
   C as j,
-  R as k,
+  z as k,
   $ as l,
   g as m,
-  U as n,
-  S as o,
-  A as p,
-  O as q,
-  b as r,
-  z as s,
-  T as t,
-  v as u,
-  P as v,
-  i as w
+  B as n,
+  U as o,
+  S as p,
+  P as q,
+  T as r,
+  I as s,
+  v as t,
+  A as u,
+  b as v,
+  N as w,
+  i as x
 };
-//# sourceMappingURL=workflow.service-DcrxYgqr.js.map
+//# sourceMappingURL=workflow.service-DXCyU5bG.js.map

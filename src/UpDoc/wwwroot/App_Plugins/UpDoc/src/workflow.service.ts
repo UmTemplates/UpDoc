@@ -353,6 +353,34 @@ export async function triggerTransform(
 }
 
 /**
+ * Re-runs transform from saved area detection + source config (no re-extraction).
+ * Used after saving area rules for web/markdown sources that lack a mediaKey.
+ */
+export async function retransform(
+	workflowAlias: string,
+	token: string
+): Promise<TransformResult | null> {
+	const response = await fetch(
+		`/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(workflowAlias)}/retransform`,
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		}
+	);
+
+	if (!response.ok) {
+		const error = await response.json();
+		console.error('Retransform failed:', error);
+		return null;
+	}
+
+	return response.json();
+}
+
+/**
  * Runs area detection + transform on a media item or URL without saving to disk.
  * Returns a TransformResult with include/exclude state from the stored transform.
  */

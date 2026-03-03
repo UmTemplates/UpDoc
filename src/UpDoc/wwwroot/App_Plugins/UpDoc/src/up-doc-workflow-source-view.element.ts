@@ -1,6 +1,6 @@
 import type { RichExtractionResult, DocumentTypeConfig, MappingDestination, AreaDetectionResult, DetectedArea, DetectedSection, AreaElement, TransformResult, TransformedSection, SourceConfig, AreaTemplate, AreaRules, InferSectionPatternResponse, MapConfig, SectionMapping } from './workflow.types.js';
 import { allTransformSections } from './workflow.types.js';
-import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, fetchTransformResult, updateSectionInclusion, savePageSelection, saveExcludedAreas, saveContainerOverrides, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
+import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, retransform, fetchTransformResult, updateSectionInclusion, savePageSelection, saveExcludedAreas, saveContainerOverrides, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
 import { normalizeToKebabCase, markdownToHtml } from './transforms.js';
 import { getAllBlockContainers } from './destination-utils.js';
 import { UMB_AREA_EDITOR_MODAL } from './pdf-area-editor-modal.token.js';
@@ -469,10 +469,16 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			this._sourceConfig = { ...this._sourceConfig, areaRules: saved };
 		}
 
-		// Re-trigger transform so the Extracted view reflects composed sections
+		// Re-trigger transform so the Transformed view reflects updated rules
 		const mediaKey = this._extraction?.source.mediaKey;
 		if (mediaKey) {
 			const updatedTransform = await triggerTransform(this._workflowAlias, mediaKey, this.#token);
+			if (updatedTransform) {
+				this._transformResult = updatedTransform;
+			}
+		} else {
+			// Web/markdown sources have no mediaKey — retransform from saved area detection
+			const updatedTransform = await retransform(this._workflowAlias, this.#token);
 			if (updatedTransform) {
 				this._transformResult = updatedTransform;
 			}

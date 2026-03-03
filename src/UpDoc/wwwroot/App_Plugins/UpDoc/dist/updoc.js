@@ -8,7 +8,7 @@ const o = [
     alias: "UpDoc.EntityAction",
     name: "UpDoc Entity Action",
     weight: 1100,
-    api: () => import("./up-doc-action-B9aESrVg.js"),
+    api: () => import("./up-doc-action-C-HZDOGX.js"),
     forEntityTypes: ["document"],
     meta: {
       icon: "icon-document",
@@ -30,7 +30,7 @@ const o = [
     type: "condition",
     alias: "UpDoc.Condition.HasAvailableWorkflows",
     name: "Has Available Workflows",
-    api: () => import("./up-doc-has-workflows.condition-DdNJRdzZ.js")
+    api: () => import("./up-doc-has-workflows.condition-Du5jtMO8.js")
   },
   // =====================================================================
   // Collection Action — "Create from Source" button in collection toolbar
@@ -40,7 +40,7 @@ const o = [
     kind: "button",
     alias: "UpDoc.CollectionAction",
     name: "UpDoc Collection Action",
-    element: () => import("./up-doc-collection-action.element-CWL1mI6n.js"),
+    element: () => import("./up-doc-collection-action.element-DW5ykfkJ.js"),
     weight: 50,
     meta: {
       label: "Create from Source"
@@ -59,7 +59,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.Modal",
     name: "UpDoc Modal",
-    element: () => import("./up-doc-modal.element-CkEOeqhT.js")
+    element: () => import("./up-doc-modal.element-F8z8ZxbK.js")
   },
   {
     type: "modal",
@@ -71,13 +71,13 @@ const o = [
     type: "modal",
     alias: "UpDoc.CreateWorkflowSidebar",
     name: "Create Workflow Sidebar",
-    element: () => import("./create-workflow-sidebar.element-Df4lhdWk.js")
+    element: () => import("./create-workflow-sidebar.element-kPaaP0_A.js")
   },
   {
     type: "modal",
     alias: "UpDoc.WorkflowDetailModal",
     name: "Workflow Detail Modal",
-    element: () => import("./up-doc-workflow-detail-modal.element-JlfQ1IsP.js")
+    element: () => import("./up-doc-workflow-detail-modal.element-D1-nVeSQ.js")
   },
   {
     type: "modal",
@@ -89,7 +89,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.AreaEditorModal",
     name: "Area Editor Modal",
-    element: () => import("./pdf-area-editor-modal.element-B4-Z860K.js")
+    element: () => import("./pdf-area-editor-modal.element-B0RyK7td.js")
   },
   {
     type: "modal",
@@ -107,7 +107,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.SectionRulesEditorModal",
     name: "Section Rules Editor Modal",
-    element: () => import("./section-rules-editor-modal.element-4Mz_tTmS.js")
+    element: () => import("./section-rules-editor-modal.element-B6_sZxmg.js")
   },
   // =====================================================================
   // Workflow Workspace — full page for editing individual workflows
@@ -126,7 +126,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Destination",
     name: "Destination",
-    element: () => import("./up-doc-workflow-destination-view.element-DUpr6bDT.js"),
+    element: () => import("./up-doc-workflow-destination-view.element-CM5hSYMg.js"),
     weight: 300,
     meta: {
       label: "Destination",
@@ -144,7 +144,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Source",
     name: "UpDoc Workflow Source View",
-    element: () => import("./up-doc-workflow-source-view.element-Db-z2sfU.js"),
+    element: () => import("./up-doc-workflow-source-view.element-O1iMOEm3.js"),
     weight: 200,
     meta: {
       label: "Source",
@@ -162,7 +162,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Map",
     name: "UpDoc Workflow Map View",
-    element: () => import("./up-doc-workflow-map-view.element-CTFZR8iD.js"),
+    element: () => import("./up-doc-workflow-map-view.element-Bp4fqlyD.js"),
     weight: 100,
     meta: {
       label: "Map",
@@ -308,7 +308,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkspaceView.Workflows",
     name: "Workflows",
-    element: () => import("./up-doc-workflows-view.element-Bnrx_L8D.js"),
+    element: () => import("./up-doc-workflows-view.element-Dy2gphN_.js"),
     weight: 300,
     meta: {
       label: "Workflows",

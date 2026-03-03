@@ -1,10 +1,10 @@
 {
   "$schema": null,
   "version": "1.0",
-  "documentTypeAlias": "tailoredTour",
-  "documentTypeName": "Tailored Tour",
-  "blueprintId": "15d1cb96-20e9-4092-b1b4-fe8a13b82204",
-  "blueprintName": "Tailored Tour",
+  "documentTypeAlias": "groupTour",
+  "documentTypeName": "Group Tour",
+  "blueprintId": "a6e0e5b8-a022-4534-ac7f-1929dbe9fb6c",
+  "blueprintName": "Group Tour",
   "fields": [
     {
       "key": "1456b7e3-0fb0-45d0-9514-8438e6ec5960",
@@ -46,14 +46,14 @@
   ],
   "blockGrids": [
     {
-      "key": "327ea3ae-c53f-49cf-a521-f079cc271f1c",
-      "alias": "blockGridTailoredTour",
-      "label": "Block Grid Tailored Tour",
+      "key": "60e6181d-0399-40de-8da2-d599ed1f457e",
+      "alias": "blockGridGroupTour",
+      "label": "Block Grid - Group Tour",
       "description": "Hover \u0027Block Grid Editor\u0027 then click the 3 dots to switch to Sort Mode (a simplified view for rearranging the page).\nThe Block Grid Editor allows you to add Layout Blocks consisting of one or more Areas which in turn may contain Feature Blocks such as Text or Images",
       "tab": "Page Content",
       "blocks": [
         {
-          "key": "110aaad3-5e7e-4f7c-9560-4c05e0e8a2fb",
+          "key": "1f1b18e0-f160-4ec4-ab49-49b4d8e05d33",
           "contentTypeAlias": "featurePageTitleDescription",
           "contentTypeKey": "1e6ac523-7122-4994-9f51-7ca67065222a",
           "label": "Feature - Page - Title and Description",
@@ -72,35 +72,13 @@
           ]
         },
         {
-          "key": "d477251f-6928-40c3-a1c0-f52fe497036f",
-          "contentTypeAlias": "featurePageOrganisers",
-          "contentTypeKey": "a00f052f-2581-4b24-a04e-a49db5a87615",
-          "label": "Organiser",
+          "key": "52a90dd1-3ba6-46de-b650-16ae94c82569",
+          "contentTypeAlias": "featureNavigationDescendants",
+          "contentTypeKey": "c345e5ce-768f-47e0-968a-e7859dbe0b07",
+          "label": "Feature - Navigation - Descendants",
           "description": null,
-          "identifyBy": {
-            "property": "featurePropertyFeatureTitle",
-            "value": "Organiser"
-          },
+          "identifyBy": null,
           "properties": [
-            {
-              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
-              "alias": "featurePropertyFeatureTitle",
-              "label": "Title",
-              "type": "text",
-              "acceptsFormats": [
-                "text"
-              ]
-            },
-            {
-              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
-              "alias": "featurePropertyFeatureDescription",
-              "label": "Description",
-              "type": "textArea",
-              "acceptsFormats": [
-                "text",
-                "markdown"
-              ]
-            },
             {
               "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
               "alias": "noConfiguration",
@@ -109,28 +87,18 @@
               "acceptsFormats": [
                 "text"
               ]
-            },
-            {
-              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
-              "alias": "featurePropertyFeatureSummary",
-              "label": "Summary",
-              "type": "textArea",
-              "acceptsFormats": [
-                "text",
-                "markdown"
-              ]
             }
           ]
         },
         {
-          "key": "0d955991-3330-4b58-8028-d6845c909183",
+          "key": "f6cfe802-72e5-49ce-8de8-fc78cbec3d9d",
           "contentTypeAlias": "featureRichTextEditorItinery",
           "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
-          "label": "Itinerary",
+          "label": "Suggested Itinerary",
           "description": null,
           "identifyBy": {
             "property": "featurePropertyFeatureTitle",
-            "value": "Itinerary"
+            "value": "Suggested Itinerary"
           },
           "properties": [
             {
@@ -176,7 +144,7 @@
           ]
         },
         {
-          "key": "06cbdd26-e9f9-41d7-8cfb-9eaa6cf45db9",
+          "key": "d65d7ffc-41da-4617-a6fd-9f1555bc3f16",
           "contentTypeAlias": "featureRichTextEditorFeatures",
           "contentTypeKey": "34e5aa3b-db10-40a1-893d-79e98cd3f2f4",
           "label": "Features",
@@ -229,7 +197,7 @@
           ]
         },
         {
-          "key": "e7dba20d-ab15-4f9b-b78c-a049c267ff48",
+          "key": "90f9fe06-16a8-4677-bb30-680e89ab86bb",
           "contentTypeAlias": "featureRichTextEditorAccommodation",
           "contentTypeKey": "1d09b5af-b95a-4af5-b8f2-323db029e817",
           "label": "Accommodation",
@@ -280,131 +248,9 @@
               ]
             }
           ]
-        },
-        {
-          "key": "80c09624-0a96-4e5f-a3af-497feec573ab",
-          "contentTypeAlias": "featureRichTextEditorSights",
-          "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
-          "label": "Sights",
-          "description": null,
-          "identifyBy": {
-            "property": "featurePropertyFeatureTitle",
-            "value": "Sights"
-          },
-          "properties": [
-            {
-              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
-              "alias": "featurePropertyFeatureTitle",
-              "label": "Title",
-              "type": "text",
-              "acceptsFormats": [
-                "text"
-              ]
-            },
-            {
-              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
-              "alias": "featurePropertyFeatureDescription",
-              "label": "Description",
-              "type": "textArea",
-              "acceptsFormats": [
-                "text",
-                "markdown"
-              ]
-            },
-            {
-              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
-              "alias": "richTextContent",
-              "label": "Rich Text",
-              "type": "richText",
-              "acceptsFormats": [
-                "html",
-                "markdown",
-                "text"
-              ]
-            },
-            {
-              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
-              "alias": "featurePropertyFeatureSummary",
-              "label": "Summary",
-              "type": "textArea",
-              "acceptsFormats": [
-                "text",
-                "markdown"
-              ]
-            }
-          ]
         }
       ]
     }
   ],
-  "blockLists": [
-    {
-      "key": "6d9ed691-05fb-43a1-9c59-7acd87dadaf9",
-      "alias": "organisers",
-      "label": "Organisers",
-      "description": "",
-      "tab": "Tour Organiser",
-      "blocks": [
-        {
-          "key": "7ee351d1-8894-4052-bbce-b5fbd8c224f8",
-          "contentTypeAlias": "tourOrganiser",
-          "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
-          "label": "[Organisation]",
-          "description": null,
-          "identifyBy": {
-            "property": "organiserOrganisation",
-            "value": "[Organisation]"
-          },
-          "properties": [
-            {
-              "key": "7c5b76b4-9669-4850-bb45-e1a677b02071",
-              "alias": "organiserOrganisation",
-              "label": "Organisation",
-              "type": "text",
-              "acceptsFormats": [
-                "text"
-              ]
-            },
-            {
-              "key": "2300b756-5bf7-4803-a8c4-42aed1e1fb3f",
-              "alias": "organiserName",
-              "label": "Organiser Name",
-              "type": "text",
-              "acceptsFormats": [
-                "text"
-              ]
-            },
-            {
-              "key": "6c46ce05-a26b-4eb1-a05e-b108b5291753",
-              "alias": "organiserTelephone",
-              "label": "Organiser Telephone",
-              "type": "text",
-              "acceptsFormats": [
-                "text"
-              ]
-            },
-            {
-              "key": "0c13102b-c1b9-4505-8ce2-be6673c90ce4",
-              "alias": "organiserEmail",
-              "label": "Organiser Email",
-              "type": "text",
-              "acceptsFormats": [
-                "text"
-              ]
-            },
-            {
-              "key": "71b7aaf8-3776-41b3-99f2-2f2da9919721",
-              "alias": "organiserAddress",
-              "label": "Organiser Address",
-              "type": "textArea",
-              "acceptsFormats": [
-                "text",
-                "markdown"
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "blockLists": []
 }

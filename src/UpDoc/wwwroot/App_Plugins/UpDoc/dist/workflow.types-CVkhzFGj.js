@@ -26,11 +26,12 @@ function c(t) {
   return t.format ? t.format : t.action === "addAsList" ? "bulletListItem" : "auto";
 }
 function a(t) {
+  if (!t?.areas) return [];
   const e = [];
-  for (const s of t.areas) {
-    for (const n of s.groups)
-      e.push(...n.sections);
-    e.push(...s.sections);
+  for (const n of t.areas) {
+    for (const s of n.groups)
+      e.push(...s.sections);
+    e.push(...n.sections);
   }
   return e;
 }
@@ -39,4 +40,4 @@ export {
   c as b,
   r as g
 };
-//# sourceMappingURL=workflow.types-sXs8a86t.js.map
+//# sourceMappingURL=workflow.types-CVkhzFGj.js.map

@@ -5,6 +5,8 @@
 export interface SourceConfig {
 	version: string;
 	sourceTypes: string[];
+	/** The workflow alias this source config belongs to (set at runtime, not persisted). */
+	workflowAlias?: string;
 	globals?: SourceGlobals;
 	/** Top-level page selection: "all" or array of page numbers. */
 	pages?: number[] | 'all';
@@ -611,7 +613,8 @@ export interface TransformGroup {
 }
 
 /** Helper: get all sections from a TransformResult as a flat array. */
-export function allTransformSections(result: TransformResult): TransformedSection[] {
+export function allTransformSections(result: TransformResult | null | undefined): TransformedSection[] {
+	if (!result?.areas) return [];
 	const sections: TransformedSection[] = [];
 	for (const area of result.areas) {
 		for (const group of area.groups) {

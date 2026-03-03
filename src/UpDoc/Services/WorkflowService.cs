@@ -199,9 +199,24 @@ public class WorkflowService : IWorkflowService
     {
         var configs = LoadConfigs();
         var idString = blueprintId.ToString();
-        return configs.FirstOrDefault(c =>
+        var matching = configs.Where(c =>
             !string.IsNullOrEmpty(c.Destination.BlueprintId) &&
-            c.Destination.BlueprintId.Equals(idString, StringComparison.OrdinalIgnoreCase));
+            c.Destination.BlueprintId.Equals(idString, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        if (matching.Count == 0) return null;
+        if (matching.Count == 1) return matching[0];
+
+        // Multiple workflows for same blueprint (e.g. PDF + web) — merge their Sources
+        var merged = matching[0];
+        for (int i = 1; i < matching.Count; i++)
+        {
+            foreach (var kvp in matching[i].Sources)
+            {
+                merged.Sources.TryAdd(kvp.Key, kvp.Value);
+            }
+        }
+        return merged;
     }
 
     public DocumentTypeConfig? GetConfigForDocumentType(string alias)
@@ -1029,6 +1044,7 @@ public class WorkflowService : IWorkflowService
             var source = JsonSerializer.Deserialize<SourceConfig>(sourceJson, JsonOptions);
             if (source != null && source.SourceTypes.Count > 0)
             {
+                source.WorkflowAlias = folderName;
                 sources[source.SourceTypes[0]] = source;
                 _logger.LogInformation("  Loaded source config: {SourceType} from {Path}", source.SourceTypes[0], sourceFile);
             }

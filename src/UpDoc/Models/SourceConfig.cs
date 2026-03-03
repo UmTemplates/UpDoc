@@ -11,6 +11,14 @@ public class SourceConfig
     [JsonPropertyName("$schema")]
     public string? Schema { get; set; }
 
+    /// <summary>
+    /// The workflow alias this source config belongs to.
+    /// Set at runtime when building DocumentTypeConfig, not persisted to source.json.
+    /// </summary>
+    [JsonPropertyName("workflowAlias")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? WorkflowAlias { get; set; }
+
     [JsonPropertyName("version")]
     public string Version { get; set; } = "1.0";
 

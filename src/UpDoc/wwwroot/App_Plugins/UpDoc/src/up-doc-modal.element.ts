@@ -130,6 +130,26 @@ export class UpDocModalElement extends UmbModalBaseElement<
 		}
 	}
 
+	/**
+	 * Resolves the workflow alias for the currently selected source type.
+	 * Each source type may belong to a different workflow folder.
+	 */
+	#resolveWorkflowAlias(): string | null {
+		if (!this._config) return null;
+
+		// Prefer per-source-type workflowAlias (supports multiple workflows per blueprint)
+		if (this._sourceType && this._config.sources?.[this._sourceType]?.workflowAlias) {
+			return this._config.sources[this._sourceType].workflowAlias!;
+		}
+
+		// Fallback to deriving from folderPath (single-workflow case)
+		if (this._config.folderPath) {
+			return this._config.folderPath.replace(/\\/g, '/').split('/').pop() ?? null;
+		}
+
+		return null;
+	}
+
 	async #extractFromSource(mediaUnique: string) {
 		this._isExtracting = true;
 		this._extractionError = null;
@@ -138,14 +158,9 @@ export class UpDocModalElement extends UmbModalBaseElement<
 			const authContext = await this.getContext(UMB_AUTH_CONTEXT);
 			const token = await authContext.getLatestToken();
 
-			if (!this._config?.folderPath) {
-				this._extractionError = 'No workflow configured for this blueprint';
-				return;
-			}
-
-			const workflowAlias = this._config.folderPath.replace(/\\/g, '/').split('/').pop() ?? '';
+			const workflowAlias = this.#resolveWorkflowAlias();
 			if (!workflowAlias) {
-				this._extractionError = 'Could not determine workflow name';
+				this._extractionError = 'No workflow configured for this blueprint';
 				return;
 			}
 
@@ -204,14 +219,9 @@ export class UpDocModalElement extends UmbModalBaseElement<
 			const authContext = await this.getContext(UMB_AUTH_CONTEXT);
 			const token = await authContext.getLatestToken();
 
-			if (!this._config?.folderPath) {
-				this._extractionError = 'No workflow configured for this blueprint';
-				return;
-			}
-
-			const workflowAlias = this._config.folderPath.replace(/\\/g, '/').split('/').pop() ?? '';
+			const workflowAlias = this.#resolveWorkflowAlias();
 			if (!workflowAlias) {
-				this._extractionError = 'Could not determine workflow name';
+				this._extractionError = 'No workflow configured for this blueprint';
 				return;
 			}
 

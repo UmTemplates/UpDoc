@@ -1,0 +1,40 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "name": null,
+  "description": null,
+  "mappings": [
+    {
+      "source": "tour-title.content",
+      "destinations": [
+        {
+          "target": "pageTitle",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        },
+        {
+          "target": "pageTitleShort",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "tour-description.content",
+      "destinations": [
+        {
+          "target": "pageDescription",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    }
+  ]
+}

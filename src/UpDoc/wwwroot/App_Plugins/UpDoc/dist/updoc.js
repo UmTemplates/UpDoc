@@ -59,7 +59,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.Modal",
     name: "UpDoc Modal",
-    element: () => import("./up-doc-modal.element-DVonqoFL.js")
+    element: () => import("./up-doc-modal.element-CU8Smgd3.js")
   },
   {
     type: "modal",

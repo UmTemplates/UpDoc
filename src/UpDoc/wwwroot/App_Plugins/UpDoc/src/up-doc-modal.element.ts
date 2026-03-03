@@ -276,14 +276,30 @@ export class UpDocModalElement extends UmbModalBaseElement<
 	#prefillDocumentName(elementLookup: Record<string, string>) {
 		// Try mapping-based name resolution first
 		if (this._config?.map?.mappings?.length) {
-			// Find the first mapping that targets a top-level field (no blockKey)
+			// Find the mapping that targets pageTitle (preferred for node name).
+			// TODO: Allow workflow authors to configure which field maps to node name
+			// via a nodeNameField property in destination.json or workflow.json.
 			let titleTarget: string | null = null;
 			for (const mapping of this._config.map.mappings) {
 				if (mapping.enabled === false) continue;
-				const topLevelDest = mapping.destinations.find((d) => !d.blockKey);
-				if (topLevelDest) {
-					titleTarget = topLevelDest.target;
+				const pageTitleDest = mapping.destinations.find(
+					(d) => !d.blockKey && d.target === 'pageTitle',
+				);
+				if (pageTitleDest) {
+					titleTarget = pageTitleDest.target;
 					break;
+				}
+			}
+
+			// Fallback: first mapping with any top-level destination
+			if (!titleTarget) {
+				for (const mapping of this._config.map.mappings) {
+					if (mapping.enabled === false) continue;
+					const topLevelDest = mapping.destinations.find((d) => !d.blockKey);
+					if (topLevelDest) {
+						titleTarget = topLevelDest.target;
+						break;
+					}
 				}
 			}
 

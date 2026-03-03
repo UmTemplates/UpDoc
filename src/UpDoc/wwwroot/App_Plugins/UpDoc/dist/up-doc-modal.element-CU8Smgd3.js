@@ -1,5 +1,5 @@
-import { a as N } from "./workflow.types-CVkhzFGj.js";
-import { a as at, t as D } from "./workflow.service-DcrxYgqr.js";
+import { a as D } from "./workflow.types-CVkhzFGj.js";
+import { a as at, t as N } from "./workflow.service-DcrxYgqr.js";
 import { r as nt, g as rt, a as st, b as ct } from "./destination-utils-DUfOJy5W.js";
 import { s as A } from "./transforms-BkZeboOX.js";
 import { html as u, css as ut, state as f, customElement as lt, nothing as q } from "@umbraco-cms/backoffice/external/lit";
@@ -8,11 +8,11 @@ import { UmbModalBaseElement as pt } from "@umbraco-cms/backoffice/modal";
 import { UMB_AUTH_CONTEXT as U } from "@umbraco-cms/backoffice/auth";
 var ht = Object.defineProperty, ft = Object.getOwnPropertyDescriptor, I = (t) => {
   throw TypeError(t);
-}, p = (t, i, e, r) => {
-  for (var s = r > 1 ? void 0 : r ? ft(i, e) : i, l = t.length - 1, n; l >= 0; l--)
-    (n = t[l]) && (s = (r ? n(i, e, s) : n(s)) || s);
-  return r && s && ht(i, e, s), s;
-}, bt = (t, i, e) => i.has(t) || I("Cannot " + e), mt = (t, i, e) => i.has(t) ? I("Cannot add the same private member more than once") : i instanceof WeakSet ? i.add(t) : i.set(t, e), a = (t, i, e) => (bt(t, i, "access private method"), e), o, P, F, z, M, O, E, L, W, K, j, B, R, G, Y, T, k, w, H, X, J, S, Q, V, Z, tt, et, it;
+}, p = (t, i, e, n) => {
+  for (var s = n > 1 ? void 0 : n ? ft(i, e) : i, l = t.length - 1, r; l >= 0; l--)
+    (r = t[l]) && (s = (n ? r(i, e, s) : r(s)) || s);
+  return n && s && ht(i, e, s), s;
+}, bt = (t, i, e) => i.has(t) || I("Cannot " + e), mt = (t, i, e) => i.has(t) ? I("Cannot add the same private member more than once") : i instanceof WeakSet ? i.add(t) : i.set(t, e), a = (t, i, e) => (bt(t, i, "access private method"), e), o, P, F, z, M, O, E, L, K, W, j, B, R, G, Y, T, k, w, H, X, J, S, Q, V, Z, tt, et, it;
 const gt = {
   pdf: "PDF Document",
   markdown: "Markdown",
@@ -40,7 +40,7 @@ let d = class extends pt {
 					slot="actions"
 					id="close"
 					label=${this.localize.term("general_close")}
-					@click="${a(this, o, K)}"></uui-button>
+					@click="${a(this, o, W)}"></uui-button>
 				<uui-button
 					slot="actions"
 					id="save"
@@ -48,7 +48,7 @@ let d = class extends pt {
 					color="positive"
 					label=${this.localize.term("general_create")}
 					?disabled=${!t}
-					@click="${a(this, o, W)}"></uui-button>
+					@click="${a(this, o, K)}"></uui-button>
 			</umb-body-layout>
 		`;
   }
@@ -59,8 +59,8 @@ P = async function() {
   try {
     const t = this.data?.blueprintId;
     if (!t) return;
-    const e = await (await this.getContext(U)).getLatestToken(), r = await at(t, e);
-    r && (this._config = r, r.sources && (this._availableSourceTypes = Object.keys(r.sources), this._availableSourceTypes.length === 1 && (this._sourceType = this._availableSourceTypes[0])));
+    const e = await (await this.getContext(U)).getLatestToken(), n = await at(t, e);
+    n && (this._config = n, n.sources && (this._availableSourceTypes = Object.keys(n.sources), this._availableSourceTypes.length === 1 && (this._sourceType = this._availableSourceTypes[0])));
   } catch (t) {
     console.error("Failed to load available source types:", t);
   } finally {
@@ -81,20 +81,20 @@ M = function() {
 O = async function(t) {
   this._isExtracting = !0, this._extractionError = null;
   try {
-    const e = await (await this.getContext(U)).getLatestToken(), r = a(this, o, M).call(this);
-    if (!r) {
+    const e = await (await this.getContext(U)).getLatestToken(), n = a(this, o, M).call(this);
+    if (!n) {
       this._extractionError = "No workflow configured for this blueprint";
       return;
     }
-    const s = await D(r, t, e), l = N(s);
+    const s = await N(n, t, e), l = D(s);
     if (!l.length) {
       this._extractionError = "Failed to extract content from source";
       return;
     }
-    const n = {};
+    const r = {};
     for (const c of l)
-      c.included && (c.heading && (n[`${c.id}.heading`] = c.pattern === "role" ? c.content : c.heading, n[`${c.id}.title`] = c.pattern === "role" ? c.content : c.heading), n[`${c.id}.content`] = c.content, c.description && (n[`${c.id}.description`] = c.description), c.summary && (n[`${c.id}.summary`] = c.summary));
-    this._sectionLookup = n, !this._documentName && this._config && a(this, o, L).call(this, n);
+      c.included && (c.heading && (r[`${c.id}.heading`] = c.pattern === "role" ? c.content : c.heading, r[`${c.id}.title`] = c.pattern === "role" ? c.content : c.heading), r[`${c.id}.content`] = c.content, c.description && (r[`${c.id}.description`] = c.description), c.summary && (r[`${c.id}.summary`] = c.summary));
+    this._sectionLookup = r, !this._documentName && this._config && a(this, o, L).call(this, r);
   } catch (i) {
     this._extractionError = "Failed to connect to extraction service", console.error("Extraction error:", i);
   } finally {
@@ -110,14 +110,14 @@ E = async function() {
         this._extractionError = "No workflow configured for this blueprint";
         return;
       }
-      const r = await D(e, "", i, this._sourceUrl), s = N(r);
+      const n = await N(e, "", i, this._sourceUrl), s = D(n);
       if (!s.length) {
         this._extractionError = "Failed to extract content from web page";
         return;
       }
       const l = {};
-      for (const n of s)
-        n.included && (n.heading && (l[`${n.id}.heading`] = n.pattern === "role" ? n.content : n.heading, l[`${n.id}.title`] = n.pattern === "role" ? n.content : n.heading), l[`${n.id}.content`] = n.content, n.description && (l[`${n.id}.description`] = n.description), n.summary && (l[`${n.id}.summary`] = n.summary));
+      for (const r of s)
+        r.included && (r.heading && (l[`${r.id}.heading`] = r.pattern === "role" ? r.content : r.heading, l[`${r.id}.title`] = r.pattern === "role" ? r.content : r.heading), l[`${r.id}.content`] = r.content, r.description && (l[`${r.id}.description`] = r.description), r.summary && (l[`${r.id}.summary`] = r.summary));
       this._sectionLookup = l, !this._documentName && this._config && a(this, o, L).call(this, l);
     } catch (t) {
       this._extractionError = "Failed to extract from web page", console.error("Web extraction error:", t);
@@ -131,19 +131,30 @@ L = function(t) {
     let i = null;
     for (const e of this._config.map.mappings) {
       if (e.enabled === !1) continue;
-      const r = e.destinations.find((s) => !s.blockKey);
-      if (r) {
-        i = r.target;
+      const n = e.destinations.find(
+        (s) => !s.blockKey && s.target === "pageTitle"
+      );
+      if (n) {
+        i = n.target;
         break;
       }
     }
+    if (!i)
+      for (const e of this._config.map.mappings) {
+        if (e.enabled === !1) continue;
+        const n = e.destinations.find((s) => !s.blockKey);
+        if (n) {
+          i = n.target;
+          break;
+        }
+      }
     if (i) {
       const e = [];
-      for (const r of this._config.map.mappings) {
-        if (r.enabled === !1) continue;
-        r.destinations.some(
+      for (const n of this._config.map.mappings) {
+        if (n.enabled === !1) continue;
+        n.destinations.some(
           (l) => l.target === i && !l.blockKey
-        ) && t[r.source] && e.push(t[r.source]);
+        ) && t[n.source] && e.push(t[n.source]);
       }
       if (e.length > 0) {
         this._documentName = A(e.join(" "));
@@ -157,7 +168,7 @@ L = function(t) {
       return;
     }
 };
-W = function() {
+K = function() {
   this.value = {
     name: this._documentName,
     sourceType: this._sourceType,
@@ -167,7 +178,7 @@ W = function() {
     config: this._config
   }, this._submitModal();
 };
-K = function() {
+W = function() {
   this._rejectModal();
 };
 j = function() {
@@ -358,13 +369,13 @@ J = function() {
         g.push(_), i.set(m, g), e.has(m) || e.set(m, { alias: b.target, blockKey: b.blockKey });
       }
   }
-  const r = /* @__PURE__ */ new Map(), s = /* @__PURE__ */ new Map();
+  const n = /* @__PURE__ */ new Map(), s = /* @__PURE__ */ new Map();
   for (const [h, _] of i.entries()) {
     const b = e.get(h), m = b?.alias ?? h, g = b?.blockKey, $ = nt(
       { target: m, blockKey: g },
       t
     ) ?? "other";
-    r.has($) || r.set($, []);
+    n.has($) || n.set($, []);
     let C = m;
     if (g)
       for (const y of rt(t)) {
@@ -379,19 +390,19 @@ J = function() {
       const y = t.fields.find((x) => x.alias === m);
       y && (C = y.label);
     }
-    r.get($).push({
+    n.get($).push({
       label: C,
       value: _.join(" "),
       blockLabel: g ? st(g, t) ?? void 0 : void 0
     });
   }
-  const l = ct(t), n = [];
+  const l = ct(t), r = [];
   for (const h of l) {
-    const _ = r.get(h.id);
-    _?.length && (s.set(h.id, h.label), n.push({ tabId: h.id, tabLabel: h.label, items: _ }));
+    const _ = n.get(h.id);
+    _?.length && (s.set(h.id, h.label), r.push({ tabId: h.id, tabLabel: h.label, items: _ }));
   }
-  const c = r.get("other");
-  return c?.length && n.push({ tabId: "other", tabLabel: "Other", items: c }), n;
+  const c = n.get("other");
+  return c?.length && r.push({ tabId: "other", tabLabel: "Other", items: c }), r;
 };
 S = function(t, i) {
   return u`
@@ -418,16 +429,16 @@ Q = function(t) {
   if (t.tabId === "page-content") {
     const i = /* @__PURE__ */ new Map();
     for (const e of t.items) {
-      const r = e.blockLabel ?? "Other", s = i.get(r) ?? [];
-      s.push(e), i.set(r, s);
+      const n = e.blockLabel ?? "Other", s = i.get(n) ?? [];
+      s.push(e), i.set(n, s);
     }
     return u`
-				${Array.from(i.entries()).map(([e, r]) => u`
+				${Array.from(i.entries()).map(([e, n]) => u`
 					<div class="block-group-header">
 						<umb-icon name="icon-box"></umb-icon>
 						<span>${e}</span>
 					</div>
-					${r.map((s) => a(this, o, S).call(this, s.label, s.value))}
+					${n.map((s) => a(this, o, S).call(this, s.label, s.value))}
 				`)}
 			`;
   }
@@ -724,4 +735,4 @@ export {
   d as UpDocModalElement,
   Ct as default
 };
-//# sourceMappingURL=up-doc-modal.element-DVonqoFL.js.map
+//# sourceMappingURL=up-doc-modal.element-CU8Smgd3.js.map

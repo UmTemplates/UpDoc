@@ -1,9 +1,19 @@
 # Drag-and-Drop Rules — Implementation Plan
 
-## Branch
-`feature/rules-editor-groups` (continue from current state)
+> **STATUS: COMPLETE** (Mar 2026, branch `feature/fix-drag-drop-dead-zone`, commits `3b631c6` + `38859c1`)
+>
+> The dead zone between sortable containers was fixed by introducing an "Ungrouped" sentinel group
+> that puts all rules inside `<updoc-sortable-rules>` containers. See `docs/errors/drag-drop-dead-zone.md`
+> for the full technical write-up.
 
-## Current State (commit `ecd0d8e`)
+## Branch
+`feature/rules-editor-groups` (original), `feature/fix-drag-drop-dead-zone` (final fix)
+
+## Final State
+- All rules inside sortable containers (one per group, including "Ungrouped")
+- Cross-container drag-and-drop works via shared `identifier: 'updoc-rules-sorter'`
+- "Ungrouped" sentinel group: renders as a group, saves as top-level `rules[]`
+- Move-to-group dropdown remains as reliable fallback
 - Collapsed rule rows: grip | chevron | name | part badge | match badge | action bar (hover)
 - Expanded rules: greyed-out grip (not draggable) | chevron (collapse) | name input | trash
 - Group header: uui-action-bar (hover) with rename + delete

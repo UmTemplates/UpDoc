@@ -10,9 +10,9 @@ I'd like to do a bug-fixing and polish session on the UpDoc project. Here's a su
 
 ### Bugs to investigate
 
-1. **Drag-and-drop between groups** — Removing the "Ungrouped" label (done) wasn't sufficient. Drag loses tracking immediately after leaving the grip handle area. The real problem is non-sortable HTML between `<updoc-sortable-rules>` containers (Add rule buttons, group-container divs, Add group button). Need to investigate `UmbSorterController` cross-container drag requirements. Move-to-group dropdown works as a workaround.
+1. ~~**Drag-and-drop between groups**~~ — **FIXED** (Mar 2026, commit `3b631c6`). Root cause: non-sortable HTML between `<updoc-sortable-rules>` containers. Fix: Ungrouped sentinel group puts all rules inside containers. See `docs/errors/drag-drop-dead-zone.md`.
 
-1b. **Rules save persistence** — Rules created/modified in the section rules editor modal don't persist when reopening the modal. The save pipeline (`#onSave` → `data.onSave` → `#saveAreaRulesForKey` → API PUT) looks correct but rules are lost. Needs investigation.
+1b. ~~**Rules save persistence**~~ — No longer reproducible after Ungrouped group refactor.
 
 2. **GetConfigForBlueprint merge bug (C# side)** — `WorkflowService.GetConfigForBlueprint()` merges multiple workflows sharing a blueprint but only keeps the first workflow's map.json and destination.json. The frontend works around this, but the C# endpoint itself returns incorrect data for non-first source types. Should be fixed properly so the API returns correct data.
 

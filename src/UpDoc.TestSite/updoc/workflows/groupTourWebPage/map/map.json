@@ -35,6 +35,45 @@
       ],
       "enabled": true,
       "comment": null
+    },
+    {
+      "source": "preamble-p1-z4.content",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "f6cfe802-72e5-49ce-8de8-fc78cbec3d9d",
+          "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "suggested-itinerary.content",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "f6cfe802-72e5-49ce-8de8-fc78cbec3d9d",
+          "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "suggested-itinerary.title",
+      "destinations": [
+        {
+          "target": "featurePropertyFeatureTitle",
+          "blockKey": "f6cfe802-72e5-49ce-8de8-fc78cbec3d9d",
+          "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
     }
   ]
 }

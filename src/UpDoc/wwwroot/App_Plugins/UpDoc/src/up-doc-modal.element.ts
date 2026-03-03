@@ -1,6 +1,6 @@
 import type { UmbUpDocModalData, UmbUpDocModalValue, SourceType } from './up-doc-modal.token.js';
 import { allTransformSections, type DocumentTypeConfig } from './workflow.types.js';
-import { fetchConfig, transformAdhoc } from './workflow.service.js';
+import { fetchConfig, fetchWorkflowByAlias, transformAdhoc } from './workflow.service.js';
 import { getDestinationTabs, resolveDestinationTab, resolveBlockLabel, getAllBlockContainers } from './destination-utils.js';
 import { stripMarkdown } from './transforms.js';
 import { html, customElement, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
@@ -46,6 +46,10 @@ export class UpDocModalElement extends UmbModalBaseElement<
 	@state()
 	private _config: DocumentTypeConfig | null = null;
 
+	/** Per-workflow config for the selected source type (has the correct map.json). */
+	@state()
+	private _workflowConfig: DocumentTypeConfig | null = null;
+
 	@state()
 	private _isExtracting = false;
 
@@ -68,6 +72,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 		this._selectedMediaUnique = null;
 		this._sectionLookup = {};
 		this._config = null;
+		this._workflowConfig = null;
 		this._contentActiveTab = '';
 		this.#loadAvailableSourceTypes();
 	}
@@ -164,6 +169,10 @@ export class UpDocModalElement extends UmbModalBaseElement<
 				return;
 			}
 
+			// Fetch per-workflow config (has the correct map.json for this source type)
+			const wfConfig = await fetchWorkflowByAlias(workflowAlias, token);
+			if (wfConfig) this._workflowConfig = wfConfig;
+
 			// Run area-aware transform — produces section IDs matching map.json
 			const transformResult = await transformAdhoc(workflowAlias, mediaUnique, token);
 
@@ -198,7 +207,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 			this._sectionLookup = sectionLookup;
 
 			// Pre-fill document name from mapped title sections
-			if (!this._documentName && this._config) {
+			if (!this._documentName && (this._workflowConfig || this._config)) {
 				this.#prefillDocumentName(sectionLookup);
 			}
 		} catch (error) {
@@ -224,6 +233,10 @@ export class UpDocModalElement extends UmbModalBaseElement<
 				this._extractionError = 'No workflow configured for this blueprint';
 				return;
 			}
+
+			// Fetch per-workflow config (has the correct map.json for this source type)
+			const wfConfig = await fetchWorkflowByAlias(workflowAlias, token);
+			if (wfConfig) this._workflowConfig = wfConfig;
 
 			// Run transform with URL — no media key needed
 			const transformResult = await transformAdhoc(workflowAlias, '', token, this._sourceUrl);
@@ -255,7 +268,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 			this._sectionLookup = sectionLookup;
 
 			// Pre-fill document name from mapped title sections
-			if (!this._documentName && this._config) {
+			if (!this._documentName && (this._workflowConfig || this._config)) {
 				this.#prefillDocumentName(sectionLookup);
 			}
 		} catch (error) {
@@ -274,13 +287,16 @@ export class UpDocModalElement extends UmbModalBaseElement<
 	 * (e.g., section IDs differ across source documents).
 	 */
 	#prefillDocumentName(elementLookup: Record<string, string>) {
+		// Use per-workflow config (correct map for this source type), fall back to merged
+		const effectiveConfig = this._workflowConfig ?? this._config;
+
 		// Try mapping-based name resolution first
-		if (this._config?.map?.mappings?.length) {
+		if (effectiveConfig?.map?.mappings?.length) {
 			// Find the mapping that targets pageTitle (preferred for node name).
 			// TODO: Allow workflow authors to configure which field maps to node name
 			// via a nodeNameField property in destination.json or workflow.json.
 			let titleTarget: string | null = null;
-			for (const mapping of this._config.map.mappings) {
+			for (const mapping of effectiveConfig.map.mappings) {
 				if (mapping.enabled === false) continue;
 				const pageTitleDest = mapping.destinations.find(
 					(d) => !d.blockKey && d.target === 'pageTitle',
@@ -293,7 +309,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 
 			// Fallback: first mapping with any top-level destination
 			if (!titleTarget) {
-				for (const mapping of this._config.map.mappings) {
+				for (const mapping of effectiveConfig.map.mappings) {
 					if (mapping.enabled === false) continue;
 					const topLevelDest = mapping.destinations.find((d) => !d.blockKey);
 					if (topLevelDest) {
@@ -306,7 +322,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 			if (titleTarget) {
 				// Collect text from all elements mapped to this top-level target
 				const parts: string[] = [];
-				for (const mapping of this._config.map.mappings) {
+				for (const mapping of effectiveConfig.map.mappings) {
 					if (mapping.enabled === false) continue;
 					const mapsToTarget = mapping.destinations.some(
 						(d) => d.target === titleTarget && !d.blockKey,
@@ -333,13 +349,17 @@ export class UpDocModalElement extends UmbModalBaseElement<
 	}
 
 	#handleSave() {
+		// Use per-workflow config (correct map.json for this source type),
+		// falling back to the merged config for single-workflow blueprints.
+		const effectiveConfig = this._workflowConfig ?? this._config;
+
 		this.value = {
 			name: this._documentName,
 			sourceType: this._sourceType as SourceType,
 			mediaUnique: this._selectedMediaUnique,
 			sourceUrl: this._sourceUrl || null,
 			sectionLookup: this._sectionLookup,
-			config: this._config,
+			config: effectiveConfig,
 		};
 		this._submitModal();
 	}
@@ -568,15 +588,18 @@ export class UpDocModalElement extends UmbModalBaseElement<
 		tabLabel: string;
 		items: Array<{ label: string; value: string; blockLabel?: string }>;
 	}> {
-		if (!this._config?.map?.mappings?.length || !this._config?.destination) return [];
+		// Use per-workflow config (correct map for this source type), fall back to merged
+		const effectiveConfig = this._workflowConfig ?? this._config;
 
-		const destination = this._config.destination;
+		if (!effectiveConfig?.map?.mappings?.length || !effectiveConfig?.destination) return [];
+
+		const destination = effectiveConfig.destination;
 
 		// Step 1: Build compound key → values + metadata (same as old #buildMappedPreview)
 		const preview = new Map<string, string[]>();
 		const keyMeta = new Map<string, { alias: string; blockKey?: string }>();
 
-		for (const mapping of this._config.map.mappings) {
+		for (const mapping of effectiveConfig.map.mappings) {
 			if (mapping.enabled === false) continue;
 			const text = this._sectionLookup[mapping.source];
 			if (!text) continue;

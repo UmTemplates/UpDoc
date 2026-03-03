@@ -66,6 +66,37 @@
           "name": "Itinery",
           "rules": [
             {
+              "role": "Section Title",
+              "part": "title",
+              "action": null,
+              "format": "heading2",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "h3"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 10.5
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "span.tab-mob-heading"
+                },
+                {
+                  "type": "isBoldEquals",
+                  "value": "true"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
               "role": "Day Number",
               "part": "content",
               "action": null,
@@ -105,11 +136,11 @@
               "conditions": [
                 {
                   "type": "htmlTagEquals",
-                  "value": "h3"
+                  "value": "p"
                 },
                 {
                   "type": "fontSizeEquals",
-                  "value": 10.5
+                  "value": 9.8
                 },
                 {
                   "type": "colorEquals",
@@ -117,11 +148,7 @@
                 },
                 {
                   "type": "htmlContainerPathContains",
-                  "value": "span.tab-mob-heading"
-                },
-                {
-                  "type": "isBoldEquals",
-                  "value": "true"
+                  "value": "div.tab-wrapper"
                 }
               ],
               "exceptions": null,

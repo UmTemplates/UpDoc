@@ -243,7 +243,8 @@ export type RuleConditionType =
 	// HTML-specific (web sources)
 	| 'htmlTagEquals'
 	| 'cssClassContains'
-	| 'htmlContainerPathContains';
+	| 'htmlContainerPathContains'
+	| 'isBoldEquals';
 
 /**
  * Pattern for identifying section heading elements within an area.
@@ -565,6 +566,8 @@ export interface AreaElement {
 	htmlContainerPath?: string;
 	/** For web sources: space-separated CSS class names on this element. */
 	cssClasses?: string;
+	/** True when text is wrapped in <strong>/<b> or has CSS font-weight bold. */
+	isBold?: boolean;
 }
 
 /** A node in the container tree representing an HTML element that contains extracted content. */

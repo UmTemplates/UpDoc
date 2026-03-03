@@ -211,12 +211,14 @@ public class HtmlExtractionService : IHtmlExtractionService
                 var text = CleanText(node.TextContent);
                 if (!string.IsNullOrWhiteSpace(text))
                 {
+                    var metadata = BuildMetadata(node, areaForChildren, "p", containerPath);
+
                     elements.Add(new ExtractionElement
                     {
                         Id = $"html-{elementIndex++}",
                         Page = 1,
                         Text = text,
-                        Metadata = BuildMetadata(node, areaForChildren, "p", containerPath)
+                        Metadata = metadata,
                     });
                 }
                 continue;
@@ -313,6 +315,7 @@ public class HtmlExtractionService : IHtmlExtractionService
         var fontName = GetComputedFontFamily(node);
         var color = GetComputedColorHex(node);
         var cssClasses = GetCssClasses(node);
+        var isBold = DetectBold(node);
 
         return new ElementMetadata
         {
@@ -323,7 +326,60 @@ public class HtmlExtractionService : IHtmlExtractionService
             HtmlTag = htmlTag,
             HtmlContainerPath = containerPath,
             CssClasses = cssClasses,
+            IsBold = isBold,
         };
+    }
+
+    /// <summary>
+    /// Detects whether an element's text content is bold — either via a direct
+    /// &lt;strong&gt;/&lt;b&gt; child wrapping most of the text, or via CSS font-weight.
+    /// </summary>
+    private static bool DetectBold(IElement node)
+    {
+        // Check for <strong> or <b> child that contains most of the text
+        var nodeText = node.TextContent?.Trim() ?? "";
+        if (nodeText.Length == 0) return false;
+
+        // Check direct children first
+        foreach (var child in node.Children)
+        {
+            var childTag = child.TagName.ToLowerInvariant();
+            if (childTag is "strong" or "b")
+            {
+                var childText = child.TextContent?.Trim() ?? "";
+                // If the bold child contains most of the element's text, it's a bold element
+                if (childText.Length > 0 && childText.Length >= nodeText.Length * 0.8)
+                    return true;
+            }
+        }
+
+        // Check ALL descendants (handles <p><a><strong>text</strong></a></p>)
+        foreach (var descendant in node.QuerySelectorAll("strong, b"))
+        {
+            var descText = descendant.TextContent?.Trim() ?? "";
+            if (descText.Length > 0 && descText.Length >= nodeText.Length * 0.8)
+                return true;
+        }
+
+        // Check CSS font-weight (covers inline styles and stylesheets)
+        try
+        {
+            var style = node.ComputeCurrentStyle();
+            var fontWeight = style?.GetPropertyValue("font-weight");
+            if (!string.IsNullOrEmpty(fontWeight))
+            {
+                if (fontWeight is "bold" or "bolder")
+                    return true;
+                if (int.TryParse(fontWeight, out var weight) && weight >= 700)
+                    return true;
+            }
+        }
+        catch
+        {
+            // CSS computation not available — ignore
+        }
+
+        return false;
     }
 
     /// <summary>

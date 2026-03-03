@@ -150,6 +150,16 @@ public class ElementMetadata
     [JsonPropertyName("cssClasses")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public string CssClasses { get; set; } = string.Empty;
+
+    /// <summary>
+    /// True when the element's text is wrapped in a bold/strong tag
+    /// (e.g., &lt;p&gt;&lt;strong&gt;Day 1&lt;/strong&gt;&lt;/p&gt;).
+    /// Common in older websites that use &lt;strong&gt;/&lt;b&gt; instead of semantic headings.
+    /// </summary>
+    [JsonPropertyName("isBold")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public bool IsBold { get; set; }
+
 }
 
 /// <summary>

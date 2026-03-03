@@ -127,6 +127,13 @@ public class AreaElement
     [JsonPropertyName("cssClasses")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public string CssClasses { get; set; } = string.Empty;
+
+    /// <summary>
+    /// True when the element's text is wrapped in &lt;strong&gt;/&lt;b&gt; or has CSS font-weight bold.
+    /// </summary>
+    [JsonPropertyName("isBold")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public bool IsBold { get; set; }
 }
 
 /// <summary>

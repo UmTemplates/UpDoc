@@ -59,13 +59,84 @@
           "textReplacements": null
         }
       ]
+    },
+    "suggested-itinerary": {
+      "groups": [
+        {
+          "name": "Itinery",
+          "rules": [
+            {
+              "role": "Day Number",
+              "part": "content",
+              "action": null,
+              "format": "heading3",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.tab-wrapper"
+                },
+                {
+                  "type": "isBoldEquals",
+                  "value": "true"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
+              "role": "Day Details",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "h3"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 10.5
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "span.tab-mob-heading"
+                },
+                {
+                  "type": "isBoldEquals",
+                  "value": "true"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        }
+      ],
+      "rules": []
     }
   },
   "excludedAreas": [
     "navigation",
     "header",
     "footer",
-    "main-content",
     "ungrouped"
   ],
   "containerOverrides": [
@@ -77,6 +148,11 @@
       "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left",
       "action": "promoteToArea",
       "label": "Page Header"
+    },
+    {
+      "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1",
+      "action": "promoteToArea",
+      "label": "Suggested Itinerary"
     }
   ]
 }

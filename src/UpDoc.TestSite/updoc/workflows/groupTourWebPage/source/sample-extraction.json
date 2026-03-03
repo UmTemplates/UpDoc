@@ -4,7 +4,7 @@
   "source": {
     "fileName": "https://www.tailored-travel.co.uk/dublin-s-art-literature",
     "mediaKey": "",
-    "extractedDate": "2026-03-03T08:06:51.4729783Z",
+    "extractedDate": "2026-03-03T11:19:18.0670191Z",
     "totalPages": 1
   },
   "elements": [
@@ -29,7 +29,8 @@
         "htmlArea": "Header",
         "htmlTag": "a",
         "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.home-view-your-tour/a.home-view-tour-button",
-        "cssClasses": "home-view-tour-button"
+        "cssClasses": "home-view-tour-button",
+        "isBold": true
       }
     },
     {
@@ -413,7 +414,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "div",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_sig",
-        "cssClasses": "tour_banner_sig"
+        "cssClasses": "tour_banner_sig",
+        "isBold": true
       }
     },
     {
@@ -677,7 +679,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "h3",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -701,7 +704,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -749,7 +753,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -797,7 +802,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -845,7 +851,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -893,7 +900,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -941,7 +949,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "h3",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1061,7 +1070,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1349,7 +1359,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "h3",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1397,7 +1408,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "h3",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1541,7 +1553,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "h3",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1661,7 +1674,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "h3",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1685,7 +1699,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "h3",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1757,7 +1772,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1829,7 +1845,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -1901,7 +1918,8 @@
         "htmlArea": "Main Content",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {
@@ -2333,7 +2351,8 @@
         "htmlArea": "Footer",
         "htmlTag": "p",
         "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
-        "cssClasses": ""
+        "cssClasses": "",
+        "isBold": true
       }
     },
     {

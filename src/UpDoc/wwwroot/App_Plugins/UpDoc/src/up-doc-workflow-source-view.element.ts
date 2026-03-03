@@ -815,7 +815,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		if (!this._transformResult) return [];
 		// Find matching area in the hierarchical tree
 		const matchingArea = this._transformResult.areas.find(
-			(a) => a.color === area.color && a.page === pageNum,
+			(a) => a.name === area.name && a.page === pageNum,
 		);
 		if (!matchingArea) return [];
 		// Return all sections (grouped + ungrouped) from this area

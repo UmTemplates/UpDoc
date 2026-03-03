@@ -539,7 +539,7 @@ Ke = function(e) {
 xe = function(e, t) {
   if (!this._transformResult) return [];
   const i = this._transformResult.areas.find(
-    (n) => n.color === e.color && n.page === t
+    (n) => n.name === e.name && n.page === t
   );
   if (!i) return [];
   const o = [];
@@ -2271,4 +2271,4 @@ export {
   g as UpDocWorkflowSourceViewElement,
   Lt as default
 };
-//# sourceMappingURL=up-doc-workflow-source-view.element-x0y7UDfN.js.map
+//# sourceMappingURL=up-doc-workflow-source-view.element-Db-z2sfU.js.map

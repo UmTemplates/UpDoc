@@ -1348,6 +1348,7 @@ public class WorkflowController : ControllerBase
                 HtmlTag = element.Metadata.HtmlTag,
                 HtmlContainerPath = element.Metadata.HtmlContainerPath,
                 CssClasses = element.Metadata.CssClasses,
+                IsBold = element.Metadata.IsBold,
             };
 
             if (isHeading)
@@ -1496,6 +1497,8 @@ public class WorkflowController : ControllerBase
                 HtmlArea = e.Metadata.HtmlArea,
                 HtmlTag = e.Metadata.HtmlTag,
                 HtmlContainerPath = e.Metadata.HtmlContainerPath,
+                CssClasses = e.Metadata.CssClasses,
+                IsBold = e.Metadata.IsBold,
             }
         }).ToList();
 

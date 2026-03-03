@@ -43,10 +43,11 @@ const CONDITION_LABELS: Record<RuleConditionType, string> = {
 	htmlTagEquals: 'HTML tag equals',
 	cssClassContains: 'CSS class contains',
 	htmlContainerPathContains: 'Container path contains',
+	isBoldEquals: 'Is bold',
 };
 
 /** Condition types that don't need a value input */
-const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast'];
+const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals'];
 
 /** All available condition types */
 const ALL_CONDITION_TYPES: RuleConditionType[] = [
@@ -55,7 +56,7 @@ const ALL_CONDITION_TYPES: RuleConditionType[] = [
 	'fontNameContains', 'fontNameEquals', 'colorEquals',
 	'positionFirst', 'positionLast',
 	// HTML-specific (web sources)
-	'htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains',
+	'htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains', 'isBoldEquals',
 ];
 
 /** Friendly labels for rule parts */
@@ -348,6 +349,8 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				return (el.cssClasses ?? '').toLowerCase().includes(val.toLowerCase());
 			case 'htmlContainerPathContains':
 				return (el.htmlContainerPath ?? '').toLowerCase().includes(val.toLowerCase());
+			case 'isBoldEquals':
+				return el.isBold === true;
 			default:
 				return false;
 		}
@@ -396,6 +399,11 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 			if (lastSegment) {
 				conditions.push({ type: 'htmlContainerPathContains', value: lastSegment });
 			}
+		}
+
+		// Bold detection (<strong>/<b> or CSS font-weight)
+		if (el.isBold) {
+			conditions.push({ type: 'isBoldEquals', value: 'true' });
 		}
 
 		return conditions;
@@ -492,6 +500,10 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 
 	#updateExclude(id: string, value: boolean) {
 		this.#updateRuleById(id, (r) => ({ ...r, exclude: value }));
+	}
+
+	#moveRuleToGroup(id: string, groupName: string | null) {
+		this.#updateRuleById(id, (r) => ({ ...r, _groupName: groupName }));
 	}
 
 	// ===== Group CRUD =====
@@ -1024,6 +1036,23 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 					</uui-button>
 				</div>
 
+				${this._groupOrder.length > 0 ? html`
+				<div class="group-move-area">
+					<label class="group-move-label">Group</label>
+					<select
+						class="group-move-select"
+						@change=${(e: Event) => {
+							const val = (e.target as HTMLSelectElement).value;
+							this.#moveRuleToGroup(id, val === '' ? null : val);
+						}}>
+						<option value="" ?selected=${rule._groupName === null}>Ungrouped</option>
+						${this._groupOrder.map((g) => html`
+							<option value=${g} ?selected=${g === rule._groupName}>${g}</option>
+						`)}
+					</select>
+				</div>
+				` : nothing}
+
 				<div class="conditions-area">
 					<div class="section-header collapsible" @click=${() => this.#toggleSection('conditions', id)}>
 						<uui-icon name=${this.#isSectionExpanded('conditions', id) ? 'icon-navigation-down' : 'icon-navigation-right'}></uui-icon>
@@ -1195,6 +1224,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 									? html`
 										${el.htmlTag ? html`<span class="meta-badge tag-badge">&lt;${el.htmlTag}&gt;</span>` : nothing}
 										<span class="meta-badge">${el.fontSize}pt</span>
+										${el.isBold ? html`<span class="meta-badge tag-badge"><b>B</b></span>` : nothing}
 										${el.cssClasses ? html`<span class="meta-badge class-badge">.${el.cssClasses.split(' ')[0]}</span>` : nothing}
 										${el.color !== '#000000' ? html`<span class="meta-badge" style="border-left: 3px solid ${el.color};">${el.color}</span>` : nothing}
 									`
@@ -1421,6 +1451,30 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				display: flex;
 				flex-direction: column;
 				gap: var(--uui-size-space-3);
+			}
+
+			/* Group move dropdown on expanded rules */
+			.group-move-area {
+				display: flex;
+				align-items: center;
+				gap: var(--uui-size-space-2);
+				padding: 0 var(--uui-size-space-3);
+			}
+
+			.group-move-label {
+				font-size: var(--uui-type-small-size);
+				color: var(--uui-color-text-alt);
+				white-space: nowrap;
+			}
+
+			.group-move-select {
+				flex: 1;
+				padding: var(--uui-size-space-1) var(--uui-size-space-2);
+				border: 1px solid var(--uui-color-border);
+				border-radius: var(--uui-border-radius);
+				font-size: var(--uui-type-small-size);
+				background: var(--uui-color-surface);
+				color: var(--uui-color-text);
 			}
 
 			.ungrouped-label {

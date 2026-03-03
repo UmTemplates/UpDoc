@@ -676,6 +676,9 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
             "cssClassContains" => element.CssClasses.Contains(valueStr, StringComparison.OrdinalIgnoreCase),
             "htmlContainerPathContains" => element.HtmlContainerPath.Contains(valueStr, StringComparison.OrdinalIgnoreCase),
 
+            // Bold detection (web sources — <strong>/<b> or CSS font-weight)
+            "isBoldEquals" => element.IsBold == valueStr.Equals("true", StringComparison.OrdinalIgnoreCase),
+
             _ => false // Unknown condition type — does not match
         };
     }

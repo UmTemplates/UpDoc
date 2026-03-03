@@ -88,22 +88,6 @@
           "Included": true
         },
         {
-          "Id": "suggested-itinerary",
-          "OriginalHeading": "Suggested Itinerary",
-          "Heading": "Suggested Itinerary",
-          "Content": "Day 1 \u2013 Dublin city tour\n\nScheduled flight to Dublin from your preferred airport \u2013 tour of Dublin with our local guide in our private executive coach giving us a great introduction to the city of writers and poets taking in such sights as Ha\u2019penny Bridge, O\u2019Connell Street and Christchurch Cathedral \u2013 transfer to the central 3* Academy Plaza Hotel in Dublin.\n\nDay 2 \u2013 Dublin Castle, Chester Beatty Library, the State Apartments \u0026 Kilmainham Gaol\n\nA guided tour of Dublin Castle, dating back to 1230 and located in the heart of the city, is followed by a visit to the Chester Beatty Library containing a rich collection of manuscripts, prints, miniature paintings and early printed books \u2013 the State Apartments at Dublin Castle were the former private and public rooms of the Viceroys and the Viceregal Court, the seat of the executive and the focus of fashionable social life and a guided tour also takes in the Medieval Undercroft and the Chapel Royal \u2013 guided tour of the museum at Kilmainham Gaol, one of the largest unoccupied jails in Europe, focuses on some of the most heroic and tragic events in Ireland\u2019s emergence as a modern nation from the 1780s to the 1920s.\n\nDay 3 \u2013 Wicklow Mountains, Powerscourt House and Gardens, Glendalough \u0026 Avoca\n\nTravel with our guide into the Wicklow Mountains, known as the \u2018garden of Ireland\u2019 \u2013 Powerscourt House and Gardens is set in 14,000 acres with delightful lakes, ornamental hedges and gardens while the entrance hall now features an exhibition bringing to life the rich history of the estate and the double height Georgian ballroom has been completely restored to its former glory \u2013 Glendalough is a 6th century monastic site founded by St Kevin and once a major seat of learning in medieval Europe \u2013 Avoca is the subject of Thomas More\u2019s poem, \u2018The Meeting of the Waters\u2019.\n\nDay 4 \u2013 National Gallery of Ireland, Book of Kells \u0026 Newman House\n\nGuided tour of the National Gallery of Ireland, housing 13,000 works of art, including works by Titian, Caravaggio, Rembrandt, Poussin and Gainsborough \u2013 visit Trinity College with our guide to see the Book of Kells, one of the most beautifully illuminated manuscripts in the world which was written around the year 800 AD \u2013 Newman House consists of two Georgian houses displaying examples of Dublin\u2019s finest 18th century plasterwork.\n\nDay 5 \u2013 EPIC The Irish Emigration Museum\n\nGuided tour of EPIC The Irish Emigration Museum which depicts the moving and unforgettable stories of those who left the island of Ireland, and how they influenced and shaped the world \u2013 transfer to Dublin airport for our scheduled flight back home.",
-          "Description": null,
-          "Summary": null,
-          "Pattern": "paragraph",
-          "Page": 1,
-          "AreaColor": "#A5D6A7",
-          "AreaName": "Main Content",
-          "GroupName": null,
-          "RuleName": null,
-          "ChildCount": 10,
-          "Included": true
-        },
-        {
           "Id": "tour-features",
           "OriginalHeading": "Tour Features",
           "Heading": "Tour Features",
@@ -274,13 +258,42 @@
       ]
     },
     {
+      "Name": "Suggested Itinerary",
+      "Color": "#FFCC80",
+      "Page": 1,
+      "Groups": [
+        {
+          "Name": "Itinery",
+          "Sections": [
+            {
+              "Id": "preamble-p1-z4",
+              "OriginalHeading": null,
+              "Heading": null,
+              "Content": "Suggested Itinerary\n### Day 1 \u2013 Dublin city tour\nScheduled flight to Dublin from your preferred airport \u2013 tour of Dublin with our local guide in our private executive coach giving us a great introduction to the city of writers and poets taking in such sights as Ha\u2019penny Bridge, O\u2019Connell Street and Christchurch Cathedral \u2013 transfer to the central 3* Academy Plaza Hotel in Dublin.\n### Day 2 \u2013 Dublin Castle, Chester Beatty Library, the State Apartments \u0026 Kilmainham Gaol\nA guided tour of Dublin Castle, dating back to 1230 and located in the heart of the city, is followed by a visit to the Chester Beatty Library containing a rich collection of manuscripts, prints, miniature paintings and early printed books \u2013 the State Apartments at Dublin Castle were the former private and public rooms of the Viceroys and the Viceregal Court, the seat of the executive and the focus of fashionable social life and a guided tour also takes in the Medieval Undercroft and the Chapel Royal \u2013 guided tour of the museum at Kilmainham Gaol, one of the largest unoccupied jails in Europe, focuses on some of the most heroic and tragic events in Ireland\u2019s emergence as a modern nation from the 1780s to the 1920s.\n### Day 3 \u2013 Wicklow Mountains, Powerscourt House and Gardens, Glendalough \u0026 Avoca\nTravel with our guide into the Wicklow Mountains, known as the \u2018garden of Ireland\u2019 \u2013 Powerscourt House and Gardens is set in 14,000 acres with delightful lakes, ornamental hedges and gardens while the entrance hall now features an exhibition bringing to life the rich history of the estate and the double height Georgian ballroom has been completely restored to its former glory \u2013 Glendalough is a 6th century monastic site founded by St Kevin and once a major seat of learning in medieval Europe \u2013 Avoca is the subject of Thomas More\u2019s poem, \u2018The Meeting of the Waters\u2019.\n### Day 4 \u2013 National Gallery of Ireland, Book of Kells \u0026 Newman House\nGuided tour of the National Gallery of Ireland, housing 13,000 works of art, including works by Titian, Caravaggio, Rembrandt, Poussin and Gainsborough \u2013 visit Trinity College with our guide to see the Book of Kells, one of the most beautifully illuminated manuscripts in the world which was written around the year 800 AD \u2013 Newman House consists of two Georgian houses displaying examples of Dublin\u2019s finest 18th century plasterwork.\n### Day 5 \u2013 EPIC The Irish Emigration Museum\nGuided tour of EPIC The Irish Emigration Museum which depicts the moving and unforgettable stories of those who left the island of Ireland, and how they influenced and shaped the world \u2013 transfer to Dublin airport for our scheduled flight back home.",
+              "Description": null,
+              "Summary": null,
+              "Pattern": "paragraph",
+              "Page": 1,
+              "AreaColor": "#FFCC80",
+              "AreaName": "Suggested Itinerary",
+              "GroupName": "Itinery",
+              "RuleName": null,
+              "ChildCount": 11,
+              "Included": true
+            }
+          ]
+        }
+      ],
+      "Sections": []
+    },
+    {
       "Name": "Footer",
       "Color": "#EF9A9A",
       "Page": 1,
       "Groups": [],
       "Sections": [
         {
-          "Id": "preamble-p1-z4",
+          "Id": "preamble-p1-z5",
           "OriginalHeading": null,
           "Heading": null,
           "Content": "020 7064 4970\n\ninfo@tailored-travel.co.uk\n\n12 Jamaica Road\n\nLondon\n\nSE1 2RN\n\nTailored Travel holds a current ATOL licence. Air holiday packages shown are ATOL protected by the Civil Aviation Authority. Our ATOL number is ATOL 5605.\n\n- Sitemap\n\n- Terms \u0026 Conditions\n\n- Privacy Policy\n\n- Cookies\n\n- Booking Conditions\n\n- Insurance\n\n- Financial Security\n\n- Tailor Made Tours for Groups\n\n- School \u0026 College tours\n\n- Tours for Individuals\n\n- UK\n\n- France\n\n- Holland\n\n- Portugal\n\n- Belgium\n\n- Southern Europe\n\n- Italy\n\n- Germany\n\n- Spain\n\n- Austria\n\n- Ireland\n\n- Central \u0026 Eastern Europe\n\n- Worldwide\n\n- UK\n\n- Italy\n\n- France\n\n- Germany\n\n- Holland\n\n- Spain\n\n- Portugal\n\n- Austria\n\n- Belgium\n\n- Ireland\n\n- Southern Europe\n\n- Central \u0026 Eastern Europe\n\n- Worldwide\n\n- Tailor Made Tours for Groups\n\n- School \u0026 College tours\n\n- Tours for Individuals",
@@ -304,7 +317,7 @@
       "Groups": [],
       "Sections": [
         {
-          "Id": "preamble-p1-z5",
+          "Id": "preamble-p1-z6",
           "OriginalHeading": null,
           "Heading": null,
           "Content": "- Home\n\n- Group Tours\n\n- Group Organisers\n\n- Testimonials\n\n- Request a Brochure\n\n- Request a Quote\n\n- News\n\n- About Us\n\n- Contact Us\n\n- View Your Tour\n\n- Close",

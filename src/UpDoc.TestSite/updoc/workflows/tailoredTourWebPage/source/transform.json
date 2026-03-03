@@ -240,41 +240,9 @@
       "Groups": [],
       "Sections": [
         {
-          "Id": "tour-description",
-          "OriginalHeading": "Tour Description",
-          "Heading": "Tour Description",
-          "Content": "5 days from",
-          "Description": null,
-          "Summary": null,
-          "Pattern": "role",
-          "Page": 1,
-          "AreaColor": "#FFCC80",
-          "AreaName": "Page Header",
-          "GroupName": null,
-          "RuleName": "Tour Description",
-          "ChildCount": 1,
-          "Included": true
-        },
-        {
-          "Id": "tour-description-2",
-          "OriginalHeading": "Tour Description",
-          "Heading": "Tour Description",
-          "Content": "\u00A3899",
-          "Description": null,
-          "Summary": null,
-          "Pattern": "role",
-          "Page": 1,
-          "AreaColor": "#FFCC80",
-          "AreaName": "Page Header",
-          "GroupName": null,
-          "RuleName": "Tour Description",
-          "ChildCount": 1,
-          "Included": true
-        },
-        {
-          "Id": "dublin-s-fair-city",
-          "OriginalHeading": "# Dublin\u2019s Fair City",
-          "Heading": "# Dublin\u2019s Fair City",
+          "Id": "tour-title",
+          "OriginalHeading": "Tour Title",
+          "Heading": "Tour Title",
           "Content": "# Dublin\u2019s Fair City",
           "Description": null,
           "Summary": null,
@@ -284,7 +252,23 @@
           "AreaName": "Page Header",
           "GroupName": null,
           "RuleName": "Tour Title",
-          "ChildCount": 0,
+          "ChildCount": 1,
+          "Included": true
+        },
+        {
+          "Id": "tour-description",
+          "OriginalHeading": "Tour Description",
+          "Heading": "Tour Description",
+          "Content": "5 days from \u00A3899",
+          "Description": null,
+          "Summary": null,
+          "Pattern": "role",
+          "Page": 1,
+          "AreaColor": "#FFCC80",
+          "AreaName": "Page Header",
+          "GroupName": null,
+          "RuleName": "Tour Description",
+          "ChildCount": 2,
           "Included": true
         }
       ]
@@ -339,11 +323,11 @@
     }
   ],
   "Diagnostics": {
-    "TotalSections": 18,
+    "TotalSections": 17,
     "BulletListSections": 0,
     "ParagraphSections": 10,
     "SubHeadedSections": 3,
     "PreambleSections": 2,
-    "RoleSections": 3
+    "RoleSections": 2
   }
 }

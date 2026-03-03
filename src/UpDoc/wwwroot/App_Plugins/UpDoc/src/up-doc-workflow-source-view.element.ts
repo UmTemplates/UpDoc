@@ -1449,7 +1449,20 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 	#buildFullMarkdown(): string {
 		if (!this._transformResult) return '';
 
-		const includedSections = allTransformSections(this._transformResult).filter((s) => s.included);
+		// Only show sections from areas that have rules defined
+		const areaRules = this._sourceConfig?.areaRules ?? {};
+		const areasWithRules = new Set(Object.keys(areaRules).filter(
+			(k) => { const ar = areaRules[k]; return (ar.groups?.length ?? 0) > 0 || (ar.rules?.length ?? 0) > 0; }
+		));
+
+		const includedSections = allTransformSections(this._transformResult).filter((s) => {
+			if (!s.included) return false;
+			// If no rules are defined at all, show everything (backwards compat)
+			if (areasWithRules.size === 0) return true;
+			// Only include sections from areas that have rules
+			const areaKey = s.areaName ? normalizeToKebabCase(s.areaName) : null;
+			return areaKey != null && areasWithRules.has(areaKey);
+		});
 		const parts: string[] = [];
 
 		for (const section of includedSections) {
@@ -1647,11 +1660,35 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 					<div class="box-content">
 						<uui-icon name="icon-thumbnail-list" class="box-icon"></uui-icon>
 						<span class="box-stat">${sectionCount}</span>
-						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Sections" disabled>
-								<uui-icon name="icon-thumbnail-list"></uui-icon> Sections
-							</uui-button>
-						</div>
+						${this._transformResult && this._areaDetection ? html`
+							<div class="box-buttons">
+								<uui-button
+									look="primary"
+									color="default"
+									label="Sections"
+									popovertarget="web-section-picker-popover">
+									<uui-icon name="icon-thumbnail-list"></uui-icon>
+									Sections
+									<uui-symbol-expand .open=${this._sectionPickerOpen}></uui-symbol-expand>
+								</uui-button>
+								<uui-popover-container
+									id="web-section-picker-popover"
+									placement="bottom-end"
+									@toggle=${this.#onSectionPickerToggle}>
+									<umb-popover-layout>
+										<div class="popover-heading">Areas</div>
+										${this.#getAreasForRulesEditor().map((a) => html`
+											<uui-menu-item
+												label="${a.areaName}"
+												@click=${() => this.#onEditAreaRules(a.areaKey, a.areaName, a.elements)}>
+												<uui-icon slot="icon" name="${a.hasRules ? 'icon-check' : 'icon-thumbnail-list'}"></uui-icon>
+												<span slot="badge" class="section-picker-meta">${a.elements.length} el</span>
+											</uui-menu-item>
+										`)}
+									</umb-popover-layout>
+								</uui-popover-container>
+							</div>
+						` : nothing}
 					</div>
 				</uui-box>
 			</div>

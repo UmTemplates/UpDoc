@@ -351,37 +351,62 @@ public class ContentTransformService : IContentTransformService
                 numberedListCounter = 0;
             }
 
+            // PRE-PASS: collect ungrouped elements per rule, then emit in rule order.
+            // This ensures (a) sections appear in rule order, not DOM order, and
+            // (b) multiple elements matching the same rule are concatenated into one section.
+            // Handles all ungrouped parts (title, content, etc.) — not just content.
+            var ungroupedElementsByRule = new Dictionary<SectionRule, List<(int index, string formatted)>>();
             for (int i = 0; i < elements.Count; i++)
             {
-                var part = elementParts[i] ?? "content";
-                var format = elementFormats[i] ?? "auto";
-                var isUngrouped = elementIsUngrouped[i];
-
-                // Ungrouped content rules → standalone single-property section
-                if (isUngrouped && part == "content")
+                if (elementIsUngrouped[i] && elementRules[i] != null)
                 {
-                    FlushSection();
-                    var roleName = elementRules[i]?.Role ?? elements[i].Text;
+                    var part = elementParts[i] ?? "content";
+                    if (part == "exclude") continue;
+                    var rule = elementRules[i]!;
+                    if (!ungroupedElementsByRule.ContainsKey(rule))
+                        ungroupedElementsByRule[rule] = new List<(int, string)>();
+                    var format = elementFormats[i] ?? "auto";
                     var propLine = FormatContentLine(elements[i].Text, format, ref numberedListCounter);
+                    ungroupedElementsByRule[rule].Add((i, propLine));
+                }
+            }
+
+            // Emit ungrouped sections in rule order (iterating areaRule.Rules)
+            foreach (var rule in areaRule.Rules)
+            {
+                if (ungroupedElementsByRule.TryGetValue(rule, out var entries) && entries.Count > 0)
+                {
+                    var roleName = rule.Role ?? entries[0].formatted;
+                    var content = string.Join(" ", entries.Select(e => e.formatted));
                     var propId = NormalizeToKebabCase(roleName);
                     var propSection = new TransformedSection
                     {
                         Id = propId,
                         Heading = ToTitleCaseIfAllCaps(roleName),
                         OriginalHeading = roleName,
-                        Content = propLine,
-                        RuleName = elementRules[i]?.Role,
+                        Content = content,
+                        RuleName = rule.Role,
                         Pattern = "role",
                         Page = page,
                         AreaColor = string.IsNullOrEmpty(area.Color) ? null : area.Color,
                         AreaName = area.Name,
-                        ChildCount = 1,
+                        ChildCount = entries.Count,
                     };
                     DeduplicateId(propSection, seenIds);
                     sections.Add(propSection);
                     UpdateDiagnostics(diagnostics, propSection.Pattern);
-                    continue;
                 }
+            }
+
+            for (int i = 0; i < elements.Count; i++)
+            {
+                var part = elementParts[i] ?? "content";
+                var format = elementFormats[i] ?? "auto";
+                var isUngrouped = elementIsUngrouped[i];
+
+                // Ungrouped rules already emitted in rule order above — skip
+                if (isUngrouped)
+                    continue;
 
                 switch (part)
                 {

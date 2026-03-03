@@ -64,22 +64,6 @@
       "Groups": [],
       "Sections": [
         {
-          "Id": "preamble-p1-z1",
-          "OriginalHeading": null,
-          "Heading": null,
-          "Content": "For more information on this tour contact your Group Organiser",
-          "Description": null,
-          "Summary": null,
-          "Pattern": "paragraph",
-          "Page": 1,
-          "AreaColor": "#3185fc",
-          "AreaName": "Organiser Information",
-          "GroupName": null,
-          "RuleName": null,
-          "ChildCount": 1,
-          "Included": true
-        },
-        {
           "Id": "organiser-name",
           "OriginalHeading": "Organiser Name",
           "Heading": "Organiser Name",
@@ -140,6 +124,22 @@
           "AreaName": "Organiser Information",
           "GroupName": null,
           "RuleName": "Organiser Address",
+          "ChildCount": 1,
+          "Included": true
+        },
+        {
+          "Id": "preamble-p1-z1",
+          "OriginalHeading": null,
+          "Heading": null,
+          "Content": "For more information on this tour contact your Group Organiser",
+          "Description": null,
+          "Summary": null,
+          "Pattern": "paragraph",
+          "Page": 1,
+          "AreaColor": "#3185fc",
+          "AreaName": "Organiser Information",
+          "GroupName": null,
+          "RuleName": null,
           "ChildCount": 1,
           "Included": true
         }

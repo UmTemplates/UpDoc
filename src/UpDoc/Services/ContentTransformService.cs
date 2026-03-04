@@ -141,7 +141,7 @@ public class ContentTransformService : IContentTransformService
         }
         else
         {
-            id = $"preamble-p{page}-z{areaIndex}";
+            id = GeneratePreambleId(areaName, page);
         }
 
         // Detect pattern and assemble Markdown
@@ -203,9 +203,13 @@ public class ContentTransformService : IContentTransformService
         var allRules = areaRule.AllRules().ToList();
         var ungroupedRules = new HashSet<SectionRule>(areaRule.Rules);
         var ruleGroupNames = new Dictionary<SectionRule, string>();
+        var ruleGroupIds = new Dictionary<SectionRule, string?>();
         foreach (var group in areaRule.Groups)
             foreach (var rule in group.Rules)
+            {
                 ruleGroupNames[rule] = group.Name;
+                ruleGroupIds[rule] = group.Id;
+            }
 
         // For each element, determine which rule (if any) claims it (first-match-wins)
         var elementRules = new SectionRule?[elements.Count];
@@ -247,6 +251,7 @@ public class ContentTransformService : IContentTransformService
         var elementFormats = new string?[elements.Count];
         var elementIsUngrouped = new bool[elements.Count];
         var elementGroupNames = new string?[elements.Count];
+        var elementGroupStableKeys = new string?[elements.Count];
         for (int i = 0; i < elements.Count; i++)
         {
             if (elementRules[i] != null)
@@ -256,6 +261,8 @@ public class ContentTransformService : IContentTransformService
                 elementIsUngrouped[i] = ungroupedRules.Contains(elementRules[i]!);
                 ruleGroupNames.TryGetValue(elementRules[i]!, out var gn);
                 elementGroupNames[i] = gn;
+                ruleGroupIds.TryGetValue(elementRules[i]!, out var gid);
+                elementGroupStableKeys[i] = gid;
             }
         }
 
@@ -287,6 +294,7 @@ public class ContentTransformService : IContentTransformService
             // Sections have separately-mappable parts: content, description, summary.
             string? currentHeadingText = null;
             string? currentGroupName = null;
+            string? currentStableKey = null;
             string? currentRuleName = null;
             var currentContentLines = new List<string>();
             var currentDescriptionLines = new List<string>();
@@ -307,7 +315,7 @@ public class ContentTransformService : IContentTransformService
                 }
                 else
                 {
-                    id = $"preamble-p{page}-z{areaIndex}";
+                    id = GeneratePreambleId(area.Name, page);
                 }
 
                 var content = currentContentLines.Count > 0
@@ -322,6 +330,7 @@ public class ContentTransformService : IContentTransformService
                 var s = new TransformedSection
                 {
                     Id = id,
+                    StableKey = currentStableKey,
                     Heading = titleCasedHeading,
                     OriginalHeading = currentHeadingText,
                     Content = content,
@@ -344,6 +353,7 @@ public class ContentTransformService : IContentTransformService
                 UpdateDiagnostics(diagnostics, s.Pattern);
                 currentHeadingText = null;
                 currentGroupName = null;
+                currentStableKey = null;
                 currentRuleName = null;
                 currentContentLines = new List<string>();
                 currentDescriptionLines = new List<string>();
@@ -382,6 +392,7 @@ public class ContentTransformService : IContentTransformService
                     var propSection = new TransformedSection
                     {
                         Id = propId,
+                        StableKey = rule.Id,
                         Heading = ToTitleCaseIfAllCaps(roleName),
                         OriginalHeading = roleName,
                         Content = content,
@@ -418,6 +429,7 @@ public class ContentTransformService : IContentTransformService
                         FlushSection();
                         currentHeadingText = FormatContentLine(elements[i].Text, format, ref numberedListCounter);
                         currentGroupName = elementGroupNames[i];
+                        currentStableKey = elementGroupStableKeys[i];
                         currentRuleName = elementRules[i]?.Role;
                         break;
 
@@ -429,7 +441,10 @@ public class ContentTransformService : IContentTransformService
                             FlushSection();
                         }
                         if (currentGroupName == null && elementGroupNames[i] != null)
+                        {
                             currentGroupName = elementGroupNames[i];
+                            currentStableKey = elementGroupStableKeys[i];
+                        }
                         var contentLine = FormatContentLine(elements[i].Text, format, ref numberedListCounter);
                         currentContentLines.Add(contentLine);
                         break;
@@ -441,7 +456,10 @@ public class ContentTransformService : IContentTransformService
                             FlushSection();
                         }
                         if (currentGroupName == null && elementGroupNames[i] != null)
+                        {
                             currentGroupName = elementGroupNames[i];
+                            currentStableKey = elementGroupStableKeys[i];
+                        }
                         var descLine = FormatContentLine(elements[i].Text, format, ref numberedListCounter);
                         currentDescriptionLines.Add(descLine);
                         break;
@@ -453,7 +471,10 @@ public class ContentTransformService : IContentTransformService
                             FlushSection();
                         }
                         if (currentGroupName == null && elementGroupNames[i] != null)
+                        {
                             currentGroupName = elementGroupNames[i];
+                            currentStableKey = elementGroupStableKeys[i];
+                        }
                         var summaryLine = FormatContentLine(elements[i].Text, format, ref numberedListCounter);
                         currentSummaryLines.Add(summaryLine);
                         break;
@@ -498,7 +519,7 @@ public class ContentTransformService : IContentTransformService
                     }
                     else
                     {
-                        id = $"preamble-p{page}-z{areaIndex}";
+                        id = GeneratePreambleId(area.Name, page);
                     }
 
                     var pat = DetectPattern(currentChildren);
@@ -568,6 +589,7 @@ public class ContentTransformService : IContentTransformService
                         var section = new TransformedSection
                         {
                             Id = NormalizeToKebabCase(rule.Role),
+                            StableKey = rule.Id,
                             Heading = rule.Role,
                             OriginalHeading = rule.Role,
                             Content = content,
@@ -590,7 +612,7 @@ public class ContentTransformService : IContentTransformService
                     var content = AssembleMarkdown(unclaimed, pattern);
                     var remainingSection = new TransformedSection
                     {
-                        Id = $"preamble-p{page}-z{areaIndex}",
+                        Id = GeneratePreambleId(area.Name, page),
                         Heading = null,
                         OriginalHeading = null,
                         Content = content,
@@ -886,6 +908,18 @@ public class ContentTransformService : IContentTransformService
         var lower = text.ToLower(CultureInfo.InvariantCulture).Trim();
         var kebab = Regex.Replace(lower, @"[^a-z0-9]+", "-");
         return kebab.Trim('-');
+    }
+
+    /// <summary>
+    /// Generates a preamble section ID using area name (stable) instead of positional index.
+    /// Format: "preamble-{areaNameKebab}-p{page}" e.g. "preamble-main-content-p1".
+    /// Falls back to "preamble-p{page}" if area name is empty.
+    /// </summary>
+    private static string GeneratePreambleId(string? areaName, int page)
+    {
+        if (!string.IsNullOrEmpty(areaName))
+            return $"preamble-{NormalizeToKebabCase(areaName)}-p{page}";
+        return $"preamble-p{page}";
     }
 
     /// <summary>

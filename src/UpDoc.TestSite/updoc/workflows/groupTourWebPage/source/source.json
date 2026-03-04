@@ -13,6 +13,7 @@
       "groups": [],
       "rules": [
         {
+          "id": "e707e160-bb38-4ebd-a5e1-0f9aeeb0d333",
           "role": "Tour Title",
           "part": "title",
           "action": null,
@@ -40,6 +41,7 @@
           "textReplacements": null
         },
         {
+          "id": "f6b7e762-4615-4aef-a09e-cb94dd1f9a2a",
           "role": "Tour Description",
           "part": "content",
           "action": null,
@@ -63,9 +65,11 @@
     "suggested-itinerary": {
       "groups": [
         {
+          "id": "117a5c01-46f7-43aa-a1c2-02c21829ac76",
           "name": "Itinery",
           "rules": [
             {
+              "id": "8ea649ee-c8de-4546-8f7b-9bb96d61a064",
               "role": "Section Title",
               "part": "title",
               "action": null,
@@ -97,6 +101,7 @@
               "textReplacements": null
             },
             {
+              "id": "34612157-5aeb-4e40-8bb2-a5eb61353660",
               "role": "Day Number",
               "part": "content",
               "action": null,
@@ -128,6 +133,7 @@
               "textReplacements": null
             },
             {
+              "id": "0c88890e-5a64-4e29-ae99-ff916dd22987",
               "role": "Day Details",
               "part": "content",
               "action": null,
@@ -162,9 +168,11 @@
     "main-content": {
       "groups": [
         {
+          "id": "fa157a98-1078-4668-8d69-9dc2e4cdc751",
           "name": "Features",
           "rules": [
             {
+              "id": "719e59fd-692f-4b33-a8f9-0132c5feee1e",
               "role": "Features Content",
               "part": "content",
               "action": null,
@@ -194,9 +202,11 @@
           ]
         },
         {
+          "id": "5f119a83-81ea-4dee-96f0-64dc5a6b0f25",
           "name": "Sights",
           "rules": [
             {
+              "id": "ada33681-df1b-4ccb-9319-398418d55c7c",
               "role": "Sights Content",
               "part": "content",
               "action": null,
@@ -226,9 +236,11 @@
           ]
         },
         {
+          "id": "340d08c2-62c5-4d85-8e61-113bc22e10e5",
           "name": "Suggested Itinerary",
           "rules": [
             {
+              "id": "5204a4e2-85f1-4312-b9b4-3ff282ddee77",
               "role": "Day Title",
               "part": "content",
               "action": null,
@@ -260,6 +272,7 @@
               "textReplacements": null
             },
             {
+              "id": "bc1fdf55-fa4e-45b7-94b9-7705c61cc631",
               "role": "Day Title H4",
               "part": "content",
               "action": null,
@@ -283,6 +296,7 @@
               "textReplacements": null
             },
             {
+              "id": "cbfc9983-0846-440d-a54c-edd34fd50373",
               "role": "Day Content",
               "part": "content",
               "action": null,

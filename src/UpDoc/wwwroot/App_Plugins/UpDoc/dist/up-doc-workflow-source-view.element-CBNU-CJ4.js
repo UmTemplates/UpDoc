@@ -567,6 +567,7 @@ R = async function(e, t = "content") {
   if (!n?.selectedTargets?.length) return;
   const r = `${e.id}.${t}`, l = this._config.map?.mappings ?? [], c = {
     source: r,
+    sourceKey: e.stableKey ?? void 0,
     destinations: n.selectedTargets.map((y) => ({ target: y.target, blockKey: y.blockKey, contentTypeKey: y.contentTypeKey })),
     enabled: !0
   }, h = l.findIndex((y) => y.source === r), f = h >= 0 ? l.map((y, S) => S === h ? c : y) : [...l, c], b = {
@@ -2274,4 +2275,4 @@ export {
   g as UpDocWorkflowSourceViewElement,
   Nt as default
 };
-//# sourceMappingURL=up-doc-workflow-source-view.element-O1iMOEm3.js.map
+//# sourceMappingURL=up-doc-workflow-source-view.element-CBNU-CJ4.js.map

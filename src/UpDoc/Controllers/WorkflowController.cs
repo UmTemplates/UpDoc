@@ -390,6 +390,7 @@ public class WorkflowController : ControllerBase
                 var previousTransform = _workflowService.GetTransformResult(alias);
                 var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig?.AreaRules, previousTransform);
                 _workflowService.SaveTransformResult(alias, transformResult);
+                ReconcileSourceKeys(alias, previousTransform, transformResult);
             }
             else if (sourceType == "markdown")
             {
@@ -401,6 +402,7 @@ public class WorkflowController : ControllerBase
                 var previousTransform = _workflowService.GetTransformResult(alias);
                 var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig?.AreaRules, previousTransform);
                 _workflowService.SaveTransformResult(alias, transformResult);
+                ReconcileSourceKeys(alias, previousTransform, transformResult);
             }
         }
         catch (DirectoryNotFoundException)
@@ -559,6 +561,94 @@ public class WorkflowController : ControllerBase
         return result;
     }
 
+    /// <summary>
+    /// Reconciles source section IDs in map.json after a transform regeneration.
+    /// Uses stableKey (rule/group GUID) to track sections across ID changes.
+    /// Mirrors the ReconcileBlockKeys pattern on the destination side.
+    /// </summary>
+    private void ReconcileSourceKeys(
+        string alias,
+        TransformResult? previousTransform,
+        TransformResult newTransform)
+    {
+        var mapConfig = _workflowService.GetMapConfig(alias);
+        if (mapConfig == null || previousTransform == null)
+            return;
+
+        // Build lookup: stableKey → new section ID from new transform
+        var newStableKeyToId = new Dictionary<string, string>();
+        foreach (var section in newTransform.AllSections)
+        {
+            if (!string.IsNullOrEmpty(section.StableKey))
+                newStableKeyToId.TryAdd(section.StableKey, section.Id);
+        }
+
+        // Build lookup: old section ID → stableKey from old transform
+        var oldIdToStableKey = new Dictionary<string, string>();
+        foreach (var section in previousTransform.AllSections)
+        {
+            if (!string.IsNullOrEmpty(section.StableKey))
+                oldIdToStableKey.TryAdd(section.Id, section.StableKey);
+        }
+
+        // Build set of valid new section IDs for quick lookup
+        var validNewIds = new HashSet<string>(newTransform.AllSections.Select(s => s.Id));
+
+        var modified = false;
+        var updated = 0;
+
+        foreach (var mapping in mapConfig.Mappings)
+        {
+            // Extract the base section ID (before the .part suffix like ".content")
+            var dotIndex = mapping.Source.IndexOf('.');
+            var baseSectionId = dotIndex >= 0 ? mapping.Source[..dotIndex] : mapping.Source;
+            var partSuffix = dotIndex >= 0 ? mapping.Source[dotIndex..] : "";
+
+            // Resolve stableKey: prefer existing sourceKey, fall back to old transform lookup
+            var stableKey = mapping.SourceKey;
+            if (string.IsNullOrEmpty(stableKey))
+            {
+                oldIdToStableKey.TryGetValue(baseSectionId, out stableKey);
+            }
+
+            if (string.IsNullOrEmpty(stableKey))
+                continue; // Can't resolve — no stableKey available
+
+            // Backfill sourceKey if it was missing
+            if (string.IsNullOrEmpty(mapping.SourceKey))
+            {
+                mapping.SourceKey = stableKey;
+                modified = true;
+            }
+
+            // Check if current section ID is still valid
+            if (validNewIds.Contains(baseSectionId))
+                continue; // Still valid, no update needed
+
+            // Section ID shifted — resolve via stableKey
+            if (newStableKeyToId.TryGetValue(stableKey, out var newSectionId))
+            {
+                var oldSource = mapping.Source;
+                mapping.Source = newSectionId + partSuffix;
+                modified = true;
+                updated++;
+
+                _logger.LogInformation(
+                    "Source key reconciliation: '{OldSource}' → '{NewSource}' (stableKey: {StableKey})",
+                    oldSource, mapping.Source, stableKey);
+            }
+            // If stableKey not found in new transform, the rule/group was deleted — orphaned
+        }
+
+        if (modified)
+        {
+            _workflowService.SaveMapConfig(alias, mapConfig);
+            _logger.LogInformation(
+                "Reconciled source keys for workflow '{Alias}': {Updated} updated",
+                alias, updated);
+        }
+    }
+
     private static List<DestinationBlock> GetAllBlocks(DestinationConfig config)
     {
         var blocks = new List<DestinationBlock>();
@@ -693,6 +783,7 @@ public class WorkflowController : ControllerBase
         var previousTransform = _workflowService.GetTransformResult(alias);
         var transformResult = _contentTransformService.Transform(areaResult, sourceConfig?.AreaRules, previousTransform);
         _workflowService.SaveTransformResult(alias, transformResult);
+        ReconcileSourceKeys(alias, previousTransform, transformResult);
 
         _logger.LogInformation(
             "Transform saved for workflow '{Alias}': {Sections} sections ({Bullets} bullet, {Paragraphs} paragraph, {SubHeaded} sub-headed, {Preambles} preamble, {Roles} role)",
@@ -723,6 +814,7 @@ public class WorkflowController : ControllerBase
         var previousTransform = _workflowService.GetTransformResult(alias);
         var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig?.AreaRules, previousTransform);
         _workflowService.SaveTransformResult(alias, transformResult);
+        ReconcileSourceKeys(alias, previousTransform, transformResult);
 
         _logger.LogInformation(
             "Retransform saved for workflow '{Alias}': {Sections} sections",
@@ -866,6 +958,7 @@ public class WorkflowController : ControllerBase
             var previousTransform = _workflowService.GetTransformResult(alias);
             var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig.AreaRules, previousTransform);
             _workflowService.SaveTransformResult(alias, transformResult);
+            ReconcileSourceKeys(alias, previousTransform, transformResult);
         }
 
         _logger.LogInformation("Updated excluded areas for workflow '{Alias}': {Areas}",
@@ -896,6 +989,7 @@ public class WorkflowController : ControllerBase
             var previousTransform = _workflowService.GetTransformResult(alias);
             var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig.AreaRules, previousTransform);
             _workflowService.SaveTransformResult(alias, transformResult);
+            ReconcileSourceKeys(alias, previousTransform, transformResult);
         }
 
         _logger.LogInformation("Updated container overrides for workflow '{Alias}': {Count} overrides",
@@ -923,6 +1017,7 @@ public class WorkflowController : ControllerBase
             var previousTransform = _workflowService.GetTransformResult(alias);
             var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig.AreaRules, previousTransform);
             _workflowService.SaveTransformResult(alias, transformResult);
+            ReconcileSourceKeys(alias, previousTransform, transformResult);
         }
 
         _logger.LogInformation("Updated section rules for workflow '{Alias}': {Count} sections with rules",
@@ -940,6 +1035,19 @@ public class WorkflowController : ControllerBase
             return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
         }
 
+        // Backfill stable GUIDs on any rules/groups that don't have one yet
+        foreach (var area in areaRules.Values)
+        {
+            foreach (var group in area.Groups)
+            {
+                group.Id ??= Guid.NewGuid().ToString();
+                foreach (var rule in group.Rules)
+                    rule.Id ??= Guid.NewGuid().ToString();
+            }
+            foreach (var rule in area.Rules)
+                rule.Id ??= Guid.NewGuid().ToString();
+        }
+
         sourceConfig.AreaRules = areaRules;
         _workflowService.SaveSourceConfig(alias, sourceConfig);
 
@@ -950,6 +1058,7 @@ public class WorkflowController : ControllerBase
             var previousTransform = _workflowService.GetTransformResult(alias);
             var transformResult = _contentTransformService.Transform(areaDetection, sourceConfig.AreaRules, previousTransform);
             _workflowService.SaveTransformResult(alias, transformResult);
+            ReconcileSourceKeys(alias, previousTransform, transformResult);
         }
 
         _logger.LogInformation("Updated area rules for workflow '{Alias}': {Count} areas with rules",

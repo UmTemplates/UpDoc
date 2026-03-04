@@ -43,6 +43,9 @@ export class UpDocModalElement extends UmbModalBaseElement<
 	@state()
 	private _sectionLookup: Record<string, string> = {};
 
+	/** Maps stableKey → sectionId for fallback resolution when section IDs shift. */
+	#stableKeyLookup: Record<string, string> = {};
+
 	@state()
 	private _config: DocumentTypeConfig | null = null;
 
@@ -184,6 +187,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 
 			// Build section ID → text lookup (e.g., "features.heading", "features.content")
 			const sectionLookup: Record<string, string> = {};
+			const stableKeyLookup: Record<string, string> = {};
 			for (const section of allSections) {
 				if (!section.included) continue;
 				if (section.heading) {
@@ -203,8 +207,13 @@ export class UpDocModalElement extends UmbModalBaseElement<
 				if (section.summary) {
 					sectionLookup[`${section.id}.summary`] = section.summary;
 				}
+				// Build stableKey → sectionId lookup for fallback resolution
+				if (section.stableKey) {
+					stableKeyLookup[section.stableKey] = section.id;
+				}
 			}
 			this._sectionLookup = sectionLookup;
+			this.#stableKeyLookup = stableKeyLookup;
 
 			// Pre-fill document name from mapped title sections
 			if (!this._documentName && (this._workflowConfig || this._config)) {
@@ -249,6 +258,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 
 			// Build section ID → text lookup (same as media extraction)
 			const sectionLookup: Record<string, string> = {};
+			const stableKeyLookup: Record<string, string> = {};
 			for (const section of allSections) {
 				if (!section.included) continue;
 				if (section.heading) {
@@ -264,8 +274,12 @@ export class UpDocModalElement extends UmbModalBaseElement<
 				if (section.summary) {
 					sectionLookup[`${section.id}.summary`] = section.summary;
 				}
+				if (section.stableKey) {
+					stableKeyLookup[section.stableKey] = section.id;
+				}
 			}
 			this._sectionLookup = sectionLookup;
+			this.#stableKeyLookup = stableKeyLookup;
 
 			// Pre-fill document name from mapped title sections
 			if (!this._documentName && (this._workflowConfig || this._config)) {
@@ -359,6 +373,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 			mediaUnique: this._selectedMediaUnique,
 			sourceUrl: this._sourceUrl || null,
 			sectionLookup: this._sectionLookup,
+			stableKeyLookup: this.#stableKeyLookup,
 			config: effectiveConfig,
 		};
 		this._submitModal();
@@ -601,7 +616,19 @@ export class UpDocModalElement extends UmbModalBaseElement<
 
 		for (const mapping of effectiveConfig.map.mappings) {
 			if (mapping.enabled === false) continue;
-			const text = this._sectionLookup[mapping.source];
+			let text = this._sectionLookup[mapping.source];
+
+			// StableKey fallback: if section ID changed but stableKey matches, resolve via new ID
+			if (!text && mapping.sourceKey && this.#stableKeyLookup) {
+				const newSectionId = this.#stableKeyLookup[mapping.sourceKey];
+				if (newSectionId) {
+					const partSuffix = mapping.source.split('.').pop();
+					if (partSuffix) {
+						text = this._sectionLookup[`${newSectionId}.${partSuffix}`];
+					}
+				}
+			}
+
 			if (!text) continue;
 			for (const dest of mapping.destinations) {
 				const compoundKey = dest.blockKey ? `${dest.blockKey}:${dest.target}` : dest.target;

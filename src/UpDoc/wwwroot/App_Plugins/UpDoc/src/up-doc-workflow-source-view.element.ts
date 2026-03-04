@@ -858,6 +858,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 
 		const newMapping: SectionMapping = {
 			source: sourceKey,
+			sourceKey: section.stableKey ?? undefined,
 			destinations: result.selectedTargets.map((t) => ({ target: t.target, blockKey: t.blockKey, contentTypeKey: t.contentTypeKey })),
 			enabled: true,
 		};

@@ -6,6 +6,7 @@
   "mappings": [
     {
       "source": "tour-title.content",
+      "sourceKey": "d89bc5dc-cd92-4147-b9d5-69fbc1c325d8",
       "destinations": [
         {
           "target": "pageTitle",
@@ -25,6 +26,7 @@
     },
     {
       "source": "tour-description.content",
+      "sourceKey": "60e01e2b-4d3f-4d1f-bdf7-b16afc7957dd",
       "destinations": [
         {
           "target": "pageDescription",
@@ -38,6 +40,7 @@
     },
     {
       "source": "organisation.content",
+      "sourceKey": "35d2eb27-6901-4b31-a062-acde69cbc548",
       "destinations": [
         {
           "target": "organiserOrganisation",
@@ -51,6 +54,7 @@
     },
     {
       "source": "organiser-name.content",
+      "sourceKey": "242ac20d-0d50-424a-a6eb-50ab62c07516",
       "destinations": [
         {
           "target": "organiserName",
@@ -64,6 +68,7 @@
     },
     {
       "source": "organiser-telephone.content",
+      "sourceKey": "7e6b0588-db18-4dd7-ab66-c825d0de8fbb",
       "destinations": [
         {
           "target": "organiserTelephone",
@@ -77,6 +82,7 @@
     },
     {
       "source": "organiser-email.content",
+      "sourceKey": "0c0c06fb-1159-4364-878f-d2d55423b6ae",
       "destinations": [
         {
           "target": "organiserEmail",
@@ -90,6 +96,7 @@
     },
     {
       "source": "organiser-address.content",
+      "sourceKey": "75b31ea6-088d-4f74-a8c2-bc88a1cbc09b",
       "destinations": [
         {
           "target": "organiserAddress",
@@ -103,6 +110,7 @@
     },
     {
       "source": "features.title",
+      "sourceKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
       "destinations": [
         {
           "target": "featurePropertyFeatureTitle",
@@ -116,6 +124,7 @@
     },
     {
       "source": "features.content",
+      "sourceKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
       "destinations": [
         {
           "target": "richTextContent",
@@ -129,6 +138,7 @@
     },
     {
       "source": "accommodation.title",
+      "sourceKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
       "destinations": [
         {
           "target": "featurePropertyFeatureTitle",
@@ -142,6 +152,7 @@
     },
     {
       "source": "accommodation.content",
+      "sourceKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
       "destinations": [
         {
           "target": "richTextContent",
@@ -155,6 +166,7 @@
     },
     {
       "source": "preamble-p2-z0.content",
+      "sourceKey": "3c5727aa-57ae-4783-9c21-47cf611da8f7",
       "destinations": [
         {
           "target": "richTextContent",
@@ -168,6 +180,7 @@
     },
     {
       "source": "preamble-p2-z0.summary",
+      "sourceKey": "3c5727aa-57ae-4783-9c21-47cf611da8f7",
       "destinations": [
         {
           "target": "featurePropertyFeatureSummary",
@@ -181,6 +194,7 @@
     },
     {
       "source": "what-we-will-see.title",
+      "sourceKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
       "destinations": [
         {
           "target": "featurePropertyFeatureTitle",
@@ -194,6 +208,7 @@
     },
     {
       "source": "what-we-will-see.content",
+      "sourceKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
       "destinations": [
         {
           "target": "richTextContent",

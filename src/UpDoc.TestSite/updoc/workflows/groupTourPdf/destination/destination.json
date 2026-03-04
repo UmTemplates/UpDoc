@@ -197,6 +197,59 @@
           ]
         },
         {
+          "key": "bebc7d17-efe8-415c-9448-a76430e5a67a",
+          "contentTypeAlias": "featureRichTextEditorSights",
+          "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
+          "label": "Sights",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Sights"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            }
+          ]
+        },
+        {
           "key": "90f9fe06-16a8-4677-bb30-680e89ab86bb",
           "contentTypeAlias": "featureRichTextEditorAccommodation",
           "contentTypeKey": "1d09b5af-b95a-4af5-b8f2-323db029e817",

@@ -9,6 +9,7 @@
       "Sections": [
         {
           "Id": "organisation",
+          "StableKey": "35d2eb27-6901-4b31-a062-acde69cbc548",
           "OriginalHeading": "Organisation",
           "Heading": "Organisation",
           "Content": "Surrey Heath DFAS presents",
@@ -25,6 +26,7 @@
         },
         {
           "Id": "tour-title",
+          "StableKey": "d89bc5dc-cd92-4147-b9d5-69fbc1c325d8",
           "OriginalHeading": "Tour Title",
           "Heading": "Tour Title",
           "Content": "# The Art and History of Dresden, Leipzig and Mei\u03B2en",
@@ -41,6 +43,7 @@
         },
         {
           "Id": "tour-description",
+          "StableKey": "60e01e2b-4d3f-4d1f-bdf7-b16afc7957dd",
           "OriginalHeading": "Tour Description",
           "Heading": "Tour Description",
           "Content": "6 days from \u00A3994 Departing 29th September 2015",
@@ -65,6 +68,7 @@
       "Sections": [
         {
           "Id": "organiser-name",
+          "StableKey": "242ac20d-0d50-424a-a6eb-50ab62c07516",
           "OriginalHeading": "Organiser Name",
           "Heading": "Organiser Name",
           "Content": "Margaret Wilson",
@@ -81,6 +85,7 @@
         },
         {
           "Id": "organiser-telephone",
+          "StableKey": "7e6b0588-db18-4dd7-ab66-c825d0de8fbb",
           "OriginalHeading": "Organiser Telephone",
           "Heading": "Organiser Telephone",
           "Content": "01344 622768",
@@ -97,6 +102,7 @@
         },
         {
           "Id": "organiser-email",
+          "StableKey": "0c0c06fb-1159-4364-878f-d2d55423b6ae",
           "OriginalHeading": "Organiser Email",
           "Heading": "Organiser Email",
           "Content": "hatton@onetel.net",
@@ -113,6 +119,7 @@
         },
         {
           "Id": "organiser-address",
+          "StableKey": "75b31ea6-088d-4f74-a8c2-bc88a1cbc09b",
           "OriginalHeading": "Organiser Address",
           "Heading": "Organiser Address",
           "Content": "5 Hamilton Drive, Ascot SL5 9PP",
@@ -129,6 +136,7 @@
         },
         {
           "Id": "preamble-p1-z1",
+          "StableKey": null,
           "OriginalHeading": null,
           "Heading": null,
           "Content": "For more information on this tour contact your Group Organiser",
@@ -155,6 +163,7 @@
           "Sections": [
             {
               "Id": "features",
+              "StableKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
               "OriginalHeading": "## FEATURES",
               "Heading": "## Features",
               "Content": "- 4* central Dresden hotel\n- All excursions, entrance fees \u0026 guided tours included\n- Three dinners included\n- Direct scheduled British Airways flights from Heathrow to Berli\n- Professional guide\n- Executive coach (as detailed in the itinerary)\n- Gratuities \u0026 audio headsets included",
@@ -171,6 +180,7 @@
             },
             {
               "Id": "what-we-will-see",
+              "StableKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
               "OriginalHeading": "## WHAT WE WILL SEE",
               "Heading": "## What We Will See",
               "Content": "- Dresden \u2013 guided city walking tour\n- Frauenkirche\n- Zwinger Palace \u0026 Old Masters Picture Gallery \u2013 guided tour\n- Pillnitz Castle, Gardens \u0026 the Museum of Decorative Arts \u2013 guided tour\n- Paddle Steamer Cruise from K\u00F6nigstein to Pillnitz\n- Royal Palace \u2013 Old Green Vault \u0026 New Green Vault\n- Leipzig \u2013 guided city walking tour\n- Tomaskirche\n- Museum der Bildenden K\u00FCnste \u2013 guided tour\n- Mei\u00DFen Porcelain Museum \u2013 guided tour",
@@ -187,6 +197,7 @@
             },
             {
               "Id": "accommodation",
+              "StableKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
               "OriginalHeading": "## ACCOMMODATION",
               "Heading": "## Accommodation",
               "Content": "We stay five nights at the centrally located 4* Maritim Hotel (www.maritim.de) in Dresden. Located by the River Elbe, and under a five minute walk from the Semper Opera House, facilities at the hotel include a restaurant, bar, swimming pool, gymnasium, steam room and a sauna. All rooms are en suite and feature television, telephone, hairdryer and a mini bar. Dinner is included in our hotel on the first and second evenings, and at a carefully selected restaurant which is a 10 minute walk from our hotel on the last night. The remaining two evenings are on bed and breakfast basis.",
@@ -203,6 +214,7 @@
             },
             {
               "Id": "extras-to-your-tour",
+              "StableKey": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
               "OriginalHeading": "## EXTRAS TO YOUR TOUR",
               "Heading": "## Extras To Your Tour",
               "Content": "- Insurance \u00A336\n- Single room supplement \u00A389\n- Local accommodation tax to be paid directly to the hotel (approximately \u20AC1.30 per person per night)\nFlight details may be subject to change. Price based on twin share. Minimum numbers",
@@ -232,6 +244,7 @@
           "Sections": [
             {
               "Id": "preamble-p2-z0",
+              "StableKey": "3c5727aa-57ae-4783-9c21-47cf611da8f7",
               "OriginalHeading": null,
               "Heading": null,
               "Content": "6 days from \u00A3994 Departing 29th September 2015\n### Day 1\nWe meet at Heathrow Airport for our direct scheduled British Airways flight to Berlin. On arrival in Berlin we are met by our guide and transfer by coach to the centrally located 4* Maritim Hotel in Dresden for a five night stay. Dinner is included in our hotel the first and second evenings, and at a carefully selected restaurant on the last night. The remaining two evenings are on bed and breakfast basis.\n### Day 2\nThis morning we enjoy a guided walking tour of Dresden, taking in sights such as the Semper Opera House and the Cathedral. During our guided tour we visit the Frauenkirche, an outstanding example of Protestant sacred architecture and featuring one of the largest domes in Europe. Destroyed during the bombing of Dresden in World War II, the church was rebuilt after the reunification of Dresden. This afternoon we walk to the Zwinger Palace, the old fortress of Dresden. A guided tour of the Old Masters Picture Gallery in the Palace introduces us to works by Rubens, Canaletto, Raphael, Titian, Rembrandt and Vermeer, as well as a wonderful Mei\u03B2en porcelain gallery.\n### Day 3\nWe visit Pillnitz Castle and Gardens for a morning guided tour. One of the area\u2019s finest summer palaces, the Castle lies picturesquely on the banks of the River Elbe. With its flying buttresses and chimneys ornamented with crowns, this is the only Chinese style castle of its size in Europe. Here we visit the Museum of Decorative Arts. The museum focuses on Saxon and European arts and crafts of the 17th and 18th century. This afternoon we travel to K\u00F6nigstein, a town located by the banks of the River Elbe. We then take an included memorable paddle steamer cruise along the River Elbe from K\u00F6nigstein to Pirna to view the splendour of the Saxony Alps.\n### Day 4\nThis morning we visit the Royal Palace and visit the Old Green Vault with its collection of fine silver and jewellery followed by the New Green Vault highlighting some of the central pieces from the collection in their original setting including the celebrated Dresden Green Diamond. We then visit the New Green Vault. The rest of the day is at leisure in Dresden.\n### Day 5\nOur guided walking tour of Leipzig this morning takes in sights such as the Opera House and the Nikolaikirche. We also visit the magnificent late-Gothic Tomaskirche, where Bach was the choirmaster from 1723. This afternoon we enjoy a guided tour at the Museum der Bildenden K\u00FCnste, home to a fine collection of paintings by German masters from the late Middle Ages to the present day. Included are Lucas Cranach, Martin Schongauer, Caspar David Friedrich, Arnold B\u00F6cklin, Max Lieberman and Max Klinger. A farewell dinner is included at a carefully selected restaurant in Dresden this evening.\n### Day 6\nA guided tour of the Mei\u00DFen Porcelain Museum this morning gives an insight into the production process at this world renowned manufacturer. We return to Berlin Airport for our direct scheduled British Airways flight back Lacock to Heathrow. Abbey",

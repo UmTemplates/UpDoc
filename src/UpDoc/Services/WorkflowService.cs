@@ -327,6 +327,49 @@ public class WorkflowService : IWorkflowService
             }
         }
 
+        // Validate source references in map.json against transform.json sections
+        // Build the set of valid section part keys (e.g., "features.content", "tour-title.heading")
+        var transformFile = ResolveFilePath(config.FolderPath, "source", "transform.json");
+        if (File.Exists(transformFile))
+        {
+            try
+            {
+                var transformJson = File.ReadAllText(transformFile);
+                var transform = JsonSerializer.Deserialize<TransformResult>(transformJson, JsonOptions);
+                if (transform != null)
+                {
+                    var validSectionKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    foreach (var section in transform.AllSections)
+                    {
+                        if (!section.Included) continue;
+                        validSectionKeys.Add($"{section.Id}.content");
+                        if (section.Heading != null)
+                        {
+                            validSectionKeys.Add($"{section.Id}.heading");
+                            validSectionKeys.Add($"{section.Id}.title");
+                        }
+                        if (section.Description != null)
+                            validSectionKeys.Add($"{section.Id}.description");
+                        if (section.Summary != null)
+                            validSectionKeys.Add($"{section.Id}.summary");
+                    }
+
+                    foreach (var mapping in config.Map.Mappings)
+                    {
+                        if (!mapping.Enabled) continue;
+                        if (!validSectionKeys.Contains(mapping.Source))
+                        {
+                            errors.Add($"WARN: source '{mapping.Source}' not found in transform.json (orphaned source)");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Validation: failed to read transform.json for source validation");
+            }
+        }
+
         return errors;
     }
 
@@ -1361,6 +1404,25 @@ public class WorkflowService : IWorkflowService
             _logger.LogInformation("Migration: backfilled contentTypeKey for {Count} mapping(s) total", backfilled);
             ClearCache();
         }
+
+        // Pass 5: Backfill stable GUIDs on rules/groups, StableKeys in transform.json, sourceKeys in map.json
+        var pass5Count = 0;
+        foreach (var folderPath in Directory.GetDirectories(workflowsDirectory))
+        {
+            var folderName = Path.GetFileName(folderPath);
+            var count = BackfillStableIdentity(folderPath);
+            if (count > 0)
+            {
+                pass5Count += count;
+                _logger.LogInformation("Migration: backfilled {Count} stable identity field(s) in '{Folder}'", count, folderName);
+            }
+        }
+
+        if (pass5Count > 0)
+        {
+            _logger.LogInformation("Migration: backfilled {Count} stable identity field(s) total", pass5Count);
+            ClearCache();
+        }
     }
 
     /// <summary>
@@ -1427,6 +1489,191 @@ public class WorkflowService : IWorkflowService
         }
 
         return count;
+    }
+
+    /// <summary>
+    /// Backfills stable identity fields for a workflow:
+    /// 5a: GUIDs on rules/groups in source.json
+    /// 5b: StableKeys in transform.json (matched by rule name)
+    /// 5c: sourceKeys in map.json (matched by section in transform.json)
+    /// </summary>
+    internal int BackfillStableIdentity(string folderPath)
+    {
+        var writeOptions = new JsonSerializerOptions { WriteIndented = true };
+        var totalBackfilled = 0;
+
+        // --- Pass 5a: Backfill GUIDs on rules/groups in source.json ---
+        var sourceFile = ResolveFilePath(folderPath, "source", "source.json");
+        Dictionary<string, AreaRules>? areaRules = null;
+        if (File.Exists(sourceFile))
+        {
+            try
+            {
+                var sourceConfig = JsonSerializer.Deserialize<SourceConfig>(File.ReadAllText(sourceFile), JsonOptions);
+                if (sourceConfig?.AreaRules != null)
+                {
+                    areaRules = sourceConfig.AreaRules;
+                    var rulesModified = false;
+
+                    foreach (var area in areaRules.Values)
+                    {
+                        foreach (var group in area.Groups)
+                        {
+                            if (string.IsNullOrEmpty(group.Id))
+                            {
+                                group.Id = Guid.NewGuid().ToString();
+                                rulesModified = true;
+                                totalBackfilled++;
+                            }
+                            foreach (var rule in group.Rules)
+                            {
+                                if (string.IsNullOrEmpty(rule.Id))
+                                {
+                                    rule.Id = Guid.NewGuid().ToString();
+                                    rulesModified = true;
+                                    totalBackfilled++;
+                                }
+                            }
+                        }
+                        foreach (var rule in area.Rules)
+                        {
+                            if (string.IsNullOrEmpty(rule.Id))
+                            {
+                                rule.Id = Guid.NewGuid().ToString();
+                                rulesModified = true;
+                                totalBackfilled++;
+                            }
+                        }
+                    }
+
+                    if (rulesModified)
+                    {
+                        File.WriteAllText(sourceFile, JsonSerializer.Serialize(sourceConfig, writeOptions));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Migration 5a: failed to backfill GUIDs in source.json for {Folder}", Path.GetFileName(folderPath));
+            }
+        }
+
+        // --- Pass 5b: Backfill StableKeys in transform.json (match rules by name) ---
+        var transformFile = ResolveFilePath(folderPath, "source", "transform.json");
+        TransformResult? transform = null;
+        if (File.Exists(transformFile) && areaRules != null)
+        {
+            try
+            {
+                transform = JsonSerializer.Deserialize<TransformResult>(File.ReadAllText(transformFile), JsonOptions);
+                if (transform != null)
+                {
+                    // Build ruleName → GUID lookup from areaRules
+                    // For grouped rules, key is groupId (sections inherit the group GUID)
+                    // For ungrouped rules, key is the rule's own Id
+                    var ruleNameToId = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                    var groupNameToId = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+                    foreach (var area in areaRules.Values)
+                    {
+                        foreach (var group in area.Groups)
+                        {
+                            if (!string.IsNullOrEmpty(group.Id))
+                            {
+                                groupNameToId.TryAdd(group.Name, group.Id);
+                            }
+                        }
+                        foreach (var rule in area.Rules)
+                        {
+                            if (!string.IsNullOrEmpty(rule.Id) && !string.IsNullOrEmpty(rule.Role))
+                            {
+                                ruleNameToId.TryAdd(rule.Role, rule.Id);
+                            }
+                        }
+                    }
+
+                    var transformModified = false;
+                    foreach (var section in transform.AllSections)
+                    {
+                        if (!string.IsNullOrEmpty(section.StableKey)) continue;
+
+                        // Try matching by group name first (grouped sections)
+                        if (!string.IsNullOrEmpty(section.GroupName) && groupNameToId.TryGetValue(section.GroupName, out var groupId))
+                        {
+                            section.StableKey = groupId;
+                            transformModified = true;
+                            totalBackfilled++;
+                        }
+                        // Then try matching by rule name (ungrouped sections)
+                        else if (!string.IsNullOrEmpty(section.RuleName) && ruleNameToId.TryGetValue(section.RuleName, out var ruleId))
+                        {
+                            section.StableKey = ruleId;
+                            transformModified = true;
+                            totalBackfilled++;
+                        }
+                    }
+
+                    if (transformModified)
+                    {
+                        File.WriteAllText(transformFile, JsonSerializer.Serialize(transform, writeOptions));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Migration 5b: failed to backfill StableKeys in transform.json for {Folder}", Path.GetFileName(folderPath));
+            }
+        }
+
+        // --- Pass 5c: Backfill sourceKeys in map.json (match sections in transform.json) ---
+        var mapFile = ResolveFilePath(folderPath, "map", "map.json");
+        if (File.Exists(mapFile) && transform != null)
+        {
+            try
+            {
+                var mapConfig = JsonSerializer.Deserialize<MapConfig>(File.ReadAllText(mapFile), JsonOptions);
+                if (mapConfig != null)
+                {
+                    // Build sectionId → stableKey lookup from transform
+                    var sectionIdToStableKey = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                    foreach (var section in transform.AllSections)
+                    {
+                        if (!string.IsNullOrEmpty(section.StableKey))
+                        {
+                            sectionIdToStableKey[section.Id] = section.StableKey;
+                        }
+                    }
+
+                    var mapModified = false;
+                    foreach (var mapping in mapConfig.Mappings)
+                    {
+                        if (!string.IsNullOrEmpty(mapping.SourceKey)) continue;
+
+                        // Extract section ID from source (e.g., "features.content" → "features")
+                        var dotIndex = mapping.Source.LastIndexOf('.');
+                        var sectionId = dotIndex >= 0 ? mapping.Source[..dotIndex] : mapping.Source;
+
+                        if (sectionIdToStableKey.TryGetValue(sectionId, out var stableKey))
+                        {
+                            mapping.SourceKey = stableKey;
+                            mapModified = true;
+                            totalBackfilled++;
+                        }
+                    }
+
+                    if (mapModified)
+                    {
+                        File.WriteAllText(mapFile, JsonSerializer.Serialize(mapConfig, writeOptions));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Migration 5c: failed to backfill sourceKeys in map.json for {Folder}", Path.GetFileName(folderPath));
+            }
+        }
+
+        return totalBackfilled;
     }
 
     private static void MoveFileIfExists(string sourceDir, string targetDir, string fileName)

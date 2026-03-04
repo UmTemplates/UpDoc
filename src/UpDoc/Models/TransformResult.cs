@@ -72,9 +72,16 @@ public class TransformedSection
 {
     /// <summary>
     /// Semantic ID derived from heading text: "features", "what-we-will-see".
-    /// For preamble sections (no heading): "preamble-p{page}-z{areaIndex}".
+    /// For preamble sections (no heading): "preamble-{areaNameKebab}-p{page}".
     /// </summary>
     public string Id { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Stable GUID from the rule/group that produced this section.
+    /// Survives section ID changes when areas/groups are restructured.
+    /// Null for preamble and heading-detected sections (no originating rule).
+    /// </summary>
+    public string? StableKey { get; set; }
 
     /// <summary>Original heading text as extracted (e.g., "FEATURES").</summary>
     public string? OriginalHeading { get; set; }

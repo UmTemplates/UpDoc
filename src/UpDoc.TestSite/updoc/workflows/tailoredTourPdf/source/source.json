@@ -16,6 +16,7 @@
       "groups": [],
       "rules": [
         {
+          "id": "242ac20d-0d50-424a-a6eb-50ab62c07516",
           "role": "Organiser Name",
           "part": "content",
           "action": null,
@@ -42,6 +43,7 @@
           "textReplacements": null
         },
         {
+          "id": "7e6b0588-db18-4dd7-ab66-c825d0de8fbb",
           "role": "Organiser Telephone",
           "part": "content",
           "action": null,
@@ -76,6 +78,7 @@
           ]
         },
         {
+          "id": "0c0c06fb-1159-4364-878f-d2d55423b6ae",
           "role": "Organiser Email",
           "part": "content",
           "action": null,
@@ -116,6 +119,7 @@
           ]
         },
         {
+          "id": "75b31ea6-088d-4f74-a8c2-bc88a1cbc09b",
           "role": "Organiser Address",
           "part": "content",
           "action": null,
@@ -147,6 +151,7 @@
       "groups": [],
       "rules": [
         {
+          "id": "35d2eb27-6901-4b31-a062-acde69cbc548",
           "role": "Organisation",
           "part": "content",
           "action": null,
@@ -173,6 +178,7 @@
           "textReplacements": null
         },
         {
+          "id": "d89bc5dc-cd92-4147-b9d5-69fbc1c325d8",
           "role": "Tour Title",
           "part": "content",
           "action": null,
@@ -206,6 +212,7 @@
           ]
         },
         {
+          "id": "60e01e2b-4d3f-4d1f-bdf7-b16afc7957dd",
           "role": "Tour Description",
           "part": "content",
           "action": null,
@@ -236,9 +243,11 @@
     "test": {
       "groups": [
         {
+          "id": "a9c78e2a-2891-4162-90ed-93a94ad61d4d",
           "name": "test",
           "rules": [
             {
+              "id": "07a27a9a-f193-4ab7-b336-af548ae9b6b9",
               "role": "for-more-information",
               "part": null,
               "action": "createSection",
@@ -273,9 +282,11 @@
     "tour-details": {
       "groups": [
         {
+          "id": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
           "name": "Tour Details - Section",
           "rules": [
             {
+              "id": "51169456-79ed-47cd-a10c-bef83d411387",
               "role": "Tour Details - Section Title",
               "part": "title",
               "action": null,
@@ -299,6 +310,7 @@
               "textReplacements": null
             },
             {
+              "id": "9cd5950b-8082-4e63-aa17-12c5d8fb0b22",
               "role": "Tour Details - Section Content",
               "part": "content",
               "action": null,
@@ -332,9 +344,11 @@
     "itinerary": {
       "groups": [
         {
+          "id": "3c5727aa-57ae-4783-9c21-47cf611da8f7",
           "name": "Itinerary",
           "rules": [
             {
+              "id": "06edbb77-e442-43ea-bb05-77dd2731078f",
               "role": "Day Number",
               "part": "content",
               "action": null,
@@ -361,6 +375,7 @@
               "textReplacements": null
             },
             {
+              "id": "6f495045-f372-4165-9316-42fee2b8e557",
               "role": "Day Details",
               "part": "content",
               "action": null,
@@ -387,6 +402,7 @@
               "textReplacements": null
             },
             {
+              "id": "664dd3f9-da50-4ec0-bd9b-9e456f941050",
               "role": "Disclaimer",
               "part": "summary",
               "action": null,
@@ -417,5 +433,6 @@
       ],
       "rules": []
     }
-  }
+  },
+  "excludedAreas": null
 }

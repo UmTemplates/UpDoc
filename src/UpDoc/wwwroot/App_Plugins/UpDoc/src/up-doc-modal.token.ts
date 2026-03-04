@@ -16,6 +16,8 @@ export interface UmbUpDocModalValue {
 	mediaUnique: string | null;
 	sourceUrl: string | null;
 	sectionLookup: Record<string, string>;
+	/** Maps stableKey → sectionId for fallback resolution when section IDs shift. */
+	stableKeyLookup: Record<string, string>;
 	config: DocumentTypeConfig | null;
 }
 

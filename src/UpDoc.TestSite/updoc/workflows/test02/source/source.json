@@ -16,6 +16,7 @@
       "groups": [],
       "rules": [
         {
+          "id": "cbbe23b0-a907-4a62-acbb-880a5eebcb4b",
           "role": "Organiser",
           "part": "content",
           "action": null,
@@ -43,6 +44,7 @@
           "textReplacements": null
         },
         {
+          "id": "8550eeb8-c7d7-402e-88ba-808c13d8edfd",
           "role": "Tour Title",
           "part": "content",
           "action": null,
@@ -66,6 +68,7 @@
           "textReplacements": null
         },
         {
+          "id": "7630f2b6-16df-4710-abd2-dad75c60b860",
           "role": "Tour Description",
           "part": "content",
           "action": null,
@@ -98,6 +101,7 @@
       "groups": [],
       "rules": [
         {
+          "id": "37cba8b8-a6fc-4a39-a32f-5b476baed72f",
           "role": "Tour Details",
           "part": "content",
           "action": null,
@@ -125,6 +129,7 @@
           "textReplacements": null
         },
         {
+          "id": "9379b339-a8f4-4963-84cd-4ddd3892f6e9",
           "role": "-4-central",
           "part": "content",
           "action": null,
@@ -153,6 +158,7 @@
       "groups": [],
       "rules": [
         {
+          "id": "92cd3d2d-64a3-4d14-afec-71f0eced4177",
           "role": "Sidebar Title",
           "part": "content",
           "action": null,
@@ -180,6 +186,7 @@
           "textReplacements": null
         },
         {
+          "id": "485ef69d-158f-4a20-ad9e-6d588aad2438",
           "role": "Sidebar Content",
           "part": "content",
           "action": null,
@@ -203,6 +210,7 @@
           "textReplacements": null
         },
         {
+          "id": "bd3550b7-1617-4aae-9e42-7c7616611438",
           "role": "what-we-will",
           "part": "content",
           "action": null,
@@ -231,6 +239,7 @@
       "groups": [],
       "rules": [
         {
+          "id": "127445e3-229f-4409-a5b2-17aeb93b0ed4",
           "role": "Organisation",
           "part": "content",
           "action": null,
@@ -258,6 +267,7 @@
           "textReplacements": null
         },
         {
+          "id": "a01975d0-66d2-433a-b868-3f7ce545816e",
           "role": "Tour Title",
           "part": "content",
           "action": null,
@@ -281,6 +291,7 @@
           "textReplacements": null
         },
         {
+          "id": "a64d216d-c4ad-499b-8a40-765abf94f6be",
           "role": "Tour Description",
           "part": "content",
           "action": null,
@@ -313,6 +324,7 @@
       "groups": [],
       "rules": [
         {
+          "id": "eea9a94c-9fcb-4031-a2fe-e50f20dc0ff3",
           "role": "Organiser Name",
           "part": "content",
           "action": null,
@@ -336,6 +348,7 @@
           "textReplacements": null
         },
         {
+          "id": "566348bf-77fe-4cf2-958e-4f1088cb6d46",
           "role": "Organiser Telephone",
           "part": "content",
           "action": null,
@@ -363,6 +376,7 @@
           "textReplacements": null
         },
         {
+          "id": "8a76962c-0626-47b6-b863-3272d8d18917",
           "role": "Organiser Email",
           "part": "content",
           "action": null,
@@ -390,6 +404,7 @@
           "textReplacements": null
         },
         {
+          "id": "4533ac19-5c3a-4347-aafd-b3c62ba3c680",
           "role": "Organiser Address",
           "part": "content",
           "action": null,
@@ -421,9 +436,11 @@
     "tour-details": {
       "groups": [
         {
+          "id": "c1538bf4-f5d2-43fa-8320-9d1962bec20c",
           "name": "Tour Details - Section",
           "rules": [
             {
+              "id": "06fcf715-d5fd-41bc-a3f7-4ba528714375",
               "role": "Tour Details - Section Title",
               "part": "title",
               "action": null,
@@ -447,6 +464,7 @@
               "textReplacements": null
             },
             {
+              "id": "002e43a9-6af6-431d-ab68-8de0a3a9a056",
               "role": "Tour Details - Section Content",
               "part": "content",
               "action": null,
@@ -474,5 +492,6 @@
       ],
       "rules": []
     }
-  }
+  },
+  "excludedAreas": null
 }

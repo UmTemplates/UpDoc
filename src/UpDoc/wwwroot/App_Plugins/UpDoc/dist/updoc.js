@@ -8,7 +8,7 @@ const o = [
     alias: "UpDoc.EntityAction",
     name: "UpDoc Entity Action",
     weight: 1100,
-    api: () => import("./up-doc-action-C-HZDOGX.js"),
+    api: () => import("./up-doc-action-s4t10GJ5.js"),
     forEntityTypes: ["document"],
     meta: {
       icon: "icon-document",
@@ -40,7 +40,7 @@ const o = [
     kind: "button",
     alias: "UpDoc.CollectionAction",
     name: "UpDoc Collection Action",
-    element: () => import("./up-doc-collection-action.element-DW5ykfkJ.js"),
+    element: () => import("./up-doc-collection-action.element-DUE8zk9t.js"),
     weight: 50,
     meta: {
       label: "Create from Source"
@@ -59,7 +59,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.Modal",
     name: "UpDoc Modal",
-    element: () => import("./up-doc-modal.element-F8z8ZxbK.js")
+    element: () => import("./up-doc-modal.element-BZwtzUxv.js")
   },
   {
     type: "modal",
@@ -144,7 +144,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Source",
     name: "UpDoc Workflow Source View",
-    element: () => import("./up-doc-workflow-source-view.element-O1iMOEm3.js"),
+    element: () => import("./up-doc-workflow-source-view.element-CBNU-CJ4.js"),
     weight: 200,
     meta: {
       label: "Source",
@@ -162,7 +162,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Map",
     name: "UpDoc Workflow Map View",
-    element: () => import("./up-doc-workflow-map-view.element-Bp4fqlyD.js"),
+    element: () => import("./up-doc-workflow-map-view.element-D2VzYEgc.js"),
     weight: 100,
     meta: {
       label: "Map",

@@ -152,7 +152,7 @@ export class UpDocCollectionActionElement extends UmbLitElement {
 				return;
 			}
 
-			const { name, mediaUnique, sourceUrl, sectionLookup, config } = modalValue;
+			const { name, mediaUnique, sourceUrl, sectionLookup, stableKeyLookup, config } = modalValue;
 
 			// Web source uses URL (no media), others need media key
 			if (!name || !config) return;
@@ -191,7 +191,19 @@ export class UpDocCollectionActionElement extends UmbLitElement {
 
 			for (const mapping of config.map.mappings) {
 				if (mapping.enabled === false) continue;
-				const sectionValue = sectionLookup[mapping.source];
+				let sectionValue = sectionLookup[mapping.source];
+
+				// StableKey fallback: if section ID changed but stableKey matches, resolve via new ID
+				if (!sectionValue && mapping.sourceKey && stableKeyLookup) {
+					const newSectionId = stableKeyLookup[mapping.sourceKey];
+					if (newSectionId) {
+						const partSuffix = mapping.source.split('.').pop();
+						if (partSuffix) {
+							sectionValue = sectionLookup[`${newSectionId}.${partSuffix}`];
+						}
+					}
+				}
+
 				if (!sectionValue) continue;
 
 				for (const dest of mapping.destinations) {

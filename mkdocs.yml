@@ -68,6 +68,7 @@ nav:
     - up-doc-usync-fallback.condition.ts: source-files/up-doc-usync-fallback-condition.md
   - Backend (C#):
     - backend/index.md
+    - Stable Section Identity: backend/stable-section-identity.md
     - PdfExtractionService.cs: source-files/pdf-extraction-service.md
     - PdfPagePropertiesService.cs: source-files/pdf-page-properties-service.md
     - MarkdownExtractionService.cs: source-files/markdown-extraction-service.md

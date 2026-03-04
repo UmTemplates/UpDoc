@@ -14,6 +14,7 @@ export class UpDocWorkflowMapViewElement extends UmbLitElement {
 	@state() private _loading = true;
 	@state() private _error: string | null = null;
 	#orphanedKeys = new Set<string>();
+	#orphanedSources = new Set<string>();
 	#workflowAlias = '';
 	#token = '';
 
@@ -46,9 +47,12 @@ export class UpDocWorkflowMapViewElement extends UmbLitElement {
 
 			// Build set of orphaned destinations from validation warnings
 			this.#orphanedKeys = new Set<string>();
+			this.#orphanedSources = new Set<string>();
 			for (const w of this._config.validationWarnings ?? []) {
 				const m = w.match(/blockKey '([^']+)' for target '([^']+)'/);
 				if (m) this.#orphanedKeys.add(`${m[1]}:${m[2]}`);
+				const s = w.match(/source '([^']+)' not found in transform\.json/);
+				if (s) this.#orphanedSources.add(s[1]);
 			}
 
 			this._extraction = await fetchSampleExtraction(this.#workflowAlias, this.#token);
@@ -127,10 +131,12 @@ export class UpDocWorkflowMapViewElement extends UmbLitElement {
 		`;
 	}
 
-	#isMappingOrphaned(mapping: SectionMapping): boolean {
-		return mapping.destinations.some(
-			(dest) => dest.blockKey && this.#orphanedKeys.has(`${dest.blockKey}:${dest.target}`)
+	#isMappingOrphaned(mapping: SectionMapping): { dest: boolean; source: boolean } {
+		const dest = mapping.destinations.some(
+			(d) => d.blockKey && this.#orphanedKeys.has(`${d.blockKey}:${d.target}`)
 		);
+		const source = this.#orphanedSources.has(mapping.source);
+		return { dest, source };
 	}
 
 	#renderMappingRow(mapping: SectionMapping, index: number) {
@@ -156,7 +162,8 @@ export class UpDocWorkflowMapViewElement extends UmbLitElement {
 					)}
 				</uui-table-cell>
 				<uui-table-cell class="actions-cell">
-					${orphaned ? html`<uui-tag color="warning" class="orphaned-badge">Orphaned</uui-tag>` : nothing}
+					${orphaned.source ? html`<uui-tag color="warning" class="orphaned-badge">Orphaned Source</uui-tag>` : nothing}
+					${orphaned.dest ? html`<uui-tag color="warning" class="orphaned-badge">Orphaned</uui-tag>` : nothing}
 					${!mapping.enabled ? html`<uui-tag look="secondary" class="disabled-badge">Disabled</uui-tag>` : nothing}
 					<uui-button
 						compact

@@ -31,6 +31,13 @@ public class SectionMapping
     [JsonPropertyName("source")]
     public string Source { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Stable GUID linking this mapping to the rule/group that produced the source section.
+    /// Survives section ID changes when areas/groups are restructured.
+    /// </summary>
+    [JsonPropertyName("sourceKey")]
+    public string? SourceKey { get; set; }
+
     [JsonPropertyName("destinations")]
     public List<MappingDestination> Destinations { get; set; } = new();
 

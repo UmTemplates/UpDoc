@@ -6,6 +6,7 @@
   "mappings": [
     {
       "source": "organisation.content",
+      "sourceKey": "127445e3-229f-4409-a5b2-17aeb93b0ed4",
       "destinations": [
         {
           "target": "organiserOrganisation",
@@ -19,6 +20,7 @@
     },
     {
       "source": "tour-title.content",
+      "sourceKey": "8550eeb8-c7d7-402e-88ba-808c13d8edfd",
       "destinations": [
         {
           "target": "pageTitle",
@@ -38,6 +40,7 @@
     },
     {
       "source": "tour-description.content",
+      "sourceKey": "7630f2b6-16df-4710-abd2-dad75c60b860",
       "destinations": [
         {
           "target": "pageDescription",
@@ -51,6 +54,7 @@
     },
     {
       "source": "organiser-name.content",
+      "sourceKey": "eea9a94c-9fcb-4031-a2fe-e50f20dc0ff3",
       "destinations": [
         {
           "target": "organiserName",
@@ -64,6 +68,7 @@
     },
     {
       "source": "organiser-telephone.content",
+      "sourceKey": "566348bf-77fe-4cf2-958e-4f1088cb6d46",
       "destinations": [
         {
           "target": "organiserTelephone",
@@ -77,6 +82,7 @@
     },
     {
       "source": "organiser-email.content",
+      "sourceKey": "8a76962c-0626-47b6-b863-3272d8d18917",
       "destinations": [
         {
           "target": "organiserEmail",
@@ -90,6 +96,7 @@
     },
     {
       "source": "organiser-address.content",
+      "sourceKey": "4533ac19-5c3a-4347-aafd-b3c62ba3c680",
       "destinations": [
         {
           "target": "organiserAddress",
@@ -103,6 +110,7 @@
     },
     {
       "source": "features.title",
+      "sourceKey": "c1538bf4-f5d2-43fa-8320-9d1962bec20c",
       "destinations": [
         {
           "target": "featurePropertyFeatureTitle",
@@ -116,6 +124,7 @@
     },
     {
       "source": "features.content",
+      "sourceKey": "c1538bf4-f5d2-43fa-8320-9d1962bec20c",
       "destinations": [
         {
           "target": "richTextContent",
@@ -129,6 +138,7 @@
     },
     {
       "source": "what-we-will-see.title",
+      "sourceKey": "c1538bf4-f5d2-43fa-8320-9d1962bec20c",
       "destinations": [
         {
           "target": "featurePropertyFeatureTitle",
@@ -142,6 +152,7 @@
     },
     {
       "source": "what-we-will-see.content",
+      "sourceKey": "c1538bf4-f5d2-43fa-8320-9d1962bec20c",
       "destinations": [
         {
           "target": "richTextContent",

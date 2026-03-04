@@ -6,6 +6,7 @@
   "mappings": [
     {
       "source": "tour-title.content",
+      "sourceKey": "e707e160-bb38-4ebd-a5e1-0f9aeeb0d333",
       "destinations": [
         {
           "target": "pageTitle",
@@ -25,6 +26,7 @@
     },
     {
       "source": "tour-description.content",
+      "sourceKey": "f6b7e762-4615-4aef-a09e-cb94dd1f9a2a",
       "destinations": [
         {
           "target": "pageDescription",
@@ -37,7 +39,8 @@
       "comment": null
     },
     {
-      "source": "preamble-p1-z2.content",
+      "source": "preamble-main-content-p1.content",
+      "sourceKey": "5957f93c-2247-4f3b-9f89-4ee02a4bc1fe",
       "destinations": [
         {
           "target": "richTextContent",
@@ -50,7 +53,8 @@
       "comment": null
     },
     {
-      "source": "preamble-p1-z2-2.content",
+      "source": "preamble-main-content-p1-2.content",
+      "sourceKey": "7f2bc457-0f0e-4fe5-a25c-4db91d1a0e86",
       "destinations": [
         {
           "target": "richTextContent",
@@ -63,7 +67,8 @@
       "comment": null
     },
     {
-      "source": "preamble-p1-z2-3.content",
+      "source": "preamble-main-content-p1-3.content",
+      "sourceKey": "f18454cd-1cca-4ab4-a339-529ef726591f",
       "destinations": [
         {
           "target": "richTextContent",

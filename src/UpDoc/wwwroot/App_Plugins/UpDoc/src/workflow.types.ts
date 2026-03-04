@@ -420,6 +420,8 @@ export interface MapConfig {
 
 export interface SectionMapping {
 	source: string;
+	/** Stable GUID linking this mapping to the rule/group that produced the source section. */
+	sourceKey?: string;
 	destinations: MappingDestination[];
 	enabled?: boolean;
 	comment?: string;
@@ -630,6 +632,8 @@ export function allTransformSections(result: TransformResult | null | undefined)
 
 export interface TransformedSection {
 	id: string;
+	/** Stable GUID from the rule/group that produced this section. Null for preamble/heading-detected sections. */
+	stableKey?: string | null;
 	originalHeading: string | null;
 	heading: string | null;
 	content: string;

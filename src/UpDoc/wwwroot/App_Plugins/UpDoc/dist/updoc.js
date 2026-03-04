@@ -150,7 +150,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Source",
     name: "UpDoc Workflow Source View",
-    element: () => import("./up-doc-workflow-source-view.element-xd2yM7Tb.js"),
+    element: () => import("./up-doc-workflow-source-view.element-B_LeHp4c.js"),
     weight: 200,
     meta: {
       label: "Source",

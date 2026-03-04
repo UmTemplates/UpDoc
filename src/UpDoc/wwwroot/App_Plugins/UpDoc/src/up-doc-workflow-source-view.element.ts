@@ -882,30 +882,57 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 	async #onSortSections(area: DetectedArea, pageNum: number) {
 		if (!this._workflowAlias) return;
 
-		const allSections = this._transformResult
-			? this.#getTransformSectionsForArea(area, pageNum)
-			: [];
-		const sections = allSections.filter((s) => s.included);
+		const areaKey = normalizeToKebabCase(area.name || '');
+		const areaRules = this._sourceConfig?.areaRules?.[areaKey];
+		const hasGroups = !!areaRules && (areaRules.groups?.length ?? 0) >= 2;
 
-		const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
-		const modal = modalManager.open(this, UP_DOC_SORT_MODAL, {
-			data: {
-				headline: `Sort sections — ${area.name}`,
-				items: sections.map((s) => ({
-					id: s.id,
-					name: s.heading ?? s.groupName ?? s.ruleName ?? (s.areaName ? `${s.areaName} - Section` : 'Section'),
-				})),
-			},
-		});
+		if (hasGroups) {
+			// Rule-driven: reorder groups in the rules file (single source of truth)
+			const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
+			const modal = modalManager.open(this, UP_DOC_SORT_MODAL, {
+				data: {
+					headline: `Sort sections — ${area.name}`,
+					items: areaRules!.groups!.map((g) => ({ id: g.name, name: g.name })),
+				},
+			});
 
-		try {
-			const value = await modal.onSubmit();
-			const updated = await saveSortOrder(this._workflowAlias, pageNum, area.name, value.sortedIds, this.#token);
-			if (updated) {
-				this._transformResult = updated;
+			try {
+				const value = await modal.onSubmit();
+				const reorderedGroups = value.sortedIds
+					.map((name) => areaRules!.groups!.find((g) => g.name === name)!)
+					.filter(Boolean);
+				const updatedRules = { ...areaRules!, groups: reorderedGroups };
+				await this.#saveAreaRulesForKey(areaKey, updatedRules);
+			} catch {
+				// Modal cancelled
 			}
-		} catch {
-			// Modal cancelled
+		} else {
+			// No rule groups: fall back to SortOrder in transform.json
+			const allSections = this._transformResult
+				? this.#getTransformSectionsForArea(area, pageNum)
+				: [];
+			const sections = allSections.filter((s) => s.included);
+
+			const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
+			const modal = modalManager.open(this, UP_DOC_SORT_MODAL, {
+				data: {
+					headline: `Sort sections — ${area.name}`,
+					items: sections.map((s) => ({
+						id: s.id,
+						name: s.heading ?? s.groupName ?? s.ruleName ?? (s.areaName ? `${s.areaName} - Section` : 'Section'),
+					})),
+				},
+			});
+
+			try {
+				const value = await modal.onSubmit();
+				const updated = await saveSortOrder(this._workflowAlias, pageNum, area.name, value.sortedIds, this.#token);
+				if (updated) {
+					this._transformResult = updated;
+				}
+			} catch {
+				// Modal cancelled
+			}
 		}
 	}
 

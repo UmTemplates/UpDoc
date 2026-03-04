@@ -168,75 +168,7 @@
     "main-content": {
       "groups": [
         {
-          "id": "13809944-1eba-43a1-a55b-49d7b1ea4be0",
-          "name": "Features",
-          "rules": [
-            {
-              "id": "719e59fd-692f-4b33-a8f9-0132c5feee1e",
-              "role": "Features Content",
-              "part": "content",
-              "action": null,
-              "format": "bulletListItem",
-              "exclude": false,
-              "conditions": [
-                {
-                  "type": "htmlTagEquals",
-                  "value": "p"
-                },
-                {
-                  "type": "fontSizeEquals",
-                  "value": 9.8
-                },
-                {
-                  "type": "colorEquals",
-                  "value": "#2E5BA1"
-                },
-                {
-                  "type": "htmlContainerPathContains",
-                  "value": "div.featuring_col1"
-                }
-              ],
-              "exceptions": null,
-              "textReplacements": null
-            }
-          ]
-        },
-        {
-          "id": "7205aab7-959e-4726-b897-5f97b32b88f0",
-          "name": "Sights",
-          "rules": [
-            {
-              "id": "ada33681-df1b-4ccb-9319-398418d55c7c",
-              "role": "Sights Content",
-              "part": "content",
-              "action": null,
-              "format": "bulletListItem",
-              "exclude": false,
-              "conditions": [
-                {
-                  "type": "htmlTagEquals",
-                  "value": "p"
-                },
-                {
-                  "type": "fontSizeEquals",
-                  "value": 9.8
-                },
-                {
-                  "type": "colorEquals",
-                  "value": "#2E5BA1"
-                },
-                {
-                  "type": "htmlContainerPathContains",
-                  "value": "div.featuring_col2"
-                }
-              ],
-              "exceptions": null,
-              "textReplacements": null
-            }
-          ]
-        },
-        {
-          "id": "a662d798-83b3-4da9-9a98-ab71d493c227",
+          "id": "1aacacda-204d-4f5e-a807-7744a860434b",
           "name": "Suggested Itinerary",
           "rules": [
             {
@@ -326,7 +258,75 @@
           ]
         },
         {
-          "id": "7df15acf-5938-45ce-a789-9ea2e8483437",
+          "id": "20b6c755-35d2-49c1-b0f7-bc423f140bc5",
+          "name": "Features",
+          "rules": [
+            {
+              "id": "719e59fd-692f-4b33-a8f9-0132c5feee1e",
+              "role": "Features Content",
+              "part": "content",
+              "action": null,
+              "format": "bulletListItem",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.featuring_col1"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        },
+        {
+          "id": "1dba276b-4a42-49cf-a496-c1ec993651fa",
+          "name": "Sights",
+          "rules": [
+            {
+              "id": "ada33681-df1b-4ccb-9319-398418d55c7c",
+              "role": "Sights Content",
+              "part": "content",
+              "action": null,
+              "format": "bulletListItem",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.featuring_col2"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        },
+        {
+          "id": "694df808-bce6-4651-885f-e7d1f6586d9c",
           "name": "Accommodation",
           "rules": [
             {
@@ -367,7 +367,8 @@
     "navigation",
     "header",
     "footer",
-    "ungrouped"
+    "ungrouped",
+    "right-column-button-wrapper"
   ],
   "containerOverrides": [
     {

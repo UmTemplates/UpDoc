@@ -136,3 +136,17 @@ Related: area/section toggle buttons could also be replaced by exclude rules, re
 **Priority:** Low | **Type:** UX
 
 Currently the action dropdown defaults to "Create section". Once other actions (setAsHeading, addAsContent, etc.) are functional, a default could lead to accidental wrong choices. Consider requiring explicit selection (no default / empty first item) to prevent errors. The right default may depend on area type (flat areas → createSection, heading-delimited → setAsHeading).
+
+---
+
+### Unify web area picker with PDF area editor
+**Priority:** High | **Type:** UX
+
+The web workflow's "Define Areas" modal (checkbox-based area picker) should match the PDF workflow's area editor UX:
+
+1. **Area renaming** — Web areas currently use raw CSS selector names (e.g., "Main Content", "Right Column Button Wrapper"). Need an Edit Area panel with Name field, same as PDF's click-to-select → Edit Area → Name input.
+2. **Area colours** — PDF areas have colour swatches. Web areas have auto-assigned colour dots but no picker.
+3. **Delete via trash icon** — PDF areas have a trash icon per area for quick removal. Web areas use checkboxes to include/exclude. Align on the trash icon pattern.
+4. **Remove checkboxes** — With trash icons for removal, the include/exclude checkboxes become redundant. The presence of an area in the list = included.
+
+**Reference:** PDF area editor is in `pdf-area-editor-modal.element.ts`. Web area picker is in `area-picker-modal.element.ts`. The PDF editor's Select mode + Edit Area panel (Name, Color) is the target UX for both.

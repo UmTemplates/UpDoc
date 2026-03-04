@@ -1308,16 +1308,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 					${!hasRules && patternLabel ? html`<span class="meta-badge structure-badge">${patternLabel}</span>` : nothing}
 					<span class="header-spacer"></span>
 					${!isTeaching ? html`
-						<uui-button
-							look="primary"
-							color="default"
-							label="Sections"
-							@click=${(e: Event) => { e.stopPropagation(); this.#onEditAreaRules(rulesAreaKey, area.name || '', this.#getAreaElements(area), sectionCount); }}
-							?disabled=${this._teachingAreaIndex !== null}>
-							<uui-icon name="icon-thumbnail-list"></uui-icon>
-							Sections
-							<uui-badge color="danger" look="primary">${sectionCount}</uui-badge>
-						</uui-button>
+						<span class="meta-badge section-count-badge">${sectionCount} section${sectionCount !== 1 ? 's' : ''}</span>
 					` : nothing}
 					<uui-action-bar class="row-actions">
 						<uui-button class="action-trigger" compact label="Actions"
@@ -1327,8 +1318,12 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 						</uui-button>
 						<uui-popover-container
 							id="area-actions-${areaKey}"
-							placement="bottom-end">
+							placement="bottom-start">
 							<umb-popover-layout>
+								<uui-menu-item label="Edit sections"
+									@click=${(e: Event) => { e.stopPropagation(); this.#onEditAreaRules(rulesAreaKey, area.name || '', this.#getAreaElements(area), sectionCount); }}>
+									<uui-icon slot="icon" name="icon-thumbnail-list"></uui-icon>
+								</uui-menu-item>
 								<uui-menu-item label="Sort sections"
 									@click=${(e: Event) => { e.stopPropagation(); this.#onSortSections(area, pageNum); }}>
 									<uui-icon slot="icon" name="icon-navigation"></uui-icon>
@@ -1407,7 +1402,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 						</uui-button>
 						<uui-popover-container
 							id="page-actions-${pageKey}"
-							placement="bottom-end">
+							placement="bottom-start">
 							<umb-popover-layout>
 								<uui-menu-item label="Sort areas"
 									@click=${(e: Event) => { e.stopPropagation(); this.#onSortAreas(pageNum, includedAreas); }}>
@@ -1539,7 +1534,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 								</uui-button>
 								<uui-popover-container
 									id="section-picker-popover"
-									placement="bottom-end"
+									placement="bottom-start"
 									@toggle=${this.#onSectionPickerToggle}>
 									<umb-popover-layout>
 										<div class="popover-heading">Areas</div>
@@ -1838,7 +1833,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 								</uui-button>
 								<uui-popover-container
 									id="web-section-picker-popover"
-									placement="bottom-end"
+									placement="bottom-start"
 									@toggle=${this.#onSectionPickerToggle}>
 									<umb-popover-layout>
 										<div class="popover-heading">Areas</div>
@@ -2293,6 +2288,12 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 
 			.header-spacer {
 				flex: 1;
+			}
+
+			/* Popover menus — match Umbraco native flat alignment */
+			umb-popover-layout {
+				--uui-menu-item-indent: 0;
+				--uui-menu-item-flat-structure: 1;
 			}
 
 			/* Row action bar — reserved space at far right of header rows */

@@ -76,6 +76,16 @@ The "Ungrouped" group:
 - On load, top-level rules are loaded into the "Ungrouped" group
 - The group count badge in the area header excludes "Ungrouped"
 
+## Collapsible groups
+
+Groups are collapsible via chevron toggles on each group header. An **Expand/Collapse All** button in the toolbar toggles all groups at once. Collapsed groups hide their rules, showing only the group header with name and rule count.
+
+## Group reorder
+
+When 2+ named groups exist, a **Reorder** button appears in the toolbar. It opens the `UP_DOC_SORT_MODAL` with group names, allowing drag-and-drop reorder. The "Ungrouped" group always stays at the end and is excluded from the sort modal.
+
+The `groups[]` array order in the rules file is the **single source of truth** for section ordering. The C# `ContentTransformService` emits grouped sections in rules group order (not DOM order). Both the rules editor Reorder button and the Source tab "Sort sections" action write to this same backing store.
+
 ## Move to group
 
 Each rule card has a "Move to..." dropdown (visible when there are 2+ groups) allowing the rule to be moved to a different group. This serves as a reliable fallback alongside drag-and-drop.

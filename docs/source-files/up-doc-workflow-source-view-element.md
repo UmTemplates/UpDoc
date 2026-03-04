@@ -61,7 +61,7 @@ On load, the component:
 Elements are displayed in a four-level collapsible hierarchy:
 
 1. **Page** — `uui-box` with "Page N" headline, section/area counts, page include toggle, and collapse chevron in `header-actions` slot. Excluded pages are dimmed.
-2. **Area** — colour-coded left border with area name label, section count, and collapse chevron. Excluded areas (managed via area picker modal) are filtered out entirely and don't render. Areas with rules show an "N rules" badge and "Edit Rules" button. Areas without rules show a "Flat"/"Configured" structure badge and "Define Structure"/"Redefine" button. For areas with rules, composed sections from the transform pipeline are rendered instead of raw elements, showing role name, content preview, and mapping status badges.
+2. **Area** — colour-coded left border with area name label, "N rules" badge (if rules exist), "N sections" count badge, and collapse chevron. Excluded areas (managed via area picker modal) are filtered out entirely and don't render. Areas without rules show a "Flat"/"Configured" structure badge. The `...` action menu provides "Edit sections" (opens rules editor) and "Sort sections" (opens sort modal). For areas with rules, composed sections from the transform pipeline are rendered instead of raw elements, showing role name, content preview, and mapping status badges.
 3. **Section** — structural label "Section – {name}" with include/exclude toggle, element count, and collapse chevron. The heading text from the PDF is rendered as the first child element (with a HEADING badge), not as the section header itself. This separates our structural UI from the actual PDF content. Preamble sections (no heading) show "Content" as the structural label.
 4. **Element** — individual elements with semantic role badge (Heading/List Item/Paragraph), font size, font name, and colour badges.
 
@@ -119,9 +119,11 @@ For markdown and web source types, the component uses the same `umb-body-layout`
 Page and area rows have a `...` action button that appears on hover. Clicking it opens a `uui-popover-container` with contextual actions:
 
 - **Page rows**: "Sort areas" — opens sort modal with the page's included areas
-- **Area rows**: "Sort sections" — opens sort modal with the area's included sections
+- **Area rows**: "Edit sections" — opens the Section Rules Editor modal; "Sort sections" — opens sort modal. When an area has rule groups (2+), Sort sections reorders the `groups[]` array in the rules file (single source of truth). Areas without rule groups fall back to `SortOrder` in transform.json.
 
 The button is inside a `uui-action-bar` with fixed 40px width at the far right of each row. Section rows have an empty action bar for consistent spacing.
+
+Popover menus use `placement="bottom-start"` and set `--uui-menu-item-indent: 0` / `--uui-menu-item-flat-structure: 1` on `umb-popover-layout` to match Umbraco's native flat menu alignment.
 
 #### Page header hover detection
 
@@ -129,14 +131,14 @@ The page row uses `uui-box` which renders header content in shadow DOM. CSS-only
 
 ### Sort ordering
 
-Areas and sections can be reordered via sort modals that use `umb-table` with `.sortable=${true}` (Umbraco's Sort Children pattern). Sort order is persisted in `transform.json` as `sortOrder` properties on areas and sections.
+Areas and sections can be reordered via sort modals that use `umb-table` with `.sortable=${true}` (Umbraco's Sort Children pattern).
 
 - `#onSortAreas(pageNum)` — opens sort modal for areas on a page, saves via `saveSortOrder()` API
-- `#onSortSections(area, pageNum)` — opens sort modal for sections in an area (excluded sections filtered out), saves via API
+- `#onSortSections(area, pageNum)` — when the area has rule groups (2+), reorders `groups[]` in the rules file via `saveAreaRules()` (single source of truth for section ordering). Areas without rule groups fall back to `SortOrder` in transform.json via `saveSortOrder()` API.
 - `#renderAreaPage()` sorts included areas by `sortOrder` before rendering
 - `#getTransformSectionsForArea()` sorts sections by `sortOrder` before returning
 
-Sort order persists across re-transforms (C# `ContentTransformService` preserves `SortOrder` from previous transform, same pattern as `Included` flag preservation).
+Area sort order persists across re-transforms (C# `ContentTransformService` preserves `SortOrder` from previous transform). Section ordering for rule-grouped areas is driven by the `groups[]` array order in the rules file — the C# transform emits sections in that order.
 
 ### Empty state
 

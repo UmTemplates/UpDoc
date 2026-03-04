@@ -1586,70 +1586,6 @@
                   "cssClasses": ""
                 },
                 {
-                  "id": "html-90",
-                  "text": "Back to all Ireland Tours",
-                  "fontSize": 10.5,
-                  "fontName": "Open Sans",
-                  "color": "#FFFFFF",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "a",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
-                  "cssClasses": "button-link ireland-back"
-                },
-                {
-                  "id": "html-91",
-                  "text": "Back to all Destinations",
-                  "fontSize": 10.5,
-                  "fontName": "Open Sans",
-                  "color": "#FFFFFF",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "a",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
-                  "cssClasses": "button-link about-our-tours"
-                },
-                {
-                  "id": "html-92",
-                  "text": "Request a Quote",
-                  "fontSize": 10.5,
-                  "fontName": "Open Sans",
-                  "color": "#FFFFFF",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "a",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
-                  "cssClasses": "button-link request-a-quote"
-                },
-                {
-                  "id": "html-93",
-                  "text": "Request a Brochure",
-                  "fontSize": 10.5,
-                  "fontName": "Open Sans",
-                  "color": "#FFFFFF",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "a",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
-                  "cssClasses": "button-link request-a-brochure"
-                },
-                {
                   "id": "html-94",
                   "text": "Call us on 020 7064 4970to tailor make the perfect tourfor your group",
                   "fontSize": 10.5,
@@ -1684,7 +1620,7 @@
               ]
             }
           ],
-          "totalElements": 81
+          "totalElements": 77
         },
         {
           "name": "Page Header",
@@ -1755,6 +1691,89 @@
             }
           ],
           "totalElements": 3
+        },
+        {
+          "name": "Right Column Button Wrapper",
+          "color": "#FFCC80",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-90",
+                  "text": "Back to all Ireland Tours",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                  "cssClasses": "button-link ireland-back"
+                },
+                {
+                  "id": "html-91",
+                  "text": "Back to all Destinations",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                  "cssClasses": "button-link about-our-tours"
+                },
+                {
+                  "id": "html-92",
+                  "text": "Request a Quote",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                  "cssClasses": "button-link request-a-quote"
+                },
+                {
+                  "id": "html-93",
+                  "text": "Request a Brochure",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                  "cssClasses": "button-link request-a-brochure"
+                }
+              ]
+            }
+          ],
+          "totalElements": 4
         },
         {
           "name": "Footer",
@@ -2697,7 +2716,7 @@
   "diagnostics": {
     "totalPathsFound": 0,
     "pathsAfterFiltering": 0,
-    "areasDetected": 6,
+    "areasDetected": 7,
     "elementsInAreas": 157
   }
 }

@@ -244,6 +244,8 @@ export type RuleConditionType =
 	| 'htmlTagEquals'
 	| 'cssClassContains'
 	| 'htmlContainerPathContains'
+	| 'containerIdEquals'
+	| 'containerClassContains'
 	| 'isBoldEquals';
 
 /**

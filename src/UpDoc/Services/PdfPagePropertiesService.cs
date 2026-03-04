@@ -675,6 +675,8 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
             "htmlTagEquals" => element.HtmlTag.Equals(valueStr, StringComparison.OrdinalIgnoreCase),
             "cssClassContains" => element.CssClasses.Contains(valueStr, StringComparison.OrdinalIgnoreCase),
             "htmlContainerPathContains" => element.HtmlContainerPath.Contains(valueStr, StringComparison.OrdinalIgnoreCase),
+            "containerIdEquals" => MatchesContainerId(element.HtmlContainerPath, valueStr),
+            "containerClassContains" => MatchesContainerClass(element.HtmlContainerPath, valueStr),
 
             // Bold detection (web sources — <strong>/<b> or CSS font-weight)
             "isBoldEquals" => element.IsBold == valueStr.Equals("true", StringComparison.OrdinalIgnoreCase),
@@ -687,6 +689,48 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
     {
         return double.TryParse(value, System.Globalization.NumberStyles.Any,
             System.Globalization.CultureInfo.InvariantCulture, out var result) ? result : 0;
+    }
+
+    /// <summary>
+    /// Checks if any segment in the container path has the given ID.
+    /// E.g., value "tab3" matches path "div.ireland_tab_container/div#tab3/div.tab-wrapper".
+    /// </summary>
+    private static bool MatchesContainerId(string containerPath, string value)
+    {
+        if (string.IsNullOrEmpty(containerPath)) return false;
+        var segments = containerPath.Split('/');
+        foreach (var seg in segments)
+        {
+            var hashIndex = seg.IndexOf('#');
+            if (hashIndex >= 0)
+            {
+                var id = seg.Substring(hashIndex + 1);
+                if (id.Equals(value, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Checks if any segment in the container path contains the given class name.
+    /// E.g., value "tab-wrapper" matches path "div.ireland_tab_container/div#tab3/div.tab-wrapper".
+    /// </summary>
+    private static bool MatchesContainerClass(string containerPath, string value)
+    {
+        if (string.IsNullOrEmpty(containerPath)) return false;
+        var segments = containerPath.Split('/');
+        foreach (var seg in segments)
+        {
+            var dotIndex = seg.IndexOf('.');
+            if (dotIndex >= 0)
+            {
+                var classStr = seg.Substring(dotIndex + 1);
+                if (classStr.Contains(value, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>

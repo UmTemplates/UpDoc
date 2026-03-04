@@ -38,7 +38,9 @@ Allows the workflow author to define rules for a single section (e.g., "Organise
 | `isBoldEquals` | Element is bold (true/false) | boolean |
 | `htmlTagEquals` | HTML tag name matches | string |
 | `cssClassContains` | CSS class list contains value | string |
-| `htmlContainerPathContains` | HTML container path contains value | string |
+| `htmlContainerPathContains` | HTML container path contains value (raw substring match) | string |
+| `containerIdEquals` | Any ancestor container has this HTML ID (e.g., `tab3` matches `div#tab3`) | string |
+| `containerClassContains` | Any ancestor container has a class containing this value | string |
 | `positionFirst` | First element in section | (none) |
 | `positionLast` | Last element in section | (none) |
 
@@ -57,7 +59,7 @@ Clicking "Create rule" on an unmatched element pre-fills conditions from **all**
 - Bold detection (`isBoldEquals`)
 - HTML tag (`htmlTagEquals`)
 - CSS classes (`cssClassContains`)
-- Container path (`htmlContainerPathContains`)
+- Container ID or class — prefers the most specific ancestor container: ID first (`containerIdEquals`), then class (`containerClassContains`), then raw path (`htmlContainerPathContains`) as fallback
 
 The condition type dropdown is sorted with the most relevant conditions first (source-type-specific conditions appear before generic ones for web sources).
 

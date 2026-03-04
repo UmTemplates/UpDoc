@@ -168,7 +168,7 @@
     "main-content": {
       "groups": [
         {
-          "id": "fa157a98-1078-4668-8d69-9dc2e4cdc751",
+          "id": "13809944-1eba-43a1-a55b-49d7b1ea4be0",
           "name": "Features",
           "rules": [
             {
@@ -202,7 +202,7 @@
           ]
         },
         {
-          "id": "5f119a83-81ea-4dee-96f0-64dc5a6b0f25",
+          "id": "7205aab7-959e-4726-b897-5f97b32b88f0",
           "name": "Sights",
           "rules": [
             {
@@ -236,7 +236,7 @@
           ]
         },
         {
-          "id": "340d08c2-62c5-4d85-8e61-113bc22e10e5",
+          "id": "a662d798-83b3-4da9-9a98-ab71d493c227",
           "name": "Suggested Itinerary",
           "rules": [
             {
@@ -324,6 +324,40 @@
               "textReplacements": null
             }
           ]
+        },
+        {
+          "id": "7df15acf-5938-45ce-a789-9ea2e8483437",
+          "name": "Accommodation",
+          "rules": [
+            {
+              "id": "c91520e0-ae72-42cd-9d92-f0986c2cd983",
+              "role": "Accommodation Content",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "containerIdEquals",
+                  "value": "tab3"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
         }
       ],
       "rules": []
@@ -348,6 +382,11 @@
     {
       "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1",
       "action": "makeSection"
+    },
+    {
+      "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper",
+      "action": "promoteToArea",
+      "label": "Right Column Button Wrapper"
     }
   ]
 }

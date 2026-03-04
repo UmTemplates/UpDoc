@@ -84,7 +84,7 @@
           "Sections": [
             {
               "Id": "preamble-main-content-p1",
-              "StableKey": "340d08c2-62c5-4d85-8e61-113bc22e10e5",
+              "StableKey": "a662d798-83b3-4da9-9a98-ab71d493c227",
               "OriginalHeading": null,
               "Heading": null,
               "Content": "### Day 1 \u2013 Dublin city tour\n\nScheduled flight to Dublin from your preferred airport \u2013 tour of Dublin with our local guide in our private executive coach giving us a great introduction to the city of writers and poets taking in such sights as Ha\u2019penny Bridge, O\u2019Connell Street and Christchurch Cathedral \u2013 transfer to the central 3* Academy Plaza Hotel in Dublin.\n\n### Day 2 \u2013 Dublin Castle, Chester Beatty Library, the State Apartments \u0026 Kilmainham Gaol\n\nA guided tour of Dublin Castle, dating back to 1230 and located in the heart of the city, is followed by a visit to the Chester Beatty Library containing a rich collection of manuscripts, prints, miniature paintings and early printed books \u2013 the State Apartments at Dublin Castle were the former private and public rooms of the Viceroys and the Viceregal Court, the seat of the executive and the focus of fashionable social life and a guided tour also takes in the Medieval Undercroft and the Chapel Royal \u2013 guided tour of the museum at Kilmainham Gaol, one of the largest unoccupied jails in Europe, focuses on some of the most heroic and tragic events in Ireland\u2019s emergence as a modern nation from the 1780s to the 1920s.\n\n### Day 3 \u2013 Wicklow Mountains, Powerscourt House and Gardens, Glendalough \u0026 Avoca\n\nTravel with our guide into the Wicklow Mountains, known as the \u2018garden of Ireland\u2019 \u2013 Powerscourt House and Gardens is set in 14,000 acres with delightful lakes, ornamental hedges and gardens while the entrance hall now features an exhibition bringing to life the rich history of the estate and the double height Georgian ballroom has been completely restored to its former glory \u2013 Glendalough is a 6th century monastic site founded by St Kevin and once a major seat of learning in medieval Europe \u2013 Avoca is the subject of Thomas More\u2019s poem, \u2018The Meeting of the Waters\u2019.\n\n### Day 4 \u2013 National Gallery of Ireland, Book of Kells \u0026 Newman House\n\nGuided tour of the National Gallery of Ireland, housing 13,000 works of art, including works by Titian, Caravaggio, Rembrandt, Poussin and Gainsborough \u2013 visit Trinity College with our guide to see the Book of Kells, one of the most beautifully illuminated manuscripts in the world which was written around the year 800 AD \u2013 Newman House consists of two Georgian houses displaying examples of Dublin\u2019s finest 18th century plasterwork.\n\n### Day 5 \u2013 EPIC The Irish Emigration Museum\n\nGuided tour of EPIC The Irish Emigration Museum which depicts the moving and unforgettable stories of those who left the island of Ireland, and how they influenced and shaped the world \u2013 transfer to Dublin airport for our scheduled flight back home.",
@@ -107,7 +107,7 @@
           "Sections": [
             {
               "Id": "preamble-main-content-p1-2",
-              "StableKey": "fa157a98-1078-4668-8d69-9dc2e4cdc751",
+              "StableKey": "13809944-1eba-43a1-a55b-49d7b1ea4be0",
               "OriginalHeading": null,
               "Heading": null,
               "Content": "- All excursions \u0026 guided tours included\n\n- Professional local guide in Ireland\n\n- Scheduled flights to Dublin\n\n- Executive coach in Ireland\n\n- One free place per 10 paying passengers",
@@ -130,7 +130,7 @@
           "Sections": [
             {
               "Id": "preamble-main-content-p1-3",
-              "StableKey": "5f119a83-81ea-4dee-96f0-64dc5a6b0f25",
+              "StableKey": "7205aab7-959e-4726-b897-5f97b32b88f0",
               "OriginalHeading": null,
               "Heading": null,
               "Content": "- Introductory tour of Dublin\n\n- Dublin Castle - Chester Beatty Library \u0026 the State Apartments\n\n- Kilmainham Gaol\n\n- Wicklow Mountains, the \u2018garden of Ireland\u2019\n\n- Powerscourt House \u0026 Gardens\n\n- Glendalough\n\n- Avoca\n\n- National Gallery of Ireland - guided tour\n\n- Trinity College \u0026 Book of Kells\n\n- Newman House\n\n- EPIC The Irish Emigration Museum",
@@ -143,6 +143,29 @@
               "GroupName": "Sights",
               "RuleName": null,
               "ChildCount": 11,
+              "Included": true,
+              "SortOrder": null
+            }
+          ]
+        },
+        {
+          "Name": "Accommodation",
+          "Sections": [
+            {
+              "Id": "preamble-main-content-p1-4",
+              "StableKey": "7df15acf-5938-45ce-a789-9ea2e8483437",
+              "OriginalHeading": null,
+              "Heading": null,
+              "Content": "Four nights on bed and breakfast basis at the centrally located 3* Academy PlazaHotel in Dublin. Located near O\u2019Connell Street, the hotel offers easy access to the city\u2019s main attractions. Facilities include a restaurant and a bar and all rooms are en suite.",
+              "Description": null,
+              "Summary": null,
+              "Pattern": "paragraph",
+              "Page": 1,
+              "AreaColor": "#A5D6A7",
+              "AreaName": "Main Content",
+              "GroupName": "Accommodation",
+              "RuleName": null,
+              "ChildCount": 1,
               "Included": true,
               "SortOrder": null
             }
@@ -191,6 +214,33 @@
           "GroupName": null,
           "RuleName": "Tour Description",
           "ChildCount": 2,
+          "Included": true,
+          "SortOrder": null
+        }
+      ]
+    },
+    {
+      "Name": "Right Column Button Wrapper",
+      "Color": "#FFCC80",
+      "Page": 1,
+      "SortOrder": null,
+      "Groups": [],
+      "Sections": [
+        {
+          "Id": "preamble-right-column-button-wrapper-p1",
+          "StableKey": null,
+          "OriginalHeading": null,
+          "Heading": null,
+          "Content": "Back to all Ireland Tours\n\nBack to all Destinations\n\nRequest a Quote\n\nRequest a Brochure",
+          "Description": null,
+          "Summary": null,
+          "Pattern": "paragraph",
+          "Page": 1,
+          "AreaColor": "#FFCC80",
+          "AreaName": "Right Column Button Wrapper",
+          "GroupName": null,
+          "RuleName": null,
+          "ChildCount": 4,
           "Included": true,
           "SortOrder": null
         }
@@ -252,9 +302,9 @@
     }
   ],
   "Diagnostics": {
-    "TotalSections": 10,
+    "TotalSections": 12,
     "BulletListSections": 2,
-    "ParagraphSections": 5,
+    "ParagraphSections": 7,
     "SubHeadedSections": 1,
     "PreambleSections": 0,
     "RoleSections": 2

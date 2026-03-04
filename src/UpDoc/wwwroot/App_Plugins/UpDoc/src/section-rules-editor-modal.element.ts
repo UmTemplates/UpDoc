@@ -43,6 +43,8 @@ const CONDITION_LABELS: Record<RuleConditionType, string> = {
 	htmlTagEquals: 'HTML tag equals',
 	cssClassContains: 'CSS class contains',
 	htmlContainerPathContains: 'Container path contains',
+	containerIdEquals: 'Container ID equals',
+	containerClassContains: 'Container class contains',
 	isBoldEquals: 'Is bold',
 };
 
@@ -56,7 +58,8 @@ const ALL_CONDITION_TYPES: RuleConditionType[] = [
 	'fontNameContains', 'fontNameEquals', 'colorEquals',
 	'positionFirst', 'positionLast',
 	// HTML-specific (web sources)
-	'htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains', 'isBoldEquals',
+	'htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains',
+	'containerIdEquals', 'containerClassContains', 'isBoldEquals',
 ];
 
 /** Friendly labels for rule parts */
@@ -249,7 +252,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	/** Condition types sorted by source-type relevance. Web-specific types first for web, last for PDF. */
 	get #conditionTypes(): RuleConditionType[] {
 		if (this.#sourceType === 'web') {
-			const webTypes: RuleConditionType[] = ['htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains'];
+			const webTypes: RuleConditionType[] = ['htmlTagEquals', 'containerIdEquals', 'containerClassContains', 'cssClassContains', 'htmlContainerPathContains'];
 			return [...webTypes, ...ALL_CONDITION_TYPES.filter((t) => !webTypes.includes(t))];
 		}
 		// PDF: web types at end (already the default order)
@@ -349,6 +352,22 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				return (el.cssClasses ?? '').toLowerCase().includes(val.toLowerCase());
 			case 'htmlContainerPathContains':
 				return (el.htmlContainerPath ?? '').toLowerCase().includes(val.toLowerCase());
+			case 'containerIdEquals': {
+				// Match any segment in the path that has this ID (e.g., "tab3" matches "div#tab3" in path)
+				const segments = (el.htmlContainerPath ?? '').split('/');
+				return segments.some(seg => {
+					const hashIndex = seg.indexOf('#');
+					return hashIndex >= 0 && seg.substring(hashIndex + 1).toLowerCase() === val.toLowerCase();
+				});
+			}
+			case 'containerClassContains': {
+				// Match any segment in the path that has this class (e.g., "tab-wrapper" matches "div.tab-wrapper")
+				const segs = (el.htmlContainerPath ?? '').split('/');
+				return segs.some(seg => {
+					const dotIndex = seg.indexOf('.');
+					return dotIndex >= 0 && seg.substring(dotIndex + 1).toLowerCase().includes(val.toLowerCase());
+				});
+			}
 			case 'isBoldEquals':
 				return el.isBold === true;
 			default:
@@ -392,12 +411,27 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 			conditions.push({ type: 'colorEquals', value: el.color });
 		}
 
-		// Container path (last segment — most specific container)
+		// Container path — prefer ID (most specific), then class, then raw path segment
 		if (el.htmlContainerPath) {
 			const segments = el.htmlContainerPath.split('/');
-			const lastSegment = segments[segments.length - 1];
-			if (lastSegment) {
-				conditions.push({ type: 'htmlContainerPathContains', value: lastSegment });
+			// Look for the last segment with an ID (most specific discriminator)
+			const idSegment = [...segments].reverse().find(seg => seg.includes('#'));
+			if (idSegment) {
+				const id = idSegment.substring(idSegment.indexOf('#') + 1);
+				conditions.push({ type: 'containerIdEquals', value: id });
+			} else {
+				// Fall back to last segment with a class
+				const classSegment = [...segments].reverse().find(seg => seg.includes('.'));
+				if (classSegment) {
+					const cls = classSegment.substring(classSegment.indexOf('.') + 1);
+					conditions.push({ type: 'containerClassContains', value: cls });
+				} else {
+					// Last resort: raw last segment
+					const lastSegment = segments[segments.length - 1];
+					if (lastSegment) {
+						conditions.push({ type: 'htmlContainerPathContains', value: lastSegment });
+					}
+				}
 			}
 		}
 

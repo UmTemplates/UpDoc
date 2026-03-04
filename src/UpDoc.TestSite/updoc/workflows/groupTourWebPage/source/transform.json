@@ -92,23 +92,6 @@
               "RuleName": null,
               "ChildCount": 10,
               "Included": true
-            },
-            {
-              "Id": "preamble-main-content-p1-4",
-              "StableKey": "340d08c2-62c5-4d85-8e61-113bc22e10e5",
-              "OriginalHeading": null,
-              "Heading": null,
-              "Content": "Four nights on bed and breakfast basis at the centrally located 3* Academy PlazaHotel in Dublin. Located near O\u2019Connell Street, the hotel offers easy access to the city\u2019s main attractions. Facilities include a restaurant and a bar and all rooms are en suite.\n\nSingle room supplement \u00A3169\n\nInsurance\n\nEntrance fees to places of interest\n\nAudio headphones\n\nGratuities\n\n### Your tailor made tour\n\nHere are some more suggested places of interest you might like to include:\n\nDate of tour: July 2017\n\nJust a note to let you know that our tour to Dublin was a huge success. The hotel was good, coach was always on time with friendly and helpful drivers. All of the venues were welcoming and our tour manager was a delight. Thank you for your patience and help in planning the trip - one of our best ever.\n\n### IC, Halstead\n\nDate of tour: May 2014\n\nThank you on behalf of our Society for an excellent Tour. Please pass on my gratitude to Damian for his help and patience putting together our itinerary which was well balanced and met with approval. We packed quite a lot into a short space of time. The administration from beginning to end was faultless. The bar staff were most accommodating and dealt with my request to offer pre dinner drink very efficiently. The dinner was standard but the beef apparently was disappointing. Being on half board was definitely the best option. Rooms were clean and staff very pleasant. The guide was a delight - very informative and such fun and gave us a wonderful overview of Dublin. The day in the Wicklow Mountains was perfect particularly as we were blessed with wonderful weather. Our guides at the National Gallery were superlative - everyone remarked that they\u0027d never had better. The guide at the Castle was another young girl who was excellent. Finally Paul, our driver, got us there and back in very good time and was always most helpful. All in all we had a memorable holiday and I hope we\u0027ll be planning another.\n\n### SB, Huddersfield\n\nDate of tour: June 2011\n\nJust a line to let you know that all went very well indeed with the tour to Dublin. Clodagh was a darling, would want her again. The hotel very good, the weather was pretty kind really, chilly and rain showers but we saw the sun too. Gardens and owners all wonderful. Tailored Travel came out of the whole thing with glowing colours. Thanks for all your hard work, it came together beautifully and I had a lot of praise and many people said it was the best trip they had ever been on.\n\n### ML, Haywards Heath",
-              "Description": null,
-              "Summary": null,
-              "Pattern": "paragraph",
-              "Page": 1,
-              "AreaColor": "#A5D6A7",
-              "AreaName": "Main Content",
-              "GroupName": "Suggested Itinerary",
-              "RuleName": null,
-              "ChildCount": 17,
-              "Included": true
             }
           ]
         },
@@ -253,9 +236,9 @@
     }
   ],
   "Diagnostics": {
-    "TotalSections": 11,
+    "TotalSections": 10,
     "BulletListSections": 2,
-    "ParagraphSections": 6,
+    "ParagraphSections": 5,
     "SubHeadedSections": 1,
     "PreambleSections": 0,
     "RoleSections": 2

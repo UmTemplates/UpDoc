@@ -261,7 +261,7 @@
                 },
                 {
                   "type": "htmlContainerPathContains",
-                  "value": "div.tab-wrapper"
+                  "value": "div#tab1"
                 },
                 {
                   "type": "isBoldEquals",
@@ -289,7 +289,7 @@
                 },
                 {
                   "type": "htmlContainerPathContains",
-                  "value": "div.tab-wrapper"
+                  "value": "div#tab1"
                 }
               ],
               "exceptions": null,
@@ -317,7 +317,7 @@
                 },
                 {
                   "type": "htmlContainerPathContains",
-                  "value": "div.tab-wrapper"
+                  "value": "div#tab1"
                 }
               ],
               "exceptions": null,

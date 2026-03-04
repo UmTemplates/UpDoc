@@ -78,21 +78,21 @@ Do not create a new feature branch while another feature branch is checked out w
 
 ## Documentation Requirements
 
-When modifying any file in `src/UpDoc/wwwroot/App_Plugins/UpDoc/src/`, update the corresponding documentation in `docs/source-files/`:
+When modifying any file in `src/UpDoc/wwwroot/App_Plugins/UpDoc/src/`, update the corresponding documentation in `docs/src/content/docs/source-files/`:
 
 | Source File | Documentation File |
 |-------------|-------------------|
-| index.ts | docs/source-files/index.md |
-| manifest.ts | docs/source-files/manifest.md |
-| up-doc-action.ts | docs/source-files/up-doc-action.md |
-| up-doc-modal.element.ts | docs/source-files/up-doc-modal-element.md |
-| up-doc-modal.token.ts | docs/source-files/up-doc-modal-token.md |
-| blueprint-picker-modal.element.ts | docs/source-files/blueprint-picker-modal-element.md |
-| blueprint-picker-modal.token.ts | docs/source-files/blueprint-picker-modal-token.md |
+| index.ts | docs/src/content/docs/source-files/index-ts.md |
+| manifest.ts | docs/src/content/docs/source-files/manifest.md |
+| up-doc-action.ts | docs/src/content/docs/source-files/up-doc-action.md |
+| up-doc-modal.element.ts | docs/src/content/docs/source-files/up-doc-modal-element.md |
+| up-doc-modal.token.ts | docs/src/content/docs/source-files/up-doc-modal-token.md |
+| blueprint-picker-modal.element.ts | docs/src/content/docs/source-files/blueprint-picker-modal-element.md |
+| blueprint-picker-modal.token.ts | docs/src/content/docs/source-files/blueprint-picker-modal-token.md |
 
 If adding a new source file:
-1. Create corresponding `.md` file in `docs/source-files/`
-2. Add entry to the `nav:` section in `mkdocs.yml`
+1. Create corresponding `.md` file in `docs/src/content/docs/source-files/`
+2. Add entry to the `sidebar` array in `docs/astro.config.mjs`
 
 ## Naming Conventions
 
@@ -135,18 +135,17 @@ d:\Users\deanl\source\repos\Umbraco Extensions\Umbraco-CMS
 
 When implementing UI, check **both** references. UUI for base components, API Docs for how Umbraco composes them into higher-level patterns. The API Docs Storybook often shows patterns (stat boxes, tables, dashboard layouts) that aren't in UUI alone.
 
-## Documentation (MkDocs)
+## Documentation (Astro Starlight)
 
-Documentation is built with MkDocs and deployed to GitHub Pages via GitHub Actions. The site is at `https://deanleigh.github.io/UpDoc/`.
+Documentation is built with Astro Starlight and deployed to GitHub Pages via GitHub Actions. The site is at `https://deanleigh.github.io/UpDoc/`.
 
-- Source files: `docs/` folder
-- Config: `mkdocs.yml` at repo root
-- Deployment: Automatic on push to `main` when `docs/` or `mkdocs.yml` changes
+- Source files: `docs/src/content/docs/` (markdown with YAML frontmatter)
+- Config: `docs/astro.config.mjs` (sidebar nav, site settings)
+- Deployment: Automatic on push to `main` when `docs/**` changes
 
 To preview locally:
 ```bash
-pip install mkdocs-material
-mkdocs serve
+cd docs && npm run dev
 ```
 
 ## Build

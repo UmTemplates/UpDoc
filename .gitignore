@@ -454,6 +454,12 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 ##
+## Astro docs
+##
+docs/dist/
+docs/.astro/
+
+##
 ## Claude Code
 ##
 .claude/settings.local.json

@@ -607,6 +607,7 @@ export interface TransformArea {
 	name: string;
 	color: string | null;
 	page: number;
+	sortOrder?: number | null;
 	groups: TransformGroup[];
 	sections: TransformedSection[];
 }
@@ -651,6 +652,7 @@ export interface TransformedSection {
 	ruleName?: string | null;
 	childCount: number;
 	included: boolean;
+	sortOrder?: number | null;
 }
 
 export interface TransformDiagnostics {

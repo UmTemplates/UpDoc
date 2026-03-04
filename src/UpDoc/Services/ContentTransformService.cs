@@ -98,20 +98,32 @@ public class ContentTransformService : IContentTransformService
             }
         }
 
-        // Preserve include/exclude state from previous transform
+        // Preserve user state from previous transform (inclusion, sort order)
         if (previous != null)
         {
-            var previousInclusion = new Dictionary<string, bool>();
+            // Section-level: inclusion + sort order
+            var previousSections = new Dictionary<string, TransformedSection>();
             foreach (var s in previous.AllSections)
             {
-                previousInclusion.TryAdd(s.Id, s.Included);
+                previousSections.TryAdd(s.Id, s);
             }
 
             foreach (var section in result.AllSections)
             {
-                if (previousInclusion.TryGetValue(section.Id, out var included))
+                if (previousSections.TryGetValue(section.Id, out var prev))
                 {
-                    section.Included = included;
+                    section.Included = prev.Included;
+                    section.SortOrder = prev.SortOrder;
+                }
+            }
+
+            // Area-level: sort order
+            var previousAreas = previous.Areas.ToDictionary(a => $"{a.Name}|{a.Page}", a => a.SortOrder);
+            foreach (var area in result.Areas)
+            {
+                if (previousAreas.TryGetValue($"{area.Name}|{area.Page}", out var sortOrder))
+                {
+                    area.SortOrder = sortOrder;
                 }
             }
         }

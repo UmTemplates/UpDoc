@@ -127,6 +127,14 @@ public interface IWorkflowService
     TransformResult? UpdateSectionInclusion(string workflowAlias, string sectionId, bool included);
 
     /// <summary>
+    /// Updates sort order for areas or sections within a page's transform result.
+    /// For areas: sets SortOrder on each area matching the given page.
+    /// For sections: sets SortOrder on sections within the specified area.
+    /// Returns the updated TransformResult, or null if the workflow was not found.
+    /// </summary>
+    TransformResult? UpdateSortOrder(string workflowAlias, int page, string? areaName, List<string> sortedIds);
+
+    /// <summary>
     /// Loads the source.json from a workflow folder.
     /// </summary>
     SourceConfig? GetSourceConfig(string workflowAlias);
@@ -878,6 +886,48 @@ public class WorkflowService : IWorkflowService
         _logger.LogInformation("Updated section '{SectionId}' in workflow '{Name}' to Included={Included}",
             sectionId, workflowAlias, included);
 
+        return result;
+    }
+
+    public TransformResult? UpdateSortOrder(string workflowAlias, int page, string? areaName, List<string> sortedIds)
+    {
+        var result = GetTransformResult(workflowAlias);
+        if (result == null) return null;
+
+        if (areaName == null)
+        {
+            // Sort areas within a page
+            var pageAreas = result.Areas.Where(a => a.Page == page).ToList();
+            for (var i = 0; i < sortedIds.Count; i++)
+            {
+                var area = pageAreas.FirstOrDefault(a =>
+                    string.Equals(a.Name, sortedIds[i], StringComparison.OrdinalIgnoreCase));
+                if (area != null)
+                    area.SortOrder = i;
+            }
+            _logger.LogInformation("Updated area sort order for page {Page} in workflow '{Name}': {Order}",
+                page, workflowAlias, string.Join(", ", sortedIds));
+        }
+        else
+        {
+            // Sort sections within an area
+            var area = result.Areas.FirstOrDefault(a =>
+                a.Page == page && string.Equals(a.Name, areaName, StringComparison.OrdinalIgnoreCase));
+            if (area == null) return null;
+
+            var allSections = area.AllSections.ToList();
+            for (var i = 0; i < sortedIds.Count; i++)
+            {
+                var section = allSections.FirstOrDefault(s =>
+                    string.Equals(s.Id, sortedIds[i], StringComparison.OrdinalIgnoreCase));
+                if (section != null)
+                    section.SortOrder = i;
+            }
+            _logger.LogInformation("Updated section sort order for area '{Area}' page {Page} in workflow '{Name}': {Order}",
+                areaName, page, workflowAlias, string.Join(", ", sortedIds));
+        }
+
+        SaveTransformResult(workflowAlias, result);
         return result;
     }
 

@@ -912,6 +912,18 @@ public class WorkflowController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPut("{alias}/transform/sort-order")]
+    public IActionResult UpdateSortOrder(string alias, [FromBody] SortOrderRequest request)
+    {
+        var result = _workflowService.UpdateSortOrder(alias, request.Page, request.AreaName, request.SortedIds);
+        if (result == null)
+        {
+            return NotFound(new { error = $"Workflow '{alias}' not found or transform.json missing." });
+        }
+
+        return Ok(result);
+    }
+
     [HttpPut("{alias}/pages")]
     public IActionResult UpdatePageSelection(string alias, [FromBody] PageSelectionRequest request)
     {
@@ -1974,6 +1986,18 @@ public class ChangeDestinationRequest
 public class SectionInclusionRequest
 {
     public bool Included { get; set; }
+}
+
+public class SortOrderRequest
+{
+    /// <summary>Page number (1-based).</summary>
+    public int Page { get; set; }
+
+    /// <summary>Area name to sort sections within. Null = sort areas within the page.</summary>
+    public string? AreaName { get; set; }
+
+    /// <summary>Ordered list of IDs (area names or section IDs) in the desired order.</summary>
+    public List<string> SortedIds { get; set; } = new();
 }
 
 public class PageSelectionRequest

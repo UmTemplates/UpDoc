@@ -40,6 +40,9 @@ public class TransformArea
     /// <summary>Source page number.</summary>
     public int Page { get; set; }
 
+    /// <summary>User-defined sort order. Null = document order (default).</summary>
+    public int? SortOrder { get; set; }
+
     /// <summary>Named groups of multi-part sections (e.g., "Tour Details - Section" with title + content).</summary>
     public List<TransformGroup> Groups { get; set; } = new();
 
@@ -135,6 +138,9 @@ public class TransformedSection
     /// so they never reach the mapping or destination.
     /// </summary>
     public bool Included { get; set; } = true;
+
+    /// <summary>User-defined sort order within its area. Null = document order (default).</summary>
+    public int? SortOrder { get; set; }
 }
 
 /// <summary>

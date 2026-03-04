@@ -1,4 +1,4 @@
-import { b as P } from "./workflow.service-DXCyU5bG.js";
+import { b as P } from "./workflow.service-DRM8gMCY.js";
 import { g as v } from "./destination-utils-DUfOJy5W.js";
 import { html as t, nothing as r, css as S, state as d, customElement as F } from "@umbraco-cms/backoffice/external/lit";
 import { UmbTextStyles as W } from "@umbraco-cms/backoffice/style";
@@ -581,4 +581,4 @@ export {
   c as UpDocWorkflowDetailModalElement,
   I as default
 };
-//# sourceMappingURL=up-doc-workflow-detail-modal.element-D1-nVeSQ.js.map
+//# sourceMappingURL=up-doc-workflow-detail-modal.element-DvHrffdt.js.map

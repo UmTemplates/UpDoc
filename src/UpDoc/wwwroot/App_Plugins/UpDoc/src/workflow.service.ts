@@ -436,6 +436,33 @@ export async function updateSectionInclusion(
 }
 
 /**
+ * Saves sort order for areas within a page (areaName=null) or sections within an area.
+ * Returns the updated TransformResult on success.
+ */
+export async function saveSortOrder(
+	workflowAlias: string,
+	page: number,
+	areaName: string | null,
+	sortedIds: string[],
+	token: string
+): Promise<TransformResult | null> {
+	const response = await fetch(
+		`/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(workflowAlias)}/transform/sort-order`,
+		{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify({ page, areaName, sortedIds }),
+		}
+	);
+
+	if (!response.ok) return null;
+	return response.json();
+}
+
+/**
  * Saves the map config for a workflow.
  */
 export async function saveMapConfig(

@@ -1,6 +1,6 @@
 import type { RichExtractionResult, DocumentTypeConfig, MappingDestination, AreaDetectionResult, DetectedArea, DetectedSection, AreaElement, TransformResult, TransformedSection, SourceConfig, AreaTemplate, AreaRules, InferSectionPatternResponse, MapConfig, SectionMapping } from './workflow.types.js';
 import { allTransformSections } from './workflow.types.js';
-import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, retransform, fetchTransformResult, updateSectionInclusion, savePageSelection, saveExcludedAreas, saveContainerOverrides, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
+import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByAlias, fetchAreaDetection, triggerTransform, retransform, fetchTransformResult, updateSectionInclusion, saveSortOrder, savePageSelection, saveExcludedAreas, saveContainerOverrides, fetchSourceConfig, fetchAreaTemplate, saveAreaTemplate, saveAreaRules, inferSectionPattern, saveMapConfig } from './workflow.service.js';
 import { normalizeToKebabCase, markdownToHtml } from './transforms.js';
 import { getAllBlockContainers } from './destination-utils.js';
 import { UMB_AREA_EDITOR_MODAL } from './pdf-area-editor-modal.token.js';
@@ -16,6 +16,7 @@ import { UMB_WORKSPACE_CONTEXT } from '@umbraco-cms/backoffice/workspace';
 import { UMB_MODAL_MANAGER_CONTEXT } from '@umbraco-cms/backoffice/modal';
 import { UMB_MEDIA_PICKER_MODAL } from '@umbraco-cms/backoffice/media';
 import { UMB_DESTINATION_PICKER_MODAL } from './destination-picker-modal.token.js';
+import { UP_DOC_SORT_MODAL } from './up-doc-sort-modal.token.js';
 
 @customElement('up-doc-workflow-source-view')
 export class UpDocWorkflowSourceViewElement extends UmbLitElement {
@@ -830,7 +831,82 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			sections.push(...group.sections);
 		}
 		sections.push(...matchingArea.sections);
+		// Apply user-defined sort order
+		const hasSortOrder = sections.some((s) => s.sortOrder != null);
+		if (hasSortOrder) {
+			sections.sort((a, b) => {
+				const sa = a.sortOrder ?? Number.MAX_SAFE_INTEGER;
+				const sb = b.sortOrder ?? Number.MAX_SAFE_INTEGER;
+				return sa - sb;
+			});
+		}
 		return sections;
+	}
+
+	#onPageBoxMouseOver(e: MouseEvent) {
+		const pageBox = e.currentTarget as HTMLElement;
+		const headerEl = (pageBox as any).shadowRoot?.querySelector('#header') as HTMLElement | null;
+		if (!headerEl) return;
+		const rect = headerEl.getBoundingClientRect();
+		const isOverHeader = e.clientY >= rect.top && e.clientY <= rect.bottom;
+		pageBox.classList.toggle('page-header-hovered', isOverHeader);
+	}
+
+	#onPageBoxMouseLeave(e: MouseEvent) {
+		const pageBox = e.currentTarget as HTMLElement;
+		pageBox.classList.remove('page-header-hovered');
+	}
+
+	async #onSortAreas(pageNum: number, areas: DetectedArea[]) {
+		if (!this._workflowAlias) return;
+
+		const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
+		const modal = modalManager.open(this, UP_DOC_SORT_MODAL, {
+			data: {
+				headline: 'Sort areas',
+				items: areas.map((a) => ({ id: a.name, name: a.name })),
+			},
+		});
+
+		try {
+			const value = await modal.onSubmit();
+			const updated = await saveSortOrder(this._workflowAlias, pageNum, null, value.sortedIds, this.#token);
+			if (updated) {
+				this._transformResult = updated;
+			}
+		} catch {
+			// Modal cancelled
+		}
+	}
+
+	async #onSortSections(area: DetectedArea, pageNum: number) {
+		if (!this._workflowAlias) return;
+
+		const allSections = this._transformResult
+			? this.#getTransformSectionsForArea(area, pageNum)
+			: [];
+		const sections = allSections.filter((s) => s.included);
+
+		const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
+		const modal = modalManager.open(this, UP_DOC_SORT_MODAL, {
+			data: {
+				headline: `Sort sections — ${area.name}`,
+				items: sections.map((s) => ({
+					id: s.id,
+					name: s.heading ?? s.groupName ?? s.ruleName ?? (s.areaName ? `${s.areaName} - Section` : 'Section'),
+				})),
+			},
+		});
+
+		try {
+			const value = await modal.onSubmit();
+			const updated = await saveSortOrder(this._workflowAlias, pageNum, area.name, value.sortedIds, this.#token);
+			if (updated) {
+				this._transformResult = updated;
+			}
+		} catch {
+			// Modal cancelled
+		}
 	}
 
 	async #onMapSection(section: TransformedSection, partSuffix: string = 'content') {
@@ -923,13 +999,14 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		return html`
 			<div class="section-box">
 				<div class="section-box-header" @click=${() => this.#toggleCollapse(collapseKey)}>
-					<uui-icon class="collapse-chevron" name="${isCollapsed ? 'icon-navigation-right' : 'icon-navigation-down'}"></uui-icon>
+					<uui-symbol-expand class="collapse-chevron" .open=${!isCollapsed}></uui-symbol-expand>
 					<uui-icon class="level-icon" name="icon-thumbnail-list"></uui-icon>
 					<span class="section-box-label">${sectionLabel}</span>
 					<span class="header-spacer"></span>
 					${hasMappings && isCollapsed
 						? suffixes.map((s) => this.#renderPartBadges(`${section.id}.${s}`))
 						: nothing}
+					<uui-action-bar class="row-actions"></uui-action-bar>
 				</div>
 				${!isCollapsed ? html`
 					<div class="section-box-content">
@@ -1053,7 +1130,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			return html`
 				<div class="area-section ${!isIncluded ? 'excluded' : ''}">
 					<div class="section-heading preamble" @click=${() => this.#toggleCollapse(sectionKey)}>
-						<uui-icon class="collapse-chevron" name="${isCollapsed ? 'icon-navigation-right' : 'icon-navigation-down'}"></uui-icon>
+						<uui-symbol-expand class="collapse-chevron" .open=${!isCollapsed}></uui-symbol-expand>
 						<span class="heading-text preamble-label">Content</span>
 						<span class="group-count">${section.children.length} element${section.children.length !== 1 ? 's' : ''}</span>
 						<uui-toggle
@@ -1078,7 +1155,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 			<div class="area-section ${!isIncluded ? 'excluded' : ''}">
 				<div class="section-heading" @click=${hasChildren ? () => this.#toggleCollapse(sectionKey) : nothing}>
 					${hasChildren
-						? html`<uui-icon class="collapse-chevron" name="${isCollapsed ? 'icon-navigation-right' : 'icon-navigation-down'}"></uui-icon>`
+						? html`<uui-symbol-expand class="collapse-chevron" .open=${!isCollapsed}></uui-symbol-expand>`
 						: html`<uui-icon class="collapse-chevron placeholder"></uui-icon>`}
 					<uui-icon class="level-icon" name="icon-thumbnail-list"></uui-icon>
 					<span class="heading-text" title="${heading.text}">${heading.text}</span>
@@ -1197,7 +1274,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		return html`
 			<div class="detected-area ${isTeaching ? 'area-teaching' : ''}" style="border-left-color: ${area.color};">
 				<div class="area-header" @click=${() => !isTeaching && this.#toggleCollapse(areaKey)}>
-					<uui-icon class="collapse-chevron" name="${isCollapsed ? 'icon-navigation-right' : 'icon-navigation-down'}"></uui-icon>
+					<uui-symbol-expand class="collapse-chevron" .open=${!isCollapsed}></uui-symbol-expand>
 					<uui-icon class="level-icon" name="icon-grid"></uui-icon>
 					<span class="area-name">${area.name || `${areaIndex + 1}`}</span>
 					${hasRules ? html`<span class="meta-badge rules-info">${ruleCount} rule${ruleCount !== 1 ? 's' : ''}</span>` : nothing}
@@ -1215,6 +1292,23 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 							<uui-badge color="danger" look="primary">${sectionCount}</uui-badge>
 						</uui-button>
 					` : nothing}
+					<uui-action-bar class="row-actions">
+						<uui-button class="action-trigger" compact label="Actions"
+							@click=${(e: Event) => e.stopPropagation()}
+							popovertarget="area-actions-${areaKey}">
+							<uui-symbol-more></uui-symbol-more>
+						</uui-button>
+						<uui-popover-container
+							id="area-actions-${areaKey}"
+							placement="bottom-end">
+							<umb-popover-layout>
+								<uui-menu-item label="Sort sections"
+									@click=${(e: Event) => { e.stopPropagation(); this.#onSortSections(area, pageNum); }}>
+									<uui-icon slot="icon" name="icon-navigation"></uui-icon>
+								</uui-menu-item>
+							</umb-popover-layout>
+						</uui-popover-container>
+					</uui-action-bar>
 				</div>
 				${!isCollapsed ? html`
 					${isTeaching ? html`
@@ -1244,20 +1338,57 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		});
 		if (includedAreas.length === 0) return nothing;
 
+		// Apply user-defined sort order from transform result
+		if (this._transformResult) {
+			const sortMap = new Map<string, number>();
+			for (const ta of this._transformResult.areas) {
+				if (ta.page === pageNum && ta.sortOrder != null) {
+					sortMap.set(ta.name.toLowerCase(), ta.sortOrder);
+				}
+			}
+			if (sortMap.size > 0) {
+				includedAreas.sort((a, b) => {
+					const sa = sortMap.get(a.name.toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
+					const sb = sortMap.get(b.name.toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
+					return sa - sb;
+				});
+			}
+		}
+
 		const pageKey = `page-${pageNum}`;
 		const isCollapsed = this.#isCollapsed(pageKey);
 		const areaCount = includedAreas.length;
 		const sectionCount = includedAreas.reduce((sum, a) => sum + a.sections.length, 0);
 		const isIncluded = this.#isPageIncluded(pageNum);
 		return html`
-			<uui-box class="page-box ${!isIncluded ? 'page-excluded' : ''}">
-				<div slot="header" class="tree-header" @click=${() => this.#toggleCollapse(pageKey)}>
-					<uui-icon class="collapse-chevron" name="${isCollapsed ? 'icon-navigation-right' : 'icon-navigation-down'}"></uui-icon>
+			<uui-box class="page-box ${!isIncluded ? 'page-excluded' : ''}"
+				@mouseover=${(e: MouseEvent) => this.#onPageBoxMouseOver(e)}
+				@mouseleave=${(e: MouseEvent) => this.#onPageBoxMouseLeave(e)}>
+				<div slot="header" class="tree-header"
+					@click=${() => this.#toggleCollapse(pageKey)}>
+					<uui-symbol-expand class="collapse-chevron" .open=${!isCollapsed}></uui-symbol-expand>
 					<uui-icon class="level-icon" name="icon-document"></uui-icon>
 					<strong class="page-title">Page ${pageNum}</strong>
 				</div>
 				<div slot="header-actions" class="page-header-actions">
 					<span class="group-count">${sectionCount} section${sectionCount !== 1 ? 's' : ''}, ${areaCount} area${areaCount !== 1 ? 's' : ''}</span>
+					<uui-action-bar class="row-actions">
+						<uui-button class="action-trigger" compact label="Actions"
+							@click=${(e: Event) => e.stopPropagation()}
+							popovertarget="page-actions-${pageKey}">
+							<uui-symbol-more></uui-symbol-more>
+						</uui-button>
+						<uui-popover-container
+							id="page-actions-${pageKey}"
+							placement="bottom-end">
+							<umb-popover-layout>
+								<uui-menu-item label="Sort areas"
+									@click=${(e: Event) => { e.stopPropagation(); this.#onSortAreas(pageNum, includedAreas); }}>
+									<uui-icon slot="icon" name="icon-navigation"></uui-icon>
+								</uui-menu-item>
+							</umb-popover-layout>
+						</uui-popover-container>
+					</uui-action-bar>
 				</div>
 				${!isCollapsed ? html`
 					${includedAreas.map((area, idx) => this.#renderArea(area, pageNum, idx))}
@@ -2135,6 +2266,33 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 
 			.header-spacer {
 				flex: 1;
+			}
+
+			/* Row action bar — reserved space at far right of header rows */
+			uui-action-bar.row-actions {
+				width: 40px;
+				flex-shrink: 0;
+			}
+
+			uui-action-bar.row-actions .action-trigger {
+				opacity: 0;
+				transition: opacity 0.15s;
+			}
+
+			.area-header:hover uui-action-bar.row-actions .action-trigger,
+			.page-box.page-header-hovered uui-action-bar.row-actions .action-trigger,
+			.section-box-header:hover uui-action-bar.row-actions .action-trigger {
+				opacity: 1;
+			}
+
+			/* Grey hover bar for page header — style both slotted divs to cover the shadow DOM header */
+			.page-box.page-header-hovered .tree-header,
+			.page-box.page-header-hovered .page-header-actions {
+				background: var(--uui-color-surface-emphasis);
+			}
+
+			.page-box.page-header-hovered .tree-header .collapse-chevron {
+				color: var(--uui-color-text);
 			}
 
 			/* Page groups */

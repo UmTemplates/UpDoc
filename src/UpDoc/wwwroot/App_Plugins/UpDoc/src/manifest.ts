@@ -112,6 +112,12 @@ export const manifests: Array<UmbExtensionManifest> = [
 		name: 'Section Rules Editor Modal',
 		element: () => import('./section-rules-editor-modal.element.js'),
 	},
+	{
+		type: 'modal',
+		alias: 'UpDoc.SortModal',
+		name: 'Sort Modal',
+		element: () => import('./up-doc-sort-modal.element.js'),
+	},
 
 	// =====================================================================
 	// Workflow Workspace — full page for editing individual workflows

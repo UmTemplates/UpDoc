@@ -328,7 +328,7 @@ be = function() {
   for (const i of this._areaDetection.pages)
     for (const s of i.areas) {
       const n = s.name || "Area", r = L(n);
-      if (t.has(r)) continue;
+      if (t.has(r) || this._excludedAreas.has(r)) continue;
       t.add(r);
       const l = o(this, a, G).call(this, s), c = this._sourceConfig?.areaRules?.[r], p = !!c && ((c.groups?.length ?? 0) > 0 || (c.rules?.length ?? 0) > 0);
       e.push({ areaKey: r, areaName: n, elements: l, hasRules: p });
@@ -1074,7 +1074,7 @@ et = function() {
 											<uui-menu-item
 												label="${_.areaName}"
 												@click=${() => o(this, a, V).call(this, _.areaKey, _.areaName, _.elements)}>
-												<uui-icon slot="icon" name="${_.hasRules ? "icon-check" : "icon-thumbnail-list"}"></uui-icon>
+												<uui-icon slot="icon" name="icon-thumbnail-list"></uui-icon>
 												<span slot="badge" class="section-picker-meta">${_.elements.length} el</span>
 											</uui-menu-item>
 										`)}
@@ -1308,7 +1308,7 @@ ot = function() {
 											<uui-menu-item
 												label="${r.areaName}"
 												@click=${() => o(this, a, V).call(this, r.areaKey, r.areaName, r.elements)}>
-												<uui-icon slot="icon" name="${r.hasRules ? "icon-check" : "icon-thumbnail-list"}"></uui-icon>
+												<uui-icon slot="icon" name="icon-thumbnail-list"></uui-icon>
 												<span slot="badge" class="section-picker-meta">${r.elements.length} el</span>
 											</uui-menu-item>
 										`)}
@@ -2413,4 +2413,4 @@ export {
   b as UpDocWorkflowSourceViewElement,
   Gt as default
 };
-//# sourceMappingURL=up-doc-workflow-source-view.element-DbLOqx1O.js.map
+//# sourceMappingURL=up-doc-workflow-source-view.element-Dyjx0d7x.js.map

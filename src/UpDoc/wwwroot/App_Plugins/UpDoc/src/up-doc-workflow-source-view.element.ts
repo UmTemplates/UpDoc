@@ -435,6 +435,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 				const areaName = area.name || `Area`;
 				const areaKey = normalizeToKebabCase(areaName);
 				if (seenKeys.has(areaKey)) continue; // Deduplicate (same area on multiple pages)
+				if (this._excludedAreas.has(areaKey)) continue; // Skip excluded areas
 				seenKeys.add(areaKey);
 
 				const elements = this.#getAreaElements(area);
@@ -1542,7 +1543,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 											<uui-menu-item
 												label="${a.areaName}"
 												@click=${() => this.#onEditAreaRules(a.areaKey, a.areaName, a.elements)}>
-												<uui-icon slot="icon" name="${a.hasRules ? 'icon-check' : 'icon-thumbnail-list'}"></uui-icon>
+												<uui-icon slot="icon" name="icon-thumbnail-list"></uui-icon>
 												<span slot="badge" class="section-picker-meta">${a.elements.length} el</span>
 											</uui-menu-item>
 										`)}
@@ -1841,7 +1842,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 											<uui-menu-item
 												label="${a.areaName}"
 												@click=${() => this.#onEditAreaRules(a.areaKey, a.areaName, a.elements)}>
-												<uui-icon slot="icon" name="${a.hasRules ? 'icon-check' : 'icon-thumbnail-list'}"></uui-icon>
+												<uui-icon slot="icon" name="icon-thumbnail-list"></uui-icon>
 												<span slot="badge" class="section-picker-meta">${a.elements.length} el</span>
 											</uui-menu-item>
 										`)}

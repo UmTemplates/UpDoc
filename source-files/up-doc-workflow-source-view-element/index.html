@@ -1,0 +1,3667 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An Umbraco extension for extracting content from PDFs">
+      
+      
+      
+        <link rel="canonical" href="https://deanleigh.github.io/UpDoc/source-files/up-doc-workflow-source-view-element/">
+      
+      
+        <link rel="prev" href="../up-doc-workflow-destination-view-element/">
+      
+      
+        <link rel="next" href="../up-doc-workflow-map-view-element/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+    
+    
+      
+        <title>up-doc-workflow-source-view.element.ts - UpDoc</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#up-doc-workflow-source-viewelementts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="UpDoc" class="md-header__button md-logo" aria-label="UpDoc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            UpDoc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              up-doc-workflow-source-view.element.ts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/deanleigh/UpDoc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    deanleigh/UpDoc
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="UpDoc" class="md-nav__button md-logo" aria-label="UpDoc" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    UpDoc
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/deanleigh/UpDoc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    deanleigh/UpDoc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-journeys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Journeys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mapping-directions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mapping Directions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ui/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Interface
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Interface
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ui/uui-components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UUI Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ui/umbraco-components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Umbraco Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ui/custom-components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../frontend/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend (TypeScript)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend (TypeScript)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    index.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manifest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    manifest.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-action.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-has-workflows-condition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-has-workflows.condition.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-modal-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-modal.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-modal-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-modal.token.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blueprint-picker-modal-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    blueprint-picker-modal.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blueprint-picker-modal-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    blueprint-picker-modal.token.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    workflow.types.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow-service-ts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    workflow.service.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-workflows-view-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-workflows-view.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create-workflow-sidebar-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    create-workflow-sidebar.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create-workflow-sidebar-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    create-workflow-sidebar.token.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-workflow-detail-modal-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-workflow-detail-modal.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-workflow-detail-modal-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-workflow-detail-modal.token.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-workflow-workspace-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-workflow-workspace.context.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-workflow-destination-view-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-workflow-destination-view.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-workflow-source-view.element.ts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-workflow-source-view.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How it works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layout-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#info-boxes-usync-inspired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Info boxes (uSync-inspired)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extracted-mode-area-detection-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracted mode (area detection hierarchy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collapse-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collapse behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformed-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformed mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-rules-editing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section rules editing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-pdf-render-path-markdownweb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-PDF render path (Markdown/Web)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#row-action-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row action buttons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Row action buttons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#page-header-hover-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page header hover detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sort ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empty-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty state
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registered-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registered in
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#used-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Used by
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-workflow-map-view-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-workflow-map-view.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../destination-picker-modal-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    destination-picker-modal.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../destination-picker-modal-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    destination-picker-modal.token.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visual-grouping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    visual-grouping.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    transforms.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-collection-action-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-collection-action.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../destination-utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    destination-utils.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-pdf-thumbnail-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-pdf-thumbnail.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-pdf-picker-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-pdf-picker.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../page-picker-modal-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    page-picker-modal.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../page-picker-modal-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    page-picker-modal.token.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../section-rules-editor-modal-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    section-rules-editor-modal.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../section-rules-editor-modal-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    section-rules-editor-modal.token.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-sort-modal-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-sort-modal.element.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-sort-modal-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-sort-modal.token.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-usync-fallback-condition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    up-doc-usync-fallback.condition.ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../backend/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend (C#)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backend (C#)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backend/stable-section-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stable Section Identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pdf-extraction-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PdfExtractionService.cs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pdf-page-properties-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PdfPagePropertiesService.cs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markdown-extraction-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MarkdownExtractionService.cs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pdf-extraction-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PdfExtractionController.cs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../up-doc-composer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UpDocComposer.cs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WorkflowModels.cs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WorkflowService.cs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WorkflowController.cs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tooling/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tooling
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tooling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tooling/figma/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Figma
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Figma
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tooling/figma/figma-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Figma MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tooling/figma/html-to-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    html.to.design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tooling/figma/mockups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTML Mockups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tooling/figma/workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tooling/claude/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Claude
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tooling/claude/claude-md/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLAUDE.md
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tooling/claude/memory-and-planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory & Planning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tooling/playwright/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playwright
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Playwright
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tooling/umbraco-skills/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Umbraco Claude Skills
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Umbraco Claude Skills
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/usync-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    uSync Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../errors/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common Errors
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Common Errors
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common-errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed cache error
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../errors/blueprint-block-grid-preview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blueprint block grid preview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../errors/convert-block-matching/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block property conversion skipped
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../errors/drag-drop-dead-zone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Drag-and-drop dead zone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How it works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layout-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#info-boxes-usync-inspired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Info boxes (uSync-inspired)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extracted-mode-area-detection-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracted mode (area detection hierarchy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collapse-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collapse behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformed-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformed mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-rules-editing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section rules editing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-pdf-render-path-markdownweb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-PDF render path (Markdown/Web)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#row-action-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row action buttons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Row action buttons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#page-header-hover-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page header hover detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sort ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empty-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty state
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registered-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registered in
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#used-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Used by
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="up-doc-workflow-source-viewelementts">up-doc-workflow-source-view.element.ts</h1>
+<p>Workspace view for the Source tab in the workflow workspace. Displays extracted content and the transformed content view for all three source types (PDF, Markdown, Web).</p>
+<h2 id="what-it-does">What it does</h2>
+<p>Displays the sample extraction for a workflow in two modes:</p>
+<ul>
+<li><strong>Extracted</strong> — for PDF: area detection hierarchy showing pages, areas (colour-coded), sections (with headings), and individual text elements with metadata. For Markdown/Web: flat element list with metadata badges.</li>
+<li><strong>Transformed</strong> — assembled sections with pattern detection (bullet list, paragraph, sub-headed, preamble). For PDF: includes mapping controls. For Markdown/Web: read-only preview of heading-grouped sections rendered as HTML.</li>
+</ul>
+<p>All three source types share the same Extracted/Transformed tab pair and info box layout for a consistent user experience. PDF uses a rich four-level hierarchy with area detection; Markdown and Web use a simpler flat element display on the Extracted tab but share the same Transformed tab rendering.</p>
+<p>Users can include/exclude sections (via toggle), include/exclude pages, map sections to destination fields, collapse/expand any level, reorder areas and sections via sort modals, and re-extract from a different source. For web sources, excluded areas (managed via the area picker modal) are filtered out entirely — they don't render on the Extracted tab, matching PDF behaviour.</p>
+<h2 id="how-it-works">How it works</h2>
+<h3 id="layout-pattern">Layout pattern</h3>
+<p>Uses <code>umb-body-layout header-fit-height</code> with a single <code>slot="header"</code> div containing <code>uui-tab-group</code> for view switching (Extracted / Transformed). Info boxes and content are in the scrollable area below.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">umb-body-layout</span> <span class="na">header-fit-height</span><span class="p">&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">slot</span><span class="o">=</span><span class="s">&quot;header&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;source-header&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="p">&lt;</span><span class="nt">uui-tab-group</span><span class="p">&gt;</span><span class="cm">&lt;!-- Extracted / Transformed --&gt;</span><span class="p">&lt;/</span><span class="nt">uui-tab-group</span><span class="p">&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;info-boxes&quot;</span><span class="p">&gt;</span><span class="cm">&lt;!-- uui-box cards: Source, Pages, Areas, Sections --&gt;</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;collapse-row&quot;</span><span class="p">&gt;</span><span class="cm">&lt;!-- Collapse All button, right-aligned --&gt;</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="cm">&lt;!-- scrollable content --&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">&lt;/</span><span class="nt">umb-body-layout</span><span class="p">&gt;</span>
+</code></pre></div>
+<h3 id="info-boxes-usync-inspired">Info boxes (uSync-inspired)</h3>
+<p>Four equal-width <code>&lt;uui-box&gt;</code> cards in a flex row with <code>flex-grow: 1</code>, following the uSync dashboard pattern. Each box uses the <code>headline</code> attribute for its title label.</p>
+<ol>
+<li><strong>Source</strong> — h2 filename, document icon, extraction date, Re-extract and Change PDF buttons</li>
+<li><strong>Pages</strong> — stat number (e.g., "2 of 4" or "All"), "Choose Pages" button opens page picker modal</li>
+<li><strong>Areas</strong> — stat number, "Edit Areas" or "Define Areas" button opens area editor modal</li>
+<li><strong>Sections</strong> — stat number, "Edit Sections" button that opens a section picker popover listing all transform sections. Each menu item shows <code>icon-check</code> (green) if the section already has rules, or <code>icon-thumbnail-list</code> (default) if not. Clicking a section opens the Section Rules Editor modal.</li>
+</ol>
+<p>All boxes use equal-height layout via <code>min-height: 180px</code> on <code>.box-content</code> with <code>margin-top: auto</code> on <code>.box-buttons</code> to pin buttons to the bottom. Stat numbers are vertically centred using flex. All buttons use <code>color="default"</code> for consistent styling.</p>
+<p>The Collapse All / Expand All button sits in its own row below the boxes, right-aligned.</p>
+<h3 id="page-selection">Page selection</h3>
+<p>Users can filter which PDF pages are extracted. Stored in <code>source.json</code> as a <code>pages</code> array of page numbers. Page selection is managed via the "Choose Pages" button in the Pages info box, which opens a page picker modal. Selection is saved immediately and applied on next re-extract.</p>
+<h3 id="data-loading">Data loading</h3>
+<p>On load, the component:</p>
+<ol>
+<li>Consumes <code>UMB_WORKSPACE_CONTEXT</code> and observes the <code>unique</code> value (workflow name)</li>
+<li>For <strong>PDF</strong> sources: loads in parallel — sample extraction, area detection, workflow config, transform result, source config. Initialises page selection state from source config. If sample extraction and area detection exist, automatically triggers a fresh transform to ensure data is current.</li>
+<li>For <strong>Markdown/Web</strong> sources: loads sample extraction, workflow config, and transform result (auto-generated during extraction by the backend). No area detection or page selection.</li>
+<li>Stores all in state for rendering</li>
+</ol>
+<h3 id="extracted-mode-area-detection-hierarchy">Extracted mode (area detection hierarchy)</h3>
+<p>Elements are displayed in a four-level collapsible hierarchy:</p>
+<ol>
+<li><strong>Page</strong> — <code>uui-box</code> with "Page N" headline, section/area counts, page include toggle, and collapse chevron in <code>header-actions</code> slot. Excluded pages are dimmed.</li>
+<li><strong>Area</strong> — colour-coded left border with area name label, "N rules" badge (if rules exist), "N sections" count badge, and collapse chevron. Excluded areas (managed via area picker modal) are filtered out entirely and don't render. Areas without rules show a "Flat"/"Configured" structure badge. The <code>...</code> action menu provides "Edit sections" (opens rules editor) and "Sort sections" (opens sort modal). For areas with rules, composed sections from the transform pipeline are rendered instead of raw elements, showing role name, content preview, and mapping status badges.</li>
+<li><strong>Section</strong> — structural label "Section – {name}" with include/exclude toggle, element count, and collapse chevron. The heading text from the PDF is rendered as the first child element (with a HEADING badge), not as the section header itself. This separates our structural UI from the actual PDF content. Preamble sections (no heading) show "Content" as the structural label.</li>
+<li><strong>Element</strong> — individual elements with semantic role badge (Heading/List Item/Paragraph), font size, font name, and colour badges.</li>
+</ol>
+<h3 id="collapse-behaviour">Collapse behaviour</h3>
+<p>All four levels are collapsible via a consistent chevron icon (<code>icon-navigation-right</code> when collapsed, <code>icon-navigation-down</code> when expanded). The chevron is always the rightmost element in each row.</p>
+<p>State is managed by a single <code>_collapsed</code> Set with key prefixes:
+- Pages: <code>page-${pageNum}</code>
+- Areas: <code>area-p${pageNum}-a${areaIndex}</code> or <code>area-p${pageNum}-undefined</code>
+- Sections: <code>p${pageNum}-a${areaIndex}-s${sIdx}</code></p>
+<p>A <strong>Collapse dropdown</strong> (using <code>uui-button</code> + <code>uui-popover-container</code> + <code>uui-menu-item</code>, matching Umbraco's "Create" dropdown pattern) provides per-level toggle controls:</p>
+<ul>
+<li><strong>Expand All</strong> — opens everything</li>
+<li><strong>Collapse/Expand Pages</strong> — toggles all page-level items</li>
+<li><strong>Collapse/Expand Areas</strong> — toggles all area-level items</li>
+<li><strong>Collapse/Expand Sections</strong> — toggles all section-level items</li>
+</ul>
+<p>Each label dynamically flips based on current state (e.g., "Collapse Areas" → "Expand Areas" when all areas are collapsed). The include/exclude toggle uses <code>@click stopPropagation</code> to prevent also triggering collapse.</p>
+<h3 id="transformed-mode">Transformed mode</h3>
+<p>Shows assembled sections from the transform pipeline as individual <code>uui-box</code> cards:</p>
+<ul>
+<li>Each section is a <code>uui-box</code> with the section heading as the headline</li>
+<li><strong>Simple sections</strong> (heading-only or duplicate heading/content): one body row with rendered Markdown content on the left and mapping badge + Map button on the right</li>
+<li><strong>Multi-part sections</strong> (heading + any content): separate rows within the box for title and content, each with its own badge + Map button, separated by horizontal border lines. Any section with both a heading and content gets a separate title row for independent mapping, regardless of content complexity.</li>
+<li>Content text is clamped to <code>max-width: 75ch</code> for comfortable reading line length; badges and Map buttons are right-aligned via <code>margin-left: auto</code> on <code>.md-part-actions</code></li>
+<li>Map buttons are hidden by default and appear on box hover (like Umbraco's block grid editor)</li>
+<li>Mapped sections show a green left border and green <code>uui-tag</code> badges with an "x" button to unmap directly</li>
+<li>Markdown content is rendered as HTML via <code>markdownToHtml()</code> — headings, bullet lists, blockquotes, and inline formatting are all visible</li>
+</ul>
+<h3 id="section-rules-editing">Section rules editing</h3>
+<p>The "Edit Sections" button in the Sections info box opens a popover section picker. The picker lists all transform sections (built from area detection data) as <code>uui-menu-item</code> entries. Selecting a section opens the <code>UMB_SECTION_RULES_EDITOR_MODAL</code> sidebar, passing the section's elements from area detection. When the modal returns saved rules, they're persisted via the <code>saveSectionRules()</code> API.</p>
+<p>The section-to-element lookup walks area detection pages to find elements belonging to each transform section, matching by section ID (kebab-case for headed sections, <code>preamble-p{page}-a{area}</code> for preamble sections).</p>
+<h3 id="mapping">Mapping</h3>
+<p>From the Transformed view, users can map section parts (title, content, description, summary) to destination fields. Each mappable part has its own Map button that opens <code>UMB_DESTINATION_PICKER_MODAL</code>. Results are saved to <code>map.json</code> using source keys in the format <code>${sectionId}.${partSuffix}</code> (e.g., <code>features.title</code>, <code>features.content</code>). Mapped parts show green <code>uui-tag</code> badges with an "x" button for inline unmapping. Mapped sections get a green left border on the <code>uui-box</code>.</p>
+<h3 id="non-pdf-render-path-markdownweb">Non-PDF render path (Markdown/Web)</h3>
+<p>For markdown and web source types, the component uses the same <code>umb-body-layout</code> with <code>#renderExtractionHeader()</code> for tab switching. Key differences from PDF:</p>
+<ul>
+<li><strong>Info boxes</strong>: <code>#renderNonPdfInfoBoxes()</code> renders 4 boxes — a functional Source box (filename/URL, extraction date, Change file/Re-extract button) plus 3 placeholder boxes ("Box 1", "Box 2", "Box 3") reserved for future features.</li>
+<li><strong>Extracted tab</strong>: <code>#renderSimpleElements()</code> shows a flat list of extracted elements with metadata badges (font name, font size, colour).</li>
+<li><strong>Transformed tab</strong>: <code>#renderTransformed()</code> / <code>#buildFullMarkdown()</code> renders the auto-generated transform result as HTML sections — identical rendering to PDF's Transformed view.</li>
+<li><strong>Extraction flow</strong>: After extraction, the backend auto-generates <code>transform.json</code> (deterministic heading-based grouping), which the frontend immediately fetches so the Transformed tab is populated without a separate trigger step.</li>
+</ul>
+<h3 id="row-action-buttons">Row action buttons</h3>
+<p>Page and area rows have a <code>...</code> action button that appears on hover. Clicking it opens a <code>uui-popover-container</code> with contextual actions:</p>
+<ul>
+<li><strong>Page rows</strong>: "Sort areas" — opens sort modal with the page's included areas</li>
+<li><strong>Area rows</strong>: "Edit sections" — opens the Section Rules Editor modal; "Sort sections" — opens sort modal. When an area has rule groups (2+), Sort sections reorders the <code>groups[]</code> array in the rules file (single source of truth). Areas without rule groups fall back to <code>SortOrder</code> in transform.json.</li>
+</ul>
+<p>The button is inside a <code>uui-action-bar</code> with fixed 40px width at the far right of each row. Section rows have an empty action bar for consistent spacing.</p>
+<p>Popover menus use <code>placement="bottom-start"</code> and set <code>--uui-menu-item-indent: 0</code> / <code>--uui-menu-item-flat-structure: 1</code> on <code>umb-popover-layout</code> to match Umbraco's native flat menu alignment.</p>
+<h4 id="page-header-hover-detection">Page header hover detection</h4>
+<p>The page row uses <code>uui-box</code> which renders header content in shadow DOM. CSS-only <code>:hover</code> would trigger for the entire box (including all child areas/sections). Instead, JavaScript <code>mouseover</code> with <code>clientY</code> comparison against the shadow DOM <code>#header</code> bounding rect is used to detect when the mouse is specifically over the page header area.</p>
+<h3 id="sort-ordering">Sort ordering</h3>
+<p>Areas and sections can be reordered via sort modals that use <code>umb-table</code> with <code>.sortable=${true}</code> (Umbraco's Sort Children pattern).</p>
+<ul>
+<li><code>#onSortAreas(pageNum)</code> — opens sort modal for areas on a page, saves via <code>saveSortOrder()</code> API</li>
+<li><code>#onSortSections(area, pageNum)</code> — when the area has rule groups (2+), reorders <code>groups[]</code> in the rules file via <code>saveAreaRules()</code> (single source of truth for section ordering). Areas without rule groups fall back to <code>SortOrder</code> in transform.json via <code>saveSortOrder()</code> API.</li>
+<li><code>#renderAreaPage()</code> sorts included areas by <code>sortOrder</code> before rendering</li>
+<li><code>#getTransformSectionsForArea()</code> sorts sections by <code>sortOrder</code> before returning</li>
+</ul>
+<p>Area sort order persists across re-transforms (C# <code>ContentTransformService</code> preserves <code>SortOrder</code> from previous transform). Section ordering for rule-grouped areas is driven by the <code>groups[]</code> array order in the rules file — the C# transform emits sections in that order.</p>
+<h3 id="empty-state">Empty state</h3>
+<p>When no sample extraction exists, shows a source-appropriate empty state:
+- <strong>PDF</strong>: centered prompt with "Choose PDF" button
+- <strong>Markdown</strong>: file picker prompt
+- <strong>Web</strong>: URL input field with "Extract" button, plus file upload fallback</p>
+<h2 id="key-methods">Key methods</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#loadData()</code></td>
+<td>Loads extraction, area detection, config, transform, source config in parallel</td>
+</tr>
+<tr>
+<td><code>#parsePageRange(input)</code></td>
+<td>Converts "1-3, 5" to <code>[1, 2, 3, 5]</code></td>
+</tr>
+<tr>
+<td><code>#pagesToRangeString(pages)</code></td>
+<td>Converts <code>[1, 2, 3, 5]</code> to "1-3, 5"</td>
+</tr>
+<tr>
+<td><code>#togglePage(pageNum)</code></td>
+<td>Toggles a page on/off and updates the range input</td>
+</tr>
+<tr>
+<td><code>#savePageSelection()</code></td>
+<td>Persists page selection to source.json</td>
+</tr>
+<tr>
+<td><code>#onReExtract()</code></td>
+<td>Re-extracts using previously stored media key</td>
+</tr>
+<tr>
+<td><code>#onPickMedia()</code></td>
+<td>Opens media picker, runs extraction on selected PDF</td>
+</tr>
+<tr>
+<td><code>#isCollapsed(key)</code></td>
+<td>Checks if a page/area/section is collapsed</td>
+</tr>
+<tr>
+<td><code>#toggleCollapse(key)</code></td>
+<td>Toggles collapse state for any level</td>
+</tr>
+<tr>
+<td><code>#getKeysForLevel(level)</code></td>
+<td>Returns all collapse keys for a given level (pages/areas/sections)</td>
+</tr>
+<tr>
+<td><code>#isLevelCollapsed(level)</code></td>
+<td>Checks if all items at a level are currently collapsed</td>
+</tr>
+<tr>
+<td><code>#toggleLevel(level)</code></td>
+<td>Toggles all items at a given level (collapse ↔ expand)</td>
+</tr>
+<tr>
+<td><code>#expandAll()</code></td>
+<td>Expands everything (clears collapsed set)</td>
+</tr>
+<tr>
+<td><code>#onEditAreas()</code></td>
+<td>Opens area editor modal for defining/editing extraction areas</td>
+</tr>
+<tr>
+<td><code>#getTransformSectionsWithElements()</code></td>
+<td>Builds list of transform sections with their area detection elements for the section picker</td>
+</tr>
+<tr>
+<td><code>#findElementsForSection(sectionId)</code></td>
+<td>Walks area detection pages to find elements matching a transform section by ID</td>
+</tr>
+<tr>
+<td><code>#buildPreambleId(pageNum, areaIdx)</code></td>
+<td>Constructs preamble section IDs matching the transform convention</td>
+</tr>
+<tr>
+<td><code>#onSectionPickerToggle(e)</code></td>
+<td>Handles popover open/close for the section picker</td>
+</tr>
+<tr>
+<td><code>#onEditSectionRules(sectionId, heading, elements)</code></td>
+<td>Opens rules editor modal for a section, saves returned rules via API</td>
+</tr>
+<tr>
+<td><code>#renderExtractionHeader()</code></td>
+<td>Tab group slotted into header</td>
+</tr>
+<tr>
+<td><code>#renderInfoBoxes()</code></td>
+<td>Four equal-height uui-box cards (Source, Pages, Areas, Sections)</td>
+</tr>
+<tr>
+<td><code>#renderExtractionContent()</code></td>
+<td>Dispatches to area detection or transformed view</td>
+</tr>
+<tr>
+<td><code>#renderAreaPage()</code></td>
+<td>Renders a page with toggle, area count, and collapse. Filters out excluded areas before rendering; returns nothing if all areas on the page are excluded.</td>
+</tr>
+<tr>
+<td><code>#renderArea()</code></td>
+<td>Renders "Area N" with sections and collapse</td>
+</tr>
+<tr>
+<td><code>#renderUndefinedArea()</code></td>
+<td>Renders "Undefined" area for unclassified content</td>
+</tr>
+<tr>
+<td><code>#renderSection()</code></td>
+<td>Renders a section with toggle, heading, children, collapse</td>
+</tr>
+<tr>
+<td><code>#renderAreaElement()</code></td>
+<td>Renders individual text element with type + metadata badges</td>
+</tr>
+<tr>
+<td><code>#classifyText()</code></td>
+<td>Classifies text as 'list' or 'paragraph' by leading pattern</td>
+</tr>
+<tr>
+<td><code>#renderTransformedSection()</code></td>
+<td>Renders an assembled section with pattern badge and mapping</td>
+</tr>
+<tr>
+<td><code>#computeSectionCount()</code></td>
+<td>Counts total sections across all pages, filtering out excluded areas</td>
+</tr>
+<tr>
+<td><code>#renderNonPdfInfoBoxes()</code></td>
+<td>Four info boxes for markdown/web: functional Source box + 3 placeholders</td>
+</tr>
+<tr>
+<td><code>#renderNonPdfContent()</code></td>
+<td>Routes non-PDF between <code>#renderSimpleElements()</code> (Extracted) and <code>#renderTransformed()</code> (Transformed)</td>
+</tr>
+<tr>
+<td><code>#renderMappingBadges()</code></td>
+<td>Shows Map button or green mapped-target badges</td>
+</tr>
+<tr>
+<td><code>#hasAreaRules(area)</code></td>
+<td>Checks if an area has rules defined in source config</td>
+</tr>
+<tr>
+<td><code>#getTransformSectionsForArea(area, pageNum)</code></td>
+<td>Gets transform sections belonging to an area (matched by colour + page)</td>
+</tr>
+<tr>
+<td><code>#onMapSection(section)</code></td>
+<td>Opens destination picker for a section's content key (<code>{id}.content</code>), saves result to map.json</td>
+</tr>
+<tr>
+<td><code>#renderComposedSectionRow(section)</code></td>
+<td>Renders a composed section row with role name, content preview, mapping badges, and Map button</td>
+</tr>
+<tr>
+<td><code>#onSortAreas(pageNum)</code></td>
+<td>Opens sort modal for areas on a page, saves new order via API</td>
+</tr>
+<tr>
+<td><code>#onSortSections(area, pageNum)</code></td>
+<td>Opens sort modal for sections in an area (filters excluded), saves via API</td>
+</tr>
+<tr>
+<td><code>#onPageBoxMouseOver(e)</code></td>
+<td>Detects mouse over page header via shadow DOM <code>#header</code> bounding rect</td>
+</tr>
+<tr>
+<td><code>#onPageBoxMouseLeave(e)</code></td>
+<td>Removes page header hover state</td>
+</tr>
+</tbody>
+</table>
+<h2 id="imports">Imports</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RichExtractionResult</span><span class="p">,</span><span class="w"> </span><span class="nx">DocumentTypeConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">MappingDestination</span><span class="p">,</span><span class="w"> </span><span class="nx">AreaDetectionResult</span><span class="p">,</span><span class="w"> </span><span class="nx">DetectedArea</span><span class="p">,</span><span class="w"> </span><span class="nx">DetectedSection</span><span class="p">,</span><span class="w"> </span><span class="nx">AreaElement</span><span class="p">,</span><span class="w"> </span><span class="nx">TransformResult</span><span class="p">,</span><span class="w"> </span><span class="nx">TransformedSection</span><span class="p">,</span><span class="w"> </span><span class="nx">SourceConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">AreaTemplate</span><span class="p">,</span><span class="w"> </span><span class="nx">SectionRuleSet</span><span class="p">,</span><span class="w"> </span><span class="nx">InferSectionPatternResponse</span><span class="p">,</span><span class="w"> </span><span class="nx">MapConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">SectionMapping</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./workflow.types.js&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">fetchSampleExtraction</span><span class="p">,</span><span class="w"> </span><span class="nx">triggerSampleExtraction</span><span class="p">,</span><span class="w"> </span><span class="nx">fetchWorkflowByName</span><span class="p">,</span><span class="w"> </span><span class="nx">fetchAreaDetection</span><span class="p">,</span><span class="w"> </span><span class="nx">triggerTransform</span><span class="p">,</span><span class="w"> </span><span class="nx">fetchTransformResult</span><span class="p">,</span><span class="w"> </span><span class="nx">updateSectionInclusion</span><span class="p">,</span><span class="w"> </span><span class="nx">savePageSelection</span><span class="p">,</span><span class="w"> </span><span class="nx">fetchSourceConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">fetchAreaTemplate</span><span class="p">,</span><span class="w"> </span><span class="nx">saveAreaTemplate</span><span class="p">,</span><span class="w"> </span><span class="nx">saveAreaRules</span><span class="p">,</span><span class="w"> </span><span class="nx">inferSectionPattern</span><span class="p">,</span><span class="w"> </span><span class="nx">saveMapConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./workflow.service.js&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">markdownToHtml</span><span class="p">,</span><span class="w"> </span><span class="nx">normalizeToKebabCase</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./transforms.js&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UMB_DESTINATION_PICKER_MODAL</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./destination-picker-modal.token.js&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UMB_SECTION_RULES_EDITOR_MODAL</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./section-rules-editor-modal.token.js&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UP_DOC_SORT_MODAL</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./up-doc-sort-modal.token.js&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">saveSortOrder</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./workflow.service.js&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UmbLitElement</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@umbraco-cms/backoffice/lit-element&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UMB_AUTH_CONTEXT</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@umbraco-cms/backoffice/auth&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UMB_WORKSPACE_CONTEXT</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@umbraco-cms/backoffice/workspace&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UMB_MODAL_MANAGER_CONTEXT</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@umbraco-cms/backoffice/modal&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UMB_MEDIA_PICKER_MODAL</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@umbraco-cms/backoffice/media&#39;</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="registered-in">Registered in</h2>
+<ul>
+<li><code>manifest.ts</code> — single <code>workspaceView</code> registration:<ul>
+<li><code>UpDoc.WorkflowWorkspaceView.Source</code> (weight 200, icon <code>icon-page-add</code>)</li>
+</ul>
+</li>
+<li>Conditioned on <code>Umb.Condition.WorkspaceAlias</code> matching <code>UpDoc.WorkflowWorkspace</code></li>
+</ul>
+<h2 id="used-by">Used by</h2>
+<ul>
+<li>Displayed as the Source tab when viewing an individual workflow in the workflow workspace</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

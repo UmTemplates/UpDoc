@@ -8,6 +8,8 @@ import { html, css, state, nothing } from '@umbraco-cms/backoffice/external/lit'
 import { customElement } from '@umbraco-cms/backoffice/external/lit';
 import { UmbModalBaseElement } from '@umbraco-cms/backoffice/modal';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
+import { UMB_MODAL_MANAGER_CONTEXT } from '@umbraco-cms/backoffice/modal';
+import { UP_DOC_SORT_MODAL } from './up-doc-sort-modal.token.js';
 
 /**
  * Editable rule: SectionRule + transient tracking fields for the modal.
@@ -211,6 +213,31 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 
 	get #allGroupsCollapsed(): boolean {
 		return this._groupOrder.length > 0 && this._groupOrder.every((g) => this._collapsedGroups.has(g));
+	}
+
+	/** Open sort modal to reorder named groups. */
+	async #reorderGroups() {
+		const namedGroups = this._groupOrder.filter((g) => g !== UNGROUPED_GROUP);
+		if (namedGroups.length < 2) return;
+
+		const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
+		const modal = modalManager.open(this, UP_DOC_SORT_MODAL, {
+			data: {
+				headline: 'Reorder groups',
+				items: namedGroups.map((g) => ({ id: g, name: g })),
+			},
+		});
+
+		try {
+			const value = await modal.onSubmit();
+			// Preserve ungrouped at the end
+			const hasUngrouped = this._groupOrder.includes(UNGROUPED_GROUP);
+			this._groupOrder = hasUngrouped
+				? [...value.sortedIds, UNGROUPED_GROUP]
+				: [...value.sortedIds];
+		} catch {
+			// cancelled
+		}
 	}
 
 	override firstUpdated() {
@@ -1380,35 +1407,55 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 								${this.#allGroupsCollapsed ? 'Expand all' : 'Collapse all'}
 							</uui-button>
 						` : nothing}
+						${this._groupOrder.filter((g) => g !== UNGROUPED_GROUP).length >= 2 ? html`
+							<uui-button
+								compact
+								look="outline"
+								label="Reorder groups"
+								@click=${() => this.#reorderGroups()}>
+								<uui-icon name="icon-navigation"></uui-icon>
+								Reorder
+							</uui-button>
+						` : nothing}
 					</div>
 
-					${groupedView.map((entry) => {
-						const isCollapsed = this.#isGroupCollapsed(entry.group);
-						const renderItemCb = (rule: SortableRule) =>
-							this.#renderRuleCard(rule as EditableRule, ruleMatches.get(rule._id) ?? []);
+					${(() => {
+						const namedGroups = groupedView.filter((e) => e.group !== UNGROUPED_GROUP);
+						const ungroupedEntry = groupedView.find((e) => e.group === UNGROUPED_GROUP);
+
+						const renderGroup = (entry: typeof groupedView[0]) => {
+							const isCollapsed = this.#isGroupCollapsed(entry.group);
+							const renderItemCb = (rule: SortableRule) =>
+								this.#renderRuleCard(rule as EditableRule, ruleMatches.get(rule._id) ?? []);
+
+							return html`
+								<div class="group-container ${isCollapsed ? 'collapsed' : ''}">
+									${this.#renderGroupHeader(entry.group)}
+									${isCollapsed ? nothing : html`
+									<div class="group-rules">
+										<updoc-sortable-rules
+											.rules=${entry.rules}
+											.expandedIds=${this._expandedRules}
+											.renderItem=${renderItemCb}
+											@sort-change=${(e: CustomEvent<SortChangeDetail>) => this.#onSortChange(entry.group, e)}
+										></updoc-sortable-rules>
+										<uui-button
+											look="placeholder"
+											label="Add rule to ${entry.group}"
+											@click=${() => this.#addRule(entry.group)}>
+											+ Add rule
+										</uui-button>
+									</div>
+									`}
+								</div>
+							`;
+						};
 
 						return html`
-							<div class="group-container ${isCollapsed ? 'collapsed' : ''}">
-								${this.#renderGroupHeader(entry.group)}
-								${isCollapsed ? nothing : html`
-								<div class="group-rules">
-									<updoc-sortable-rules
-										.rules=${entry.rules}
-										.expandedIds=${this._expandedRules}
-										.renderItem=${renderItemCb}
-										@sort-change=${(e: CustomEvent<SortChangeDetail>) => this.#onSortChange(entry.group, e)}
-									></updoc-sortable-rules>
-									<uui-button
-										look="placeholder"
-										label="Add rule to ${entry.group}"
-										@click=${() => this.#addRule(entry.group)}>
-										+ Add rule
-									</uui-button>
-								</div>
-								`}
-							</div>
+							${namedGroups.map((entry) => renderGroup(entry))}
+							${ungroupedEntry ? renderGroup(ungroupedEntry) : nothing}
 						`;
-					})}
+					})()}
 
 					<uui-button
 						look="outline"

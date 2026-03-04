@@ -107,7 +107,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.SectionRulesEditorModal",
     name: "Section Rules Editor Modal",
-    element: () => import("./section-rules-editor-modal.element-pEJRDZbY.js")
+    element: () => import("./section-rules-editor-modal.element-DJGUq3k-.js")
   },
   {
     type: "modal",
@@ -150,7 +150,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Source",
     name: "UpDoc Workflow Source View",
-    element: () => import("./up-doc-workflow-source-view.element-XygEkY9c.js"),
+    element: () => import("./up-doc-workflow-source-view.element-xd2yM7Tb.js"),
     weight: 200,
     meta: {
       label: "Source",

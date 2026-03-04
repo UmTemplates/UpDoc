@@ -421,7 +421,30 @@ public class ContentTransformService : IContentTransformService
                 }
             }
 
+            // Build emit order: grouped elements in rules group order, then any remaining.
+            // Within each group, elements stay in DOM order (preserving document flow).
+            var groupOrder = areaRule.Groups.Select(g => g.Name).ToList();
+            var emitOrder = new List<int>();
+            var emitted = new HashSet<int>();
+            foreach (var gName in groupOrder)
+            {
+                for (int i = 0; i < elements.Count; i++)
+                {
+                    if (!emitted.Contains(i) && elementGroupNames[i] == gName)
+                    {
+                        emitOrder.Add(i);
+                        emitted.Add(i);
+                    }
+                }
+            }
+            // Append any remaining elements (ungrouped matched, unmatched, etc.) in DOM order
             for (int i = 0; i < elements.Count; i++)
+            {
+                if (!emitted.Contains(i))
+                    emitOrder.Add(i);
+            }
+
+            foreach (var i in emitOrder)
             {
                 var part = elementParts[i] ?? "content";
                 var format = elementFormats[i] ?? "auto";

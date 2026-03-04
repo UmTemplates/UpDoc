@@ -141,6 +141,8 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	/** Track which rules are expanded (by _id). All collapsed by default. */
 	@state() private _expandedRules: Set<string> = new Set();
 	/** Group currently being renamed (null = none). */
+	@state() private _collapsedGroups = new Set<string>();
+
 	@state() private _renamingGroup: string | null = null;
 	@state() private _renameValue = '';
 
@@ -179,6 +181,36 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 			next.add(ruleId);
 			this._expandedRules = next;
 		}
+	}
+
+	#isGroupCollapsed(groupName: string): boolean {
+		return this._collapsedGroups.has(groupName);
+	}
+
+	#toggleGroupCollapse(groupName: string) {
+		const next = new Set(this._collapsedGroups);
+		if (next.has(groupName)) {
+			next.delete(groupName);
+		} else {
+			next.add(groupName);
+		}
+		this._collapsedGroups = next;
+	}
+
+	#toggleAllGroupsCollapse() {
+		const allGroups = this._groupOrder;
+		const allCollapsed = allGroups.every((g) => this._collapsedGroups.has(g));
+		if (allCollapsed) {
+			// Expand all
+			this._collapsedGroups = new Set<string>();
+		} else {
+			// Collapse all
+			this._collapsedGroups = new Set(allGroups);
+		}
+	}
+
+	get #allGroupsCollapsed(): boolean {
+		return this._groupOrder.length > 0 && this._groupOrder.every((g) => this._collapsedGroups.has(g));
 	}
 
 	override firstUpdated() {
@@ -1208,10 +1240,13 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	}
 
 	#renderGroupHeader(name: string) {
+		const isCollapsed = this.#isGroupCollapsed(name);
+
 		// Ungrouped sentinel: simple header, no rename/delete
 		if (name === UNGROUPED_GROUP) {
 			return html`
-				<div class="group-header">
+				<div class="group-header" @click=${() => this.#toggleGroupCollapse(name)} style="cursor: pointer;">
+					<uui-symbol-expand .open=${!isCollapsed}></uui-symbol-expand>
 					<strong class="group-name">${name}</strong>
 				</div>
 			`;
@@ -1220,6 +1255,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		if (this._renamingGroup === name) {
 			return html`
 				<div class="group-header">
+					<uui-symbol-expand .open=${!isCollapsed}></uui-symbol-expand>
 					<input
 						type="text"
 						class="group-rename-input"
@@ -1240,10 +1276,11 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		}
 
 		return html`
-			<div class="group-header">
+			<div class="group-header" @click=${() => this.#toggleGroupCollapse(name)} style="cursor: pointer;">
+				<uui-symbol-expand .open=${!isCollapsed}></uui-symbol-expand>
 				<strong class="group-name">${name}</strong>
 				<span class="header-spacer"></span>
-				<uui-action-bar class="group-header-actions">
+				<uui-action-bar class="group-header-actions" @click=${(e: Event) => e.stopPropagation()}>
 					<uui-button pristine look="primary" label="Rename" @click=${() => this.#startRenameGroup(name)}>
 						<uui-icon name="icon-edit"></uui-icon>
 					</uui-button>
@@ -1333,15 +1370,27 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 								? html`<span class="meta-badge">${realGroups} group${realGroups !== 1 ? 's' : ''}</span>`
 								: nothing;
 						})()}
+						${this._groupOrder.length > 0 ? html`
+							<uui-button
+								compact
+								look="outline"
+								label=${this.#allGroupsCollapsed ? 'Expand all' : 'Collapse all'}
+								@click=${() => this.#toggleAllGroupsCollapse()}>
+								<uui-symbol-expand .open=${!this.#allGroupsCollapsed}></uui-symbol-expand>
+								${this.#allGroupsCollapsed ? 'Expand all' : 'Collapse all'}
+							</uui-button>
+						` : nothing}
 					</div>
 
 					${groupedView.map((entry) => {
+						const isCollapsed = this.#isGroupCollapsed(entry.group);
 						const renderItemCb = (rule: SortableRule) =>
 							this.#renderRuleCard(rule as EditableRule, ruleMatches.get(rule._id) ?? []);
 
 						return html`
-							<div class="group-container">
+							<div class="group-container ${isCollapsed ? 'collapsed' : ''}">
 								${this.#renderGroupHeader(entry.group)}
+								${isCollapsed ? nothing : html`
 								<div class="group-rules">
 									<updoc-sortable-rules
 										.rules=${entry.rules}
@@ -1356,6 +1405,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 										+ Add rule
 									</uui-button>
 								</div>
+								`}
 							</div>
 						`;
 					})}
@@ -1409,6 +1459,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 
 			.section-info {
 				display: flex;
+				align-items: center;
 				gap: var(--uui-size-space-2);
 				flex-wrap: wrap;
 			}
@@ -1444,6 +1495,10 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				padding: var(--uui-size-space-3) var(--uui-size-space-4);
 				background: var(--uui-color-surface-alt);
 				border-bottom: 1px solid var(--uui-color-border);
+			}
+
+			.group-container.collapsed .group-header {
+				border-bottom: none;
 			}
 
 			.group-name {

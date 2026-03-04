@@ -531,6 +531,192 @@
             },
             {
               "heading": {
+                "id": "html-27",
+                "text": "Suggested Itinerary",
+                "fontSize": 10.5,
+                "fontName": "Arial",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h3",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
+                "cssClasses": "",
+                "isBold": true
+              },
+              "children": [
+                {
+                  "id": "html-28",
+                  "text": "Day 1 \u2013 Dublin city tour",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-29",
+                  "text": "Scheduled flight to Dublin from your preferred airport \u2013 tour of Dublin with our local guide in our private executive coach giving us a great introduction to the city of writers and poets taking in such sights as Ha\u2019penny Bridge, O\u2019Connell Street and Christchurch Cathedral \u2013 transfer to the central 3* Academy Plaza Hotel in Dublin.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-30",
+                  "text": "Day 2 \u2013 Dublin Castle, Chester Beatty Library, the State Apartments \u0026 Kilmainham Gaol",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-31",
+                  "text": "A guided tour of Dublin Castle, dating back to 1230 and located in the heart of the city, is followed by a visit to the Chester Beatty Library containing a rich collection of manuscripts, prints, miniature paintings and early printed books \u2013 the State Apartments at Dublin Castle were the former private and public rooms of the Viceroys and the Viceregal Court, the seat of the executive and the focus of fashionable social life and a guided tour also takes in the Medieval Undercroft and the Chapel Royal \u2013 guided tour of the museum at Kilmainham Gaol, one of the largest unoccupied jails in Europe, focuses on some of the most heroic and tragic events in Ireland\u2019s emergence as a modern nation from the 1780s to the 1920s.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-32",
+                  "text": "Day 3 \u2013 Wicklow Mountains, Powerscourt House and Gardens, Glendalough \u0026 Avoca",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-33",
+                  "text": "Travel with our guide into the Wicklow Mountains, known as the \u2018garden of Ireland\u2019 \u2013 Powerscourt House and Gardens is set in 14,000 acres with delightful lakes, ornamental hedges and gardens while the entrance hall now features an exhibition bringing to life the rich history of the estate and the double height Georgian ballroom has been completely restored to its former glory \u2013 Glendalough is a 6th century monastic site founded by St Kevin and once a major seat of learning in medieval Europe \u2013 Avoca is the subject of Thomas More\u2019s poem, \u2018The Meeting of the Waters\u2019.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-34",
+                  "text": "Day 4 \u2013 National Gallery of Ireland, Book of Kells \u0026 Newman House",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-35",
+                  "text": "Guided tour of the National Gallery of Ireland, housing 13,000 works of art, including works by Titian, Caravaggio, Rembrandt, Poussin and Gainsborough \u2013 visit Trinity College with our guide to see the Book of Kells, one of the most beautifully illuminated manuscripts in the world which was written around the year 800 AD \u2013 Newman House consists of two Georgian houses displaying examples of Dublin\u2019s finest 18th century plasterwork.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-36",
+                  "text": "Day 5 \u2013 EPIC The Irish Emigration Museum",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-37",
+                  "text": "Guided tour of EPIC The Irish Emigration Museum which depicts the moving and unforgettable stories of those who left the island of Ireland, and how they influenced and shaped the world \u2013 transfer to Dublin airport for our scheduled flight back home.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                }
+              ]
+            },
+            {
+              "heading": {
                 "id": "html-38",
                 "text": "Tour Features",
                 "fontSize": 10.5,
@@ -1498,7 +1684,7 @@
               ]
             }
           ],
-          "totalElements": 70
+          "totalElements": 81
         },
         {
           "name": "Page Header",
@@ -1569,206 +1755,6 @@
             }
           ],
           "totalElements": 3
-        },
-        {
-          "name": "Suggested Itinerary",
-          "color": "#FFCC80",
-          "boundingBox": {
-            "left": 0,
-            "top": 0,
-            "width": 0,
-            "height": 0
-          },
-          "page": 1,
-          "sections": [
-            {
-              "heading": {
-                "id": "html-27",
-                "text": "Suggested Itinerary",
-                "fontSize": 10.5,
-                "fontName": "Arial",
-                "color": "#2E5BA1",
-                "boundingBox": {
-                  "left": 0,
-                  "top": 0,
-                  "width": 0,
-                  "height": 0
-                },
-                "htmlTag": "h3",
-                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
-                "cssClasses": "",
-                "isBold": true
-              },
-              "children": [
-                {
-                  "id": "html-28",
-                  "text": "Day 1 \u2013 Dublin city tour",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": "",
-                  "isBold": true
-                },
-                {
-                  "id": "html-29",
-                  "text": "Scheduled flight to Dublin from your preferred airport \u2013 tour of Dublin with our local guide in our private executive coach giving us a great introduction to the city of writers and poets taking in such sights as Ha\u2019penny Bridge, O\u2019Connell Street and Christchurch Cathedral \u2013 transfer to the central 3* Academy Plaza Hotel in Dublin.",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": ""
-                },
-                {
-                  "id": "html-30",
-                  "text": "Day 2 \u2013 Dublin Castle, Chester Beatty Library, the State Apartments \u0026 Kilmainham Gaol",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": "",
-                  "isBold": true
-                },
-                {
-                  "id": "html-31",
-                  "text": "A guided tour of Dublin Castle, dating back to 1230 and located in the heart of the city, is followed by a visit to the Chester Beatty Library containing a rich collection of manuscripts, prints, miniature paintings and early printed books \u2013 the State Apartments at Dublin Castle were the former private and public rooms of the Viceroys and the Viceregal Court, the seat of the executive and the focus of fashionable social life and a guided tour also takes in the Medieval Undercroft and the Chapel Royal \u2013 guided tour of the museum at Kilmainham Gaol, one of the largest unoccupied jails in Europe, focuses on some of the most heroic and tragic events in Ireland\u2019s emergence as a modern nation from the 1780s to the 1920s.",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": ""
-                },
-                {
-                  "id": "html-32",
-                  "text": "Day 3 \u2013 Wicklow Mountains, Powerscourt House and Gardens, Glendalough \u0026 Avoca",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": "",
-                  "isBold": true
-                },
-                {
-                  "id": "html-33",
-                  "text": "Travel with our guide into the Wicklow Mountains, known as the \u2018garden of Ireland\u2019 \u2013 Powerscourt House and Gardens is set in 14,000 acres with delightful lakes, ornamental hedges and gardens while the entrance hall now features an exhibition bringing to life the rich history of the estate and the double height Georgian ballroom has been completely restored to its former glory \u2013 Glendalough is a 6th century monastic site founded by St Kevin and once a major seat of learning in medieval Europe \u2013 Avoca is the subject of Thomas More\u2019s poem, \u2018The Meeting of the Waters\u2019.",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": ""
-                },
-                {
-                  "id": "html-34",
-                  "text": "Day 4 \u2013 National Gallery of Ireland, Book of Kells \u0026 Newman House",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": "",
-                  "isBold": true
-                },
-                {
-                  "id": "html-35",
-                  "text": "Guided tour of the National Gallery of Ireland, housing 13,000 works of art, including works by Titian, Caravaggio, Rembrandt, Poussin and Gainsborough \u2013 visit Trinity College with our guide to see the Book of Kells, one of the most beautifully illuminated manuscripts in the world which was written around the year 800 AD \u2013 Newman House consists of two Georgian houses displaying examples of Dublin\u2019s finest 18th century plasterwork.",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": ""
-                },
-                {
-                  "id": "html-36",
-                  "text": "Day 5 \u2013 EPIC The Irish Emigration Museum",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": "",
-                  "isBold": true
-                },
-                {
-                  "id": "html-37",
-                  "text": "Guided tour of EPIC The Irish Emigration Museum which depicts the moving and unforgettable stories of those who left the island of Ireland, and how they influenced and shaped the world \u2013 transfer to Dublin airport for our scheduled flight back home.",
-                  "fontSize": 9.8,
-                  "fontName": "Arial",
-                  "color": "#2E5BA1",
-                  "boundingBox": {
-                    "left": 0,
-                    "top": 0,
-                    "width": 0,
-                    "height": 0
-                  },
-                  "htmlTag": "p",
-                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
-                  "cssClasses": ""
-                }
-              ]
-            }
-          ],
-          "totalElements": 11
         },
         {
           "name": "Footer",
@@ -2711,7 +2697,7 @@
   "diagnostics": {
     "totalPathsFound": 0,
     "pathsAfterFiltering": 0,
-    "areasDetected": 7,
+    "areasDetected": 6,
     "elementsInAreas": 157
   }
 }

@@ -37,7 +37,7 @@
       "comment": null
     },
     {
-      "source": "preamble-p1-z4.content",
+      "source": "preamble-p1-z2.content",
       "destinations": [
         {
           "target": "richTextContent",
@@ -50,12 +50,12 @@
       "comment": null
     },
     {
-      "source": "suggested-itinerary.content",
+      "source": "preamble-p1-z2-2.content",
       "destinations": [
         {
           "target": "richTextContent",
-          "blockKey": "f6cfe802-72e5-49ce-8de8-fc78cbec3d9d",
-          "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
+          "blockKey": "d65d7ffc-41da-4617-a6fd-9f1555bc3f16",
+          "contentTypeKey": "34e5aa3b-db10-40a1-893d-79e98cd3f2f4",
           "transforms": null
         }
       ],
@@ -63,12 +63,12 @@
       "comment": null
     },
     {
-      "source": "suggested-itinerary.title",
+      "source": "preamble-p1-z2-3.content",
       "destinations": [
         {
-          "target": "featurePropertyFeatureTitle",
-          "blockKey": "f6cfe802-72e5-49ce-8de8-fc78cbec3d9d",
-          "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
+          "target": "richTextContent",
+          "blockKey": "bebc7d17-efe8-415c-9448-a76430e5a67a",
+          "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
           "transforms": null
         }
       ],

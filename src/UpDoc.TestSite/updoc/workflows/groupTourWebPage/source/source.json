@@ -224,6 +224,92 @@
               "textReplacements": null
             }
           ]
+        },
+        {
+          "name": "Suggested Itinerary",
+          "rules": [
+            {
+              "role": "Day Title",
+              "part": "content",
+              "action": null,
+              "format": "heading3",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.tab-wrapper"
+                },
+                {
+                  "type": "isBoldEquals",
+                  "value": "true"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
+              "role": "Day Title H4",
+              "part": "content",
+              "action": null,
+              "format": "heading3",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "h4"
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.tab-wrapper"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
+              "role": "Day Content",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.tab-wrapper"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
         }
       ],
       "rules": []
@@ -247,8 +333,7 @@
     },
     {
       "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1",
-      "action": "promoteToArea",
-      "label": "Suggested Itinerary"
+      "action": "makeSection"
     }
   ]
 }

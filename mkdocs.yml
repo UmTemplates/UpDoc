@@ -65,6 +65,8 @@ nav:
     - page-picker-modal.token.ts: source-files/page-picker-modal-token.md
     - section-rules-editor-modal.element.ts: source-files/section-rules-editor-modal-element.md
     - section-rules-editor-modal.token.ts: source-files/section-rules-editor-modal-token.md
+    - up-doc-sort-modal.element.ts: source-files/up-doc-sort-modal-element.md
+    - up-doc-sort-modal.token.ts: source-files/up-doc-sort-modal-token.md
     - up-doc-usync-fallback.condition.ts: source-files/up-doc-usync-fallback-condition.md
   - Backend (C#):
     - backend/index.md

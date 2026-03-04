@@ -173,6 +173,19 @@ All are conditioned on `Umb.Condition.WorkspaceAlias` matching `UpDoc.WorkflowWo
 
 A sidebar modal for selecting destination fields when creating mappings from the Source tab.
 
+## Sort Modal
+
+```typescript
+{
+    type: 'modal',
+    alias: 'UpDoc.SortModal',
+    name: 'Sort Modal',
+    element: () => import('./up-doc-sort-modal.element.js'),
+}
+```
+
+Sidebar modal for reordering areas within a page or sections within an area. Uses `umb-table` with drag-and-drop sorting, following Umbraco's Sort Children pattern. See [up-doc-sort-modal.element.ts](up-doc-sort-modal-element.md) for details.
+
 ## Area Editor Modal
 
 ```typescript

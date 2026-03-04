@@ -11,7 +11,7 @@ Displays the sample extraction for a workflow in two modes:
 
 All three source types share the same Extracted/Transformed tab pair and info box layout for a consistent user experience. PDF uses a rich four-level hierarchy with area detection; Markdown and Web use a simpler flat element display on the Extracted tab but share the same Transformed tab rendering.
 
-Users can include/exclude sections (via toggle), include/exclude pages, map sections to destination fields, collapse/expand any level, and re-extract from a different source. For web sources, excluded areas (managed via the area picker modal) are filtered out entirely — they don't render on the Extracted tab, matching PDF behaviour.
+Users can include/exclude sections (via toggle), include/exclude pages, map sections to destination fields, collapse/expand any level, reorder areas and sections via sort modals, and re-extract from a different source. For web sources, excluded areas (managed via the area picker modal) are filtered out entirely — they don't render on the Extracted tab, matching PDF behaviour.
 
 ## How it works
 
@@ -114,6 +114,30 @@ For markdown and web source types, the component uses the same `umb-body-layout`
 - **Transformed tab**: `#renderTransformed()` / `#buildFullMarkdown()` renders the auto-generated transform result as HTML sections — identical rendering to PDF's Transformed view.
 - **Extraction flow**: After extraction, the backend auto-generates `transform.json` (deterministic heading-based grouping), which the frontend immediately fetches so the Transformed tab is populated without a separate trigger step.
 
+### Row action buttons
+
+Page and area rows have a `...` action button that appears on hover. Clicking it opens a `uui-popover-container` with contextual actions:
+
+- **Page rows**: "Sort areas" — opens sort modal with the page's included areas
+- **Area rows**: "Sort sections" — opens sort modal with the area's included sections
+
+The button is inside a `uui-action-bar` with fixed 40px width at the far right of each row. Section rows have an empty action bar for consistent spacing.
+
+#### Page header hover detection
+
+The page row uses `uui-box` which renders header content in shadow DOM. CSS-only `:hover` would trigger for the entire box (including all child areas/sections). Instead, JavaScript `mouseover` with `clientY` comparison against the shadow DOM `#header` bounding rect is used to detect when the mouse is specifically over the page header area.
+
+### Sort ordering
+
+Areas and sections can be reordered via sort modals that use `umb-table` with `.sortable=${true}` (Umbraco's Sort Children pattern). Sort order is persisted in `transform.json` as `sortOrder` properties on areas and sections.
+
+- `#onSortAreas(pageNum)` — opens sort modal for areas on a page, saves via `saveSortOrder()` API
+- `#onSortSections(area, pageNum)` — opens sort modal for sections in an area (excluded sections filtered out), saves via API
+- `#renderAreaPage()` sorts included areas by `sortOrder` before rendering
+- `#getTransformSectionsForArea()` sorts sections by `sortOrder` before returning
+
+Sort order persists across re-transforms (C# `ContentTransformService` preserves `SortOrder` from previous transform, same pattern as `Included` flag preservation).
+
 ### Empty state
 
 When no sample extraction exists, shows a source-appropriate empty state:
@@ -162,6 +186,10 @@ When no sample extraction exists, shows a source-appropriate empty state:
 | `#getTransformSectionsForArea(area, pageNum)` | Gets transform sections belonging to an area (matched by colour + page) |
 | `#onMapSection(section)` | Opens destination picker for a section's content key (`{id}.content`), saves result to map.json |
 | `#renderComposedSectionRow(section)` | Renders a composed section row with role name, content preview, mapping badges, and Map button |
+| `#onSortAreas(pageNum)` | Opens sort modal for areas on a page, saves new order via API |
+| `#onSortSections(area, pageNum)` | Opens sort modal for sections in an area (filters excluded), saves via API |
+| `#onPageBoxMouseOver(e)` | Detects mouse over page header via shadow DOM `#header` bounding rect |
+| `#onPageBoxMouseLeave(e)` | Removes page header hover state |
 
 ## Imports
 
@@ -171,6 +199,8 @@ import { fetchSampleExtraction, triggerSampleExtraction, fetchWorkflowByName, fe
 import { markdownToHtml, normalizeToKebabCase } from './transforms.js';
 import { UMB_DESTINATION_PICKER_MODAL } from './destination-picker-modal.token.js';
 import { UMB_SECTION_RULES_EDITOR_MODAL } from './section-rules-editor-modal.token.js';
+import { UP_DOC_SORT_MODAL } from './up-doc-sort-modal.token.js';
+import { saveSortOrder } from './workflow.service.js';
 import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
 import { UMB_AUTH_CONTEXT } from '@umbraco-cms/backoffice/auth';
 import { UMB_WORKSPACE_CONTEXT } from '@umbraco-cms/backoffice/workspace';

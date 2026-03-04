@@ -74,6 +74,24 @@ export function clearConfigCache(): void
 
 Clears the in-memory config cache. Useful when configs have been modified and need to be reloaded.
 
+### saveSortOrder
+
+```typescript
+export async function saveSortOrder(
+    workflowAlias: string,
+    page: number,
+    areaName: string | null,
+    sortedIds: string[],
+    token: string
+): Promise<TransformResult | null>
+```
+
+Saves a new sort order for areas within a page (when `areaName` is null) or sections within an area (when `areaName` is provided). Calls `PUT /umbraco/management/api/v1/updoc/workflows/{alias}/transform/sort-order`.
+
+- Returns the updated `TransformResult` with new `sortOrder` values applied
+- Returns `null` if the request fails
+- The backend updates `transform.json` with `sortOrder` indices (0-based)
+
 ## Key concepts
 
 ### In-memory caches

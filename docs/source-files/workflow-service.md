@@ -55,6 +55,19 @@ The frontend workaround: during extraction, the modal fetches per-workflow confi
 
 `ValidateConfig` uses `field.Alias` (human-readable like "pageTitle") to build the set of valid destination keys, not `field.Key` (GUIDs). The frontend writes aliases to map.json targets, so validation must match against aliases.
 
+### UpdateSortOrder
+
+Updates the sort order of areas within a page or sections within an area.
+
+```csharp
+TransformResult? UpdateSortOrder(string workflowAlias, int page, string? areaName, List<string> sortedIds);
+```
+
+- When `areaName` is null: assigns `SortOrder` values (0, 1, 2...) to areas on the specified page, matched by name
+- When `areaName` is provided: assigns `SortOrder` values to sections within that area, matched by section ID
+- Reads `transform.json`, updates sort order values, saves back to disk
+- Returns the updated `TransformResult`, or null if the transform file doesn't exist
+
 ## Registration
 
 Registered as a singleton via `UpDocComposer`:

@@ -301,6 +301,58 @@ Text replacements are applied to matched element text before formatting. Each ru
 
 The `replaceType` adapts automatically based on `findType` in the UI.
 
+## Transform Result Types
+
+Types for the transform pipeline output (Extract → Shape → Map).
+
+### TransformResult
+
+```typescript
+export interface TransformResult {
+    version: string;
+    areas: TransformArea[];
+    diagnostics: TransformDiagnostics;
+}
+```
+
+### TransformArea
+
+```typescript
+export interface TransformArea {
+    name: string;
+    color?: string;
+    page: number;
+    sortOrder?: number | null;     // User-defined sort order. Null = document order.
+    groups: TransformGroup[];
+    sections: TransformedSection[];
+}
+```
+
+### TransformedSection
+
+```typescript
+export interface TransformedSection {
+    id: string;
+    stableKey?: string;
+    originalHeading?: string;
+    heading?: string;
+    content: string;
+    description?: string;
+    summary?: string;
+    pattern: string;
+    page: number;
+    areaColor?: string;
+    areaName?: string;
+    groupName?: string;
+    ruleName?: string;
+    childCount: number;
+    included: boolean;
+    sortOrder?: number | null;     // User-defined sort order within area. Null = document order.
+}
+```
+
+The `sortOrder` property on both `TransformArea` and `TransformedSection` enables user-controlled ordering. When null, items render in document order (the order they appear in the source). When set, items are sorted by this value ascending. Sort order is persisted in `transform.json` and preserved across re-transforms.
+
 ## Key Concepts
 
 ### Separation of Concerns

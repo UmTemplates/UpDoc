@@ -14,6 +14,7 @@ export default defineConfig({
 			],
 			customCss: ['./src/styles/custom.css'],
 			sidebar: [
+				{ label: 'MkDocs to Starlight Migration', slug: 'migration-guide-mkdocs-to-starlight' },
 				{ label: 'User Journeys', slug: 'user-journeys' },
 				{ label: 'Mapping Directions', slug: 'mapping-directions' },
 				{
@@ -120,6 +121,7 @@ export default defineConfig({
 					label: 'Deployment',
 					items: [
 						{ label: 'Overview', slug: 'deployment' },
+						{ label: 'Docs Migration', slug: 'deployment/docs-migration' },
 						{ label: 'uSync Migration', slug: 'deployment/usync-migration' },
 					],
 				},

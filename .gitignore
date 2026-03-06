@@ -465,6 +465,11 @@ docs/.astro/
 .claude/settings.local.json
 
 ##
+## MCP server config (contains API secrets)
+##
+.mcp.json
+
+##
 ## Playwright E2E Testing & MCP
 ##
 **/.env

@@ -17,13 +17,8 @@ This happens when the site is stopped while cache instructions are still being p
 
 ## Auth cookies invalidated when running multiple Umbraco sites
 
-If you're logged out of one Umbraco site when starting another on localhost, the sites are sharing the same Data Protection key ring. Each site encrypts/decrypts auth cookies with the same keys, so starting a new site can invalidate the other's cookies.
+If you're logged out of one Umbraco site when starting another on localhost, the sites are sharing cookies. Umbraco uses the same cookie name (`UMB_UCONTEXT`) on all sites, and Kestrel on `localhost` shares cookies across ports.
 
-Fix: give each site a unique application name in `Program.cs`, **before** the Umbraco builder chain:
+`SetApplicationName()`, `PersistKeysToFileSystem()`, and custom `AuthCookieName` settings were all tested but **do not resolve this** — Kestrel still shares cookies across localhost ports regardless.
 
-```csharp
-builder.Services.AddDataProtection()
-    .SetApplicationName("UpDoc"); // unique per site
-```
-
-Each site needs a different name (e.g. `"UpDoc"`, `"UmBootstrap"`).
+The only reliable fix is to use different hostnames (e.g. `updoc.localhost` vs `umbootstrap.localhost`) but this has knock-on effects for MCP server config, bookmarks, etc. For now, just run one site at a time or accept re-logging in when switching.

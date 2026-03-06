@@ -1,8 +1,12 @@
 using System.Reflection;
+using Microsoft.AspNetCore.DataProtection;
 using Umbraco.Cms.Web.Common.PublishedModels;
 using Umbraco.Community.BlockPreview.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDataProtection()
+    .SetApplicationName("UpDoc");
 
 builder.CreateUmbracoBuilder()
     .AddBackOffice()

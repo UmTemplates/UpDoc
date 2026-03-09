@@ -11,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- TODO: Remove once Umbraco.Cms ships with MimeKit >= 4.15.1 (CVE-2026-30227 fix) -->
+    <PackageReference Include="MimeKit" Version="4.15.1" />
     <PackageReference Include="AngleSharp" Version="1.4.0" />
     <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.154" />
     <PackageReference Include="UglyToad.PdfPig" Version="1.7.0-custom-5" />

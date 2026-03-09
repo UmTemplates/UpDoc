@@ -18,14 +18,23 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Page Title and Description</summary>
-	[PublishedModel("featurePageTitleDescription")]
-	public partial class FeaturePageTitleDescription : PublishedElementModel, IFeatureComponentNoConfiguration
+	// Mixin Content Type with alias "featureSettingsComponentStickyNav"
+	/// <summary>Feature Settings Component - Sticky Nav</summary>
+	public partial interface IFeatureSettingsComponentStickyNav : IPublishedElement
+	{
+		/// <summary>Enable Sticky</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		bool FeatureSettingsEnableSticky { get; }
+	}
+
+	/// <summary>Feature Settings Component - Sticky Nav</summary>
+	[PublishedModel("featureSettingsComponentStickyNav")]
+	public partial class FeatureSettingsComponentStickyNav : PublishedElementModel, IFeatureSettingsComponentStickyNav
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
-		public new const string ModelTypeAlias = "featurePageTitleDescription";
+		public new const string ModelTypeAlias = "featureSettingsComponentStickyNav";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
@@ -34,14 +43,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(contentTypeCache, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedContentTypeCache contentTypeCache, Expression<Func<FeaturePageTitleDescription, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedContentTypeCache contentTypeCache, Expression<Func<FeatureSettingsComponentStickyNav, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(contentTypeCache), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public FeaturePageTitleDescription(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public FeatureSettingsComponentStickyNav(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,11 +59,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// No Configuration: No configuration required
+		/// Enable Sticky
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("noConfiguration")]
-		public virtual string NoConfiguration => global::Umbraco.Cms.Web.Common.PublishedModels.FeatureComponentNoConfiguration.GetNoConfiguration(this, _publishedValueFallback);
+		[ImplementPropertyType("featureSettingsEnableSticky")]
+		public virtual bool FeatureSettingsEnableSticky => GetFeatureSettingsEnableSticky(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Enable Sticky</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		public static bool GetFeatureSettingsEnableSticky(IFeatureSettingsComponentStickyNav that, IPublishedValueFallback publishedValueFallback) => that.Value<bool>(publishedValueFallback, "featureSettingsEnableSticky");
 	}
 }

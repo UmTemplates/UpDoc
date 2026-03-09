@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Feature Settings</summary>
 	[PublishedModel("featureSettings")]
-	public partial class FeatureSettings : PublishedElementModel, IFeatureSettingsComponentColorPicker, IFeatureSettingsComponentColorPicker1
+	public partial class FeatureSettings : PublishedElementModel, IFeatureSettingsComponentColorPicker, IFeatureSettingsComponentHideDisplay
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -62,6 +62,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
 		[ImplementPropertyType("featureSettingsHideDisplay")]
-		public virtual bool FeatureSettingsHideDisplay => global::Umbraco.Cms.Web.Common.PublishedModels.FeatureSettingsComponentColorPicker1.GetFeatureSettingsHideDisplay(this, _publishedValueFallback);
+		public virtual bool FeatureSettingsHideDisplay => global::Umbraco.Cms.Web.Common.PublishedModels.FeatureSettingsComponentHideDisplay.GetFeatureSettingsHideDisplay(this, _publishedValueFallback);
 	}
 }

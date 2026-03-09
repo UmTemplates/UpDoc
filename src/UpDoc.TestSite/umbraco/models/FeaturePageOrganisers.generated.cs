@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Feature - Page - Organisers</summary>
+	/// <summary>Page - Organisers</summary>
 	[PublishedModel("featurePageOrganisers")]
 	public partial class FeaturePageOrganisers : PublishedElementModel, IFeatureComponentFeatureDescription, IFeatureComponentFeatureSummary, IFeatureComponentFeatureTitle, IFeatureComponentNoConfiguration
 	{

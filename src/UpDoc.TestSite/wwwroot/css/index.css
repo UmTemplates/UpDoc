@@ -12464,7 +12464,7 @@ textarea.form-control-lg {
 
 .list-group-item.active {
   z-index: 2;
-  color: var(--bs-heading-color);
+  color: #283a97;
   background-color: #f5c1bc;
   border-color: #f5c1bc;
 }

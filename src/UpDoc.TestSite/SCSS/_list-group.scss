@@ -1,6 +1,6 @@
 .list-group-item.active {
     z-index: 2;
-    color: var(--bs-heading-color);
-    background-color: $pink;
-    border-color: $pink;
+    color: $list-group-active-color;
+    background-color: $list-group-active-bg;
+    border-color: $list-group-active-border-color;
 }

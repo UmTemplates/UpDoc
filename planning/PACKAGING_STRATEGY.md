@@ -40,20 +40,20 @@ The package will eventually be distributed across three platforms:
 The repo is currently at `deanleigh/UpDoc` and must be transferred to `UmTemplates/UpDoc` before any publishing setup.
 
 **Pre-transfer checks:**
-- [ ] Confirm you are an owner of the `UmTemplates` organisation
-- [ ] Confirm no repo named `UpDoc` already exists under `UmTemplates`
-- [ ] Note whether GitHub Pages is currently enabled on `deanleigh/UpDoc` (will need re-enabling after transfer)
-- [ ] Commit or stash all local work — `git status` must be clean
+- [x] Confirm you are an owner of the `UmTemplates` organisation
+- [x] Confirm no repo named `UpDoc` already exists under `UmTemplates`
+- [x] Note whether GitHub Pages is currently enabled on `deanleigh/UpDoc` (will need re-enabling after transfer)
+- [x] Commit or stash all local work — `git status` must be clean
 
 **Transfer steps:**
-- [ ] Go to `github.com/deanleigh/UpDoc` → Settings → Danger Zone → Transfer repository
-- [ ] Select `UmTemplates` as the destination organisation
-- [ ] Confirm the transfer
-- [ ] Verify the repo is now at `github.com/UmTemplates/UpDoc`
-- [ ] Verify `github.com/deanleigh/UpDoc` redirects to the new location
-- [ ] Update local git remote: `git remote set-url origin https://github.com/UmTemplates/UpDoc.git`
-- [ ] Verify remote: `git remote -v` — should show `UmTemplates/UpDoc`
-- [ ] Test push access: `git push --dry-run` (checks permissions without actually pushing)
+- [x] Go to `github.com/deanleigh/UpDoc` → Settings → Danger Zone → Transfer repository
+- [x] Select `UmTemplates` as the destination organisation
+- [x] Confirm the transfer
+- [x] Verify the repo is now at `github.com/UmTemplates/UpDoc`
+- [x] Verify `github.com/deanleigh/UpDoc` redirects to the new location
+- [x] Update local git remote: `git remote set-url origin https://github.com/UmTemplates/UpDoc.git`
+- [x] Verify remote: `git remote -v` — should show `UmTemplates/UpDoc`
+- [x] Test push access: `git push --dry-run` (checks permissions without actually pushing)
 
 ### 1.2 Move local folder to UmTemplates directory
 

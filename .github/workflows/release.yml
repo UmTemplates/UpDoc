@@ -27,6 +27,8 @@ jobs:
       - name: NuGet Trusted Publishing Login
         id: nuget-login
         uses: nuget/login@v1
+        with:
+          user: dean.leigh
 
       - name: Push to NuGet
-        run: dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ steps.nuget-login.outputs.token }}
+        run: dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}

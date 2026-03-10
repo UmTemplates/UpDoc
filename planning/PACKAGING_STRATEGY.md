@@ -13,7 +13,7 @@
 | 3 | Create `develop` branch | [x] | [3. Create develop Branch](#3-create-develop-branch) |
 | 4 | Create `assets/` | [x] | [4. Assets](#4-assets) |
 | 5 | Update csproj | [x] | [5. NuGet Package Setup — csproj Metadata](#5-nuget-package-setup--csproj-metadata) |
-| 6 | Resolve PdfPig | [ ] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
+| 6 | Resolve PdfPig | [~] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
 | 7 | Create `LICENSE` | [ ] | [7. Create LICENSE](#7-create-license) |
 | 8 | Write READMEs | [ ] | [8. READMEs](#8-readmes) |
 | 9 | Create GitHub Actions + Secrets | [ ] | [9. GitHub Actions + Secrets](#9-github-actions--secrets) |
@@ -312,14 +312,19 @@ Add NuGet metadata to `src/UpDoc/UpDoc.csproj`:
 
 ### 6. Resolve PdfPig Custom Build
 
-> **STATUS: TODO — DECISION NEEDED**
+> **STATUS: DEFERRED — not blocking Phase A**
 
-UpDoc currently uses `UglyToad.PdfPig Version="1.7.0-custom-5"`. This is a custom build — it won't resolve from NuGet.org for end users. **This must be resolved before publishing.**
+UpDoc uses `UglyToad.PdfPig Version="1.7.0-custom-5"` (published by "grinay" on NuGet.org). This **will** restore for users — it's a real NuGet package, not a local-only build.
 
-Options:
-1. Switch to the official PdfPig release (if the needed fixes are upstream)
-2. Publish the custom build to NuGet.org under a different package ID
-3. Include PdfPig as a bundled DLL (not ideal)
+However, it's a third-party fork of the official `PdfPig` package (latest official: `PdfPig 0.1.13` by UglyToad). Relying on someone else's fork is risky long-term — it could be delisted or abandoned.
+
+**Decision:** Proceed with Phase A using the current package. Migrate to official `PdfPig` as a separate feature branch before stable release. This requires testing since the namespace and API may differ.
+
+**Migration task (future):**
+1. Replace `UglyToad.PdfPig 1.7.0-custom-5` with official `PdfPig 0.1.13`
+2. Update all `using` statements and API calls
+3. Run full extraction tests against known PDFs
+4. Verify no regressions in text extraction, page parsing, font handling
 
 ---
 

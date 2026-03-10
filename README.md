@@ -1,36 +1,36 @@
 # UpDoc
 
-An Umbraco extension for creating content documents by extracting content from source files (PDF, Web Page, Word Document).
+Create Umbraco documents from external sources — PDF files, web pages, and markdown — using configurable extraction workflows with rule-based field mapping.
 
-[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://deanleigh.github.io/UpDoc/)
+[![NuGet](https://img.shields.io/nuget/v/Umbraco.Community.UpDoc)](https://www.nuget.org/packages/Umbraco.Community.UpDoc)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://umtemplates.github.io/UpDoc/)
 
-## What it does
+## Features
 
-- Adds a "Create Document from Source" option to the content tree context menu
-- Opens a blueprint picker dialog, then a sidebar panel
-- User selects a source, processes the content, and creates a new document
-- Eliminates manual copy/paste from source documents into Umbraco
+- **Multiple source types** — Extract content from PDFs, web pages, and markdown files
+- **Configurable workflows** — Define extraction rules, area detection, and section splitting per source
+- **Rule-based mapping** — Map extracted sections to Umbraco document type fields using pattern matching
+- **Blueprint integration** — Create documents from existing Umbraco blueprints with pre-filled content
+- **Backoffice UI** — Full workflow editor integrated into the Umbraco backoffice
 
 ## Installation
 
 ```bash
-dotnet add package UpDoc
+dotnet add package Umbraco.Community.UpDoc
 ```
-
-## Documentation
-
-Full documentation available at **[deanleigh.github.io/UpDoc](https://deanleigh.github.io/UpDoc/)**
-
-## Project Structure
-
-- `src/UpDoc/` — The Razor Class Library (the installable NuGet package)
-- `src/UpDoc.TestSite/` — Development/testing host site
-- `docs/` — Documentation source (MkDocs)
 
 ## Requirements
 
 - Umbraco 17+
 
+## Documentation
+
+Full documentation at **[umtemplates.github.io/UpDoc](https://umtemplates.github.io/UpDoc/)**
+
+## Contributing
+
+Contributions are welcome! Please open an issue to discuss before submitting a PR.
+
 ## License
 
-MIT
+[MIT](LICENSE)

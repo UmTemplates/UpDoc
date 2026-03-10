@@ -14,7 +14,7 @@
 | 4 | Create `assets/` | [x] | [4. Assets](#4-assets) |
 | 5 | Update csproj | [x] | [5. NuGet Package Setup — csproj Metadata](#5-nuget-package-setup--csproj-metadata) |
 | 6 | Resolve PdfPig | [~] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
-| 7 | Create `LICENSE` | [ ] | [7. Create LICENSE](#7-create-license) |
+| 7 | Create `LICENSE` | [x] | [7. Create LICENSE](#7-create-license) |
 | 8 | Write READMEs | [ ] | [8. READMEs](#8-readmes) |
 | 9 | Create GitHub Actions + Secrets | [ ] | [9. GitHub Actions + Secrets](#9-github-actions--secrets) |
 | 10 | Create issue templates | [ ] | [10. Issue Templates](#10-issue-templates) |
@@ -330,7 +330,7 @@ However, it's a third-party fork of the official `PdfPig` package (latest offici
 
 ### 7. Create LICENSE
 
-> **STATUS: TODO**
+> **STATUS: COMPLETE**
 
 Create a `LICENSE` file in repo root. MIT license (matches UmBootstrap).
 

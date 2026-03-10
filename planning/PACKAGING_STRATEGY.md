@@ -19,8 +19,8 @@
 | 9 | Create GitHub Actions + Secrets | [x] | [9. GitHub Actions + Secrets](#9-github-actions--secrets) |
 | 10 | Create issue templates | [x] | [10. Issue Templates](#10-issue-templates) |
 | 11 | Test locally | [x] | [11. Test Locally](#11-test-locally) |
-| 12 | First pre-release | [ ] | [12. First Pre-Release](#12-first-pre-release) |
-| 13 | Test installation | [ ] | [13. Test Installation](#13-test-installation) |
+| 12 | First pre-release | [x] | [12. First Pre-Release](#12-first-pre-release) |
+| 13 | Test installation | [x] | [13. Test Installation](#13-test-installation) |
 | 14 | Verify NOT on marketplace | [ ] | [14. Verify NOT on Marketplace](#14-verify-not-on-marketplace) |
 | — | **Phase B** | | |
 | 15 | Create marketplace JSON | [ ] | [15. Marketplace JSON](#15-marketplace-json) |
@@ -497,26 +497,23 @@ Run `dotnet pack` and verify package contents. Check that:
 
 ### 12. First Pre-Release
 
-> **STATUS: TODO**
+> **STATUS: COMPLETE** — `0.1.0-beta` published via Trusted Publishing.
 
-Release checklist:
-1. All feature work on feature branches, PRs to `develop`
-2. Pre-release testing — verify the test site works, run E2E tests
-3. Build the frontend — `cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npm run build` — ensure `dist/updoc.js` is committed
-4. Verify NO marketplace triggers — confirm `PackageTags` does NOT contain `umbraco-marketplace`, confirm `umbraco-marketplace.json` is NOT in the repo
-5. Merge `develop` → `main` — PR or direct merge
-6. Tag on `main` — `git tag 17.1.0-beta && git push origin 17.1.0-beta`
-7. Verify NuGet publish — check GitHub Actions completed, verify package on nuget.org
+**Versioning decision:** Independent semver during beta (`0.x.y-beta`), switch to Umbraco version-matching when going stable. Rationale: allows rapid iteration during beta without burning Umbraco version numbers.
 
-Pre-release tag format: `17.1.0-beta`, `17.0.0-rc.1`, etc. These appear as pre-release on NuGet. Pre-release packages require `--prerelease` flag to install and do not show by default in NuGet search results — providing an extra layer of visibility control during Phase A.
+Release performed:
+1. Merged `develop` → `main`
+2. Tagged `0.1.0-beta` on `main`
+3. GitHub Actions `release.yml` ran successfully via Trusted Publishing
+4. Package visible on nuget.org
 
 ---
 
 ### 13. Test Installation
 
-> **STATUS: TODO**
+> **STATUS: COMPLETE** — installed into fresh UmBootstrap site, backoffice loads.
 
-Create a fresh Umbraco site, `dotnet add package Umbraco.Community.UpDoc --prerelease`, verify it works.
+Tested: `dotnet new umbootstrap` → `dotnet add package Umbraco.Community.UpDoc --prerelease` → `dotnet run`. UpDoc section appears in Settings sidebar, workflow dashboard renders correctly.
 
 ---
 

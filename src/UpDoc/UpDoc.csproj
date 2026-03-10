@@ -4,7 +4,33 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+
+    <!-- NuGet package metadata -->
+    <PackageId>Umbraco.Community.UpDoc</PackageId>
+    <Title>UpDoc</Title>
+    <Authors>Dean Leigh</Authors>
+    <Description>Create Umbraco documents from external sources (PDF, web pages, markdown) using configurable extraction workflows. Map source content to document blueprints with rule-based field mapping.</Description>
+    <!-- PHASE A: Do NOT include 'umbraco-marketplace' tag — it triggers automatic marketplace listing -->
+    <PackageTags>umbraco;pdf;extraction;content-import;workflow</PackageTags>
+    <Copyright>$([System.DateTime]::UtcNow.ToString('yyyy')) © Dean Leigh</Copyright>
+    <PackageIcon>icon_nuget_updoc.png</PackageIcon>
+    <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/UmTemplates/UpDoc</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/UmTemplates/UpDoc</PackageProjectUrl>
   </PropertyGroup>
+
+  <!-- Exclude TypeScript source from package -->
+  <ItemGroup>
+    <Content Remove="wwwroot\App_Plugins\UpDoc\src\**" />
+  </ItemGroup>
+
+  <!-- Pack assets into NuGet package root -->
+  <ItemGroup>
+    <None Include="..\..\assets\README_nuget.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\assets\icon_nuget_updoc.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />

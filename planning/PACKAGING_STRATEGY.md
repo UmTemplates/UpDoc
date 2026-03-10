@@ -16,9 +16,9 @@
 | 6 | Resolve PdfPig | [~] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
 | 7 | Create `LICENSE` | [x] | [7. Create LICENSE](#7-create-license) |
 | 8 | Write READMEs | [x] | [8. READMEs](#8-readmes) |
-| 9 | Create GitHub Actions + Secrets | [ ] | [9. GitHub Actions + Secrets](#9-github-actions--secrets) |
-| 10 | Create issue templates | [ ] | [10. Issue Templates](#10-issue-templates) |
-| 11 | Test locally | [ ] | [11. Test Locally](#11-test-locally) |
+| 9 | Create GitHub Actions + Secrets | [x] | [9. GitHub Actions + Secrets](#9-github-actions--secrets) |
+| 10 | Create issue templates | [x] | [10. Issue Templates](#10-issue-templates) |
+| 11 | Test locally | [x] | [11. Test Locally](#11-test-locally) |
 | 12 | First pre-release | [ ] | [12. First Pre-Release](#12-first-pre-release) |
 | 13 | Test installation | [ ] | [13. Test Installation](#13-test-installation) |
 | 14 | Verify NOT on marketplace | [ ] | [14. Verify NOT on Marketplace](#14-verify-not-on-marketplace) |
@@ -368,13 +368,12 @@ Short summary with links (see section 4 for content).
 
 ### 9. GitHub Actions + Secrets
 
-> **STATUS: TODO**
+> **STATUS: COMPLETE** — Using NuGet Trusted Publishing (OIDC) instead of API key secrets.
 
 #### 9.1 Secrets
 
-These GitHub Actions secrets need to be configured on the `UmTemplates/UpDoc` repo:
-- [ ] **`NUGET_API_KEY`** — NuGet.org API key for the `dean.leigh` account. Generate a new key scoped to `Umbraco.Community.UpDoc` push.
-- [ ] **`ADD_TO_PROJECT_PAT`** — already exists org-wide for UmTemplates (expires Mar 11 2027). Verify it covers the new repo.
+- [x] **`NUGET_API_KEY`** — NOT NEEDED. Using NuGet Trusted Publishing instead. Policy "UpDoc" configured on nuget.org for `UmTemplates/UpDoc` → `release.yml`.
+- [x] **`ADD_TO_PROJECT_PAT`** — already exists org-wide for UmTemplates (expires Mar 11 2027). UpDoc is in the org so should be covered.
 
 #### 9.2 NuGet Publish Workflow
 

@@ -21,9 +21,20 @@
     <PackageProjectUrl>https://github.com/UmTemplates/UpDoc</PackageProjectUrl>
   </PropertyGroup>
 
-  <!-- Exclude TypeScript source from package -->
+  <!-- Exclude dev-only files from package (TypeScript source, tests, tooling) -->
   <ItemGroup>
     <Content Remove="wwwroot\App_Plugins\UpDoc\src\**" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\tests\**" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\test-results\**" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\node_modules\**" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\tsconfig.json" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\vite.config.ts" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\package.json" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\package-lock.json" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\playwright.config.ts" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\playwright-report\**" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\schemas\**" />
+    <Content Remove="wwwroot\App_Plugins\UpDoc\.env.example" />
   </ItemGroup>
 
   <!-- Pack assets into NuGet package root -->

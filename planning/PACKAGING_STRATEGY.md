@@ -11,7 +11,7 @@
 | 1 | Repo transfer | [x] | [1. Repo Transfer](#1-repo-transfer) |
 | 2 | Move local folder | [x] | [2. Move Local Folder](#2-move-local-folder) |
 | 3 | Create `develop` branch | [x] | [3. Create develop Branch](#3-create-develop-branch) |
-| 4 | Create `assets/` | [ ] | [4. Assets](#4-assets) |
+| 4 | Create `assets/` | [x] | [4. Assets](#4-assets) |
 | 5 | Update csproj | [ ] | [5. NuGet Package Setup — csproj Metadata](#5-nuget-package-setup--csproj-metadata) |
 | 6 | Resolve PdfPig | [ ] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
 | 7 | Create `LICENSE` | [ ] | [7. Create LICENSE](#7-create-license) |
@@ -220,7 +220,7 @@ Switched from single `main` branch to `develop`/`main` model:
 
 ### 4. Assets
 
-> **STATUS: TODO**
+> **STATUS: COMPLETE**
 
 Create the `assets/` folder with:
 

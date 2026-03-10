@@ -15,7 +15,7 @@
 | 5 | Update csproj | [x] | [5. NuGet Package Setup — csproj Metadata](#5-nuget-package-setup--csproj-metadata) |
 | 6 | Resolve PdfPig | [~] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
 | 7 | Create `LICENSE` | [x] | [7. Create LICENSE](#7-create-license) |
-| 8 | Write READMEs | [ ] | [8. READMEs](#8-readmes) |
+| 8 | Write READMEs | [x] | [8. READMEs](#8-readmes) |
 | 9 | Create GitHub Actions + Secrets | [ ] | [9. GitHub Actions + Secrets](#9-github-actions--secrets) |
 | 10 | Create issue templates | [ ] | [10. Issue Templates](#10-issue-templates) |
 | 11 | Test locally | [ ] | [11. Test Locally](#11-test-locally) |
@@ -338,7 +338,7 @@ Create a `LICENSE` file in repo root. MIT license (matches UmBootstrap).
 
 ### 8. READMEs
 
-> **STATUS: TODO**
+> **STATUS: COMPLETE**
 
 **Phase A: Two READMEs only.** No marketplace readme yet.
 

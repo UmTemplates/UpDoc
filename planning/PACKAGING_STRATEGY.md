@@ -12,7 +12,7 @@
 | 2 | Move local folder | [x] | [2. Move Local Folder](#2-move-local-folder) |
 | 3 | Create `develop` branch | [x] | [3. Create develop Branch](#3-create-develop-branch) |
 | 4 | Create `assets/` | [x] | [4. Assets](#4-assets) |
-| 5 | Update csproj | [ ] | [5. NuGet Package Setup — csproj Metadata](#5-nuget-package-setup--csproj-metadata) |
+| 5 | Update csproj | [x] | [5. NuGet Package Setup — csproj Metadata](#5-nuget-package-setup--csproj-metadata) |
 | 6 | Resolve PdfPig | [ ] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
 | 7 | Create `LICENSE` | [ ] | [7. Create LICENSE](#7-create-license) |
 | 8 | Write READMEs | [ ] | [8. READMEs](#8-readmes) |
@@ -257,7 +257,7 @@ These would be referenced in the marketplace JSON `Screenshots` array and in REA
 
 ### 5. NuGet Package Setup — csproj Metadata
 
-> **STATUS: TODO**
+> **STATUS: COMPLETE**
 
 Add NuGet metadata to `src/UpDoc/UpDoc.csproj`:
 

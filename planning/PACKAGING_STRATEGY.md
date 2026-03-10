@@ -1,6 +1,34 @@
 # Packaging Strategy — UpDoc as a Distributable Umbraco Package
 
-**STATUS**: PLANNING — nothing in this document should be implemented without explicit approval.
+**STATUS**: IN PROGRESS — following the implementation order below.
+
+---
+
+## Quick Index
+
+| # | Step | Status | Section |
+|---|------|--------|---------|
+| 1 | Repo transfer | [x] | [1. Repo Transfer](#1-repo-transfer) |
+| 2 | Move local folder | [x] | [2. Move Local Folder](#2-move-local-folder) |
+| 3 | Create `develop` branch | [x] | [3. Create develop Branch](#3-create-develop-branch) |
+| 4 | Create `assets/` | [ ] | [4. Assets](#4-assets) |
+| 5 | Update csproj | [ ] | [5. NuGet Package Setup — csproj Metadata](#5-nuget-package-setup--csproj-metadata) |
+| 6 | Resolve PdfPig | [ ] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
+| 7 | Create `LICENSE` | [ ] | [7. Create LICENSE](#7-create-license) |
+| 8 | Write READMEs | [ ] | [8. READMEs](#8-readmes) |
+| 9 | Create GitHub Actions + Secrets | [ ] | [9. GitHub Actions + Secrets](#9-github-actions--secrets) |
+| 10 | Create issue templates | [ ] | [10. Issue Templates](#10-issue-templates) |
+| 11 | Test locally | [ ] | [11. Test Locally](#11-test-locally) |
+| 12 | First pre-release | [ ] | [12. First Pre-Release](#12-first-pre-release) |
+| 13 | Test installation | [ ] | [13. Test Installation](#13-test-installation) |
+| 14 | Verify NOT on marketplace | [ ] | [14. Verify NOT on Marketplace](#14-verify-not-on-marketplace) |
+| — | **Phase B** | | |
+| 15 | Create marketplace JSON | [ ] | [15. Marketplace JSON](#15-marketplace-json) |
+| 16 | Create marketplace README | [ ] | [16. Marketplace README](#16-marketplace-readme) |
+| 17 | Add marketplace tag | [ ] | [17. Add Marketplace Tag](#17-add-marketplace-tag) |
+| 18 | Validate | [ ] | [18. Validate](#18-validate) |
+| 19 | Tag stable release | [ ] | [19. Tag Stable Release](#19-tag-stable-release) |
+| 20 | Verify marketplace listing | [ ] | [20. Verify Marketplace Listing](#20-verify-marketplace-listing) |
 
 ---
 
@@ -13,7 +41,7 @@ The package will eventually be distributed across three platforms:
 - **NuGet** — installable package via `dotnet add package`
 - **Umbraco Marketplace** — discovery and listing for Umbraco users (auto-syncs from NuGet + GitHub)
 
-### ⚠ TWO-PHASE RELEASE STRATEGY
+### Two-Phase Release Strategy
 
 **Phase A: NuGet only (initial release)**
 - Package published to NuGet.org as a **pre-release** (e.g. `17.1.0-beta`)
@@ -29,103 +57,7 @@ The package will eventually be distributed across three platforms:
 - Validate with https://marketplace.umbraco.com/validate
 - Marketplace auto-syncs within 2-24 hours
 
-**Sections 5 (Marketplace JSON) and parts of section 3 (PackageTags) in this document describe Phase B work. They are included for completeness but must NOT be implemented during Phase A.**
-
----
-
-## 1. Prerequisites
-
-### 1.1 Transfer repo to UmTemplates org
-
-The repo is currently at `deanleigh/UpDoc` and must be transferred to `UmTemplates/UpDoc` before any publishing setup.
-
-**Pre-transfer checks:**
-- [x] Confirm you are an owner of the `UmTemplates` organisation
-- [x] Confirm no repo named `UpDoc` already exists under `UmTemplates`
-- [x] Note whether GitHub Pages is currently enabled on `deanleigh/UpDoc` (will need re-enabling after transfer)
-- [x] Commit or stash all local work — `git status` must be clean
-
-**Transfer steps:**
-- [x] Go to `github.com/deanleigh/UpDoc` → Settings → Danger Zone → Transfer repository
-- [x] Select `UmTemplates` as the destination organisation
-- [x] Confirm the transfer
-- [x] Verify the repo is now at `github.com/UmTemplates/UpDoc`
-- [x] Verify `github.com/deanleigh/UpDoc` redirects to the new location
-- [x] Update local git remote: `git remote set-url origin https://github.com/UmTemplates/UpDoc.git`
-- [x] Verify remote: `git remote -v` — should show `UmTemplates/UpDoc`
-- [x] Test push access: `git push --dry-run` (checks permissions without actually pushing)
-
-### 1.2 Move local folder to UmTemplates directory
-
-The local repo is currently at:
-```
-D:\Users\deanl\source\repos\Umbraco Extensions\UpDoc
-```
-
-Once the GitHub transfer is complete, move it to sit alongside UmBootstrap:
-```
-D:\Users\deanl\source\repos\UmTemplates\UpDoc
-```
-
-**⚠ HIGH RISK — several months of work depends on this going cleanly. Follow every step.**
-
-**Pre-move checklist:**
-1. [x] Ensure the Umbraco test site is NOT running
-2. [x] Ensure no editors have the project open (VS Code, Visual Studio, Rider)
-3. [x] Ensure no terminal sessions have a working directory inside the UpDoc folder
-4. [x] Commit or stash all uncommitted work — `git status` must be clean
-5. [x] Verify git remote is already updated (step 1.1.4 above)
-
-**Move steps:**
-1. [x] Close all editors and terminals pointing to the old location
-2. [x] Move the folder: `Umbraco Extensions\UpDoc` → `UmTemplates\UpDoc`
-3. [x] Open the project from the new location
-4. [x] Verify git still works: `git status`, `git log --oneline -5`, `git remote -v`
-5. [x] Verify solution builds: `dotnet build UpDoc.sln`
-6. [x] Verify frontend builds: `cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npm run build`
-7. [x] Verify test site runs: `dotnet run --project src/UpDoc.TestSite/UpDoc.TestSite.csproj`
-
-**Files and configs that reference the old path — must update after move:**
-
-| File | Path reference | Action |
-|------|---------------|--------|
-| `CLAUDE.md` | `d:\Users\deanl\source\repos\Umbraco Extensions\Umbraco-CMS` | Keep as-is (Umbraco-CMS is a read-only reference, not an UmTemplates project) |
-| `CLAUDE.md` | Any self-referencing paths | Update if present |
-| `~/.claude/projects/` | Auto-memory folder is keyed to working directory path | Claude Code will create a new project scope automatically. Copy `MEMORY.md` and topic files from the old scope to the new one. Old scope path: `d--Users-deanl-source-repos-Umbraco-Extensions-UpDoc`. New scope path: `d--Users-deanl-source-repos-UmTemplates-UpDoc` |
-| `.git/config` | Remote URL | Already updated in step 1.1.4 |
-| `node_modules/` | Absolute paths in some caches | Run `npm ci` in the frontend folder after move to be safe |
-
-**The Umbraco-CMS reference clone stays at its current location** (`Umbraco Extensions\Umbraco-CMS`). It's not an UmTemplates project — it's a read-only reference for development. CLAUDE.md will continue to point there.
-
-**Verification after all updates:**
-- [x] `git status` clean at new location
-- [x] `git push` works to `UmTemplates/UpDoc`
-- [x] Solution builds
-- [x] Frontend builds
-- [x] Test site runs
-- [x] Claude Code session in new location has memory files
-- [x] CLAUDE.md paths are correct
-- [x] Super user account updated to Dean Leigh (dean.leigh@deanleigh.co.uk, English UK)
-- [x] Allen Key re-created as backup admin account
-
-### 1.3 Create `develop` branch
-
-The current workflow uses `main` only. Before publishing:
-1. [x] Create `develop` branch from `main`
-2. [x] Set `develop` as the default branch on GitHub
-3. [ ] ~~Set up branch protection on `main`~~ — Skipped for now (solo developer, UmBootstrap doesn't use it either). Can add later.
-4. [x] All future feature branches branch from `develop`, PRs merge to `develop`
-5. [x] `develop` → `main` merge for releases
-
-### 1.3 Secrets
-
-These GitHub Actions secrets need to be configured on the `UmTemplates/UpDoc` repo:
-- [ ] **`NUGET_API_KEY`** — NuGet.org API key for the `dean.leigh` account. Generate a new key scoped to `Umbraco.Community.UpDoc` push.
-- [ ] **`ADD_TO_PROJECT_PAT`** — already exists org-wide for UmTemplates (expires Mar 11 2027). Verify it covers the new repo.
-
----
-
-## 2. Project Structure
+### Project Structure
 
 The existing structure is already correct for a library package:
 
@@ -179,30 +111,153 @@ The RCL automatically packs:
 - `tools/` — spike/prototype projects
 - Test site data (`uSync`, `umbraco`, `updoc/workflows/` test data)
 
-### TypeScript source exclusion
+### Versioning
 
-The `src/` TypeScript folder is under `wwwroot/` and would be included in the package by default. Add an exclusion to the csproj:
+- **Git tag = package version** — no version hardcoded in csproj
+- **Tag format**: `MAJOR.MINOR.PATCH` (e.g. `17.1.0`)
+- **UpDoc version tracks Umbraco's exact version** — not just the major. If Umbraco is at `17.1.0`, UpDoc is `17.1.0`. If Umbraco skips a patch (e.g. `17.1.0` → `17.1.2`), UpDoc skips too. This matches the UmBootstrap convention.
+- **Pre-release**: `MAJOR.MINOR.PATCH-suffix` (e.g. `17.1.0-beta`)
+- **CI passes version**: `dotnet build /p:Version=${{github.ref_name}}`
+- **First release version**: `17.1.0-beta` — matching the current Umbraco 17.1.0 that both UpDoc and UmBootstrap target.
 
-```xml
-<ItemGroup>
-  <Content Remove="wwwroot\App_Plugins\UpDoc\src\**" />
-</ItemGroup>
-```
+### Testing strategy
 
-This keeps only the built `dist/updoc.js` in the package.
-
-### PdfPig custom build
-
-UpDoc currently uses `UglyToad.PdfPig Version="1.7.0-custom-5"`. This is a custom build — it won't resolve from NuGet.org for end users. **This must be resolved before publishing.** Options:
-1. Switch to the official PdfPig release (if the needed fixes are upstream)
-2. Publish the custom build to NuGet.org under a different package ID
-3. Include PdfPig as a bundled DLL (not ideal)
-
-**Decision needed.**
+UpDoc will be tested locally by installing it into an UmBootstrap site. The two packages are completely independent — UmBootstrap does not reference or depend on UpDoc, and UpDoc does not reference or depend on UmBootstrap. The UmBootstrap site is simply a convenient test host because it's a fully configured Umbraco site with content types and blueprints already in place.
 
 ---
 
-## 3. NuGet Package Setup — csproj Metadata
+## Phase A — NuGet-only release
+
+---
+
+### 1. Repo Transfer
+
+> **STATUS: COMPLETE**
+
+The repo was transferred from `deanleigh/UpDoc` to `UmTemplates/UpDoc`.
+
+**Pre-transfer checks:**
+- [x] Confirm you are an owner of the `UmTemplates` organisation
+- [x] Confirm no repo named `UpDoc` already exists under `UmTemplates`
+- [x] Note whether GitHub Pages is currently enabled on `deanleigh/UpDoc` (will need re-enabling after transfer)
+- [x] Commit or stash all local work — `git status` must be clean
+
+**Transfer steps:**
+- [x] Go to `github.com/deanleigh/UpDoc` → Settings → Danger Zone → Transfer repository
+- [x] Select `UmTemplates` as the destination organisation
+- [x] Confirm the transfer
+- [x] Verify the repo is now at `github.com/UmTemplates/UpDoc`
+- [x] Verify `github.com/deanleigh/UpDoc` redirects to the new location
+- [x] Update local git remote: `git remote set-url origin https://github.com/UmTemplates/UpDoc.git`
+- [x] Verify remote: `git remote -v` — should show `UmTemplates/UpDoc`
+- [x] Test push access: `git push --dry-run` (checks permissions without actually pushing)
+
+---
+
+### 2. Move Local Folder
+
+> **STATUS: COMPLETE**
+
+Moved from `D:\Users\deanl\source\repos\Umbraco Extensions\UpDoc` to `D:\Users\deanl\source\repos\UmTemplates\UpDoc`.
+
+**Pre-move checklist:**
+1. [x] Ensure the Umbraco test site is NOT running
+2. [x] Ensure no editors have the project open (VS Code, Visual Studio, Rider)
+3. [x] Ensure no terminal sessions have a working directory inside the UpDoc folder
+4. [x] Commit or stash all uncommitted work — `git status` must be clean
+5. [x] Verify git remote is already updated (step 1)
+
+**Move steps:**
+1. [x] Close all editors and terminals pointing to the old location
+2. [x] Move the folder: `Umbraco Extensions\UpDoc` → `UmTemplates\UpDoc`
+3. [x] Open the project from the new location
+4. [x] Verify git still works: `git status`, `git log --oneline -5`, `git remote -v`
+5. [x] Verify solution builds: `dotnet build UpDoc.sln`
+6. [x] Verify frontend builds: `cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npm run build`
+7. [x] Verify test site runs: `dotnet run --project src/UpDoc.TestSite/UpDoc.TestSite.csproj`
+
+**Files and configs that reference the old path — must update after move:**
+
+| File | Path reference | Action |
+|------|---------------|--------|
+| `CLAUDE.md` | `d:\Users\deanl\source\repos\Umbraco Extensions\Umbraco-CMS` | Keep as-is (Umbraco-CMS is a read-only reference, not an UmTemplates project) |
+| `CLAUDE.md` | Any self-referencing paths | Update if present |
+| `~/.claude/projects/` | Auto-memory folder is keyed to working directory path | Claude Code will create a new project scope automatically. Copy `MEMORY.md` and topic files from the old scope to the new one. Old scope path: `d--Users-deanl-source-repos-Umbraco-Extensions-UpDoc`. New scope path: `d--Users-deanl-source-repos-UmTemplates-UpDoc` |
+| `.git/config` | Remote URL | Already updated in step 1 |
+| `node_modules/` | Absolute paths in some caches | Run `npm ci` in the frontend folder after move to be safe |
+
+**The Umbraco-CMS reference clone stays at its current location** (`Umbraco Extensions\Umbraco-CMS`). It's not an UmTemplates project — it's a read-only reference for development. CLAUDE.md will continue to point there.
+
+**Verification after all updates:**
+- [x] `git status` clean at new location
+- [x] `git push` works to `UmTemplates/UpDoc`
+- [x] Solution builds
+- [x] Frontend builds
+- [x] Test site runs
+- [x] Claude Code session in new location has memory files
+- [x] CLAUDE.md paths are correct
+- [x] Super user account updated to Dean Leigh (dean.leigh@deanleigh.co.uk, English UK)
+- [x] Allen Key re-created as backup admin account
+
+---
+
+### 3. Create `develop` Branch
+
+> **STATUS: COMPLETE**
+
+Switched from single `main` branch to `develop`/`main` model:
+- `develop` — default branch, all feature branches merge here
+- `main` — release branch, `develop` merged here for releases
+- Feature branches from `develop`
+
+1. [x] Create `develop` branch from `main`
+2. [x] Set `develop` as the default branch on GitHub
+3. [ ] ~~Set up branch protection on `main`~~ — Skipped for now (solo developer, UmBootstrap doesn't use it either). Can add later.
+4. [x] All future feature branches branch from `develop`, PRs merge to `develop`
+5. [x] `develop` → `main` merge for releases
+
+---
+
+### 4. Assets
+
+> **STATUS: TODO**
+
+Create the `assets/` folder with:
+
+| File | Purpose | Status |
+|------|---------|--------|
+| `icon_nuget_updoc.png` | Package icon (NuGet + Marketplace) | **TO CREATE** |
+| `README_nuget.md` | Short NuGet package readme | **TO CREATE** |
+
+**Package icon requirements:**
+- **NuGet**: 128x128 recommended, PNG format
+- **Marketplace**: Referenced via raw GitHub URL from `develop` branch
+- Design: Should be recognisable at small sizes, ideally incorporating the UpDoc branding
+
+**NuGet readme** (`assets/README_nuget.md`) — short summary with links:
+
+```markdown
+# UpDoc — Create Umbraco Documents from External Sources
+
+Extract content from PDFs, web pages, and markdown files and map it to Umbraco document blueprints using configurable workflows.
+
+Please visit [GitHub](https://github.com/UmTemplates/UpDoc) for full documentation and installation instructions.
+
+Please visit [Documentation](https://deanleigh.github.io/UpDoc/) for detailed guides.
+```
+
+**Screenshots** (optional but recommended) — add to `assets/` showing:
+- The "Create from Source" workflow in action
+- The workflow editor / rules editor
+- Before/after of source content → created document
+
+These would be referenced in the marketplace JSON `Screenshots` array and in READMEs.
+
+---
+
+### 5. NuGet Package Setup — csproj Metadata
+
+> **STATUS: TODO**
 
 Add NuGet metadata to `src/UpDoc/UpDoc.csproj`:
 
@@ -255,9 +310,34 @@ Add NuGet metadata to `src/UpDoc/UpDoc.csproj`:
 
 ---
 
-## 4. Three READMEs
+### 6. Resolve PdfPig Custom Build
 
-### 4.1 `README.md` (repo root) — GitHub landing page
+> **STATUS: TODO — DECISION NEEDED**
+
+UpDoc currently uses `UglyToad.PdfPig Version="1.7.0-custom-5"`. This is a custom build — it won't resolve from NuGet.org for end users. **This must be resolved before publishing.**
+
+Options:
+1. Switch to the official PdfPig release (if the needed fixes are upstream)
+2. Publish the custom build to NuGet.org under a different package ID
+3. Include PdfPig as a bundled DLL (not ideal)
+
+---
+
+### 7. Create LICENSE
+
+> **STATUS: TODO**
+
+Create a `LICENSE` file in repo root. MIT license (matches UmBootstrap).
+
+---
+
+### 8. READMEs
+
+> **STATUS: TODO**
+
+**Phase A: Two READMEs only.** No marketplace readme yet.
+
+#### 8.1 `README.md` (repo root) — GitHub landing page
 
 Full description, install guide, features overview, contributor info. Key sections:
 - Description (what UpDoc does)
@@ -275,29 +355,182 @@ dotnet add package Umbraco.Community.UpDoc
 
 No Visual Studio template wizard, no `dotnet new` — just a standard NuGet package reference.
 
-### 4.2 `assets/README_nuget.md` — NuGet.org package page
+#### 8.2 `assets/README_nuget.md` — NuGet.org package page
 
-Short summary with links. Following the UmBootstrap pattern:
-
-```markdown
-# UpDoc — Create Umbraco Documents from External Sources
-
-Extract content from PDFs, web pages, and markdown files and map it to Umbraco document blueprints using configurable workflows.
-
-Please visit [GitHub](https://github.com/UmTemplates/UpDoc) for full documentation and installation instructions.
-
-Please visit [Documentation](https://deanleigh.github.io/UpDoc/) for detailed guides.
-```
-
-**Note:** The docs URL will change to `https://umtemplates.github.io/UpDoc/` after the repo transfer.
-
-### 4.3 `umbraco-marketplace-readme.md` (repo root) — Umbraco Marketplace
-
-Nearly identical to `README.md`. Unlike UmBootstrap, no warning banner is needed — UpDoc installs via the standard `dotnet add package` flow, which the marketplace buttons support natively.
+Short summary with links (see section 4 for content).
 
 ---
 
-## 5. Marketplace JSON
+### 9. GitHub Actions + Secrets
+
+> **STATUS: TODO**
+
+#### 9.1 Secrets
+
+These GitHub Actions secrets need to be configured on the `UmTemplates/UpDoc` repo:
+- [ ] **`NUGET_API_KEY`** — NuGet.org API key for the `dean.leigh` account. Generate a new key scoped to `Umbraco.Community.UpDoc` push.
+- [ ] **`ADD_TO_PROJECT_PAT`** — already exists org-wide for UmTemplates (expires Mar 11 2027). Verify it covers the new repo.
+
+#### 9.2 NuGet Publish Workflow
+
+`.github/workflows/RELEASE_NUGET.yml` — triggered by semver tag push. Adapted from UmBootstrap but for a library package:
+
+```yaml
+name: Release Package
+
+on:
+  push:
+    tags:
+      - '[0-9]*.[0-9]*.[0-9]*'
+      - '[0-9]*.[0-9]*.[0-9]*-*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          10.x
+
+    - name: Build
+      run: dotnet build src\UpDoc\UpDoc.csproj -c Release /p:Version=${{github.ref_name}}
+
+    - name: Pack
+      run: dotnet pack src\UpDoc\UpDoc.csproj -c Release /p:Version=${{github.ref_name}} --no-build --output .
+
+    - name: Push to NuGet
+      run: dotnet nuget push **\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+```
+
+**Key differences from UmBootstrap:**
+- Builds `src\UpDoc\UpDoc.csproj` (not a template csproj at the root)
+- Uses `actions/checkout@v4` and `actions/setup-dotnet@v4` (updated from v3)
+- Standard library build/pack (no template-specific flags)
+
+#### 9.3 Auto-Add to Project Board
+
+`.github/workflows/add-to-project.yml` — identical to UmBootstrap:
+
+```yaml
+name: Add to project board
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: https://github.com/orgs/UmTemplates/projects/1
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+```
+
+#### 9.4 Docs Deployment (existing)
+
+Already configured — triggers on push to `develop` or `main` when `docs/**` changes. See `.github/workflows/docs.yml`.
+
+---
+
+### 10. Issue Templates
+
+> **STATUS: TODO**
+
+#### 10.1 Bug Report (`.github/ISSUE_TEMPLATE/bug_report.yml`)
+
+Adapted from UmBootstrap — change product name and version fields:
+
+- Title prefix: `[Bug]: `
+- Labels: `["Bug"]`
+- Fields: description, steps to reproduce, expected behaviour, Umbraco version, **UpDoc version** (not UmBootstrap), screenshots, additional context
+
+#### 10.2 Feature Request (`.github/ISSUE_TEMPLATE/feature_request.yml`)
+
+Adapted from UmBootstrap — change product name:
+
+- Title prefix: `[Feature]: `
+- Labels: `["Feature - New"]`
+- Fields: description, use case, alternatives considered, additional context
+
+#### 10.3 Config (`.github/ISSUE_TEMPLATE/config.yml`)
+
+```yaml
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://umtemplates.github.io/UpDoc/
+    about: Check the docs before raising an issue
+  - name: Umbraco Documentation
+    url: https://docs.umbraco.com/
+    about: For general Umbraco questions
+```
+
+**Note:** UmBootstrap also has `content_request.yml` — this is starter-kit-specific and not relevant for UpDoc.
+
+---
+
+### 11. Test Locally
+
+> **STATUS: TODO**
+
+Run `dotnet pack` and verify package contents. Check that:
+- TypeScript source files are excluded
+- Built JS bundle is included
+- Package icon and NuGet readme are included
+- No test site files are included
+
+---
+
+### 12. First Pre-Release
+
+> **STATUS: TODO**
+
+Release checklist:
+1. All feature work on feature branches, PRs to `develop`
+2. Pre-release testing — verify the test site works, run E2E tests
+3. Build the frontend — `cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npm run build` — ensure `dist/updoc.js` is committed
+4. Verify NO marketplace triggers — confirm `PackageTags` does NOT contain `umbraco-marketplace`, confirm `umbraco-marketplace.json` is NOT in the repo
+5. Merge `develop` → `main` — PR or direct merge
+6. Tag on `main` — `git tag 17.1.0-beta && git push origin 17.1.0-beta`
+7. Verify NuGet publish — check GitHub Actions completed, verify package on nuget.org
+
+Pre-release tag format: `17.1.0-beta`, `17.0.0-rc.1`, etc. These appear as pre-release on NuGet. Pre-release packages require `--prerelease` flag to install and do not show by default in NuGet search results — providing an extra layer of visibility control during Phase A.
+
+---
+
+### 13. Test Installation
+
+> **STATUS: TODO**
+
+Create a fresh Umbraco site, `dotnet add package Umbraco.Community.UpDoc --prerelease`, verify it works.
+
+---
+
+### 14. Verify NOT on Marketplace
+
+> **STATUS: TODO**
+
+Check https://marketplace.umbraco.com/ to confirm UpDoc does not appear.
+
+---
+
+## Phase B — Marketplace listing
+
+Only start Phase B when satisfied with package stability.
+
+---
+
+### 15. Marketplace JSON
 
 Create `umbraco-marketplace.json` in repo root:
 
@@ -348,192 +581,44 @@ Create `umbraco-marketplace.json` in repo root:
 
 ---
 
-## 6. GitHub Actions
+### 16. Marketplace README
 
-### 6.1 NuGet Publish Workflow
+Create `umbraco-marketplace-readme.md` in repo root. Nearly identical to `README.md`. Unlike UmBootstrap, no warning banner is needed — UpDoc installs via the standard `dotnet add package` flow, which the marketplace buttons support natively.
 
-`.github/workflows/RELEASE_NUGET.yml` — triggered by semver tag push. Adapted from UmBootstrap but for a library package (builds the RCL project, not a template):
+---
 
-```yaml
-name: Release Package
+### 17. Add Marketplace Tag
 
-on:
-  push:
-    tags:
-      - '[0-9]*.[0-9]*.[0-9]*'
-      - '[0-9]*.[0-9]*.[0-9]*-*'
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: |
-          10.x
-
-    - name: Build
-      run: dotnet build src\UpDoc\UpDoc.csproj -c Release /p:Version=${{github.ref_name}}
-
-    - name: Pack
-      run: dotnet pack src\UpDoc\UpDoc.csproj -c Release /p:Version=${{github.ref_name}} --no-build --output .
-
-    - name: Push to NuGet
-      run: dotnet nuget push **\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+Update `PackageTags` in csproj to include `umbraco-marketplace`:
+```xml
+<PackageTags>umbraco;umbraco-marketplace;pdf;extraction;content-import;workflow</PackageTags>
 ```
 
-**Key differences from UmBootstrap:**
-- Builds `src\UpDoc\UpDoc.csproj` (not a template csproj at the root)
-- Uses `actions/checkout@v4` and `actions/setup-dotnet@v4` (updated from v3)
-- Standard library build/pack (no template-specific flags)
+---
 
-### 6.2 Auto-Add to Project Board
+### 18. Validate
 
-`.github/workflows/add-to-project.yml` — identical to UmBootstrap:
-
-```yaml
-name: Add to project board
-
-on:
-  issues:
-    types: [opened]
-
-jobs:
-  add-to-project:
-    name: Add issue to project
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/add-to-project@v1.0.2
-        with:
-          project-url: https://github.com/orgs/UmTemplates/projects/1
-          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
-```
-
-### 6.3 Docs Deployment (existing)
-
-The docs deployment workflow may already exist or need updating to trigger from `develop`/`main` pushes. Verify after repo transfer.
+Validate with https://marketplace.umbraco.com/validate
 
 ---
 
-## 7. Issue Templates
+### 19. Tag Stable Release
 
-### 7.1 Bug Report (`.github/ISSUE_TEMPLATE/bug_report.yml`)
-
-Adapted from UmBootstrap — change product name and version fields:
-
-- Title prefix: `[Bug]: `
-- Labels: `["Bug"]`
-- Fields: description, steps to reproduce, expected behaviour, Umbraco version, **UpDoc version** (not UmBootstrap), screenshots, additional context
-
-### 7.2 Feature Request (`.github/ISSUE_TEMPLATE/feature_request.yml`)
-
-Adapted from UmBootstrap — change product name:
-
-- Title prefix: `[Feature]: `
-- Labels: `["Feature - New"]`
-- Fields: description, use case, alternatives considered, additional context
-
-### 7.3 Config (`.github/ISSUE_TEMPLATE/config.yml`)
-
-```yaml
-blank_issues_enabled: false
-contact_links:
-  - name: Documentation
-    url: https://umtemplates.github.io/UpDoc/
-    about: Check the docs before raising an issue
-  - name: Umbraco Documentation
-    url: https://docs.umbraco.com/
-    about: For general Umbraco questions
-```
-
-**Note:** UmBootstrap also has `content_request.yml` — this is starter-kit-specific and not relevant for UpDoc.
+Tag a new release (stable version, e.g. `17.0.0` or `17.1.0`).
 
 ---
 
-## 8. Assets
+### 20. Verify Marketplace Listing
 
-### Required assets in `assets/` folder:
-
-| File | Purpose | Status |
-|------|---------|--------|
-| `icon_nuget_updoc.png` | Package icon (NuGet + Marketplace) | **TO CREATE** |
-| `README_nuget.md` | Short NuGet package readme | **TO CREATE** |
-
-### Package icon requirements
-
-- **NuGet**: 128x128 recommended, PNG format
-- **Marketplace**: Referenced via raw GitHub URL from `develop` branch
-- Design: Should be recognisable at small sizes, ideally incorporating the UpDoc branding
-
-### Screenshots (optional but recommended)
-
-Add screenshots to `assets/` showing:
-- The "Create from Source" workflow in action
-- The workflow editor / rules editor
-- Before/after of source content → created document
-
-These would be referenced in the marketplace JSON `Screenshots` array and in READMEs.
+Marketplace auto-syncs within 2-24 hours — verify listing appears correctly.
 
 ---
 
-## 9. Release Process
-
-### Phase A release checklist (NuGet only — no marketplace):
-
-1. **Develop** — all feature work on feature branches, PRs to `develop`
-2. **Pre-release testing** — verify the test site works, run E2E tests
-3. **Build the frontend** — `cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npm run build` — ensure `dist/updoc.js` is committed
-4. **Verify NO marketplace triggers** — confirm `PackageTags` does NOT contain `umbraco-marketplace`, confirm `umbraco-marketplace.json` is NOT in the repo
-5. **Merge `develop` → `main`** — PR or direct merge
-6. **Tag on `main`** — `git tag 17.1.0-beta && git push origin 17.1.0-beta`
-7. **Verify NuGet publish** — check GitHub Actions completed, verify package on nuget.org
-8. **Test installation** — create a fresh Umbraco site, `dotnet add package Umbraco.Community.UpDoc --prerelease`, verify it works
-9. **Verify NOT on marketplace** — check https://marketplace.umbraco.com/ to confirm UpDoc does not appear
-
-### Phase B release checklist (marketplace listing — when ready):
-
-1. Add `umbraco-marketplace` to `PackageTags` in csproj
-2. Commit `umbraco-marketplace.json` to repo root
-3. Commit `umbraco-marketplace-readme.md` to repo root
-4. Validate with https://marketplace.umbraco.com/validate
-5. Tag a new release (stable version, e.g. `17.0.0` or `17.1.0`)
-6. Marketplace auto-syncs within 2-24 hours — verify listing
-
-### Pre-release versions
-
-Tag format: `17.1.0-beta`, `17.0.0-rc.1`, etc. These appear as pre-release on NuGet. Pre-release packages require `--prerelease` flag to install and do not show by default in NuGet search results — providing an extra layer of visibility control during Phase A.
-
----
-
-## 10. Versioning
-
-- **Git tag = package version** — no version hardcoded in csproj
-- **Tag format**: `MAJOR.MINOR.PATCH` (e.g. `17.1.0`)
-- **UpDoc version tracks Umbraco's exact version** — not just the major. If Umbraco is at `17.1.0`, UpDoc is `17.1.0`. If Umbraco skips a patch (e.g. `17.1.0` → `17.1.2`), UpDoc skips too. This matches the UmBootstrap convention.
-- **Pre-release**: `MAJOR.MINOR.PATCH-suffix` (e.g. `17.1.0-beta`)
-- **CI passes version**: `dotnet build /p:Version=${{github.ref_name}}`
-
-### Testing strategy
-
-UpDoc will be tested locally by installing it into an UmBootstrap site. The two packages are completely independent — UmBootstrap does not reference or depend on UpDoc, and UpDoc does not reference or depend on UmBootstrap. The UmBootstrap site is simply a convenient test host because it's a fully configured Umbraco site with content types and blueprints already in place.
-
-### First release version
-
-`17.1.0-beta` — matching the current Umbraco 17.1.0 that both UpDoc and UmBootstrap target.
-
----
-
-## 11. Decisions to Make
+## Decisions
 
 These require user input before implementation:
 
-### 11.1 PackageId — DECISION NEEDED
+### PackageId — DECISION NEEDED
 
 **Proposed:** `Umbraco.Community.UpDoc`
 
@@ -544,7 +629,7 @@ Convention check — existing Umbraco community packages:
 
 `Umbraco.Community.UpDoc` follows the established pattern.
 
-### 11.2 Marketplace Category — DECISION NEEDED
+### Marketplace Category — DECISION NEEDED (Phase B)
 
 UmBootstrap uses "Themes & Starter Kits". UpDoc needs a different category.
 
@@ -555,45 +640,21 @@ Likely candidates (from [marketplace categories](https://marketplace.umbraco.com
 
 **Recommendation:** "Content Management" or "Import & Export" (check marketplace for exact category names).
 
-### 11.3 License — DECISION NEEDED
-
-**Proposed:** MIT (matches UmBootstrap). Need to create a `LICENSE` file in repo root.
-
-### 11.4 PdfPig Custom Build — DECISION NEEDED
-
-Currently using `UglyToad.PdfPig Version="1.7.0-custom-5"`. End users can't restore this from NuGet.org.
-
-Options:
-1. Switch to official PdfPig release (check if needed fixes are upstream)
-2. Publish custom build to NuGet under a scoped package ID
-3. Bundle the DLL directly
-
-### 11.5 Git Branching — DECISION NEEDED
-
-Switch from single `main` branch to `develop`/`main` model?
-
-**Proposed:**
-- `develop` — default branch, all PRs merge here
-- `main` — release branch, `develop` merged here for releases
-- Feature branches from `develop`
-
-This matches the UmBootstrap pattern and separates development from releases.
-
-### 11.6 MimeKit Pinning — DECISION NEEDED
+### MimeKit Pinning — DECISION NEEDED
 
 The csproj currently pins `MimeKit 4.15.1` for CVE-2026-30227. This would become a transitive dependency for end users. Options:
 1. Keep the pin (users get the security fix)
 2. Remove it before publishing (let Umbraco's dependency resolve naturally once they update)
 3. Add a conditional — only pin if Umbraco hasn't updated yet
 
-### 11.7 Docs URL — DECISION NEEDED
+### Docs URL — DECISION NEEDED
 
 Currently: `https://deanleigh.github.io/UpDoc/`
 After transfer: should it move to `https://umtemplates.github.io/UpDoc/`?
 
 This requires updating the GitHub Pages deployment to use the UmTemplates org.
 
-### 11.8 First Release Scope — DISCUSSION NEEDED
+### First Release Scope — DISCUSSION NEEDED
 
 What features need to be complete/stable before the first public release? Consider:
 - Which source types must work? (PDF is proven, web and markdown are newer)
@@ -601,36 +662,6 @@ What features need to be complete/stable before the first public release? Consid
 - Are there breaking changes still expected?
 
 A `17.1.0-beta` or `17.0.0-alpha` release allows early feedback while signalling instability.
-
----
-
-## Implementation Order
-
-### Phase A — NuGet-only release (implement in this sequence):
-
-1. [x] **Repo transfer** — Transfer to UmTemplates, update remotes
-2. [x] **Move local folder** — Follow section 1.2 checklist exactly
-3. [x] **Create `develop` branch** — Set as default, protect `main` (protection skipped for now)
-4. [ ] **Create `assets/`** — Package icon, NuGet readme
-5. [ ] **Update csproj** — Add NuGet metadata, TypeScript source exclusion. **No `umbraco-marketplace` tag.**
-6. [ ] **Resolve PdfPig** — Fix custom build dependency
-7. [ ] **Create `LICENSE`** — MIT license file
-8. [ ] **Write READMEs** — GitHub README and NuGet README only. **No marketplace readme yet.**
-9. [ ] **Create GitHub Actions** — NuGet publish + add-to-project workflows
-10. [ ] **Create issue templates** — Bug report, feature request, config
-11. [ ] **Test locally** — `dotnet pack` and verify package contents
-12. [ ] **First pre-release** — Tag `17.1.0-beta` and publish to NuGet
-13. [ ] **Test installation** — Fresh Umbraco site, `dotnet add package --prerelease`, verify it works
-14. [ ] **Verify NOT on marketplace** — Confirm UpDoc does not appear on marketplace.umbraco.com
-
-### Phase B — Marketplace listing (only when satisfied with package stability):
-
-15. [ ] **Create `umbraco-marketplace.json`** — Marketplace listing
-16. [ ] **Create `umbraco-marketplace-readme.md`** — Marketplace README
-17. [ ] **Add `umbraco-marketplace` tag** — Update csproj PackageTags
-18. [ ] **Validate** — https://marketplace.umbraco.com/validate
-19. [ ] **Tag stable release** — e.g. `17.0.0` or `17.1.0`
-20. [ ] **Verify marketplace listing** — Check listing appears correctly
 
 ---
 

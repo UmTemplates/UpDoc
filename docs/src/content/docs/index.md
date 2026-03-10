@@ -10,7 +10,7 @@ title: "UpDoc - Umbraco Extension"
 - **How it works**: Adds a "Create Document from Source" option to the content tree context menu, opens a blueprint picker dialog, then a sidebar panel where the user selects a source, processes the content, and creates a new document
 - **Target users**: Umbraco content editors
 - **Tech stack**: Umbraco 17+, Lit components, backend API for content extraction
-- **Package type**: Razor Class Library (RCL) — installable via NuGet in any Umbraco project
+- **Package type**: Razor Class Library (RCL) — installable via NuGet in any Umbraco 17+ project
 
 ## Project Structure
 

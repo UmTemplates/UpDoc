@@ -59,19 +59,24 @@ Do not duplicate or contradict decisions already made in these files. If the cur
 
 ## Git Branching
 
-Before starting work on any feature, bug fix, or refactoring task, create a feature branch from `main`:
+This project uses a `develop`/`main` branching model:
+
+- **`develop`** — the default branch. All feature branches merge here. Day-to-day development happens on `develop`.
+- **`main`** — the release branch. Only updated via PR from `develop` when ready to tag and publish a NuGet package.
+
+Before starting work on any feature, bug fix, or refactoring task, create a feature branch from `develop`:
 
 ```bash
-git checkout main
+git checkout develop
 git pull
 git checkout -b feature/short-description
 ```
 
-Do not work directly on `main`. Each feature branch should represent a single, small increment of work that leaves the project in a working state. Only merge back to `main` when the feature is complete and tested.
+Do not work directly on `develop` or `main`. Each feature branch should represent a single, small increment of work that leaves the project in a working state. Only merge back to `develop` when the feature is complete and tested.
 
-**Important:** Before creating a new feature branch, check the current branch. If the current branch is not `main`, alert the user and ask whether to:
+**Important:** Before creating a new feature branch, check the current branch. If the current branch is not `develop`, alert the user and ask whether to:
 1. Finish and merge the current branch first
-2. Stash/commit current work and switch to `main` to create the new branch
+2. Stash/commit current work and switch to `develop` to create the new branch
 3. Continue working on the current branch instead
 
 Do not create a new feature branch while another feature branch is checked out without explicit user approval.
@@ -141,7 +146,7 @@ Documentation is built with Astro Starlight and deployed to GitHub Pages via Git
 
 - Source files: `docs/src/content/docs/` (markdown with YAML frontmatter)
 - Config: `docs/astro.config.mjs` (sidebar nav, site settings)
-- Deployment: Automatic on push to `main` when `docs/**` changes
+- Deployment: Automatic on push to `develop` or `main` when `docs/**` changes
 
 To preview locally:
 ```bash

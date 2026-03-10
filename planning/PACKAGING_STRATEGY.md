@@ -111,11 +111,11 @@ D:\Users\deanl\source\repos\UmTemplates\UpDoc
 ### 1.3 Create `develop` branch
 
 The current workflow uses `main` only. Before publishing:
-1. [ ] Create `develop` branch from `main`
-2. [ ] Set `develop` as the default branch on GitHub
-3. [ ] Set up branch protection on `main` (require PR, no direct push)
-4. [ ] All future feature branches branch from `develop`, PRs merge to `develop`
-5. [ ] `develop` → `main` merge for releases
+1. [x] Create `develop` branch from `main`
+2. [x] Set `develop` as the default branch on GitHub
+3. [ ] ~~Set up branch protection on `main`~~ — Skipped for now (solo developer, UmBootstrap doesn't use it either). Can add later.
+4. [x] All future feature branches branch from `develop`, PRs merge to `develop`
+5. [x] `develop` → `main` merge for releases
 
 ### 1.3 Secrets
 
@@ -610,7 +610,7 @@ A `17.1.0-beta` or `17.0.0-alpha` release allows early feedback while signalling
 
 1. [x] **Repo transfer** — Transfer to UmTemplates, update remotes
 2. [x] **Move local folder** — Follow section 1.2 checklist exactly
-3. [ ] **Create `develop` branch** — Set as default, protect `main`
+3. [x] **Create `develop` branch** — Set as default, protect `main` (protection skipped for now)
 4. [ ] **Create `assets/`** — Package icon, NuGet readme
 5. [ ] **Update csproj** — Add NuGet metadata, TypeScript source exclusion. **No `umbraco-marketplace` tag.**
 6. [ ] **Resolve PdfPig** — Fix custom build dependency

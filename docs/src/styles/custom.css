@@ -10,3 +10,14 @@
 	--sl-color-accent: #7b1fa2;
 	--sl-color-accent-high: #4a148c;
 }
+
+/* Mermaid diagrams — ensure readable sizing */
+.mermaid-diagram {
+	min-width: 100%;
+	overflow-x: auto;
+}
+
+.mermaid-diagram svg {
+	min-height: 300px;
+	max-width: 100%;
+}

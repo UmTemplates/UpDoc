@@ -460,7 +460,7 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
     {
         var areas = new List<DetectedArea>();
 
-        var paths = page.ExperimentalAccess.Paths;
+        var paths = page.Paths;
         diagnostics.TotalPathsFound += paths.Count;
 
         var pageWidth = page.Width;

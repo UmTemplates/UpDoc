@@ -1,6 +1,6 @@
 # Migrate PdfPig from Custom Fork to Official Release
 
-**Status:** PLANNING
+**Status:** IN PROGRESS (Sprint 1 COMPLETE)
 **Branch:** `feature/pdfpig-official-release`
 **Related:** `PACKAGING_STRATEGY.md` Step 6 ("Resolve PdfPig Custom Build")
 
@@ -80,40 +80,29 @@ Only used in `tools/PdfPigSpike/`. Not a production dependency. The spike tool's
 
 ## Migration Steps
 
-### Sprint 1: Swap Package + Compile
+### Sprint 1: Swap Package + Compile — COMPLETE
 
 **Goal:** Replace the package reference and get the solution compiling.
 
-1. **Update `src/UpDoc/UpDoc.csproj`:**
-   ```xml
-   <!-- FROM -->
-   <PackageReference Include="UglyToad.PdfPig" Version="1.7.0-custom-5" />
-   <!-- TO -->
-   <PackageReference Include="UglyToad.PdfPig" Version="0.1.13" />
-   ```
+**Key discovery:** The official package was **renamed** from `UglyToad.PdfPig` to `PdfPig`. The `UglyToad.PdfPig.*` namespaces are preserved internally, so all `using` statements work unchanged.
 
-2. **Check namespace changes** — the official package uses `UglyToad.PdfPig.*` namespaces. Verify all `using` statements still resolve. Key namespaces to check:
-   - `UglyToad.PdfPig` (PdfDocument)
-   - `UglyToad.PdfPig.Content` (Page, Word, Letter)
-   - `UglyToad.PdfPig.Graphics.Colors` (IColor)
+**Changes made:**
 
-3. **Check API surface** — verify these properties/methods exist on official 0.1.13:
-   - `Letter.PointSize` — if missing, fall back to `Letter.FontSize` or `Word.BoundingBox.Height`
-   - `Letter.Color` — if missing, check alternative (may be `Letter.GlyphRectangle` or rendering info)
-   - `IColor.ToRGBValues()` — verify return type `(double r, double g, double b)`
-   - `page.ExperimentalAccess.Paths` — verify still exists (it's "Experimental" so could change)
-   - `PdfPath.FillColor` / `PdfPath.GetBoundingRectangle()` — verify
+1. `src/UpDoc/UpDoc.csproj` — `UglyToad.PdfPig 1.7.0-custom-5` → `PdfPig 0.1.13`
+2. `tools/PdfPigSpike/PdfPigSpike.csproj` — same swap, removed separate `UglyToad.PdfPig.DocumentLayoutAnalysis` package (DLA is now bundled in the main `PdfPig` package)
+3. `PdfPagePropertiesService.cs` — `page.ExperimentalAccess.Paths` → `page.Paths` (old API marked `[Obsolete]`)
+4. `PdfPigSpike/Program.cs` — same `ExperimentalAccess` fix
 
-4. **Fix any compile errors** — adapt to API differences
+**API surface verified (all exist in 0.1.13):**
+- `Letter.PointSize` ✅
+- `Letter.Color` ✅
+- `IColor.ToRGBValues()` ✅
+- `page.Paths` ✅ (replaces `page.ExperimentalAccess.Paths`)
+- `PdfPath.FillColor` / `PdfPath.GetBoundingRectangle()` ✅
 
-5. **Update spike tool** (`tools/PdfPigSpike/PdfPigSpike.csproj`):
-   ```xml
-   <PackageReference Include="UglyToad.PdfPig" Version="0.1.13" />
-   <PackageReference Include="UglyToad.PdfPig.DocumentLayoutAnalysis" Version="0.1.13" />
-   ```
-   (Or note if DLA package doesn't exist at 0.1.13 — wiki confirms DLA is part of the library)
+**Regression test:** Re-extracted `updoc-test-01.pdf` via Tailored Tour PDF workflow. Results identical: 58 elements, same font sizes (10.8, 31, 12, 14.4, 8.5), same colors (#FFD200, #FFFFFF, #16549D), same bounding boxes. Only difference: 3 new empty web-source metadata fields (`htmlTag`, `htmlContainerPath`, `cssClasses`) now serialized by the current model — pre-existing issue, not PdfPig-related (tracked: GitHub #7).
 
-6. **`dotnet build UpDoc.sln`** — must compile clean
+**Build:** `dotnet build UpDoc.sln` — 0 errors, 0 PdfPig warnings.
 
 ### Sprint 2: Remove Area Auto-Detection Dependency
 
@@ -203,14 +192,15 @@ Test against the known test PDFs in the project:
 
 ## Key Files to Modify
 
-| File | Change |
-|------|--------|
-| `src/UpDoc/UpDoc.csproj` | Package version `1.7.0-custom-5` → `0.1.13` |
-| `src/UpDoc/Services/PdfPagePropertiesService.cs` | Fix any API differences, possibly remove `DetectPageFilledRects()` |
-| `src/UpDoc/Models/AreaDetectionResult.cs` | Remove path diagnostics if area auto-detection removed |
-| `src/UpDoc/Controllers/WorkflowController.cs` | Verify `PdfDocument.Open` still works (likely no change) |
-| `tools/PdfPigSpike/PdfPigSpike.csproj` | Update package versions |
-| `planning/PACKAGING_STRATEGY.md` | Mark Step 6 complete |
+| File | Change | Status |
+|------|--------|--------|
+| `src/UpDoc/UpDoc.csproj` | `UglyToad.PdfPig 1.7.0-custom-5` → `PdfPig 0.1.13` | ✅ Done |
+| `src/UpDoc/Services/PdfPagePropertiesService.cs` | `ExperimentalAccess.Paths` → `page.Paths`; possibly remove `DetectPageFilledRects()` | ✅ Paths fixed; Sprint 2 for removal |
+| `src/UpDoc/Models/AreaDetectionResult.cs` | Remove path diagnostics if area auto-detection removed | Sprint 2 |
+| `src/UpDoc/Controllers/WorkflowController.cs` | `PdfDocument.Open` — no change needed | ✅ Verified |
+| `tools/PdfPigSpike/PdfPigSpike.csproj` | `PdfPig 0.1.13`, removed separate DLA package | ✅ Done |
+| `tools/PdfPigSpike/Program.cs` | `ExperimentalAccess.Paths` → `page.Paths` | ✅ Done |
+| `planning/PACKAGING_STRATEGY.md` | Mark Step 6 complete | Sprint 5 |
 
 ---
 
@@ -224,12 +214,12 @@ The official PdfPig wiki documents DLA as part of the library (RecursiveXYCut, D
 
 ## Verification Checklist
 
-- [ ] `dotnet build UpDoc.sln` compiles clean with 0.1.13
-- [ ] No `1.7.0-custom-5` references remain in any `.csproj` file
-- [ ] PDF extraction produces same element count for test PDFs
-- [ ] Font sizes match within tolerance (0.5pt)
-- [ ] Text content matches word-for-word
-- [ ] Text colors match (hex values)
+- [x] `dotnet build UpDoc.sln` compiles clean with 0.1.13
+- [x] No `1.7.0-custom-5` references remain in any `.csproj` file
+- [x] PDF extraction produces same element count for test PDFs (58 elements)
+- [x] Font sizes match within tolerance (0.5pt) — identical values
+- [x] Text content matches word-for-word
+- [x] Text colors match (hex values) — identical
 - [ ] Transform rules produce same sections
 - [ ] E2E tests pass (all 4)
 - [ ] `dotnet pack` produces clean NuGet package with official PdfPig dependency

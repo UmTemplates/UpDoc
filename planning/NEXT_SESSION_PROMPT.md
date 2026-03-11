@@ -6,31 +6,26 @@ Copy/paste this into Claude Code to continue where we left off.
 
 ## Where We Are
 
-On `develop` branch, clean. Phase A of PACKAGING_STRATEGY.md is nearly complete — first beta published and tested.
+On `feature/pdfpig-official-release` branch. Sprint 1 (package swap) is complete and committed. Full plan is in `planning/PDFPIG_MIGRATION_TO_OFFICIAL.md`.
 
 ### What I'd Like to Work On
 
-**Migrate PdfPig from custom fork to official release.** Full plan is in `planning/PDFPIG_MIGRATION_TO_OFFICIAL.md` — read it first.
+**Continue PdfPig migration — Sprints 2-5.**
 
-Summary: Replace `UglyToad.PdfPig 1.7.0-custom-5` (third-party fork by "grinay") with official `UglyToad.PdfPig 0.1.13`. The fork was originally chosen for XYZ coordinate/path extensions used in area auto-detection, but areas are now manually defined by users via PDF.js — we no longer need the fork-specific features.
+Sprint 1 (DONE): Swapped `UglyToad.PdfPig 1.7.0-custom-5` (fork) → official `PdfPig 0.1.13`. Package was renamed but namespaces preserved. Zero compile errors. Extraction output identical (58 elements, same font sizes/colors). Only code change: `page.ExperimentalAccess.Paths` → `page.Paths` (old API obsoleted).
 
-**5 sprints in the plan:**
-1. Swap package + compile (fix any API differences)
-2. Remove area auto-detection dependency (`ExperimentalAccess.Paths`)
-3. Extraction regression testing (element-by-element comparison against test PDFs)
+**Remaining sprints:**
+2. Remove area auto-detection dependency (`DetectPageFilledRects` uses `page.Paths` for filled rectangle detection — audit callers, possibly remove)
+3. Extraction regression testing (element-by-element comparison against additional test PDFs)
 4. E2E test validation (Playwright tests + full Create from Source flow)
-5. Cleanup + documentation updates
-
-Create a feature branch `feature/pdfpig-official-release` from `develop` and start with Sprint 1.
+5. Cleanup + documentation updates (mark PACKAGING_STRATEGY Step 6 complete, archive notes, update memory)
 
 ### Background Context
 
-- PACKAGING_STRATEGY.md Step 6 ("Resolve PdfPig Custom Build") is the parent task — currently marked `[~]` (deferred)
-- The PdfPig wiki is comprehensive: https://github.com/UglyToad/PdfPig/wiki
-- DLA docs: https://github.com/UglyToad/PdfPig/wiki/Document-Layout-Analysis
-- Main extraction engine: `src/UpDoc/Services/PdfPagePropertiesService.cs` (~2,000 lines)
-- Key APIs: `PdfDocument.Open`, `page.GetWords()`, `Word.BoundingBox`, `Letter.PointSize`, `Letter.Color`, `IColor.ToRGBValues()`
-- Area auto-detection (`page.ExperimentalAccess.Paths`) in `DetectPageFilledRects()` — this is the fork-dependent code to remove
+- PACKAGING_STRATEGY.md Step 6 ("Resolve PdfPig Custom Build") — now marked IN PROGRESS
+- Key discovery: official package renamed from `UglyToad.PdfPig` to `PdfPig`, but `UglyToad.PdfPig.*` namespaces preserved
+- DLA (DocumentLayoutAnalysis) is now bundled in the main `PdfPig` package — no separate package needed
+- GitHub #7 tracks a separate issue: empty web-source metadata fields serialized in PDF extraction JSON
 
 ### Other Pending Items (not this session)
 

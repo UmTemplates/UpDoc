@@ -16,7 +16,7 @@ git checkout main && git checkout -b feature/recursive-xy-cut
 
 | File | Change |
 |------|--------|
-| `src/UpDoc/UpDoc.csproj` | Add `UglyToad.PdfPig.DocumentLayoutAnalysis` NuGet package |
+| `src/UpDoc/UpDoc.csproj` | DLA is bundled in `PdfPig 0.1.13` — no separate package needed |
 | `src/UpDoc/Services/PdfPagePropertiesService.cs` | New extraction methods, refactor two code paths |
 
 **No changes needed:**

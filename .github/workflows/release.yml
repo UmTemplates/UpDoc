@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -32,3 +32,13 @@ jobs:
 
       - name: Push to NuGet
         run: dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+
+      - name: Create GitHub Release
+        run: |
+          if [[ "${{ github.ref_name }}" == *-* ]]; then
+            gh release create "${{ github.ref_name }}" --title "v${{ github.ref_name }}" --prerelease --generate-notes
+          else
+            gh release create "${{ github.ref_name }}" --title "v${{ github.ref_name }}" --generate-notes
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}

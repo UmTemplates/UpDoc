@@ -312,19 +312,11 @@ Add NuGet metadata to `src/UpDoc/UpDoc.csproj`:
 
 ### 6. Resolve PdfPig Custom Build
 
-> **STATUS: DEFERRED — not blocking Phase A**
+> **STATUS: IN PROGRESS** — Sprint 1 complete on `feature/pdfpig-official-release`
 
-UpDoc uses `UglyToad.PdfPig Version="1.7.0-custom-5"` (published by "grinay" on NuGet.org). This **will** restore for users — it's a real NuGet package, not a local-only build.
+Migrated from `UglyToad.PdfPig 1.7.0-custom-5` (third-party fork by "grinay") to official `PdfPig 0.1.13`. The package was renamed from `UglyToad.PdfPig` to `PdfPig` but namespaces are preserved. All APIs exist. Extraction output identical (58 elements, same font sizes/colors/positions).
 
-However, it's a third-party fork of the official `PdfPig` package (latest official: `PdfPig 0.1.13` by UglyToad). Relying on someone else's fork is risky long-term — it could be delisted or abandoned.
-
-**Decision:** Proceed with Phase A using the current package. Migrate to official `PdfPig` as a separate feature branch before stable release. This requires testing since the namespace and API may differ.
-
-**Migration task (future):**
-1. Replace `UglyToad.PdfPig 1.7.0-custom-5` with official `PdfPig 0.1.13`
-2. Update all `using` statements and API calls
-3. Run full extraction tests against known PDFs
-4. Verify no regressions in text extraction, page parsing, font handling
+See `planning/PDFPIG_MIGRATION_TO_OFFICIAL.md` for full details and remaining sprints (area auto-detection removal, E2E validation, cleanup).
 
 ---
 

@@ -4,7 +4,7 @@
   "source": {
     "fileName": "updoc-test-01.pdf",
     "mediaKey": "324bcce3-fa42-4499-9109-42b411caea5e",
-    "extractedDate": "2026-02-26T19:50:46.9311953Z",
+    "extractedDate": "2026-03-11T08:10:16.6415815Z",
     "totalPages": 4,
     "extractedPages": [
       1,
@@ -30,7 +30,10 @@
           "height": 7.9
         },
         "color": "#FFD200",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -51,7 +54,10 @@
           "height": 79.2
         },
         "color": "#FFFFFF",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -72,7 +78,10 @@
           "height": 8.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -93,7 +102,10 @@
           "height": 10.5
         },
         "color": "#FFD200",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -114,7 +126,10 @@
           "height": 6.1
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -135,7 +150,10 @@
           "height": 14.5
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -156,7 +174,10 @@
           "height": 6.1
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -177,7 +198,10 @@
           "height": 14.5
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -198,7 +222,10 @@
           "height": 6.1
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -219,7 +246,10 @@
           "height": 6.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -240,7 +270,10 @@
           "height": 6.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -261,7 +294,10 @@
           "height": 8.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -282,7 +318,10 @@
           "height": 6.1
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -303,7 +342,10 @@
           "height": 6.1
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -324,7 +366,10 @@
           "height": 14.6
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -345,7 +390,10 @@
           "height": 14.6
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -366,7 +414,10 @@
           "height": 14.6
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -387,7 +438,10 @@
           "height": 14.6
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -408,7 +462,10 @@
           "height": 6.1
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -429,7 +486,10 @@
           "height": 6.1
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -450,7 +510,10 @@
           "height": 14.5
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -471,7 +534,10 @@
           "height": 6.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -492,7 +558,10 @@
           "height": 8.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -513,7 +582,10 @@
           "height": 123.7
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -534,7 +606,10 @@
           "height": 8.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -555,7 +630,10 @@
           "height": 6.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -576,7 +654,10 @@
           "height": 45.4
         },
         "color": "#FFFFFF",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -597,7 +678,10 @@
           "height": 6.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -618,7 +702,10 @@
           "height": 22.9
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -639,7 +726,10 @@
           "height": 21.7
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -660,7 +750,10 @@
           "height": 6.6
         },
         "color": "#FFFFFF",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -681,7 +774,10 @@
           "height": 16.2
         },
         "color": "#FFD200",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -702,7 +798,10 @@
           "height": 11.9
         },
         "color": "#FFFFFF",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -723,7 +822,10 @@
           "height": 9.5
         },
         "color": "#FFD200",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -744,7 +846,10 @@
           "height": 29.4
         },
         "color": "#FFFFFF",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -765,7 +870,10 @@
           "height": 8.2
         },
         "color": "#FFFFFF",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -786,7 +894,10 @@
           "height": 6.6
         },
         "color": "#FFFFFF",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -807,7 +918,10 @@
           "height": 7.9
         },
         "color": "#FFD200",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -828,7 +942,10 @@
           "height": 79.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -849,7 +966,10 @@
           "height": 8.2
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -870,7 +990,10 @@
           "height": 10.5
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -891,7 +1014,10 @@
           "height": 272.3
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -912,7 +1038,10 @@
           "height": 7.9
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -933,7 +1062,10 @@
           "height": 65
         },
         "color": "#221F1F",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -954,7 +1086,10 @@
           "height": 7.9
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -975,7 +1110,10 @@
           "height": 110.7
         },
         "color": "#221F1F",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -996,7 +1134,10 @@
           "height": 7.9
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1017,7 +1158,10 @@
           "height": 110.8
         },
         "color": "#221F1F",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1038,7 +1182,10 @@
           "height": 7.9
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1059,7 +1206,10 @@
           "height": 53.7
         },
         "color": "#221F1F",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1080,7 +1230,10 @@
           "height": 134.6
         },
         "color": "#FFFFFF",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1101,7 +1254,10 @@
           "height": 7.9
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1122,7 +1278,10 @@
           "height": 99.3
         },
         "color": "#221F1F",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1143,7 +1302,10 @@
           "height": 7.9
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1164,7 +1326,10 @@
           "height": 42.3
         },
         "color": "#221F1F",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1185,7 +1350,10 @@
           "height": 5.7
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1206,7 +1374,10 @@
           "height": 13.8
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     },
     {
@@ -1227,7 +1398,10 @@
           "height": 6.6
         },
         "color": "#16549D",
-        "htmlArea": ""
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
       }
     }
   ]

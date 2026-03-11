@@ -193,7 +193,7 @@ foreach (var (name, pdfPath) in pdfs)
         for (int p = 1; p <= document.NumberOfPages; p++)
         {
             var page = document.GetPage(p);
-            var paths = page.ExperimentalAccess.Paths;
+            var paths = page.Paths;
             var pageArea = page.Width * page.Height;
 
             var rects = new List<(double Left, double Bottom, double Width, double Height, string Color)>();

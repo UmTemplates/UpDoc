@@ -7,7 +7,7 @@
 Tested PdfPig's built-in Document Layout Analysis (DLA) tools against Tailored Travels PDFs to see if they could replace or improve UpDoc's custom extraction code.
 
 **Spike code:** `tools/PdfPigSpike/Program.cs`
-**Requires separate NuGet package:** `UglyToad.PdfPig.DocumentLayoutAnalysis` (version 1.7.0-custom-5)
+**NuGet package:** `PdfPig` (version 0.1.13) — DLA is bundled in the main package. Previously used `UglyToad.PdfPig.DocumentLayoutAnalysis 1.7.0-custom-5` (fork, now replaced).
 
 ---
 

@@ -25,7 +25,7 @@ async function selectBlueprint(page: Page, docTypeName: string, blueprintName?: 
 	await page.locator('blueprint-picker-modal').getByRole('button', { name: docTypeName, exact: true }).click();
 
 	await page.waitForTimeout(500);
-	const bpButton = page.locator('blueprint-picker-modal').getByRole('button', { name: blueprintName ?? docTypeName });
+	const bpButton = page.locator('blueprint-picker-modal').getByRole('button', { name: blueprintName ?? docTypeName, exact: true });
 	await bpButton.waitFor({ timeout: 5000 });
 	await bpButton.click();
 }
@@ -211,7 +211,7 @@ test.describe('Document Verification — Tailored Tours', () => {
 			// ── Step 1: Create from Source flow ──────────────────────────
 
 			await page.getByRole('button', { name: 'Create from Source' }).click();
-			await selectBlueprint(page, 'Tailored Tour');
+			await selectBlueprint(page, 'Tailored Tour', '[Tailored Tour Blueprint]');
 
 			const sourceModal = page.locator('up-doc-modal');
 			await expect(sourceModal).toBeVisible({ timeout: 10000 });

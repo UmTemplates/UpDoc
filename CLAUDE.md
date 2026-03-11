@@ -177,3 +177,29 @@ dotnet run --project src/UpDoc.TestSite/UpDoc.TestSite.csproj
 ```
 
 The Umbraco site may be running during development. Before performing any work that requires the site to be stopped (e.g. `dotnet build`, `dotnet run`, modifying C# files that need recompilation, or changes that lock files), prompt the user to stop the site first. Do not assume the site is stopped.
+
+## Playwright E2E Testing
+
+Tests are in `src/UpDoc/wwwroot/App_Plugins/UpDoc/tests/e2e/`. Config: `playwright.config.ts` in the same `App_Plugins/UpDoc/` directory.
+
+**Running tests:**
+Always use `--reporter=list` and `PLAYWRIGHT_HTML_OPEN=never` to prevent the HTML report server from blocking the command. Report results back to the user immediately.
+```bash
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwright test --reporter=list                          # all tests
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwright test --reporter=list tests/e2e/filename.spec.ts  # single file
+```
+
+**Prerequisites:**
+- Run the site with `dotnet run` (NOT `dotnet watch`) — watch mode can restart mid-test causing timeouts
+- A **Playwright API user** (`play.wright@email.com`) exists in Umbraco for test authentication
+- Credentials are in `.env` at `src/UpDoc/wwwroot/App_Plugins/UpDoc/.env` — never hardcode them
+- Auth is handled automatically by `tests/e2e/auth.setup.ts` which saves storage state
+
+**Content tree:** The root content node is **"Home"**. Child nodes include Group Tours, Tailored Tours, Test Group Tours. Tests expand the tree using `'Expand child items for Home'`.
+
+**Test PDFs:** `updoc-test-01` (Dresden), `updoc-test-02` (Suffolk), `updoc-test-03` (Andalucia) — stored in Media > PDF folder.
+
+**Key patterns:**
+- UUI shadow DOM: use page-level queries, not scoped inside shadow roots
+- API helpers use `page.evaluate()` with localStorage auth token for authenticated fetch calls
+- Protected node IDs are hardcoded in tests to prevent accidental deletion of collection nodes

@@ -13,7 +13,7 @@
 | 3 | Create `develop` branch | [x] | [3. Create develop Branch](#3-create-develop-branch) |
 | 4 | Create `assets/` | [x] | [4. Assets](#4-assets) |
 | 5 | Update csproj | [x] | [5. NuGet Package Setup — csproj Metadata](#5-nuget-package-setup--csproj-metadata) |
-| 6 | Resolve PdfPig | [~] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
+| 6 | Resolve PdfPig | [x] | [6. Resolve PdfPig Custom Build](#6-resolve-pdfpig-custom-build) |
 | 7 | Create `LICENSE` | [x] | [7. Create LICENSE](#7-create-license) |
 | 8 | Write READMEs | [x] | [8. READMEs](#8-readmes) |
 | 9 | Create GitHub Actions + Secrets | [x] | [9. GitHub Actions + Secrets](#9-github-actions--secrets) |
@@ -312,11 +312,11 @@ Add NuGet metadata to `src/UpDoc/UpDoc.csproj`:
 
 ### 6. Resolve PdfPig Custom Build
 
-> **STATUS: IN PROGRESS** — Sprint 1 complete on `feature/pdfpig-official-release`
+> **STATUS: COMPLETE** — Merged to main, published as `0.1.1-beta`.
 
-Migrated from `UglyToad.PdfPig 1.7.0-custom-5` (third-party fork by "grinay") to official `PdfPig 0.1.13`. The package was renamed from `UglyToad.PdfPig` to `PdfPig` but namespaces are preserved. All APIs exist. Extraction output identical (58 elements, same font sizes/colors/positions).
+Migrated from `UglyToad.PdfPig 1.7.0-custom-5` (third-party fork by "grinay") to official `PdfPig 0.1.13`. Package renamed from `UglyToad.PdfPig` to `PdfPig` but namespaces preserved. All APIs exist. Extraction output identical. Area auto-detection fallback kept (~60 lines, uses non-obsolete `page.Paths`).
 
-See `planning/PDFPIG_MIGRATION_TO_OFFICIAL.md` for full details and remaining sprints (area auto-detection removal, E2E validation, cleanup).
+Remaining: E2E test validation + transform rules verification. See `planning/PDFPIG_MIGRATION_TO_OFFICIAL.md`.
 
 ---
 

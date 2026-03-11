@@ -29,7 +29,7 @@ let t = class extends m {
 					<uui-ref-node
 						name="Documentation"
 						detail="User guides and API reference"
-						href="https://deanleigh.github.io/UpDoc/"
+						href="https://umtemplates.github.io/UpDoc/"
 						target="_blank">
 						<uui-icon slot="icon" name="icon-book-alt"></uui-icon>
 					</uui-ref-node>
@@ -75,4 +75,4 @@ export {
   t as UpDocAboutViewElement,
   w as default
 };
-//# sourceMappingURL=up-doc-about-view.element--cBDybu3.js.map
+//# sourceMappingURL=up-doc-about-view.element-BsYAvUH4.js.map

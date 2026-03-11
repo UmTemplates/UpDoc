@@ -28,7 +28,7 @@ In March 2026, the UpDoc documentation was migrated from MkDocs (with Material f
 
 - Markdown files with YAML frontmatter
 - Same content, same structure
-- GitHub Pages hosting at `https://deanleigh.github.io/UpDoc/`
+- GitHub Pages hosting at `https://umtemplates.github.io/UpDoc/`
 - Automatic deployment on push to `main`
 
 ## GitHub Pages setting

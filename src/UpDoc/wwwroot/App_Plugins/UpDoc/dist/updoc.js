@@ -350,7 +350,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkspaceView.About",
     name: "About",
-    element: () => import("./up-doc-about-view.element--cBDybu3.js"),
+    element: () => import("./up-doc-about-view.element-BsYAvUH4.js"),
     weight: 100,
     meta: {
       label: "About",

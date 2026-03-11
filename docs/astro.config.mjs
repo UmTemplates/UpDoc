@@ -5,14 +5,14 @@ import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://deanleigh.github.io',
+	site: 'https://umtemplates.github.io',
 	base: '/UpDoc',
 	integrations: [
 		mermaid(),
 		starlight({
 			title: 'UpDoc',
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/deanleigh/UpDoc' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/UmTemplates/UpDoc' },
 			],
 			customCss: ['./src/styles/custom.css'],
 			sidebar: [

@@ -46,9 +46,10 @@ There is no workaround within the blueprint editor. The preview will show stale 
 2. **Use a real content page as a reference** - create and maintain a `[Tailored Tours Blueprint]` content node alongside the actual blueprint, so you can verify the block grid layout on a real page
 3. **Edit via uSync XML** - modify the blueprint's `uSync/v17/Blueprints/*.config` file directly and import via uSync. The blueprint GUID is preserved, so workflow configurations remain valid.
 
-## Umbraco issue
+## Upstream issues
 
-Reported to Umbraco CMS: [umbraco/Umbraco-CMS#21919](https://github.com/umbraco/Umbraco-CMS/issues/21919)
+- **Umbraco CMS:** [umbraco/Umbraco-CMS#21919](https://github.com/umbraco/Umbraco-CMS/issues/21919) — closed, redirected to Block Preview
+- **Block Preview:** [rickbutterfield/BlockPreview#271](https://github.com/rickbutterfield/BlockPreview/issues/271) — submitted Mar 2026
 
 ## Affected versions
 

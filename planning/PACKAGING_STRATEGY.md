@@ -243,7 +243,7 @@ Extract content from PDFs, web pages, and markdown files and map it to Umbraco d
 
 Please visit [GitHub](https://github.com/UmTemplates/UpDoc) for full documentation and installation instructions.
 
-Please visit [Documentation](https://deanleigh.github.io/UpDoc/) for detailed guides.
+Please visit [Documentation](https://umtemplates.github.io/UpDoc/) for detailed guides.
 ```
 
 **Screenshots** (optional but recommended) — add to `assets/` showing:
@@ -640,10 +640,9 @@ The csproj currently pins `MimeKit 4.15.1` for CVE-2026-30227. This would become
 2. Remove it before publishing (let Umbraco's dependency resolve naturally once they update)
 3. Add a conditional — only pin if Umbraco hasn't updated yet
 
-### Docs URL — DECISION NEEDED
+### Docs URL — DONE
 
-Currently: `https://deanleigh.github.io/UpDoc/`
-After transfer: should it move to `https://umtemplates.github.io/UpDoc/`?
+Moved to `https://umtemplates.github.io/UpDoc/` (Mar 2026).
 
 This requires updating the GitHub Pages deployment to use the UmTemplates org.
 

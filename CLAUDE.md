@@ -142,7 +142,7 @@ When implementing UI, check **both** references. UUI for base components, API Do
 
 ## Documentation (Astro Starlight)
 
-Documentation is built with Astro Starlight and deployed to GitHub Pages via GitHub Actions. The site is at `https://deanleigh.github.io/UpDoc/`.
+Documentation is built with Astro Starlight and deployed to GitHub Pages via GitHub Actions. The site is at `https://umtemplates.github.io/UpDoc/`.
 
 - Source files: `docs/src/content/docs/` (markdown with YAML frontmatter)
 - Config: `docs/astro.config.mjs` (sidebar nav, site settings)

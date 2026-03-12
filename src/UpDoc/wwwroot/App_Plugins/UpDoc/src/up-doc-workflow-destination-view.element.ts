@@ -18,6 +18,7 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 	@state() private _activeTab = '';
 	@state() private _collapsedBlocks = new Set<string>();
 	@state() private _collapsePopoverOpen = false;
+	@state() private _blueprintMissing = false;
 	#workflowAlias: string | null = null;
 
 	override connectedCallback() {
@@ -36,6 +37,7 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 	async #loadConfig(workflowAlias: string) {
 		this._loading = true;
 		this._error = null;
+		this._blueprintMissing = false;
 
 		try {
 			const authContext = await this.getContext(UMB_AUTH_CONTEXT);
@@ -45,6 +47,19 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 			if (!this._config) {
 				this._error = `Workflow "${workflowAlias}" not found`;
 				return;
+			}
+
+			// Validate blueprint still exists
+			const dest = this._config.destination;
+			if (dest.blueprintId) {
+				const bpResponse = await fetch(
+					`/umbraco/management/api/v1/updoc/document-types/${encodeURIComponent(dest.documentTypeAlias)}/blueprints`,
+					{ headers: { Authorization: `Bearer ${token}` } },
+				);
+				if (bpResponse.ok) {
+					const blueprints: Array<{ id: string; name: string }> = await bpResponse.json();
+					this._blueprintMissing = !blueprints.some((bp) => bp.id === dest.blueprintId);
+				}
 			}
 
 			const tabs = this.#getTabs();
@@ -491,12 +506,15 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 					</div>
 				</uui-box>
 
-				<uui-box headline="Blueprint" class="info-box-item">
+				<uui-box headline="Blueprint" class="info-box-item ${this._blueprintMissing ? 'blueprint-missing' : ''}">
 					<div class="box-content">
-						<uui-icon name="icon-blueprint" class="box-icon"></uui-icon>
-						<span class="box-stat box-filename" title="${dest.blueprintName ?? '—'}">${dest.blueprintName ?? '—'}</span>
+						<uui-icon name="icon-blueprint" class="box-icon ${this._blueprintMissing ? 'box-icon-warning' : ''}"></uui-icon>
+						<span class="box-stat box-filename ${this._blueprintMissing ? 'box-filename-warning' : ''}" title="${dest.blueprintName ?? '—'}">${dest.blueprintName ?? '—'}</span>
+						${this._blueprintMissing
+							? html`<uui-tag color="warning" look="primary">Not found</uui-tag>`
+							: nothing}
 						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Change" @click=${this.#handleChangeBlueprint}>
+							<uui-button look="primary" color="${this._blueprintMissing ? 'warning' : 'default'}" label="Change" @click=${this.#handleChangeBlueprint}>
 								<uui-icon name="icon-blueprint"></uui-icon> Change
 							</uui-button>
 						</div>
@@ -889,6 +907,19 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 			.box-sub {
 				font-size: 11px;
 				color: var(--uui-color-text-alt);
+			}
+
+			/* Missing blueprint warning */
+			.blueprint-missing {
+				border-color: var(--uui-color-warning);
+			}
+
+			.box-icon-warning {
+				color: var(--uui-color-warning);
+			}
+
+			.box-filename-warning {
+				color: var(--uui-color-warning);
 			}
 		`,
 	];

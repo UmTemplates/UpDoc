@@ -183,13 +183,13 @@ The Umbraco site may be running during development. Before performing any work t
 Tests are in `src/UpDoc/wwwroot/App_Plugins/UpDoc/tests/e2e/`. Config: `playwright.config.ts` in the same `App_Plugins/UpDoc/` directory.
 
 **Running tests:**
-Always use `--reporter=list` and `PLAYWRIGHT_HTML_OPEN=never` to prevent the HTML report server from blocking the command. Report results back to the user immediately.
+The config uses `reporter: 'html'` which auto-opens the report in the browser when tests finish. Let it open — the user wants to see the report. The command will block until the user closes the report browser tab, so always run Playwright tests with `run_in_background: true`.
 
 **IMPORTANT: Never run the full test suite unless the user explicitly asks for it.** Always run only the specific spec file relevant to the change. The full suite takes 6+ minutes.
 
 ```bash
-cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwright test --reporter=list tests/e2e/filename.spec.ts  # single file (DEFAULT)
-cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwright test --reporter=list                             # all tests (ONLY when asked)
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npx playwright test tests/e2e/filename.spec.ts  # single file (DEFAULT)
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npx playwright test                              # all tests (ONLY when asked)
 ```
 
 **Which spec file to run:**
@@ -208,7 +208,15 @@ cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwri
 
 **Content tree:** The root content node is **"Home"**. Child nodes include Group Tours, Tailored Tours, Test Group Tours. Tests expand the tree using `'Expand child items for Home'`.
 
-**Test PDFs:** `updoc-test-01` (Dresden), `updoc-test-02` (Suffolk), `updoc-test-03` (Andalucia) — stored in Media > PDF folder.
+**Test PDFs:** `updoc-test-01` (Dresden), `updoc-test-02` (Suffolk), `updoc-test-03` (Andalucia) — stored in Media > PDF > Tests folder.
+
+**Smoke test for any PDF:**
+The user can say "test Winchester" or "test Derby Istanbul" to run the generic smoke test (`smoke-test-pdf.spec.ts`) against any PDF in the Media library. Workflow:
+1. Search uSync Media configs for PDFs in that folder
+2. If one PDF → run immediately. If multiple → ask which one (or all)
+3. Run: `PDF_FOLDER=FolderName PDF_NAME="filename.pdf" npx playwright test smoke-test-pdf`
+
+This creates a document from the PDF, verifies fields are populated and markdown-free, then cleans up.
 
 **Key patterns:**
 - UUI shadow DOM: use page-level queries, not scoped inside shadow roots

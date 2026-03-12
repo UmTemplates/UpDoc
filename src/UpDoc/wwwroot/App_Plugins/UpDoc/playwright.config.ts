@@ -21,7 +21,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: 1,
-  reporter: process.env.CI ? 'line' : 'html',
+  reporter: process.env.CI ? 'line' : [['html', { open: 'always' }]],
   use: {
     baseURL: process.env.UMBRACO_URL || 'https://localhost:44390',
     trace: 'retain-on-failure',

@@ -5,6 +5,7 @@
       "Name": "Page Header",
       "Color": "#e84855",
       "Page": 1,
+      "SortOrder": null,
       "Groups": [],
       "Sections": [
         {
@@ -22,11 +23,12 @@
           "GroupName": null,
           "RuleName": "Organisation",
           "ChildCount": 1,
-          "Included": true
+          "Included": true,
+          "SortOrder": null
         },
         {
           "Id": "tour-title",
-          "StableKey": "8550eeb8-c7d7-402e-88ba-808c13d8edfd",
+          "StableKey": "a01975d0-66d2-433a-b868-3f7ce545816e",
           "OriginalHeading": "Tour Title",
           "Heading": "Tour Title",
           "Content": "The Art \u0026 History of Dresden, Leipzig \u0026 Mei\u03B2en",
@@ -39,11 +41,12 @@
           "GroupName": null,
           "RuleName": "Tour Title",
           "ChildCount": 1,
-          "Included": true
+          "Included": true,
+          "SortOrder": null
         },
         {
           "Id": "tour-description",
-          "StableKey": "7630f2b6-16df-4710-abd2-dad75c60b860",
+          "StableKey": "a64d216d-c4ad-499b-8a40-765abf94f6be",
           "OriginalHeading": "Tour Description",
           "Heading": "Tour Description",
           "Content": "6 days from \u00A3994 Departing 29th September 2015",
@@ -56,7 +59,8 @@
           "GroupName": null,
           "RuleName": "Tour Description",
           "ChildCount": 1,
-          "Included": true
+          "Included": true,
+          "SortOrder": null
         }
       ]
     },
@@ -64,25 +68,9 @@
       "Name": "Organiser Information",
       "Color": "#f9dc5c",
       "Page": 1,
+      "SortOrder": null,
       "Groups": [],
       "Sections": [
-        {
-          "Id": "preamble-p1-z1",
-          "StableKey": null,
-          "OriginalHeading": null,
-          "Heading": null,
-          "Content": "For more information on this tour contact your Group Organiser",
-          "Description": null,
-          "Summary": null,
-          "Pattern": "paragraph",
-          "Page": 1,
-          "AreaColor": "#f9dc5c",
-          "AreaName": "Organiser Information",
-          "GroupName": null,
-          "RuleName": null,
-          "ChildCount": 1,
-          "Included": true
-        },
         {
           "Id": "organiser-name",
           "StableKey": "eea9a94c-9fcb-4031-a2fe-e50f20dc0ff3",
@@ -98,7 +86,8 @@
           "GroupName": null,
           "RuleName": "Organiser Name",
           "ChildCount": 1,
-          "Included": true
+          "Included": true,
+          "SortOrder": null
         },
         {
           "Id": "organiser-telephone",
@@ -115,7 +104,8 @@
           "GroupName": null,
           "RuleName": "Organiser Telephone",
           "ChildCount": 1,
-          "Included": true
+          "Included": true,
+          "SortOrder": null
         },
         {
           "Id": "organiser-email",
@@ -132,7 +122,8 @@
           "GroupName": null,
           "RuleName": "Organiser Email",
           "ChildCount": 1,
-          "Included": true
+          "Included": true,
+          "SortOrder": null
         },
         {
           "Id": "organiser-address",
@@ -149,7 +140,8 @@
           "GroupName": null,
           "RuleName": "Organiser Address",
           "ChildCount": 1,
-          "Included": true
+          "Included": true,
+          "SortOrder": null
         }
       ]
     },
@@ -157,6 +149,7 @@
       "Name": "Tour Details",
       "Color": "#3185fc",
       "Page": 1,
+      "SortOrder": null,
       "Groups": [
         {
           "Name": "Tour Details - Section",
@@ -166,7 +159,7 @@
               "StableKey": "c1538bf4-f5d2-43fa-8320-9d1962bec20c",
               "OriginalHeading": "FEATURES",
               "Heading": "Features",
-              "Content": "- 4* central Dresden hotel\n- All excursions, entrance fees \u0026 guided tours included\n- Three dinners included\n- Direct scheduled British Airways flights from Heathrow to Berli\n- Professional guide\n- Executive coach (as detailed in the itinerary)\n- Gratuities \u0026 audio headsets included",
+              "Content": "- 4* central Dresden hotel\n\n- All excursions, entrance fees \u0026 guided tours included\n\n- Three dinners included\n\n- Direct scheduled British Airways flights from Heathrow to Berli\n\n- Professional guide\n\n- Executive coach (as detailed in the itinerary)\n\n- Gratuities \u0026 audio headsets included",
               "Description": null,
               "Summary": null,
               "Pattern": "bulletList",
@@ -176,14 +169,15 @@
               "GroupName": "Tour Details - Section",
               "RuleName": "Tour Details - Section Title",
               "ChildCount": 7,
-              "Included": true
+              "Included": true,
+              "SortOrder": null
             },
             {
               "Id": "what-we-will-see",
               "StableKey": "c1538bf4-f5d2-43fa-8320-9d1962bec20c",
               "OriginalHeading": "WHAT WE WILL SEE",
               "Heading": "What We Will See",
-              "Content": "- Dresden \u2013 guided city walking tour\n- Frauenkirche\n- Zwinger Palace \u0026 Old Masters Picture Gallery \u2013 guided tour\n- Pillnitz Castle, Gardens \u0026 the Museum of Decorative Arts \u2013 guided tour\n- Paddle Steamer Cruise from K\u00F6nigstein to Pillnitz\n- Royal Palace \u2013 Old Green Vault \u0026 New Green Vault\n- Leipzig \u2013 guided city walking tour\n- Tomaskirche\n- Museum der Bildenden K\u00FCnste \u2013 guided tour\n- Mei\u00DFen Porcelain Museum \u2013 guided tour",
+              "Content": "- Dresden \u2013 guided city walking tour\n\n- Frauenkirche\n\n- Zwinger Palace \u0026 Old Masters Picture Gallery \u2013 guided tour\n\n- Pillnitz Castle, Gardens \u0026 the Museum of Decorative Arts \u2013 guided tour\n\n- Paddle Steamer Cruise from K\u00F6nigstein to Pillnitz\n\n- Royal Palace \u2013 Old Green Vault \u0026 New Green Vault\n\n- Leipzig \u2013 guided city walking tour\n\n- Tomaskirche\n\n- Museum der Bildenden K\u00FCnste \u2013 guided tour\n\n- Mei\u00DFen Porcelain Museum \u2013 guided tour",
               "Description": null,
               "Summary": null,
               "Pattern": "bulletList",
@@ -193,7 +187,8 @@
               "GroupName": "Tour Details - Section",
               "RuleName": "Tour Details - Section Title",
               "ChildCount": 10,
-              "Included": true
+              "Included": true,
+              "SortOrder": null
             },
             {
               "Id": "accommodation",
@@ -210,14 +205,15 @@
               "GroupName": "Tour Details - Section",
               "RuleName": "Tour Details - Section Title",
               "ChildCount": 1,
-              "Included": true
+              "Included": true,
+              "SortOrder": null
             },
             {
               "Id": "extras-to-your-tour",
               "StableKey": "c1538bf4-f5d2-43fa-8320-9d1962bec20c",
               "OriginalHeading": "EXTRAS TO YOUR TOUR",
               "Heading": "Extras To Your Tour",
-              "Content": "- Insurance \u00A336\n- Single room supplement \u00A389\n- Local accommodation tax to be paid directly to the hotel (approximately \u20AC1.30 per person per night)\nFlight details may be subject to change. Price based on twin share. Minimum numbers required. Normal booking conditions apply.",
+              "Content": "- Insurance \u00A336\n\n- Single room supplement \u00A389\n\n- Local accommodation tax to be paid directly to the hotel (approximately \u20AC1.30 per person per night)\n\nFlight details may be subject to change. Price based on twin share. Minimum numbers required. Normal booking conditions apply.",
               "Description": null,
               "Summary": null,
               "Pattern": "paragraph",
@@ -227,7 +223,8 @@
               "GroupName": "Tour Details - Section",
               "RuleName": "Tour Details - Section Title",
               "ChildCount": 4,
-              "Included": true
+              "Included": true,
+              "SortOrder": null
             }
           ]
         }
@@ -238,10 +235,11 @@
       "Name": "Area 1",
       "Color": "#5bba6f",
       "Page": 2,
+      "SortOrder": null,
       "Groups": [],
       "Sections": [
         {
-          "Id": "preamble-p2-z0",
+          "Id": "preamble-area-1-p2",
           "StableKey": null,
           "OriginalHeading": null,
           "Heading": null,
@@ -255,15 +253,16 @@
           "GroupName": null,
           "RuleName": null,
           "ChildCount": 12,
-          "Included": true
+          "Included": true,
+          "SortOrder": null
         }
       ]
     }
   ],
   "Diagnostics": {
-    "TotalSections": 13,
+    "TotalSections": 12,
     "BulletListSections": 2,
-    "ParagraphSections": 4,
+    "ParagraphSections": 3,
     "SubHeadedSections": 0,
     "PreambleSections": 0,
     "RoleSections": 7

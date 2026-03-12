@@ -258,7 +258,7 @@ async function U(o, n, e) {
   }
   return i(), !0;
 }
-async function B(o, n, e) {
+async function R(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/excluded-areas`,
     {
@@ -276,7 +276,7 @@ async function B(o, n, e) {
   }
   return i(), (await t.json()).excludedAreas ?? [];
 }
-async function R(o, n, e) {
+async function B(o, n, e) {
   const t = await fetch(
     `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/container-overrides`,
     {
@@ -381,6 +381,23 @@ async function x(o, n, e, t) {
   }
   return a.json();
 }
+async function J(o, n) {
+  const e = await fetch(
+    `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(o)}/regenerate-destination`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${n}`
+      }
+    }
+  );
+  if (!e.ok) {
+    const a = await e.json();
+    return console.error("Regenerate destination failed:", a), null;
+  }
+  return i(), (await e.json()).destination;
+}
 function i() {
   p.clear(), s = null, u = null;
 }
@@ -398,17 +415,18 @@ export {
   I as k,
   $ as l,
   g as m,
-  R as n,
-  B as o,
+  B as n,
+  R as o,
   U as p,
   N as q,
-  T as r,
+  J as r,
   O as s,
   v as t,
-  S as u,
-  A as v,
-  b as w,
-  x,
-  i as y
+  T as u,
+  S as v,
+  A as w,
+  b as x,
+  x as y,
+  i as z
 };
-//# sourceMappingURL=workflow.service-DRM8gMCY.js.map
+//# sourceMappingURL=workflow.service-DwTP3LNQ.js.map

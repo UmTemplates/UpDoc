@@ -4,7 +4,7 @@ import { UMB_ENTITY_CONTEXT as c } from "@umbraco-cms/backoffice/entity";
 import { UmbDocumentTypeStructureRepository as h } from "@umbraco-cms/backoffice/document-type";
 import { UmbDocumentBlueprintItemRepository as f } from "@umbraco-cms/backoffice/document-blueprint";
 import { UmbDocumentItemRepository as d } from "@umbraco-cms/backoffice/document";
-import { f as y } from "./workflow.service-DRM8gMCY.js";
+import { f as y } from "./workflow.service-DwTP3LNQ.js";
 class D extends p {
   #i = new h(this);
   #o = new f(this);
@@ -62,4 +62,4 @@ export {
   D as UpDocHasWorkflowsCondition,
   D as default
 };
-//# sourceMappingURL=up-doc-has-workflows.condition-CKY-FIVP.js.map
+//# sourceMappingURL=up-doc-has-workflows.condition-CFoWjtno.js.map

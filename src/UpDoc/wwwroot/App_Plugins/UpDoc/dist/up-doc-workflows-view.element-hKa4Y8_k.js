@@ -3,8 +3,8 @@ import { UmbLitElement as B } from "@umbraco-cms/backoffice/lit-element";
 import { UmbTextStyles as M } from "@umbraco-cms/backoffice/style";
 import { UMB_AUTH_CONTEXT as y } from "@umbraco-cms/backoffice/auth";
 import { UmbModalToken as R, umbOpenModal as v, UMB_MODAL_MANAGER_CONTEXT as P, UMB_CONFIRM_MODAL as I } from "@umbraco-cms/backoffice/modal";
-import { U as L } from "./blueprint-picker-modal.token-mXZoRNwG.js";
-import { m as z, l as F, y as j } from "./workflow.service-DRM8gMCY.js";
+import { U as z } from "./blueprint-picker-modal.token-mXZoRNwG.js";
+import { m as L, l as F, z as j } from "./workflow.service-DwTP3LNQ.js";
 const q = new R(
   "UpDoc.CreateWorkflowSidebar",
   {
@@ -88,7 +88,7 @@ k = async function() {
     }
     let u;
     try {
-      u = await v(this, L, {
+      u = await v(this, z, {
         data: { documentTypes: r }
       });
     } catch {
@@ -140,7 +140,7 @@ k = async function() {
       }
     ), a.mediaUnique || a.sourceUrl)
       try {
-        await z(
+        await L(
           a.alias,
           a.mediaUnique ?? "",
           t,
@@ -319,4 +319,4 @@ export {
   c as UpDocWorkflowsViewElement,
   oe as default
 };
-//# sourceMappingURL=up-doc-workflows-view.element-DulJ3lSI.js.map
+//# sourceMappingURL=up-doc-workflows-view.element-hKa4Y8_k.js.map

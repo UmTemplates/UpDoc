@@ -394,8 +394,11 @@ public class DestinationStructureService : IDestinationStructureService
             return null;
         }
 
-        // Build a human-readable label from the identifying value
+        // Build a human-readable label from the identifying value.
+        // Fall back to element type name when the value is a JSON array (e.g., Navigation In Page
+        // stores block keys as '["guid1","guid2"]') which isn't human-readable.
         var label = identifyBy != null
+            && !identifyBy.Value.StartsWith('[')
             ? identifyBy.Value
             : elementType.Name ?? elementType.Alias;
 

@@ -1,5 +1,5 @@
 import type { DocumentTypeConfig, DestinationField, DestinationBlock, DestinationBlockGrid, BlockProperty, SectionMapping } from './workflow.types.js';
-import { fetchWorkflowByAlias, changeWorkflowDestination } from './workflow.service.js';
+import { fetchWorkflowByAlias, changeWorkflowDestination, regenerateDestination } from './workflow.service.js';
 import { getDestinationTabs, getAllBlockContainers } from './destination-utils.js';
 import { html, customElement, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
 import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
@@ -200,6 +200,22 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 			token,
 		);
 
+		if (result) {
+			await this.#loadConfig(this.#workflowAlias);
+		}
+	}
+
+	// =========================================================================
+	// Regenerate Destination
+	// =========================================================================
+
+	async #handleRegenerateDestination() {
+		if (!this.#workflowAlias) return;
+
+		const authContext = await this.getContext(UMB_AUTH_CONTEXT);
+		const token = await authContext.getLatestToken();
+
+		const result = await regenerateDestination(this.#workflowAlias, token);
 		if (result) {
 			await this.#loadConfig(this.#workflowAlias);
 		}
@@ -430,7 +446,7 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 					<uui-icon class="collapse-chevron" name="${isCollapsed ? 'icon-navigation-right' : 'icon-navigation-down'}"></uui-icon>
 					<uui-icon name="icon-box" class="level-icon"></uui-icon>
 					<span class="section-box-label">${block.label}</span>
-					${block.identifyBy
+					${block.identifyBy && !block.identifyBy.value.startsWith('[')
 						? html`<span class="block-identify">identified by: "${block.identifyBy.value}"</span>`
 						: nothing}
 					<span class="header-spacer"></span>
@@ -527,7 +543,7 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 						<span class="box-stat">${this.#getFieldsCount()}</span>
 						<span class="box-sub">text-mappable</span>
 						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Regenerate" disabled title="Coming soon">
+							<uui-button look="primary" color="default" label="Regenerate" @click=${this.#handleRegenerateDestination}>
 								<uui-icon name="icon-layers"></uui-icon> Regenerate
 							</uui-button>
 						</div>
@@ -540,7 +556,7 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 						<span class="box-stat">${this.#getBlocksCount()}</span>
 						<span class="box-sub">in blueprint</span>
 						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Regenerate" disabled title="Coming soon">
+							<uui-button look="primary" color="default" label="Regenerate" @click=${this.#handleRegenerateDestination}>
 								<uui-icon name="icon-box"></uui-icon> Regenerate
 							</uui-button>
 						</div>

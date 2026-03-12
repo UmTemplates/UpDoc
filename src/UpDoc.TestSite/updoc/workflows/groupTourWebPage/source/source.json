@@ -38,7 +38,14 @@
             }
           ],
           "exceptions": null,
-          "textReplacements": null
+          "textReplacements": [
+            {
+              "findType": "textContains",
+              "find": " \u0026 ",
+              "replaceType": "replaceAll",
+              "replace": " and "
+            }
+          ]
         },
         {
           "id": "f6b7e762-4615-4aef-a09e-cb94dd1f9a2a",

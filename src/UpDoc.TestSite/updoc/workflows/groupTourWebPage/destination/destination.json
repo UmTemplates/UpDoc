@@ -75,7 +75,7 @@
           "key": "c2d3e4f5-1111-4ccc-a111-111111111111",
           "contentTypeAlias": "featureNavigationInPage",
           "contentTypeKey": "c4b3a613-0d2c-4470-8d06-f7efea52d6e0",
-          "label": "[\u0022a1b2c3d4-7777-4aaa-b777-777777777777\u0022,\u0022a1b2c3d4-9999-4aaa-b999-999999999999\u0022,\u0022a1b2c3d4-bbbb-4aaa-bbbb-bbbbbbbbbbbb\u0022,\u0022a1b2c3d4-dddd-4aaa-bddd-dddddddddddd\u0022]",
+          "label": "Navigation - In Page",
           "description": null,
           "identifyBy": {
             "property": "featurePropertyNavigationInPageItems",

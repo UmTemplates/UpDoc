@@ -1,4 +1,4 @@
-import { b as V, g as j, u as F } from "./workflow.service-DRM8gMCY.js";
+import { b as V, g as j, v as F } from "./workflow.service-DwTP3LNQ.js";
 import { b as I, r as X, a as H, g as D } from "./destination-utils-DUfOJy5W.js";
 import { html as n, nothing as w, css as q, state as M, customElement as J } from "@umbraco-cms/backoffice/external/lit";
 import { UmbLitElement as Q } from "@umbraco-cms/backoffice/lit-element";
@@ -11,10 +11,10 @@ var et = Object.defineProperty, at = Object.getOwnPropertyDescriptor, E = (t) =>
   for (var o = i > 1 ? void 0 : i ? at(e, a) : e, _ = t.length - 1, g; _ >= 0; _--)
     (g = t[_]) && (o = (i ? g(e, a, o) : g(o)) || o);
   return i && o && et(e, a, o), o;
-}, K = (t, e, a) => e.has(t) || E("Cannot " + a), r = (t, e, a) => (K(t, e, "read from private field"), a ? a.call(t) : e.get(t)), v = (t, e, a) => e.has(t) ? E("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(t) : e.set(t, a), z = (t, e, a, i) => (K(t, e, "write to private field"), e.set(t, a), a), l = (t, e, a) => (K(t, e, "access private method"), a), x, k, h, m, s, T, W, L, O, U, A, B, P, G, N;
+}, K = (t, e, a) => e.has(t) || E("Cannot " + a), r = (t, e, a) => (K(t, e, "read from private field"), a ? a.call(t) : e.get(t)), y = (t, e, a) => e.has(t) ? E("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(t) : e.set(t, a), z = (t, e, a, i) => (K(t, e, "write to private field"), e.set(t, a), a), l = (t, e, a) => (K(t, e, "access private method"), a), x, k, h, m, s, T, W, L, O, U, A, B, P, G, N;
 let p = class extends Q {
   constructor() {
-    super(...arguments), v(this, s), this._config = null, this._extraction = null, this._loading = !0, this._error = null, v(this, x, /* @__PURE__ */ new Set()), v(this, k, /* @__PURE__ */ new Set()), v(this, h, ""), v(this, m, "");
+    super(...arguments), y(this, s), this._config = null, this._extraction = null, this._loading = !0, this._error = null, y(this, x, /* @__PURE__ */ new Set()), y(this, k, /* @__PURE__ */ new Set()), y(this, h, ""), y(this, m, "");
   }
   connectedCallback() {
     super.connectedCallback(), this.consumeContext(tt, (t) => {
@@ -146,9 +146,9 @@ P = function() {
   if (!this._config?.destination) return [];
   const t = this._config.destination, e = I(t), a = /* @__PURE__ */ new Map();
   for (let c = 0; c < this._config.map.mappings.length; c++) {
-    const d = this._config.map.mappings[c], y = d.destinations[0];
-    if (!y) continue;
-    const u = X(y, t) ?? "unmapped", b = e.find((R) => R.id === u)?.label ?? "Unmapped", f = y.blockKey, S = f ? H(f, t) : void 0, C = f ? `${u}:${f}` : u;
+    const d = this._config.map.mappings[c], v = d.destinations[0];
+    if (!v) continue;
+    const u = X(v, t) ?? "unmapped", b = e.find((R) => R.id === u)?.label ?? "Unmapped", f = v.blockKey, S = f ? H(f, t) : void 0, C = f ? `${u}:${f}` : u;
     a.has(C) || a.set(C, {
       tabId: u,
       tabLabel: b,
@@ -165,11 +165,11 @@ P = function() {
   for (const c of e) {
     const d = a.get(c.id);
     d && i.push(d);
-    const y = Array.from(a.entries()).filter(([u, b]) => b.tabId === c.id && b.blockKey).sort(([, u], [, b]) => {
+    const v = Array.from(a.entries()).filter(([u, b]) => b.tabId === c.id && b.blockKey).sort(([, u], [, b]) => {
       const f = o.get(u.blockKey) ?? 999, S = o.get(b.blockKey) ?? 999;
       return f - S;
     }).map(([, u]) => u);
-    i.push(...y);
+    i.push(...v);
   }
   const g = a.get("unmapped");
   return g && i.push(g), i;
@@ -360,4 +360,4 @@ export {
   p as UpDocWorkflowMapViewElement,
   ut as default
 };
-//# sourceMappingURL=up-doc-workflow-map-view.element-DnGKVYnb.js.map
+//# sourceMappingURL=up-doc-workflow-map-view.element-BpFXp1LM.js.map

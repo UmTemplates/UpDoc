@@ -2,9 +2,9 @@
   "version": "1.0",
   "sourceType": "web",
   "source": {
-    "fileName": "https://www.tailored-travel.co.uk/dublin-s-art-literature",
+    "fileName": "https://www.tailored-travel.co.uk/holland-the-dutch-masters",
     "mediaKey": "",
-    "extractedDate": "2026-03-12T18:25:04.6624903Z",
+    "extractedDate": "2026-03-12T18:37:55.5517878Z",
     "totalPages": 1
   },
   "elements": [
@@ -348,7 +348,7 @@
     {
       "id": "html-14",
       "page": 1,
-      "text": "Dublin\u2019s Fair City",
+      "text": "Holland \u0026 the Dutch Masters",
       "metadata": {
         "fontSize": 22.5,
         "fontName": "ClarendonLTStdRoman",
@@ -372,7 +372,7 @@
     {
       "id": "html-15",
       "page": 1,
-      "text": "\u201CThank you on behalf of our Society for an excellent tour. The guide was a delight - very informative and such fun and gave us a wonderful overview of Dublin. The day in the Wicklow Mountains was perfect particularly as we were blessed with wonderful weather. Our guides at the National Gallery were superlative - everyone remarked that they\u0027d never had better. All in all we had a memorable holiday.\u201D",
+      "text": "\u201CThank you for arranging yet another wonderful 5 day tour. The content was very well balanced and the guides well informed. The hotel was comfortable and ideally situated. Our tour manager was charming and his history of art and of the Netherlands made the tour exceptional and our members were full of praise. He went out of his way to add that little extra which makes a tour memorable.\u201D",
       "metadata": {
         "fontSize": 9,
         "fontName": "ClarendonLTStdRoman",
@@ -396,7 +396,7 @@
     {
       "id": "html-16",
       "page": 1,
-      "text": "SB, Huddersfield",
+      "text": "RW, Witham",
       "metadata": {
         "fontSize": 9,
         "fontName": "ClarendonLTStdLight",
@@ -469,7 +469,7 @@
     {
       "id": "html-19",
       "page": 1,
-      "text": "Ireland",
+      "text": "Holland",
       "metadata": {
         "fontSize": 8.2,
         "fontName": "Open Sans",
@@ -493,7 +493,7 @@
     {
       "id": "html-20",
       "page": 1,
-      "text": "Dublin\u2019s Fair City",
+      "text": "Holland \u0026 the Dutch Masters",
       "metadata": {
         "fontSize": 8.2,
         "fontName": "Open Sans",
@@ -534,7 +534,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
         "cssClasses": ""
       }
     },
@@ -558,7 +558,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
         "cssClasses": ""
       }
     },
@@ -582,7 +582,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
         "cssClasses": ""
       }
     },
@@ -606,7 +606,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
         "cssClasses": ""
       }
     },
@@ -630,7 +630,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
         "cssClasses": ""
       }
     },
@@ -654,7 +654,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
         "cssClasses": ""
       }
     },
@@ -678,7 +678,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
         "cssClasses": "",
         "isBold": true
       }
@@ -686,7 +686,7 @@
     {
       "id": "html-28",
       "page": 1,
-      "text": "Day 1 \u2013 Dublin city tour",
+      "text": "Day 1 \u2013 Ghent \u0026 The Hague",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -703,7 +703,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": "",
         "isBold": true
       }
@@ -711,7 +711,7 @@
     {
       "id": "html-29",
       "page": 1,
-      "text": "Scheduled flight to Dublin from your preferred airport \u2013 tour of Dublin with our local guide in our private executive coach giving us a great introduction to the city of writers and poets taking in such sights as Ha\u2019penny Bridge, O\u2019Connell Street and Christchurch Cathedral \u2013 transfer to the central 3* Academy Plaza Hotel in Dublin.",
+      "text": "Board our private executive coach at your designated pick up points \u2013 take the cross Channel ferry from your preferred port \u2013 originally the capital of Flanders, Ghent has retained more historical buildings than any other Flemish city, including St Bavo\u2019s Cathedral, home to Van Eyck\u2019s famous 24 panel altarpiece \u2018The Adoration of the Mystic Lamb\u2019 \u2013 continue with our tour manager to the 4* Voco Hotel in The Hague.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -728,14 +728,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
       "id": "html-30",
       "page": 1,
-      "text": "Day 2 \u2013 Dublin Castle, Chester Beatty Library, the State Apartments \u0026 Kilmainham Gaol",
+      "text": "Day 2 \u2013 The Mauritshuis, Panorama Mesdag \u0026 Koninklijke Porcleyne Fles",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -752,7 +752,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": "",
         "isBold": true
       }
@@ -760,7 +760,7 @@
     {
       "id": "html-31",
       "page": 1,
-      "text": "A guided tour of Dublin Castle, dating back to 1230 and located in the heart of the city, is followed by a visit to the Chester Beatty Library containing a rich collection of manuscripts, prints, miniature paintings and early printed books \u2013 the State Apartments at Dublin Castle were the former private and public rooms of the Viceroys and the Viceregal Court, the seat of the executive and the focus of fashionable social life and a guided tour also takes in the Medieval Undercroft and the Chapel Royal \u2013 guided tour of the museum at Kilmainham Gaol, one of the largest unoccupied jails in Europe, focuses on some of the most heroic and tragic events in Ireland\u2019s emergence as a modern nation from the 1780s to the 1920s.",
+      "text": "The newly refurbished Mauritshuis is home to a marvellous collection from the 17th and 18th century old masters with \u2018Girl with a Pearl Earring\u2019 by Johannes Vermeer the stunning highlight of the museum \u2013 painted by Hendrik Willem Mesdag, the most famous painter at The Hague School, the Panorama Mesdag is a cylindrical painting over 14m high and 120m in circumference depicting the vista of the sea, the dunes and Scheveningen village \u2013 at Koninklijke Porcleyne Fles in Delft, the only remaining factory of the 32 earthenware factories that were established in Delft in the 17th century, after an included two course Dutch lunch our guided tour sees a master painter at work, visits the dining room of Vermeer and the Dutch Royal Family Chamber, the museum with antique Delft pieces, the historical courtyard and visit the factory.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -777,14 +777,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
       "id": "html-32",
       "page": 1,
-      "text": "Day 3 \u2013 Wicklow Mountains, Powerscourt House and Gardens, Glendalough \u0026 Avoca",
+      "text": "Day 3 \u2013 Amsterdam, Van Gogh Museum, Rijksmuseum \u0026 canal cruise",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -801,7 +801,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": "",
         "isBold": true
       }
@@ -809,7 +809,7 @@
     {
       "id": "html-33",
       "page": 1,
-      "text": "Travel with our guide into the Wicklow Mountains, known as the \u2018garden of Ireland\u2019 \u2013 Powerscourt House and Gardens is set in 14,000 acres with delightful lakes, ornamental hedges and gardens while the entrance hall now features an exhibition bringing to life the rich history of the estate and the double height Georgian ballroom has been completely restored to its former glory \u2013 Glendalough is a 6th century monastic site founded by St Kevin and once a major seat of learning in medieval Europe \u2013 Avoca is the subject of Thomas More\u2019s poem, \u2018The Meeting of the Waters\u2019.",
+      "text": "Travel to Amsterdam to see the wonderful collection at the Van Gogh Museum, home to the world\u2019s largest collection of paintings by Vincent van Gogh \u2013 guided tour of the newly refurbished Rijksmuseum whose world famous art collection includes many Dutch Old Masters such as Jan Steen, Frans Hals, Vermeer and Rembrandt\u2019s \u2018The Night Watch\u2019 \u2013 enjoy a relaxing canal cruise to admire some of Amsterdam\u2019s stunning architecture from a different perspective.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -826,14 +826,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
       "id": "html-34",
       "page": 1,
-      "text": "Day 4 \u2013 National Gallery of Ireland, Book of Kells \u0026 Newman House",
+      "text": "Day 4 \u2013 Leiden, Delft \u0026 the Vermeer Centre",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -850,7 +850,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": "",
         "isBold": true
       }
@@ -858,7 +858,7 @@
     {
       "id": "html-35",
       "page": 1,
-      "text": "Guided tour of the National Gallery of Ireland, housing 13,000 works of art, including works by Titian, Caravaggio, Rembrandt, Poussin and Gainsborough \u2013 visit Trinity College with our guide to see the Book of Kells, one of the most beautifully illuminated manuscripts in the world which was written around the year 800 AD \u2013 Newman House consists of two Georgian houses displaying examples of Dublin\u2019s finest 18th century plasterwork.",
+      "text": "Morning at leisure in Leiden, the birthplace of Rembrandt and home to a wonderful 17th century book collection at the Bibliotheca Thysiana and one of the world\u2019s oldest botanical gardens \u2013 time at leisure in the lovely old town of Delft, one of the principal artistic centres of the Northern Netherlands and famous for the works of Fabritius, de Hooch and Vermeer, born here in 1632 \u2013 a visit to the Vermeer Centre introduces us to Vermeer\u2019s mastery of light, composition and colour.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -875,14 +875,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
       "id": "html-36",
       "page": 1,
-      "text": "Day 5 \u2013 EPIC The Irish Emigration Museum",
+      "text": "Day 5 \u2013 Bruges",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -899,7 +899,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": "",
         "isBold": true
       }
@@ -907,7 +907,7 @@
     {
       "id": "html-37",
       "page": 1,
-      "text": "Guided tour of EPIC The Irish Emigration Museum which depicts the moving and unforgettable stories of those who left the island of Ireland, and how they influenced and shaped the world \u2013 transfer to Dublin airport for our scheduled flight back home.",
+      "text": "Bruges, whose historic city centre is included on UNESCO\u2019s World Heritage List, is famous for lace making, chocolate and its picturesque network of canals \u2013 continue for our Channel crossing back to the UK and then return to our original departure points with comfort stops en route.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -924,7 +924,7 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
         "cssClasses": ""
       }
     },
@@ -948,13 +948,37 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading",
         "cssClasses": "",
         "isBold": true
       }
     },
     {
       "id": "html-39",
+      "page": 1,
+      "text": "4* The Hague hotel",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-40",
       "page": 1,
       "text": "All excursions \u0026 guided tours included",
       "metadata": {
@@ -973,38 +997,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
-        "cssClasses": ""
-      }
-    },
-    {
-      "id": "html-40",
-      "page": 1,
-      "text": "Professional local guide in Ireland",
-      "metadata": {
-        "fontSize": 9.8,
-        "fontName": "Arial",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "boundingBox": {
-          "left": 0,
-          "top": 0,
-          "width": 0,
-          "height": 0
-        },
-        "color": "#2E5BA1",
-        "htmlArea": "Main Content",
-        "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
         "cssClasses": ""
       }
     },
     {
       "id": "html-41",
       "page": 1,
-      "text": "Scheduled flights to Dublin",
+      "text": "Professional tour manager",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1021,14 +1021,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
         "cssClasses": ""
       }
     },
     {
       "id": "html-42",
       "page": 1,
-      "text": "Executive coach in Ireland",
+      "text": "Executive coach throughout",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1045,12 +1045,36 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
         "cssClasses": ""
       }
     },
     {
       "id": "html-43",
+      "page": 1,
+      "text": "Return Channel ferry crossings",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-44",
       "page": 1,
       "text": "One free place per 10 paying passengers",
       "metadata": {
@@ -1069,39 +1093,15 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
         "cssClasses": "",
         "isBold": true
       }
     },
     {
-      "id": "html-44",
-      "page": 1,
-      "text": "Introductory tour of Dublin",
-      "metadata": {
-        "fontSize": 9.8,
-        "fontName": "Arial",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "boundingBox": {
-          "left": 0,
-          "top": 0,
-          "width": 0,
-          "height": 0
-        },
-        "color": "#2E5BA1",
-        "htmlArea": "Main Content",
-        "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
-        "cssClasses": ""
-      }
-    },
-    {
       "id": "html-45",
       "page": 1,
-      "text": "Dublin Castle - Chester Beatty Library \u0026 the State Apartments",
+      "text": "Ghent",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1118,14 +1118,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-46",
       "page": 1,
-      "text": "Kilmainham Gaol",
+      "text": "The Mauritshuis",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1142,14 +1142,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-47",
       "page": 1,
-      "text": "Wicklow Mountains, the \u2018garden of Ireland\u2019",
+      "text": "Panorama Mesdag",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1166,14 +1166,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-48",
       "page": 1,
-      "text": "Powerscourt House \u0026 Gardens",
+      "text": "Koninklijke Porcleyne Fles - lunch \u0026 guided tour",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1190,14 +1190,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-49",
       "page": 1,
-      "text": "Glendalough",
+      "text": "Van Gogh Museum",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1214,14 +1214,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-50",
       "page": 1,
-      "text": "Avoca",
+      "text": "Rijksmuseum - guided tour",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1238,14 +1238,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-51",
       "page": 1,
-      "text": "National Gallery of Ireland - guided tour",
+      "text": "Amsterdam canal cruise",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1262,14 +1262,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-52",
       "page": 1,
-      "text": "Trinity College \u0026 Book of Kells",
+      "text": "Leiden",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1286,14 +1286,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-53",
       "page": 1,
-      "text": "Newman House",
+      "text": "Delft",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1310,14 +1310,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-54",
       "page": 1,
-      "text": "EPIC The Irish Emigration Museum",
+      "text": "The Vermeer Centre",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1334,12 +1334,36 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
         "cssClasses": ""
       }
     },
     {
       "id": "html-55",
+      "page": 1,
+      "text": "Bruges",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-56",
       "page": 1,
       "text": "Hotel",
       "metadata": {
@@ -1358,15 +1382,15 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading",
         "cssClasses": "",
         "isBold": true
       }
     },
     {
-      "id": "html-56",
+      "id": "html-57",
       "page": 1,
-      "text": "Four nights on bed and breakfast basis at the centrally located 3* Academy PlazaHotel in Dublin. Located near O\u2019Connell Street, the hotel offers easy access to the city\u2019s main attractions. Facilities include a restaurant and a bar and all rooms are en suite.",
+      "text": "Four nights on bed and breakfast basis at the centrally located 4* Voco Hotel in The Hague. Based in the Royal Quarter, facilities at the hotel include a restaurant and bar and all rooms are en suite.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1383,12 +1407,12 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab3/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
-      "id": "html-57",
+      "id": "html-58",
       "page": 1,
       "text": "Extras",
       "metadata": {
@@ -1407,15 +1431,15 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading",
         "cssClasses": "",
         "isBold": true
       }
     },
     {
-      "id": "html-58",
+      "id": "html-59",
       "page": 1,
-      "text": "Single room supplement \u00A3169",
+      "text": "Single room supplement \u00A3199",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1432,12 +1456,12 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
-      "id": "html-59",
+      "id": "html-60",
       "page": 1,
       "text": "Insurance",
       "metadata": {
@@ -1456,12 +1480,12 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
-      "id": "html-60",
+      "id": "html-61",
       "page": 1,
       "text": "Entrance fees to places of interest",
       "metadata": {
@@ -1480,12 +1504,12 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
-      "id": "html-61",
+      "id": "html-62",
       "page": 1,
       "text": "Audio headphones",
       "metadata": {
@@ -1504,12 +1528,12 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
-      "id": "html-62",
+      "id": "html-63",
       "page": 1,
       "text": "Gratuities",
       "metadata": {
@@ -1528,12 +1552,12 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
         "cssClasses": ""
       }
     },
     {
-      "id": "html-63",
+      "id": "html-64",
       "page": 1,
       "text": "Tailor-make this tour",
       "metadata": {
@@ -1552,13 +1576,13 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading",
         "cssClasses": "",
         "isBold": true
       }
     },
     {
-      "id": "html-64",
+      "id": "html-65",
       "page": 1,
       "text": "Your tailor made tour",
       "metadata": {
@@ -1577,14 +1601,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h4",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
         "cssClasses": ""
       }
     },
     {
-      "id": "html-65",
+      "id": "html-66",
       "page": 1,
-      "text": "Here are some more suggested places of interest you might like to include:",
+      "text": "Here are some more suggested places of interest:",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1601,38 +1625,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
-        "cssClasses": ""
-      }
-    },
-    {
-      "id": "html-66",
-      "page": 1,
-      "text": "- National Botanic Gardens - home to approximately 20,000 species and cultivars, a rose garden, the arboretum and stunning herbaceous displays",
-      "metadata": {
-        "fontSize": 9.8,
-        "fontName": "Arial",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "boundingBox": {
-          "left": 0,
-          "top": 0,
-          "width": 0,
-          "height": 0
-        },
-        "color": "#2E5BA1",
-        "htmlArea": "Main Content",
-        "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
         "cssClasses": ""
       }
     },
     {
       "id": "html-67",
       "page": 1,
-      "text": "- Russborough House - built in 1741 by Joseph Leeson, the house has been described as \u2018arguably the most beautiful house in Ireland\u2019 and is home to a fine collection of art, silverware and porcelain",
+      "text": "- Rembrandthuis, Amsterdam - Rembrandt\u2019s home between 1639 and 1660 houses almost every etching he made (around 250) and a collection of the master\u2019s possessions",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1649,12 +1649,60 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
         "cssClasses": ""
       }
     },
     {
       "id": "html-68",
+      "page": 1,
+      "text": "- Frans Hals Museum, Haarlem - Hals was a contemporary of Rembrandt and this museum, housed in a 17th century building round a courtyard, is home to wonderful collection of paintings and craft objects from the Golden Age",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-69",
+      "page": 1,
+      "text": "- Kr\u00F6ller-M\u00FCller Museum - the private collection of late 19th century and early 20th century paintings includes 278 works by Van Gogh, an outstanding collection of Chinese porcelain and many hundreds of Delftware items",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-70",
       "page": 1,
       "text": "Tour Reviews",
       "metadata": {
@@ -1673,15 +1721,15 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading",
         "cssClasses": "",
         "isBold": true
       }
     },
     {
-      "id": "html-69",
+      "id": "html-71",
       "page": 1,
-      "text": "Reviews for Dublin\u2019s Fair City",
+      "text": "Reviews for Holland \u0026 the Dutch Masters",
       "metadata": {
         "fontSize": 10.5,
         "fontName": "Arial",
@@ -1698,63 +1746,15 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "h3",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper",
         "cssClasses": "",
         "isBold": true
-      }
-    },
-    {
-      "id": "html-70",
-      "page": 1,
-      "text": "Date of tour: July 2017",
-      "metadata": {
-        "fontSize": 9.8,
-        "fontName": "Arial",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "boundingBox": {
-          "left": 0,
-          "top": 0,
-          "width": 0,
-          "height": 0
-        },
-        "color": "#2E5BA1",
-        "htmlArea": "Main Content",
-        "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-        "cssClasses": ""
-      }
-    },
-    {
-      "id": "html-71",
-      "page": 1,
-      "text": "Just a note to let you know that our tour to Dublin was a huge success. The hotel was good, coach was always on time with friendly and helpful drivers. All of the venues were welcoming and our tour manager was a delight. Thank you for your patience and help in planning the trip - one of our best ever.",
-      "metadata": {
-        "fontSize": 9.8,
-        "fontName": "Arial",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "boundingBox": {
-          "left": 0,
-          "top": 0,
-          "width": 0,
-          "height": 0
-        },
-        "color": "#2E5BA1",
-        "htmlArea": "Main Content",
-        "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-        "cssClasses": ""
       }
     },
     {
       "id": "html-72",
       "page": 1,
-      "text": "IC, Halstead",
+      "text": "Your coach, both drivers, the ferry crossings, and the roads on the other side, really were all excellent. The Club lounge on the ferry was a star feature! We \u0027bad travellers\u0027 were nicely surprised and appreciate your organisation of all that (although you probably didn\u0027t have a hand in the roads). There is a lot to said for using one vehicle from door to door when it is as comfortable, and as well and safely driven is this was. The latter had been a concern of mine: I\u0027m critical but couldn\u0027t fault Dave (nor the local short term driver). Everybody enjoyed the choice of the excellent hotel and its location, and our tour manager was kind, courteous, very conscientious and good company. We enjoyed all the itinerary, and the little known Panorama Mesdag (and its brilliant guide) was rated favourite venue by many, while the Amsterdam boat ride was disappointing, but we\u0027re glad to have done it. We thoroughly enjoyed our tour and you made it very easy for us. It had also been very easy and pleasant dealing with you and your team to set up the tour.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1771,15 +1771,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-        "cssClasses": "",
-        "isBold": true
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
       "id": "html-73",
       "page": 1,
-      "text": "Date of tour: May 2014",
+      "text": "RG, Ascot May 2024",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1796,14 +1795,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
         "cssClasses": ""
       }
     },
     {
       "id": "html-74",
       "page": 1,
-      "text": "Thank you on behalf of our Society for an excellent Tour. Please pass on my gratitude to Damian for his help and patience putting together our itinerary which was well balanced and met with approval. We packed quite a lot into a short space of time. The administration from beginning to end was faultless. The bar staff were most accommodating and dealt with my request to offer pre dinner drink very efficiently. The dinner was standard but the beef apparently was disappointing. Being on half board was definitely the best option. Rooms were clean and staff very pleasant. The guide was a delight - very informative and such fun and gave us a wonderful overview of Dublin. The day in the Wicklow Mountains was perfect particularly as we were blessed with wonderful weather. Our guides at the National Gallery were superlative - everyone remarked that they\u0027d never had better. The guide at the Castle was another young girl who was excellent. Finally Paul, our driver, got us there and back in very good time and was always most helpful. All in all we had a memorable holiday and I hope we\u0027ll be planning another.",
+      "text": "I just wanted to thank you again and your excellent staff who organised our tour to Holland. This was the fourth tour you have organised for me and it was definitely the best. I have had numerous cards and emails from members expressing their thanks and wanting to know where the next tour will be! Our tour manager was in his usual good form and he and I work well as a team. Our driver was excellent, friendly and flexible. Thank you again for all your help.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1820,14 +1819,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
         "cssClasses": ""
       }
     },
     {
       "id": "html-75",
       "page": 1,
-      "text": "SB, Huddersfield",
+      "text": "MP, Northwood June 2019",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1844,15 +1843,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-        "cssClasses": "",
-        "isBold": true
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
       "id": "html-76",
       "page": 1,
-      "text": "Date of tour: June 2011",
+      "text": "Having travelled with this group on many of your trips, I thought I would just like to write and say how much my husband and myself enjoyed our recent trip to the Netherlands. The itinerary was varied and interesting, but the trip was made extra special by our tour manager Paul. He made everything, even any mishaps enjoyable, with his great sense of humour and his numerous anecdotes. We look forward to future trips and hope that Paul will again be our anchor man.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1869,14 +1867,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
         "cssClasses": ""
       }
     },
     {
       "id": "html-77",
       "page": 1,
-      "text": "Just a line to let you know that all went very well indeed with the tour to Dublin. Clodagh was a darling, would want her again. The hotel very good, the weather was pretty kind really, chilly and rain showers but we saw the sun too. Gardens and owners all wonderful. Tailored Travel came out of the whole thing with glowing colours. Thanks for all your hard work, it came together beautifully and I had a lot of praise and many people said it was the best trip they had ever been on.",
+      "text": "LT, Leatherhead September 2016",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1893,14 +1891,14 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
         "cssClasses": ""
       }
     },
     {
       "id": "html-78",
       "page": 1,
-      "text": "ML, Haywards Heath",
+      "text": "I know we spoke earlier today but I felt I must write and thank Tailored Travel for arranging yet another wonderful 5 day extended visit. The content was very well balanced and the guides well informed. The hotel was comfortable and ideally situated. Our tour manager, Terence, was charming and his history of art and of the Netherlands made the tour exceptional and our members were full of praise. He went out of his way to add that little extra which makes a tour memorable. This was my last extended visit for our Society and without exception every tour arranged by Tailored Travel has been of the highest quality. Yourself, Damian and all your staff I have spoken to over the years have been very helpful and knowledgeable and have given me the confidence needed to undertake these tours. Please pass on my thanks to everyone concerned. I started with a successful visit to Madrid and finished with another successful visit to The Hague; what could be more satisfying. Thank you Michael and all your team.",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -1917,15 +1915,710 @@
         "color": "#2E5BA1",
         "htmlArea": "Main Content",
         "htmlTag": "p",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-        "cssClasses": "",
-        "isBold": true
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
       }
     },
     {
       "id": "html-79",
       "page": 1,
-      "text": "Back to all Ireland Tours",
+      "text": "RW, Witham May 2016",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-80",
+      "page": 1,
+      "text": "Just a note to say we arrived home safely last night after a great tour. The venues were good, the hotel fine, and the restaurant on the second night really good (they treated us like real diners not just a group, and 18 of us went back on our \u2018free night\u2019). Ludo our tour manager was very efficient and popular, and coped when one of our party forgot her passport, and our driver Mark was a star, and pleased to say they worked well together and got on. Happy to have either/both on future tours. So thanks so much for the organisation, and now looking forward to next year.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-81",
+      "page": 1,
+      "text": "CC, King\u2019s Lynn October 2015",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-82",
+      "page": 1,
+      "text": "I wanted to contact you direct following our return from Holland on Friday to report back and thank you personally for all your help and support. We had a very successful and happy visit to Holland and I have received many cards/emails and phone calls from members of our group saying how much they enjoyed everything. One of the visits which gave the most enjoyment was to the Panorama Mesdag which had a total wow factor and really caught the imagination of the whole group. Naturally all our visits won warm praise and approval and left everyone with a great feel-good feeling. We found the local people extremely helpful and polite, the restaurants of all ranges good value for money and convenient to our hotel. Food outlets at all places we visited were excellent and well organised. As for the Museum shops, wow \u2026\u2026..! Ludo was a wonderful Tour Manager and Tony not only a lovely personality but was a safe and careful driver. Several members of our group have asked me to thank both Ludo and Tony again for all they did for us and it goes without saying I wholeheartedly endorse this. Renewed thanks to you and all at Tailored Travel for helping us to arrange and enjoy such a successful and interesting tour.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-83",
+      "page": 1,
+      "text": "SB, Haslemere October 2015",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-84",
+      "page": 1,
+      "text": "I would like to say how much I enjoyed the trip to the Netherlands. I would especially like to thank the tour manager. He made the trip both interesting and fun and worked tirelessly to ensure everything ran smoothly. I would also like to thank the driver who also was excellent.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-85",
+      "page": 1,
+      "text": "JS, East Horsley September 2015",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-86",
+      "page": 1,
+      "text": "We have returned from Holland and I am writing to thank you for all your hard work. The holiday was excellent, everything was well planned and we had a very good time. The hotel was comfortable and the itinerary nicely varied with time to look around the various museums etc. Both Ludo and Tony were professional and friendly. I was impressed with Ludo\u2019s efficiency and organisational skills, he was helpful and made every effort to make sure that our group were happy and had the opportunity to visit the places they wanted on our free afternoon in Amsterdam. So, a successful trip, with members asking what we were going to do next, always a good sign.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-87",
+      "page": 1,
+      "text": "CK, Potters Bar July 2015",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-88",
+      "page": 1,
+      "text": "Arrived home all in one piece although a bit shattered! The weather was wonderful; there were even some comments that it was too hot on the second day!! Our Tour Guide, Ludo, was really good and our driver, Ian, drove us faultlessly in a very comfortable coach with lots of leg-room. The hotel was in a lovely area sort of Chelsea/South Kensington and very comfortable. The dinner on the first evening surprised me and I think was very well received by the group. The overnight ferry crossing was a pleasant surprise to most of us. Our itinerary was varied and we visited a lot of very beautiful and very interesting places. Holland is really spotlessly clean everywhere and the standard of all the cafes and restaurants at all the venues we came to was very high. It wasn\u0027t all culture as Margaret\u0027s suggestion of a visit to Leiden was really like being on holiday and we managed to get a 50 minute ride on the canal system before lunch and saw the beautiful city from a different view before finishing the day at the Frans Hals museum in Haarlem. I don\u0027t think any of us need see another work of art for a few weeks!!! But we have all brought back some exciting memories of Holland.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-89",
+      "page": 1,
+      "text": "DC, Aldeburgh June 2015",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-90",
+      "page": 1,
+      "text": "Just a short note to say that everybody enjoyed the Amsterdam holiday. The hotel was fine and located close to lots of restaurants. Our guide Marga was very helpful and even added some extra items like a visit to a Dutch cheese factory, a diamond museum and a visit to Delft to see how they make their famous porcelain. As usual the organisation of the holiday was impeccable so thanks to all the team at Tailored Travel.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-91",
+      "page": 1,
+      "text": "TC, Italy May 2015",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-92",
+      "page": 1,
+      "text": "It was an excellent tour, helped by brilliant weather, our superb Guide Tom Abbott, the excellent driver Robbie and the Whispers. These made a huge difference as Tom was able to keep in touch with us as he led us through the streets, or inside the museums. Some of the Dutch guides had never used them but they all appreciated them as they were able to talk quietly but we could all hear them. I would definitely recommend using them again. Thank you Louise for all your help and patience with me over the past few weeks as the final arrangements were made. I do appreciate your help and I realise that we are one of many Tours you are trying to finalise at the same time. Enjoy all that you are doing, and again thank you for all your help.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-93",
+      "page": 1,
+      "text": "VW, Kingston upon Thames April 2015",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-94",
+      "page": 1,
+      "text": "We had a very good trip to Holland. As always, we did not have enough time at the various museums but all the guides were very informative. I would just like to say a huge thank you to our tour manager. She was so kind and helpful and informative above and beyond the call of duty. Our driver also deserves a medal for coping with the narrow streets in The Hague and Amsterdam. The hotel was also very convenient and comfortable.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-95",
+      "page": 1,
+      "text": "SC, Teddington May 2014",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-96",
+      "page": 1,
+      "text": "Many thanks once again for organising such a wonderful holiday for us all. It was a really enriching, fun experience, which I thoroughly enjoyed. Lots of wonderful memories to treasure - especially the Kroller-Muller museum - what a find!",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-97",
+      "page": 1,
+      "text": "PD, Lewes March 2014",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-98",
+      "page": 1,
+      "text": "Our NADFAS trip to the Netherlands last week was highly enjoyable, largely due to the efficiency, good organisation and friendliness of Tailored Travel. We were very fortunate in having Mark to drive us - always safe and punctual - and Lance, who was a marvellous guide, welcoming, extremely helpful and very informative.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-99",
+      "page": 1,
+      "text": "SK, Lewes March 2014",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-100",
+      "page": 1,
+      "text": "I am writing to thank you for organising such a wonderful trip, the hotel was great but most of all the tour manager and the driver were knowledgeable and courteous. Last year I went with Hove NADFAS to Northumbria with Tailored Travel and it was all so good I jumped at the chance of going with your company again to Holland.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-101",
+      "page": 1,
+      "text": "JH, Hove March 2014",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-102",
+      "page": 1,
+      "text": "Thank you Tailored Travel. This was a wonderful trip. I couldn\u0027t fault the organisation, the itinerary (impossible to pick a favourite visit as I enjoyed each one), the comfortable coach, the excellent hotel. Lance and Mark did a marvellous job in looking after us too. I would recommend your company most highly.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-103",
+      "page": 1,
+      "text": "SM, Lancing March 2014",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-104",
+      "page": 1,
+      "text": "A very big thank you for arranging the Den Haag tour for our Art History Group. From beginning to end it went like clockwork. The coach driver, Paul, was very helpful and drove smoothly throughout the trip. His knowledge of Holland proved invaluable and several members of the party asked if he could be our driver for the Paris tour next April. The Park Hotel Den Haag with its central location was a 100% success. Several of the party who had been on eight Society tours previously which had been organised with other tour operators remarked it was the best accommodation they had experienced on the tours. I personally found the hotel staff excellent and they were very helpful at all times to the party. Would you please thank all at Tailored Travel who supported me both with the bookings and the administration that resulted in a stress free and a most enjoyable visit to Holland. Thank you once again for a \u2018first class\u2019 service. I look forward to future bookings on behalf of our Society.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-105",
+      "page": 1,
+      "text": "DR, Cheltenham October 2013",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-106",
+      "page": 1,
+      "text": "The tour to Holland was a great success. The itinerary was good, there was some flexibility and free time was appreciated. Everyone thought they were given plenty of information before travel. From my point of view I found your staff to be extremely helpful and I was appreciative of all the information supplied before travelling.",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-107",
+      "page": 1,
+      "text": "SP, Telford April 2009",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "p",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-108",
+      "page": 1,
+      "text": "Back to all Holland Tours",
       "metadata": {
         "fontSize": 10.5,
         "fontName": "Open Sans",
@@ -1947,7 +2640,7 @@
       }
     },
     {
-      "id": "html-80",
+      "id": "html-109",
       "page": 1,
       "text": "Call us on 020 7064 4970to tailor this tourfor your group",
       "metadata": {
@@ -1971,7 +2664,7 @@
       }
     },
     {
-      "id": "html-81",
+      "id": "html-110",
       "page": 1,
       "text": "Tailor make your group tour",
       "metadata": {
@@ -1995,9 +2688,9 @@
       }
     },
     {
-      "id": "html-82",
+      "id": "html-111",
       "page": 1,
-      "text": "Remember this itinerary is just our suggestion. Tailor make this tour exclusively for your group to suit your members\u2019 budget or preferences. You could:",
+      "text": "Remember these are just our suggestions. Every one of our tours is exclusively for your group and your group alone so each one can be tailor made to suit the interests and profile of your members. You could:",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -2019,9 +2712,9 @@
       }
     },
     {
-      "id": "html-83",
+      "id": "html-112",
       "page": 1,
-      "text": "- stay at a 4* hotel",
+      "text": "- travel by Eurostar",
       "metadata": {
         "fontSize": 9.8,
         "fontName": "Arial",
@@ -2043,7 +2736,31 @@
       }
     },
     {
-      "id": "html-84",
+      "id": "html-113",
+      "page": 1,
+      "text": "- stay at a 3* or 5* hotel",
+      "metadata": {
+        "fontSize": 9.8,
+        "fontName": "Arial",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "boundingBox": {
+          "left": 0,
+          "top": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "#2E5BA1",
+        "htmlArea": "Main Content",
+        "htmlTag": "li",
+        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "html-114",
       "page": 1,
       "text": "- with more dinners included",
       "metadata": {
@@ -2067,7 +2784,7 @@
       }
     },
     {
-      "id": "html-85",
+      "id": "html-115",
       "page": 1,
       "text": "- for more (or fewer) days",
       "metadata": {
@@ -2091,7 +2808,7 @@
       }
     },
     {
-      "id": "html-86",
+      "id": "html-116",
       "page": 1,
       "text": "- include different excursions \u2013 see \u2018Tailor-make this tour\u2019 tab for suggestions",
       "metadata": {
@@ -2115,31 +2832,7 @@
       }
     },
     {
-      "id": "html-87",
-      "page": 1,
-      "text": "- include UK airport coach transfers",
-      "metadata": {
-        "fontSize": 9.8,
-        "fontName": "Arial",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "boundingBox": {
-          "left": 0,
-          "top": 0,
-          "width": 0,
-          "height": 0
-        },
-        "color": "#2E5BA1",
-        "htmlArea": "Main Content",
-        "htmlTag": "li",
-        "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
-        "cssClasses": ""
-      }
-    },
-    {
-      "id": "html-88",
+      "id": "html-117",
       "page": 1,
       "text": "- bring a specialist lecturer",
       "metadata": {
@@ -2163,7 +2856,7 @@
       }
     },
     {
-      "id": "html-89",
+      "id": "html-118",
       "page": 1,
       "text": "- include all entrance fees \u0026 gratuities",
       "metadata": {
@@ -2187,9 +2880,9 @@
       }
     },
     {
-      "id": "html-90",
+      "id": "html-119",
       "page": 1,
-      "text": "Back to all Ireland Tours",
+      "text": "Back to all Holland Tours",
       "metadata": {
         "fontSize": 10.5,
         "fontName": "Open Sans",
@@ -2207,11 +2900,11 @@
         "htmlArea": "Main Content",
         "htmlTag": "a",
         "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
-        "cssClasses": "button-link ireland-back"
+        "cssClasses": "button-link holland-back"
       }
     },
     {
-      "id": "html-91",
+      "id": "html-120",
       "page": 1,
       "text": "Back to all Destinations",
       "metadata": {
@@ -2235,7 +2928,7 @@
       }
     },
     {
-      "id": "html-92",
+      "id": "html-121",
       "page": 1,
       "text": "Request a Quote",
       "metadata": {
@@ -2259,7 +2952,7 @@
       }
     },
     {
-      "id": "html-93",
+      "id": "html-122",
       "page": 1,
       "text": "Request a Brochure",
       "metadata": {
@@ -2283,7 +2976,7 @@
       }
     },
     {
-      "id": "html-94",
+      "id": "html-123",
       "page": 1,
       "text": "Call us on 020 7064 4970to tailor make the perfect tourfor your group",
       "metadata": {
@@ -2307,9 +3000,9 @@
       }
     },
     {
-      "id": "html-95",
+      "id": "html-124",
       "page": 1,
-      "text": "Back to all Ireland Tours",
+      "text": "Back to all Holland Tours",
       "metadata": {
         "fontSize": 10.5,
         "fontName": "Open Sans",
@@ -2331,7 +3024,7 @@
       }
     },
     {
-      "id": "html-96",
+      "id": "html-125",
       "page": 1,
       "text": "020 7064 4970",
       "metadata": {
@@ -2356,7 +3049,7 @@
       }
     },
     {
-      "id": "html-97",
+      "id": "html-126",
       "page": 1,
       "text": "info@tailored-travel.co.uk",
       "metadata": {
@@ -2380,7 +3073,7 @@
       }
     },
     {
-      "id": "html-98",
+      "id": "html-127",
       "page": 1,
       "text": "12 Jamaica Road",
       "metadata": {
@@ -2404,7 +3097,7 @@
       }
     },
     {
-      "id": "html-99",
+      "id": "html-128",
       "page": 1,
       "text": "London",
       "metadata": {
@@ -2428,7 +3121,7 @@
       }
     },
     {
-      "id": "html-100",
+      "id": "html-129",
       "page": 1,
       "text": "SE1 2RN",
       "metadata": {
@@ -2452,7 +3145,7 @@
       }
     },
     {
-      "id": "html-101",
+      "id": "html-130",
       "page": 1,
       "text": "Tailored Travel holds a current ATOL licence. Air holiday packages shown are ATOL protected by the Civil Aviation Authority. Our ATOL number is ATOL 5605.",
       "metadata": {
@@ -2476,7 +3169,7 @@
       }
     },
     {
-      "id": "html-102",
+      "id": "html-131",
       "page": 1,
       "text": "Information",
       "metadata": {
@@ -2500,7 +3193,7 @@
       }
     },
     {
-      "id": "html-103",
+      "id": "html-132",
       "page": 1,
       "text": "- Sitemap",
       "metadata": {
@@ -2524,7 +3217,7 @@
       }
     },
     {
-      "id": "html-104",
+      "id": "html-133",
       "page": 1,
       "text": "- Terms \u0026 Conditions",
       "metadata": {
@@ -2548,7 +3241,7 @@
       }
     },
     {
-      "id": "html-105",
+      "id": "html-134",
       "page": 1,
       "text": "- Privacy Policy",
       "metadata": {
@@ -2572,7 +3265,7 @@
       }
     },
     {
-      "id": "html-106",
+      "id": "html-135",
       "page": 1,
       "text": "- Cookies",
       "metadata": {
@@ -2596,7 +3289,7 @@
       }
     },
     {
-      "id": "html-107",
+      "id": "html-136",
       "page": 1,
       "text": "- Booking Conditions",
       "metadata": {
@@ -2620,7 +3313,7 @@
       }
     },
     {
-      "id": "html-108",
+      "id": "html-137",
       "page": 1,
       "text": "- Insurance",
       "metadata": {
@@ -2644,7 +3337,7 @@
       }
     },
     {
-      "id": "html-109",
+      "id": "html-138",
       "page": 1,
       "text": "- Financial Security",
       "metadata": {
@@ -2668,7 +3361,7 @@
       }
     },
     {
-      "id": "html-110",
+      "id": "html-139",
       "page": 1,
       "text": "Types of Holiday",
       "metadata": {
@@ -2692,7 +3385,7 @@
       }
     },
     {
-      "id": "html-111",
+      "id": "html-140",
       "page": 1,
       "text": "- Tailor Made Tours for Groups",
       "metadata": {
@@ -2716,7 +3409,7 @@
       }
     },
     {
-      "id": "html-112",
+      "id": "html-141",
       "page": 1,
       "text": "- School \u0026 College tours",
       "metadata": {
@@ -2740,7 +3433,7 @@
       }
     },
     {
-      "id": "html-113",
+      "id": "html-142",
       "page": 1,
       "text": "- Tours for Individuals",
       "metadata": {
@@ -2764,7 +3457,7 @@
       }
     },
     {
-      "id": "html-114",
+      "id": "html-143",
       "page": 1,
       "text": "Destinations",
       "metadata": {
@@ -2788,7 +3481,7 @@
       }
     },
     {
-      "id": "html-115",
+      "id": "html-144",
       "page": 1,
       "text": "- UK",
       "metadata": {
@@ -2812,7 +3505,7 @@
       }
     },
     {
-      "id": "html-116",
+      "id": "html-145",
       "page": 1,
       "text": "- France",
       "metadata": {
@@ -2836,7 +3529,7 @@
       }
     },
     {
-      "id": "html-117",
+      "id": "html-146",
       "page": 1,
       "text": "- Holland",
       "metadata": {
@@ -2860,7 +3553,7 @@
       }
     },
     {
-      "id": "html-118",
+      "id": "html-147",
       "page": 1,
       "text": "- Portugal",
       "metadata": {
@@ -2884,7 +3577,7 @@
       }
     },
     {
-      "id": "html-119",
+      "id": "html-148",
       "page": 1,
       "text": "- Belgium",
       "metadata": {
@@ -2908,7 +3601,7 @@
       }
     },
     {
-      "id": "html-120",
+      "id": "html-149",
       "page": 1,
       "text": "- Southern Europe",
       "metadata": {
@@ -2932,7 +3625,7 @@
       }
     },
     {
-      "id": "html-121",
+      "id": "html-150",
       "page": 1,
       "text": "- Italy",
       "metadata": {
@@ -2956,7 +3649,7 @@
       }
     },
     {
-      "id": "html-122",
+      "id": "html-151",
       "page": 1,
       "text": "- Germany",
       "metadata": {
@@ -2980,7 +3673,7 @@
       }
     },
     {
-      "id": "html-123",
+      "id": "html-152",
       "page": 1,
       "text": "- Spain",
       "metadata": {
@@ -3004,7 +3697,7 @@
       }
     },
     {
-      "id": "html-124",
+      "id": "html-153",
       "page": 1,
       "text": "- Austria",
       "metadata": {
@@ -3028,7 +3721,7 @@
       }
     },
     {
-      "id": "html-125",
+      "id": "html-154",
       "page": 1,
       "text": "- Ireland",
       "metadata": {
@@ -3052,7 +3745,7 @@
       }
     },
     {
-      "id": "html-126",
+      "id": "html-155",
       "page": 1,
       "text": "- Central \u0026 Eastern Europe",
       "metadata": {
@@ -3076,7 +3769,7 @@
       }
     },
     {
-      "id": "html-127",
+      "id": "html-156",
       "page": 1,
       "text": "- Worldwide",
       "metadata": {
@@ -3100,7 +3793,7 @@
       }
     },
     {
-      "id": "html-128",
+      "id": "html-157",
       "page": 1,
       "text": "Destinations",
       "metadata": {
@@ -3124,7 +3817,7 @@
       }
     },
     {
-      "id": "html-129",
+      "id": "html-158",
       "page": 1,
       "text": "- UK",
       "metadata": {
@@ -3148,7 +3841,7 @@
       }
     },
     {
-      "id": "html-130",
+      "id": "html-159",
       "page": 1,
       "text": "- Italy",
       "metadata": {
@@ -3172,7 +3865,7 @@
       }
     },
     {
-      "id": "html-131",
+      "id": "html-160",
       "page": 1,
       "text": "- France",
       "metadata": {
@@ -3196,7 +3889,7 @@
       }
     },
     {
-      "id": "html-132",
+      "id": "html-161",
       "page": 1,
       "text": "- Germany",
       "metadata": {
@@ -3220,7 +3913,7 @@
       }
     },
     {
-      "id": "html-133",
+      "id": "html-162",
       "page": 1,
       "text": "- Holland",
       "metadata": {
@@ -3244,7 +3937,7 @@
       }
     },
     {
-      "id": "html-134",
+      "id": "html-163",
       "page": 1,
       "text": "- Spain",
       "metadata": {
@@ -3268,7 +3961,7 @@
       }
     },
     {
-      "id": "html-135",
+      "id": "html-164",
       "page": 1,
       "text": "- Portugal",
       "metadata": {
@@ -3292,7 +3985,7 @@
       }
     },
     {
-      "id": "html-136",
+      "id": "html-165",
       "page": 1,
       "text": "- Austria",
       "metadata": {
@@ -3316,7 +4009,7 @@
       }
     },
     {
-      "id": "html-137",
+      "id": "html-166",
       "page": 1,
       "text": "- Belgium",
       "metadata": {
@@ -3340,7 +4033,7 @@
       }
     },
     {
-      "id": "html-138",
+      "id": "html-167",
       "page": 1,
       "text": "- Ireland",
       "metadata": {
@@ -3364,7 +4057,7 @@
       }
     },
     {
-      "id": "html-139",
+      "id": "html-168",
       "page": 1,
       "text": "- Southern Europe",
       "metadata": {
@@ -3388,7 +4081,7 @@
       }
     },
     {
-      "id": "html-140",
+      "id": "html-169",
       "page": 1,
       "text": "- Central \u0026 Eastern Europe",
       "metadata": {
@@ -3412,7 +4105,7 @@
       }
     },
     {
-      "id": "html-141",
+      "id": "html-170",
       "page": 1,
       "text": "- Worldwide",
       "metadata": {
@@ -3436,7 +4129,7 @@
       }
     },
     {
-      "id": "html-142",
+      "id": "html-171",
       "page": 1,
       "text": "Types of Holiday",
       "metadata": {
@@ -3460,7 +4153,7 @@
       }
     },
     {
-      "id": "html-143",
+      "id": "html-172",
       "page": 1,
       "text": "- Tailor Made Tours for Groups",
       "metadata": {
@@ -3484,7 +4177,7 @@
       }
     },
     {
-      "id": "html-144",
+      "id": "html-173",
       "page": 1,
       "text": "- School \u0026 College tours",
       "metadata": {
@@ -3508,7 +4201,7 @@
       }
     },
     {
-      "id": "html-145",
+      "id": "html-174",
       "page": 1,
       "text": "- Tours for Individuals",
       "metadata": {
@@ -3532,7 +4225,7 @@
       }
     },
     {
-      "id": "html-146",
+      "id": "html-175",
       "page": 1,
       "text": "- Home",
       "metadata": {
@@ -3556,7 +4249,7 @@
       }
     },
     {
-      "id": "html-147",
+      "id": "html-176",
       "page": 1,
       "text": "- Group Tours",
       "metadata": {
@@ -3580,7 +4273,7 @@
       }
     },
     {
-      "id": "html-148",
+      "id": "html-177",
       "page": 1,
       "text": "- Group Organisers",
       "metadata": {
@@ -3604,7 +4297,7 @@
       }
     },
     {
-      "id": "html-149",
+      "id": "html-178",
       "page": 1,
       "text": "- Testimonials",
       "metadata": {
@@ -3628,7 +4321,7 @@
       }
     },
     {
-      "id": "html-150",
+      "id": "html-179",
       "page": 1,
       "text": "- Request a Brochure",
       "metadata": {
@@ -3652,7 +4345,7 @@
       }
     },
     {
-      "id": "html-151",
+      "id": "html-180",
       "page": 1,
       "text": "- Request a Quote",
       "metadata": {
@@ -3676,7 +4369,7 @@
       }
     },
     {
-      "id": "html-152",
+      "id": "html-181",
       "page": 1,
       "text": "- News",
       "metadata": {
@@ -3700,7 +4393,7 @@
       }
     },
     {
-      "id": "html-153",
+      "id": "html-182",
       "page": 1,
       "text": "- About Us",
       "metadata": {
@@ -3724,7 +4417,7 @@
       }
     },
     {
-      "id": "html-154",
+      "id": "html-183",
       "page": 1,
       "text": "- Contact Us",
       "metadata": {
@@ -3748,7 +4441,7 @@
       }
     },
     {
-      "id": "html-155",
+      "id": "html-184",
       "page": 1,
       "text": "- View Your Tour",
       "metadata": {
@@ -3772,7 +4465,7 @@
       }
     },
     {
-      "id": "html-156",
+      "id": "html-185",
       "page": 1,
       "text": "- Close",
       "metadata": {
@@ -3997,7 +4690,7 @@
       "cssSelector": "div#sb-site",
       "path": "div#sb-site",
       "depth": 1,
-      "elementCount": 134,
+      "elementCount": 163,
       "area": "Ungrouped",
       "children": [
         {
@@ -4006,7 +4699,7 @@
           "cssSelector": "div.body-wrapper",
           "path": "div#sb-site/div.body-wrapper",
           "depth": 2,
-          "elementCount": 84,
+          "elementCount": 113,
           "area": "Ungrouped",
           "children": [
             {
@@ -4015,12 +4708,12 @@
               "cssSelector": "div#body_content",
               "path": "div#sb-site/div.body-wrapper/div#body_content",
               "depth": 3,
-              "elementCount": 84,
+              "elementCount": 113,
               "area": "Main Content",
               "children": [
                 {
                   "tag": "div",
-                  "className": "country-banner ireland-banner",
+                  "className": "country-banner holland-banner",
                   "cssSelector": "div.country-banner",
                   "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner",
                   "depth": 4,
@@ -4118,7 +4811,7 @@
                           "children": [
                             {
                               "tag": "div",
-                              "className": "banner_text_wrapper ireland_tour",
+                              "className": "banner_text_wrapper holland_tour",
                               "cssSelector": "div.banner_text_wrapper",
                               "path": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper",
                               "depth": 7,
@@ -4153,11 +4846,11 @@
                 },
                 {
                   "tag": "div",
-                  "className": "main-column ireland-main-column",
+                  "className": "main-column holland-main-column",
                   "cssSelector": "div.main-column",
                   "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column",
                   "depth": 4,
-                  "elementCount": 79,
+                  "elementCount": 108,
                   "area": "Main Content",
                   "children": [
                     {
@@ -4210,7 +4903,7 @@
                       "cssSelector": "div#tour_wrapper",
                       "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper",
                       "depth": 5,
-                      "elementCount": 75,
+                      "elementCount": 104,
                       "area": "Main Content",
                       "children": [
                         {
@@ -4219,7 +4912,7 @@
                           "cssSelector": "div.left-column",
                           "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column",
                           "depth": 6,
-                          "elementCount": 59,
+                          "elementCount": 88,
                           "area": "Main Content",
                           "children": [
                             {
@@ -4228,25 +4921,25 @@
                               "cssSelector": "div#tab_wrapper",
                               "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper",
                               "depth": 7,
-                              "elementCount": 58,
+                              "elementCount": 87,
                               "area": "Main Content",
                               "children": [
                                 {
                                   "tag": "ul",
-                                  "className": "ireland_tabs tabs",
-                                  "cssSelector": "ul.ireland_tabs",
-                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.ireland_tabs",
+                                  "className": "holland_tabs tabs",
+                                  "cssSelector": "ul.holland_tabs",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
                                   "depth": 8,
                                   "elementCount": 6,
                                   "area": "Main Content"
                                 },
                                 {
                                   "tag": "div",
-                                  "className": "ireland_tab_container tab_container",
-                                  "cssSelector": "div.ireland_tab_container",
-                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container",
+                                  "className": "holland_tab_container tab_container",
+                                  "cssSelector": "div.holland_tab_container",
+                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container",
                                   "depth": 8,
-                                  "elementCount": 52,
+                                  "elementCount": 81,
                                   "area": "Main Content",
                                   "children": [
                                     {
@@ -4254,7 +4947,7 @@
                                       "id": "tab1",
                                       "className": "tab_content",
                                       "cssSelector": "div#tab1",
-                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1",
                                       "depth": 9,
                                       "elementCount": 11,
                                       "area": "Main Content",
@@ -4263,7 +4956,7 @@
                                           "tag": "a",
                                           "className": "heading-link",
                                           "cssSelector": "a.heading-link",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/a.heading-link",
                                           "depth": 10,
                                           "elementCount": 1,
                                           "area": "Main Content",
@@ -4272,7 +4965,7 @@
                                               "tag": "span",
                                               "className": "tab-mob-heading",
                                               "cssSelector": "span.tab-mob-heading",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
                                               "depth": 11,
                                               "elementCount": 1,
                                               "area": "Main Content"
@@ -4283,7 +4976,7 @@
                                           "tag": "div",
                                           "className": "tab-wrapper",
                                           "cssSelector": "div.tab-wrapper",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1/div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
                                           "depth": 10,
                                           "elementCount": 10,
                                           "area": "Main Content"
@@ -4295,16 +4988,16 @@
                                       "id": "tab2",
                                       "className": "tab_content",
                                       "cssSelector": "div#tab2",
-                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2",
                                       "depth": 9,
-                                      "elementCount": 17,
+                                      "elementCount": 18,
                                       "area": "Main Content",
                                       "children": [
                                         {
                                           "tag": "a",
                                           "className": "heading-link",
                                           "cssSelector": "a.heading-link",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/a.heading-link",
                                           "depth": 10,
                                           "elementCount": 1,
                                           "area": "Main Content",
@@ -4313,7 +5006,7 @@
                                               "tag": "span",
                                               "className": "tab-mob-heading",
                                               "cssSelector": "span.tab-mob-heading",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading",
                                               "depth": 11,
                                               "elementCount": 1,
                                               "area": "Main Content"
@@ -4324,25 +5017,25 @@
                                           "tag": "div",
                                           "className": "tab-wrapper",
                                           "cssSelector": "div.tab-wrapper",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper",
                                           "depth": 10,
-                                          "elementCount": 16,
+                                          "elementCount": 17,
                                           "area": "Main Content",
                                           "children": [
                                             {
                                               "tag": "div",
                                               "className": "featuring_col1",
                                               "cssSelector": "div.featuring_col1",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
                                               "depth": 11,
-                                              "elementCount": 5,
+                                              "elementCount": 6,
                                               "area": "Main Content"
                                             },
                                             {
                                               "tag": "div",
                                               "className": "featuring_col2",
                                               "cssSelector": "div.featuring_col2",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
                                               "depth": 11,
                                               "elementCount": 11,
                                               "area": "Main Content"
@@ -4356,7 +5049,7 @@
                                       "id": "tab3",
                                       "className": "tab_content",
                                       "cssSelector": "div#tab3",
-                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab3",
                                       "depth": 9,
                                       "elementCount": 2,
                                       "area": "Main Content",
@@ -4365,7 +5058,7 @@
                                           "tag": "a",
                                           "className": "heading-link",
                                           "cssSelector": "a.heading-link",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab3/a.heading-link",
                                           "depth": 10,
                                           "elementCount": 1,
                                           "area": "Main Content",
@@ -4374,7 +5067,7 @@
                                               "tag": "span",
                                               "className": "tab-mob-heading",
                                               "cssSelector": "span.tab-mob-heading",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading",
                                               "depth": 11,
                                               "elementCount": 1,
                                               "area": "Main Content"
@@ -4385,7 +5078,7 @@
                                           "tag": "div",
                                           "className": "tab-wrapper",
                                           "cssSelector": "div.tab-wrapper",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab3/div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab3/div.tab-wrapper",
                                           "depth": 10,
                                           "elementCount": 1,
                                           "area": "Main Content"
@@ -4397,7 +5090,7 @@
                                       "id": "tab4",
                                       "className": "tab_content",
                                       "cssSelector": "div#tab4",
-                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4",
                                       "depth": 9,
                                       "elementCount": 6,
                                       "area": "Main Content",
@@ -4406,7 +5099,7 @@
                                           "tag": "a",
                                           "className": "heading-link",
                                           "cssSelector": "a.heading-link",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/a.heading-link",
                                           "depth": 10,
                                           "elementCount": 1,
                                           "area": "Main Content",
@@ -4415,7 +5108,7 @@
                                               "tag": "span",
                                               "className": "tab-mob-heading",
                                               "cssSelector": "span.tab-mob-heading",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading",
                                               "depth": 11,
                                               "elementCount": 1,
                                               "area": "Main Content"
@@ -4426,7 +5119,7 @@
                                           "tag": "div",
                                           "className": "tab-wrapper",
                                           "cssSelector": "div.tab-wrapper",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab4/div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
                                           "depth": 10,
                                           "elementCount": 5,
                                           "area": "Main Content"
@@ -4438,16 +5131,16 @@
                                       "id": "tab5",
                                       "className": "tab_content",
                                       "cssSelector": "div#tab5",
-                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5",
                                       "depth": 9,
-                                      "elementCount": 5,
+                                      "elementCount": 6,
                                       "area": "Main Content",
                                       "children": [
                                         {
                                           "tag": "a",
                                           "className": "heading-link",
                                           "cssSelector": "a.heading-link",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/a.heading-link",
                                           "depth": 10,
                                           "elementCount": 1,
                                           "area": "Main Content",
@@ -4456,7 +5149,7 @@
                                               "tag": "span",
                                               "className": "tab-mob-heading",
                                               "cssSelector": "span.tab-mob-heading",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading",
                                               "depth": 11,
                                               "elementCount": 1,
                                               "area": "Main Content"
@@ -4467,26 +5160,26 @@
                                           "tag": "div",
                                           "className": "tab-wrapper",
                                           "cssSelector": "div.tab-wrapper",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper",
                                           "depth": 10,
-                                          "elementCount": 4,
+                                          "elementCount": 5,
                                           "area": "Main Content",
                                           "children": [
                                             {
                                               "tag": "div",
                                               "className": "your-tailor-made-tour",
                                               "cssSelector": "div.your-tailor-made-tour",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
                                               "depth": 11,
-                                              "elementCount": 4,
+                                              "elementCount": 5,
                                               "area": "Main Content",
                                               "children": [
                                                 {
                                                   "tag": "ul",
                                                   "cssSelector": "ul",
-                                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+                                                  "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
                                                   "depth": 12,
-                                                  "elementCount": 2,
+                                                  "elementCount": 3,
                                                   "area": "Main Content"
                                                 }
                                               ]
@@ -4500,16 +5193,16 @@
                                       "id": "tab6",
                                       "className": "tab_content",
                                       "cssSelector": "div#tab6",
-                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6",
+                                      "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6",
                                       "depth": 9,
-                                      "elementCount": 11,
+                                      "elementCount": 38,
                                       "area": "Main Content",
                                       "children": [
                                         {
                                           "tag": "a",
                                           "className": "heading-link",
                                           "cssSelector": "a.heading-link",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/a.heading-link",
                                           "depth": 10,
                                           "elementCount": 1,
                                           "area": "Main Content",
@@ -4518,7 +5211,7 @@
                                               "tag": "span",
                                               "className": "tab-mob-heading",
                                               "cssSelector": "span.tab-mob-heading",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading",
                                               "depth": 11,
                                               "elementCount": 1,
                                               "area": "Main Content"
@@ -4529,36 +5222,18 @@
                                           "tag": "div",
                                           "className": "tab-wrapper",
                                           "cssSelector": "div.tab-wrapper",
-                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper",
+                                          "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper",
                                           "depth": 10,
-                                          "elementCount": 10,
+                                          "elementCount": 37,
                                           "area": "Main Content",
                                           "children": [
                                             {
                                               "tag": "div",
                                               "className": "review",
                                               "cssSelector": "div.review",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
                                               "depth": 11,
-                                              "elementCount": 9,
-                                              "area": "Main Content"
-                                            },
-                                            {
-                                              "tag": "div",
-                                              "className": "review",
-                                              "cssSelector": "div.review",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-                                              "depth": 11,
-                                              "elementCount": 9,
-                                              "area": "Main Content"
-                                            },
-                                            {
-                                              "tag": "div",
-                                              "className": "review",
-                                              "cssSelector": "div.review",
-                                              "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab6/div.tab-wrapper/div.review",
-                                              "depth": 11,
-                                              "elementCount": 9,
+                                              "elementCount": 36,
                                               "area": "Main Content"
                                             }
                                           ]
@@ -4580,7 +5255,7 @@
                               "children": [
                                 {
                                   "tag": "div",
-                                  "className": "button-secondary ireland-tour-button",
+                                  "className": "button-secondary holland-tour-button",
                                   "cssSelector": "div.button-secondary",
                                   "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary",
                                   "depth": 8,
@@ -4589,7 +5264,7 @@
                                   "children": [
                                     {
                                       "tag": "a",
-                                      "className": "button-link button-link-back ireland-back",
+                                      "className": "button-link button-link-back holland-back",
                                       "cssSelector": "a.button-link",
                                       "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary/a.button-link",
                                       "depth": 9,
@@ -4655,7 +5330,7 @@
                             },
                             {
                               "tag": "div",
-                              "className": "tailor-make-your-tour tailor-make-ireland",
+                              "className": "tailor-make-your-tour tailor-make-holland",
                               "cssSelector": "div.tailor-make-your-tour",
                               "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour",
                               "depth": 7,
@@ -4692,7 +5367,7 @@
                                   "children": [
                                     {
                                       "tag": "a",
-                                      "className": "button-link ireland-back",
+                                      "className": "button-link holland-back",
                                       "cssSelector": "a.button-link",
                                       "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
                                       "depth": 9,
@@ -4808,7 +5483,7 @@
                           "children": [
                             {
                               "tag": "div",
-                              "className": "button-secondary ireland-tour-button",
+                              "className": "button-secondary holland-tour-button",
                               "cssSelector": "div.button-secondary",
                               "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary",
                               "depth": 7,
@@ -4817,7 +5492,7 @@
                               "children": [
                                 {
                                   "tag": "a",
-                                  "className": "button-link button-link-back ireland-back",
+                                  "className": "button-link button-link-back holland-back",
                                   "cssSelector": "a.button-link",
                                   "path": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary/a.button-link",
                                   "depth": 8,

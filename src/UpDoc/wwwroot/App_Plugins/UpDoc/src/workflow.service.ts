@@ -767,6 +767,36 @@ export async function inferSectionPattern(
 	return response.json();
 }
 
+/**
+ * Regenerates the destination config from the current blueprint.
+ * Also reconciles map.json blockKeys if the blueprint has changed.
+ */
+export async function regenerateDestination(
+	workflowAlias: string,
+	token: string
+): Promise<import('./workflow.types.js').DestinationConfig | null> {
+	const response = await fetch(
+		`/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(workflowAlias)}/regenerate-destination`,
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		}
+	);
+
+	if (!response.ok) {
+		const error = await response.json();
+		console.error('Regenerate destination failed:', error);
+		return null;
+	}
+
+	clearConfigCache();
+	const result = await response.json();
+	return result.destination;
+}
+
 export function clearConfigCache(): void {
 	configCache.clear();
 	activeWorkflowsCache = null;

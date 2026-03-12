@@ -1,10 +1,9 @@
 import { expect, Page } from '@playwright/test';
 import { ConstantHelper, test } from '@umbraco/playwright-testhelpers';
 
-// Test PDF names as they appear in the media library
-const TEST_PDF_01 = 'updoc-test-01.pdf'; // Dresden, Leipzig & Meißen
-const TEST_PDF_02 = 'updoc-test-02.pdf'; // Historic Houses & Heritage of Suffolk
-const TEST_PDF_03 = 'updoc-test-03.pdf'; // Moorish Treasures of Andalucía (has OPTIONAL section)
+// Test PDF — stored in Media > PDF > Winchester
+const TEST_PDF = 'TTM5092 Winchester Istanbul lo.pdf';
+const TEST_PDF_FOLDER = 'Winchester';
 
 /**
  * Selects a blueprint through the two-step blueprint picker dialog.
@@ -32,34 +31,29 @@ async function selectBlueprint(page: Page, docTypeName: string, blueprintName?: 
 /**
  * Selects a PDF from the media picker within the source modal.
  */
-async function selectPdf(page: Page, pdfName: string) {
-  // Click "Choose" button in the source modal to open media picker
+async function selectPdf(page: Page, folderName: string, pdfName: string) {
   const sourceDialog = page.locator('up-doc-modal');
   await sourceDialog.getByRole('button', { name: 'Choose' }).click();
 
-  // Wait for media picker dialog ("Choose media" heading)
   await expect(page.getByRole('heading', { name: 'Choose media' })).toBeVisible({ timeout: 10000 });
 
-  // Navigate into the PDF folder (folders are buttons in the media picker grid)
+  // Navigate into PDF folder
   const pdfFolderButton = page.getByRole('button', { name: 'PDF', exact: true });
   await pdfFolderButton.waitFor({ timeout: 5000 });
-  await pdfFolderButton.dblclick(); // Double-click to navigate into folder
+  await pdfFolderButton.dblclick();
   await page.waitForTimeout(1000);
 
-  // Navigate into the Tests subfolder
-  const testsFolderButton = page.getByRole('button', { name: 'Tests', exact: true });
-  await testsFolderButton.waitFor({ timeout: 5000 });
-  await testsFolderButton.dblclick();
+  // Navigate into the society subfolder
+  const subFolderButton = page.getByRole('button', { name: folderName, exact: true });
+  await subFolderButton.waitFor({ timeout: 5000 });
+  await subFolderButton.dblclick();
   await page.waitForTimeout(1000);
 
-  // Select the test PDF — click the uui-card-media element (not the button inside it,
-  // because the card has select-only and intercepts pointer events)
+  // Select the PDF
   const pdfCard = page.locator('uui-card-media').filter({ hasText: pdfName });
   await pdfCard.waitFor({ timeout: 10000 });
   await pdfCard.click();
 
-  // Confirm selection with the "Choose" button at the bottom of the media picker
-  // Find the Choose button that's in the media picker footer (not the source modal)
   const chooseButton = page.locator('umb-media-picker-modal').getByRole('button', { name: 'Choose' });
   await chooseButton.click();
 }
@@ -78,16 +72,16 @@ test.describe('Create from Source', () => {
     await expandHomeButton.waitFor({ timeout: 15000 });
     await expandHomeButton.click();
 
-    // Navigate to Group Tours collection node (exact match to avoid "Test Group Tours")
-    const groupToursLink = page.getByRole('link', { name: 'Group Tours', exact: true });
-    await groupToursLink.waitFor({ timeout: 15000 });
-    await groupToursLink.click();
+    // Navigate to Tailored Tours collection
+    const tailoredToursLink = page.getByRole('link', { name: 'Tailored Tours', exact: true });
+    await tailoredToursLink.waitFor({ timeout: 15000 });
+    await tailoredToursLink.click();
 
     // Wait for the collection view to load
     await page.waitForTimeout(2000);
   });
 
-  test('Create from Source button is visible on Group Tours collection', async ({ umbracoUi }) => {
+  test('Create from Source button is visible on Tailored Tours collection', async ({ umbracoUi }) => {
     // The "Create from Source" button should be visible in the collection toolbar
     const createButton = umbracoUi.page.getByRole('button', { name: 'Create from Source' });
     await expect(createButton).toBeVisible({ timeout: 15000 });
@@ -104,24 +98,24 @@ test.describe('Create from Source', () => {
     await expect(dialog).toBeVisible({ timeout: 10000 });
     await expect(page.getByRole('heading', { name: 'Choose a Document Type' })).toBeVisible();
 
-    // Should show "Group Tour" as a selectable option
+    // Should show "Tailored Tour" as a selectable option
     const modal = page.locator('blueprint-picker-modal');
-    await expect(modal.getByRole('button', { name: 'Group Tour' })).toBeVisible();
+    await expect(modal.getByRole('button', { name: 'Tailored Tour' })).toBeVisible();
   });
 
-  test('Full flow: Create document from PDF (updoc-test-01)', async ({ umbracoUi }) => {
+  test('Full flow: Create document from PDF', async ({ umbracoUi }) => {
     const page = umbracoUi.page;
 
     // Step 1: Click Create from Source → Blueprint picker
     await page.getByRole('button', { name: 'Create from Source' }).click();
-    await selectBlueprint(page, 'Group Tour');
+    await selectBlueprint(page, 'Tailored Tour', '[Tailored Tour Blueprint]');
 
     // Step 2: Source modal should open
     const sourceModal = page.locator('up-doc-modal');
     await expect(sourceModal).toBeVisible({ timeout: 10000 });
 
     // Step 3: Select test PDF
-    await selectPdf(page, TEST_PDF_01);
+    await selectPdf(page, TEST_PDF_FOLDER, TEST_PDF);
 
     // Step 4: Wait for extraction to complete
     const extractingStatus = sourceModal.locator('.extraction-status.extracting');
@@ -153,14 +147,14 @@ test.describe('Create from Source', () => {
 
     // Click Create from Source → select blueprint
     await page.getByRole('button', { name: 'Create from Source' }).click();
-    await selectBlueprint(page, 'Group Tour');
+    await selectBlueprint(page, 'Tailored Tour', '[Tailored Tour Blueprint]');
 
     // Source modal should open
     const sourceModal = page.locator('up-doc-modal');
     await expect(sourceModal).toBeVisible({ timeout: 10000 });
 
     // Select test PDF
-    await selectPdf(page, TEST_PDF_02);
+    await selectPdf(page, TEST_PDF_FOLDER, TEST_PDF);
 
     // Wait for extraction to succeed
     const successStatus = sourceModal.locator('.extraction-status.success');

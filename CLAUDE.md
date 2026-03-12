@@ -196,7 +196,7 @@ cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npx playwright test                   
 | Change area | Spec file |
 |-------------|-----------|
 | Create from Source flow, media picker, modal UI | `create-from-source.spec.ts` |
-| Document content, field mapping, stripMarkdown | `document-verification.spec.ts` |
+| Ad-hoc PDF testing (any folder/file) | `smoke-test-pdf.spec.ts` (via env vars) |
 | blockKey, contentTypeKey, destination reconciliation | `blockkey-reconciliation.spec.ts` |
 | Transformed tab, rules rendering | `transformed-view.spec.ts` |
 
@@ -208,7 +208,7 @@ cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npx playwright test                   
 
 **Content tree:** The root content node is **"Home"**. Child nodes include Group Tours, Tailored Tours, Test Group Tours. Tests expand the tree using `'Expand child items for Home'`.
 
-**Test PDFs:** `updoc-test-01` (Dresden), `updoc-test-02` (Suffolk), `updoc-test-03` (Andalucia) — stored in Media > PDF > Tests folder.
+**Test PDFs:** PDFs are stored in Media > PDF, organised by society folder (Winchester, Kingston, Derby, etc.). The `create-from-source.spec.ts` and `blockkey-reconciliation.spec.ts` tests use `TTM5092 Winchester Istanbul lo.pdf` in the Winchester folder.
 
 **Smoke test for any PDF:**
 The user can say "test Winchester" or "test Derby Istanbul" to run the generic smoke test (`smoke-test-pdf.spec.ts`) against any PDF in the Media library. Workflow:

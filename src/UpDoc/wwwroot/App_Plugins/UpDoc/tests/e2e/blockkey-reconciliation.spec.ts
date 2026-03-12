@@ -252,7 +252,7 @@ async function selectBlueprint(page: Page, docTypeName: string, blueprintName?: 
 	await bpButton.click();
 }
 
-async function selectPdf(page: Page, pdfName: string) {
+async function selectPdf(page: Page, folderName: string, pdfName: string) {
 	const sourceDialog = page.locator('up-doc-modal');
 	await sourceDialog.getByRole('button', { name: 'Choose' }).click();
 	await expect(page.getByRole('heading', { name: 'Choose media' })).toBeVisible({ timeout: 10000 });
@@ -261,10 +261,10 @@ async function selectPdf(page: Page, pdfName: string) {
 	await pdfFolderButton.dblclick();
 	await page.waitForTimeout(1000);
 
-	// Navigate into the Tests subfolder
-	const testsFolderButton = page.getByRole('button', { name: 'Tests', exact: true });
-	await testsFolderButton.waitFor({ timeout: 5000 });
-	await testsFolderButton.dblclick();
+	// Navigate into the society subfolder
+	const subFolderButton = page.getByRole('button', { name: folderName, exact: true });
+	await subFolderButton.waitFor({ timeout: 5000 });
+	await subFolderButton.dblclick();
 	await page.waitForTimeout(1000);
 
 	const pdfCard = page.locator('uui-card-media').filter({ hasText: pdfName });
@@ -363,7 +363,7 @@ test.describe('Sprint 3: bridge uses contentTypeKey directly', () => {
 
 		await selectBlueprint(page, 'Tailored Tour');
 		await page.waitForTimeout(1000);
-		await selectPdf(page, 'updoc-test-01.pdf');
+		await selectPdf(page, 'Winchester', 'TTM5092 Winchester Istanbul lo.pdf');
 
 		const successStatus = page.locator('.extraction-status.success');
 		await successStatus.waitFor({ timeout: 30000 });

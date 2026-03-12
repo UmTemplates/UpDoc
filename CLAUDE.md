@@ -184,10 +184,21 @@ Tests are in `src/UpDoc/wwwroot/App_Plugins/UpDoc/tests/e2e/`. Config: `playwrig
 
 **Running tests:**
 Always use `--reporter=list` and `PLAYWRIGHT_HTML_OPEN=never` to prevent the HTML report server from blocking the command. Report results back to the user immediately.
+
+**IMPORTANT: Never run the full test suite unless the user explicitly asks for it.** Always run only the specific spec file relevant to the change. The full suite takes 6+ minutes.
+
 ```bash
-cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwright test --reporter=list                          # all tests
-cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwright test --reporter=list tests/e2e/filename.spec.ts  # single file
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwright test --reporter=list tests/e2e/filename.spec.ts  # single file (DEFAULT)
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc && PLAYWRIGHT_HTML_OPEN=never npx playwright test --reporter=list                             # all tests (ONLY when asked)
 ```
+
+**Which spec file to run:**
+| Change area | Spec file |
+|-------------|-----------|
+| Create from Source flow, media picker, modal UI | `create-from-source.spec.ts` |
+| Document content, field mapping, stripMarkdown | `document-verification.spec.ts` |
+| blockKey, contentTypeKey, destination reconciliation | `blockkey-reconciliation.spec.ts` |
+| Transformed tab, rules rendering | `transformed-view.spec.ts` |
 
 **Prerequisites:**
 - Run the site with `dotnet run` (NOT `dotnet watch`) — watch mode can restart mid-test causing timeouts

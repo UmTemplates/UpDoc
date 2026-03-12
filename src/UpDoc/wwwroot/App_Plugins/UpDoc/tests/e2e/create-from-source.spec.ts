@@ -46,6 +46,12 @@ async function selectPdf(page: Page, pdfName: string) {
   await pdfFolderButton.dblclick(); // Double-click to navigate into folder
   await page.waitForTimeout(1000);
 
+  // Navigate into the Tests subfolder
+  const testsFolderButton = page.getByRole('button', { name: 'Tests', exact: true });
+  await testsFolderButton.waitFor({ timeout: 5000 });
+  await testsFolderButton.dblclick();
+  await page.waitForTimeout(1000);
+
   // Select the test PDF — click the uui-card-media element (not the button inside it,
   // because the card has select-only and intercepts pointer events)
   const pdfCard = page.locator('uui-card-media').filter({ hasText: pdfName });

@@ -1116,7 +1116,7 @@ function et(s) {
   return s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 function tt(s) {
-  return s ? s.replace(/^#{1,6}\s+/gm, "").replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1").replace(/~~(.+?)~~/g, "$1").replace(/`(.+?)`/g, "$1").replace(/^\s*[-*+]\s+/gm, "").replace(/^\s*\d+\.\s+/gm, "").replace(/^\s*>\s+/gm, "").trim() : "";
+  return s ? s.replace(/^#{1,6}\s+/gm, "").replace(/\s#{1,6}\s+/g, " ").replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1").replace(/~~(.+?)~~/g, "$1").replace(/`(.+?)`/g, "$1").replace(/^\s*[-*+]\s+/gm, "").replace(/^\s*\d+\.\s+/gm, "").replace(/^\s*>\s+/gm, "").trim() : "";
 }
 function rt(s) {
   return {
@@ -1135,4 +1135,4 @@ export {
   et as n,
   tt as s
 };
-//# sourceMappingURL=transforms-BkZeboOX.js.map
+//# sourceMappingURL=transforms-C32fF-cq.js.map

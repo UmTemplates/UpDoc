@@ -41,6 +41,12 @@ async function selectPdf(page: Page, pdfName: string) {
 	await pdfFolderButton.dblclick();
 	await page.waitForTimeout(1000);
 
+	// Navigate into the Tests subfolder
+	const testsFolderButton = page.getByRole('button', { name: 'Tests', exact: true });
+	await testsFolderButton.waitFor({ timeout: 5000 });
+	await testsFolderButton.dblclick();
+	await page.waitForTimeout(1000);
+
 	const pdfCard = page.locator('uui-card-media').filter({ hasText: pdfName });
 	await pdfCard.waitFor({ timeout: 10000 });
 	await pdfCard.click();

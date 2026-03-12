@@ -3,8 +3,8 @@
   "version": "1.0",
   "documentTypeAlias": "tailoredTour",
   "documentTypeName": "Tailored Tour",
-  "blueprintId": "15d1cb96-20e9-4092-b1b4-fe8a13b82204",
-  "blueprintName": "Tailored Tour",
+  "blueprintId": "5f4d8c19-3c89-48e6-9a53-baaac0ce8fa6",
+  "blueprintName": "[Tailored Tour Blueprint]",
   "fields": [
     {
       "key": "1456b7e3-0fb0-45d0-9514-8438e6ec5960",
@@ -53,7 +53,7 @@
       "tab": "Page Content",
       "blocks": [
         {
-          "key": "110aaad3-5e7e-4f7c-9560-4c05e0e8a2fb",
+          "key": "1722663b-783e-49a6-ab68-091cda2d5ff7",
           "contentTypeAlias": "featurePageTitleDescription",
           "contentTypeKey": "1e6ac523-7122-4994-9f51-7ca67065222a",
           "label": "Page Title and Description",
@@ -72,58 +72,29 @@
           ]
         },
         {
-          "key": "d477251f-6928-40c3-a1c0-f52fe497036f",
-          "contentTypeAlias": "featurePageOrganisers",
-          "contentTypeKey": "a00f052f-2581-4b24-a04e-a49db5a87615",
-          "label": "Organiser",
+          "key": "2a29f49b-cd95-4c0e-9407-6117e3182213",
+          "contentTypeAlias": "featureNavigationInPage",
+          "contentTypeKey": "c4b3a613-0d2c-4470-8d06-f7efea52d6e0",
+          "label": "[\u00226032afd9-a533-40aa-b4de-ac8ae5236ca1\u0022,\u00228eb3c980-73a8-4ed2-b8b6-0e12dbd57cf1\u0022,\u002265fc6fe6-0b5c-4e68-a8c3-6fbbc4ecefad\u0022,\u00227fdeab50-dd0e-4fe6-acae-fd111150f35e\u0022]",
           "description": null,
           "identifyBy": {
-            "property": "featurePropertyFeatureTitle",
-            "value": "Organiser"
+            "property": "featurePropertyNavigationInPageItems",
+            "value": "[\u00226032afd9-a533-40aa-b4de-ac8ae5236ca1\u0022,\u00228eb3c980-73a8-4ed2-b8b6-0e12dbd57cf1\u0022,\u002265fc6fe6-0b5c-4e68-a8c3-6fbbc4ecefad\u0022,\u00227fdeab50-dd0e-4fe6-acae-fd111150f35e\u0022]"
           },
           "properties": [
             {
-              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
-              "alias": "featurePropertyFeatureTitle",
-              "label": "Title",
+              "key": "d9b17935-62a0-4191-bebd-8acc83740721",
+              "alias": "featurePropertyNavigationInPageItems",
+              "label": "Navigation In Page Items",
               "type": "text",
               "acceptsFormats": [
                 "text"
-              ]
-            },
-            {
-              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
-              "alias": "featurePropertyFeatureDescription",
-              "label": "Description",
-              "type": "textArea",
-              "acceptsFormats": [
-                "text",
-                "markdown"
-              ]
-            },
-            {
-              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
-              "alias": "noConfiguration",
-              "label": "No Configuration",
-              "type": "text",
-              "acceptsFormats": [
-                "text"
-              ]
-            },
-            {
-              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
-              "alias": "featurePropertyFeatureSummary",
-              "label": "Summary",
-              "type": "textArea",
-              "acceptsFormats": [
-                "text",
-                "markdown"
               ]
             }
           ]
         },
         {
-          "key": "0d955991-3330-4b58-8028-d6845c909183",
+          "key": "6032afd9-a533-40aa-b4de-ac8ae5236ca1",
           "contentTypeAlias": "featureRichTextEditorItinery",
           "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
           "label": "Itinerary",
@@ -176,7 +147,7 @@
           ]
         },
         {
-          "key": "06cbdd26-e9f9-41d7-8cfb-9eaa6cf45db9",
+          "key": "8eb3c980-73a8-4ed2-b8b6-0e12dbd57cf1",
           "contentTypeAlias": "featureRichTextEditorFeatures",
           "contentTypeKey": "34e5aa3b-db10-40a1-893d-79e98cd3f2f4",
           "label": "Features",
@@ -229,7 +200,7 @@
           ]
         },
         {
-          "key": "e7dba20d-ab15-4f9b-b78c-a049c267ff48",
+          "key": "65fc6fe6-0b5c-4e68-a8c3-6fbbc4ecefad",
           "contentTypeAlias": "featureRichTextEditorAccommodation",
           "contentTypeKey": "1d09b5af-b95a-4af5-b8f2-323db029e817",
           "label": "Accommodation",
@@ -282,7 +253,7 @@
           ]
         },
         {
-          "key": "80c09624-0a96-4e5f-a3af-497feec573ab",
+          "key": "7fdeab50-dd0e-4fe6-acae-fd111150f35e",
           "contentTypeAlias": "featureRichTextEditorSights",
           "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
           "label": "Sights",
@@ -333,6 +304,57 @@
               ]
             }
           ]
+        },
+        {
+          "key": "d65e6f24-2448-4c81-82a1-b2491269a737",
+          "contentTypeAlias": "featurePageOrganisers",
+          "contentTypeKey": "a00f052f-2581-4b24-a04e-a49db5a87615",
+          "label": "Organiser",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Organiser"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
+              "alias": "noConfiguration",
+              "label": "No Configuration",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            }
+          ]
         }
       ]
     }
@@ -346,7 +368,7 @@
       "tab": "Tour Organiser",
       "blocks": [
         {
-          "key": "7ee351d1-8894-4052-bbce-b5fbd8c224f8",
+          "key": "91204016-657d-4a49-9bba-62fe18483d28",
           "contentTypeAlias": "tourOrganiser",
           "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
           "label": "[Organisation]",

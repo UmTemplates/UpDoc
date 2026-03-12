@@ -2,33 +2,64 @@
 title: "Playwright"
 ---
 
-
 Playwright is used for two purposes in UpDoc:
 
-1. **End-to-end testing** — automating browser interactions for the Create from Source workflow
+1. **End-to-end testing** — automating browser interactions to test the Create from Source workflow and workflow editor
 2. **Figma capture** — logging into the Umbraco backoffice to capture authenticated pages for design iteration (via Playwright MCP)
+
+For detailed test documentation, see the [Testing](/UpDoc/testing/) section.
 
 ## Setup
 
-Playwright tests live in the UpDoc project alongside the extension code. The test configuration targets the local UpDoc.TestSite.
+Playwright tests live alongside the extension code at:
 
-### Environment
+```
+src/UpDoc/wwwroot/App_Plugins/UpDoc/
+├── playwright.config.ts
+└── tests/e2e/
+    ├── .auth/              # Stored auth state
+    ├── auth.setup.ts       # Login setup project
+    ├── create-from-source.spec.ts
+    ├── document-verification.spec.ts
+    ├── transformed-view.spec.ts
+    └── blockkey-reconciliation.spec.ts
+```
+
+## Configuration
+
+| Setting | Value |
+|---------|-------|
+| Test directory | `tests/e2e` |
+| Timeout | 60 seconds per test |
+| Expect timeout | 10 seconds |
+| Parallel | Disabled (`fullyParallel: false`, `workers: 1`) |
+| Browser | Desktop Chrome |
+| Base URL | `process.env.UMBRACO_URL` or `https://localhost:44390` |
+| Test ID attribute | `data-mark` (Umbraco convention) |
+| Auth | Setup project stores state, spec projects depend on it |
+
+### Environment Variables
 
 | Variable | Purpose |
 |----------|---------|
-| `URL` | The Umbraco site URL (e.g., `https://localhost:44391`) |
+| `UMBRACO_URL` | The Umbraco site URL (e.g., `https://localhost:44390`) |
 
-**Note:** The environment variable is `URL`, not `UMBRACO_URL`.
+## Running Tests
 
-### Test PDFs
+```bash
+# Run all tests
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc
+npx playwright test
 
-Test PDFs are stored in the Umbraco media library:
+# Run a specific spec file
+npx playwright test create-from-source
 
-| PDF | Purpose |
-|-----|---------|
-| `updoc-test-01` | Primary test document |
-| `updoc-test-02` | Secondary test document |
-| `updoc-test-03` | Third test document |
+# Run with UI mode (interactive)
+npx playwright test --ui
+
+# Run with headed browser (visible)
+npx playwright test --headed
+```
 
 ## Shadow DOM Considerations
 
@@ -38,15 +69,6 @@ Umbraco's backoffice uses Shadow DOM extensively. This affects how Playwright se
 - **Avoid strict shadow DOM selectors** — Playwright's `>>` shadow piercing syntax can be fragile with Umbraco's nested shadow roots
 - **Test UUI components** — `uui-button`, `uui-input`, etc. are custom elements inside shadow roots
 
-## Test Coverage
-
-Four tests cover the Create from Source workflow:
-
-1. **Visibility** — the "Create from Source" button appears in the collection toolbar
-2. **Blueprint picker** — clicking the button opens the blueprint picker modal
-3. **Full flow** — complete flow from button click through blueprint selection, PDF upload, extraction, and document creation
-4. **Preview** — extraction preview renders correctly before document creation
-
 ## Backoffice User for Playwright
 
 A dedicated Umbraco user account exists for Playwright automation. This user is used both by E2E tests and by the Playwright MCP server for Figma captures of authenticated backoffice pages.
@@ -55,11 +77,9 @@ A dedicated Umbraco user account exists for Playwright automation. This user is 
 The Playwright user credentials are stored in environment variables, not in source control. Ask the project maintainer for the values if you need to configure a new machine.
 :::
 
-### Figma Capture via Playwright MCP
+## Figma Capture via Playwright MCP
 
-The Playwright MCP server can log into the Umbraco backoffice and capture authenticated pages directly — bypassing the html.to.design plugin and its Shadow DOM limitations. This is useful for capturing the **live** backoffice state (not just static mockups).
-
-**When to use:**
+The Playwright MCP server can log into the Umbraco backoffice and capture authenticated pages directly — bypassing the html.to.design plugin and its Shadow DOM limitations.
 
 | Approach | Best for |
 |----------|----------|
@@ -79,17 +99,6 @@ The Playwright MCP server can log into the Umbraco backoffice and capture authen
 This workflow has been set up but not yet fully validated end-to-end with the Umbraco backoffice. The dedicated user exists and Playwright MCP is configured. Full validation is pending.
 :::
 
-## Known Issues
-
-- **Cleanup:** tests currently do not delete created test documents. A cleanup step is needed to prevent test data accumulation.
-- **Site must be running:** Playwright tests require the UpDoc.TestSite to be running before execution.
-
-## Running Tests
-
-```bash
-npx playwright test
-```
-
 ## Umbraco Testing Skills
 
 Before writing new Playwright tests, invoke the relevant Claude Code skills:
@@ -102,4 +111,4 @@ Before writing new Playwright tests, invoke the relevant Claude Code skills:
 
 - [Playwright documentation](https://playwright.dev/)
 - [`@umbraco/playwright-testhelpers`](https://www.npmjs.com/package/@umbraco/playwright-testhelpers) — Umbraco's official test helpers
-- [planning/PLAYWRIGHT_TESTING.md](https://github.com/deanleigh/UpDoc/blob/main/planning/PLAYWRIGHT_TESTING.md) — original test planning document
+- [planning/PLAYWRIGHT_TESTING.md](https://github.com/UmTemplates/UpDoc/blob/main/planning/PLAYWRIGHT_TESTING.md) — original test planning document

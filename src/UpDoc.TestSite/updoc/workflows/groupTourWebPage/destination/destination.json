@@ -3,8 +3,8 @@
   "version": "1.0",
   "documentTypeAlias": "groupTour",
   "documentTypeName": "Group Tour",
-  "blueprintId": "a6e0e5b8-a022-4534-ac7f-1929dbe9fb6c",
-  "blueprintName": "Group Tour",
+  "blueprintId": "f426ea83-619e-4811-9b8c-1baf57c0c2d1",
+  "blueprintName": "[Group Tour Blueprint]",
   "fields": [
     {
       "key": "1456b7e3-0fb0-45d0-9514-8438e6ec5960",
@@ -53,10 +53,10 @@
       "tab": "Page Content",
       "blocks": [
         {
-          "key": "1f1b18e0-f160-4ec4-ab49-49b4d8e05d33",
+          "key": "a1b2c3d4-1111-4aaa-b111-111111111111",
           "contentTypeAlias": "featurePageTitleDescription",
           "contentTypeKey": "1e6ac523-7122-4994-9f51-7ca67065222a",
-          "label": "Feature - Page - Title and Description",
+          "label": "Page Title and Description",
           "description": null,
           "identifyBy": null,
           "properties": [
@@ -72,17 +72,20 @@
           ]
         },
         {
-          "key": "52a90dd1-3ba6-46de-b650-16ae94c82569",
-          "contentTypeAlias": "featureNavigationDescendants",
-          "contentTypeKey": "c345e5ce-768f-47e0-968a-e7859dbe0b07",
-          "label": "Feature - Navigation - Descendants",
+          "key": "c2d3e4f5-1111-4ccc-a111-111111111111",
+          "contentTypeAlias": "featureNavigationInPage",
+          "contentTypeKey": "c4b3a613-0d2c-4470-8d06-f7efea52d6e0",
+          "label": "Navigation - In Page",
           "description": null,
-          "identifyBy": null,
+          "identifyBy": {
+            "property": "featurePropertyNavigationInPageItems",
+            "value": "[\u0022a1b2c3d4-7777-4aaa-b777-777777777777\u0022,\u0022a1b2c3d4-9999-4aaa-b999-999999999999\u0022,\u0022a1b2c3d4-bbbb-4aaa-bbbb-bbbbbbbbbbbb\u0022,\u0022a1b2c3d4-dddd-4aaa-bddd-dddddddddddd\u0022]"
+          },
           "properties": [
             {
-              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
-              "alias": "noConfiguration",
-              "label": "No Configuration",
+              "key": "d9b17935-62a0-4191-bebd-8acc83740721",
+              "alias": "featurePropertyNavigationInPageItems",
+              "label": "Navigation In Page Items",
               "type": "text",
               "acceptsFormats": [
                 "text"
@@ -91,14 +94,14 @@
           ]
         },
         {
-          "key": "f6cfe802-72e5-49ce-8de8-fc78cbec3d9d",
+          "key": "a1b2c3d4-7777-4aaa-b777-777777777777",
           "contentTypeAlias": "featureRichTextEditorItinery",
           "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
-          "label": "Suggested Itinerary",
+          "label": "Itinerary",
           "description": null,
           "identifyBy": {
             "property": "featurePropertyFeatureTitle",
-            "value": "Suggested Itinerary"
+            "value": "Itinerary"
           },
           "properties": [
             {
@@ -144,7 +147,7 @@
           ]
         },
         {
-          "key": "d65d7ffc-41da-4617-a6fd-9f1555bc3f16",
+          "key": "a1b2c3d4-9999-4aaa-b999-999999999999",
           "contentTypeAlias": "featureRichTextEditorFeatures",
           "contentTypeKey": "34e5aa3b-db10-40a1-893d-79e98cd3f2f4",
           "label": "Features",
@@ -197,14 +200,14 @@
           ]
         },
         {
-          "key": "bebc7d17-efe8-415c-9448-a76430e5a67a",
-          "contentTypeAlias": "featureRichTextEditorSights",
-          "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
-          "label": "Sights",
+          "key": "a1b2c3d4-bbbb-4aaa-bbbb-bbbbbbbbbbbb",
+          "contentTypeAlias": "featureRichTextEditorAccommodation",
+          "contentTypeKey": "1d09b5af-b95a-4af5-b8f2-323db029e817",
+          "label": "Accommodation",
           "description": null,
           "identifyBy": {
             "property": "featurePropertyFeatureTitle",
-            "value": "Sights"
+            "value": "Accommodation"
           },
           "properties": [
             {
@@ -250,14 +253,14 @@
           ]
         },
         {
-          "key": "90f9fe06-16a8-4677-bb30-680e89ab86bb",
-          "contentTypeAlias": "featureRichTextEditorAccommodation",
-          "contentTypeKey": "1d09b5af-b95a-4af5-b8f2-323db029e817",
-          "label": "Accommodation",
+          "key": "a1b2c3d4-dddd-4aaa-bddd-dddddddddddd",
+          "contentTypeAlias": "featureRichTextEditorSights",
+          "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
+          "label": "Sights",
           "description": null,
           "identifyBy": {
             "property": "featurePropertyFeatureTitle",
-            "value": "Accommodation"
+            "value": "Sights"
           },
           "properties": [
             {

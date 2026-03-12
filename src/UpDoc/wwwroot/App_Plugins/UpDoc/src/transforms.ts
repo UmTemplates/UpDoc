@@ -42,7 +42,8 @@ export function normalizeToKebabCase(text: string): string {
 export function stripMarkdown(markdown: string): string {
 	if (!markdown) return '';
 	return markdown
-		.replace(/^#{1,6}\s+/gm, '')      // heading prefixes
+		.replace(/^#{1,6}\s+/gm, '')      // heading prefixes at line start
+		.replace(/\s#{1,6}\s+/g, ' ')     // heading prefixes mid-string (concatenated headings)
 		.replace(/\*\*(.+?)\*\*/g, '$1')  // bold
 		.replace(/\*(.+?)\*/g, '$1')      // italic
 		.replace(/~~(.+?)~~/g, '$1')      // strikethrough

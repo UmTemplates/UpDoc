@@ -1,16 +1,18 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://deanleigh.github.io',
+	site: 'https://umtemplates.github.io',
 	base: '/UpDoc',
 	integrations: [
+		mermaid(),
 		starlight({
 			title: 'UpDoc',
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/deanleigh/UpDoc' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/UmTemplates/UpDoc' },
 			],
 			customCss: ['./src/styles/custom.css'],
 			sidebar: [
@@ -19,6 +21,7 @@ export default defineConfig({
 				{ label: 'Mapping Directions', slug: 'mapping-directions' },
 				{
 					label: 'User Interface',
+					collapsed: true,
 					items: [
 						{ label: 'Overview', slug: 'ui' },
 						{ label: 'UUI Components', slug: 'ui/uui-components' },
@@ -28,6 +31,7 @@ export default defineConfig({
 				},
 				{
 					label: 'Frontend (TypeScript)',
+					collapsed: true,
 					items: [
 						{ label: 'Overview', slug: 'frontend' },
 						{ label: 'index.ts', slug: 'source-files/index-ts' },
@@ -68,6 +72,7 @@ export default defineConfig({
 				},
 				{
 					label: 'Backend (C#)',
+					collapsed: true,
 					items: [
 						{ label: 'Overview', slug: 'backend' },
 						{ label: 'Stable Section Identity', slug: 'backend/stable-section-identity' },
@@ -83,10 +88,12 @@ export default defineConfig({
 				},
 				{
 					label: 'Tooling',
+					collapsed: true,
 					items: [
 						{ label: 'Overview', slug: 'tooling' },
 						{
 							label: 'Figma',
+							collapsed: true,
 							items: [
 								{ label: 'Overview', slug: 'tooling/figma' },
 								{ label: 'Figma MCP', slug: 'tooling/figma/figma-mcp' },
@@ -97,6 +104,7 @@ export default defineConfig({
 						},
 						{
 							label: 'Claude',
+							collapsed: true,
 							items: [
 								{ label: 'Overview', slug: 'tooling/claude' },
 								{ label: 'CLAUDE.md', slug: 'tooling/claude/claude-md' },
@@ -105,12 +113,14 @@ export default defineConfig({
 						},
 						{
 							label: 'Playwright',
+							collapsed: true,
 							items: [
 								{ label: 'Overview', slug: 'tooling/playwright' },
 							],
 						},
 						{
 							label: 'Umbraco Claude Skills',
+							collapsed: true,
 							items: [
 								{ label: 'Overview', slug: 'tooling/umbraco-skills' },
 							],
@@ -118,7 +128,19 @@ export default defineConfig({
 					],
 				},
 				{
+					label: 'Testing',
+					collapsed: true,
+					items: [
+						{ label: 'Overview', slug: 'testing' },
+						{ label: 'Create from Source UI', slug: 'testing/create-from-source-ui' },
+						{ label: 'PDF to Document Verification', slug: 'testing/pdf-to-document-verification' },
+						{ label: 'Transform Rules Rendering', slug: 'testing/transform-rules-rendering' },
+						{ label: 'BlockKey Reconciliation', slug: 'testing/blockkey-reconciliation' },
+					],
+				},
+				{
 					label: 'Deployment',
+					collapsed: true,
 					items: [
 						{ label: 'Overview', slug: 'deployment' },
 						{ label: 'Docs Migration', slug: 'deployment/docs-migration' },
@@ -127,6 +149,7 @@ export default defineConfig({
 				},
 				{
 					label: 'Common Errors',
+					collapsed: true,
 					items: [
 						{ label: 'Overview', slug: 'errors' },
 						{ label: 'Distributed cache error', slug: 'common-errors' },

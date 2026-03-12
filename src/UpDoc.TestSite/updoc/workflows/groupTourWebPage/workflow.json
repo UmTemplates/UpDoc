@@ -3,8 +3,8 @@
   "Alias": "groupTourWebPage",
   "DocumentTypeAlias": "groupTour",
   "DocumentTypeName": "Group Tour",
-  "BlueprintId": "a6e0e5b8-a022-4534-ac7f-1929dbe9fb6c",
-  "BlueprintName": "Group Tour",
+  "BlueprintId": "f426ea83-619e-4811-9b8c-1baf57c0c2d1",
+  "BlueprintName": "[Group Tour Blueprint]",
   "SourceType": "web",
   "Version": "1.0"
 }

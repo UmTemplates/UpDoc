@@ -1,7 +1,7 @@
 # Migrate PdfPig from Custom Fork to Official Release
 
-**Status:** IN PROGRESS (Sprint 1 COMPLETE)
-**Branch:** `feature/pdfpig-official-release`
+**Status:** IN PROGRESS (Sprints 1-2 COMPLETE, v0.1.1-beta published)
+**Branch:** `feature/pdfpig-official-release` (merged to develop + main)
 **Related:** `PACKAGING_STRATEGY.md` Step 6 ("Resolve PdfPig Custom Build")
 
 ---
@@ -104,16 +104,13 @@ Only used in `tools/PdfPigSpike/`. Not a production dependency. The spike tool's
 
 **Build:** `dotnet build UpDoc.sln` — 0 errors, 0 PdfPig warnings.
 
-### Sprint 2: Remove Area Auto-Detection Dependency
+### Sprint 2: Area Auto-Detection Audit — COMPLETE (kept as fallback)
 
-**Goal:** Eliminate the `ExperimentalAccess.Paths` dependency so we don't rely on experimental APIs.
+**Goal:** Determine if `DetectPageFilledRects()` should be removed or kept.
 
-1. **Audit `DetectPageFilledRects()` callers** — find all code paths that trigger auto-detection
-2. **Determine if area auto-detection is still called anywhere** or if all workflows now use manual areas
-3. **If still called:** Make it gracefully degrade (return empty list) when no manual areas are defined, with a log message suggesting the user define areas via the UI
-4. **If not called:** Remove `DetectPageFilledRects()` entirely
-5. **Clean up `AreaDetectionResult` model** — remove `TotalPathsFound` / `PathsAfterFiltering` if no longer populated
-6. **Keep `ConvertColorToHex()`** — still used for text color in rich extraction
+**Audit result:** `DetectPageFilledRects()` is a ~60-line fallback method that detects coloured rectangles using `page.Paths` (no longer `ExperimentalAccess.Paths` — fixed in Sprint 1). It's called from `DetectAreasFromDocument()` when no user-defined area template exists. The frontend always sends workflow-specific area templates, so this fallback is rarely hit in practice.
+
+**Decision:** Keep it. The method uses non-obsolete API (`page.Paths`), is only ~60 lines, and provides a useful fallback for edge cases. No code changes needed.
 
 ### Sprint 3: Extraction Regression Testing
 
@@ -222,5 +219,6 @@ The official PdfPig wiki documents DLA as part of the library (RecursiveXYCut, D
 - [x] Text colors match (hex values) — identical
 - [ ] Transform rules produce same sections
 - [ ] E2E tests pass (all 4)
-- [ ] `dotnet pack` produces clean NuGet package with official PdfPig dependency
+- [x] `dotnet pack` produces clean NuGet package with official PdfPig dependency
+- [x] v0.1.1-beta published to NuGet via Trusted Publishing
 - [ ] Create from Source full flow works end-to-end

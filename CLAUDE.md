@@ -142,7 +142,7 @@ When implementing UI, check **both** references. UUI for base components, API Do
 
 ## Documentation (Astro Starlight)
 
-Documentation is built with Astro Starlight and deployed to GitHub Pages via GitHub Actions. The site is at `https://deanleigh.github.io/UpDoc/`.
+Documentation is built with Astro Starlight and deployed to GitHub Pages via GitHub Actions. The site is at `https://umtemplates.github.io/UpDoc/`.
 
 - Source files: `docs/src/content/docs/` (markdown with YAML frontmatter)
 - Config: `docs/astro.config.mjs` (sidebar nav, site settings)
@@ -177,3 +177,48 @@ dotnet run --project src/UpDoc.TestSite/UpDoc.TestSite.csproj
 ```
 
 The Umbraco site may be running during development. Before performing any work that requires the site to be stopped (e.g. `dotnet build`, `dotnet run`, modifying C# files that need recompilation, or changes that lock files), prompt the user to stop the site first. Do not assume the site is stopped.
+
+## Playwright E2E Testing
+
+Tests are in `src/UpDoc/wwwroot/App_Plugins/UpDoc/tests/e2e/`. Config: `playwright.config.ts` in the same `App_Plugins/UpDoc/` directory.
+
+**Running tests:**
+The config uses `reporter: 'html'` which auto-opens the report in the browser when tests finish. Let it open — the user wants to see the report. The command will block until the user closes the report browser tab, so always run Playwright tests with `run_in_background: true`.
+
+**IMPORTANT: Never run the full test suite unless the user explicitly asks for it.** Always run only the specific spec file relevant to the change. The full suite takes 6+ minutes.
+
+```bash
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npx playwright test tests/e2e/filename.spec.ts  # single file (DEFAULT)
+cd src/UpDoc/wwwroot/App_Plugins/UpDoc && npx playwright test                              # all tests (ONLY when asked)
+```
+
+**Which spec file to run:**
+| Change area | Spec file |
+|-------------|-----------|
+| Create from Source flow, media picker, modal UI | `create-from-source.spec.ts` |
+| Ad-hoc PDF testing (any folder/file) | `smoke-test-pdf.spec.ts` (via env vars) |
+| blockKey, contentTypeKey, destination reconciliation | `blockkey-reconciliation.spec.ts` |
+| Transformed tab, rules rendering | `transformed-view.spec.ts` |
+
+**Prerequisites:**
+- Run the site with `dotnet run` (NOT `dotnet watch`) — watch mode can restart mid-test causing timeouts
+- A **Playwright API user** (`play.wright@email.com`) exists in Umbraco for test authentication
+- Credentials are in `.env` at `src/UpDoc/wwwroot/App_Plugins/UpDoc/.env` — never hardcode them
+- Auth is handled automatically by `tests/e2e/auth.setup.ts` which saves storage state
+
+**Content tree:** The root content node is **"Home"**. Child nodes include Group Tours, Tailored Tours, Test Group Tours. Tests expand the tree using `'Expand child items for Home'`.
+
+**Test PDFs:** PDFs are stored in Media > PDF, organised by society folder (Winchester, Kingston, Derby, etc.). The `create-from-source.spec.ts` and `blockkey-reconciliation.spec.ts` tests use `TTM5092 Winchester Istanbul lo.pdf` in the Winchester folder.
+
+**Smoke test for any PDF:**
+The user can say "test Winchester" or "test Derby Istanbul" to run the generic smoke test (`smoke-test-pdf.spec.ts`) against any PDF in the Media library. Workflow:
+1. Search uSync Media configs for PDFs in that folder
+2. If one PDF → run immediately. If multiple → ask which one (or all)
+3. Run: `PDF_FOLDER=FolderName PDF_NAME="filename.pdf" npx playwright test smoke-test-pdf`
+
+This creates a document from the PDF, verifies fields are populated and markdown-free, then cleans up.
+
+**Key patterns:**
+- UUI shadow DOM: use page-level queries, not scoped inside shadow roots
+- API helpers use `page.evaluate()` with localStorage auth token for authenticated fetch calls
+- Protected node IDs are hardcoded in tests to prevent accidental deletion of collection nodes

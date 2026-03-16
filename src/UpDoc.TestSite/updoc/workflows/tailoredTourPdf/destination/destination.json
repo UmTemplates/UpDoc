@@ -75,7 +75,7 @@
           "key": "2a29f49b-cd95-4c0e-9407-6117e3182213",
           "contentTypeAlias": "featureNavigationInPage",
           "contentTypeKey": "c4b3a613-0d2c-4470-8d06-f7efea52d6e0",
-          "label": "[\u00226032afd9-a533-40aa-b4de-ac8ae5236ca1\u0022,\u00228eb3c980-73a8-4ed2-b8b6-0e12dbd57cf1\u0022,\u002265fc6fe6-0b5c-4e68-a8c3-6fbbc4ecefad\u0022,\u00227fdeab50-dd0e-4fe6-acae-fd111150f35e\u0022]",
+          "label": "Navigation - In Page",
           "description": null,
           "identifyBy": {
             "property": "featurePropertyNavigationInPageItems",
@@ -371,7 +371,7 @@
           "key": "91204016-657d-4a49-9bba-62fe18483d28",
           "contentTypeAlias": "tourOrganiser",
           "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
-          "label": "[Organisation]",
+          "label": "Tour Organiser",
           "description": null,
           "identifyBy": {
             "property": "organiserOrganisation",

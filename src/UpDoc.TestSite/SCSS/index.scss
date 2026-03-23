@@ -12,11 +12,11 @@
 @import "_variables.scss";
 @import "../node_modules/bootstrap/scss/variables-dark";
 
-// 4. Include any default map overrides here
-@import "_overrides.scss";
-
-// 5. Include remainder of required parts
+// 4. Include remainder of required parts
 @import "../node_modules/bootstrap/scss/maps";
+
+// 5. Include map overrides here (after Bootstrap maps are defined)
+@import "_overrides.scss";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
 @import "../node_modules/bootstrap/scss/helpers";
@@ -59,6 +59,9 @@
 @import "../node_modules/bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here
+@import "_layout";
+@import "_anchors";
+@import "_sticky";
 @import "_card";
 @import "_carousel";
 @import "_list-group.scss";
@@ -66,59 +69,7 @@
 @import "_navbar";
 @import "_type";
 
-
-// 9. Temp
-
-:root {
-    --navbar-height: 7rem;
-}
-
-// Move to Utillies
-// Dean and Aaron to look at Maps and Mixins involved so we can apply top and bottom shadows at breakpoints
-
-body {
-    min-height: 100vh;
-    height: 100%;
-}
-
-.document {
-    min-height: 100vh;
-    height: 100%;
-}
-
-.shadow-b {
-    box-shadow: 0 1rem 1rem rgb(0 0 0 / 15%);
-}
-
-.shadow {
-    /*box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;*/
-    transition: box-shadow 0.4s ease-in-out;
-}
-
-.shadow:hover {
-    box-shadow: 0 0.5rem 1.25rem rgba(0 0 0 / .35) !important;
-    transition: box-shadow 0.4s ease-in-out;
-}
-
-[id^="feature-"],
-[id^="layout-"] {
-    scroll-margin-top: var(--navbar-height);
-}
-
-// Sticky nav: any area containing a .sticky-nav element
-// Desktop (md+): .feature-items wrapper becomes sticky inside the area
-[class*="area-"]:has(.sticky-nav) .feature-items {
-    @media (min-width: 768px) {
-        position: sticky;
-        top: var(--navbar-height);
-    }
-}
-
-// Mobile (below md): the area itself becomes sticky when columns stack
-[class*="area-"]:has(.sticky-nav) {
-    @media (max-width: 767.98px) {
-        position: sticky;
-        top: var(--navbar-height);
-        z-index: 1020;
-    }
-}
+// 9. Theme palettes (CSS custom property overrides for data-bs-theme-palette switching)
+@import "themes/bootstrap";
+@import "themes/umbraco";
+@import "themes/ultraviolet";

@@ -13,14 +13,6 @@ These files contain agreed-upon design decisions, config schemas, and implementa
 
 ---
 
-## Work Approval (MANDATORY)
-
-**Do NOT start implementing a new piece of work without asking the user first.** When the user describes a task or feature, your first response must be to discuss the approach — explain what you'd change, where, and why — then wait for explicit approval before writing any code. This applies to the initial start of each new task, not to every individual edit within an approved task. Once the user approves the approach, proceed without asking for permission on each step.
-
-This does not apply to trivial fixes the user explicitly asks for (e.g., "fix this typo", "commit this").
-
----
-
 ## Project Structure
 
 This project is a two-project solution:
@@ -29,26 +21,6 @@ This project is a two-project solution:
 - **`src/UpDoc.TestSite/`** — The Umbraco host site used for development and testing. References the RCL via `<ProjectReference>`.
 - **`UpDoc.sln`** — Solution file at the repo root.
 
-## Umbraco Skills Marketplace
-
-This project uses the Umbraco Skills Marketplace for Claude Code. When working on Umbraco backoffice customizations, use the available skills for guidance on extension types, patterns, and testing.
-
-**Required plugins:**
-- `umbraco-cms-backoffice-skills` - 57 skills for backoffice extensions
-- `umbraco-cms-backoffice-testing-skills` - 8 skills for testing
-
-**To install (if not already installed):**
-```bash
-/plugin marketplace add umbraco/Umbraco-CMS-Backoffice-Skills
-/plugin install umbraco-cms-backoffice-skills@umbraco-backoffice-marketplace
-/plugin install umbraco-cms-backoffice-testing-skills@umbraco-backoffice-marketplace
-```
-
-**When to use skills:**
-- Before implementing any Umbraco backoffice extension, invoke the relevant skill (e.g., `/umbraco-entity-actions`, `/umbraco-modals`, `/umbraco-dashboard`)
-- For testing, use `/umbraco-testing` to choose the right testing approach
-- Skills provide official docs, patterns, and working examples
-
 ## Planning Files
 
 The `planning/` folder contains architectural planning documents for this project. These files are read at session startup (see **Session Startup** above) and must be in your working context at all times.
@@ -56,30 +28,6 @@ The `planning/` folder contains architectural planning documents for this projec
 Do not duplicate or contradict decisions already made in these files. If the current task relates to an existing planning document, build on it rather than designing from scratch. Never ask the user questions that are already answered in the planning files.
 
 **Saving plans:** At the end of any significant planning phase (architecture decisions, multi-step implementation plans, design brainstorms), ask the user if they'd like the plan saved to `planning/` and suggest a meaningful filename. Claude Code's `.claude/plans/` directory uses auto-generated names that are hard to find later — the `planning/` directory is the permanent, human-readable record.
-
-## Git Branching
-
-This project uses a `develop`/`main` branching model:
-
-- **`develop`** — the default branch. All feature branches merge here. Day-to-day development happens on `develop`.
-- **`main`** — the release branch. Only updated via PR from `develop` when ready to tag and publish a NuGet package.
-
-Before starting work on any feature, bug fix, or refactoring task, create a feature branch from `develop`:
-
-```bash
-git checkout develop
-git pull
-git checkout -b feature/short-description
-```
-
-Do not work directly on `develop` or `main`. Each feature branch should represent a single, small increment of work that leaves the project in a working state. Only merge back to `develop` when the feature is complete and tested.
-
-**Important:** Before creating a new feature branch, check the current branch. If the current branch is not `develop`, alert the user and ask whether to:
-1. Finish and merge the current branch first
-2. Stash/commit current work and switch to `develop` to create the new branch
-3. Continue working on the current branch instead
-
-Do not create a new feature branch while another feature branch is checked out without explicit user approval.
 
 ## Documentation Requirements
 
@@ -132,13 +80,6 @@ d:\Users\deanl\source\repos\Umbraco Extensions\Umbraco-CMS
 - Frontend source: `Umbraco-CMS/src/Umbraco.Web.UI.Client/src/`
 - Document-related: `Umbraco-CMS/src/Umbraco.Web.UI.Client/src/packages/documents/`
 - Core extension types: `Umbraco-CMS/src/Umbraco.Web.UI.Client/src/packages/core/`
-
-## Umbraco References
-
-- **UUI Storybook** — base UI primitives (`uui-button`, `uui-box`, `uui-tab`, `uui-icon`, `uui-table`, etc.): https://uui.umbraco.com/
-- **Umbraco API Docs Storybook** — Umbraco-specific composed components, layout patterns, property editors, and dashboard patterns (`umb-body-layout`, `umb-property`, collection views, etc.): https://apidocs.umbraco.com/v17/ui/
-
-When implementing UI, check **both** references. UUI for base components, API Docs for how Umbraco composes them into higher-level patterns. The API Docs Storybook often shows patterns (stat boxes, tables, dashboard layouts) that aren't in UUI alone.
 
 ## Documentation (Astro Starlight)
 

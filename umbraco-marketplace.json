@@ -1,0 +1,40 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "UpDoc",
+  "Description": "Create Umbraco documents from external sources (PDF, web pages, markdown) using configurable extraction workflows with rule-based field mapping.",
+  "Category": "Editor Tools",
+  "AlternateCategory": "Developer Tools",
+  "PackageType": "Package",
+  "LicenseTypes": ["Free"],
+  "AuthorDetails": {
+    "Name": "Dean Leigh",
+    "Description": "Freelance Umbraco developer and creator of UpDoc and UmBootstrap",
+    "Url": "https://github.com/UmTemplates",
+    "ImageUrl": "https://raw.githubusercontent.com/UmTemplates/UpDoc/develop/assets/icon_nuget_updoc.png",
+    "Contributors": [
+      {
+        "Name": "Dean Leigh",
+        "Url": "https://deanleigh.co.uk/"
+      }
+    ],
+    "SyncContributorsFromRepository": true
+  },
+  "DocumentationUrl": "https://umtemplates.github.io/UpDoc/",
+  "IssueTrackerUrl": "https://github.com/UmTemplates/UpDoc/issues",
+  "DiscussionForumUrl": "",
+  "VideoUrl": "",
+  "Tags": ["pdf", "content-import", "extraction", "workflow", "mapping", "blueprint"],
+  "Screenshots": [],
+  "PackagesByAuthor": [
+    "Umbraco.Community.Templates.UmBootstrap"
+  ],
+  "RelatedPackages": [],
+  "AddOnPackagesRequiredForUmbracoCloud": [],
+  "VersionSpecificPackageIds": [
+    {
+      "UmbracoMajorVersion": 17,
+      "PackageId": "Umbraco.Community.UpDoc"
+    }
+  ],
+  "VersionDependencyMode": "Default"
+}

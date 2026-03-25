@@ -10,8 +10,7 @@
     <Title>UpDoc</Title>
     <Authors>Dean Leigh</Authors>
     <Description>Create Umbraco documents from external sources (PDF, web pages, markdown) using configurable extraction workflows. Map source content to document blueprints with rule-based field mapping.</Description>
-    <!-- PHASE A: Do NOT include 'umbraco-marketplace' tag — it triggers automatic marketplace listing -->
-    <PackageTags>umbraco;pdf;extraction;content-import;workflow</PackageTags>
+    <PackageTags>umbraco;umbraco-marketplace;pdf;extraction;content-import;workflow</PackageTags>
     <Copyright>$([System.DateTime]::UtcNow.ToString('yyyy')) © Dean Leigh</Copyright>
     <PackageIcon>icon_nuget_updoc.png</PackageIcon>
     <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
@@ -48,7 +47,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- TODO: Remove once Umbraco.Cms ships with MimeKit >= 4.15.1 (CVE-2026-30227 fix) -->
+    <!-- Pin MimeKit to patched version (CVE-2026-30227). Umbraco 17.2.2 resolves this transitively
+         but the RCL alone resolves to 4.14.0. Keep until Umbraco's minimum dependency is >= 4.15.1. -->
     <PackageReference Include="MimeKit" Version="4.15.1" />
     <PackageReference Include="AngleSharp" Version="1.4.0" />
     <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.154" />

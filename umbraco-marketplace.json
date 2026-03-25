@@ -22,19 +22,11 @@
   "DocumentationUrl": "https://umtemplates.github.io/UpDoc/",
   "IssueTrackerUrl": "https://github.com/UmTemplates/UpDoc/issues",
   "DiscussionForumUrl": "",
-  "VideoUrl": "",
   "Tags": ["pdf", "content-import", "extraction", "workflow", "mapping", "blueprint"],
   "Screenshots": [],
   "PackagesByAuthor": [
     "Umbraco.Community.Templates.UmBootstrap"
   ],
   "RelatedPackages": [],
-  "AddOnPackagesRequiredForUmbracoCloud": [],
-  "VersionSpecificPackageIds": [
-    {
-      "UmbracoMajorVersion": 17,
-      "PackageId": "Umbraco.Community.UpDoc"
-    }
-  ],
-  "VersionDependencyMode": "Default"
+  "AddOnPackagesRequiredForUmbracoCloud": []
 }

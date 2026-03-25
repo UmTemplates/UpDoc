@@ -34,6 +34,7 @@ export default defineConfig({
 					collapsed: true,
 					items: [
 						{ label: 'Overview', slug: 'frontend' },
+						{ label: 'Workspace Refresh', slug: 'frontend/workspace-refresh' },
 						{ label: 'index.ts', slug: 'source-files/index-ts' },
 						{ label: 'manifest.ts', slug: 'source-files/manifest' },
 						{ label: 'up-doc-action.ts', slug: 'source-files/up-doc-action' },

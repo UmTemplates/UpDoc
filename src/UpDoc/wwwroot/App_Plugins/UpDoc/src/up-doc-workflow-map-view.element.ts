@@ -17,11 +17,15 @@ export class UpDocWorkflowMapViewElement extends UmbLitElement {
 	#orphanedSources = new Set<string>();
 	#workflowAlias = '';
 	#token = '';
+	#workspaceContext: any = null;
 
 	override connectedCallback() {
 		super.connectedCallback();
 		this.consumeContext(UMB_WORKSPACE_CONTEXT, (context) => {
 			if (!context) return;
+			this.#workspaceContext = context;
+			// Register refresh handler so the workspace Refresh button reloads all data
+			(context as any).setRefreshHandler(() => this.#loadData());
 			this.observe((context as any).unique, (unique: string | null) => {
 				if (unique) {
 					this.#workflowAlias = decodeURIComponent(unique);
@@ -29,6 +33,11 @@ export class UpDocWorkflowMapViewElement extends UmbLitElement {
 				}
 			});
 		});
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.#workspaceContext?.setRefreshHandler(null);
 	}
 
 	async #loadData() {

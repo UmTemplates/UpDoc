@@ -20,11 +20,15 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 	@state() private _collapsePopoverOpen = false;
 	@state() private _blueprintMissing = false;
 	#workflowAlias: string | null = null;
+	#workspaceContext: any = null;
 
 	override connectedCallback() {
 		super.connectedCallback();
 		this.consumeContext(UMB_WORKSPACE_CONTEXT, (context) => {
 			if (!context) return;
+			this.#workspaceContext = context;
+			// Register refresh handler so the workspace Refresh button reloads all data
+			(context as any).setRefreshHandler(() => this.#loadConfig(this.#workflowAlias!));
 			this.observe((context as any).unique, (unique: string | null) => {
 				if (unique) {
 					this.#workflowAlias = decodeURIComponent(unique);
@@ -32,6 +36,11 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 				}
 			});
 		});
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.#workspaceContext?.setRefreshHandler(null);
 	}
 
 	async #loadConfig(workflowAlias: string) {

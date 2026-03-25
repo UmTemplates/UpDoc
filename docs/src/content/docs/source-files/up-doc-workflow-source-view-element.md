@@ -59,6 +59,12 @@ On load, the component:
 3. For **Markdown/Web** sources: loads sample extraction, workflow config, and transform result (auto-generated during extraction by the backend). No area detection or page selection.
 4. Stores all in state for rendering
 
+### Refresh behaviour
+
+The workspace Refresh button triggers a full `#loadData()` reload — the same method used on initial render. This re-fetches all data from the backend, including source config (area rules, excluded areas, page selection), workflow config, and extraction/transform results.
+
+The view registers its refresh handler in `connectedCallback` and clears it in `disconnectedCallback` to prevent stale references when switching tabs. See [Workspace Refresh](/UpDoc/frontend/workspace-refresh/) for the cross-cutting architecture.
+
 ### Extracted mode (area detection hierarchy)
 
 Elements are displayed in a four-level collapsible hierarchy:

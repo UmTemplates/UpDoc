@@ -47,6 +47,7 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 	@state() private _sampleUrl = '';
 	#token = '';
 	#orphanedKeys = new Set<string>();
+	#workspaceContext: any = null;
 
 	/** Get the source type for this workflow (pdf, markdown, web, etc.) */
 	get #sourceType(): string {
@@ -57,8 +58,9 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 		super.connectedCallback();
 		this.consumeContext(UMB_WORKSPACE_CONTEXT, (context) => {
 			if (!context) return;
-			// Register refresh handler so the workspace Refresh button triggers re-extraction
-			(context as any).setRefreshHandler(() => this.#onReExtract());
+			this.#workspaceContext = context;
+			// Register refresh handler so the workspace Refresh button reloads all data
+			(context as any).setRefreshHandler(() => this.#loadData());
 			this.observe((context as any).unique, (unique: string | null) => {
 				if (unique) {
 					this._workflowAlias = decodeURIComponent(unique);
@@ -66,6 +68,11 @@ export class UpDocWorkflowSourceViewElement extends UmbLitElement {
 				}
 			});
 		});
+	}
+
+	override disconnectedCallback() {
+		super.disconnectedCallback();
+		this.#workspaceContext?.setRefreshHandler(null);
 	}
 
 	async #loadData() {

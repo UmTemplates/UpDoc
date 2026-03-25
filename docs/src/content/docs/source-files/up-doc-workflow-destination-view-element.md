@@ -12,10 +12,15 @@ Renders a read-only view of the workflow's destination configuration — the blu
 ## How it works
 
 1. On `connectedCallback`, consumes `UMB_WORKSPACE_CONTEXT` and observes the `unique` value
-2. When `unique` changes, calls `fetchWorkflowByName()` to load the workflow configuration
-3. Uses `getDestinationTabs()` from `destination-utils.ts` to build inner tabs (shared logic with Map view and Content tab)
-4. If block grids exist and there's no explicit "Page Content" tab, adds one automatically (handled by the shared utility)
-5. Renders using Umbraco's native `umb-body-layout` + `uui-tab-group` + `uui-tab` pattern
+2. Registers a refresh handler so the workspace Refresh button triggers a full `#loadConfig()` reload
+3. When `unique` changes, calls `fetchWorkflowByAlias()` to load the workflow configuration
+4. Uses `getDestinationTabs()` from `destination-utils.ts` to build inner tabs (shared logic with Map view and Content tab)
+5. If block grids exist and there's no explicit "Page Content" tab, adds one automatically (handled by the shared utility)
+6. Renders using Umbraco's native `umb-body-layout` + `uui-tab-group` + `uui-tab` pattern
+
+### Refresh behaviour
+
+The workspace Refresh button triggers a full `#loadConfig()` reload — re-fetching the workflow config and re-validating the blueprint. The handler is cleared in `disconnectedCallback` when switching tabs. See [Workspace Refresh](/UpDoc/frontend/workspace-refresh/) for the cross-cutting architecture.
 
 ### Tab structure
 

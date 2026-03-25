@@ -66,6 +66,15 @@ Uses `kind: 'routable'` in the manifest, which means:
 
 Returns `'updoc-workflow'` from `getEntityType()`, matching the `entityType` in the workspace manifest. This connects the workspace to the correct tree items and navigation.
 
+### Save and Refresh handlers
+
+The context holds two callback slots — `#saveHandler` and `#refreshHandler` — that workspace views register when they mount. Only one handler is active at a time (the active tab's handler). Views register in `connectedCallback` and clear in `disconnectedCallback`.
+
+- **`save()`** — called by `up-doc-save.action.ts` (Save toolbar button). Delegates to the active view's save logic.
+- **`refresh()`** — called by `up-doc-refresh.action.ts` (Refresh toolbar button). Delegates to the active view's `#loadData()` for a full data reload.
+
+See [Workspace Refresh](/UpDoc/frontend/workspace-refresh/) for the full architecture.
+
 ### Name formatting
 
 Workflow folder names use kebab-case (e.g. `example-group-tour`). The `load()` method converts this to title case for the headline display.

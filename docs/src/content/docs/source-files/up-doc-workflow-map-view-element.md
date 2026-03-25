@@ -12,11 +12,16 @@ Renders the current mapping configuration — showing which source extraction el
 ## How it works
 
 1. On `connectedCallback`, consumes `UMB_WORKSPACE_CONTEXT` and observes the `unique` value
-2. When `unique` changes, calls `fetchWorkflowByName()` to load the workflow configuration (includes map.json and destination.json)
-3. Also loads the sample extraction via `fetchSampleExtraction()` to resolve source element IDs to text previews
-4. Groups mappings by destination tab using `resolveDestinationTab()` from `destination-utils.ts`, then sub-groups Page Content mappings by block using `resolveBlockLabel()`
-5. Renders each group as a section with a header and its own `uui-table`
-6. Delete button removes a mapping and saves via `saveMapConfig()` PUT endpoint
+2. Registers a refresh handler so the workspace Refresh button triggers a full `#loadData()` reload
+3. When `unique` changes, calls `fetchWorkflowByAlias()` to load the workflow configuration (includes map.json and destination.json)
+4. Also loads the sample extraction via `fetchSampleExtraction()` to resolve source element IDs to text previews
+5. Groups mappings by destination tab using `resolveDestinationTab()` from `destination-utils.ts`, then sub-groups Page Content mappings by block using `resolveBlockLabel()`
+6. Renders each group as a section with a header and its own `uui-table`
+7. Delete button removes a mapping and saves via `saveMapConfig()` PUT endpoint
+
+### Refresh behaviour
+
+The workspace Refresh button triggers a full `#loadData()` reload — re-fetching the workflow config (including map.json and destination.json) and sample extraction. The handler is cleared in `disconnectedCallback` when switching tabs. See [Workspace Refresh](/UpDoc/frontend/workspace-refresh/) for the cross-cutting architecture.
 
 ### Grouped sections
 

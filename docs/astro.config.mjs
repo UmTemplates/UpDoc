@@ -16,7 +16,9 @@ export default defineConfig({
 			],
 			customCss: ['./src/styles/custom.css'],
 			sidebar: [
-				{ label: 'MkDocs to Starlight Migration', slug: 'migration-guide-mkdocs-to-starlight' },
+				{ label: 'Introduction', slug: 'introduction' },
+				{ label: 'Setting Up a Workflow', slug: 'setup' },
+				{ label: 'Creating Documents from Source', slug: 'usage' },
 				{ label: 'User Journeys', slug: 'user-journeys' },
 				{ label: 'Mapping Directions', slug: 'mapping-directions' },
 				{

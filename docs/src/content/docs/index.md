@@ -1,19 +1,35 @@
 ---
-title: "UpDoc - Umbraco Extension"
+title: "UpDoc"
+template: splash
+hero:
+  tagline: Create Umbraco documents from external sources — PDFs, web pages, and markdown files — using configurable extraction workflows.
+  actions:
+    - text: Get Started
+      link: /UpDoc/introduction/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/UmTemplates/UpDoc
+      variant: minimal
+      icon: external
 ---
 
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Intro
-
-- **What it does**: Allows editors to create Umbraco content documents by extracting content from source files (PDF, Web Page, Word Document)
-- **The problem it solves**: Manual copy/paste from source documents into Umbraco is tedious and error-prone
-- **How it works**: Adds a "Create Document from Source" option to the content tree context menu, opens a blueprint picker dialog, then a sidebar panel where the user selects a source, processes the content, and creates a new document
-- **Target users**: Umbraco content editors
-- **Tech stack**: Umbraco 17+, Lit components, backend API for content extraction
-- **Package type**: Razor Class Library (RCL) — installable via NuGet in any Umbraco 17+ project
-
-## Project Structure
-
-- `src/UpDoc/` — The Razor Class Library (the installable package)
-- `src/UpDoc.TestSite/` — Development/testing host site
-
+<CardGrid>
+  <Card title="Introduction" icon="open-book">
+    What UpDoc is, what it does, and who it's for.
+    [Read more](/UpDoc/introduction/)
+  </Card>
+  <Card title="Setting Up a Workflow" icon="setting">
+    Configure a source, destination, transform rules, and mappings.
+    [Read more](/UpDoc/setup/)
+  </Card>
+  <Card title="Creating Documents" icon="document">
+    How editors use "Create from Source" to generate content.
+    [Read more](/UpDoc/usage/)
+  </Card>
+  <Card title="User Journeys" icon="rocket">
+    Step-by-step paths through the UpDoc interface.
+    [Read more](/UpDoc/user-journeys/)
+  </Card>
+</CardGrid>

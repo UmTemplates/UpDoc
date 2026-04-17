@@ -129,13 +129,11 @@ The sample document acts as the **template** for the workflow. All future PDFs r
 
 📸 `08-sample-document-empty.png` — Sample Document section with the empty chooser.
 
-The user clicks **+ Choose**. A **Choose media** dialog opens showing the media library, filtered to PDFs by default (there's a "Search only in PDF" checkbox ticked at the top).
+The user clicks **+ Choose**. A **Choose media** dialog opens showing the media library, filtered to PDFs by default.
 
-**Note**: The media library structure is project-specific. In this project, PDFs are organised by society folder (Winchester, Kingston, Wensum, etc.). Other projects will organise differently — UpDoc doesn't care.
+The user browses their media library to find the sample PDF they want to use. How deep the folder structure goes is project-specific — UpDoc doesn't care how media is organised. In this example the user navigates into the **Wensum** folder and selects the PDF inside.
 
-📸 `09-choose-media-folders.png` — Media picker showing the PDF folders.
-
-The user drills down into a folder, then into subfolders if necessary, until they find the PDF they want. In this example, the user picks a PDF inside the **Wensum** folder.
+📸 `09-choose-media-pdf-selected.png` — Media picker at the point the user has reached the PDF they want to select.
 
 ---
 
@@ -252,9 +250,9 @@ When this drives `tests/docs-screenshots/creating-a-workflow.screenshots.ts`:
 
 ---
 
-## Open questions
+## Resolved decisions (from review)
 
-1. **Should the Destination tab screenshot come before or after the Source tab is filled in?** Before is simpler (cleanest state), but if the tabs only populate after Source is filled, the timing matters.
-2. **Do we need a "what the PDF looks like" screenshot** — or is the thumbnail in the sample-document section enough? Probably enough.
-3. **Media picker folder navigation** — capture the folder list (screenshot 09) only, or also the "inside Wensum" view? Probably just the folder list; the navigation inside is obvious enough from prose.
-4. **Workflow name uniqueness** — if we timestamp names, the screenshot caption changes every time. Does that matter? Alternative: use a fixed name like "Docs Screenshot Test" and delete-if-exists at spec start.
+1. **Destination tab screenshot** — capture it early, before Source is filled in. Pre-populated from the picker dialog choices, clean state is fine.
+2. **PDF preview screenshot** — not needed. The thumbnail in the sample-document section is enough.
+3. **Media picker navigation** — skip the folder drill-down. Single screenshot at the point the PDF is visible and about to be selected.
+4. **Workflow name strategy** — use a fixed name (`Docs Screenshot Test PDF Workflow`) and delete-if-exists at spec start. Cleaner than timestamping; keeps screenshot captions stable.

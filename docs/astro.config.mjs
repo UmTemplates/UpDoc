@@ -19,6 +19,7 @@ export default defineConfig({
 				{ label: 'Introduction', slug: 'introduction' },
 				{ label: 'Setting Up a Workflow', slug: 'setup' },
 				{ label: 'Creating Documents from Source', slug: 'usage' },
+				{ label: 'Updating Blueprints', slug: 'updating-blueprints' },
 				{ label: 'User Journeys', slug: 'user-journeys' },
 				{ label: 'Mapping Directions', slug: 'mapping-directions' },
 				{

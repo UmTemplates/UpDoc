@@ -13,6 +13,14 @@ These files contain agreed-upon design decisions, config schemas, and implementa
 
 ---
 
+## GitHub Issues
+
+This project tracks work in GitHub Issues (visible in the GitHub Pull Requests and Issues VS Code extension sidebar). Before starting any non-trivial task — feature, bug fix, meaningful docs change, new planning doc — check `gh issue list` for an existing issue. If none exists, ask whether one should be created before proceeding. Reference the issue number in commits (`Closes #12`) and PR bodies so the board stays in sync with the work.
+
+Issues are not required for trivial changes (typo fixes, one-line corrections) — use judgement. If in doubt, ask.
+
+---
+
 ## Project Structure
 
 This project is a two-project solution:

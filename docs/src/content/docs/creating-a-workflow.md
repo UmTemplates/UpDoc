@@ -90,14 +90,14 @@ At the start it shows two empty sections: **Workflow Name** and **Format**.
 
 Type a name into the **Workflow Name** field. As you type, the alias (the machine-readable identifier used for the workflow folder on disk) appears greyed-out to the right. For example, typing "Test PDF Workflow" auto-derives the alias `testPdfWorkflow`.
 
-Click the **Format** dropdown. Four options appear:
+Click the **Format** dropdown. The four source types are:
 
 - PDF Document
 - Markdown
 - Web Page
 - Word Document
 
-![Format dropdown showing the four source types](../assets/screenshots/creating-a-workflow/07-format-dropdown-open.png)
+![Source tab with the workflow name entered and the Format dropdown ready to open](../assets/screenshots/creating-a-workflow/07-format-dropdown-open.png)
 
 Choose **PDF Document**.
 
@@ -141,11 +141,9 @@ A **Select pages to include** dialog opens with a thumbnail for each page. Every
 
 ![Select pages to include dialog](../assets/screenshots/creating-a-workflow/11-select-pages-dialog.png)
 
-Deselect the pages you don't need. In this example we keep **Page 1 only** (the cover/itinerary) and drop the inner pages.
+Deselect the pages you don't need — clicking a card toggles its inclusion. In this example we might keep **Page 1 only** (the cover/itinerary) and drop the inner pages.
 
-Confirm the selection. The dialog closes and the sidebar updates — the **Pages** section now shows "1 of 4 pages" instead of "All 4 pages".
-
-![Sidebar with 1 of 4 pages selected](../assets/screenshots/creating-a-workflow/12-sidebar-pages-updated.png)
+Confirm the selection. The dialog closes and the sidebar updates — the **Pages** section reflects your chosen count (e.g. "1 of 4 pages" instead of "All 4 pages").
 
 ---
 
@@ -155,8 +153,6 @@ Click the **Create** button at the bottom of the sidebar.
 
 UpDoc creates the workflow folder, runs the sample PDF through extraction, and returns you to the Workflows list. Your new workflow appears in the table with **0 mappings** and a **Ready** status — the configuration is valid, there's just no mapping work done yet.
 
-![Workflows list showing the newly created workflow](../assets/screenshots/creating-a-workflow/13-workflow-list-with-new.png)
-
 ---
 
 ## Step 12 — Open the workflow
@@ -164,8 +160,6 @@ UpDoc creates the workflow folder, runs the sample PDF through extraction, and r
 Click the new workflow's row to open its workspace.
 
 The workspace shows the tabs from your blueprint (for a Tailored Tour, that's **Page Properties**, **Page Content**, **Tour Organiser**). Three cards summarise the workflow at the top — Document Type, Blueprint, and Fields. Below, the full block grid shows every block from the blueprint with its properties listed.
-
-![Workflow workspace showing tabs, cards, and block grid breakdown](../assets/screenshots/creating-a-workflow/14-workflow-workspace.png)
 
 At this point the workflow exists and has an extracted sample, but **no content has been mapped yet**. Nothing will happen if you try to create a document from source — UpDoc won't know where to put anything.
 

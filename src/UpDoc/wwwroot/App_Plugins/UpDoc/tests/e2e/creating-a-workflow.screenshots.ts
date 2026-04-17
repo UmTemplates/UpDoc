@@ -118,39 +118,46 @@ test.describe('Creating a Workflow — docs screenshots', () => {
       .first()
       .click();
 
-    // Wait for the Create Workflow sidebar
-    await expect(page.getByRole('heading', { name: 'Create Workflow' })).toBeVisible({ timeout: 10000 });
+    // Wait for the Create Workflow sidebar — scope all subsequent queries to it
+    const sidebar = page.locator('create-workflow-sidebar');
+    await expect(sidebar.getByRole('heading', { name: 'Create Workflow' })).toBeVisible({ timeout: 10000 });
 
-    // Switch to Destination tab and capture
-    await page.getByRole('tab', { name: 'Destination' }).click();
-    await expect(page.getByText('Document Type')).toBeVisible();
+    // Switch to Destination tab and capture — small wait to let the tab's
+    // active styling catch up with the content switch
+    await sidebar.getByRole('tab', { name: 'Destination' }).click();
+    await expect(sidebar.getByText('Document Type')).toBeVisible();
+    await page.waitForTimeout(300);
     await capture(page, '05-destination-tab');
 
     // ─────────────────────────────────────────────────────────────────
     // Step 6 — Switch to Source tab (empty state)
     // ─────────────────────────────────────────────────────────────────
-    await page.getByRole('tab', { name: 'Source' }).click();
-    await expect(page.getByText('Workflow Name')).toBeVisible();
+    await sidebar.getByRole('tab', { name: 'Source' }).click();
+    await expect(sidebar.getByText('Workflow Name')).toBeVisible();
+    await page.waitForTimeout(300);
     await capture(page, '06-source-tab-empty');
 
     // ─────────────────────────────────────────────────────────────────
     // Step 7 — Enter name, open Format dropdown
     // ─────────────────────────────────────────────────────────────────
-    await page.getByPlaceholder('Enter alias...').fill(WORKFLOW_NAME);
-    const formatSelect = page.locator('select').first();
+    // The name input is inside <umb-input-with-alias>. Target the first (name)
+    // input, not the second (alias, which auto-derives).
+    const nameInput = sidebar.locator('umb-input-with-alias input').first();
+    await nameInput.fill(WORKFLOW_NAME);
+
+    const formatSelect = sidebar.locator('select').first();
     await formatSelect.focus();
-    // Capture with dropdown about to be opened (visible state preserved)
     await capture(page, '07-format-dropdown-open');
     await formatSelect.selectOption({ label: 'PDF Document' });
 
     // ─────────────────────────────────────────────────────────────────
     // Step 8 — Sample Document empty chooser
     // ─────────────────────────────────────────────────────────────────
-    await expect(page.getByText('Sample Document')).toBeVisible();
+    await expect(sidebar.getByText('Sample Document')).toBeVisible();
     await capture(page, '08-sample-document-empty');
 
     // Click + Choose, navigate media picker
-    await page.getByRole('button', { name: /Choose/ }).first().click();
+    await sidebar.getByRole('button', { name: /Choose/ }).first().click();
     await expect(page.getByRole('heading', { name: 'Choose media' })).toBeVisible({ timeout: 10000 });
 
     // Navigate into PDF folder then into the society subfolder
@@ -172,40 +179,22 @@ test.describe('Creating a Workflow — docs screenshots', () => {
     // ─────────────────────────────────────────────────────────────────
     // Step 9 — Sample Document populated
     // ─────────────────────────────────────────────────────────────────
-    await expect(page.getByText(SAMPLE_PDF_NAME)).toBeVisible({ timeout: 15000 });
-    await expect(page.getByText(/\d+ pages/)).toBeVisible();
+    await expect(sidebar.getByText(SAMPLE_PDF_NAME)).toBeVisible({ timeout: 15000 });
+    await expect(sidebar.getByText(/^All \d+ pages$/)).toBeVisible();
     await capture(page, '10-sample-document-populated');
 
     // ─────────────────────────────────────────────────────────────────
     // Step 10 — Choose Pages dialog, then 1 of 4 pages selected
     // ─────────────────────────────────────────────────────────────────
-    await page.getByRole('button', { name: 'Choose Pages' }).click();
+    await sidebar.getByRole('button', { name: 'Choose Pages' }).click();
     await expect(page.getByRole('heading', { name: 'Select pages to include' })).toBeVisible();
     await capture(page, '11-select-pages-dialog');
 
-    // Deselect all, then pick just page 1
-    await page.getByRole('button', { name: 'Deselect all' }).click();
-    await page.locator('[data-page="1"]').first().click();
-    await page.getByRole('button', { name: 'Submit' }).click();
-
-    // Back in the sidebar, pages status updated
-    await expect(page.getByText(/1 of \d+ pages/)).toBeVisible();
-    await capture(page, '12-sidebar-pages-updated');
-
-    // ─────────────────────────────────────────────────────────────────
-    // Step 11 — Create the workflow
-    // ─────────────────────────────────────────────────────────────────
-    await page.getByRole('button', { name: 'Create' }).click();
-
-    // Wait for the sidebar to close and the workflow to appear in the table
-    await expect(page.getByText(WORKFLOW_NAME)).toBeVisible({ timeout: 30000 });
-    await capture(page, '13-workflow-list-with-new');
-
-    // ─────────────────────────────────────────────────────────────────
-    // Step 12 — Open the workflow workspace
-    // ─────────────────────────────────────────────────────────────────
-    await page.getByText(WORKFLOW_NAME).click();
-    await expect(page.getByText('Document Type').first()).toBeVisible({ timeout: 15000 });
-    await capture(page, '14-workflow-workspace');
+    // Close the pages dialog. Driving uui-card-media with select-only via
+    // Playwright requires dispatching shadow-DOM selection events; for this
+    // first-pass screenshot spec we've already captured the dialog (11), and
+    // the post-selection sidebar state + workflow workspace screenshots are
+    // skipped. See issue #19 follow-up.
+    await page.getByRole('button', { name: 'Cancel' }).click();
   });
 });

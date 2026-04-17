@@ -229,12 +229,19 @@ When this becomes `docs/src/content/docs/creating-a-workflow.md`:
 
 ## Notes for the Playwright spec
 
+**Binding between docs and spec:** filename convention only. The spec produces `01-*.png`, `02-*.png`, etc. The docs reference those filenames. Nothing else ties them. If the docs get rewritten, the spec still runs; if the spec breaks, the docs continue to exist — just with stale screenshots until it's fixed.
+
+The spec does NOT read the markdown, does NOT quote docs prose, does NOT assert against docs wording. It's a pure screenshot-capture pipeline.
+
+**Cheap safety net:** before each screenshot, assert a key piece of user-facing text is visible (e.g. `expect(page.getByText('Choose a Document Type')).toBeVisible()`). This just stops screenshots being captured of the wrong state — standard Playwright practice, not docs verification.
+
 When this drives `tests/docs-screenshots/creating-a-workflow.screenshots.ts`:
 
-- One spec, 14 screenshots, in order
+- One spec, 13 screenshots, in order
 - Use `test.use({ viewport: { width: 1440, height: 900 } })`
-- Workflow name needs to be unique per run — suggest `Test PDF Workflow ${Date.now()}` to avoid clashes
-- After screenshots are captured, the spec can optionally tear down (delete the workflow folder) — or leave it, since the test site is throwaway
+- Fixed workflow name: `Docs Screenshot Test PDF Workflow` (alias: `docsScreenshotTestPdfWorkflow`)
+- Spec starts with a delete-if-exists step so re-runs are idempotent
+- After screenshots, leave the workflow in place (site is throwaway)
 - Key selectors to figure out:
   - Settings tree — `Synchronisation` group expand, `UpDoc` item
   - Create Workflow button (green, top-right)

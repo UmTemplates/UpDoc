@@ -45,5 +45,15 @@ export default defineConfig({
         storageState: STORAGE_STATE,
       },
     },
+    {
+      name: 'docs-screenshots',
+      testMatch: '**/*.screenshots.ts',
+      dependencies: ['setup'],
+      use: {
+        ...devices['Desktop Chrome'],
+        ignoreHTTPSErrors: true,
+        storageState: STORAGE_STATE,
+      },
+    },
   ],
 });

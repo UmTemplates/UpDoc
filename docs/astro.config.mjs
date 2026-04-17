@@ -18,6 +18,7 @@ export default defineConfig({
 			sidebar: [
 				{ label: 'Introduction', slug: 'introduction' },
 				{ label: 'Setting Up a Workflow', slug: 'setup' },
+				{ label: 'Creating a Workflow', slug: 'creating-a-workflow' },
 				{ label: 'Creating Documents from Source', slug: 'usage' },
 				{ label: 'Updating Blueprints', slug: 'updating-blueprints' },
 				{ label: 'User Journeys', slug: 'user-journeys' },

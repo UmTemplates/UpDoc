@@ -24,7 +24,7 @@ If anything is missing, see [Setting Up a Workflow](./setup) for prerequisites.
 
 From the Umbraco backoffice, click the **Settings** section in the top nav. In the Settings tree, find the **Synchronisation** group (it sits between Templating and Advanced) and click **UpDoc**.
 
-![Settings tree with UpDoc highlighted in the Synchronisation group](../assets/screenshots/creating-a-workflow/01-settings-tree-updoc.png)
+![Settings tree with UpDoc highlighted in the Synchronisation group](../../assets/screenshots/creating-a-workflow/01-settings-tree-updoc.png)
 
 ---
 
@@ -32,7 +32,7 @@ From the Umbraco backoffice, click the **Settings** section in the top nav. In t
 
 The main panel shows the UpDoc dashboard with three tabs: **Workflows** (active by default), **Configuration**, and **About**. The Workflows tab lists any existing workflows along with their document type, blueprint, source, mapping count, and status.
 
-![UpDoc Workflows dashboard showing existing workflows and the Create Workflow button](../assets/screenshots/creating-a-workflow/02-workflows-list.png)
+![UpDoc Workflows dashboard showing existing workflows and the Create Workflow button](../../assets/screenshots/creating-a-workflow/02-workflows-list.png)
 
 Click the green **Create Workflow** button in the top-right.
 
@@ -42,7 +42,7 @@ Click the green **Create Workflow** button in the top-right.
 
 A centred dialog appears titled **Choose a Document Type**, listing the document types in your site that have at least one blueprint available.
 
-![Choose a Document Type dialog](../assets/screenshots/creating-a-workflow/03-choose-document-type.png)
+![Choose a Document Type dialog](../../assets/screenshots/creating-a-workflow/03-choose-document-type.png)
 
 Click the document type you want this workflow to target. In this example we'll use **Tailored Tour** — these are the documents built from PDFs in our project.
 
@@ -52,7 +52,7 @@ Click the document type you want this workflow to target. In this example we'll 
 
 The dialog now shows **Select a Document Blueprint** with the blueprints available for the document type you just chose. If there's only one, it's your only option; if there are several, all are listed.
 
-![Blueprint picker showing Tailored Tour Blueprint](../assets/screenshots/creating-a-workflow/04-select-blueprint.png)
+![Blueprint picker showing Tailored Tour Blueprint](../../assets/screenshots/creating-a-workflow/04-select-blueprint.png)
 
 - **Back** returns to the document type picker
 - **Cancel** closes the dialog entirely
@@ -70,7 +70,7 @@ Click the **Destination** tab first. It's already filled in based on your choice
 - **Document Type** — Tailored Tour
 - **Blueprint** — [Tailored Tour Blueprint]
 
-![Destination tab pre-populated from the picker choices](../assets/screenshots/creating-a-workflow/05-destination-tab.png)
+![Destination tab pre-populated from the picker choices](../../assets/screenshots/creating-a-workflow/05-destination-tab.png)
 
 You don't need to do anything here — it's informational. This tab lets you confirm your choices before you start configuring the source.
 
@@ -80,7 +80,7 @@ You don't need to do anything here — it's informational. This tab lets you con
 
 Click back to the **Source** tab. This is where you'll do all the configuration work for the workflow.
 
-![Source tab before any input](../assets/screenshots/creating-a-workflow/06-source-tab-empty.png)
+![Source tab before any input](../../assets/screenshots/creating-a-workflow/06-source-tab-empty.png)
 
 At the start it shows two empty sections: **Workflow Name** and **Format**.
 
@@ -97,7 +97,7 @@ Click the **Format** dropdown. The four source types are:
 - Web Page
 - Word Document
 
-![Source tab with the workflow name entered and the Format dropdown ready to open](../assets/screenshots/creating-a-workflow/07-format-dropdown-open.png)
+![Source tab with the workflow name entered and the Format dropdown ready to open](../../assets/screenshots/creating-a-workflow/07-format-dropdown-open.png)
 
 Choose **PDF Document**.
 
@@ -109,13 +109,13 @@ As soon as you pick a format, a **Sample Document** section appears below. It co
 
 The sample document is the **template** for this workflow. UpDoc uses it to work out what content looks like and what rules to apply. All future PDFs you process through this workflow should follow roughly the same format as the sample.
 
-![Sample Document section with empty chooser](../assets/screenshots/creating-a-workflow/08-sample-document-empty.png)
+![Sample Document section with empty chooser](../../assets/screenshots/creating-a-workflow/08-sample-document-empty.png)
 
 Click **+ Choose**. The Umbraco media picker opens, filtered to show only PDFs.
 
 Browse your media library and select the sample PDF. Where you find it depends on how your media library is organised — UpDoc doesn't care about folder structure.
 
-![Media picker at the point the PDF is about to be selected](../assets/screenshots/creating-a-workflow/09-choose-media-pdf-selected.png)
+![Media picker at the point the PDF is about to be selected](../../assets/screenshots/creating-a-workflow/09-choose-media-pdf-selected.png)
 
 ---
 
@@ -129,7 +129,7 @@ Once you've selected the PDF, the Sample Document section updates to show:
 
 A new **Pages** section also appears, showing all pages included by default and a **Choose Pages** button.
 
-![Sample Document populated with the chosen PDF](../assets/screenshots/creating-a-workflow/10-sample-document-populated.png)
+![Sample Document populated with the chosen PDF](../../assets/screenshots/creating-a-workflow/10-sample-document-populated.png)
 
 ---
 
@@ -139,7 +139,7 @@ By default UpDoc extracts from every page. If you want to skip pages — for exa
 
 A **Select pages to include** dialog opens with a thumbnail for each page. Every page is checked by default; a **Deselect all** button sits at the top.
 
-![Select pages to include dialog](../assets/screenshots/creating-a-workflow/11-select-pages-dialog.png)
+![Select pages to include dialog](../../assets/screenshots/creating-a-workflow/11-select-pages-dialog.png)
 
 Deselect the pages you don't need — clicking a card toggles its inclusion. In this example we might keep **Page 1 only** (the cover/itinerary) and drop the inner pages.
 

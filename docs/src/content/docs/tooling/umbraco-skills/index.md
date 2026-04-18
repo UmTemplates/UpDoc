@@ -49,7 +49,7 @@ Skills for every Umbraco backoffice extension type:
 ## Critical Lesson: Skills Are Supplementary
 
 :::caution[Always verify against the Umbraco CMS source code]
-Skills provide excellent starting guidance, but the **Umbraco CMS source code** is the definitive reference. The local clone at `d:\Users\deanl\source\repos\Umbraco Extensions\Umbraco-CMS` must be consulted for:
+Skills provide excellent starting guidance, but the **Umbraco CMS source code** ([github.com/umbraco/Umbraco-CMS](https://github.com/umbraco/Umbraco-CMS)) is the definitive reference. Clone it locally and consult it for:
 :::
 
     - How Umbraco itself implements similar features

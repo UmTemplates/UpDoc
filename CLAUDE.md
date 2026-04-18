@@ -55,6 +55,20 @@ If adding a new source file:
 1. Create corresponding `.md` file in `docs/src/content/docs/source-files/`
 2. Add entry to the `sidebar` array in `docs/astro.config.mjs`
 
+## No Local-Machine Paths in Public Docs
+
+The `docs/` directory is published to GitHub Pages and indexed by search engines. Never include references to local-machine paths in any file under `docs/src/content/`:
+
+- No absolute Windows paths (`D:\Users\deanl\...`, `C:\...`)
+- No absolute Unix/macOS user paths (`/home/deanl/...`, `/Users/deanl/...`)
+- No references to personal usernames in file paths
+
+When referring to external resources (e.g. "the Umbraco CMS source code"), link to the public GitHub URL and instruct readers to clone it locally themselves. The specific path on the maintainer's machine is irrelevant to docs readers.
+
+**This is enforced automatically** — `docs/scripts/check-no-local-paths.mjs` runs as part of `npm run build` and fails the build if any blocked pattern appears in the published output. If the check flags a false positive, update the `ALLOWLIST` in the script; don't disable the check.
+
+Developer-facing files outside `docs/src/content/` (e.g. `CLAUDE.md`, `planning/*.md`, this project's own README) **may** legitimately reference local paths when describing the maintainer's environment. Those files are not published.
+
 ## Naming Conventions
 
 | Context | Format | Value |

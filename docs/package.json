@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && npm run check:no-local-paths",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:no-local-paths": "node scripts/check-no-local-paths.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.38.2",

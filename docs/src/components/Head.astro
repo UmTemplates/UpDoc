@@ -1,0 +1,24 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+---
+
+<Default><slot /></Default>
+
+<script>
+  import mediumZoom from 'medium-zoom';
+
+  const attachZoom = () => {
+    mediumZoom('.sl-markdown-content img:not(.no-zoom)', {
+      background: 'rgba(0, 0, 0, 0.85)',
+      margin: 24,
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachZoom);
+  } else {
+    attachZoom();
+  }
+
+  document.addEventListener('astro:page-load', attachZoom);
+</script>

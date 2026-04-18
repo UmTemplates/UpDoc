@@ -15,6 +15,9 @@ export default defineConfig({
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/UmTemplates/UpDoc' },
 			],
 			customCss: ['./src/styles/custom.css'],
+			components: {
+				Head: './src/components/Head.astro',
+			},
 			sidebar: [
 				{ label: 'Introduction', slug: 'introduction' },
 				{ label: 'Setting Up a Workflow', slug: 'setup' },

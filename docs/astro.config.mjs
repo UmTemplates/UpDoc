@@ -13,6 +13,7 @@ export default defineConfig({
 			title: 'UpDoc',
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/UmTemplates/UpDoc' },
+				{ icon: 'pencil', label: "Draft article: What's up, documentation?", href: '/UpDoc/article-whats-up-documentation/' },
 			],
 			customCss: ['./src/styles/custom.css'],
 			components: {

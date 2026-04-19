@@ -99,20 +99,6 @@ Where your docs live and where your docs get published turn out to be two differ
 
 Same markdown. Same writing workflow. Different host, because different audience.
 
-## But the tools aren't the interesting bit
-
-The interesting bit is what I started doing *because* the docs were finally in the right place.
-
-I've been a frontend developer for decades. One of my own principles, from an article I wrote for [24 Days in Umbraco back in 2020](https://archive.24days.in/umbraco-cms/2020/semantics-in-web-development/):
-
-> Content is king, context is queen — and together they rule.
-
-That principle applies to HTML semantics. It applies to SEO. It applies to accessibility. And it turns out it applies to documentation too.
-
-Putting docs in the repo gives them **context**. They sit next to the code they describe. They deploy from the same pipeline. They version with the commits that change them.
-
-Once they're in the right context, all sorts of things become possible that weren't before.
-
 ## The loop
 
 Here's how I write UpDoc's documentation now.

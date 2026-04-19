@@ -30,6 +30,10 @@
 
 ---
 
+## How Dean found MkDocs
+
+Dean discovered MkDocs during a Claude conversation in early February 2026 while researching GitHub Pages pricing tiers for a client project. The conversation covered the paywall asymmetry on GitHub Pages (free tier for public repos only, Pro for private-repo public Pages, Enterprise Cloud for gated Pages at $21/user/mo). Private Claude conversation: https://claude.ai/chat/1788db41-7def-4800-ab62-a2334a8d54a6 (not publicly accessible).
+
 ## Research receipts (for fact-checking during rewrite)
 
 ### GitBook evidence

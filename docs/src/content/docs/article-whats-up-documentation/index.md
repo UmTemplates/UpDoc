@@ -1,6 +1,6 @@
 ---
-title: "What's up, documentation?"
-description: "Documentation you don't have to write. A loop that turns one planning doc into self-generating, self-testing, auto-published docs alongside the code."
+title: "What's up, docs? How to create documentation that writes itself"
+description: "How to automatically generate documentation from a single source of truth that is written once and published everywhere."
 sidebar:
   hidden: true
 head:
@@ -10,66 +10,94 @@ head:
       content: noindex, nofollow
 ---
 
-:::caution[Draft — not for publication]
-This is a working draft of an article intended for [Skrift Magazine](https://skrift.io/). It is hosted here so it can be read on any device while it's being written. It is hidden from the sidebar and excluded from search indexing. Please do not share the URL publicly until the final version is published by Skrift.
+How to automatically generate documentation from a single source of truth that is written once and published everywhere.
 
-Testing in Obsidian
-:::
+---
 
-Writing documentation is the bit of the job I avoid. Always has been. I've been doing this for thirty years and I still put it off.
+Even after thirty years of building applications, I still find writing documentation a chore. It's not something I enjoy, and it's not something I look forward to. So I put it off until I have to.
 
-Then I started building [UpDoc](https://github.com/UmTemplates/UpDoc) — an Umbraco package that creates documents from external sources like PDFs and web pages. It got complex. Fast. Halfway in I realised the obvious. There was no way I was going to write the documentation *after* building this thing. By the time it was finished I wouldn't remember why half of it worked the way it did.
+## The job isn't done until the documentation is done
 
-The only way out was to document it **as** I built it. Which meant asking a different question. Not *when* do I write the docs. *How do I make writing the docs part of the build?*
+But of course it never is, and there are plenty of reasons why:
 
-This article is the answer I've ended up with. How I learned to write docs as I code — and why one planning doc now does the work of three.
+- Everything keeps changing while you build, so you can't write the docs until the project's complete
+- By then the budget's gone, the deadline's gone, and nobody wants to take responsibility for it
+- Even when it does get written, it goes stale the moment the project moves on
 
-## The tool journey, briefly
+## All in on AI
 
-I tried three documentation tools before I got to something I was happy with. Each one taught me something. None of them is the point of this article, so I'll keep it short.
+I took two weeks annual holiday at the end of 2025 and had promised myself to get up to speed with AI. When I came back to work in January I went all in.
 
-### GitBook
+January 2026 was when I started my first fully vibe-coded projects. I committed to it completely. Not writing a line of code myself. Trusting Claude to write all of it.
 
-Umbraco uses [GitBook](https://docs.umbraco.com). That was my reason for picking it — my readers are Umbraco developers, they're used to the GitBook interface, familiarity matters.
+[UpDoc](https://github.com/UmTemplates/UpDoc) was one of those projects. An Umbraco extension that creates documents from external sources like PDFs and web pages, built on Umbraco's new backoffice using Vite, Lit and TypeScript.
 
-I signed up. Three times over the years, across three different organisations. Each time I set up a space. Each time I wrote maybe one page and drifted away.
+By the time I started I'd done the Claude tutorials, watched the YouTube videos, and got my head around how to actually work this way. Planning docs as the point of reference. Break the work into testable sprints. Let the AI do the writing, but keep the design in human hands.
 
-The reason I kept drifting away — which I only worked out in hindsight — is that my docs kept wanting to live in my repo. Not in a hosted editor. In the same folder as the code they described.
+Then UpDoc got complex. Fast. Halfway in I realised the obvious. There was no way I was going to write the documentation *after* building this thing. By the time it was finished I wouldn't remember why half of it worked the way it did.
 
-I also hit a paid feature at some point. I genuinely can't remember which one. Custom domain, private access, something. It doesn't matter. By the time I hit it, the real issue was already obvious.
+## Everything everywhere all at once
 
-GitBook wasn't the wrong tool. It was the wrong **location**.
+I was already writing planning docs. Long, structured ones, with checklists, that Claude would work from to do the actual coding. They got archived once the sprint was done.
 
-### MkDocs with Material
+I was also already running end-to-end tests, using the Umbraco Claude skill for Playwright testing to drive the Umbraco backoffice.
 
-Next attempt: [MkDocs](https://www.mkdocs.org) with the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme.
+Everything I was writing was markdown. Planning docs in Obsidian, code comments, README files, chat context. Claude reads it, writes it, transforms it. And every docs tool, every editor, every publishing platform I might use speaks markdown too. It was the common currency.
 
-This one put the docs in the repo. Which was the main thing I needed.
+And then it hit me. Those planning docs already describe everything. The features, the decisions, the steps. Why am I writing them once for the build and then writing it all again for the documentation? And if Playwright is already walking the user flow, why can't it capture screenshots at the same time?
 
-It's also gorgeous. Material is a beautiful theme. Thousands of projects use it. It was the obvious choice.
+So I went back to Claude and asked: *can we document everything everywhere all at once?* One source. The planning doc becomes the docs page becomes the test becomes the screenshots. Write it once, publish it everywhere.
 
-Two things went wrong.
+That's the loop this article is about. So what would I build it with?
 
-First, the toolchain. MkDocs is Python. The Umbraco backoffice is TypeScript. My build scripts are Node. The one folder in my whole project that needed Python was `docs/`. A small tax, every day.
+### Written and hosted on GitBook
 
-Second, the ecosystem started fracturing in public. Within weeks of my setup:
+My first attempt was to automate documentation to GitBook:
 
-- The [Material for MkDocs team launched Zensical](https://squidfunk.github.io/mkdocs-material/blog/2025/11/05/zensical/), a Rust-core successor
-- MkDocs 2.0 was announced as a breaking rewrite
-- A [GitHub discussion about reviving MkDocs maintenance](https://github.com/mkdocs/mkdocs/discussions/4089) turned into a public dispute about PyPI ownership
-- The official advice from contributors became "move to Zensical"
+- I'd already been using it for UmBootstrap
+- Umbraco themselves use it for the official documentation
+- No hosting setup, it's all managed by GitBook
 
-I had a choice. Migrate to Zensical — same Python pipeline, same admonition syntax — or go somewhere genuinely different.
+I wrote planning docs, Claude turned them into markdown pages, and GitBook's Git sync pulled them in automatically.
 
-### Astro Starlight
+However, I soon realised that I couldn't make the docs public without paying for a Premium plan.
+
+So I decided to look for an alternative to GitBook.
+
+### Written in MkDocs, hosted on GitHub Pages
+
+I had previously used GitHub Pages for documentation but didn't find it great. I wondered if it had improved since I last used it, or if there was a way to improve it.
+
+So I asked Claude how I could reuse the same markdown files I already had for GitBook, this time on GitHub Pages, and whether there were better alternatives to make the setup nicer. Claude came back with a step-by-step setup guide for MkDocs with the Material theme. Free, clean, and built to play nicely with GitHub Pages.
+
+It worked really well. I moved the markdown files across, set up the Material theme, deployed to GitHub Pages with a GitHub Action, and had a proper-looking documentation site for free. The navigation was collapsible and expandable, the search worked, and the whole thing felt on par with GitBook. I was genuinely happy with it.
+
+Once the MkDocs setup was working, I wanted to check it would be a safe long-term choice for other projects too. I did some digging. A few things made me pause:
+
+- MkDocs is Python, but everything else in my projects is TypeScript or Node. It was the one folder that needed a Python toolchain
+- The Material theme team had started work on a [successor called Zensical](https://squidfunk.github.io/mkdocs-material/blog/2025/11/05/zensical/), a ground-up rewrite
+- MkDocs 2.0 was announced as a breaking rewrite of its own
+- A [GitHub discussion about the project's maintenance](https://github.com/mkdocs/mkdocs/discussions/4089) turned into a public dispute
+
+None of these were immediate problems, but they left me with a few doubts. So I did a shout-out to the frontend community on Bluesky, kindly amplified by [Andy Bell](https://bsky.app/profile/bell.bz). The recommendations came in:
+
+- **Astro Starlight** — [Tia Nguyen](https://bsky.app/profile/tia-nguyen.bsky.social) (*"Quickly got it up and running"*), [Alberto Calvo](https://bsky.app/profile/intemperie.me) (*"Really solid stuff out of the box"*), [Sarah Rainsberger](https://bsky.app/profile/sarah11918.rainsberger.ca)
+- **Hugo + docsy + Netlify** — [Abhishek Rathore](https://bsky.app/profile/abhirathore.bsky.social) (*"Not the easiest, but Hugo developer experience is great"*)
+- **Fumadocs + Vercel** — [Moth](https://bsky.app/profile/timothy.is)
+- **VitePress + GitHub Pages** — [Stefan Zweifel](https://bsky.app/profile/stefanzweifel.dev) (*"Super easy for me"*)
+- **Self-hosting on a subdomain, or using the GitHub wiki** — [Owain Williams](https://bsky.app/profile/owain.codes)
+
+### Written in Astro Starlight, hosted on Cloudflare Pages
 
 I picked [Astro Starlight](https://starlight.astro.build).
 
 The reason was simple. Starlight is Node. Node was already installed on every machine I owned because the Umbraco backoffice is TypeScript. One toolchain. No Python. Admonition syntax that matches every other modern docs tool I'd used.
 
-Sixty-eight markdown files migrated in one weekend. I wrote a [migration guide](/UpDoc/migration-guide-mkdocs-to-starlight/) covering the whole process so anyone else could follow.
+Sixty-eight markdown files migrated in one weekend.
 
-That's where I am today. Starlight in a `docs/` folder, deployed to GitHub Pages by a GitHub Action, same repo as the code.
+Where your docs live and where your docs get published turn out to be two different decisions. UpDoc's developer docs go to GitHub Pages because that's the zero-friction option for a public open-source project. But I've since written a second set of documentation for a client project, where the end-user manual needs to be login-only for their editors. That one goes to Cloudflare Pages, because Cloudflare Access lets me put permissions in front of the docs for free.
+
+Same markdown. Same writing workflow. Different host, because different audience.
 
 ## But the tools aren't the interesting bit
 
@@ -162,22 +190,13 @@ Which brings me to my other writing principle, the one I should have led with:
 Once the loop was working, other things started happening that I hadn't planned.
 
 - I added [medium-zoom](https://github.com/francoischalifour/medium-zoom) so readers could click any screenshot to enlarge it. Fifteen minutes of work. It just slotted in.
+- I added Mermaid diagram support so I could draw flows and architecture in the markdown itself. Another plugin, another afternoon, and the diagrams version with the prose that describes them.
 - I added a [build-time guardrail](https://github.com/UmTemplates/UpDoc/pull/27) that fails the docs build if a local-machine path accidentally ends up in published content. Because the docs build is just another npm script, adding a check to it was the same shape as writing any other test.
 - The docs began to feel like a first-class part of the project. Not a separate thing I was neglecting.
 
 None of that would have happened in GitBook. Not because GitBook is bad. Because GitBook's interface treats your content as *data in their database*. You can't write a test against it. You can't add a build step to it. You can't grep it from your terminal.
 
 Content in context. The context is the repo. Everything else follows.
-
-## Where the docs get published is a separate question
-
-A thing I didn't properly understand until I lived it: **where your docs live** and **where your docs get published** are two different decisions.
-
-UpDoc's developer docs go to [GitHub Pages](https://umtemplates.github.io/UpDoc/). Zero friction for a public open-source project.
-
-For a client I'm working with now, the end-user manual will go to [Cloudflare Pages](https://pages.cloudflare.com/). Same markdown. Same repo. Same writing workflow. Different deploy target because that's where the rest of their infrastructure lives.
-
-The writing tool and the publishing platform can be separated. Once you realise that, the publishing question shrinks to "which CDN, and do I want a custom domain?" — which is a much smaller question than "which docs platform do I commit the next five years to?"
 
 ## If you're an Umbraco developer thinking about docs
 

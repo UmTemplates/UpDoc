@@ -465,6 +465,11 @@ docs/.astro/
 .claude/settings.local.json
 
 ##
+## Obsidian
+##
+**/.obsidian/
+
+##
 ## MCP server config (contains API secrets)
 ##
 .mcp.json

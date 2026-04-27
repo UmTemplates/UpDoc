@@ -1,5 +1,5 @@
 ---
-title: "What's up, docs? How to create documentation that writes itself"
+title: "SKRIFT ARTICLE: Automating documentation"
 description: "How to automatically generate documentation from a single source of truth that is written once and published everywhere."
 sidebar:
   hidden: true
@@ -10,13 +10,19 @@ head:
       content: noindex, nofollow
 ---
 
-How to automatically generate documentation from a single source of truth that is written once and published everywhere.
+Title: Document Everything Everywhere All At Once
+
+Description: How to automatically generate documentation using markdown as a single source of truth, written once and published everywhere.
+
+![A loop of three labelled circles: Planning, Testing, Documentation, ringed by rotating arrows](../../../assets/article-whats-up-documentation/02-the-loop.svg)
 
 ---
 
-Even after thirty years of building applications, I still find writing documentation a chore. It's not something I enjoy, and it's not something I look forward to. So I put it off until I have to.
+After nearly thirty years of building applications, I still find writing documentation a chore. It's not something I enjoy, and it's not something I look forward to. So I put it off until I have to.
 
-## The job isn't done until the documentation is done
+> The job isn't done until the documentation is done
+>
+> *Anon*
 
 But of course it never is, and there are plenty of reasons why:
 
@@ -24,19 +30,39 @@ But of course it never is, and there are plenty of reasons why:
 - By then the budget's gone, the deadline's gone, and nobody wants to take responsibility for it
 - Even when it does get written, it goes stale the moment the project moves on
 
+## Busman's holiday
+
+During my two weeks annual holiday at the end of 2025 I promised myself I'd get up to speed with AI, and after a few YouTube tutorials had created an Astro MCP server (built on Astro's own Docs MCP) by the end of the first day. I was shocked about how fast you can progress with very little effort.
+
+The rest of that week I experimented with the [Umbraco MCP server](https://github.com/umbraco/Umbraco-CMS-MCP-Dev) and, whilst I found it interesting, I also found it wasn't entirely reliable for editing more than a page or two. However, it piqued my interest and I was looking forward to testing it on a new project I was starting in the New Year.
+
+The second week of the holiday I shifted from content to tooling. Using the code examples I had learned from the official Umbraco extending the backoffice course, I wrote my own MCP server to help me create things in the new backoffice itself: dashboards, property editors, context menu items.
+
+I posted a working example to the Umbraco community asking whether I should pursue this or whether Umbraco were already building something similar. Phil Whittaker, who worked on the early Umbraco MCP server, replied that they were, and pointed me at his [Claude skills](https://github.com/umbraco/Umbraco-CMS-Backoffice-Skills) repo to try over the weekend.
+
+## Marked-up markdown
+
+I started the new year on a real client project: extracting content from PDFs and password-protected pages into a fresh Umbraco 17 site. For two weeks I tried it with the existing MCP server, but it got enough wrong that cleaning up was slower than doing it manually.
+
+The MCP server wasn't reliable enough. I needed something I could trust, but I still wanted AI doing the parts AI is good at. So I went back to first principles and asked what AI and Umbraco could actually share. The answer was markdown.
+
+I'd already proven the pattern over the holiday, programmatically converting Obsidian markdown into Astro websites. Same shape of problem: take markdown from one system, turn it into pages in another. Doing it for Umbraco was the same idea at a bigger scale.
+
+Plain markdown wasn't enough though. The source content carried context — what was a heading, what a paragraph, where it sat on the page. Markdown for the content, JSON for the context. Marked-up markdown.
+
+I had the idea. Now I needed to build it.
+
 ## All in on AI
 
-I took two weeks annual holiday at the end of 2025 and had promised myself to get up to speed with AI. When I came back to work in January I went all in.
+I went all in. Fully vibe-coded. Not writing a line of code myself, trusting Claude to write all of it.
 
-January 2026 was when I started my first fully vibe-coded projects. I committed to it completely. Not writing a line of code myself. Trusting Claude to write all of it.
+The result was [UpDoc](https://github.com/UmTemplates/UpDoc): an Umbraco extension that creates documents from external sources like PDFs and web pages, built on Umbraco's new backoffice using Vite, Lit and TypeScript.
 
-[UpDoc](https://github.com/UmTemplates/UpDoc) was one of those projects. An Umbraco extension that creates documents from external sources like PDFs and web pages, built on Umbraco's new backoffice using Vite, Lit and TypeScript.
+By the time I started I'd got my head around how to actually work this way. Planning docs as the point of reference. Break the work into testable sprints. Let the AI do the writing, but keep the design in human hands.
 
-By the time I started I'd done the Claude tutorials, watched the YouTube videos, and got my head around how to actually work this way. Planning docs as the point of reference. Break the work into testable sprints. Let the AI do the writing, but keep the design in human hands.
+Then UpDoc got complex. Fast. Halfway through the first day I realised the obvious. There was no way I was going to write the documentation *after* building this thing. By the time it was finished I wouldn't remember why half of it worked the way it did.
 
-Then UpDoc got complex. Fast. Halfway in I realised the obvious. There was no way I was going to write the documentation *after* building this thing. By the time it was finished I wouldn't remember why half of it worked the way it did.
-
-## Everything everywhere all at once
+## What's up, docs?
 
 I was already writing planning docs. Long, structured ones, with checklists, that Claude would work from to do the actual coding. They got archived once the sprint was done.
 
@@ -51,6 +77,8 @@ So I went back to Claude and asked: *can we document everything everywhere all a
 That's the loop this article is about. So what would I build it with?
 
 ### Written and hosted on GitBook
+
+![The original UpDoc documentation in GitBook, with the source-files section expanded to show one page per source file](../../../assets/article-whats-up-documentation/01-gitbook.png)
 
 My first attempt was to automate documentation to GitBook:
 

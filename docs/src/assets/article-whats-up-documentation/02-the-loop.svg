@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <radialGradient id="bgWash" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#fafafa"/>
+      <stop offset="100%" stop-color="#ececec"/>
+    </radialGradient>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b3a55"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bgWash)"/>
+  <circle cx="800" cy="450" r="240" fill="none" stroke="#cfd6e0" stroke-width="2" stroke-dasharray="4 8"/>
+
+
+  <g id="arrow-ring" stroke="#2b3a55" stroke-width="6" fill="none" stroke-linecap="round">
+    <g transform="translate(800 450)">
+      <path d="M 57.74,-410.96 A 415,415 0 0 1 384.81,155.42" marker-end="url(#arrowHead)"/>
+      <path d="M 57.74,-410.96 A 415,415 0 0 1 384.81,155.42" marker-end="url(#arrowHead)" transform="rotate(120)"/>
+      <path d="M 57.74,-410.96 A 415,415 0 0 1 384.81,155.42" marker-end="url(#arrowHead)" transform="rotate(240)"/>
+    </g>
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 800 450" to="360 800 450" dur="18s" repeatCount="indefinite"/>
+  </g>
+  <g transform="translate(800 210)">
+    <circle r="150" fill="#ffffff" stroke="#2b3a55" stroke-width="4"/>
+    <g transform="translate(0 -42)" stroke="#2b3a55" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-22" y="-28" width="44" height="56" rx="3"/>
+      <rect x="-12" y="-34" width="24" height="10" rx="2" fill="#2b3a55"/>
+      <line x1="-14" y1="-12" x2="14" y2="-12" stroke-width="3"/>
+      <line x1="-14" y1="0" x2="14" y2="0" stroke-width="3"/>
+      <line x1="-14" y1="12" x2="6" y2="12" stroke-width="3"/>
+      <path d="M-18,-12 l4,4 l8,-8" stroke="#c47a3d"/>
+    </g>
+    <text y="50" text-anchor="middle" font-family="Georgia, serif" font-size="32" font-weight="600" fill="#2b3a55">Planning</text>
+  </g>
+  <g transform="translate(1007.85 570)">
+    <circle r="150" fill="#ffffff" stroke="#2b3a55" stroke-width="4"/>
+    <g transform="translate(0 -42)" stroke="#2b3a55" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="-4" cy="-4" r="20" stroke-width="3.5"/>
+      <line x1="11" y1="11" x2="26" y2="26" stroke-width="4.5"/>
+      <path d="M-13,-4 l5,6 l11,-12" stroke="#c47a3d" stroke-width="3.5"/>
+    </g>
+    <text y="50" text-anchor="middle" font-family="Georgia, serif" font-size="32" font-weight="600" fill="#2b3a55">Testing</text>
+  </g>
+  <g transform="translate(592.15 570)">
+    <circle r="150" fill="#ffffff" stroke="#2b3a55" stroke-width="4"/>
+    <g transform="translate(0 -42)" stroke="#2b3a55" fill="none" stroke-linejoin="round">
+      <path d="M-26,-22 L-2,-18 L-2,26 L-26,22 Z" stroke-width="3.5"/>
+      <path d="M26,-22 L2,-18 L2,26 L26,22 Z" stroke-width="3.5"/>
+      <path d="M-2,-18 L-2,26" stroke-width="3.5"/>
+      <line x1="-22" y1="-12" x2="-6" y2="-9" stroke="#c47a3d" stroke-width="2.2"/>
+      <line x1="-22" y1="-4" x2="-6" y2="-1" stroke="#c47a3d" stroke-width="2.2"/>
+      <line x1="-22" y1="4" x2="-10" y2="6" stroke="#c47a3d" stroke-width="2.2"/>
+      <line x1="6" y1="-9" x2="22" y2="-12" stroke="#c47a3d" stroke-width="2.2"/>
+      <line x1="6" y1="-1" x2="22" y2="-4" stroke="#c47a3d" stroke-width="2.2"/>
+      <line x1="6" y1="6" x2="18" y2="4" stroke="#c47a3d" stroke-width="2.2"/>
+    </g>
+    <text y="50" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="600" fill="#2b3a55">Documentation</text>
+  </g>
+</svg>

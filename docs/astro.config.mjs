@@ -166,6 +166,7 @@ export default defineConfig({
 						{ label: 'Drag-and-drop dead zone', slug: 'errors/drag-drop-dead-zone' },
 					],
 				},
+				{ label: 'About This Documentation', slug: 'about-these-docs' },
 			],
 		}),
 	],

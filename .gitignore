@@ -519,3 +519,6 @@ appsettings-schema.json
 
 # Umbraco runtime data
 **/umbraco/Data/
+
+# Git worktrees (docs worktree lives here)
+.worktrees/

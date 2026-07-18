@@ -103,6 +103,31 @@ d:\Users\deanl\source\repos\Umbraco Extensions\Umbraco-CMS
 - Document-related: `Umbraco-CMS/src/Umbraco.Web.UI.Client/src/packages/documents/`
 - Core extension types: `Umbraco-CMS/src/Umbraco.Web.UI.Client/src/packages/core/`
 
+## Documentation Worktree (READ BEFORE EDITING ANY DOCS FILE)
+
+Documentation is edited in a **git worktree**, never from the main working directory.
+
+```
+UpDoc/                     main working directory — code, on a feature branch
+UpDoc/.worktrees/docs/     docs worktree — always on docs/site
+```
+
+**Before editing any file under `docs/`, check the absolute path.** If it is not
+under `.worktrees/docs/`, you are in the wrong place. The two folders look
+identical in an editor; the path is the only way to tell.
+
+Editing `docs/` from the main working directory puts the change on a code
+feature branch, where it sits unpublished until that branch merges. That is the
+exact friction the worktree exists to remove.
+
+Commit and push docs changes as you make them, rather than batching. Pushing to
+`docs/site` deploys.
+
+Exception: documentation that is genuinely part of a code change (a source file
+and its reference page changing together) can stay in the feature branch.
+
+See `WORKTREES.md` for the full rules and rationale.
+
 ## Documentation (Astro Starlight)
 
 Documentation is built with Astro Starlight and deployed to GitHub Pages via GitHub Actions. The site is at `https://umtemplates.github.io/UpDoc/`.

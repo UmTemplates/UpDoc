@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - main
+      - docs/site
     paths:
       - 'docs/**'
   workflow_dispatch:

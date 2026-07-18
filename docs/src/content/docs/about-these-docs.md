@@ -41,7 +41,8 @@ GitHub Pages, at `https://umtemplates.github.io/UpDoc/`.
 
 Deployment is automatic. A GitHub Actions workflow (`.github/workflows/docs.yml`)
 builds the site and publishes it whenever anything under `docs/` changes on
-`develop` or `main`.
+`docs/site`, `develop` or `main`. In practice almost everything arrives via
+`docs/site` — see [Branching](#branching) below for why.
 
 The built output is **not** committed to the repository. It is generated in CI
 on every deploy. This matters more than it sounds: committing build output is a
@@ -60,26 +61,65 @@ so it stays on GitHub Pages alongside the repository.
 
 ## Branching
 
-UpDoc follows a `develop` and `main` model.
+UpDoc follows a `develop` and `main` model for code.
 
 | Branch | Role |
 |---|---|
-| Feature branches | All work, branched from `develop` |
+| Feature branches | All code work, branched from `develop` |
 | `develop` | Main development branch |
 | `main` | Release branch |
+| `docs/site` | Permanent documentation branch |
 
-Documentation changes follow exactly the same path as code. Branch from
-`develop`, open a pull request, merge. There is no separate docs branch and no
-separate release process for the documentation.
+Documentation has its own permanent branch, `docs/site`, and deploys directly
+from it. It does not wait for a feature branch to merge.
 
-This is a deliberate choice, and it differs from some sibling projects that keep
-documentation on its own permanent branch so it can deploy independently of the
-application. That pattern earns its keep when the docs and the product ship on
-different schedules, or when several docs sites have different audiences.
+## Why documentation gets its own branch
 
-UpDoc has one documentation site, one maintainer, and docs that describe the
-code sitting next to them. Splitting them across branches would add ceremony
-without removing any real friction.
+This is the part worth explaining, because it is a workflow decision rather
+than a technical one.
+
+Documentation has a well-known habit of never getting written. The usual
+diagnosis is that people do not value it enough. That is rarely the real
+reason.
+
+The real reason is that the thought arrives at the worst possible moment. You
+are three files deep in a feature, and you realise something needs documenting.
+Acting on it means stashing your work, switching branch, writing, switching
+back, and finding your place again. Each individual instance is a small cost.
+In aggregate it is fatal: the documentation waits, and then it does not happen.
+
+Committing docs alongside each feature sounds tidier, and fails the same way.
+"I will add it to this branch before I merge" is a promise made by someone who
+is about to be interrupted.
+
+So documentation gets its own permanent branch, permanently checked out in a
+[git worktree](https://git-scm.com/docs/git-worktree) at `.worktrees/docs`.
+Two folders, two branches, one repository.
+
+When something needs documenting, you open the docs folder, write it, commit,
+push. It is live in a couple of minutes. The feature branch never moves.
+Nothing is stashed. Nothing is lost.
+
+The rules and the reasoning are in `WORKTREES.md` at the repository root.
+
+### The other benefit
+
+Documentation is often written *before* the code it describes. Planning a
+feature frequently means writing the page that explains it, and then working
+from that page.
+
+With docs on their own branch, that page can be published while the code is
+still being written. The documentation stops being a trailing artefact of
+development and becomes part of doing it.
+
+### How this compares to sibling projects
+
+Other projects in this family run two worktrees, for developer documentation
+and an editor manual, on separate permanent branches deployed to Cloudflare
+Pages where access can be gated.
+
+UpDoc has one public documentation site on GitHub Pages, so it needs one
+worktree. Same idea, smaller shape.
 
 ## How the writing is organised
 

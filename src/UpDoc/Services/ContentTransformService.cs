@@ -117,8 +117,25 @@ public class ContentTransformService : IContentTransformService
                 }
             }
 
-            // Area-level: sort order
-            var previousAreas = previous.Areas.ToDictionary(a => $"{a.Name}|{a.Page}", a => a.SortOrder);
+            // Area-level: sort order.
+            // Areas are keyed by "{Name}|{Page}", which assumes names are unique within
+            // a page. That should hold — areas are auto-named and the editor prevents
+            // duplicates — but restoring a sort order is not worth failing the whole
+            // transform over if it ever does not. Take the first of any duplicate and
+            // record a warning rather than throwing.
+            var previousAreas = new Dictionary<string, int?>();
+            foreach (var a in previous.Areas)
+            {
+                var key = $"{a.Name}|{a.Page}";
+                if (!previousAreas.TryAdd(key, a.SortOrder))
+                {
+                    diagnostics.Warnings.Add(
+                        $"Two or more areas share the name '{a.Name}' on page {a.Page}. " +
+                        "Their previous sort order could not be restored reliably. " +
+                        "Rename them so each area on a page has a distinct name.");
+                }
+            }
+
             foreach (var area in result.Areas)
             {
                 if (previousAreas.TryGetValue($"{area.Name}|{area.Page}", out var sortOrder))

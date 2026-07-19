@@ -89,7 +89,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.AreaEditorModal",
     name: "Area Editor Modal",
-    element: () => import("./pdf-area-editor-modal.element-CkWOxKPp.js")
+    element: () => import("./pdf-area-editor-modal.element-Dwi4R7nM.js")
   },
   {
     type: "modal",

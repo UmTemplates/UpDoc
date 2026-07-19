@@ -51,6 +51,8 @@ export class PdfAreaEditorModalElement extends UmbModalBaseElement<
 	// Area state
 	@state() private _areas: EditorArea[] = [];
 	@state() private _selectedAreaId: string | null = null;
+	/** Area whose name clashes with another on the same page, if any. */
+	@state() private _duplicateNameAreaId: string | null = null;
 	@state() private _mode: EditorMode = 'draw';
 	@state() private _pageWidth = 0;
 	@state() private _pageHeight = 0;
@@ -494,11 +496,20 @@ export class PdfAreaEditorModalElement extends UmbModalBaseElement<
 
 	#onAreaNameChange(id: string, name: string) {
 		const area = this._areas.find(a => a.id === id);
-		if (area) {
-			area.name = name;
-			this._areas = [...this._areas];
-			this.#drawOverlay();
-		}
+		if (!area) return;
+
+		// Areas are keyed downstream by name + page, so two areas sharing a name on
+		// one page makes their sort order ambiguous. Warn rather than block — the
+		// name is still applied, so the author is not fighting the input while typing.
+		const trimmed = name.trim();
+		const clashes = this._areas.some(
+			a => a.id !== id && a.page === area.page && a.name.trim().toLowerCase() === trimmed.toLowerCase(),
+		);
+		this._duplicateNameAreaId = trimmed && clashes ? id : null;
+
+		area.name = name;
+		this._areas = [...this._areas];
+		this.#drawOverlay();
 	}
 
 	// =========================================================================
@@ -655,13 +666,20 @@ export class PdfAreaEditorModalElement extends UmbModalBaseElement<
 									<label>Name</label>
 									<uui-input
 										.value=${this.#selectedArea.name}
-										@change=${(e: Event) => {
+										?error=${this._duplicateNameAreaId === this._selectedAreaId}
+										@input=${(e: Event) => {
 											this.#onAreaNameChange(
 												this._selectedAreaId!,
 												(e.target as HTMLInputElement).value
 											);
 										}}>
 									</uui-input>
+									${this._duplicateNameAreaId === this._selectedAreaId ? html`
+										<small class="name-warning">
+											Another area on this page already has this name. Give each area on a
+											page a distinct name so their order is preserved correctly.
+										</small>
+									` : nothing}
 
 									<label>Color</label>
 									<div class="color-swatches">
@@ -859,6 +877,12 @@ export class PdfAreaEditorModalElement extends UmbModalBaseElement<
 			.edit-form label {
 				font-size: var(--uui-type-small-size);
 				font-weight: bold;
+			}
+
+			.name-warning {
+				color: var(--uui-color-danger);
+				font-size: var(--uui-type-small-size);
+				margin-top: calc(var(--uui-size-space-3) * -1);
 			}
 
 			.color-swatches {

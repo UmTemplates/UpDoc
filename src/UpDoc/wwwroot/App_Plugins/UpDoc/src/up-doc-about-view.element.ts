@@ -33,7 +33,7 @@ export class UpDocAboutViewElement extends UmbLitElement {
 					<uui-ref-node
 						name="Source Code"
 						detail="GitHub repository"
-						href="https://github.com/DeanLeigh/UpDoc"
+						href="https://github.com/UmTemplates/UpDoc"
 						target="_blank">
 						<uui-icon slot="icon" name="icon-code"></uui-icon>
 					</uui-ref-node>

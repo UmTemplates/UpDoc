@@ -1,9 +1,9 @@
 import { html as s, css as l, customElement as c } from "@umbraco-cms/backoffice/external/lit";
 import { UmbLitElement as m } from "@umbraco-cms/backoffice/lit-element";
-import { UmbTextStyles as d } from "@umbraco-cms/backoffice/style";
-var p = Object.getOwnPropertyDescriptor, f = (i, r, a, n) => {
-  for (var e = n > 1 ? void 0 : n ? p(r, a) : r, o = i.length - 1, u; o >= 0; o--)
-    (u = i[o]) && (e = u(e) || e);
+import { UmbTextStyles as p } from "@umbraco-cms/backoffice/style";
+var d = Object.getOwnPropertyDescriptor, f = (r, i, a, n) => {
+  for (var e = n > 1 ? void 0 : n ? d(i, a) : i, o = r.length - 1, u; o >= 0; o--)
+    (u = r[o]) && (e = u(e) || e);
   return e;
 };
 let t = class extends m {
@@ -36,7 +36,7 @@ let t = class extends m {
 					<uui-ref-node
 						name="Source Code"
 						detail="GitHub repository"
-						href="https://github.com/DeanLeigh/UpDoc"
+						href="https://github.com/UmTemplates/UpDoc"
 						target="_blank">
 						<uui-icon slot="icon" name="icon-code"></uui-icon>
 					</uui-ref-node>
@@ -46,7 +46,7 @@ let t = class extends m {
   }
 };
 t.styles = [
-  d,
+  p,
   l`
 			:host {
 				display: block;
@@ -75,4 +75,4 @@ export {
   t as UpDocAboutViewElement,
   w as default
 };
-//# sourceMappingURL=up-doc-about-view.element-BsYAvUH4.js.map
+//# sourceMappingURL=up-doc-about-view.element-Cam2Mm3Y.js.map

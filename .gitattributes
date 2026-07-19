@@ -12,3 +12,41 @@ src/UpDoc.TestSite/wwwroot/css/index.css linguist-generated
 
 # Vite-bundled JavaScript output (compiled from TypeScript)
 src/UpDoc/wwwroot/App_Plugins/UpDoc/dist/** linguist-generated
+
+###############################################################################
+# Line endings
+#
+# Vite writes LF. Without an explicit rule, Git on Windows converts the working
+# copy to CRLF on checkout, so every rebuild reports dozens of files as
+# "modified" that differ only by line ending. Real changes get buried in the
+# noise, and the diff stops being reviewable.
+#
+# Forcing LF on the committed build output means a rebuild produces files that
+# match the stored ones byte-for-byte, so only genuine changes show up.
+#
+# Source files are normalised too, which stops the "CRLF will be replaced by
+# LF" warnings on every commit.
+###############################################################################
+
+# Vite build output (committed, ships in the NuGet package)
+src/UpDoc/wwwroot/App_Plugins/UpDoc/dist/**/*.js  text eol=lf
+src/UpDoc/wwwroot/App_Plugins/UpDoc/dist/**/*.mjs text eol=lf
+src/UpDoc/wwwroot/App_Plugins/UpDoc/dist/**/*.map text eol=lf
+
+# Frontend source
+src/UpDoc/wwwroot/App_Plugins/UpDoc/src/**/*.ts text eol=lf
+src/UpDoc/wwwroot/App_Plugins/UpDoc/tests/**/*.ts text eol=lf
+
+# Workflow config files (read by both C# and TypeScript)
+src/UpDoc.TestSite/updoc/**/*.json text eol=lf
+
+# Repo-level text
+*.md   text eol=lf
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+
+# C# — LF for consistency with everything else
+*.cs      text eol=lf
+*.csproj  text eol=lf
+*.sln     text eol=crlf

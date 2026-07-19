@@ -154,4 +154,12 @@ public class TransformDiagnostics
     public int SubHeadedSections { get; set; }
     public int PreambleSections { get; set; }
     public int RoleSections { get; set; }
+
+    /// <summary>
+    /// Non-fatal problems encountered during the transform. Populated when the
+    /// transform can continue but the result may not be what the author intended
+    /// — for example two areas sharing a name on the same page, which makes
+    /// restoring their previous sort order ambiguous.
+    /// </summary>
+    public List<string> Warnings { get; set; } = new();
 }

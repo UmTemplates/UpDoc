@@ -500,6 +500,11 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
 
             areas.Add(new DetectedArea
             {
+                // Geometrically detected areas have no name of their own. Leaving it
+                // unset produced areas named "" — and several empty names on one page
+                // collide downstream, where areas are keyed by "{Name}|{Page}".
+                // Numbering per page matches the naming the area editor applies.
+                Name = $"Area {areas.Count + 1}",
                 Color = ConvertColorToHex(path.FillColor),
                 Page = pageNum,
                 BoundingBox = new ElementBoundingBox

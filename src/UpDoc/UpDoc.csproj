@@ -47,13 +47,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Pin MimeKit to patched version (CVE-2026-30227). Umbraco 17.2.2 resolves this transitively
-         but the RCL alone resolves to 4.14.0. Keep until Umbraco's minimum dependency is >= 4.15.1. -->
-    <PackageReference Include="MimeKit" Version="4.15.1" />
+    <!-- MimeKit pin removed at Umbraco 17.5.3. It existed for CVE-2026-30227, because
+         Umbraco 17.2.2's Web.Common resolved MimeKit 4.14.0 transitively. Web.Common
+         17.5.3 declares MailKit 4.16.0, which requires MimeKit >= 4.16.0, so the pin
+         became a downgrade and failed the restore with NU1605. -->
     <PackageReference Include="AngleSharp" Version="1.4.0" />
     <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.154" />
     <PackageReference Include="PdfPig" Version="0.1.13" />
-    <PackageReference Include="Umbraco.Cms.Web.Common" Version="17.2.2" />
-    <PackageReference Include="Umbraco.Cms.Api.Common" Version="17.2.2" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" Version="17.5.3" />
+    <PackageReference Include="Umbraco.Cms.Api.Common" Version="17.5.3" />
   </ItemGroup>
 </Project>

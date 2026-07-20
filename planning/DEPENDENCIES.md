@@ -144,6 +144,31 @@ grouping and font-size reporting subtly — the "still works but the output got
 worse" case that no pass/fail test catches. **Move it alone**, and compare
 extracted element counts and text before and after.
 
+### PdfPig — held at 0.1.13 deliberately
+
+Checked 20 July 2026, because the surface and the maintenance status were both
+in question. Both came back better than expected.
+
+**One package, no plugins.** `PdfPig 0.1.13` is the only PdfPig-related entry in
+the resolved tree. UpDoc imports exactly two namespaces, `UglyToad.PdfPig` and
+`UglyToad.PdfPig.Content`.
+
+Document Layout Analysis used to be separate. It is **bundled into the main
+package** since the migration off the `UglyToad.PdfPig 1.7.0-custom-5` fork onto
+official `PdfPig`. Nothing extra to keep in step.
+
+**Area drawing does not use PdfPig.** `pdf-area-editor-modal.element.ts` renders
+pages with **pdf.js** (`pdfjs-dist`) and draws on a canvas overlay. PdfPig is
+server-side text extraction only. The two are independent.
+
+**Actively maintained.** Eight alpha builds published between 26 June and
+17 July 2026. The `0.1.x` version number reads as immature but is a versioning
+choice — the project has been going for years.
+
+**Held at 0.1.13 because there is no reason to move.** No advisory, no bug we
+are chasing, and it is the component whose output is hardest to verify. Move it
+when there is a reason, alone, with the #40 baseline in place.
+
 **AngleSharp.Css is on a beta** in a shipped package. Worth checking whether a
 stable release exists.
 

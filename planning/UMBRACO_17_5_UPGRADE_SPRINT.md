@@ -8,19 +8,35 @@ Stays on **LTS 17** throughout. Umbraco 18 is out of scope.
 
 ---
 
-## Decision needed before step 1
+## Decision: Option A — the RCL floor moves
 
-**Does the RCL's Umbraco floor move?**
+**Decided 2026-07-20.** UmBootstrap, UpDoc and Tailored Travel are kept on the
+same stack version deliberately. All three move to 17.5.3 together.
 
-`src/UpDoc/UpDoc.csproj` at 17.2.2 is the minimum version every consumer must
-be on. Tailored Travel runs 17.2.2.
+So `src/UpDoc/UpDoc.csproj` goes to 17.5.3, raising the minimum version for
+every consumer, and the MimeKit pin can be removed.
 
-- [ ] **Option A** — RCL and test site to 17.5.3. Requires TT to move too.
-- [ ] **Option B** — test site only. No consumer impact, can proceed now.
+The standing rule this establishes: **UpDoc's Umbraco reference tracks the
+version the stack is on, and the stack moves as one.** It is not pinned low to
+support older consumers, because there are none — the consumer moves in step.
 
-Tick one before starting. Steps marked **(A)** apply only under option A.
+Steps marked **(A)** below are therefore in scope.
 
 ---
+
+## Stack ordering — UpDoc before Tailored Travel
+
+Since the stack moves as one, the order across repos matters.
+
+**UpDoc must be upgraded and released before Tailored Travel upgrades.** TT
+installs UpDoc from NuGet, so a TT site on 17.5.3 needs an UpDoc package built
+against 17.5.3 to be available.
+
+1. UmBootstrap → 17.5.3 ✅ done 2026-07-20
+2. **UpDoc → 17.5.3, released to NuGet** ← this sprint
+3. Tailored Travel → 17.5.3, taking the new UpDoc package
+
+Doing TT second means it never sits on a version UpDoc cannot support.
 
 ## Preparation
 

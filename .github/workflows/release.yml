@@ -22,8 +22,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
+      # id-token for NuGet Trusted Publishing (OIDC).
+      # contents stays read-only: nothing here writes to the repository now the
+      # release-creation step has gone.
       id-token: write
-      contents: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -44,12 +47,21 @@ jobs:
       - name: Push to NuGet
         run: dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
 
-      - name: Create GitHub Release
-        run: |
-          if [[ "${{ github.ref_name }}" == *-* ]]; then
-            gh release create "${{ github.ref_name }}" --title "v${{ github.ref_name }}" --prerelease --generate-notes
-          else
-            gh release create "${{ github.ref_name }}" --title "v${{ github.ref_name }}" --generate-notes
-          fi
-        env:
-          GH_TOKEN: ${{ github.token }}
+      # There is deliberately no "Create GitHub Release" step.
+      #
+      # Releases are created by hand through the GitHub UI, which writes the tag
+      # and the release together. The tag fires this workflow immediately, so a
+      # step that ran `gh release create` was racing GitHub's own release
+      # creation and the outcome came down to milliseconds:
+      #
+      #   17.2.2   workflow started 52s BEFORE the release existed  -> succeeded
+      #   17.5.3   workflow started  5s AFTER  the release existed  -> HTTP 422
+      #
+      # Losing the race only produced a misleading red tick on a release that had
+      # already published successfully. Winning it was worse: the step passed
+      # --generate-notes, so it would have overwritten handwritten release notes
+      # with an auto-generated changelog.
+      #
+      # The step only made sense for tagging from the command line, which is not
+      # how this project releases. Removed rather than guarded, so the race
+      # cannot happen at all.

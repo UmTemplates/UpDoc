@@ -3,7 +3,18 @@ name: Release to NuGet
 on:
   push:
     tags:
+      # UpDoc versions track the Umbraco version they target, so the first three
+      # parts are the CMS version. The fourth is UpDoc's own build number on that
+      # CMS, which is what allows more than one UpDoc release per Umbraco patch.
+      #
+      #   17.5.3      first UpDoc release targeting Umbraco 17.5.3
+      #   17.5.3.1    a later UpDoc release, same CMS
+      #   17.5.3-rc1  prerelease
+      #
+      # Note NuGet normalises a trailing zero, so 17.5.3.0 publishes as 17.5.3.
+      # Start the fourth part at 1.
       - '[0-9]*.[0-9]*.[0-9]*'
+      - '[0-9]*.[0-9]*.[0-9]*.[0-9]*'
       - '[0-9]*.[0-9]*.[0-9]*-*'
   workflow_dispatch:
 

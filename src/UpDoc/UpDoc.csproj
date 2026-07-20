@@ -51,8 +51,8 @@
          Umbraco 17.2.2's Web.Common resolved MimeKit 4.14.0 transitively. Web.Common
          17.5.3 declares MailKit 4.16.0, which requires MimeKit >= 4.16.0, so the pin
          became a downgrade and failed the restore with NU1605. -->
-    <PackageReference Include="AngleSharp" Version="1.4.0" />
-    <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.154" />
+    <PackageReference Include="AngleSharp" Version="1.5.2" />
+    <PackageReference Include="AngleSharp.Css" Version="1.0.0-beta.222" />
     <PackageReference Include="PdfPig" Version="0.1.13" />
     <PackageReference Include="Umbraco.Cms.Web.Common" Version="17.5.3" />
     <PackageReference Include="Umbraco.Cms.Api.Common" Version="17.5.3" />

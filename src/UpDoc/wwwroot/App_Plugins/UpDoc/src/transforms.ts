@@ -63,7 +63,10 @@ export function buildRteValue(htmlContent: string) {
 			contentData: [],
 			settingsData: [],
 			expose: [],
-			Layout: {},
+			// Lowercase, matching what Umbraco itself writes. It deserialises either
+			// casing today, but relying on that would fail silently if binding ever
+			// tightened — the block would lose its layout without erroring.
+			layout: {},
 		},
 		markup: htmlContent,
 	};

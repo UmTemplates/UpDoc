@@ -115,11 +115,18 @@ The destination doc type splits this into three typed properties:
 | `pagePropertyTourPriceFrom` | Umbraco.Integer | `1999` |
 | `pagePropertyTourDepartureDate` | Umbraco.DateOnly | `2027-09-29` |
 
-The source side works: UpDoc already isolates the strapline as a discrete
-section, and three anchor-based rules with regex find-and-replace can capture
-and clean each value (before `day`; after `£` with `,`→``; after `Depart` with
-`(\d{1,2})(st|nd|rd|th)`→`$1`). The **only** blocker is the destination: the two
-integer fields are never offered, and the date field is mis-typed as text.
+UpDoc already isolates the strapline as a discrete section, and the destination
+is blocked as described above: the two integer fields are never offered, and
+the date field is mis-typed as text.
+
+> **Correction (2026-07-22).** This section previously claimed the source side
+> works, and that three anchor-based rules could capture the three values. That
+> is not the case. The strapline is a **single element** (`p1-e4` in the sample
+> extraction) and rules are first-match-wins — `ContentTransformService.cs:270-274`
+> stores one rule per element index, and the existing description rule already
+> claims it. Three rules cannot each take a piece of that line today. The
+> destination is therefore not the only blocker. See
+> `planning/MULTI_CAPTURE_FROM_ONE_ELEMENT.md`.
 
 ## Suggested next step
 

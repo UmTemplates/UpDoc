@@ -345,6 +345,10 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	// UNGROUPED rules that also match may claim it too, so one element can feed several
 	// rules (mirrors the server-side ContentTransformService). Grouped rules keep
 	// first-match-wins. Returns elementId -> matching ruleIds (primary first).
+	//
+	// KEEP IN SYNC with the server: ContentTransformService.Transform (C#) implements the
+	// same matching rule. This is only the editor's live preview; the actual transform runs
+	// server-side. If they diverge, the "matched / no match" badges will lie.
 	#evaluateRules(): Map<string, string[]> {
 		const claimed = new Map<string, string[]>();
 		const elements = this.#elements;

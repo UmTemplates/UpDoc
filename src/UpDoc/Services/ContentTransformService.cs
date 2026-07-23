@@ -242,6 +242,12 @@ public class ContentTransformService : IContentTransformService
 
         // For each element, determine which rule (if any) claims it (first-match-wins).
         // The primary claim drives all grouped/section-assembly behaviour unchanged.
+        //
+        // KEEP IN SYNC: the rules editor previews matching client-side in
+        // section-rules-editor-modal.element.ts #evaluateRules. Both implement the same
+        // rule (element re-use: first match is primary, extra UNGROUPED rules may also
+        // claim; grouped rules keep first-match-wins). Change both or the editor badges
+        // will disagree with the actual transform.
         var elementRules = new SectionRule?[elements.Count];
 
         // Element re-use: additional UNGROUPED rules that also match an element already

@@ -71,6 +71,34 @@ styling alone:
 
 So it takes the whole line, unmodified.
 
+## The anatomy of a rule (agreed vocabulary)
+
+Before deciding what to add, we pinned down what a rule already is. Terms
+agreed in discussion:
+
+- **Rule** — the whole card (matches the "+ Add rule" button). "Organisation"
+  and "Tour Title" in the header area are two rules.
+- **Role** — the rule's name/label. Loosely interchangeable with "rule", but
+  precisely: the rule is the card, its role is its name.
+
+A rule does three things, in order:
+
+| Phase | Made of | Job |
+|---|---|---|
+| **1. Identify** | conditions + exceptions | find the content in the source |
+| **2. Mark up** | part + format | label it for handover |
+| **3. Change output** | find & replace | alter the text on the way out |
+
+Conditions are ANDed; exceptions are NOT (disqualify a match). Part is the slot
+the content fills (title, content, description, summary). Format shapes the
+output (paragraph, heading, list, auto). Find & replace is the only phase that
+transforms the text itself.
+
+This frame tells us where the atoms problem lives: capturing `4` out of the
+strapline is **phase 3** — changing the output. Phases 1 and 2 already found
+and labelled one element. The open question is whether phase 3 can produce
+*several* outputs from that one identified element, or only one.
+
 ## The reframing
 
 The instinct to reach for "let several rules claim one element" is wrong.
@@ -88,6 +116,84 @@ This matters beyond tidiness: if the client later wants
 
 Mapping already supports one named thing feeding several destinations, so no
 new mapping capability is needed for the atoms themselves.
+
+## The key shift (2026-07-23)
+
+The framing above still treats the strapline as "one element" that must be
+split. That is the wrong mental model, and it was the thing that kept the
+discussion stuck.
+
+**An element is not what the PDF hands over. Rules define what an element is.**
+
+The strapline is not intrinsically one element. Visually it is already two
+pieces — yellow (`5 days from £1,699`) and white (`Departs 26th September 2027`)
+— and our extraction merely happened to merge it into one. There is enough
+information in the text to define three elements by rule:
+
+- an integer **followed by** the word `days` → duration
+- an integer **preceded by** `£` → price
+- a date **preceded by** `Depart` → departure date
+
+Each is its own element, defined by its own rule. So it is one rule per
+element after all, and first-match-wins never applies — they are genuinely
+three different elements, not three rules fighting over one.
+
+**Intrinsic principle:** extract items as close to the destination shape as
+possible. The destination wants a duration, a price and a date, so we extract
+exactly those three, defined at the point of extraction.
+
+This dissolves the "multi-claim" problem rather than solving it. The claim
+loop (`elementRules[i]`, one rule per element) does not need to change,
+provided the carving produces distinct elements before or during matching.
+
+### What is genuinely new
+
+Conditions today test a **whole** element (its font, colour, position, whole
+text) and answer yes/no. Carving asks a rule to match a **span within** the
+merged text and promote that span to an element in its own right — closer to a
+capture group than a yes/no condition.
+
+Undecided, and the main design question left: is carving
+
+- **a new kind of condition** that captures a span, or
+- **a pre-step** that splits merged elements before the normal rules run?
+
+Different places in the pipeline, different sizes of change.
+
+## Three blockers to a working demo
+
+1. **Replace the description rule** with three new ones (duration, price, date).
+   `pageDescription` is no longer captured as the composite — the tour
+   templates concatenate it in Razor from the three atoms.
+2. **No typed inputs on the test site.** See "Test fixture" below.
+3. **`Departs` vs `Departing`.** The date verb varies between documents by
+   design (space in the layout). The date rule needs **OR** on that condition.
+   This is the cheap flavour of OR — one condition, several values — not OR
+   across different condition types. This is where operators stop being a
+   parked distraction and become required.
+
+## Test fixture (deferred)
+
+The typed fields cannot be tested until the destination doc types exist in a
+test site. Options considered:
+
+- **Hand-recreate** the doc types / data types / blueprints / templates —
+  rejected. Hours of work, composition-heavy, error-prone.
+- **uSync-merge into the existing test site** — rejected. Two dependency
+  stacks would collide (overlapping aliases, mismatched data type config,
+  dangling references). An import in name, a manual merge in practice.
+- **Clean-room test site** — a fresh, empty, disposable host (e.g.
+  `UpDoc.TailoredTravel`), with the **entire** Tailored Travel stack
+  uSync-imported into it. No collisions because there is nothing to collide
+  with. UpDoc drops in as a package reference on top. This is the right shape.
+- **Develop inside Tailored Travel and port back** — firmly rejected. Couples
+  the package to one client's site, the exact thing the generic-package /
+  client-config architecture exists to prevent.
+
+**Feasibility deferred.** UpDoc is far from finished; the fixture is built when
+the feature is real enough to need it. The open unknown is how self-contained
+the Tailored Travel uSync stack is (third-party package dependencies would have
+to be present in the clean room too). Tracked by #39.
 
 ## What is still unresolved
 

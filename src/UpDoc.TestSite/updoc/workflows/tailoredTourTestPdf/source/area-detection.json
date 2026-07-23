@@ -1,0 +1,87 @@
+{
+  "totalPages": 4,
+  "pages": [
+    {
+      "page": 1,
+      "areas": [
+        {
+          "name": "Header",
+          "color": "#e84855",
+          "boundingBox": {
+            "left": 22.4,
+            "top": 824.3000000000001,
+            "width": 369.6,
+            "height": 117.6
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "p1-e1",
+                  "text": "The Arts Society Wensum presents",
+                  "fontSize": 13.2,
+                  "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+                  "color": "#FFD200",
+                  "boundingBox": {
+                    "left": 31.7,
+                    "top": 815.7,
+                    "width": 213.5,
+                    "height": 9.6
+                  },
+                  "htmlTag": "",
+                  "htmlContainerPath": "",
+                  "cssClasses": ""
+                }
+              ]
+            },
+            {
+              "heading": {
+                "id": "p1-e2",
+                "text": "Flemish Masters \u2013 Bruges, Antwerp \u0026 Ghent",
+                "fontSize": 28,
+                "fontName": "ADABMB\u002BClarendon",
+                "color": "#FFFFFF",
+                "boundingBox": {
+                  "left": 31.7,
+                  "top": 795.7,
+                  "width": 336.2,
+                  "height": 44.9
+                },
+                "htmlTag": "",
+                "htmlContainerPath": "",
+                "cssClasses": ""
+              },
+              "children": [
+                {
+                  "id": "p1-e3",
+                  "text": "5 days from \u00A31,199 Departing 30th September 2026",
+                  "fontSize": 14.4,
+                  "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+                  "color": "#FFD200",
+                  "boundingBox": {
+                    "left": 31.9,
+                    "top": 726.3,
+                    "width": 350.8,
+                    "height": 10.5
+                  },
+                  "htmlTag": "",
+                  "htmlContainerPath": "",
+                  "cssClasses": ""
+                }
+              ]
+            }
+          ],
+          "totalElements": 3
+        }
+      ]
+    }
+  ],
+  "diagnostics": {
+    "totalPathsFound": 0,
+    "pathsAfterFiltering": 0,
+    "areasDetected": 1,
+    "elementsInAreas": 3
+  }
+}

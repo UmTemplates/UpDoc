@@ -240,8 +240,22 @@ public class ContentTransformService : IContentTransformService
                 ruleGroupIds[rule] = group.Id;
             }
 
-        // For each element, determine which rule (if any) claims it (first-match-wins)
+        // For each element, determine which rule (if any) claims it (first-match-wins).
+        // The primary claim drives all grouped/section-assembly behaviour unchanged.
+        //
+        // KEEP IN SYNC: the rules editor previews matching client-side in
+        // section-rules-editor-modal.element.ts #evaluateRules. Both implement the same
+        // rule (element re-use: first match is primary, extra UNGROUPED rules may also
+        // claim; grouped rules keep first-match-wins). Change both or the editor badges
+        // will disagree with the actual transform.
         var elementRules = new SectionRule?[elements.Count];
+
+        // Element re-use: additional UNGROUPED rules that also match an element already
+        // claimed by the primary loop. These produce their own extra sections in the
+        // ungrouped emit path, so one source element can feed several mappings. Grouped
+        // rules and section assembly are unaffected — they only read elementRules.
+        var extraUngroupedMatches = new Dictionary<int, List<SectionRule>>();
+
         for (int i = 0; i < elements.Count; i++)
         {
             foreach (var rule in allRules)
@@ -267,11 +281,27 @@ public class ContentTransformService : IContentTransformService
                         continue;
                 }
 
-                if (PdfPagePropertiesService.MatchesAllConditions(elements[i], rule.Conditions, i, total))
+                if (!PdfPagePropertiesService.MatchesAllConditions(elements[i], rule.Conditions, i, total))
+                    continue;
+
+                if (elementRules[i] == null)
                 {
+                    // First rule to match — the primary claim (drives sections, grouping, etc.)
                     elementRules[i] = rule;
-                    break; // first-match-wins: move to next element
                 }
+                else if (ungroupedRules.Contains(rule))
+                {
+                    // Element already claimed, but this ungrouped rule also matches.
+                    // Record it as an additional match so it emits its own section.
+                    if (!extraUngroupedMatches.TryGetValue(i, out var list))
+                    {
+                        list = new List<SectionRule>();
+                        extraUngroupedMatches[i] = list;
+                    }
+                    list.Add(rule);
+                }
+                // Grouped rules do not re-use an already-claimed element — first-match-wins
+                // still applies to them, preserving section-assembly behaviour exactly.
             }
         }
 
@@ -295,6 +325,13 @@ public class ContentTransformService : IContentTransformService
             }
         }
 
+        // Capture original element text before the primary rule's replacements mutate it.
+        // Extra ungrouped matches (element re-use) apply their own replacements to the
+        // untouched original, so one rule's find & replace cannot leak into another's.
+        var originalElementText = new string[elements.Count];
+        for (int i = 0; i < elements.Count; i++)
+            originalElementText[i] = elements[i].Text;
+
         // Apply text replacements from matched rules to element text
         for (int i = 0; i < elements.Count; i++)
         {
@@ -314,6 +351,19 @@ public class ContentTransformService : IContentTransformService
             {
                 hasPartDrivenRules = true;
                 break;
+            }
+        }
+        // Extra ungrouped matches (element re-use) also count — an element whose primary
+        // rule is a title may still have a content rule re-using it.
+        if (!hasPartDrivenRules)
+        {
+            foreach (var extraRules in extraUngroupedMatches.Values)
+            {
+                if (extraRules.Any(r => r.GetEffectivePart() is "content" or "description" or "summary" or "exclude"))
+                {
+                    hasPartDrivenRules = true;
+                    break;
+                }
             }
         }
 
@@ -407,6 +457,25 @@ public class ContentTransformService : IContentTransformService
                     var format = elementFormats[i] ?? "auto";
                     var propLine = FormatContentLine(elements[i].Text, format, ref numberedListCounter);
                     ungroupedElementsByRule[rule].Add((i, propLine));
+                }
+
+                // Element re-use: additional ungrouped rules that also matched this element.
+                // Each applies its OWN find & replace to the untouched original text, so the
+                // one element produces a distinct section per rule.
+                if (extraUngroupedMatches.TryGetValue(i, out var extraRules))
+                {
+                    foreach (var rule in extraRules)
+                    {
+                        if (rule.GetEffectivePart() == "exclude") continue;
+                        if (!ungroupedElementsByRule.ContainsKey(rule))
+                            ungroupedElementsByRule[rule] = new List<(int, string)>();
+                        var text = rule.TextReplacements is { Count: > 0 } reps
+                            ? ApplyTextReplacements(originalElementText[i], reps)
+                            : originalElementText[i];
+                        var format = rule.GetEffectiveFormat();
+                        var propLine = FormatContentLine(text, format, ref numberedListCounter);
+                        ungroupedElementsByRule[rule].Add((i, propLine));
+                    }
                 }
             }
 

@@ -1,0 +1,75 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "sourceTypes": [
+    "pdf"
+  ],
+  "globals": null,
+  "pages": [
+    1
+  ],
+  "sections": [],
+  "sectionRules": null,
+  "areaRules": {
+    "header": {
+      "groups": [],
+      "rules": [
+        {
+          "id": "aa8d997f-3c97-41ca-9678-13d39bd21de3",
+          "role": "Duration",
+          "part": "content",
+          "action": null,
+          "format": "auto",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "colorEquals",
+              "value": "#FFD200"
+            },
+            {
+              "type": "segment",
+              "value": null
+            },
+            {
+              "type": "textPrecedes",
+              "value": "days"
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null,
+          "segment": null
+        },
+        {
+          "id": "62402370-72ee-4ea6-8c46-8bc9dc50bd8d",
+          "role": "Price",
+          "part": "content",
+          "action": null,
+          "format": "auto",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "colorEquals",
+              "value": "#FFD200"
+            },
+            {
+              "type": "segment",
+              "value": null
+            },
+            {
+              "type": "textFollows",
+              "value": "\u00A3"
+            },
+            {
+              "type": "number",
+              "value": null
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null,
+          "segment": null
+        }
+      ]
+    }
+  },
+  "excludedAreas": null
+}

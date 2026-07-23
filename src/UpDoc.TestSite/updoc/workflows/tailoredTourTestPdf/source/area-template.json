@@ -1,0 +1,27 @@
+{
+  "templateName": "tailoredTourTestPdf",
+  "sourceFile": "",
+  "pageSize": {
+    "width": 595,
+    "height": 841.89
+  },
+  "createdAt": "2026-07-23T05:56:36.384Z",
+  "areas": [
+    {
+      "name": "Header",
+      "property": "",
+      "page": 1,
+      "type": "",
+      "bounds": {
+        "x": 22.4,
+        "y": 706.7,
+        "width": 369.6,
+        "height": 117.6
+      },
+      "color": "#e84855",
+      "sectionPattern": null,
+      "expectedSections": [],
+      "notes": ""
+    }
+  ]
+}

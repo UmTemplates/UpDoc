@@ -55,6 +55,22 @@ export function stripMarkdown(markdown: string): string {
 }
 
 /**
+ * Coerces a captured string to an integer for number-typed destination fields.
+ * Strips thousands separators and surrounding non-digit text ("£1,199" → 1199).
+ * Returns null when no integer can be parsed — callers should leave the blueprint
+ * default in place rather than writing garbage.
+ */
+export function coerceToInteger(value: string): number | null {
+	if (!value) return null;
+	// Remove thousands separators, then take the first run of digits (with optional sign).
+	const cleaned = value.replace(/,/g, '');
+	const match = cleaned.match(/-?\d+/);
+	if (!match) return null;
+	const parsed = parseInt(match[0], 10);
+	return Number.isNaN(parsed) ? null : parsed;
+}
+
+/**
  * Builds an Umbraco RTE (Rich Text Editor) value object from HTML markup.
  */
 export function buildRteValue(htmlContent: string) {

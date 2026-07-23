@@ -1,0 +1,59 @@
+{
+  "Version": "2.0",
+  "Areas": [
+    {
+      "Name": "Header",
+      "Color": "#e84855",
+      "Page": 1,
+      "SortOrder": null,
+      "Groups": [],
+      "Sections": [
+        {
+          "Id": "preamble-header-p1",
+          "StableKey": null,
+          "OriginalHeading": null,
+          "Heading": null,
+          "Content": "The Arts Society Wensum presents",
+          "Description": null,
+          "Summary": null,
+          "Pattern": "paragraph",
+          "Page": 1,
+          "AreaColor": "#e84855",
+          "AreaName": "Header",
+          "GroupName": null,
+          "RuleName": null,
+          "ChildCount": 1,
+          "Included": true,
+          "SortOrder": null
+        },
+        {
+          "Id": "flemish-masters-bruges-antwerp-ghent",
+          "StableKey": null,
+          "OriginalHeading": "Flemish Masters \u2013 Bruges, Antwerp \u0026 Ghent",
+          "Heading": "Flemish Masters \u2013 Bruges, Antwerp \u0026 Ghent",
+          "Content": "5 days from \u00A31,199 Departing 30th September 2026",
+          "Description": null,
+          "Summary": null,
+          "Pattern": "paragraph",
+          "Page": 1,
+          "AreaColor": "#e84855",
+          "AreaName": "Header",
+          "GroupName": null,
+          "RuleName": null,
+          "ChildCount": 1,
+          "Included": true,
+          "SortOrder": null
+        }
+      ]
+    }
+  ],
+  "Diagnostics": {
+    "TotalSections": 2,
+    "BulletListSections": 0,
+    "ParagraphSections": 2,
+    "SubHeadedSections": 0,
+    "PreambleSections": 0,
+    "RoleSections": 0,
+    "Warnings": []
+  }
+}

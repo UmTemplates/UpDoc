@@ -1,4 +1,4 @@
-import { n as w } from "./transforms-CWr9uX2Z.js";
+import { n as w } from "./transforms-DNUIGMem.js";
 import { html as s, nothing as d, css as K, state as v, customElement as I } from "@umbraco-cms/backoffice/external/lit";
 import { UmbModalBaseElement as V } from "@umbraco-cms/backoffice/modal";
 import { UmbTextStyles as j } from "@umbraco-cms/backoffice/style";
@@ -553,4 +553,4 @@ export {
   u as UpDocAreaPickerModalElement,
   te as default
 };
-//# sourceMappingURL=area-picker-modal.element-QIWHF1AP.js.map
+//# sourceMappingURL=area-picker-modal.element-nFEIVoty.js.map

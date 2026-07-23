@@ -2,6 +2,7 @@ import type { SectionRulesEditorModalData, SectionRulesEditorModalValue } from '
 import type { SectionRule, RuleCondition, RuleConditionType, RulePart, BlockFormat, FormatEntry, FormatEntryType, AreaElement, AreaRules, RuleGroup, TextReplacement, FindType, ReplaceType } from './workflow.types.js';
 import type { SortChangeDetail, SortableRule } from './sortable-rules-container.element.js';
 import { getEffectivePart, getEffectiveFormat } from './workflow.types.js';
+import { matchConditions, segmentConditions, applySegmentConditions } from './segment.js';
 import './sortable-rules-container.element.js';
 import { ruleCardStyles } from './rule-card-styles.js';
 import { html, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
@@ -48,10 +49,13 @@ const CONDITION_LABELS: Record<RuleConditionType, string> = {
 	containerIdEquals: 'Container ID equals',
 	containerClassContains: 'Container class contains',
 	isBoldEquals: 'Is bold',
+	segment: 'Segment',
+	textFollows: 'Text follows',
+	textPrecedes: 'Text precedes',
 };
 
 /** Condition types that don't need a value input */
-const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals'];
+const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals', 'segment'];
 
 /** All available condition types */
 const ALL_CONDITION_TYPES: RuleConditionType[] = [
@@ -62,7 +66,21 @@ const ALL_CONDITION_TYPES: RuleConditionType[] = [
 	// HTML-specific (web sources)
 	'htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains',
 	'containerIdEquals', 'containerClassContains', 'isBoldEquals',
+	'segment', 'textFollows', 'textPrecedes',
 ];
+
+/**
+ * Conditions valid for PDF sources — those testing data PdfPig produces:
+ * text, font size, font name, colour, position. Excludes HTML/container/bold
+ * conditions, which read fields PDF extraction never populates. See #80.
+ */
+const PDF_CONDITION_TYPES = new Set<RuleConditionType>([
+	'textBeginsWith', 'textEndsWith', 'textContains', 'textEquals', 'textMatchesPattern',
+	'fontSizeEquals', 'fontSizeAbove', 'fontSizeBelow', 'fontSizeRange',
+	'fontNameContains', 'fontNameEquals', 'colorEquals',
+	'positionFirst', 'positionLast',
+	'segment', 'textFollows', 'textPrecedes',
+]);
 
 /** Friendly labels for rule parts */
 const PART_LABELS: Record<RulePart, string> = {
@@ -308,14 +326,41 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		return this.data?.sourceType ?? 'pdf';
 	}
 
-	/** Condition types sorted by source-type relevance. Web-specific types first for web, last for PDF. */
+	/**
+	 * Condition types available for the current source type. Only conditions that test
+	 * data the extractor actually produces are shown — a condition testing a field the
+	 * source leaves empty can never match, so it is hidden rather than offered.
+	 *
+	 * PDF (PdfPig): text, font size, font name, colour, position. HTML/container/bold
+	 * fields are never populated by PDF extraction, so those conditions are excluded.
+	 * Web (AngleSharp + CSS): every field is populated, so all conditions apply.
+	 * markdown / word: no filtering yet (no workflows exist) — show the full list.
+	 */
 	get #conditionTypes(): RuleConditionType[] {
-		if (this.#sourceType === 'web') {
-			const webTypes: RuleConditionType[] = ['htmlTagEquals', 'containerIdEquals', 'containerClassContains', 'cssClassContains', 'htmlContainerPathContains'];
-			return [...webTypes, ...ALL_CONDITION_TYPES.filter((t) => !webTypes.includes(t))];
+		if (this.#sourceType === 'pdf') {
+			return ALL_CONDITION_TYPES.filter((t) => PDF_CONDITION_TYPES.has(t));
 		}
-		// PDF: web types at end (already the default order)
+		if (this.#sourceType === 'web') {
+			// Web-specific structural conditions first, then the rest.
+			const webFirst: RuleConditionType[] = [
+				'htmlTagEquals', 'containerIdEquals', 'containerClassContains',
+				'cssClassContains', 'htmlContainerPathContains',
+			];
+			return [...webFirst, ...ALL_CONDITION_TYPES.filter((t) => !webFirst.includes(t))];
+		}
+		// markdown / word / unknown: full list until their extractors are audited.
 		return ALL_CONDITION_TYPES;
+	}
+
+	/**
+	 * Condition types for a specific dropdown, always including the condition's own
+	 * current type. This guarantees an existing rule using a now-filtered condition
+	 * (e.g. a legacy container condition on a PDF workflow) still shows its real value
+	 * instead of appearing blank.
+	 */
+	#conditionTypesFor(current: RuleConditionType): RuleConditionType[] {
+		const available = this.#conditionTypes;
+		return available.includes(current) ? available : [current, ...available];
 	}
 
 	get #sectionHeading(): string {
@@ -341,18 +386,40 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	// ===== Rule evaluation (first-match-wins) =====
 
 	/** Evaluate all rules against elements. Returns a map of elementId -> rule _id */
-	#evaluateRules(): Map<string, string> {
-		const claimed = new Map<string, string>();
+	// Element re-use: an element's first matching rule is the primary claim. Additional
+	// UNGROUPED rules that also match may claim it too, so one element can feed several
+	// rules (mirrors the server-side ContentTransformService). Grouped rules keep
+	// first-match-wins. Returns elementId -> matching ruleIds (primary first).
+	//
+	// KEEP IN SYNC with the server: ContentTransformService.Transform (C#) implements the
+	// same matching rule. This is only the editor's live preview; the actual transform runs
+	// server-side. If they diverge, the "matched / no match" badges will lie.
+	/** Preview text for a matched element: the extracted piece if the rule has a
+	 *  segment marker, otherwise the whole element text. */
+	#previewText(rule: SectionRule, elementText: string): string {
+		const pieceConds = segmentConditions(rule.conditions);
+		return pieceConds.length > 0 ? applySegmentConditions(elementText, pieceConds) : elementText;
+	}
+
+	#evaluateRules(): Map<string, string[]> {
+		const claimed = new Map<string, string[]>();
 		const elements = this.#elements;
 
 		for (const rule of this._rules) {
-			if (rule.conditions.length === 0) continue;
+			// Match on the pre-segment conditions only — conditions after a "segment"
+			// marker define the piece to extract, not how to match the element.
+			const matchConds = matchConditions(rule.conditions);
+			if (matchConds.length === 0) continue;
+			const isUngrouped = rule._groupName === UNGROUPED_GROUP;
 
 			for (let elIdx = 0; elIdx < elements.length; elIdx++) {
 				const el = elements[elIdx];
-				if (claimed.has(el.id)) continue; // already claimed by an earlier rule
+				const existing = claimed.get(el.id);
 
-				if (this.#elementMatchesAllConditions(el, rule.conditions, elIdx, elements.length)) {
+				// Already claimed: only an ungrouped rule may additionally claim it.
+				if (existing && !isUngrouped) continue;
+
+				if (this.#elementMatchesAllConditions(el, matchConds, elIdx, elements.length)) {
 					// Check exceptions — if any exception matches, skip this element for this rule
 					if (rule.exceptions?.length) {
 						const anyExceptionMatches = rule.exceptions.some((exc) =>
@@ -360,7 +427,11 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 						);
 						if (anyExceptionMatches) continue;
 					}
-					claimed.set(el.id, rule._id);
+					if (existing) {
+						existing.push(rule._id);
+					} else {
+						claimed.set(el.id, [rule._id]);
+					}
 				}
 			}
 		}
@@ -927,7 +998,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 					class="condition-type-select"
 					.value=${condition.type}
 					@change=${(e: Event) => this.#updateConditionType(ruleId, condIdx, (e.target as HTMLSelectElement).value as RuleConditionType)}>
-					${this.#conditionTypes.map((t) => html`
+					${this.#conditionTypesFor(condition.type).map((t) => html`
 						<option value=${t} ?selected=${t === condition.type}>${CONDITION_LABELS[t]}</option>
 					`)}
 				</select>
@@ -972,7 +1043,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 					class="condition-type-select"
 					.value=${exception.type}
 					@change=${(e: Event) => this.#updateExceptionType(ruleId, excIdx, (e.target as HTMLSelectElement).value as RuleConditionType)}>
-					${this.#conditionTypes.map((t) => html`
+					${this.#conditionTypesFor(exception.type).map((t) => html`
 						<option value=${t} ?selected=${t === exception.type}>${CONDITION_LABELS[t]}</option>
 					`)}
 				</select>
@@ -1255,8 +1326,8 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 
 				<div class="match-preview ${matchedElements.length > 0 ? (isExcluded ? 'excluded' : 'matched') : 'no-match'}">
 					${matchedElements.length > 0
-						? html`<uui-icon name=${isExcluded ? 'icon-block' : 'icon-check'}></uui-icon> ${isExcluded ? 'Excluded' : 'Matched'} <strong>${matchedElements.length}&times;</strong>${matchedElements.length <= 5 ? html`: ${matchedElements.map((el, i) => html`${i > 0 ? html`, ` : nothing}<strong>${this.#truncate(el.text, 40)}</strong>`)}` : nothing}`
-						: html`<uui-icon name="icon-alert"></uui-icon> ${rule.conditions.length === 0 ? 'Add conditions to match elements' : 'No match'}`}
+						? html`<uui-icon name=${isExcluded ? 'icon-block' : 'icon-check'}></uui-icon> ${isExcluded ? 'Excluded' : 'Matched'} <strong>${matchedElements.length}&times;</strong>${matchedElements.length <= 5 ? html`: ${matchedElements.map((el, i) => html`${i > 0 ? html`, ` : nothing}<strong>${this.#truncate(this.#previewText(rule, el.text), 40)}</strong>`)}` : nothing}`
+						: html`<uui-icon name="icon-alert"></uui-icon> ${matchConditions(rule.conditions).length === 0 ? 'Add conditions to match elements' : 'No match'}`}
 				</div>
 			</div>
 		`;
@@ -1321,7 +1392,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		`;
 	}
 
-	#renderUnmatchedElements(claimed: Map<string, number>) {
+	#renderUnmatchedElements(claimed: Map<string, string[]>) {
 		const elements = this.#elements;
 		const unmatched = elements.filter((el) => !claimed.has(el.id));
 		if (unmatched.length === 0) return nothing;
@@ -1367,11 +1438,13 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	override render() {
 		const claimed = this.#evaluateRules();
 
-		// Build rule _id -> all matched elements lookup
+		// Build rule _id -> all matched elements lookup. An element may be claimed by
+		// several rules (element re-use), so iterate every ruleId it matched.
 		const ruleMatches = new Map<string, AreaElement[]>();
-		for (const [elId, ruleId] of claimed) {
+		for (const [elId, ruleIds] of claimed) {
 			const el = this.#elements.find((e) => e.id === elId);
-			if (el) {
+			if (!el) continue;
+			for (const ruleId of ruleIds) {
 				const existing = ruleMatches.get(ruleId) ?? [];
 				existing.push(el);
 				ruleMatches.set(ruleId, existing);

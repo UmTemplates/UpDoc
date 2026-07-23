@@ -195,26 +195,92 @@ the feature is real enough to need it. The open unknown is how self-contained
 the Tailored Travel uSync stack is (third-party package dependencies would have
 to be present in the clean room too). Tracked by #39.
 
-## What is still unresolved
+## Empirical session (2026-07-23) — the design settled
 
-Reframing removes the *motivation* for multi-claim but not the *mechanism*
-question. The three atoms still live inside one PDF element, so something must
-produce three named values from one match.
+Built a throwaway workflow (`tailoredTourTestPdf`) on a real PDF, page 1 only,
+and worked the problem in the actual UI. Findings, in order:
 
-Two candidate shapes, not yet chosen:
+**Elements are lines, defined by Y-position, colour-blind.** Word grouping uses
+`yTolerance = 5.0` (`PdfPagePropertiesService.cs:863`). The strapline is two
+colours — yellow `5 days from £1,199` (#FFD200) and white `Departing 30th
+September 2026` — but sits on one line, so it merges into one element. The
+colour change does not break it.
 
-**A. One rule, several named outputs.** A rule matches `p1-e4` once and emits
-`tourDuration`, `tourPrice`, `tourDepartureDate`, each with its own capture
-expression. Leaves first-match-wins untouched. Fits the "named atoms" framing.
-Open question: how the capture expressions are authored and displayed.
+**Conditions test the whole element, not a fragment.** A rule "text begins with
+£" gave **no match** — the element text starts with `5`, and the £ is mid-line.
+Confirmed live: conditions cannot reach inside an element.
 
-**B. Per-rule "do not consume" flag.** A rule can match without claiming, so
-later rules still see the element. Smaller conceptually, but `elementRules[i]`
-still holds one rule, so this is a bigger change than it sounds. Also raises
-the question of whether a non-consuming rule contributes to section assembly
-(if it does, content duplicates).
+**Consumption is deliberate, not incidental.** Matching an element removes it
+from the unmatched list. This is the intended behaviour — it declutters the
+editor as the author works. It is also exactly what blocks three rules on one
+line. The same feature pulls two ways.
 
-A leans on the existing `textReplacements` machinery. B does not.
+**Find & replace already works on substrings** (e.g. `&` → `and`). So the
+carving tool exists; it is *conditions* that cannot address a fragment, not
+find & replace.
+
+### The model we landed on
+
+Discarded "split the element" — nothing is actually being split. The reframe:
+
+> The **same element is in use by several rules**, each pulling a different bit
+> out of it. "In use" is simply not exclusive any more.
+
+This dissolves the mechanism question. No new elements, no split concept, no
+partial-match detection, no "do-not-consume" flag inferred from matches.
+
+**Element state model.** An element is in one of three states, shown as
+buckets in the UI:
+
+- **Unmatched** — nothing has claimed it
+- **In use** — one *or more* rules are using it
+- **Ignored** — parked by the author, listed below and reversible (recover,
+  don't destroy — same principle as the recycle bin)
+
+"In use" leaving the unmatched list preserves the decluttering the current
+consumption gives — the author still sees the pool shrink. The only change is
+that an element can be in use more than once.
+
+**Element-level actions.** The "Define rule" affordance on an unmatched element
+becomes a small menu: Define rule / Ignore (and, later, a "where is this used"
+report). Ignore moves the element to the Ignored bucket.
+
+**Rules address the whole element as today.** A rule pulls its bit via its own
+conditions + find & replace. Three rules on the strapline each pull duration,
+price, date. Consumption/decluttering is preserved because "in use" still
+removes it from Unmatched — it just does not forbid a second rule.
+
+### The one real code change
+
+`elementRules[i]` (`ContentTransformService.cs:244`) is a single
+`SectionRule?` per element index. It becomes a **list**. First-match-wins
+(`break` at line 273) is dropped: keep evaluating rules against an element even
+after one matches. Every downstream consumer of `elementRules` must then handle
+an element belonging to several rules.
+
+This is the loop change the day opened worried about touching. It now has a
+clear reason and a model behind it.
+
+### Deferred, explicitly not now
+
+- The "used in N places" report (click an in-use element, see the rules using
+  it, jump to them). A reporting layer, not core.
+- OR operator inside rules — still needed for `Departs`/`Departing`, still the
+  cheap flavour (one condition, several values). See "Parked" below.
+- Section-assembly interaction: if an element is in use by three rules, how
+  does it contribute to sections without duplicating? This is the real risk in
+  the loop change and must be worked through before implementation.
+
+### Superseded candidates (kept for the record)
+
+Earlier this doc proposed two shapes, both now superseded by the in-use model:
+
+- **A. One rule, several named outputs** — a rule emitting several captures.
+- **B. Per-rule "do not consume" flag** — a rule matching without claiming.
+
+Both tried to avoid changing `elementRules`. The session concluded the honest
+fix is to change it, and that "non-exclusive in use" is a cleaner mental model
+than either.
 
 ### Does the description rule stay?
 

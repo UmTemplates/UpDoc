@@ -3,7 +3,7 @@ import { UMB_BLUEPRINT_PICKER_MODAL } from './blueprint-picker-modal.token.js';
 import type { DocumentTypeOption } from './blueprint-picker-modal.token.js';
 import type { DocumentTypeConfig, MappingDestination } from './workflow.types.js';
 import { fetchActiveWorkflows } from './workflow.service.js';
-import { markdownToHtml, buildRteValue, stripMarkdown } from './transforms.js';
+import { markdownToHtml, buildRteValue, stripMarkdown, coerceToInteger } from './transforms.js';
 import { UmbEntityActionBase } from '@umbraco-cms/backoffice/entity-action';
 import { umbOpenModal } from '@umbraco-cms/backoffice/modal';
 import type { UmbControllerHost } from '@umbraco-cms/backoffice/controller-api';
@@ -488,6 +488,24 @@ export class UpDocEntityAction extends UmbEntityActionBase<never> {
 				const val = values.find((v) => v.alias === field.alias);
 				if (val && typeof val.value === 'string') {
 					val.value = stripMarkdown(val.value);
+				}
+			}
+		}
+
+		// Coerce number fields: captured string → integer (e.g. "£1,199" → 1199).
+		// On parse failure, drop the value entirely so the property keeps its scaffold
+		// default rather than sending a non-numeric string the API would reject.
+		for (const field of config.destination.fields) {
+			if (field.type === 'number' && mappedFields.has(field.alias)) {
+				const idx = values.findIndex((v) => v.alias === field.alias);
+				if (idx !== -1 && typeof values[idx].value === 'string') {
+					const coerced = coerceToInteger(values[idx].value as string);
+					if (coerced === null) {
+						console.warn(`UpDoc: could not coerce "${values[idx].value}" to an integer for field "${field.alias}" — leaving property unset.`);
+						values.splice(idx, 1);
+					} else {
+						values[idx].value = coerced;
+					}
 				}
 			}
 		}

@@ -225,7 +225,7 @@
       "sourceKey": "d0000001-0000-4000-8000-000000000001",
       "destinations": [
         {
-          "target": "pageDescription",
+          "target": "pagePropertyTourDuration",
           "blockKey": null,
           "contentTypeKey": null,
           "transforms": null
@@ -239,7 +239,7 @@
       "sourceKey": "d0000002-0000-4000-8000-000000000002",
       "destinations": [
         {
-          "target": "pageDescription",
+          "target": "pagePropertyTourPriceFrom",
           "blockKey": null,
           "contentTypeKey": null,
           "transforms": null

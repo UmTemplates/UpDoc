@@ -26,10 +26,12 @@ public class DestinationStructureService : IDestinationStructureService
     private readonly IContentService _contentService;
     private readonly ILogger<DestinationStructureService> _logger;
 
-    // Property editor types that can receive text-based mapped content
+    // Property editor types that can receive mapped content.
+    // "number" is included so integer/decimal fields are offered as mapping targets;
+    // the captured string is coerced to an integer on write (client-side apply pass).
     private static readonly HashSet<string> TextMappableTypes = new(StringComparer.OrdinalIgnoreCase)
     {
-        "text", "textArea", "richText"
+        "text", "textArea", "richText", "number"
     };
 
     public DestinationStructureService(

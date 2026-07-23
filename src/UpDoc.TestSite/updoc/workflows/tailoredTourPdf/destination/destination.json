@@ -7,6 +7,42 @@
   "blueprintName": "[Tailored Tour Blueprint]",
   "fields": [
     {
+      "key": "24cf1e18-15a0-45ca-aa0f-a2e0ad25e201",
+      "alias": "pagePropertyTourDuration",
+      "label": "Tour Duration",
+      "description": "Number of days",
+      "type": "number",
+      "tab": "Tour Details",
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ]
+    },
+    {
+      "key": "b74f3e0c-274f-4133-b509-ead0efd2145f",
+      "alias": "pagePropertyTourPriceFrom",
+      "label": "Tour Price (from)",
+      "description": "The starting price for this tour",
+      "type": "number",
+      "tab": "Tour Details",
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ]
+    },
+    {
+      "key": "71f5a51c-2aa2-4970-b2d0-bbb1f08ae572",
+      "alias": "pagePropertyTourDepartureDate",
+      "label": "Tour Departure Date",
+      "description": "The date this tour departs",
+      "type": "text",
+      "tab": "Tour Details",
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ]
+    },
+    {
       "key": "1456b7e3-0fb0-45d0-9514-8438e6ec5960",
       "alias": "pageTitle",
       "label": "Page Title",

@@ -8,7 +8,7 @@ const o = [
     alias: "UpDoc.EntityAction",
     name: "UpDoc Entity Action",
     weight: 1100,
-    api: () => import("./up-doc-action-BcMDvriW.js"),
+    api: () => import("./up-doc-action-Brk9-Z3B.js"),
     forEntityTypes: ["document"],
     meta: {
       icon: "icon-document",
@@ -40,7 +40,7 @@ const o = [
     kind: "button",
     alias: "UpDoc.CollectionAction",
     name: "UpDoc Collection Action",
-    element: () => import("./up-doc-collection-action.element-CVeHv3Lw.js"),
+    element: () => import("./up-doc-collection-action.element-IFfAeLc9.js"),
     weight: 50,
     meta: {
       label: "Create from Source"
@@ -59,7 +59,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.Modal",
     name: "UpDoc Modal",
-    element: () => import("./up-doc-modal.element-CQOmGYzo.js")
+    element: () => import("./up-doc-modal.element-CYfbBLxQ.js")
   },
   {
     type: "modal",
@@ -95,7 +95,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.AreaPickerModal",
     name: "Area Picker Modal",
-    element: () => import("./area-picker-modal.element-QIWHF1AP.js")
+    element: () => import("./area-picker-modal.element-nFEIVoty.js")
   },
   {
     type: "modal",
@@ -150,7 +150,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Source",
     name: "UpDoc Workflow Source View",
-    element: () => import("./up-doc-workflow-source-view.element-BknSTrCt.js"),
+    element: () => import("./up-doc-workflow-source-view.element-DnpOYk09.js"),
     weight: 200,
     meta: {
       label: "Source",

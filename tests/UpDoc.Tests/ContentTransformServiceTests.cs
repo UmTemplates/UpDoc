@@ -61,6 +61,7 @@ public class ContentTransformServiceTests
         Conditions = { new RuleCondition { Type = "textContains", Value = containsText } },
     };
 
+
     // ---- Characterisation: current single-rule behaviour ----
 
     [Fact]
@@ -79,13 +80,12 @@ public class ContentTransformServiceTests
     }
 
     /// <summary>
-    /// THE WALL: two content rules both match the strapline (it contains both
-    /// "£" and "Days"), but first-match-wins means only the first produces a
-    /// section. This test documents the CURRENT behaviour. When element re-use
-    /// lands, this expectation changes to two sections.
+    /// ELEMENT RE-USE: two ungrouped content rules both match the strapline (it
+    /// contains both "£" and "Days"). Each should produce its own section, so the
+    /// one element feeds two mappings. This is the Sprint 1 behaviour.
     /// </summary>
     [Fact]
-    public void TwoContentRulesMatchingOneElement_CurrentlyProducesOnlyOneSection()
+    public void TwoUngroupedContentRulesMatchingOneElement_ProduceTwoSections()
     {
         var detection = OneArea("Header",
             El("e1", "5 days from £1,199 Departing 30th September 2026", fontSize: 14.4, color: "#FFD200"));
@@ -98,7 +98,69 @@ public class ContentTransformServiceTests
 
         var sections = result.Areas.SelectMany(a => a.Sections).ToList();
 
-        // Documents first-match-wins: only the first rule (Price) claims the element.
-        Assert.Single(sections);
+        Assert.Equal(2, sections.Count);
+        Assert.Contains(sections, s => s.RuleName == "Price");
+        Assert.Contains(sections, s => s.RuleName == "Duration");
+    }
+
+    /// <summary>
+    /// Each rule applies its own find & replace to its own copy of the element
+    /// text — one rule's replacement must not leak into the other's section.
+    /// </summary>
+    [Fact]
+    public void EachReusingRule_AppliesItsOwnTextReplacements_Independently()
+    {
+        var detection = OneArea("Header",
+            El("e1", "5 days from £1,199 Departing 30th September 2026", fontSize: 14.4, color: "#FFD200"));
+
+        var price = ContentRule("Price", "£");
+        price.TextReplacements = new()
+        {
+            new TextReplacement { FindType = "textContains", Find = "5 days from £", ReplaceType = "replaceAll", Replace = "" },
+            new TextReplacement { FindType = "textContains", Find = " Departing 30th September 2026", ReplaceType = "replaceAll", Replace = "" },
+        };
+
+        var duration = ContentRule("Duration", "Days");
+        duration.TextReplacements = new()
+        {
+            new TextReplacement { FindType = "textContains", Find = " days from £1,199 Departing 30th September 2026", ReplaceType = "replaceAll", Replace = "" },
+        };
+
+        var rules = Rules("Header", price, duration);
+
+        var result = Service.Transform(detection, rules);
+        var sections = result.Areas.SelectMany(a => a.Sections).ToList();
+
+        var priceSection = sections.Single(s => s.RuleName == "Price");
+        var durationSection = sections.Single(s => s.RuleName == "Duration");
+
+        Assert.Equal("1,199", priceSection.Content.Trim());
+        Assert.Equal("5", durationSection.Content.Trim());
+    }
+
+    // ---- Regression guard: a single ungrouped rule is unaffected by re-use ----
+
+    /// <summary>
+    /// The element-re-use change must not alter output when only one rule matches an
+    /// element. Two elements, one rule each — each produces its own section exactly as
+    /// before. This guards the common single-match path against the new code.
+    /// </summary>
+    [Fact]
+    public void OneRulePerElement_AcrossSeveralElements_IsUnaffected()
+    {
+        var detection = OneArea("Body",
+            El("e1", "The Arts Society Wensum presents", fontSize: 13),
+            El("e2", "Flemish Masters – Bruges, Antwerp & Ghent", fontSize: 28));
+
+        var rules = Rules("Body",
+            ContentRule("Society", "Society"),
+            ContentRule("Title", "Flemish"));
+
+        var result = Service.Transform(detection, rules);
+        var sections = result.Areas.SelectMany(a => a.Sections).ToList();
+
+        Assert.Equal(2, sections.Count);
+        Assert.Contains(sections, s => s.RuleName == "Society" && s.Content.Contains("Wensum"));
+        Assert.Contains(sections, s => s.RuleName == "Title" && s.Content.Contains("Flemish"));
     }
 }

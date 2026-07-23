@@ -171,11 +171,12 @@ Unit tests in `UpDoc.Tests` (the project added in #81), against
 - **Typed write** (integer/decimal/DateOnly) — segment values map to text fields
   in this spec; the integer write is the immediate follow-up (#34).
 
-## Open questions for the plan
+## Decisions
 
-1. Marker-not-found behaviour: empty string, or pass through whole text?
-   (Lean: empty, so a mis-authored segment visibly produces nothing rather than
-   silently the whole line.)
-2. Does the client-side rules editor need the live segment preview in v1, or can
-   it ship server-side first with the preview as a fast follow? (Lean: include
-   preview — authoring blind is poor UX.)
+1. **Marker not found → return empty string.** A mis-authored anchor produces a
+   visibly blank value the author will notice and fix, rather than silently
+   dumping the whole line into a field that expected a fragment. Fail honestly.
+2. **Live segment preview ships in v1.** The segment block shows its resulting
+   text against the sample element, the same way conditions show match/no-match.
+   Authoring an anchor blind is the exact friction this work exists to remove,
+   and the preview machinery already exists.

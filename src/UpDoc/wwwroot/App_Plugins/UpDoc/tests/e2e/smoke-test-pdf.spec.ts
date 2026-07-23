@@ -102,6 +102,10 @@ function getFieldValue(doc: any, alias: string): string | null {
 	return null;
 }
 
+function getRawFieldValue(doc: any, alias: string): unknown {
+	return doc.values?.find((v: any) => v.alias === alias)?.value ?? null;
+}
+
 function getBlockContainerBlocks(doc: any, containerAlias: string): any[] {
 	const containerVal = doc.values?.find((v: any) => v.alias === containerAlias);
 	if (!containerVal?.value) return [];
@@ -229,6 +233,15 @@ test.describe('Smoke Test PDF', () => {
 		// Verify pageDescription
 		const pageDescription = getFieldValue(doc, 'pageDescription');
 		expect(pageDescription, 'pageDescription should be populated').toBeTruthy();
+
+		// Verify integer fields are coerced to real numbers (issue #34).
+		// The Winchester Istanbul strapline is "5 days from £1,699 ...", so
+		// Duration → 5 and Price → 1699 (thousands separator stripped).
+		const tourDuration = getRawFieldValue(doc, 'pagePropertyTourDuration');
+		expect(tourDuration, 'Tour Duration should be a number, not a string').toEqual(5);
+
+		const tourPrice = getRawFieldValue(doc, 'pagePropertyTourPriceFrom');
+		expect(tourPrice, 'Tour Price should be a number with separator stripped').toEqual(1699);
 
 		// Verify organiser Block List has content
 		const organiserBlocks = getBlockContainerBlocks(doc, 'organisers');

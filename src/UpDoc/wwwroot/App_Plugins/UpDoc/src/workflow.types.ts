@@ -117,6 +117,19 @@ export interface TextReplacement {
 	replace: string;
 }
 
+export type SegmentAnchor = 'start' | 'end' | 'beforeMarker' | 'afterMarker' | 'number';
+
+export interface SegmentBoundary {
+	anchor: SegmentAnchor;
+	/** Required only for beforeMarker / afterMarker. */
+	marker?: string;
+}
+
+export interface Segment {
+	from?: SegmentBoundary;
+	to?: SegmentBoundary;
+}
+
 export interface SectionRule {
 	role: string;
 	/** v3: which slot this rule fills. */
@@ -134,6 +147,7 @@ export interface SectionRule {
 	exceptions?: RuleCondition[];
 	/** Find-and-replace entries applied to matched text before formatting. */
 	textReplacements?: TextReplacement[];
+	segment?: Segment;
 	/** Transient: unique ID for drag-and-drop tracking. Not persisted. */
 	_id?: string;
 }

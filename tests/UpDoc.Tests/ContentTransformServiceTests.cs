@@ -1,3 +1,4 @@
+using System.Text.Json;
 using UpDoc.Models;
 using UpDoc.Services;
 
@@ -162,5 +163,75 @@ public class ContentTransformServiceTests
         Assert.Equal(2, sections.Count);
         Assert.Contains(sections, s => s.RuleName == "Society" && s.Content.Contains("Wensum"));
         Assert.Contains(sections, s => s.RuleName == "Title" && s.Content.Contains("Flemish"));
+    }
+
+    // ---- Regression guard against the real Tailored Tour workflow fixture ----
+
+    /// <summary>
+    /// End-to-end regression: transform the real tailoredTourPdf workflow (grouped
+    /// itinerary/features rules + ungrouped organiser rules) using its stored
+    /// area-detection and areaRules, and assert the section headings and their order
+    /// match the committed transform.json exactly. This is the fragile grouped path
+    /// memory warns about — element re-use must not disturb it.
+    ///
+    /// If the fixture is not present (running outside the repo layout), the test is
+    /// skipped rather than failed.
+    /// </summary>
+    [Fact]
+    public void RealTailoredTourWorkflow_ProducesTheSameSectionHeadings_AsBeforeReuse()
+    {
+        var (detectionPath, sourcePath, transformPath) = FixturePaths();
+        if (detectionPath == null)
+            return; // fixture not found in this environment — nothing to verify
+
+        var jsonOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+            ReadCommentHandling = JsonCommentHandling.Skip,
+            AllowTrailingCommas = true,
+        };
+
+        var detection = JsonSerializer.Deserialize<AreaDetectionResult>(
+            File.ReadAllText(detectionPath), jsonOptions)!;
+        var source = JsonSerializer.Deserialize<SourceConfig>(
+            File.ReadAllText(sourcePath!), jsonOptions)!;
+        var expected = JsonSerializer.Deserialize<TransformResult>(
+            File.ReadAllText(transformPath!), jsonOptions)!;
+
+        var actual = Service.Transform(detection, source.AreaRules);
+
+        var expectedHeadings = expected.Areas
+            .SelectMany(a => a.Sections)
+            .Select(s => s.OriginalHeading ?? s.Id)
+            .ToList();
+        var actualHeadings = actual.Areas
+            .SelectMany(a => a.Sections)
+            .Select(s => s.OriginalHeading ?? s.Id)
+            .ToList();
+
+        Assert.Equal(expectedHeadings, actualHeadings);
+    }
+
+    /// <summary>
+    /// Walks up from the test assembly to find the tailoredTourPdf workflow fixture
+    /// in the repo. Returns (null, null, null) if not found.
+    /// </summary>
+    private static (string? detection, string? source, string? transform) FixturePaths()
+    {
+        var dir = new DirectoryInfo(AppContext.BaseDirectory);
+        while (dir != null)
+        {
+            var candidate = Path.Combine(dir.FullName,
+                "src", "UpDoc.TestSite", "updoc", "workflows", "tailoredTourPdf", "source");
+            if (Directory.Exists(candidate))
+            {
+                return (
+                    Path.Combine(candidate, "area-detection.json"),
+                    Path.Combine(candidate, "source.json"),
+                    Path.Combine(candidate, "transform.json"));
+            }
+            dir = dir.Parent;
+        }
+        return (null, null, null);
     }
 }

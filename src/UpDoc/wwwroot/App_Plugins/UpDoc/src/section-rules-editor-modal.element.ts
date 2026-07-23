@@ -341,16 +341,24 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	// ===== Rule evaluation (first-match-wins) =====
 
 	/** Evaluate all rules against elements. Returns a map of elementId -> rule _id */
-	#evaluateRules(): Map<string, string> {
-		const claimed = new Map<string, string>();
+	// Element re-use: an element's first matching rule is the primary claim. Additional
+	// UNGROUPED rules that also match may claim it too, so one element can feed several
+	// rules (mirrors the server-side ContentTransformService). Grouped rules keep
+	// first-match-wins. Returns elementId -> matching ruleIds (primary first).
+	#evaluateRules(): Map<string, string[]> {
+		const claimed = new Map<string, string[]>();
 		const elements = this.#elements;
 
 		for (const rule of this._rules) {
 			if (rule.conditions.length === 0) continue;
+			const isUngrouped = rule._groupName === UNGROUPED_GROUP;
 
 			for (let elIdx = 0; elIdx < elements.length; elIdx++) {
 				const el = elements[elIdx];
-				if (claimed.has(el.id)) continue; // already claimed by an earlier rule
+				const existing = claimed.get(el.id);
+
+				// Already claimed: only an ungrouped rule may additionally claim it.
+				if (existing && !isUngrouped) continue;
 
 				if (this.#elementMatchesAllConditions(el, rule.conditions, elIdx, elements.length)) {
 					// Check exceptions — if any exception matches, skip this element for this rule
@@ -360,7 +368,11 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 						);
 						if (anyExceptionMatches) continue;
 					}
-					claimed.set(el.id, rule._id);
+					if (existing) {
+						existing.push(rule._id);
+					} else {
+						claimed.set(el.id, [rule._id]);
+					}
 				}
 			}
 		}
@@ -1321,7 +1333,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		`;
 	}
 
-	#renderUnmatchedElements(claimed: Map<string, number>) {
+	#renderUnmatchedElements(claimed: Map<string, string[]>) {
 		const elements = this.#elements;
 		const unmatched = elements.filter((el) => !claimed.has(el.id));
 		if (unmatched.length === 0) return nothing;
@@ -1367,11 +1379,13 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	override render() {
 		const claimed = this.#evaluateRules();
 
-		// Build rule _id -> all matched elements lookup
+		// Build rule _id -> all matched elements lookup. An element may be claimed by
+		// several rules (element re-use), so iterate every ruleId it matched.
 		const ruleMatches = new Map<string, AreaElement[]>();
-		for (const [elId, ruleId] of claimed) {
+		for (const [elId, ruleIds] of claimed) {
 			const el = this.#elements.find((e) => e.id === elId);
-			if (el) {
+			if (!el) continue;
+			for (const ruleId of ruleIds) {
 				const existing = ruleMatches.get(ruleId) ?? [];
 				existing.push(el);
 				ruleMatches.set(ruleId, existing);

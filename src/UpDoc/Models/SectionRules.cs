@@ -180,6 +180,13 @@ public class SectionRule
     public List<TextReplacement>? TextReplacements { get; set; }
 
     /// <summary>
+    /// Optional segment: narrows the element's text to a from/to bounded piece
+    /// before find & replace and formatting run. Null = whole element.
+    /// </summary>
+    [JsonPropertyName("segment")]
+    public Segment? Segment { get; set; }
+
+    /// <summary>
     /// Returns the effective part, normalizing legacy action values.
     /// Priority: Exclude flag → Part field → Action field → default "content".
     /// </summary>
@@ -313,4 +320,31 @@ public class RuleCondition
     /// </summary>
     [JsonPropertyName("value")]
     public object? Value { get; set; }
+}
+
+/// <summary>
+/// Optional narrowing of an element's text before the rest of a rule runs.
+/// Absent = the rule operates on the whole element (default behaviour).
+/// </summary>
+public class Segment
+{
+    [JsonPropertyName("from")]
+    public SegmentBoundary? From { get; set; }
+
+    [JsonPropertyName("to")]
+    public SegmentBoundary? To { get; set; }
+}
+
+/// <summary>
+/// One boundary of a segment. Anchor kinds:
+/// start, end, beforeMarker, afterMarker, number.
+/// Marker is required only for beforeMarker / afterMarker.
+/// </summary>
+public class SegmentBoundary
+{
+    [JsonPropertyName("anchor")]
+    public string Anchor { get; set; } = string.Empty;
+
+    [JsonPropertyName("marker")]
+    public string? Marker { get; set; }
 }

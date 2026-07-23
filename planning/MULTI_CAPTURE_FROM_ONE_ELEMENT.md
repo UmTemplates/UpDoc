@@ -314,6 +314,28 @@ Two wrinkles found while reading real PDFs:
 The first sentence is true; the claim about three rules is not, for the
 first-match-wins reason above. Issue #34 repeats the same claim.
 
+## Sprints (agreed 2026-07-23)
+
+**Sprint 1 — element re-use (this sprint).** An element can be matched by more
+than one rule. Two buckets at the bottom of the editor: **Unmatched** ("Define
+rule") and **Matched** ("Add rule"). Keep the existing matched/unmatched
+vocabulary — no rename. The code change is `elementRules[i]` becoming a list and
+dropping first-match-wins. Existing single-rule workflows must produce identical
+output (output parity is the real regression risk, not config breakage — a
+broken config is noticed and rebuilt; silently different output is not).
+Section-assembly must not duplicate a multiply-matched element into several
+sections. Ignore/where-used report explicitly out of scope.
+
+**Sprint 2 — within-element capture.** Each rule pulls a *specific part* of the
+element, not the whole line. Positive capture ("give me the date part"), not
+subtraction via find & replace. Candidates: friendly before/after-marker
+capture, plus a free-regex capture rule (needs capture-group return, not just
+match/no-match as `textMatchesPattern` does today; carries the ReDoS concern
+from #37). Find & replace stays for cleaning the captured value.
+
+**Later.** Ignore + un-ignore bucket. "Used in N places" report. OR operators
+(separate work; still needed for Departs/Departing).
+
 ## Suggested sequence
 
 1. Resolve the mechanism question (A or B above).

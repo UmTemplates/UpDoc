@@ -1,8 +1,54 @@
-import type { Segment, SegmentBoundary } from './workflow.types.js';
+import type { Segment, SegmentBoundary, RuleCondition } from './workflow.types.js';
 
 // KEEP IN SYNC with SegmentEvaluator.cs — this is the editor preview mirror.
 
 const NUMBER_RUN = /\d[\d,]*/;
+
+/** Index of the "segment" marker condition, or -1 if none. */
+export function segmentMarkerIndex(conditions: RuleCondition[]): number {
+	return conditions.findIndex((c) => c.type === 'segment');
+}
+
+/** Conditions before the marker (match the element); all conditions if no marker. */
+export function matchConditions(conditions: RuleCondition[]): RuleCondition[] {
+	const i = segmentMarkerIndex(conditions);
+	return i < 0 ? conditions : conditions.slice(0, i);
+}
+
+/** Conditions after the marker (define the piece); empty if no marker. */
+export function segmentConditions(conditions: RuleCondition[]): RuleCondition[] {
+	const i = segmentMarkerIndex(conditions);
+	return i < 0 ? [] : conditions.slice(i + 1);
+}
+
+/**
+ * Extract driven by the piece conditions after a "segment" marker.
+ * textFollows → from after marker; textPrecedes → to before marker;
+ * number → to after the numeric run. Marker not found → ''. None → whole text.
+ */
+export function applySegmentConditions(text: string, pieceConditions: RuleCondition[]): string {
+	if (!pieceConditions || pieceConditions.length === 0) return text;
+
+	let from: SegmentBoundary | undefined;
+	let to: SegmentBoundary | undefined;
+
+	for (const c of pieceConditions) {
+		const value = c.value != null ? String(c.value) : undefined;
+		switch (c.type) {
+			case 'textFollows':
+				from = { anchor: 'afterMarker', marker: value };
+				break;
+			case 'textPrecedes':
+				to = { anchor: 'beforeMarker', marker: value };
+				break;
+			case 'number':
+				to = { anchor: 'number' };
+				break;
+		}
+	}
+
+	return applySegment(text, { from, to });
+}
 
 export function applySegment(text: string, segment?: Segment): string {
 	if (!segment) return text;

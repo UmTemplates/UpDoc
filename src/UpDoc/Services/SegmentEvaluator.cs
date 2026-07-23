@@ -16,6 +16,43 @@ public static class SegmentEvaluator
     private static readonly Regex NumberRun = new(@"\d[\d,]*", RegexOptions.Compiled);
 
     /// <summary>
+    /// Applies segment extraction driven by the piece conditions that follow a
+    /// "segment" marker in a rule's conditions list.
+    ///
+    /// Supported piece conditions (evaluated in order):
+    ///   textFollows  → the piece starts after this marker (from)
+    ///   textPrecedes → the piece ends before this marker (to)
+    /// A "number" piece condition (no value) ends the piece after the numeric run.
+    /// Marker not found → empty string. No piece conditions → whole text.
+    /// </summary>
+    public static string Apply(string text, IReadOnlyList<RuleCondition> segmentConditions)
+    {
+        if (segmentConditions == null || segmentConditions.Count == 0) return text;
+
+        SegmentBoundary? from = null;
+        SegmentBoundary? to = null;
+
+        foreach (var c in segmentConditions)
+        {
+            var value = c.Value?.ToString();
+            switch (c.Type?.ToLowerInvariant())
+            {
+                case "textfollows":
+                    from = new SegmentBoundary { Anchor = "afterMarker", Marker = value };
+                    break;
+                case "textprecedes":
+                    to = new SegmentBoundary { Anchor = "beforeMarker", Marker = value };
+                    break;
+                case "number":
+                    to = new SegmentBoundary { Anchor = "number" };
+                    break;
+            }
+        }
+
+        return Apply(text, new Segment { From = from, To = to });
+    }
+
+    /// <summary>
     /// Applies the segment to the text. Null segment returns the text unchanged.
     /// A boundary whose marker is not found collapses the result to empty string.
     /// </summary>

@@ -260,7 +260,10 @@ export type RuleConditionType =
 	| 'htmlContainerPathContains'
 	| 'containerIdEquals'
 	| 'containerClassContains'
-	| 'isBoldEquals';
+	| 'isBoldEquals'
+	| 'segment'
+	| 'textFollows'
+	| 'textPrecedes';
 
 /**
  * Pattern for identifying section heading elements within an area.

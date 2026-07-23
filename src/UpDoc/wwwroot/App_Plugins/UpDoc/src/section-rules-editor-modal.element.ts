@@ -2,6 +2,7 @@ import type { SectionRulesEditorModalData, SectionRulesEditorModalValue } from '
 import type { SectionRule, RuleCondition, RuleConditionType, RulePart, BlockFormat, FormatEntry, FormatEntryType, AreaElement, AreaRules, RuleGroup, TextReplacement, FindType, ReplaceType } from './workflow.types.js';
 import type { SortChangeDetail, SortableRule } from './sortable-rules-container.element.js';
 import { getEffectivePart, getEffectiveFormat } from './workflow.types.js';
+import { matchConditions, segmentConditions, applySegmentConditions } from './segment.js';
 import './sortable-rules-container.element.js';
 import { ruleCardStyles } from './rule-card-styles.js';
 import { html, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
@@ -48,10 +49,13 @@ const CONDITION_LABELS: Record<RuleConditionType, string> = {
 	containerIdEquals: 'Container ID equals',
 	containerClassContains: 'Container class contains',
 	isBoldEquals: 'Is bold',
+	segment: 'Segment',
+	textFollows: 'Text follows',
+	textPrecedes: 'Text precedes',
 };
 
 /** Condition types that don't need a value input */
-const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals'];
+const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals', 'segment'];
 
 /** All available condition types */
 const ALL_CONDITION_TYPES: RuleConditionType[] = [
@@ -62,6 +66,7 @@ const ALL_CONDITION_TYPES: RuleConditionType[] = [
 	// HTML-specific (web sources)
 	'htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains',
 	'containerIdEquals', 'containerClassContains', 'isBoldEquals',
+	'segment', 'textFollows', 'textPrecedes',
 ];
 
 /**
@@ -74,6 +79,7 @@ const PDF_CONDITION_TYPES = new Set<RuleConditionType>([
 	'fontSizeEquals', 'fontSizeAbove', 'fontSizeBelow', 'fontSizeRange',
 	'fontNameContains', 'fontNameEquals', 'colorEquals',
 	'positionFirst', 'positionLast',
+	'segment', 'textFollows', 'textPrecedes',
 ]);
 
 /** Friendly labels for rule parts */
@@ -388,12 +394,22 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	// KEEP IN SYNC with the server: ContentTransformService.Transform (C#) implements the
 	// same matching rule. This is only the editor's live preview; the actual transform runs
 	// server-side. If they diverge, the "matched / no match" badges will lie.
+	/** Preview text for a matched element: the extracted piece if the rule has a
+	 *  segment marker, otherwise the whole element text. */
+	#previewText(rule: SectionRule, elementText: string): string {
+		const pieceConds = segmentConditions(rule.conditions);
+		return pieceConds.length > 0 ? applySegmentConditions(elementText, pieceConds) : elementText;
+	}
+
 	#evaluateRules(): Map<string, string[]> {
 		const claimed = new Map<string, string[]>();
 		const elements = this.#elements;
 
 		for (const rule of this._rules) {
-			if (rule.conditions.length === 0) continue;
+			// Match on the pre-segment conditions only — conditions after a "segment"
+			// marker define the piece to extract, not how to match the element.
+			const matchConds = matchConditions(rule.conditions);
+			if (matchConds.length === 0) continue;
 			const isUngrouped = rule._groupName === UNGROUPED_GROUP;
 
 			for (let elIdx = 0; elIdx < elements.length; elIdx++) {
@@ -403,7 +419,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				// Already claimed: only an ungrouped rule may additionally claim it.
 				if (existing && !isUngrouped) continue;
 
-				if (this.#elementMatchesAllConditions(el, rule.conditions, elIdx, elements.length)) {
+				if (this.#elementMatchesAllConditions(el, matchConds, elIdx, elements.length)) {
 					// Check exceptions — if any exception matches, skip this element for this rule
 					if (rule.exceptions?.length) {
 						const anyExceptionMatches = rule.exceptions.some((exc) =>
@@ -1310,8 +1326,8 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 
 				<div class="match-preview ${matchedElements.length > 0 ? (isExcluded ? 'excluded' : 'matched') : 'no-match'}">
 					${matchedElements.length > 0
-						? html`<uui-icon name=${isExcluded ? 'icon-block' : 'icon-check'}></uui-icon> ${isExcluded ? 'Excluded' : 'Matched'} <strong>${matchedElements.length}&times;</strong>${matchedElements.length <= 5 ? html`: ${matchedElements.map((el, i) => html`${i > 0 ? html`, ` : nothing}<strong>${this.#truncate(el.text, 40)}</strong>`)}` : nothing}`
-						: html`<uui-icon name="icon-alert"></uui-icon> ${rule.conditions.length === 0 ? 'Add conditions to match elements' : 'No match'}`}
+						? html`<uui-icon name=${isExcluded ? 'icon-block' : 'icon-check'}></uui-icon> ${isExcluded ? 'Excluded' : 'Matched'} <strong>${matchedElements.length}&times;</strong>${matchedElements.length <= 5 ? html`: ${matchedElements.map((el, i) => html`${i > 0 ? html`, ` : nothing}<strong>${this.#truncate(this.#previewText(rule, el.text), 40)}</strong>`)}` : nothing}`
+						: html`<uui-icon name="icon-alert"></uui-icon> ${matchConditions(rule.conditions).length === 0 ? 'Add conditions to match elements' : 'No match'}`}
 				</div>
 			</div>
 		`;

@@ -260,8 +260,12 @@ public class ContentTransformService : IContentTransformService
         {
             foreach (var rule in allRules)
             {
-                // Skip rules with no conditions — empty conditions match everything (vacuous truth)
-                if (rule.Conditions.Count == 0)
+                // Match on the pre-segment conditions only. Conditions after a "segment"
+                // marker define the piece to EXTRACT, not how to match the element.
+                var matchConditions = rule.MatchConditions;
+
+                // Skip rules with no match conditions — empty conditions match everything (vacuous truth)
+                if (matchConditions.Count == 0)
                     continue;
 
                 // Check exceptions: if any exception matches, skip this rule for this element
@@ -281,7 +285,7 @@ public class ContentTransformService : IContentTransformService
                         continue;
                 }
 
-                if (!PdfPagePropertiesService.MatchesAllConditions(elements[i], rule.Conditions, i, total))
+                if (!PdfPagePropertiesService.MatchesAllConditions(elements[i], matchConditions, i, total))
                     continue;
 
                 if (elementRules[i] == null)
@@ -338,7 +342,9 @@ public class ContentTransformService : IContentTransformService
             var rule = elementRules[i];
             if (rule == null) continue;
 
-            if (rule.Segment != null)
+            if (rule.HasSegmentMarker)
+                elements[i].Text = SegmentEvaluator.Apply(elements[i].Text, rule.SegmentConditions);
+            else if (rule.Segment != null)
                 elements[i].Text = SegmentEvaluator.Apply(elements[i].Text, rule.Segment);
 
             if (rule.TextReplacements is { Count: > 0 } replacements)
@@ -474,7 +480,9 @@ public class ContentTransformService : IContentTransformService
                         if (!ungroupedElementsByRule.ContainsKey(rule))
                             ungroupedElementsByRule[rule] = new List<(int, string)>();
                         var text = originalElementText[i];
-                        if (rule.Segment != null)
+                        if (rule.HasSegmentMarker)
+                            text = SegmentEvaluator.Apply(text, rule.SegmentConditions);
+                        else if (rule.Segment != null)
                             text = SegmentEvaluator.Apply(text, rule.Segment);
                         if (rule.TextReplacements is { Count: > 0 } reps)
                             text = ApplyTextReplacements(text, reps);

@@ -182,9 +182,45 @@ public class SectionRule
     /// <summary>
     /// Optional segment: narrows the element's text to a from/to bounded piece
     /// before find & replace and formatting run. Null = whole element.
+    /// Legacy (object) form — superseded by the "segment" marker condition in
+    /// the conditions list. Kept for backward compatibility on read.
     /// </summary>
     [JsonPropertyName("segment")]
     public Segment? Segment { get; set; }
+
+    /// <summary>
+    /// True when the conditions list contains a "segment" marker condition.
+    /// Conditions before the marker match the element; conditions after it
+    /// (textFollows / textPrecedes) define the piece to extract.
+    /// </summary>
+    public bool HasSegmentMarker =>
+        Conditions.Any(c => string.Equals(c.Type, "segment", StringComparison.OrdinalIgnoreCase));
+
+    /// <summary>
+    /// Conditions used to MATCH the element: everything before the "segment"
+    /// marker (or all conditions when there is no marker).
+    /// </summary>
+    public List<RuleCondition> MatchConditions
+    {
+        get
+        {
+            var idx = Conditions.FindIndex(c => string.Equals(c.Type, "segment", StringComparison.OrdinalIgnoreCase));
+            return idx < 0 ? Conditions : Conditions.Take(idx).ToList();
+        }
+    }
+
+    /// <summary>
+    /// Conditions that DEFINE the piece to extract: everything after the
+    /// "segment" marker (empty when there is no marker).
+    /// </summary>
+    public List<RuleCondition> SegmentConditions
+    {
+        get
+        {
+            var idx = Conditions.FindIndex(c => string.Equals(c.Type, "segment", StringComparison.OrdinalIgnoreCase));
+            return idx < 0 ? new List<RuleCondition>() : Conditions.Skip(idx + 1).ToList();
+        }
+    }
 
     /// <summary>
     /// Returns the effective part, normalizing legacy action values.

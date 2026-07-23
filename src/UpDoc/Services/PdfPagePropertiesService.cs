@@ -686,6 +686,11 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
             // Bold detection (web sources — <strong>/<b> or CSS font-weight)
             "isBoldEquals" => element.IsBold == valueStr.Equals("true", StringComparison.OrdinalIgnoreCase),
 
+            // Segment marker + piece conditions are not element-match tests. They
+            // define what to extract, handled separately (SegmentEvaluator). If one
+            // reaches here it must not disqualify the element — treat as a pass.
+            "segment" or "textFollows" or "textPrecedes" or "number" => true,
+
             _ => false // Unknown condition type — does not match
         };
     }

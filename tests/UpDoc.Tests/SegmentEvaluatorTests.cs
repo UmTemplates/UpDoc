@@ -10,7 +10,7 @@ public class SegmentEvaluatorTests
     [Fact]
     public void NullSegment_ReturnsTextUnchanged()
     {
-        Assert.Equal(Strapline, SegmentEvaluator.Apply(Strapline, null));
+        Assert.Equal(Strapline, SegmentEvaluator.Apply(Strapline, (Segment?)null));
     }
 
     [Fact]
@@ -64,5 +64,55 @@ public class SegmentEvaluatorTests
             To = new SegmentBoundary { Anchor = "beforeMarker", Marker = "days" },
         };
         Assert.Equal("5", SegmentEvaluator.Apply(Strapline, seg));
+    }
+
+    // ---- Condition-stream form (segment marker + follows/precedes) ----
+
+    [Fact]
+    public void NoSegmentConditions_ReturnsTextUnchanged()
+    {
+        Assert.Equal(Strapline, SegmentEvaluator.Apply(Strapline, new List<RuleCondition>()));
+    }
+
+    [Fact]
+    public void Precedes_days_ReturnsDuration()
+    {
+        var conds = new List<RuleCondition>
+        {
+            new() { Type = "textPrecedes", Value = "days" },
+        };
+        Assert.Equal("5", SegmentEvaluator.Apply(Strapline, conds));
+    }
+
+    [Fact]
+    public void Follows_pound_thenNumber_ReturnsPrice()
+    {
+        var conds = new List<RuleCondition>
+        {
+            new() { Type = "textFollows", Value = "£" },
+            new() { Type = "number" },
+        };
+        Assert.Equal("1,199", SegmentEvaluator.Apply(Strapline, conds));
+    }
+
+    [Fact]
+    public void Follows_pound_precedes_Departing_ReturnsPrice()
+    {
+        var conds = new List<RuleCondition>
+        {
+            new() { Type = "textFollows", Value = "£" },
+            new() { Type = "textPrecedes", Value = " Departing" },
+        };
+        Assert.Equal("1,199", SegmentEvaluator.Apply(Strapline, conds));
+    }
+
+    [Fact]
+    public void Follows_markerNotFound_ReturnsEmpty()
+    {
+        var conds = new List<RuleCondition>
+        {
+            new() { Type = "textFollows", Value = "$" },
+        };
+        Assert.Equal("", SegmentEvaluator.Apply(Strapline, conds));
     }
 }

@@ -260,8 +260,12 @@ public class ContentTransformService : IContentTransformService
         {
             foreach (var rule in allRules)
             {
-                // Skip rules with no conditions — empty conditions match everything (vacuous truth)
-                if (rule.Conditions.Count == 0)
+                // Match on the pre-segment conditions only. Conditions after a "segment"
+                // marker define the piece to EXTRACT, not how to match the element.
+                var matchConditions = rule.MatchConditions;
+
+                // Skip rules with no match conditions — empty conditions match everything (vacuous truth)
+                if (matchConditions.Count == 0)
                     continue;
 
                 // Check exceptions: if any exception matches, skip this rule for this element
@@ -281,7 +285,7 @@ public class ContentTransformService : IContentTransformService
                         continue;
                 }
 
-                if (!PdfPagePropertiesService.MatchesAllConditions(elements[i], rule.Conditions, i, total))
+                if (!PdfPagePropertiesService.MatchesAllConditions(elements[i], matchConditions, i, total))
                     continue;
 
                 if (elementRules[i] == null)
@@ -332,13 +336,19 @@ public class ContentTransformService : IContentTransformService
         for (int i = 0; i < elements.Count; i++)
             originalElementText[i] = elements[i].Text;
 
-        // Apply text replacements from matched rules to element text
+        // Apply segment (narrow to a from/to piece) then text replacements, per matched rule.
         for (int i = 0; i < elements.Count; i++)
         {
-            if (elementRules[i]?.TextReplacements is { Count: > 0 } replacements)
-            {
+            var rule = elementRules[i];
+            if (rule == null) continue;
+
+            if (rule.HasSegmentMarker)
+                elements[i].Text = SegmentEvaluator.Apply(elements[i].Text, rule.SegmentConditions);
+            else if (rule.Segment != null)
+                elements[i].Text = SegmentEvaluator.Apply(elements[i].Text, rule.Segment);
+
+            if (rule.TextReplacements is { Count: > 0 } replacements)
                 elements[i].Text = ApplyTextReplacements(elements[i].Text, replacements);
-            }
         }
 
         // Check if any rules use part-driven behavior (anything beyond just legacy title-only rules).
@@ -469,9 +479,13 @@ public class ContentTransformService : IContentTransformService
                         if (rule.GetEffectivePart() == "exclude") continue;
                         if (!ungroupedElementsByRule.ContainsKey(rule))
                             ungroupedElementsByRule[rule] = new List<(int, string)>();
-                        var text = rule.TextReplacements is { Count: > 0 } reps
-                            ? ApplyTextReplacements(originalElementText[i], reps)
-                            : originalElementText[i];
+                        var text = originalElementText[i];
+                        if (rule.HasSegmentMarker)
+                            text = SegmentEvaluator.Apply(text, rule.SegmentConditions);
+                        else if (rule.Segment != null)
+                            text = SegmentEvaluator.Apply(text, rule.Segment);
+                        if (rule.TextReplacements is { Count: > 0 } reps)
+                            text = ApplyTextReplacements(text, reps);
                         var format = rule.GetEffectiveFormat();
                         var propLine = FormatContentLine(text, format, ref numberedListCounter);
                         ungroupedElementsByRule[rule].Add((i, propLine));

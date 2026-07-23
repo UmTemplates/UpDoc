@@ -237,6 +237,66 @@
           ],
           "exceptions": null,
           "textReplacements": null
+        },
+        {
+          "id": "d0000001-0000-4000-8000-000000000001",
+          "role": "Duration",
+          "part": "content",
+          "action": null,
+          "format": "auto",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": { "min": 13, "max": 16 }
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200"
+            },
+            {
+              "type": "segment",
+              "value": null
+            },
+            {
+              "type": "textPrecedes",
+              "value": "days"
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null
+        },
+        {
+          "id": "d0000002-0000-4000-8000-000000000002",
+          "role": "Price",
+          "part": "content",
+          "action": null,
+          "format": "auto",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": { "min": 13, "max": 16 }
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200"
+            },
+            {
+              "type": "segment",
+              "value": null
+            },
+            {
+              "type": "textFollows",
+              "value": "£"
+            },
+            {
+              "type": "number",
+              "value": null
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null
         }
       ]
     },

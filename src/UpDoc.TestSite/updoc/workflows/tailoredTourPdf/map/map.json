@@ -219,6 +219,34 @@
       ],
       "enabled": true,
       "comment": null
+    },
+    {
+      "source": "duration.content",
+      "sourceKey": "d0000001-0000-4000-8000-000000000001",
+      "destinations": [
+        {
+          "target": "pageDescription",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "price.content",
+      "sourceKey": "d0000002-0000-4000-8000-000000000002",
+      "destinations": [
+        {
+          "target": "pageDescription",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
     }
   ]
 }

@@ -64,6 +64,18 @@ const ALL_CONDITION_TYPES: RuleConditionType[] = [
 	'containerIdEquals', 'containerClassContains', 'isBoldEquals',
 ];
 
+/**
+ * Conditions valid for PDF sources — those testing data PdfPig produces:
+ * text, font size, font name, colour, position. Excludes HTML/container/bold
+ * conditions, which read fields PDF extraction never populates. See #80.
+ */
+const PDF_CONDITION_TYPES = new Set<RuleConditionType>([
+	'textBeginsWith', 'textEndsWith', 'textContains', 'textEquals', 'textMatchesPattern',
+	'fontSizeEquals', 'fontSizeAbove', 'fontSizeBelow', 'fontSizeRange',
+	'fontNameContains', 'fontNameEquals', 'colorEquals',
+	'positionFirst', 'positionLast',
+]);
+
 /** Friendly labels for rule parts */
 const PART_LABELS: Record<RulePart, string> = {
 	title: 'Title',
@@ -308,14 +320,41 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		return this.data?.sourceType ?? 'pdf';
 	}
 
-	/** Condition types sorted by source-type relevance. Web-specific types first for web, last for PDF. */
+	/**
+	 * Condition types available for the current source type. Only conditions that test
+	 * data the extractor actually produces are shown — a condition testing a field the
+	 * source leaves empty can never match, so it is hidden rather than offered.
+	 *
+	 * PDF (PdfPig): text, font size, font name, colour, position. HTML/container/bold
+	 * fields are never populated by PDF extraction, so those conditions are excluded.
+	 * Web (AngleSharp + CSS): every field is populated, so all conditions apply.
+	 * markdown / word: no filtering yet (no workflows exist) — show the full list.
+	 */
 	get #conditionTypes(): RuleConditionType[] {
-		if (this.#sourceType === 'web') {
-			const webTypes: RuleConditionType[] = ['htmlTagEquals', 'containerIdEquals', 'containerClassContains', 'cssClassContains', 'htmlContainerPathContains'];
-			return [...webTypes, ...ALL_CONDITION_TYPES.filter((t) => !webTypes.includes(t))];
+		if (this.#sourceType === 'pdf') {
+			return ALL_CONDITION_TYPES.filter((t) => PDF_CONDITION_TYPES.has(t));
 		}
-		// PDF: web types at end (already the default order)
+		if (this.#sourceType === 'web') {
+			// Web-specific structural conditions first, then the rest.
+			const webFirst: RuleConditionType[] = [
+				'htmlTagEquals', 'containerIdEquals', 'containerClassContains',
+				'cssClassContains', 'htmlContainerPathContains',
+			];
+			return [...webFirst, ...ALL_CONDITION_TYPES.filter((t) => !webFirst.includes(t))];
+		}
+		// markdown / word / unknown: full list until their extractors are audited.
 		return ALL_CONDITION_TYPES;
+	}
+
+	/**
+	 * Condition types for a specific dropdown, always including the condition's own
+	 * current type. This guarantees an existing rule using a now-filtered condition
+	 * (e.g. a legacy container condition on a PDF workflow) still shows its real value
+	 * instead of appearing blank.
+	 */
+	#conditionTypesFor(current: RuleConditionType): RuleConditionType[] {
+		const available = this.#conditionTypes;
+		return available.includes(current) ? available : [current, ...available];
 	}
 
 	get #sectionHeading(): string {
@@ -943,7 +982,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 					class="condition-type-select"
 					.value=${condition.type}
 					@change=${(e: Event) => this.#updateConditionType(ruleId, condIdx, (e.target as HTMLSelectElement).value as RuleConditionType)}>
-					${this.#conditionTypes.map((t) => html`
+					${this.#conditionTypesFor(condition.type).map((t) => html`
 						<option value=${t} ?selected=${t === condition.type}>${CONDITION_LABELS[t]}</option>
 					`)}
 				</select>
@@ -988,7 +1027,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 					class="condition-type-select"
 					.value=${exception.type}
 					@change=${(e: Event) => this.#updateExceptionType(ruleId, excIdx, (e.target as HTMLSelectElement).value as RuleConditionType)}>
-					${this.#conditionTypes.map((t) => html`
+					${this.#conditionTypesFor(exception.type).map((t) => html`
 						<option value=${t} ?selected=${t === exception.type}>${CONDITION_LABELS[t]}</option>
 					`)}
 				</select>

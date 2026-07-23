@@ -1,0 +1,15 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "sourceTypes": [
+    "pdf"
+  ],
+  "globals": null,
+  "pages": [
+    1
+  ],
+  "sections": [],
+  "sectionRules": null,
+  "areaRules": null,
+  "excludedAreas": null
+}

@@ -332,13 +332,17 @@ public class ContentTransformService : IContentTransformService
         for (int i = 0; i < elements.Count; i++)
             originalElementText[i] = elements[i].Text;
 
-        // Apply text replacements from matched rules to element text
+        // Apply segment (narrow to a from/to piece) then text replacements, per matched rule.
         for (int i = 0; i < elements.Count; i++)
         {
-            if (elementRules[i]?.TextReplacements is { Count: > 0 } replacements)
-            {
+            var rule = elementRules[i];
+            if (rule == null) continue;
+
+            if (rule.Segment != null)
+                elements[i].Text = SegmentEvaluator.Apply(elements[i].Text, rule.Segment);
+
+            if (rule.TextReplacements is { Count: > 0 } replacements)
                 elements[i].Text = ApplyTextReplacements(elements[i].Text, replacements);
-            }
         }
 
         // Check if any rules use part-driven behavior (anything beyond just legacy title-only rules).
@@ -469,9 +473,11 @@ public class ContentTransformService : IContentTransformService
                         if (rule.GetEffectivePart() == "exclude") continue;
                         if (!ungroupedElementsByRule.ContainsKey(rule))
                             ungroupedElementsByRule[rule] = new List<(int, string)>();
-                        var text = rule.TextReplacements is { Count: > 0 } reps
-                            ? ApplyTextReplacements(originalElementText[i], reps)
-                            : originalElementText[i];
+                        var text = originalElementText[i];
+                        if (rule.Segment != null)
+                            text = SegmentEvaluator.Apply(text, rule.Segment);
+                        if (rule.TextReplacements is { Count: > 0 } reps)
+                            text = ApplyTextReplacements(text, reps);
                         var format = rule.GetEffectiveFormat();
                         var propLine = FormatContentLine(text, format, ref numberedListCounter);
                         ungroupedElementsByRule[rule].Add((i, propLine));

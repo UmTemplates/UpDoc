@@ -234,4 +234,49 @@ public class ContentTransformServiceTests
         }
         return (null, null, null);
     }
+
+    [Fact]
+    public void SegmentedRule_ExtractsThePriceFromTheStrapline()
+    {
+        var detection = OneArea("Header",
+            El("e1", "5 days from £1,199 Departing 30th September 2026", fontSize: 14.4, color: "#FFD200"));
+
+        var price = ContentRule("Price", "£");
+        price.Segment = new Segment
+        {
+            From = new SegmentBoundary { Anchor = "afterMarker", Marker = "£" },
+            To = new SegmentBoundary { Anchor = "number" },
+        };
+
+        var result = Service.Transform(detection, Rules("Header", price));
+        var section = result.Areas.SelectMany(a => a.Sections).Single(s => s.RuleName == "Price");
+
+        Assert.Equal("1,199", section.Content.Trim());
+    }
+
+    [Fact]
+    public void TwoSegmentedRules_OnOneElement_ExtractDurationAndPrice()
+    {
+        var detection = OneArea("Header",
+            El("e1", "5 days from £1,199 Departing 30th September 2026", fontSize: 14.4, color: "#FFD200"));
+
+        var duration = ContentRule("Duration", "days");
+        duration.Segment = new Segment
+        {
+            From = new SegmentBoundary { Anchor = "start" },
+            To = new SegmentBoundary { Anchor = "beforeMarker", Marker = "days" },
+        };
+        var price = ContentRule("Price", "£");
+        price.Segment = new Segment
+        {
+            From = new SegmentBoundary { Anchor = "afterMarker", Marker = "£" },
+            To = new SegmentBoundary { Anchor = "number" },
+        };
+
+        var result = Service.Transform(detection, Rules("Header", duration, price));
+        var sections = result.Areas.SelectMany(a => a.Sections).ToList();
+
+        Assert.Equal("5", sections.Single(s => s.RuleName == "Duration").Content.Trim());
+        Assert.Equal("1,199", sections.Single(s => s.RuleName == "Price").Content.Trim());
+    }
 }

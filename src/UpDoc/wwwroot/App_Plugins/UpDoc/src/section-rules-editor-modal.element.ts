@@ -1,6 +1,5 @@
 import type { SectionRulesEditorModalData, SectionRulesEditorModalValue } from './section-rules-editor-modal.token.js';
-import type { SectionRule, RuleCondition, RuleConditionType, RulePart, BlockFormat, FormatEntry, FormatEntryType, AreaElement, AreaRules, RuleGroup, TextReplacement, FindType, ReplaceType, Segment, SegmentAnchor } from './workflow.types.js';
-import { applySegment } from './segment.js';
+import type { SectionRule, RuleCondition, RuleConditionType, RulePart, BlockFormat, FormatEntry, FormatEntryType, AreaElement, AreaRules, RuleGroup, TextReplacement, FindType, ReplaceType } from './workflow.types.js';
 import type { SortChangeDetail, SortableRule } from './sortable-rules-container.element.js';
 import { getEffectivePart, getEffectiveFormat } from './workflow.types.js';
 import './sortable-rules-container.element.js';
@@ -597,94 +596,6 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	/** Generic helper: update a single rule by _id. */
 	#updateRuleById(id: string, updater: (rule: EditableRule) => EditableRule) {
 		this._rules = this._rules.map((r) => r._id === id ? updater(r) : r);
-	}
-
-	#updateSegmentBoundary(ruleId: string, side: 'from' | 'to', anchor: SegmentAnchor) {
-		this.#updateRuleById(ruleId, (r) => {
-			const segment: Segment = { ...(r.segment ?? {}) };
-			if (anchor === 'start' && side === 'from') {
-				segment.from = { anchor };
-			} else if (anchor === 'end' && side === 'to') {
-				segment.to = { anchor };
-			} else {
-				const existing = segment[side];
-				segment[side] = { anchor, marker: existing?.marker ?? '' };
-			}
-			return { ...r, segment };
-		});
-	}
-
-	#updateSegmentMarker(ruleId: string, side: 'from' | 'to', marker: string) {
-		this.#updateRuleById(ruleId, (r) => {
-			const segment: Segment = { ...(r.segment ?? {}) };
-			const existing = segment[side];
-			if (existing) segment[side] = { ...existing, marker };
-			return { ...r, segment };
-		});
-	}
-
-	#clearSegment(ruleId: string) {
-		this.#updateRuleById(ruleId, (r) => {
-			const { segment, ...rest } = r;
-			return rest as typeof r;
-		});
-	}
-
-	#sampleTextForRule(ruleId: string): string {
-		const claimed = this.#evaluateRules();
-		for (const [elId, ruleIds] of claimed) {
-			if (ruleIds.includes(ruleId)) {
-				return this.#elements.find((e) => e.id === elId)?.text ?? '';
-			}
-		}
-		return '';
-	}
-
-	#renderSegmentBlock(rule: EditableRule, sampleText: string) {
-		const seg = rule.segment;
-		const fromAnchor = seg?.from?.anchor ?? 'start';
-		const toAnchor = seg?.to?.anchor ?? 'end';
-		const preview = seg ? applySegment(sampleText, seg) : '';
-
-		const fromAnchors: SegmentAnchor[] = ['start', 'afterMarker'];
-		const toAnchors: SegmentAnchor[] = ['end', 'beforeMarker', 'afterMarker', 'number'];
-		const label: Record<SegmentAnchor, string> = {
-			start: 'Start of element',
-			end: 'End of element',
-			beforeMarker: 'Before text…',
-			afterMarker: 'After text…',
-			number: 'End of the number',
-		};
-
-		return html`
-			<div class="segment-block">
-				<div class="segment-header">
-					<span>Segment (extract part of the element)</span>
-					${seg ? html`<button class="link-button" @click=${() => this.#clearSegment(rule._id)}>Clear</button>` : nothing}
-				</div>
-				<div class="segment-row">
-					<label>From</label>
-					<select .value=${fromAnchor}
-						@change=${(e: Event) => this.#updateSegmentBoundary(rule._id, 'from', (e.target as HTMLSelectElement).value as SegmentAnchor)}>
-						${fromAnchors.map((a) => html`<option value=${a} ?selected=${a === fromAnchor}>${label[a]}</option>`)}
-					</select>
-					${fromAnchor === 'afterMarker' ? html`
-						<input type="text" placeholder="marker" .value=${seg?.from?.marker ?? ''}
-							@input=${(e: Event) => this.#updateSegmentMarker(rule._id, 'from', (e.target as HTMLInputElement).value)} />` : nothing}
-				</div>
-				<div class="segment-row">
-					<label>To</label>
-					<select .value=${toAnchor}
-						@change=${(e: Event) => this.#updateSegmentBoundary(rule._id, 'to', (e.target as HTMLSelectElement).value as SegmentAnchor)}>
-						${toAnchors.map((a) => html`<option value=${a} ?selected=${a === toAnchor}>${label[a]}</option>`)}
-					</select>
-					${toAnchor === 'beforeMarker' || toAnchor === 'afterMarker' ? html`
-						<input type="text" placeholder="marker" .value=${seg?.to?.marker ?? ''}
-							@input=${(e: Event) => this.#updateSegmentMarker(rule._id, 'to', (e.target as HTMLInputElement).value)} />` : nothing}
-				</div>
-				${seg ? html`<div class="segment-preview">Result: <strong>${preview || '(empty)'}</strong></div>` : nothing}
-			</div>
-		`;
 	}
 
 	#addRule(groupName: string = UNGROUPED_GROUP) {
@@ -1298,8 +1209,6 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				</div>
 				` : nothing}
 
-				${this.#renderSegmentBlock(rule, this.#sampleTextForRule(rule._id))}
-
 				<div class="conditions-area">
 					<div class="section-header collapsible" @click=${() => this.#toggleSection('conditions', id)}>
 						<uui-icon name=${this.#isSectionExpanded('conditions', id) ? 'icon-navigation-down' : 'icon-navigation-right'}></uui-icon>
@@ -1801,13 +1710,6 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				gap: var(--uui-size-space-1);
 				flex-shrink: 0;
 			}
-
-			.segment-block { border: 1px solid var(--uui-color-border); border-radius: 4px; padding: 8px; margin-bottom: 8px; }
-			.segment-header { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 6px; }
-			.segment-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
-			.segment-row label { width: 3em; }
-			.segment-preview { margin-top: 6px; font-size: 0.9em; }
-			.link-button { background: none; border: none; color: var(--uui-color-interactive); cursor: pointer; }
 		`,
 	];
 }

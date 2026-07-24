@@ -55,7 +55,22 @@ const CONDITION_LABELS: Record<RuleConditionType, string> = {
 };
 
 /** Condition types that don't need a value input */
-const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals', 'segment'];
+const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals'];
+
+/**
+ * Segment bracket values. Start is the default and covers the common case of one
+ * piece per element — you only reach for End when cutting more than one piece.
+ * Rules saved before #96 have no value; they display and behave as Start.
+ */
+const SEGMENT_VALUE_LABELS: Record<string, string> = {
+	start: 'Start',
+	end: 'End',
+};
+
+const ALL_SEGMENT_VALUES: string[] = ['start', 'end'];
+
+/** Default bracket, also used to normalise the pre-#96 null value on read. */
+const SEGMENT_VALUE_DEFAULT = 'start';
 
 /** All available condition types */
 const ALL_CONDITION_TYPES: RuleConditionType[] = [
@@ -833,6 +848,8 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 				value = undefined;
 			} else if (type === 'fontSizeRange') {
 				value = { min: 0, max: 100 };
+			} else if (type === 'segment') {
+				value = SEGMENT_VALUE_DEFAULT;
 			} else {
 				value = conditions[condIdx].value;
 			}
@@ -883,7 +900,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 			const exceptions = [...(r.exceptions ?? [])];
 			exceptions[excIdx] = {
 				type,
-				value: VALUELESS_CONDITIONS.includes(type) ? undefined : exceptions[excIdx].value,
+				value: VALUELESS_CONDITIONS.includes(type) || type === 'segment' ? undefined : exceptions[excIdx].value,
 			};
 			return { ...r, exceptions };
 		});
@@ -1012,6 +1029,8 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	#renderConditionRow(ruleId: string, condIdx: number, condition: RuleCondition, total: number) {
 		const isValueless = VALUELESS_CONDITIONS.includes(condition.type);
 		const isRange = condition.type === 'fontSizeRange';
+		const isSegment = condition.type === 'segment';
+		const segmentValue = isSegment ? String(condition.value ?? SEGMENT_VALUE_DEFAULT) : '';
 		const rangeValue = isRange && condition.value && typeof condition.value === 'object'
 			? condition.value as { min: number; max: number }
 			: { min: 0, max: 100 };
@@ -1039,6 +1058,16 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 						placeholder="Max"
 						.value=${String(rangeValue.max)}
 						@input=${(e: Event) => this.#updateFontSizeRangeValue(ruleId, condIdx, 'max', (e.target as HTMLInputElement).value)} />
+				` : isSegment ? html`
+					<select
+						class="condition-value-input"
+						aria-label="Segment bracket"
+						.value=${segmentValue}
+						@change=${(e: Event) => this.#updateConditionValue(ruleId, condIdx, (e.target as HTMLSelectElement).value)}>
+						${ALL_SEGMENT_VALUES.map((v) => html`
+							<option value=${v} ?selected=${v === segmentValue}>${SEGMENT_VALUE_LABELS[v]}</option>
+						`)}
+					</select>
 				` : isValueless ? nothing : html`
 					<input
 						type="text"
@@ -1076,7 +1105,8 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	}
 
 	#renderExceptionRow(ruleId: string, excIdx: number, exception: RuleCondition) {
-		const isValueless = VALUELESS_CONDITIONS.includes(exception.type);
+		// Segment is a conditions-list marker; it carries no value inside an exception.
+		const isValueless = VALUELESS_CONDITIONS.includes(exception.type) || exception.type === 'segment';
 		return html`
 			<div class="condition-row">
 				<select

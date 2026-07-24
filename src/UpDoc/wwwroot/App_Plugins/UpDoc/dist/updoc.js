@@ -107,7 +107,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.SectionRulesEditorModal",
     name: "Section Rules Editor Modal",
-    element: () => import("./section-rules-editor-modal.element-Jpl2-GcP.js")
+    element: () => import("./section-rules-editor-modal.element-DqjQGQo7.js")
   },
   {
     type: "modal",

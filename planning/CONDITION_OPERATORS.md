@@ -4,7 +4,7 @@ Status: plan. Written 2026-07-24. Builds directly on `SEGMENT_AND_OPERATORS.md`
 (design thinking, 2026-07-23) and closes its open questions where the code now
 answers them.
 
-Tracking issue: TBD (this doc is the issue body).
+Tracking issue: #100.
 
 ---
 

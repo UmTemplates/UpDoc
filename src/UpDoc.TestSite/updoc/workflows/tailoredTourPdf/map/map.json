@@ -247,6 +247,20 @@
       ],
       "enabled": true,
       "comment": null
+    },
+    {
+      "source": "departure-date.content",
+      "sourceKey": "e04c5168-6a2e-4a65-a271-7406956be7aa",
+      "destinations": [
+        {
+          "target": "pagePropertyTourDepartureDate",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
     }
   ]
 }

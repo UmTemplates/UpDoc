@@ -344,7 +344,7 @@
           "textReplacements": [
             {
               "findType": "textContains",
-              "find": "\u0026",
+              "find": "&",
               "replaceType": "replaceAll",
               "replace": "and"
             }
@@ -513,7 +513,7 @@
             },
             {
               "type": "textFollows",
-              "value": "\u00A3",
+              "value": "£",
               "sortOrder": 3
             },
             {
@@ -544,12 +544,81 @@
           "SegmentConditions": [
             {
               "type": "textFollows",
-              "value": "\u00A3",
+              "value": "£",
               "sortOrder": 3
             },
             {
               "type": "number",
               "value": null,
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "e04c5168-6a2e-4a65-a271-7406956be7aa",
+          "role": "Departure Date",
+          "part": "content",
+          "action": null,
+          "format": "auto",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            },
+            {
+              "type": "textContains",
+              "value": "Depart",
+              "sortOrder": 2
+            },
+            {
+              "type": "segment",
+              "value": "start",
+              "sortOrder": 3
+            },
+            {
+              "type": "textFollows",
+              "value": "Depart",
+              "sortOrder": 4
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": true,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            },
+            {
+              "type": "textContains",
+              "value": "Depart",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": [
+            {
+              "type": "textFollows",
+              "value": "Depart",
               "sortOrder": 4
             }
           ]

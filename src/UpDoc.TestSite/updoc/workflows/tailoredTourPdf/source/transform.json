@@ -63,24 +63,6 @@
           "SortOrder": null
         },
         {
-          "Id": "duration",
-          "StableKey": "d0000001-0000-4000-8000-000000000001",
-          "OriginalHeading": "Duration",
-          "Heading": "Duration",
-          "Content": "5",
-          "Description": null,
-          "Summary": null,
-          "Pattern": "role",
-          "Page": 1,
-          "AreaColor": "#e84855",
-          "AreaName": "Page Header",
-          "GroupName": null,
-          "RuleName": "Duration",
-          "ChildCount": 1,
-          "Included": true,
-          "SortOrder": null
-        },
-        {
           "Id": "price",
           "StableKey": "d0000002-0000-4000-8000-000000000002",
           "OriginalHeading": "Price",
@@ -301,12 +283,12 @@
     }
   ],
   "Diagnostics": {
-    "TotalSections": 14,
+    "TotalSections": 13,
     "BulletListSections": 2,
     "ParagraphSections": 3,
     "SubHeadedSections": 0,
     "PreambleSections": 0,
-    "RoleSections": 9,
+    "RoleSections": 8,
     "Warnings": []
   }
 }

@@ -435,16 +435,16 @@
           "exclude": false,
           "conditions": [
             {
-              "type": "segment",
-              "value": null,
-              "sortOrder": 0
-            },
-            {
               "type": "fontSizeRange",
               "value": {
                 "min": 13,
                 "max": 16
               },
+              "sortOrder": 0
+            },
+            {
+              "type": "segment",
+              "value": null,
               "sortOrder": 1
             },
             {
@@ -462,16 +462,17 @@
           "textReplacements": null,
           "segment": null,
           "HasSegmentMarker": true,
-          "MatchConditions": [],
-          "SegmentConditions": [
+          "MatchConditions": [
             {
               "type": "fontSizeRange",
               "value": {
                 "min": 13,
                 "max": 16
               },
-              "sortOrder": 1
-            },
+              "sortOrder": 0
+            }
+          ],
+          "SegmentConditions": [
             {
               "type": "colorEquals",
               "value": "#FFD200",

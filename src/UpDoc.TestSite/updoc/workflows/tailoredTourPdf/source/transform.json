@@ -97,6 +97,24 @@
           "ChildCount": 1,
           "Included": true,
           "SortOrder": null
+        },
+        {
+          "Id": "departure-date",
+          "StableKey": "e04c5168-6a2e-4a65-a271-7406956be7aa",
+          "OriginalHeading": "Departure Date",
+          "Heading": "Departure Date",
+          "Content": "s 26th September 2027",
+          "Description": null,
+          "Summary": null,
+          "Pattern": "role",
+          "Page": 1,
+          "AreaColor": "#e84855",
+          "AreaName": "Page Header",
+          "GroupName": null,
+          "RuleName": "Departure Date",
+          "ChildCount": 1,
+          "Included": true,
+          "SortOrder": null
         }
       ]
     },
@@ -301,12 +319,12 @@
     }
   ],
   "Diagnostics": {
-    "TotalSections": 14,
+    "TotalSections": 15,
     "BulletListSections": 2,
     "ParagraphSections": 3,
     "SubHeadedSections": 0,
     "PreambleSections": 0,
-    "RoleSections": 9,
+    "RoleSections": 10,
     "Warnings": []
   }
 }

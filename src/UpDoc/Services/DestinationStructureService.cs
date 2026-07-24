@@ -29,9 +29,11 @@ public class DestinationStructureService : IDestinationStructureService
     // Property editor types that can receive mapped content.
     // "number" is included so integer/decimal fields are offered as mapping targets;
     // the captured string is coerced to an integer on write (client-side apply pass).
+    // "date" likewise — the captured string is parsed and written as the JSON shape
+    // Umbraco's date editors expect: { "date": "yyyy-MM-dd", "timeZone": null }.
     private static readonly HashSet<string> TextMappableTypes = new(StringComparer.OrdinalIgnoreCase)
     {
-        "text", "textArea", "richText", "number"
+        "text", "textArea", "richText", "number", "date"
     };
 
     public DestinationStructureService(
@@ -449,7 +451,14 @@ public class DestinationStructureService : IDestinationStructureService
         "Umbraco.TextArea" => "textArea",
         "Umbraco.RichText" or "Umbraco.TinyMCE" => "richText",
         "Umbraco.Integer" or "Umbraco.Decimal" => "number",
-        "Umbraco.DateTime" => "date",
+        // The date editors derive from DateTimePropertyEditorBase and persist the same
+        // JSON shape, so they share one "date" type. Umbraco.DateTime is the deprecated
+        // alias, kept for sites that have not migrated.
+        // Umbraco.TimeOnly is deliberately excluded: it shares the shape but holds a
+        // time, and extracted source content yields dates. Offering it as a target
+        // would advertise something the apply pass cannot fill correctly.
+        "Umbraco.DateOnly" or "Umbraco.DateTime" or "Umbraco.DateTimeUnspecified"
+            or "Umbraco.DateTimeWithTimeZone" => "date",
         "Umbraco.TrueFalse" => "boolean",
         "Umbraco.MediaPicker3" => "mediaPicker",
         "Umbraco.ContentPicker" or "Umbraco.MultiNodeTreePicker" => "contentPicker",

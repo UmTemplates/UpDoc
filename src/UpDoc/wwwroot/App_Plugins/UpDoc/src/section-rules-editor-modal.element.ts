@@ -308,11 +308,19 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 			formats = [{ type: 'block' as FormatEntryType, value: blockValue }];
 		}
 
+		// Backfill condition sortOrder from array position for workflows saved before
+		// the field existed, then order the array by it so the editor renders in the
+		// author's saved order. Mechanism only — does not affect matching.
+		const conditions = [...(rule.conditions ?? [])]
+			.map((c, i) => ({ ...c, sortOrder: c.sortOrder ?? i }))
+			.sort((a, b) => a.sortOrder - b.sortOrder);
+
 		return {
 			...rule,
 			part,
 			exclude,
 			formats,
+			conditions,
 			_id: generateRuleId(),
 			_groupName: groupName,
 		};
@@ -806,6 +814,17 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		}));
 	}
 
+	/** Move a condition one place earlier/later in its rule by swapping array positions. */
+	#moveCondition(id: string, condIdx: number, direction: -1 | 1) {
+		const target = condIdx + direction;
+		this.#updateRuleById(id, (r) => {
+			if (target < 0 || target >= r.conditions.length) return r;
+			const conditions = [...r.conditions];
+			[conditions[condIdx], conditions[target]] = [conditions[target], conditions[condIdx]];
+			return { ...r, conditions };
+		});
+	}
+
 	#updateConditionType(id: string, condIdx: number, type: RuleConditionType) {
 		this.#updateRuleById(id, (r) => {
 			const conditions = [...r.conditions];
@@ -937,8 +956,12 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		const blockEntry = (rule.formats ?? []).find((f) => f.type === 'block');
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { _id, _groupName, action, ...clean } = rule;
+		// Normalise condition sortOrder to a contiguous 0..n from the current array
+		// order, so swaps from the up/down arrows don't leave gaps or duplicates.
+		const conditions = (clean.conditions ?? []).map((c, i) => ({ ...c, sortOrder: i }));
 		return {
 			...clean,
+			conditions,
 			format: (blockEntry?.value ?? 'auto') as BlockFormat,
 		};
 	}
@@ -986,7 +1009,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 
 	// ===== Rendering =====
 
-	#renderConditionRow(ruleId: string, condIdx: number, condition: RuleCondition) {
+	#renderConditionRow(ruleId: string, condIdx: number, condition: RuleCondition, total: number) {
 		const isValueless = VALUELESS_CONDITIONS.includes(condition.type);
 		const isRange = condition.type === 'fontSizeRange';
 		const rangeValue = isRange && condition.value && typeof condition.value === 'object'
@@ -1024,13 +1047,30 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 						.value=${String(condition.value ?? '')}
 						@input=${(e: Event) => this.#updateConditionValue(ruleId, condIdx, (e.target as HTMLInputElement).value)} />
 				`}
-				<uui-button
-					compact
-					look="secondary"
-					label="Remove condition"
-					@click=${() => this.#removeCondition(ruleId, condIdx)}>
-					<uui-icon name="icon-trash"></uui-icon>
-				</uui-button>
+				<uui-action-bar>
+					<uui-button
+						compact
+						label="Move condition up"
+						title="Move up"
+						?disabled=${condIdx === 0}
+						@click=${() => this.#moveCondition(ruleId, condIdx, -1)}>
+						<uui-icon name="icon-arrow-up"></uui-icon>
+					</uui-button>
+					<uui-button
+						compact
+						label="Move condition down"
+						title="Move down"
+						?disabled=${condIdx === total - 1}
+						@click=${() => this.#moveCondition(ruleId, condIdx, 1)}>
+						<uui-icon name="icon-arrow-down"></uui-icon>
+					</uui-button>
+					<uui-button
+						compact
+						label="Remove condition"
+						@click=${() => this.#removeCondition(ruleId, condIdx)}>
+						<uui-icon name="icon-trash"></uui-icon>
+					</uui-button>
+				</uui-action-bar>
 			</div>
 		`;
 	}
@@ -1231,7 +1271,7 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 						Conditions${rule.conditions.length > 0 ? ` (${rule.conditions.length})` : ''}
 					</div>
 					${this.#isSectionExpanded('conditions', id) ? html`
-						${rule.conditions.map((cond, cIdx) => this.#renderConditionRow(id, cIdx, cond))}
+						${rule.conditions.map((cond, cIdx) => this.#renderConditionRow(id, cIdx, cond, rule.conditions.length))}
 						<uui-button
 							compact
 							look="placeholder"

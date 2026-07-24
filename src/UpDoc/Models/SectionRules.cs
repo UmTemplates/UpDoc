@@ -356,6 +356,16 @@ public class RuleCondition
     /// </summary>
     [JsonPropertyName("value")]
     public object? Value { get; set; }
+
+    /// <summary>
+    /// Author-controlled order of this condition within its rule (0-based, contiguous).
+    /// Nullable for backwards compatibility: conditions saved before this field existed
+    /// have no value and are backfilled from array position on load. Ordering is
+    /// mechanism-only today — it does not affect matching, which remains AND across all
+    /// conditions regardless of order.
+    /// </summary>
+    [JsonPropertyName("sortOrder")]
+    public int? SortOrder { get; set; }
 }
 
 /// <summary>

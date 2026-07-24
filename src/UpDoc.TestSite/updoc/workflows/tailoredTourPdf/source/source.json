@@ -28,19 +28,45 @@
               "value": {
                 "min": 20,
                 "max": 27
-              }
+              },
+              "sortOrder": null
             },
             {
               "type": "fontNameContains",
-              "value": "Clarendon"
+              "value": "Clarendon",
+              "sortOrder": null
             },
             {
               "type": "colorEquals",
-              "value": "#FFD200"
+              "value": "#FFD200",
+              "sortOrder": null
             }
           ],
           "exceptions": null,
-          "textReplacements": null
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 20,
+                "max": 27
+              },
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
         },
         {
           "id": "7e6b0588-db18-4dd7-ab66-c825d0de8fbb",
@@ -52,19 +78,23 @@
           "conditions": [
             {
               "type": "fontSizeEquals",
-              "value": 18
+              "value": 18,
+              "sortOrder": null
             },
             {
               "type": "fontNameContains",
-              "value": "Clarendon"
+              "value": "Clarendon",
+              "sortOrder": null
             },
             {
               "type": "colorEquals",
-              "value": "#FFFFFF"
+              "value": "#FFFFFF",
+              "sortOrder": null
             },
             {
               "type": "textBeginsWith",
-              "value": "Tel:"
+              "value": "Tel:",
+              "sortOrder": null
             }
           ],
           "exceptions": null,
@@ -75,7 +105,32 @@
               "replaceType": "replaceWith",
               "replace": ""
             }
-          ]
+          ],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeEquals",
+              "value": 18,
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF",
+              "sortOrder": null
+            },
+            {
+              "type": "textBeginsWith",
+              "value": "Tel:",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
         },
         {
           "id": "0c0c06fb-1159-4364-878f-d2d55423b6ae",
@@ -87,19 +142,23 @@
           "conditions": [
             {
               "type": "fontSizeEquals",
-              "value": 14
+              "value": 14,
+              "sortOrder": null
             },
             {
               "type": "fontNameContains",
-              "value": "Clarendon"
+              "value": "Clarendon",
+              "sortOrder": null
             },
             {
               "type": "colorEquals",
-              "value": "#FFD200"
+              "value": "#FFD200",
+              "sortOrder": null
             },
             {
               "type": "textBeginsWith",
-              "value": "Email:"
+              "value": "Email:",
+              "sortOrder": null
             }
           ],
           "exceptions": null,
@@ -116,7 +175,32 @@
               "replaceType": "replaceWith",
               "replace": ""
             }
-          ]
+          ],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeEquals",
+              "value": 14,
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": null
+            },
+            {
+              "type": "textBeginsWith",
+              "value": "Email:",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
         },
         {
           "id": "75b31ea6-088d-4f74-a8c2-bc88a1cbc09b",
@@ -131,19 +215,45 @@
               "value": {
                 "min": 10,
                 "max": 14
-              }
+              },
+              "sortOrder": null
             },
             {
               "type": "fontNameContains",
-              "value": "Clarendon"
+              "value": "Clarendon",
+              "sortOrder": null
             },
             {
               "type": "colorEquals",
-              "value": "#FFFFFF"
+              "value": "#FFFFFF",
+              "sortOrder": null
             }
           ],
           "exceptions": null,
-          "textReplacements": null
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 10,
+                "max": 14
+              },
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
         }
       ]
     },
@@ -163,19 +273,45 @@
               "value": {
                 "min": 9,
                 "max": 13
-              }
+              },
+              "sortOrder": 0
             },
             {
               "type": "fontNameContains",
-              "value": "HelveticaNeue-Medium"
+              "value": "HelveticaNeue-Medium",
+              "sortOrder": 1
             },
             {
               "type": "colorEquals",
-              "value": "#FFD200"
+              "value": "#FFD200",
+              "sortOrder": 2
             }
           ],
           "exceptions": null,
-          "textReplacements": null
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 9,
+                "max": 13
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "HelveticaNeue-Medium",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": []
         },
         {
           "id": "d89bc5dc-cd92-4147-b9d5-69fbc1c325d8",
@@ -190,15 +326,18 @@
               "value": {
                 "min": 25,
                 "max": 35
-              }
+              },
+              "sortOrder": 0
             },
             {
               "type": "fontNameContains",
-              "value": "Clarendon"
+              "value": "Clarendon",
+              "sortOrder": 1
             },
             {
               "type": "colorEquals",
-              "value": "#FFFFFF"
+              "value": "#FFFFFF",
+              "sortOrder": 2
             }
           ],
           "exceptions": null,
@@ -209,7 +348,30 @@
               "replaceType": "replaceAll",
               "replace": "and"
             }
-          ]
+          ],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 25,
+                "max": 35
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": []
         },
         {
           "id": "60e01e2b-4d3f-4d1f-bdf7-b16afc7957dd",
@@ -224,19 +386,45 @@
               "value": {
                 "min": 13,
                 "max": 16
-              }
+              },
+              "sortOrder": 0
             },
             {
               "type": "fontNameContains",
-              "value": "HelveticaNeue-Medium"
+              "value": "HelveticaNeue-Medium",
+              "sortOrder": 1
             },
             {
               "type": "colorEquals",
-              "value": "#FFD200"
+              "value": "#FFD200",
+              "sortOrder": 2
             }
           ],
           "exceptions": null,
-          "textReplacements": null
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "HelveticaNeue-Medium",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": []
         },
         {
           "id": "d0000001-0000-4000-8000-000000000001",
@@ -247,24 +435,54 @@
           "exclude": false,
           "conditions": [
             {
+              "type": "segment",
+              "value": null,
+              "sortOrder": 0
+            },
+            {
               "type": "fontSizeRange",
-              "value": { "min": 13, "max": 16 }
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 1
             },
             {
               "type": "colorEquals",
-              "value": "#FFD200"
-            },
-            {
-              "type": "segment",
-              "value": null
+              "value": "#FFD200",
+              "sortOrder": 2
             },
             {
               "type": "textPrecedes",
-              "value": "days"
+              "value": "days",
+              "sortOrder": 3
             }
           ],
           "exceptions": null,
-          "textReplacements": null
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": true,
+          "MatchConditions": [],
+          "SegmentConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 2
+            },
+            {
+              "type": "textPrecedes",
+              "value": "days",
+              "sortOrder": 3
+            }
+          ]
         },
         {
           "id": "d0000002-0000-4000-8000-000000000002",
@@ -276,27 +494,64 @@
           "conditions": [
             {
               "type": "fontSizeRange",
-              "value": { "min": 13, "max": 16 }
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
             },
             {
               "type": "colorEquals",
-              "value": "#FFD200"
+              "value": "#FFD200",
+              "sortOrder": 1
             },
             {
               "type": "segment",
-              "value": null
+              "value": null,
+              "sortOrder": 2
             },
             {
               "type": "textFollows",
-              "value": "£"
+              "value": "\u00A3",
+              "sortOrder": 3
             },
             {
               "type": "number",
-              "value": null
+              "value": null,
+              "sortOrder": 4
             }
           ],
           "exceptions": null,
-          "textReplacements": null
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": true,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            }
+          ],
+          "SegmentConditions": [
+            {
+              "type": "textFollows",
+              "value": "\u00A3",
+              "sortOrder": 3
+            },
+            {
+              "type": "number",
+              "value": null,
+              "sortOrder": 4
+            }
+          ]
         }
       ]
     },
@@ -316,23 +571,52 @@
               "conditions": [
                 {
                   "type": "fontSizeEquals",
-                  "value": 9
+                  "value": 9,
+                  "sortOrder": null
                 },
                 {
                   "type": "fontNameContains",
-                  "value": "HelveticaNeue"
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
                 },
                 {
                   "type": "colorEquals",
-                  "value": "#FFFFFF"
+                  "value": "#FFFFFF",
+                  "sortOrder": null
                 },
                 {
                   "type": "positionFirst",
-                  "value": null
+                  "value": null,
+                  "sortOrder": null
                 }
               ],
               "exceptions": null,
-              "textReplacements": null
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9,
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#FFFFFF",
+                  "sortOrder": null
+                },
+                {
+                  "type": "positionFirst",
+                  "value": null,
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
             }
           ]
         }
@@ -355,19 +639,42 @@
               "conditions": [
                 {
                   "type": "fontSizeEquals",
-                  "value": 12
+                  "value": 12,
+                  "sortOrder": null
                 },
                 {
                   "type": "fontNameContains",
-                  "value": "Clarendon"
+                  "value": "Clarendon",
+                  "sortOrder": null
                 },
                 {
                   "type": "colorEquals",
-                  "value": "#16549D"
+                  "value": "#16549D",
+                  "sortOrder": null
                 }
               ],
               "exceptions": null,
-              "textReplacements": null
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeEquals",
+                  "value": 12,
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "Clarendon",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
             },
             {
               "id": "9cd5950b-8082-4e63-aa17-12c5d8fb0b22",
@@ -382,19 +689,45 @@
                   "value": {
                     "min": 7,
                     "max": 9
-                  }
+                  },
+                  "sortOrder": null
                 },
                 {
                   "type": "fontNameContains",
-                  "value": "HelveticaNeue"
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
                 },
                 {
                   "type": "colorEquals",
-                  "value": "#16549D"
+                  "value": "#16549D",
+                  "sortOrder": null
                 }
               ],
               "exceptions": null,
-              "textReplacements": null
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 9
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
             }
           ]
         }
@@ -420,19 +753,45 @@
                   "value": {
                     "min": 9,
                     "max": 12
-                  }
+                  },
+                  "sortOrder": null
                 },
                 {
                   "type": "fontNameContains",
-                  "value": "HelveticaNeue-Medium"
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": null
                 },
                 {
                   "type": "colorEquals",
-                  "value": "#16549D"
+                  "value": "#16549D",
+                  "sortOrder": null
                 }
               ],
               "exceptions": null,
-              "textReplacements": null
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 9,
+                    "max": 12
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
             },
             {
               "id": "6f495045-f372-4165-9316-42fee2b8e557",
@@ -447,19 +806,45 @@
                   "value": {
                     "min": 9,
                     "max": 12
-                  }
+                  },
+                  "sortOrder": null
                 },
                 {
                   "type": "fontNameContains",
-                  "value": "HelveticaNeue"
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
                 },
                 {
                   "type": "colorEquals",
-                  "value": "#221F1F"
+                  "value": "#221F1F",
+                  "sortOrder": null
                 }
               ],
               "exceptions": null,
-              "textReplacements": null
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 9,
+                    "max": 12
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#221F1F",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
             },
             {
               "id": "664dd3f9-da50-4ec0-bd9b-9e456f941050",
@@ -474,19 +859,45 @@
                   "value": {
                     "min": 7,
                     "max": 9
-                  }
+                  },
+                  "sortOrder": null
                 },
                 {
                   "type": "fontNameContains",
-                  "value": "HelveticaNeue-Medium"
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": null
                 },
                 {
                   "type": "colorEquals",
-                  "value": "#16549D"
+                  "value": "#16549D",
+                  "sortOrder": null
                 }
               ],
               "exceptions": null,
-              "textReplacements": null
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 9
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
             }
           ]
         }

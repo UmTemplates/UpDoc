@@ -237,6 +237,12 @@ export function allRules(areaRules: AreaRules): SectionRule[] {
 export interface RuleCondition {
 	type: RuleConditionType;
 	value?: string | number;
+	/**
+	 * Author-controlled order within the rule (0-based, contiguous). Optional for
+	 * backwards compatibility — conditions without it are backfilled from array
+	 * position on load. Mechanism only: order does not affect matching.
+	 */
+	sortOrder?: number;
 }
 
 export type RuleConditionType =

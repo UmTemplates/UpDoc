@@ -164,7 +164,7 @@ The test site can be run with:
 dotnet run --project src/UpDoc.TestSite/UpDoc.TestSite.csproj
 ```
 
-The Umbraco site may be running during development. Before performing any work that requires the site to be stopped (e.g. `dotnet build`, `dotnet run`, modifying C# files that need recompilation, or changes that lock files), prompt the user to stop the site first. Do not assume the site is stopped.
+**NEVER run `dotnet build`, `dotnet run`, or `dotnet watch` yourself unless explicitly asked to.** The user builds and runs the site. If Claude starts the site, the user loses track of whether it is running, which corrupts the shared understanding of state (and can lock files or clash with the user's own running instance). When a change needs a build or restart (C# edits, uSync import, verifying in the running app), STOP and ask the user to build/run it, then continue once they confirm it is up. Do not assume the site is stopped, and do not start it to "check" something.
 
 ## Playwright E2E Testing
 

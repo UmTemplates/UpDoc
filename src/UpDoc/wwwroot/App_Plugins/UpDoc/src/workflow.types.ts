@@ -269,7 +269,8 @@ export type RuleConditionType =
 	| 'isBoldEquals'
 	| 'segment'
 	| 'textFollows'
-	| 'textPrecedes';
+	| 'textPrecedes'
+	| 'number';
 
 /**
  * Pattern for identifying section heading elements within an area.

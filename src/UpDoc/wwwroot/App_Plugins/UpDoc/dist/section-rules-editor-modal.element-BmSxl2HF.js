@@ -574,8 +574,9 @@ const Ze = {
   isBoldEquals: "Is bold",
   segment: "Segment",
   textFollows: "Text follows",
-  textPrecedes: "Text precedes"
-}, R = ["positionFirst", "positionLast", "isBoldEquals"], Ot = {
+  textPrecedes: "Text precedes",
+  number: "Number"
+}, R = ["positionFirst", "positionLast", "isBoldEquals", "number"], Ot = {
   start: "Start",
   end: "End"
 }, Nt = ["start", "end"], et = "start", L = [
@@ -602,7 +603,8 @@ const Ze = {
   "isBoldEquals",
   "segment",
   "textFollows",
-  "textPrecedes"
+  "textPrecedes",
+  "number"
 ], Tt = /* @__PURE__ */ new Set([
   "textBeginsWith",
   "textEndsWith",
@@ -620,7 +622,8 @@ const Ze = {
   "positionLast",
   "segment",
   "textFollows",
-  "textPrecedes"
+  "textPrecedes",
+  "number"
 ]), tt = {
   title: "Title",
   content: "Content",
@@ -1861,4 +1864,4 @@ export {
   b as UpDocSectionRulesEditorModalElement,
   Qt as default
 };
-//# sourceMappingURL=section-rules-editor-modal.element-DqjQGQo7.js.map
+//# sourceMappingURL=section-rules-editor-modal.element-BmSxl2HF.js.map

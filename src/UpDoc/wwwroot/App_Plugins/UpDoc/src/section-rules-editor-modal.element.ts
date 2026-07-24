@@ -52,10 +52,11 @@ const CONDITION_LABELS: Record<RuleConditionType, string> = {
 	segment: 'Segment',
 	textFollows: 'Text follows',
 	textPrecedes: 'Text precedes',
+	number: 'Number',
 };
 
 /** Condition types that don't need a value input */
-const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals'];
+const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals', 'number'];
 
 /**
  * Segment bracket values. Start is the default and covers the common case of one
@@ -81,7 +82,7 @@ const ALL_CONDITION_TYPES: RuleConditionType[] = [
 	// HTML-specific (web sources)
 	'htmlTagEquals', 'cssClassContains', 'htmlContainerPathContains',
 	'containerIdEquals', 'containerClassContains', 'isBoldEquals',
-	'segment', 'textFollows', 'textPrecedes',
+	'segment', 'textFollows', 'textPrecedes', 'number',
 ];
 
 /**
@@ -94,7 +95,7 @@ const PDF_CONDITION_TYPES = new Set<RuleConditionType>([
 	'fontSizeEquals', 'fontSizeAbove', 'fontSizeBelow', 'fontSizeRange',
 	'fontNameContains', 'fontNameEquals', 'colorEquals',
 	'positionFirst', 'positionLast',
-	'segment', 'textFollows', 'textPrecedes',
+	'segment', 'textFollows', 'textPrecedes', 'number',
 ]);
 
 /** Friendly labels for rule parts */

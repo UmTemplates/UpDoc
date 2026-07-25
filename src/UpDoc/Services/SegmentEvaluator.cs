@@ -34,14 +34,15 @@ public static class SegmentEvaluator
 
         foreach (var c in segmentConditions)
         {
-            var value = c.Value?.ToString();
             switch (c.Type?.ToLowerInvariant())
             {
                 case "textfollows":
-                    from = new SegmentBoundary { Anchor = "afterMarker", Marker = value };
+                    // Multi-value: cut on the first candidate marker present in the text,
+                    // so "Departs"/"Departing" both work whichever the element carries.
+                    from = new SegmentBoundary { Anchor = "afterMarker", Marker = FirstMarkerFound(text, c.Value) };
                     break;
                 case "textprecedes":
-                    to = new SegmentBoundary { Anchor = "beforeMarker", Marker = value };
+                    to = new SegmentBoundary { Anchor = "beforeMarker", Marker = FirstMarkerFound(text, c.Value) };
                     break;
                 case "number":
                     to = new SegmentBoundary { Anchor = "number" };
@@ -82,6 +83,21 @@ public static class SegmentEvaluator
         }
 
         return region[..endIndex].Trim();
+    }
+
+    // Picks the marker to cut on when a piece condition carries several candidate
+    // values. Returns the first that occurs in the text (case-insensitive), else
+    // the first candidate so a not-found marker still collapses the segment to
+    // empty via the resolve logic. Null when there are no candidates.
+    private static string? FirstMarkerFound(string text, object? value)
+    {
+        var candidates = PdfPagePropertiesService.ConditionTextValues(value);
+        if (candidates.Count == 0) return null;
+        foreach (var c in candidates)
+        {
+            if (text.Contains(c, StringComparison.OrdinalIgnoreCase)) return c;
+        }
+        return candidates[0];
     }
 
     // Returns the index in `text` where the segment starts, or -1 if not found.

@@ -577,7 +577,10 @@
             },
             {
               "type": "textContains",
-              "value": "Depart",
+              "value": [
+                "Departs",
+                "Departing"
+              ],
               "sortOrder": 2
             },
             {
@@ -587,7 +590,10 @@
             },
             {
               "type": "textFollows",
-              "value": "Depart",
+              "value": [
+                "Departs",
+                "Departing"
+              ],
               "sortOrder": 4
             }
           ],
@@ -611,14 +617,20 @@
             },
             {
               "type": "textContains",
-              "value": "Depart",
+              "value": [
+                "Departs",
+                "Departing"
+              ],
               "sortOrder": 2
             }
           ],
           "SegmentConditions": [
             {
               "type": "textFollows",
-              "value": "Depart",
+              "value": [
+                "Departs",
+                "Departing"
+              ],
               "sortOrder": 4
             }
           ]

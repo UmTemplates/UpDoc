@@ -2,7 +2,7 @@ import type { SectionRulesEditorModalData, SectionRulesEditorModalValue } from '
 import type { SectionRule, RuleCondition, RuleConditionType, RulePart, BlockFormat, FormatEntry, FormatEntryType, AreaElement, AreaRules, RuleGroup, TextReplacement, FindType, ReplaceType } from './workflow.types.js';
 import type { SortChangeDetail, SortableRule } from './sortable-rules-container.element.js';
 import { getEffectivePart, getEffectiveFormat } from './workflow.types.js';
-import { matchConditions, segmentConditions, applySegmentConditions } from './segment.js';
+import { matchConditions, segmentConditions, applySegmentConditions, conditionTextValues } from './segment.js';
 import './sortable-rules-container.element.js';
 import { ruleCardStyles } from './rule-card-styles.js';
 import { html, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
@@ -57,6 +57,17 @@ const CONDITION_LABELS: Record<RuleConditionType, string> = {
 
 /** Condition types that don't need a value input */
 const VALUELESS_CONDITIONS: RuleConditionType[] = ['positionFirst', 'positionLast', 'isBoldEquals', 'number'];
+
+/**
+ * Text conditions whose value supports multi-value OR (a chip/tag input). Each
+ * chip is one candidate; the condition matches if the element satisfies it for
+ * ANY chip. One chip serialises as a plain string, keeping single-value rules
+ * byte-identical; two or more serialise as a string[].
+ */
+const MULTI_VALUE_CONDITIONS: RuleConditionType[] = [
+	'textBeginsWith', 'textEndsWith', 'textContains', 'textEquals', 'textMatchesPattern',
+	'textFollows', 'textPrecedes',
+];
 
 /**
  * Segment bracket values. Start is the default and covers the common case of one
@@ -469,16 +480,21 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	#elementMatchesCondition(el: AreaElement, condition: RuleCondition, index: number, total: number): boolean {
 		const val = String(condition.value ?? '');
 		const numVal = Number(condition.value);
+		// A text condition's value may be a single string or an array (multi-value
+		// OR). textValues yields the candidate strings; the text cases match on ANY.
+		const textValues = conditionTextValues(condition.value);
 
 		switch (condition.type) {
 			case 'textBeginsWith':
-				return el.text.toLowerCase().startsWith(val.toLowerCase());
+				return textValues.some((v) => el.text.toLowerCase().startsWith(v.toLowerCase()));
 			case 'textEndsWith':
-				return el.text.toLowerCase().endsWith(val.toLowerCase());
+				return textValues.some((v) => el.text.toLowerCase().endsWith(v.toLowerCase()));
 			case 'textContains':
-				return el.text.toLowerCase().includes(val.toLowerCase());
+				return textValues.some((v) => el.text.toLowerCase().includes(v.toLowerCase()));
 			case 'textMatchesPattern':
-				try { return new RegExp(val, 'i').test(el.text); } catch { return false; }
+				return textValues.some((v) => {
+					try { return new RegExp(v, 'i').test(el.text); } catch { return false; }
+				});
 			case 'fontSizeEquals':
 				return !isNaN(numVal) && Math.abs(el.fontSize - numVal) <= 0.5;
 			case 'fontSizeAbove':
@@ -636,6 +652,10 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	/** Generic helper: update a single rule by _id. */
 	#updateRuleById(id: string, updater: (rule: EditableRule) => EditableRule) {
 		this._rules = this._rules.map((r) => r._id === id ? updater(r) : r);
+	}
+
+	#findRule(id: string): EditableRule | undefined {
+		return this._rules.find((r) => r._id === id);
 	}
 
 	#addRule(groupName: string = UNGROUPED_GROUP) {
@@ -880,6 +900,42 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 		});
 	}
 
+	/** Reads a condition's value as an array of chips (single string → one chip). */
+	#chipsOf(value: RuleCondition['value']): string[] {
+		if (Array.isArray(value)) return value.map((v) => String(v));
+		if (value == null || value === '') return [];
+		return [String(value)];
+	}
+
+	/**
+	 * Writes chips back to a condition's value, collapsing to a plain string when
+	 * there is exactly one so single-value rules stay byte-identical on disk.
+	 * Zero chips → empty string (matches the old empty text-input state).
+	 */
+	#setChips(id: string, condIdx: number, chips: string[]) {
+		this.#updateRuleById(id, (r) => {
+			const conditions = [...r.conditions];
+			const cleaned = chips.map((c) => c.trim()).filter((c) => c.length > 0);
+			const value = cleaned.length === 0 ? '' : cleaned.length === 1 ? cleaned[0] : cleaned;
+			conditions[condIdx] = { ...conditions[condIdx], value };
+			return { ...r, conditions };
+		});
+	}
+
+	#addChip(id: string, condIdx: number, chip: string) {
+		const trimmed = chip.trim();
+		if (!trimmed) return;
+		const cond = this.#findRule(id)?.conditions[condIdx];
+		if (!cond) return;
+		this.#setChips(id, condIdx, [...this.#chipsOf(cond.value), trimmed]);
+	}
+
+	#removeChip(id: string, condIdx: number, chipIdx: number) {
+		const cond = this.#findRule(id)?.conditions[condIdx];
+		if (!cond) return;
+		this.#setChips(id, condIdx, this.#chipsOf(cond.value).filter((_, i) => i !== chipIdx));
+	}
+
 	// ===== Exception CRUD =====
 
 	#addException(id: string) {
@@ -1027,10 +1083,54 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 
 	// ===== Rendering =====
 
+	/**
+	 * Multi-value chip input. Existing values render as removable chips; the text
+	 * field commits a new chip on Enter or comma, and Backspace on an empty field
+	 * removes the last chip. A single chip persists as a plain string (see #setChips).
+	 */
+	#renderChipInput(ruleId: string, condIdx: number, condition: RuleCondition) {
+		const chips = this.#chipsOf(condition.value);
+		const commit = (input: HTMLInputElement) => {
+			if (input.value.trim()) {
+				this.#addChip(ruleId, condIdx, input.value);
+				input.value = '';
+			}
+		};
+		return html`
+			<div class="chip-input">
+				${chips.map((chip, i) => html`
+					<span class="chip">
+						<span class="chip-label">${chip}</span>
+						<button
+							type="button"
+							class="chip-remove"
+							aria-label="Remove ${chip}"
+							@click=${() => this.#removeChip(ruleId, condIdx, i)}>&times;</button>
+					</span>
+				`)}
+				<input
+					type="text"
+					class="chip-field"
+					placeholder=${chips.length ? 'Or…' : 'Value…'}
+					@keydown=${(e: KeyboardEvent) => {
+						const input = e.target as HTMLInputElement;
+						if (e.key === 'Enter' || e.key === ',') {
+							e.preventDefault();
+							commit(input);
+						} else if (e.key === 'Backspace' && input.value === '' && chips.length) {
+							this.#removeChip(ruleId, condIdx, chips.length - 1);
+						}
+					}}
+					@blur=${(e: Event) => commit(e.target as HTMLInputElement)} />
+			</div>
+		`;
+	}
+
 	#renderConditionRow(ruleId: string, condIdx: number, condition: RuleCondition, total: number) {
 		const isValueless = VALUELESS_CONDITIONS.includes(condition.type);
 		const isRange = condition.type === 'fontSizeRange';
 		const isSegment = condition.type === 'segment';
+		const isMultiValue = MULTI_VALUE_CONDITIONS.includes(condition.type);
 		const segmentValue = isSegment ? String(condition.value ?? SEGMENT_VALUE_DEFAULT) : '';
 		const rangeValue = isRange && condition.value && typeof condition.value === 'object'
 			? condition.value as { min: number; max: number }
@@ -1069,7 +1169,8 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 							<option value=${v} ?selected=${v === segmentValue}>${SEGMENT_VALUE_LABELS[v]}</option>
 						`)}
 					</select>
-				` : isValueless ? nothing : html`
+				` : isMultiValue ? this.#renderChipInput(ruleId, condIdx, condition)
+				: isValueless ? nothing : html`
 					<input
 						type="text"
 						class="condition-value-input"

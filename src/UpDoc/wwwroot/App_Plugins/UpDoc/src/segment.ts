@@ -4,6 +4,21 @@ import type { Segment, SegmentBoundary, RuleCondition } from './workflow.types.j
 
 const NUMBER_RUN = /\d[\d,]*/;
 
+/**
+ * Normalises a condition value to the list of candidate strings to match against.
+ * A plain string yields one candidate; an array yields several (multi-value OR).
+ * Empty strings are dropped so a stray empty chip cannot match everything.
+ * KEEP IN SYNC with the C# equivalent in PdfPagePropertiesService.
+ */
+export function conditionTextValues(value: unknown): string[] {
+	if (Array.isArray(value)) {
+		return value.map((v) => String(v ?? '')).filter((v) => v.length > 0);
+	}
+	if (value == null) return [];
+	const s = String(value);
+	return s.length > 0 ? [s] : [];
+}
+
 /** Index of the "segment" marker condition, or -1 if none. */
 export function segmentMarkerIndex(conditions: RuleCondition[]): number {
 	return conditions.findIndex((c) => c.type === 'segment');
@@ -33,13 +48,14 @@ export function applySegmentConditions(text: string, pieceConditions: RuleCondit
 	let to: SegmentBoundary | undefined;
 
 	for (const c of pieceConditions) {
-		const value = c.value != null ? String(c.value) : undefined;
 		switch (c.type) {
 			case 'textFollows':
-				from = { anchor: 'afterMarker', marker: value };
+				// Multi-value: use the first candidate marker that occurs in the text,
+				// so "Departs"/"Departing" both cut cleanly whichever the element has.
+				from = { anchor: 'afterMarker', marker: firstMarkerFound(text, c.value) };
 				break;
 			case 'textPrecedes':
-				to = { anchor: 'beforeMarker', marker: value };
+				to = { anchor: 'beforeMarker', marker: firstMarkerFound(text, c.value) };
 				break;
 			case 'number':
 				to = { anchor: 'number' };
@@ -48,6 +64,19 @@ export function applySegmentConditions(text: string, pieceConditions: RuleCondit
 	}
 
 	return applySegment(text, { from, to });
+}
+
+/**
+ * Picks the marker to cut on when a piece condition carries several candidates.
+ * Returns the first candidate that occurs in the text (case-insensitive); falls
+ * back to the first candidate so a not-found marker still collapses the segment
+ * to empty via the existing resolve logic. undefined when there are none.
+ */
+function firstMarkerFound(text: string, value: unknown): string | undefined {
+	const candidates = conditionTextValues(value);
+	if (candidates.length === 0) return undefined;
+	const lower = text.toLowerCase();
+	return candidates.find((c) => lower.includes(c.toLowerCase())) ?? candidates[0];
 }
 
 export function applySegment(text: string, segment?: Segment): string {

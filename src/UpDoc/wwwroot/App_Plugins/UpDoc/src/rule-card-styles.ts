@@ -225,6 +225,61 @@ export const ruleCardStyles = css`
 		align-self: center;
 	}
 
+	/* Multi-value chip input (OR of several values on a text condition) */
+	.chip-input {
+		flex: 1;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--uui-size-space-1);
+		padding: var(--uui-size-space-1) var(--uui-size-space-2);
+		border: 1px solid var(--uui-color-border);
+		border-radius: var(--uui-border-radius);
+		background: var(--uui-color-surface);
+	}
+
+	.chip-input:focus-within {
+		border-color: var(--uui-color-focus);
+	}
+
+	.chip {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--uui-size-space-1);
+		padding: 0 var(--uui-size-space-1);
+		background: var(--uui-color-surface-alt);
+		border: 1px solid var(--uui-color-border);
+		border-radius: var(--uui-border-radius);
+		font-size: var(--uui-type-small-size);
+		font-family: monospace;
+	}
+
+	.chip-remove {
+		border: none;
+		background: none;
+		cursor: pointer;
+		padding: 0;
+		line-height: 1;
+		font-size: var(--uui-type-default-size);
+		color: var(--uui-color-text-alt);
+	}
+
+	.chip-remove:hover {
+		color: var(--uui-color-danger);
+	}
+
+	.chip-field {
+		flex: 1;
+		min-width: 4rem;
+		border: none;
+		outline: none;
+		padding: 0;
+		font-size: var(--uui-type-small-size);
+		font-family: monospace;
+		background: transparent;
+		color: var(--uui-color-text);
+	}
+
 	/* Format row selects */
 	.format-type-select {
 		min-width: 100px;

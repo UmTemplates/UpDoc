@@ -2,7 +2,7 @@ import type { SectionRulesEditorModalData, SectionRulesEditorModalValue } from '
 import type { SectionRule, RuleCondition, RuleConditionType, RulePart, BlockFormat, FormatEntry, FormatEntryType, AreaElement, AreaRules, RuleGroup, TextReplacement, FindType, ReplaceType } from './workflow.types.js';
 import type { SortChangeDetail, SortableRule } from './sortable-rules-container.element.js';
 import { getEffectivePart, getEffectiveFormat } from './workflow.types.js';
-import { matchConditions, segmentConditions, applySegmentConditions } from './segment.js';
+import { matchConditions, segmentConditions, applySegmentConditions, conditionTextValues } from './segment.js';
 import './sortable-rules-container.element.js';
 import { ruleCardStyles } from './rule-card-styles.js';
 import { html, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
@@ -469,16 +469,21 @@ export class UpDocSectionRulesEditorModalElement extends UmbModalBaseElement<Sec
 	#elementMatchesCondition(el: AreaElement, condition: RuleCondition, index: number, total: number): boolean {
 		const val = String(condition.value ?? '');
 		const numVal = Number(condition.value);
+		// A text condition's value may be a single string or an array (multi-value
+		// OR). textValues yields the candidate strings; the text cases match on ANY.
+		const textValues = conditionTextValues(condition.value);
 
 		switch (condition.type) {
 			case 'textBeginsWith':
-				return el.text.toLowerCase().startsWith(val.toLowerCase());
+				return textValues.some((v) => el.text.toLowerCase().startsWith(v.toLowerCase()));
 			case 'textEndsWith':
-				return el.text.toLowerCase().endsWith(val.toLowerCase());
+				return textValues.some((v) => el.text.toLowerCase().endsWith(v.toLowerCase()));
 			case 'textContains':
-				return el.text.toLowerCase().includes(val.toLowerCase());
+				return textValues.some((v) => el.text.toLowerCase().includes(v.toLowerCase()));
 			case 'textMatchesPattern':
-				try { return new RegExp(val, 'i').test(el.text); } catch { return false; }
+				return textValues.some((v) => {
+					try { return new RegExp(v, 'i').test(el.text); } catch { return false; }
+				});
 			case 'fontSizeEquals':
 				return !isNaN(numVal) && Math.abs(el.fontSize - numVal) <= 0.5;
 			case 'fontSizeAbove':

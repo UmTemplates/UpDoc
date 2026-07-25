@@ -236,7 +236,12 @@ export function allRules(areaRules: AreaRules): SectionRule[] {
 
 export interface RuleCondition {
 	type: RuleConditionType;
-	value?: string | number;
+	/**
+	 * The value to match against. A string[] on a text condition means multi-value
+	 * OR — the condition matches if the element satisfies it for ANY listed value.
+	 * The {min,max} shape is used by fontSizeRange.
+	 */
+	value?: string | number | string[] | { min: number; max: number };
 	/**
 	 * Author-controlled order within the rule (0-based, contiguous). Optional for
 	 * backwards compatibility — conditions without it are backfilled from array

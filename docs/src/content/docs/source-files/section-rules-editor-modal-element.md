@@ -28,10 +28,10 @@ Allows the workflow author to define rules for a single section (e.g., "Organise
 
 | Type | Description | Value |
 |------|-------------|-------|
-| `textBeginsWith` | Element text starts with value | string |
-| `textEndsWith` | Element text ends with value | string |
-| `textContains` | Element text contains value | string |
-| `textMatchesPattern` | Element text matches regex | regex string |
+| `textBeginsWith` | Element text starts with value | string or string[] |
+| `textEndsWith` | Element text ends with value | string or string[] |
+| `textContains` | Element text contains value | string or string[] |
+| `textMatchesPattern` | Element text matches regex | string or string[] |
 | `fontSizeEquals` | Font size matches (within 0.5pt) | number |
 | `fontSizeRange` | Font size within min/max range (inclusive) | `{ min, max }` |
 | `fontSizeAbove` | Font size greater than value | number |
@@ -46,6 +46,33 @@ Allows the workflow author to define rules for a single section (e.g., "Organise
 | `containerClassContains` | Any ancestor container has a class containing this value | string |
 | `positionFirst` | First element in section | (none) |
 | `positionLast` | Last element in section | (none) |
+
+## Multi-value conditions (OR)
+
+Text conditions accept **several values** as an alternative to one. In the editor
+they render as a chip input: type a value and press Enter (or comma) to add a
+chip; each chip has a remove button. A condition with multiple values matches if
+the element satisfies it for **any** of them.
+
+This is an **OR within a single condition**. It is the natural way to express
+"match either spelling", for example a strapline that reads `Departs` on one
+document and `Departing` on another:
+
+```json
+{ "type": "textContains", "value": ["Departs", "Departing"] }
+```
+
+The same applies to the segment cut markers `textFollows` / `textPrecedes` — the
+cut is made on the first listed value that occurs in the text, so both spellings
+cut cleanly.
+
+Serialisation stays compact: a single value is written as a plain string (so
+existing rules are unchanged on disk), and two or more as a `string[]`.
+
+Conditions on **different rows** still combine with **AND** (all must hold). OR
+between different condition types (e.g. "yellow OR bold") is not supported — that
+would be a nested query, which is out of scope. See the tracking discussion for
+why multi-value covers the real cases without it.
 
 ## Auto-populate
 

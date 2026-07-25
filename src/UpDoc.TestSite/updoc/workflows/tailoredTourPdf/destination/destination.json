@@ -35,7 +35,7 @@
       "alias": "pagePropertyTourDepartureDate",
       "label": "Tour Departure Date",
       "description": "The date this tour departs",
-      "type": "text",
+      "type": "date",
       "tab": "Tour Details",
       "mandatory": false,
       "acceptsFormats": [

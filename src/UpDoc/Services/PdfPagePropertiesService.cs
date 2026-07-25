@@ -649,15 +649,18 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
     internal static bool MatchesCondition(AreaElement element, RuleCondition condition, int index, int total)
     {
         var valueStr = condition.Value?.ToString() ?? string.Empty;
+        // A text condition's value may be a single string or a list (multi-value OR).
+        // The text cases match if ANY candidate satisfies the test.
+        var textValues = ConditionTextValues(condition.Value);
 
         return condition.Type switch
         {
             // Text conditions
-            "textBeginsWith" => element.Text.StartsWith(valueStr, StringComparison.OrdinalIgnoreCase),
-            "textEndsWith" => element.Text.EndsWith(valueStr, StringComparison.OrdinalIgnoreCase),
-            "textContains" => element.Text.Contains(valueStr, StringComparison.OrdinalIgnoreCase),
-            "textEquals" => element.Text.Equals(valueStr, StringComparison.OrdinalIgnoreCase),
-            "textMatchesPattern" => Regex.IsMatch(element.Text, valueStr, RegexOptions.IgnoreCase),
+            "textBeginsWith" => textValues.Any(v => element.Text.StartsWith(v, StringComparison.OrdinalIgnoreCase)),
+            "textEndsWith" => textValues.Any(v => element.Text.EndsWith(v, StringComparison.OrdinalIgnoreCase)),
+            "textContains" => textValues.Any(v => element.Text.Contains(v, StringComparison.OrdinalIgnoreCase)),
+            "textEquals" => textValues.Any(v => element.Text.Equals(v, StringComparison.OrdinalIgnoreCase)),
+            "textMatchesPattern" => textValues.Any(v => Regex.IsMatch(element.Text, v, RegexOptions.IgnoreCase)),
 
             // Font size conditions
             "fontSizeEquals" => Math.Abs(element.FontSize - ParseDouble(valueStr)) <= 0.5,
@@ -699,6 +702,44 @@ public class PdfPagePropertiesService : IPdfPagePropertiesService
     {
         return double.TryParse(value, System.Globalization.NumberStyles.Any,
             System.Globalization.CultureInfo.InvariantCulture, out var result) ? result : 0;
+    }
+
+    /// <summary>
+    /// Normalises a condition value to the candidate strings to match against.
+    /// A single string yields one candidate; a JSON array or list yields several
+    /// (multi-value OR). Empty entries are dropped so a stray empty value cannot
+    /// match everything. KEEP IN SYNC with conditionTextValues in segment.ts.
+    /// </summary>
+    internal static IReadOnlyList<string> ConditionTextValues(object? value)
+    {
+        if (value is null) return Array.Empty<string>();
+
+        // System.Text.Json deserialises an array value to a JsonElement.
+        if (value is System.Text.Json.JsonElement je && je.ValueKind == System.Text.Json.JsonValueKind.Array)
+        {
+            var list = new List<string>();
+            foreach (var item in je.EnumerateArray())
+            {
+                var s = item.ValueKind == System.Text.Json.JsonValueKind.String ? item.GetString() : item.ToString();
+                if (!string.IsNullOrEmpty(s)) list.Add(s);
+            }
+            return list;
+        }
+
+        // A plain list (e.g. constructed in tests or from other deserialisers).
+        if (value is System.Collections.IEnumerable en and not string)
+        {
+            var list = new List<string>();
+            foreach (var item in en)
+            {
+                var s = item?.ToString();
+                if (!string.IsNullOrEmpty(s)) list.Add(s);
+            }
+            return list;
+        }
+
+        var single = value.ToString();
+        return string.IsNullOrEmpty(single) ? Array.Empty<string>() : new[] { single };
     }
 
     /// <summary>

@@ -3,7 +3,7 @@ import { UMB_BLUEPRINT_PICKER_MODAL } from './blueprint-picker-modal.token.js';
 import type { DocumentTypeOption } from './blueprint-picker-modal.token.js';
 import type { DocumentTypeConfig, MappingDestination } from './workflow.types.js';
 import { fetchActiveWorkflows } from './workflow.service.js';
-import { markdownToHtml, buildRteValue, stripMarkdown, coerceToInteger } from './transforms.js';
+import { markdownToHtml, buildRteValue, stripMarkdown, coerceToInteger, coerceToDateOnly, buildDateValue } from './transforms.js';
 import { UmbEntityActionBase } from '@umbraco-cms/backoffice/entity-action';
 import { umbOpenModal } from '@umbraco-cms/backoffice/modal';
 import type { UmbControllerHost } from '@umbraco-cms/backoffice/controller-api';
@@ -505,6 +505,27 @@ export class UpDocEntityAction extends UmbEntityActionBase<never> {
 						values.splice(idx, 1);
 					} else {
 						values[idx].value = coerced;
+					}
+				}
+			}
+		}
+
+		// Coerce date fields: captured string → the JSON shape Umbraco's date editors
+		// expect, e.g. "26th September 2027" → { date: "2027-09-26", timeZone: null }.
+		// Not a plain ISO string: DateTimePropertyEditorBase declares ValueType = Json,
+		// so a bare string is deserialised as JSON and rejected.
+		// Unparseable or ambiguous input (see coerceToDateOnly) drops the value so the
+		// property keeps its scaffold default rather than storing a wrong date.
+		for (const field of config.destination.fields) {
+			if (field.type === 'date' && mappedFields.has(field.alias)) {
+				const idx = values.findIndex((v) => v.alias === field.alias);
+				if (idx !== -1 && typeof values[idx].value === 'string') {
+					const iso = coerceToDateOnly(values[idx].value as string);
+					if (iso === null) {
+						console.warn(`UpDoc: could not coerce "${values[idx].value}" to a date for field "${field.alias}" — leaving property unset.`);
+						values.splice(idx, 1);
+					} else {
+						values[idx].value = buildDateValue(iso);
 					}
 				}
 			}

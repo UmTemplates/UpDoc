@@ -386,11 +386,11 @@ export class UpDocCollectionActionElement extends UmbLitElement {
 					typeof searchValue.value === 'string' &&
 					searchValue.value.toLowerCase().includes(blockSearch.value.toLowerCase())
 				) {
+					// Use compound key for block property tracking
+					const fieldKey = `${block.key}:${targetProperty}`;
 					const targetValue = block.values?.find((v) => v.alias === targetProperty);
-					if (targetValue) {
-						// Use compound key for block property tracking
-						const fieldKey = `${block.key}:${targetProperty}`;
 
+					if (targetValue) {
 						if (mappedFields.has(fieldKey)) {
 							// Already written — concatenate with newline
 							const currentValue = typeof targetValue.value === 'string' ? targetValue.value : '';
@@ -399,8 +399,13 @@ export class UpDocCollectionActionElement extends UmbLitElement {
 							// First write — replace the blueprint default
 							targetValue.value = value;
 						}
-						mappedFields.add(fieldKey);
+					} else {
+						// Absent from contentData — create it rather than dropping the value.
+						// See the note in applyBlockValueByContentType.
+						block.values = block.values ?? [];
+						block.values.push({ alias: targetProperty, value });
 					}
+					mappedFields.add(fieldKey);
 					break;
 				}
 			}
@@ -444,18 +449,27 @@ export class UpDocCollectionActionElement extends UmbLitElement {
 			const block = contentData.find((b) => b.contentTypeKey === contentTypeKey);
 			if (!block) return;
 
+			const fieldKey = `${block.key}:${targetProperty}`;
 			const targetValue = block.values?.find((v) => v.alias === targetProperty);
-			if (targetValue) {
-				const fieldKey = `${block.key}:${targetProperty}`;
 
+			if (targetValue) {
 				if (mappedFields.has(fieldKey)) {
 					const currentValue = typeof targetValue.value === 'string' ? targetValue.value : '';
 					targetValue.value = `${currentValue}\n${value}`;
 				} else {
 					targetValue.value = value;
 				}
-				mappedFields.add(fieldKey);
+			} else {
+				// The property is absent from the block's contentData — not empty, absent.
+				// Whether an alias appears here depends on the blueprint's editing history:
+				// a property only lands in contentData once a value has been saved against
+				// it, so two blocks that look identical in the backoffice can differ in the
+				// underlying JSON. Create the entry rather than dropping the value, matching
+				// how top-level fields are handled above.
+				block.values = block.values ?? [];
+				block.values.push({ alias: targetProperty, value });
 			}
+			mappedFields.add(fieldKey);
 
 			containerValue.value = wasString ? JSON.stringify(containerData) : containerData;
 		} catch (error) {

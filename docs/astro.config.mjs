@@ -165,6 +165,7 @@ export default defineConfig({
 						{ label: 'Overview', slug: 'deployment' },
 						{ label: 'Docs Migration', slug: 'deployment/docs-migration' },
 						{ label: 'uSync Migration', slug: 'deployment/usync-migration' },
+						{ label: 'Running Several Local Sites', slug: 'deployment/local-multi-instance' },
 					],
 				},
 				{

@@ -67,8 +67,16 @@ same tab appears from multiple sources. The lowest sort order wins.
 ### Differences
 
 1. **`tourDestinations` is missing** from the test site. Known, and is step 3 of #116.
-2. **Page Content sorts at 20 here, 30 on live.** Both sites currently render the same tab
-   order because Tour Properties resolves to 10 on both, but the underlying value differs.
+2. **Page Content sorts at 20 here, 30 on live, and the rendered tab order differs.**
+   Confirmed in the backoffice:
+
+   | | Tab order as rendered |
+   |---|---|
+   | Tailored Travel | Page Properties, **Tour Properties**, **Page Content**, Page Settings |
+   | UpDoc test site | Page Properties, **Page Content**, **Tour Properties**, Page Settings |
+
+   Tour Properties and Page Content are swapped. Unrelated to either rename, and worth
+   fixing on its own so it is not mistaken for something the renames caused.
 3. The test site declares the Tour Properties tab at sort **15** from the renamed
    composition, where live declares it at **20**.
 
@@ -185,8 +193,22 @@ so the visual effect can be seen on its own.
 **For step 3, `tourDestinations` joins the existing Tour Details group.** It does not get a
 group of its own. Getting this wrong would put Destinations in the wrong place.
 
-**Page Content tab sort differs (20 vs 30)** and is unrelated to either rename. Logged here
-so it is not mistaken for something these changes caused.
+**Page Content tab sort differs (20 vs 30)**, and this one is visible: the test site
+renders Page Content *before* Tour Properties, live renders it after. Unrelated to either
+rename. Logged here so it is not mistaken for something these changes caused.
+
+## Confirmed against the running backoffice
+
+The tables above were extracted from uSync configs. Checked against both sites' Document
+Type editors afterwards, which confirmed:
+
+- Destinations appears inside the **Tour Details** group on live, not in its own group
+- Tour Organiser sits **below** Tour Details on live, consistent with group sort 20
+- The test site's Organisers field shows a **"Label above (full-width)"** badge that live
+  does not, which is `LabelOnTop: true` rendered
+- The "Inherited from" labels differ (**Tour Organisers** on live, **Tour Properties**
+  here), which is the rename itself showing in the UI
+- The tab order genuinely differs, as above
 
 ## Method note
 

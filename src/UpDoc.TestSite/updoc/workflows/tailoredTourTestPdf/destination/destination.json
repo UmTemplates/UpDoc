@@ -95,8 +95,8 @@
         },
         {
           "key": "6032afd9-a533-40aa-b4de-ac8ae5236ca1",
-          "contentTypeAlias": "featureRichTextEditorItinery",
-          "contentTypeKey": "365fd365-6ec4-4fbb-9434-1df366aa77f8",
+          "contentTypeAlias": "featureRichTextEditorItinerary",
+          "contentTypeKey": "837beecf-4239-4b3d-b683-1d611af3da2e",
           "label": "Itinerary",
           "description": null,
           "identifyBy": {

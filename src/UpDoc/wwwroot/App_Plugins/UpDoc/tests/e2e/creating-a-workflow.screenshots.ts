@@ -19,6 +19,7 @@ import { expect, Page } from '@playwright/test';
 import { test } from '@umbraco/playwright-testhelpers';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { ensureBackofficeToken } from './auth-token';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,10 +49,7 @@ async function capture(page: Page, name: string) {
  * so screenshots are captured against a known starting state.
  */
 async function deleteWorkflowIfExists(page: Page, alias: string) {
-  const token = await page.evaluate(() => localStorage.getItem('umb:userAuthTokenResponse'));
-  if (!token) return;
-
-  const authToken = JSON.parse(token).access_token;
+  const authToken = await ensureBackofficeToken(page);
 
   try {
     await page.request.delete(

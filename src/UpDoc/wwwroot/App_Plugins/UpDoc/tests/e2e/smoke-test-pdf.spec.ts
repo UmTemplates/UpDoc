@@ -1,5 +1,6 @@
 import { expect, Page } from '@playwright/test';
 import { ConstantHelper, test } from '@umbraco/playwright-testhelpers';
+import { ensureBackofficeToken } from './auth-token';
 
 /**
  * Generic smoke test for any PDF via environment variables.
@@ -62,35 +63,31 @@ async function selectPdf(page: Page, folderName: string, pdfName: string) {
 // ── API helpers ──────────────────────────────────────────────────────────────
 
 async function apiGet(page: Page, path: string): Promise<any> {
-	return page.evaluate(async (apiPath) => {
-		const tokenJson = localStorage.getItem('umb:userAuthTokenResponse');
-		if (!tokenJson) throw new Error('No auth token in localStorage');
-		const { access_token } = JSON.parse(tokenJson);
+	const token = await ensureBackofficeToken(page);
+	return page.evaluate(async ({ apiPath, accessToken }) => {
 		const resp = await fetch(apiPath, {
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${access_token}`,
+				Authorization: `Bearer ${accessToken}`,
 			},
 		});
 		if (!resp.ok) throw new Error(`API GET ${apiPath} failed: ${resp.status}`);
 		return resp.json();
-	}, path);
+	}, { apiPath: path, accessToken: token });
 }
 
 async function apiPut(page: Page, path: string): Promise<void> {
-	await page.evaluate(async (apiPath) => {
-		const tokenJson = localStorage.getItem('umb:userAuthTokenResponse');
-		if (!tokenJson) throw new Error('No auth token in localStorage');
-		const { access_token } = JSON.parse(tokenJson);
+	const token = await ensureBackofficeToken(page);
+	await page.evaluate(async ({ apiPath, accessToken }) => {
 		const resp = await fetch(apiPath, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${access_token}`,
+				Authorization: `Bearer ${accessToken}`,
 			},
 		});
 		if (!resp.ok) throw new Error(`API PUT ${apiPath} failed: ${resp.status}`);
-	}, path);
+	}, { apiPath: path, accessToken: token });
 }
 
 // ── Value helpers ────────────────────────────────────────────────────────────

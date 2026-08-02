@@ -1,5 +1,6 @@
 import { expect, Page } from '@playwright/test';
 import { ConstantHelper, test } from '@umbraco/playwright-testhelpers';
+import { ensureBackofficeToken } from './auth-token';
 
 // ── Protected node IDs (NEVER delete these) ────────────────────────────────
 
@@ -16,52 +17,44 @@ const API_BASE = '/umbraco/management/api/v1/updoc/workflows';
 const TEST_WORKFLOW = 'tailoredTourPdf';
 
 async function apiGet(page: Page, path: string): Promise<any> {
-	return page.evaluate(async (apiPath) => {
-		const tokenJson = localStorage.getItem('umb:userAuthTokenResponse');
-		if (!tokenJson) throw new Error('No auth token in localStorage');
-		const { access_token } = JSON.parse(tokenJson);
+	const token = await ensureBackofficeToken(page);
+	return page.evaluate(async ({ apiPath, accessToken }) => {
 		const resp = await fetch(apiPath, {
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${access_token}`,
+				Authorization: `Bearer ${accessToken}`,
 			},
 		});
 		if (!resp.ok) throw new Error(`API GET ${apiPath} failed: ${resp.status}`);
 		return resp.json();
-	}, path);
+	}, { apiPath: path, accessToken: token });
 }
 
 async function apiPutBody(page: Page, path: string, body?: any): Promise<void> {
 	await page.evaluate(
-		async ({ apiPath, apiBody }) => {
-			const tokenJson = localStorage.getItem('umb:userAuthTokenResponse');
-			if (!tokenJson) throw new Error('No auth token in localStorage');
-			const { access_token } = JSON.parse(tokenJson);
+		async ({ apiPath, apiBody, accessToken }) => {
 			const resp = await fetch(apiPath, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${access_token}`,
+					Authorization: `Bearer ${accessToken}`,
 				},
 				...(apiBody !== undefined ? { body: JSON.stringify(apiBody) } : {}),
 			});
 			if (!resp.ok) throw new Error(`API PUT ${apiPath} failed: ${resp.status}`);
 		},
-		{ apiPath: path, apiBody: body }
+		{ apiPath: path, apiBody: body, accessToken: await ensureBackofficeToken(page) }
 	);
 }
 
 async function apiPutJson(page: Page, path: string, body: any): Promise<any> {
 	return page.evaluate(
-		async ({ apiPath, apiBody }) => {
-			const tokenJson = localStorage.getItem('umb:userAuthTokenResponse');
-			if (!tokenJson) throw new Error('No auth token in localStorage');
-			const { access_token } = JSON.parse(tokenJson);
+		async ({ apiPath, apiBody, accessToken }) => {
 			const resp = await fetch(apiPath, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${access_token}`,
+					Authorization: `Bearer ${accessToken}`,
 				},
 				body: JSON.stringify(apiBody),
 			});
@@ -71,20 +64,18 @@ async function apiPutJson(page: Page, path: string, body: any): Promise<any> {
 			}
 			return resp.json().catch(() => null);
 		},
-		{ apiPath: path, apiBody: body }
+		{ apiPath: path, apiBody: body, accessToken: await ensureBackofficeToken(page) }
 	);
 }
 
 async function apiPost(page: Page, path: string): Promise<any> {
-	return page.evaluate(async (apiPath) => {
-		const tokenJson = localStorage.getItem('umb:userAuthTokenResponse');
-		if (!tokenJson) throw new Error('No auth token in localStorage');
-		const { access_token } = JSON.parse(tokenJson);
+	const token = await ensureBackofficeToken(page);
+	return page.evaluate(async ({ apiPath, accessToken }) => {
 		const resp = await fetch(apiPath, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${access_token}`,
+				Authorization: `Bearer ${accessToken}`,
 			},
 		});
 		if (!resp.ok) {
@@ -92,7 +83,7 @@ async function apiPost(page: Page, path: string): Promise<any> {
 			throw new Error(`API POST ${apiPath} failed: ${resp.status} — ${text}`);
 		}
 		return resp.json().catch(() => null);
-	}, path);
+	}, { apiPath: path, accessToken: token });
 }
 
 // ── Sprint 1: contentTypeKey round-trip ─────────────────────────────────────

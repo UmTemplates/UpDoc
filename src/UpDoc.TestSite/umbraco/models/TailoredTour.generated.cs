@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Tailored Tour</summary>
 	[PublishedModel("tailoredTour")]
-	public partial class TailoredTour : PublishedContentModel, IContentGridTailoredTour, IContentHeadingDefault, IContentHeadingDefault1, IPageComponentTourDepartureDate, IPageComponentTourDuration, IPageComponentTourPrice, ITourProperties
+	public partial class TailoredTour : PublishedContentModel, IContentGridTailoredTour, IContentHeadingDefault, IContentHeadingDefault1, IPageComponentTourDepartureDate, IPageComponentTourDuration, IPageComponentTourPrice, ITourBrochure, ITourProperties
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -117,6 +117,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.5.3+a9649da")]
 		[ImplementPropertyType("pagePropertyTourPriceFrom")]
 		public virtual int PagePropertyTourPriceFrom => global::Umbraco.Cms.Web.Common.PublishedModels.PageComponentTourPrice.GetPagePropertyTourPriceFrom(this, _publishedValueFallback);
+
+		///<summary>
+		/// Brochure PDF
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.5.3+a9649da")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("brochurePdf")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops BrochurePdf => global::Umbraco.Cms.Web.Common.PublishedModels.TourBrochure.GetBrochurePdf(this, _publishedValueFallback);
 
 		///<summary>
 		/// Organisers

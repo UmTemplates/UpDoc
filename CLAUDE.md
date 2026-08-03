@@ -29,6 +29,35 @@ This project is a two-project solution:
 - **`src/UpDoc.TestSite/`** — The Umbraco host site used for development and testing. References the RCL via `<ProjectReference>`.
 - **`UpDoc.sln`** — Solution file at the repo root.
 
+## What May Be Copied From Tailored Travel (CRITICAL)
+
+The test site deliberately mirrors Tailored Travel's schema, because UpDoc needs realistic
+structures to map into. That is a decision already made, not something to second-guess.
+
+But nothing in the tooling prevents client-specific code being copied across. If a helper
+class is pasted into `UpDoc.TestSite`, it compiles and works, and the test site quietly
+becomes a partial clone of a client site. Isolation here is by discipline only.
+
+**The test:** *would UpDoc ever read or write this?*
+
+| Copy | Do not copy |
+|------|-------------|
+| Document types, element types | Helper classes (`TourOrganiserHelper`, `SlugHelper`) |
+| Compositions, data types | View components, tag helpers |
+| Blueprints, sample content | Services, business logic, extension methods |
+| Media items used as test fixtures | Front-end presentation code, SVG icon sets, Bootstrap markup |
+
+Schema and content are **mapping destinations**: realism is the point. Helpers and
+presentation are Tailored Travel's front end, which UpDoc never touches. Copying them adds
+maintenance, invites drift, and falsely implies the test site depends on them.
+
+When a Tailored Travel view is more evolved than the test site's equivalent, **rename to
+match the alias and keep the test site's simpler view**. Do not adopt the live view along
+with its dependency chain.
+
+This applies with full force to `src/UpDoc/` (the shipped RCL), where nothing
+Tailored Travel-specific belongs at all.
+
 ## Planning Files
 
 The `planning/` folder contains architectural planning documents for this project. These files are read at session startup (see **Session Startup** above) and must be in your working context at all times.

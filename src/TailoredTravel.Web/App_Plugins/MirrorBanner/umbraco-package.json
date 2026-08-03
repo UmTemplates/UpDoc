@@ -1,0 +1,14 @@
+{
+  "$schema": "../../umbraco-package-schema.json",
+  "id": "mirror-banner",
+  "name": "Mirror Banner",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "type": "bundle",
+      "alias": "TailoredTravelMirror.Banner",
+      "name": "Tailored Travel Mirror Banner",
+      "js": "/App_Plugins/MirrorBanner/mirror-banner.js"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+/*
+ * Marks this install as the local mirror, not the live Tailored Travel site.
+ *
+ * The two look identical in a browser, and the only real difference is the port.
+ * Colouring the backoffice header removes the guesswork before you read anything.
+ *
+ * Umbraco's own positive green (#0d8844), so it sits with the rest of the UI
+ * rather than fighting it.
+ */
+
+:root {
+	--mirror-green: #0d8844;
+	--mirror-green-dark: #0a6b36;
+}
+
+/* The main backoffice header bar. */
+umb-backoffice-header,
+#header,
+.uui-text umb-backoffice-header {
+	background-color: var(--mirror-green) !important;
+}
+
+umb-backoffice-header::part(header),
+umb-backoffice-main > umb-backoffice-header {
+	background-color: var(--mirror-green) !important;
+}
+
+/*
+ * Umbraco builds the header from custom elements, so the background is set on a
+ * token rather than a class. Overriding the token catches it wherever it renders.
+ */
+:root,
+:host {
+	--uui-color-header-surface: var(--mirror-green) !important;
+	--uui-color-header-surface-emphasis: var(--mirror-green-dark) !important;
+}
+
+/* The login screen, which is where you first notice which site you are on. */
+umb-auth,
+umb-login,
+.uui-login,
+#login {
+	--uui-color-interactive: var(--mirror-green);
+}
+
+umb-auth::before,
+umb-login::before {
+	content: "LOCAL MIRROR — not the live site";
+	display: block;
+	background: var(--mirror-green);
+	color: #fff;
+	text-align: center;
+	padding: 0.5rem 1rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+}
+
+/*
+ * A permanent strip along the very top. Belt and braces: if the header selectors
+ * ever change in a future Umbraco version, this still shows.
+ */
+body::before {
+	content: "LOCAL MIRROR";
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: var(--mirror-green);
+	color: transparent;
+	font-size: 0;
+	z-index: 2147483647;
+	pointer-events: none;
+}

@@ -1,5 +1,22 @@
 # Claude Instructions
 
+## NEVER TAG A RELEASE
+
+**Do not run `git tag`. Do not run `git push origin <tag>`. Ever.**
+
+Dean tags every UpDoc release by hand. Write the commands out for him to run and
+stop there.
+
+The tag **is** the published NuGet version — `release.yml` fires on `push: tags:`
+and packs with `/p:Version=${{ github.ref_name }}`. Pushing a tag publishes a
+package. It cannot be taken back.
+
+This holds even when Dean has just said "ship it". Shipping means feature →
+develop → main, fully merged and pushed, and it **stops at the merge**. Tagging is
+a separate decision that is his alone, including which version number to use.
+
+---
+
 ## Session Startup (MANDATORY)
 
 At the start of **every session or continued conversation**, you MUST read the following files using the Read tool before doing ANY other work. Do not rely on summaries, system reminders, or compacted context for these files — read them fresh every time.

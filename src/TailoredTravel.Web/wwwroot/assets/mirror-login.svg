@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="UpDoc local mirror, not the live site">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d8844"/>
+      <stop offset="1" stop-color="#0a5c2f"/>
+    </linearGradient>
+
+    <linearGradient id="root" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4913c"/>
+      <stop offset="1" stop-color="#e2701a"/>
+    </linearGradient>
+
+    <pattern id="stripes" width="56" height="56" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="56" height="56" fill="none"/>
+      <rect width="28" height="56" fill="#ffffff" opacity="0.03"/>
+    </pattern>
+  </defs>
+
+  <rect width="900" height="1200" fill="url(#bg)"/>
+  <rect width="900" height="1200" fill="url(#stripes)"/>
+
+  <!-- Carrot, tilted slightly so it does not sit too stiffly -->
+  <g transform="translate(450 400) rotate(-12)">
+    <path d="M0 -60
+             C 34 -60, 52 -34, 48 4
+             C 44 52, 22 128, 4 188
+             C 1 198, -1 198, -4 188
+             C -22 128, -44 52, -48 4
+             C -52 -34, -34 -60, 0 -60 Z"
+          fill="url(#root)"/>
+
+    <g stroke="#c25c12" stroke-width="3" stroke-linecap="round" opacity="0.45">
+      <path d="M-30 -18 L -14 -12" fill="none"/>
+      <path d="M14 -4 L 31 -12" fill="none"/>
+      <path d="M-26 34 L -10 40" fill="none"/>
+      <path d="M12 60 L 27 52" fill="none"/>
+      <path d="M-18 88 L -6 93" fill="none"/>
+      <path d="M8 118 L 18 111" fill="none"/>
+    </g>
+
+    <g fill="#2fae63">
+      <path d="M-6 -62 C -40 -96, -58 -140, -46 -178 C -18 -160, -6 -114, -2 -64 Z"/>
+      <path d="M2 -66 C 4 -118, 18 -166, 46 -186 C 54 -142, 32 -98, 8 -62 Z"/>
+      <path d="M-2 -64 C -6 -112, -2 -156, 2 -190 C 14 -152, 12 -108, 4 -62 Z" fill="#3cc472"/>
+    </g>
+  </g>
+
+  <!-- Stacked so nothing is lost when the panel crops horizontally -->
+  <g fill="#ffffff" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <text x="450" y="760" font-size="104" font-weight="700" letter-spacing="6" opacity="0.96">LOCAL</text>
+    <text x="450" y="866" font-size="104" font-weight="700" letter-spacing="6" opacity="0.96">MIRROR</text>
+
+    <text x="450" y="946" font-size="34" font-weight="500" letter-spacing="2" opacity="0.8">What&#8217;s up, Doc?</text>
+    <text x="450" y="992" font-size="34" font-weight="500" letter-spacing="2" opacity="0.8">This is not the live site.</text>
+
+    <text x="450" y="1064" font-size="26" font-weight="400" letter-spacing="2" opacity="0.6">localhost:44351</text>
+  </g>
+</svg>

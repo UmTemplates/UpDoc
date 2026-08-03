@@ -63,6 +63,15 @@ public class DestinationField
 
     [JsonPropertyName("acceptsFormats")]
     public List<string> AcceptsFormats { get; set; } = new() { "text" };
+
+    /// <summary>
+    /// Which mapping mechanisms can fill this field: "sourceContent" (text captured
+    /// from the source by a rule) and/or "importFact" (a value describing the import
+    /// itself, such as the picked file). A field may support both.
+    /// The client offers only the mechanisms the workflow's source type can supply.
+    /// </summary>
+    [JsonPropertyName("fillableBy")]
+    public List<string> FillableBy { get; set; } = new() { "sourceContent" };
 }
 
 /// <summary>
@@ -147,4 +156,10 @@ public class BlockProperty
 
     [JsonPropertyName("acceptsFormats")]
     public List<string>? AcceptsFormats { get; set; }
+
+    /// <summary>
+    /// Which mapping mechanisms can fill this block property. See DestinationField.FillableBy.
+    /// </summary>
+    [JsonPropertyName("fillableBy")]
+    public List<string> FillableBy { get; set; } = new() { "sourceContent" };
 }

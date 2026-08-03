@@ -26,7 +26,7 @@ public class DestinationStructureService : IDestinationStructureService
     private readonly IContentService _contentService;
     private readonly ILogger<DestinationStructureService> _logger;
 
-    // Property editor types that can receive mapped content.
+    // Property editor types that can receive content captured from the source by a rule.
     // "number" is included so integer/decimal fields are offered as mapping targets;
     // the captured string is coerced to an integer on write (client-side apply pass).
     // "date" likewise — the captured string is parsed and written as the JSON shape
@@ -34,6 +34,20 @@ public class DestinationStructureService : IDestinationStructureService
     private static readonly HashSet<string> TextMappableTypes = new(StringComparer.OrdinalIgnoreCase)
     {
         "text", "textArea", "richText", "number", "date"
+    };
+
+    // Property editor types that can receive an *import fact* — a value describing the
+    // import itself rather than anything captured from the source content. The file the
+    // editor picked (media picker) is the first; the URL typed for a web import will use
+    // the same mechanism, writing into a plain text field.
+    //
+    // Kept separate from TextMappableTypes rather than merged into it because the two are
+    // filled by different mechanisms, not merely different types. A type may legitimately
+    // appear in both (a URL goes into a "text" field), so eligibility is membership of
+    // either set, and FillableBy records which mechanisms apply.
+    private static readonly HashSet<string> ImportFactMappableTypes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "mediaPicker"
     };
 
     public DestinationStructureService(
@@ -168,8 +182,9 @@ public class DestinationStructureService : IDestinationStructureService
     }
 
     /// <summary>
-    /// Builds a DestinationField if the property is text-mappable.
-    /// All text-mappable properties are included as mapping targets, regardless of whether
+    /// Builds a DestinationField if the property can receive a mapped value — either
+    /// content captured from the source, or an import fact such as the picked file.
+    /// All eligible properties are included as mapping targets, regardless of whether
     /// they are populated in the blueprint. Properties like organiser fields are empty in the
     /// blueprint because they're meant to be filled from the source.
     /// </summary>
@@ -177,8 +192,8 @@ public class DestinationStructureService : IDestinationStructureService
     {
         var fieldType = MapEditorAlias(propertyType.PropertyEditorAlias);
 
-        // Only include text-mappable types
-        if (!TextMappableTypes.Contains(fieldType))
+        var fillableBy = GetFillableBy(fieldType);
+        if (fillableBy.Count == 0)
         {
             return null;
         }
@@ -192,8 +207,34 @@ public class DestinationStructureService : IDestinationStructureService
             Type = fieldType,
             Tab = tabName,
             Mandatory = propertyType.Mandatory,
-            AcceptsFormats = GetAcceptsFormats(fieldType)
+            AcceptsFormats = GetAcceptsFormats(fieldType),
+            FillableBy = fillableBy
         };
+    }
+
+    /// <summary>
+    /// Which mapping mechanisms can fill a field of this type.
+    /// "sourceContent" — text captured from the source document by a rule.
+    /// "importFact" — a value describing the import itself (the picked file, the URL).
+    /// An empty list means the field cannot be mapped at all and is excluded.
+    /// A field may support both; it is the client's job to offer only the mechanisms
+    /// the workflow's source type can actually supply.
+    /// </summary>
+    private static List<string> GetFillableBy(string fieldType)
+    {
+        var fillableBy = new List<string>();
+
+        if (TextMappableTypes.Contains(fieldType))
+        {
+            fillableBy.Add("sourceContent");
+        }
+
+        if (ImportFactMappableTypes.Contains(fieldType))
+        {
+            fillableBy.Add("importFact");
+        }
+
+        return fillableBy;
     }
 
     /// <summary>
@@ -357,25 +398,27 @@ public class DestinationStructureService : IDestinationStructureService
             }
         }
 
-        // Collect text-mappable properties from the element type definition
+        // Collect mappable properties from the element type definition
         // Use CompositionPropertyTypes to include properties from compositions,
         // not just directly-defined ones (same pattern as the document type iteration)
-        var textMappableProperties = new List<BlockProperty>();
+        var mappableProperties = new List<BlockProperty>();
         BlockIdentifier? identifyBy = null;
 
         foreach (var elementProp in elementType.CompositionPropertyTypes.OrderBy(p => p.SortOrder))
         {
             var propType = MapEditorAlias(elementProp.PropertyEditorAlias);
 
-            if (TextMappableTypes.Contains(propType))
+            var propFillableBy = GetFillableBy(propType);
+            if (propFillableBy.Count > 0)
             {
-                textMappableProperties.Add(new BlockProperty
+                mappableProperties.Add(new BlockProperty
                 {
                     Key = elementProp.Key.ToString(),
                     Alias = elementProp.Alias,
                     Label = elementProp.Name,
                     Type = propType,
-                    AcceptsFormats = GetAcceptsFormats(propType)
+                    AcceptsFormats = GetAcceptsFormats(propType),
+                    FillableBy = propFillableBy
                 });
             }
 
@@ -392,8 +435,8 @@ public class DestinationStructureService : IDestinationStructureService
             }
         }
 
-        // Skip blocks that have no text-mappable properties (e.g., layout blocks)
-        if (textMappableProperties.Count == 0)
+        // Skip blocks that have no mappable properties (e.g., layout blocks)
+        if (mappableProperties.Count == 0)
         {
             return null;
         }
@@ -418,7 +461,7 @@ public class DestinationStructureService : IDestinationStructureService
             Label = label,
             Description = elementType.Description,
             IdentifyBy = identifyBy,
-            Properties = textMappableProperties
+            Properties = mappableProperties
         };
     }
 

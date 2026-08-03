@@ -390,7 +390,19 @@ export interface DestinationField {
 	tab?: string;
 	mandatory?: boolean;
 	acceptsFormats?: ContentFormat[];
+	fillableBy?: FillMechanism[];
 }
+
+/**
+ * How a destination field can be filled.
+ * 'sourceContent' — text captured from the source document by a rule.
+ * 'importFact' — a value describing the import itself (the picked file, the URL typed).
+ *
+ * A field may support both. destination.json describes what the blueprint can accept;
+ * it does not know the workflow's source type, so the client is responsible for offering
+ * only the mechanisms the current source can actually supply.
+ */
+export type FillMechanism = 'sourceContent' | 'importFact';
 
 export type FieldType =
 	| 'text'
@@ -436,6 +448,7 @@ export interface BlockProperty {
 	label?: string;
 	type: FieldType;
 	acceptsFormats?: ContentFormat[];
+	fillableBy?: FillMechanism[];
 }
 
 // ============================================================================

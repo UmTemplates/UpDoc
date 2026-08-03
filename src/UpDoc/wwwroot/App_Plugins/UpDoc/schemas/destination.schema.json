@@ -91,7 +91,8 @@
           },
           "description": "What content formats this field can accept.",
           "default": ["text"]
-        }
+        },
+        "fillableBy": { "$ref": "#/$defs/fillableBy" }
       }
     },
     "blockGrid": {
@@ -202,8 +203,18 @@
             "enum": ["text", "markdown", "html"]
           },
           "description": "What content formats this property can accept."
-        }
+        },
+        "fillableBy": { "$ref": "#/$defs/fillableBy" }
       }
+    },
+    "fillableBy": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["sourceContent", "importFact"]
+      },
+      "description": "Which mapping mechanisms can fill this target. 'sourceContent' is text captured from the source document by a rule; 'importFact' is a value describing the import itself, such as the file the editor picked. A target may support both. This describes what the blueprint accepts, not what a given workflow can supply — the client offers only the mechanisms the workflow's source type provides.",
+      "default": ["sourceContent"]
     }
   }
 }

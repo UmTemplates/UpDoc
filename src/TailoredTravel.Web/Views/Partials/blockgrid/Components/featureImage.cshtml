@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureImage>>
+@using TailoredTravel.Web.Extensions
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "p-0";
+    ViewData["FeatureRadius"] = "rounded-0";
+}
+
+@{
+    var typedMediaPickerSingle = Model.Content.FeaturePropertyFeatureImage;
+    if (typedMediaPickerSingle != null)
+    {
+        var altText = typedMediaPickerSingle.Value<string>("mediaPropertyAltText");
+
+        @typedMediaPickerSingle.RenderPicture(
+            crop: "content12Col",
+            alt: altText ?? typedMediaPickerSingle.Name,
+            cssClass: "rounded-3")
+    } else {
+        <p>Missing image</p>
+    }
+}

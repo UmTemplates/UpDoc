@@ -1,0 +1,140 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "name": null,
+  "description": null,
+  "mappings": [
+    {
+      "source": "tour-title.content",
+      "sourceKey": "e707e160-bb38-4ebd-a5e1-0f9aeeb0d333",
+      "destinations": [
+        {
+          "target": "pageTitle",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        },
+        {
+          "target": "pageTitleShort",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "tour-description.content",
+      "sourceKey": "f6b7e762-4615-4aef-a09e-cb94dd1f9a2a",
+      "destinations": [
+        {
+          "target": "pageDescription",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-main-content-p1-2.content",
+      "sourceKey": "7f2bc457-0f0e-4fe5-a25c-4db91d1a0e86",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "a1b2c3d4-9999-4aaa-b999-999999999999",
+          "contentTypeKey": "34e5aa3b-db10-40a1-893d-79e98cd3f2f4",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-main-content-p1-6.content",
+      "sourceKey": "ea3faff0-0f98-4180-adff-f5bcf4611022",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "1513f085-1a21-48ac-85b9-489f828e8280",
+          "contentTypeKey": "b773f1ac-4538-4d0a-a1ff-85918c8edbf0",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-main-content-p1.content",
+      "sourceKey": "1b9581f6-70fe-4a6c-ad0e-a668f22dedfb",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "4d20da90-6469-44ea-ad7d-376b426715d9",
+          "contentTypeKey": "837beecf-4239-4b3d-b683-1d611af3da2e",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-tailor-make-your-tour-p1.content",
+      "sourceKey": "7b6cdbf8-f899-4548-b2a0-1bb0ecda3671",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "e044f174-ff17-41b3-9f2d-1c516af02427",
+          "contentTypeKey": "6e95c250-2a6b-4652-b3a0-3ed6039986fd",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-main-content-p1-3.content",
+      "sourceKey": "a2492960-9ed8-49e1-b296-d8fee1d3c406",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "a1b2c3d4-bbbb-4aaa-bbbb-bbbbbbbbbbbb",
+          "contentTypeKey": "1d09b5af-b95a-4af5-b8f2-323db029e817",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-main-content-p1-4.content",
+      "sourceKey": "56505b73-d468-40b6-9969-23b9a0bb50b8",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "a1b2c3d4-dddd-4aaa-bddd-dddddddddddd",
+          "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-main-content-p1-5.content",
+      "sourceKey": "3d54d1e1-6e75-448f-b045-5c226b1ecf57",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "ec4f7c27-d156-460f-b3d5-7f02358520a8",
+          "contentTypeKey": "de535189-b468-4594-8118-f303bac50e3c",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    }
+  ]
+}

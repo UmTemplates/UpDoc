@@ -1,0 +1,166 @@
+html {
+    scrollbar-gutter: stable;
+}
+
+// Responsive large button: default size below `sm`, large from `sm` up.
+// Bootstrap has no breakpoint variant for button sizing, so this applies
+// the stock `.btn-lg` values via Bootstrap's own mixin and variables.
+.btn-lg-up {
+    @include media-breakpoint-up(sm) {
+        @include button-size(
+            $btn-padding-y-lg,
+            $btn-padding-x-lg,
+            $btn-font-size-lg,
+            $btn-border-radius-lg
+        );
+    }
+}
+
+// Country-coloured components — re-points the Bootstrap-generated
+// .btn-country / .bg-country / .text-country / .border-country
+// component variables to the runtime --tt-country (which the country
+// scope in themes/tailored-travel/_countries.scss defines per country).
+//
+// Without this, Bootstrap's component generators bake in the Sass-time
+// $tt-blue seed from $theme-colors, freezing the colour at compile
+// time. These overrides hand the variables back to the cascade so the
+// country scope can take effect.
+//
+// Principle: the country palette is OPT-IN, per property, per
+// component. Brand tokens (--bs-primary etc.) are NOT redefined by
+// country scopes — they stay brand. Only components that explicitly
+// use .btn-country / .bg-country / .text-country / .border-country
+// (or read --tt-country directly) follow the country accent.
+[data-theme-country] {
+    // Buttons — default uses --tt-country (the country accent);
+    // hover/active use --tt-country-hover (the -600 shade) so the
+    // button visibly darkens on interaction, matching Bootstrap's
+    // own .btn-primary hover convention (shade-color 20%).
+    .btn-country {
+        --bs-btn-bg: var(--tt-country);
+        --bs-btn-border-color: var(--tt-country);
+        --bs-btn-hover-bg: var(--tt-country-hover);
+        --bs-btn-hover-border-color: var(--tt-country-hover);
+        --bs-btn-active-bg: var(--tt-country-hover);
+        --bs-btn-active-border-color: var(--tt-country-hover);
+        --bs-btn-disabled-bg: var(--tt-country);
+        --bs-btn-disabled-border-color: var(--tt-country);
+    }
+}
+
+// Strip the inset chiselled-edge shadow from all buttons. $enable-shadows
+// is on at the project level for cards, modals, dropdowns etc. — that's
+// the right default — but the button-specific inset highlight makes flat
+// coloured buttons read with a fake border. Killing it on .btn (rather
+// than the global flag) keeps shadows elsewhere intact.
+//
+// The shadow is applied via `box-shadow: var(--bs-btn-box-shadow)`, and
+// in dark mode the inset highlight reads as a pale edge. Setting the
+// variable alone is not enough where the cascade reinstates it, so the
+// box-shadow property itself is also cleared.
+.btn {
+    --bs-btn-box-shadow: none;
+    box-shadow: none;
+}
+
+// Make the primary button's border invisible while keeping the 1px
+// border slot. .btn-primary's border is the brand blue — invisible in
+// light mode against the pale canvas, but it catches as a faint edge
+// in dark mode. Transparent removes the edge in both modes; keeping the
+// border width preserves consistent button sizing with bordered
+// variants.
+.btn-primary {
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-border-color: transparent;
+}
+
+// The yellow CTA button is a fixed brand colour — it must stay brand
+// yellow with blue text in both light and dark mode. Pin every button
+// variable to literal brand values: --bs-yellow and --bs-primary are
+// themselves redefined per colour mode, so referencing them would let
+// the button drift (the fill turned muddy brown in dark mode). Literal
+// hexes hold the colour fixed. Border transparent as for .btn-primary.
+.btn-yellow {
+    --bs-btn-color: #{$tt-blue};
+    --bs-btn-bg: #{$tt-yellow};
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: #{$tt-blue};
+    --bs-btn-hover-bg: #{shade-color($tt-yellow, 12%)};
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-color: #{$tt-blue};
+    --bs-btn-active-bg: #{shade-color($tt-yellow, 20%)};
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-disabled-color: #{$tt-blue};
+    --bs-btn-disabled-bg: #{$tt-yellow};
+    --bs-btn-disabled-border-color: transparent;
+}
+
+// Summary/footer boxes render at the small size. The RTE wraps content in
+// <p> (and may contain lists), and the global `p { font-size: 1rem }` rule
+// would otherwise cancel the small sizing. Set the size on the box and let
+// its children inherit so plain-text and rich-text summaries look the same.
+.feature__footer {
+    font-size: $small-font-size;
+
+    p, ul, ol, li {
+        font-size: inherit;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-group(*) {
+    animation-duration: 0.3s;
+}
+
+// --- Transition effects (uncomment one pair to try) ---
+
+// Slide from right
+// ::view-transition-old(root) {
+//     animation: slide-out-left 0.3s ease-in;
+// }
+// ::view-transition-new(root) {
+//     animation: slide-in-right 0.3s ease-out;
+// }
+
+// // Slide up
+// ::view-transition-old(root) {
+//     animation: slide-out-up 0.3s ease-in;
+// }
+// ::view-transition-new(root) {
+//     animation: slide-in-up 0.3s ease-out;
+// }
+
+// // Scale (zoom)
+// ::view-transition-old(root) {
+//     animation: scale-out 0.3s ease-in;
+// }
+// ::view-transition-new(root) {
+//     animation: scale-in 0.3s ease-out;
+// }
+
+// @keyframes slide-out-left {
+//     to { transform: translateX(-100%); }
+// }
+// @keyframes slide-in-right {
+//     from { transform: translateX(100%); }
+// }
+// @keyframes slide-out-up {
+//     to { transform: translateY(-100%); opacity: 0; }
+// }
+// @keyframes slide-in-up {
+//     from { transform: translateY(50%); opacity: 0; }
+// }
+// @keyframes scale-out {
+//     to { transform: scale(0.95); opacity: 0; }
+// }
+// @keyframes scale-in {
+//     from { transform: scale(1.05); opacity: 0; }
+// }

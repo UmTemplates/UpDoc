@@ -1,0 +1,21 @@
+.umbraco-forms-hidden {
+    display: none !important;
+}
+
+.umbraco-forms-form {
+    label.umbraco-forms-label {
+        font-weight: 400;
+        margin-bottom: 0.25rem;
+    }
+
+    legend {
+        @include font-size(1.5rem);
+        font-weight: 600;
+        font-family: $font-family-base;
+        color: var(--bs-heading-color);
+    }
+
+    .umbraco-forms-fieldset:not(:last-of-type) {
+        margin-bottom: $spacer * 1.5;
+    }
+}

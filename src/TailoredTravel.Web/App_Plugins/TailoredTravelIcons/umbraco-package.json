@@ -1,0 +1,13 @@
+{
+    "$schema": "../../umbraco-package-schema.json",
+    "name": "Tailored Travel Icons",
+    "version": "1.0.0",
+    "extensions": [
+        {
+            "type": "icons",
+            "alias": "TailoredTravel.Icons",
+            "name": "Tailored Travel Icons",
+            "js": "/App_Plugins/TailoredTravelIcons/icons.js"
+        }
+    ]
+}

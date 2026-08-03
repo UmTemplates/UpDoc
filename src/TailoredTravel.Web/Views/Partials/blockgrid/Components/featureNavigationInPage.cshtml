@@ -1,0 +1,103 @@
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using TailoredTravel.Web.Helpers
+@using TailoredTravel.Web.Services
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@inject INavIconResolver NavIconResolver
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeatureHeaderMode"] = "plain";
+    ViewData["FeatureDefaultBg"] = "body";
+
+    var selectedKeys = Model.Content.Value<IEnumerable<string>>("featurePropertyNavigationInPageItems");
+    var currentPage = Umbraco.AssignedContentItem;
+    var blockGridProperties = currentPage?.Properties
+        .Where(p => p.GetValue() is BlockGridModel)
+        .ToList() ?? new List<Umbraco.Cms.Core.Models.PublishedContent.IPublishedProperty>();
+    var blockGrids = blockGridProperties
+        .Select(p => (BlockGridModel)p.GetValue()!)
+        .ToList();
+    var blockGridDataTypeIds = blockGridProperties
+        .Select(p => p.PropertyType.DataType.Id)
+        .Distinct()
+        .ToList();
+}
+
+@{
+    var enableSticky = Model.Settings?.Value<bool>("featureSettingsEnableSticky") ?? false;
+    var uniqueId = Model.ContentKey.ToString("N");
+}
+
+@if (selectedKeys != null && selectedKeys.Any() && blockGrids.Count > 0)
+{
+    // Resolve blocks once for reuse
+    var resolvedItems = new List<(string title, string slug, string icon)>();
+    foreach (var key in selectedKeys)
+    {
+        if (Guid.TryParse(key, out var contentKey))
+        {
+            var block = FindFeatureBlock(blockGrids, contentKey);
+            if (block != null)
+            {
+                var title = block.Content.Value<string>("featurePropertyFeatureTitle");
+                if (!string.IsNullOrWhiteSpace(title))
+                {
+                    var alias = block.Content.ContentType.Alias;
+                    var icon = await NavIconResolver.GetIconAsync(alias, blockGridDataTypeIds) ?? DefaultIcon;
+                    resolvedItems.Add((title, SlugHelper.ToSlug(title, alias, contentKey), icon));
+                }
+            }
+        }
+    }
+
+    <nav id="nav-in-page-@uniqueId" data-FeatureAlias="featureNavigationInPage" class="@(enableSticky ? "sticky-nav" : "")" aria-label="Jump to section">
+        <ul class="list-group list-group-flush nav">
+            @foreach (var item in resolvedItems)
+            {
+                <li>
+                    <a href="#@item.slug" class="list-group-item-action list-group-item d-flex align-items-center gap-3"><span class="nav-icon">@Html.Raw(item.icon)</span> @item.title</a>
+                </li>
+            }
+        </ul>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var navId = 'nav-in-page-@uniqueId';
+            var navEl = document.getElementById(navId);
+            if (navEl) {
+                new bootstrap.ScrollSpy(document.body, {
+                    target: '#' + navId,
+                    rootMargin: '0px 0px -75%'
+                });
+            }
+        });
+    </script>
+}
+
+@functions {
+    private const string DefaultIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m9 18 6-6-6-6'/></svg>";
+
+    private static BlockGridItem? FindFeatureBlock(List<BlockGridModel> grids, Guid contentKey)
+    {
+        foreach (var grid in grids)
+        {
+            foreach (var block in grid)
+            {
+                if (block.ContentKey == contentKey)
+                    return block;
+
+                foreach (var area in block.Areas)
+                {
+                    foreach (var nested in area)
+                    {
+                        if (nested.ContentKey == contentKey)
+                            return nested;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+}

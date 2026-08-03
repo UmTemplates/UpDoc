@@ -1,0 +1,742 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "documentTypeAlias": "groupTour",
+  "documentTypeName": "Group Tour",
+  "blueprintId": "14fbe075-6d12-4c36-952f-fbea93b6e446",
+  "blueprintName": "[Group Tour Template]",
+  "fields": [
+    {
+      "key": "24cf1e18-15a0-45ca-aa0f-a2e0ad25e201",
+      "alias": "pagePropertyTourDuration",
+      "label": "Tour Duration",
+      "description": "Number of days",
+      "type": "number",
+      "tab": "Tour Details",
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ]
+    },
+    {
+      "key": "b74f3e0c-274f-4133-b509-ead0efd2145f",
+      "alias": "pagePropertyTourPriceFrom",
+      "label": "Tour Price (from)",
+      "description": "The starting price for this tour",
+      "type": "number",
+      "tab": "Tour Details",
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ]
+    },
+    {
+      "key": "1456b7e3-0fb0-45d0-9514-8438e6ec5960",
+      "alias": "pageTitle",
+      "label": "Page Title",
+      "description": "This will appear in pages",
+      "type": "text",
+      "tab": "Page Properties",
+      "mandatory": true,
+      "acceptsFormats": [
+        "text"
+      ]
+    },
+    {
+      "key": "4abcea3a-9354-4cf2-bf89-4acb70ca1440",
+      "alias": "pageTitleShort",
+      "label": "Page Title Short",
+      "description": "This will appear in navigation",
+      "type": "text",
+      "tab": "Page Properties",
+      "mandatory": true,
+      "acceptsFormats": [
+        "text"
+      ]
+    },
+    {
+      "key": "c66c669a-460b-4ea2-997c-5b84e0cc0d28",
+      "alias": "pageDescription",
+      "label": "Page Description",
+      "description": "This will appear in pages",
+      "type": "textArea",
+      "tab": "Page Properties",
+      "mandatory": true,
+      "acceptsFormats": [
+        "text",
+        "markdown"
+      ]
+    },
+    {
+      "key": "88dac94e-2a5c-4222-870e-74237ce64517",
+      "alias": "redirects",
+      "label": "Skybrud Redirects",
+      "description": "These are redirects from the old URLs that have been added using the Skybrud Redirects Plugin",
+      "type": "text",
+      "tab": "Page Settings",
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ]
+    }
+  ],
+  "blockGrids": [
+    {
+      "key": "60e6181d-0399-40de-8da2-d599ed1f457e",
+      "alias": "blockGridGroupTour",
+      "label": "Block Grid - Group Tour",
+      "description": "Hover \u0027Block Grid Editor\u0027 then click the 3 dots to switch to Sort Mode (a simplified view for rearranging the page).\nThe Block Grid Editor allows you to add Layout Blocks consisting of one or more Areas which in turn may contain Feature Blocks such as Text or Images",
+      "tab": "Page Content",
+      "blocks": [
+        {
+          "key": "a1b2c3d4-1111-4aaa-b111-111111111111",
+          "contentTypeAlias": "featurePageTitleDescription",
+          "contentTypeKey": "1e6ac523-7122-4994-9f51-7ca67065222a",
+          "label": "Page Title and Description",
+          "description": null,
+          "identifyBy": null,
+          "properties": [
+            {
+              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
+              "alias": "noConfiguration",
+              "label": "No Configuration",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "3a996dd6-a206-4c9d-86a1-62a1cd2ea769",
+          "contentTypeAlias": "featureImageRotator",
+          "contentTypeKey": "8ffbbac4-a391-4a96-9aef-825b9d06eb58",
+          "label": "Image - Rotator",
+          "description": null,
+          "identifyBy": null,
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "1a26719b-959e-41ed-8eaa-060439cbb290",
+          "contentTypeAlias": "featureNavigationBreadcrumb",
+          "contentTypeKey": "7334b1c5-b304-43f6-aafb-80032fb464ba",
+          "label": "Navigation - Breadcrumb",
+          "description": null,
+          "identifyBy": null,
+          "properties": [
+            {
+              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
+              "alias": "noConfiguration",
+              "label": "No Configuration",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "2f2d5d22-8c25-4a61-ac7d-9b6ecdbccc1c",
+          "contentTypeAlias": "featureShare",
+          "contentTypeKey": "71d9e622-0a42-4ff8-acac-3e10f495bdd6",
+          "label": "Share",
+          "description": null,
+          "identifyBy": null,
+          "properties": [
+            {
+              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
+              "alias": "noConfiguration",
+              "label": "No Configuration",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "b842f02b-493f-465b-892c-441327cde3b6",
+          "contentTypeAlias": "featureNavigationInPage",
+          "contentTypeKey": "c4b3a613-0d2c-4470-8d06-f7efea52d6e0",
+          "label": "In this page",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "In this page"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "d9b17935-62a0-4191-bebd-8acc83740721",
+              "alias": "featurePropertyNavigationInPageItems",
+              "label": "Navigation In Page Items",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ae72a0fb-2959-4ea6-80f3-f092739e3c8b",
+          "contentTypeAlias": "featureNavigationBackToDestinations",
+          "contentTypeKey": "ad3125e3-0d51-4628-9b98-c676a85d590a",
+          "label": "Navigation - Back to Destinations",
+          "description": null,
+          "identifyBy": null,
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
+              "alias": "noConfiguration",
+              "label": "No Configuration",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "4d20da90-6469-44ea-ad7d-376b426715d9",
+          "contentTypeAlias": "featureRichTextEditorItinerary",
+          "contentTypeKey": "837beecf-4239-4b3d-b683-1d611af3da2e",
+          "label": "Suggested Itinerary",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Suggested Itinerary"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "a1b2c3d4-9999-4aaa-b999-999999999999",
+          "contentTypeAlias": "featureRichTextEditorFeatures",
+          "contentTypeKey": "34e5aa3b-db10-40a1-893d-79e98cd3f2f4",
+          "label": "Features",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Features"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "e044f174-ff17-41b3-9f2d-1c516af02427",
+          "contentTypeAlias": "featureRichTextEditorMoreFeatures",
+          "contentTypeKey": "6e95c250-2a6b-4652-b3a0-3ed6039986fd",
+          "label": "Tailor your Features",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Tailor your Features"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "a1b2c3d4-bbbb-4aaa-bbbb-bbbbbbbbbbbb",
+          "contentTypeAlias": "featureRichTextEditorAccommodation",
+          "contentTypeKey": "1d09b5af-b95a-4af5-b8f2-323db029e817",
+          "label": "Accommodation",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Accommodation"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "6b5eae6f-8746-4e2b-89e1-f13aab09c1a9",
+          "contentTypeAlias": "featureRichTextEditorAccommodationMore",
+          "contentTypeKey": "a35461d4-036a-410e-a923-7d7b3beacdb5",
+          "label": "Tailor your accommodation",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Tailor your accommodation"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "a1b2c3d4-dddd-4aaa-bddd-dddddddddddd",
+          "contentTypeAlias": "featureRichTextEditorSights",
+          "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
+          "label": "Sights",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Sights"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ec4f7c27-d156-460f-b3d5-7f02358520a8",
+          "contentTypeAlias": "featureRichTextEditorSightsMore",
+          "contentTypeKey": "de535189-b468-4594-8118-f303bac50e3c",
+          "label": "Tailor your sights",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Tailor your sights"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "1513f085-1a21-48ac-85b9-489f828e8280",
+          "contentTypeAlias": "featureRichTextEditorExtras",
+          "contentTypeKey": "b773f1ac-4538-4d0a-a1ff-85918c8edbf0",
+          "label": "Extras",
+          "description": null,
+          "identifyBy": {
+            "property": "featurePropertyFeatureTitle",
+            "value": "Extras"
+          },
+          "properties": [
+            {
+              "key": "1dad35be-ede4-4a57-8a19-ea34cb428481",
+              "alias": "featurePropertyFeatureTitle",
+              "label": "Title",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            },
+            {
+              "key": "44968294-5acd-4fb0-8e86-bff95e27ce91",
+              "alias": "featurePropertyFeatureDescription",
+              "label": "Description",
+              "type": "textArea",
+              "acceptsFormats": [
+                "text",
+                "markdown"
+              ]
+            },
+            {
+              "key": "9293baf5-f5c5-4443-a43b-c14593c8446f",
+              "alias": "richTextContent",
+              "label": "Rich Text",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            },
+            {
+              "key": "51c9327a-cebe-49b9-bd12-373df2e4bdc0",
+              "alias": "featurePropertyFeatureSummary",
+              "label": "Summary",
+              "type": "richText",
+              "acceptsFormats": [
+                "html",
+                "markdown",
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "305da69b-5ba7-4995-9786-8d2a5de25f34",
+          "contentTypeAlias": "featureCtaCallUs",
+          "contentTypeKey": "bcf2d360-5707-4244-82d1-16c3bd7262d6",
+          "label": "CTA - Call Us",
+          "description": null,
+          "identifyBy": null,
+          "properties": [
+            {
+              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
+              "alias": "noConfiguration",
+              "label": "No Configuration",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "5c9bcc65-34ec-47f8-bb33-e59f1e5c9f5c",
+          "contentTypeAlias": "featureCtaTailorYourTour",
+          "contentTypeKey": "38bfcf73-9024-4151-9e78-c86a2e30399c",
+          "label": "CTA - Tailor your tour",
+          "description": null,
+          "identifyBy": null,
+          "properties": [
+            {
+              "key": "4f869718-23a1-4e4d-93bf-3e63e31352b7",
+              "alias": "noConfiguration",
+              "label": "No Configuration",
+              "type": "text",
+              "acceptsFormats": [
+                "text"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "blockLists": []
+}

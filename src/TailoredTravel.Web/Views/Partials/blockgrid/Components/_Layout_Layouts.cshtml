@@ -1,0 +1,71 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@using Umbraco.Community.BlockPreview.Extensions;
+@using TailoredTravel.Web.Helpers;
+
+@{
+    // No layout by default
+    Layout = null;
+
+    // Check if the layout has any areas
+    if (Model.Areas.Any() != true)
+    {
+        return;
+    }
+
+    // Get layout settings
+    var backgroundColour = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutSettingsColourPicker");
+    var colorLabel = backgroundColour?.Label;
+    var colorShades = Model.Settings?.Value<decimal>("layoutSettingsColourShades");
+    var colorOpacity = Model.Settings?.Value<decimal>("layoutSettingsColourOpacity");
+    var backgroundImage = Model.Settings?.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("layoutSettingsBackgroundImagePicker");
+
+    var backgroundColorClass = PaletteClassHelper.Background(colorLabel);
+
+    var backgroundOpacityClass = "";
+    if (backgroundColour != null && colorOpacity != null)
+    {
+        var opacityValue = Math.Round(colorOpacity.Value);
+        backgroundOpacityClass = $"bg-opacity-{opacityValue}";
+    }
+
+    var styleAttribute = "";
+    if (backgroundImage != null)
+    {
+        styleAttribute = $"background-image: url({backgroundImage.GetCropUrl("content12Col")}&format=webp);";
+    }
+
+    // Hide Layout toggle (Display tab). Only act when the property exists
+    // and holds an explicit false — Value<bool> returns false for a missing
+    // property, so layouts without the Hide Display composition must be
+    // skipped via HasValue or they would all be hidden.
+    var isHidden = Model.Settings != null
+        && Model.Settings.HasValue("hideOrDisplay")
+        && Model.Settings.Value<bool>("hideOrDisplay") == false;
+    var isPreview = Context.Request.IsBlockPreviewRequest();
+}
+@* DEBUG: Layout block properties
+<div class="alert alert-warning">
+    <strong>Layout Debug</strong><br />
+    ContentKey: @Model.ContentKey<br />
+    Alias: @Model.Content.ContentType.Alias<br />
+    Areas: @Model.Areas.Count()<br />
+    GridColumns: @Model.GridColumns<br />
+    Colour: @colorLabel<br />
+    Shades: @colorShades<br />
+    Opacity: @colorOpacity<br />
+    Background Image: @backgroundImage?.GetCropUrl("content12Col")
+</div>
+*@
+@* Hidden on front-end: emit nothing. In backoffice preview: render dimmed so editors can still see and edit. *@
+@if (isHidden && !isPreview)
+{
+    IgnoreBody();
+    return;
+}
+
+<div class="layout-item py-3 @backgroundColorClass @backgroundOpacityClass @(isHidden ? "layout-item--hidden opacity-50" : "")"
+     data-LayoutContentKey="@Model.ContentKey" data-LayoutAlias="@Model.Content.ContentType.Alias"
+     data-BackgroundImage="@backgroundImage?.GetCropUrl("content12Col")" style="@styleAttribute">
+    @RenderBody()
+</div>

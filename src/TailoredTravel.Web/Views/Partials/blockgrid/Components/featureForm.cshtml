@@ -1,0 +1,12 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    Layout = "_Layout_Features.cshtml";
+
+    var formId = Model.Content.Value<Guid?>("featurePropertyFeatureForm");
+}
+
+@if (formId.HasValue && formId.Value != Guid.Empty)
+{
+    @await Component.InvokeAsync("RenderForm", new { formId = formId.Value, theme = "tailored-travel" })
+}

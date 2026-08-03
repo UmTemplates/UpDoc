@@ -1,0 +1,63 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureInternalLinksDestinations>>
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment WebHostEnvironment
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    var currentPageId = UmbracoContext?.PublishedRequest?.PublishedContent?.Id;
+    var children = Umbraco.ContentAtRoot()
+        .SelectMany(root => root.DescendantsOfType("groupTour"))
+        .Where(c => c is IContentHeadingDefault)
+        .Where(c => c.Value<IEnumerable<IPublishedContent>>("destinations")?
+            .Any(destination => destination.Id == currentPageId) == true);
+}
+
+@if (children != null && children.Any())
+{
+    <div class="grid">
+        @foreach (var child in children)
+        {
+            var childPage = (IContentHeadingDefault)child;
+            var thumbnail = childPage.PageThumbnail;
+            <div class="g-col-12 g-col-md-6 g-col-lg-4">
+                <article class="card h-100 shadow shadow-hover">
+                    @if (thumbnail != null)
+                    {
+                        var mediaUrl = thumbnail.MediaUrl();
+                        if (mediaUrl != null && mediaUrl.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var physicalPath = System.IO.Path.Combine(WebHostEnvironment.WebRootPath, mediaUrl.TrimStart('/').Replace('/', System.IO.Path.DirectorySeparatorChar));
+                            if (System.IO.File.Exists(physicalPath))
+                            {
+                                <div class="card-img-top card-img-svg">
+                                    @Html.Raw(System.IO.File.ReadAllText(physicalPath))
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            var altText = thumbnail.Value<string>("mediaPropertyAltText");
+
+                            <img src="@(thumbnail.GetCropUrl("content6Col"))&format=webp"
+                                 srcset="@(thumbnail.GetCropUrl("content3Col"))&format=webp 384w,
+                                         @(thumbnail.GetCropUrl("content6Col"))&format=webp 768w"
+                                 sizes="(max-width: 768px) 100vw,
+                                        (max-width: 992px) 50vw,
+                                        33vw"
+                                 class="card-img-top"
+                                 alt="@(altText ?? thumbnail.Name)">
+                        }
+                    }
+                    <div class="card-body text-center">
+                        <h3 class="card-title pb-1">
+                            <a class="stretched-link"
+                               href="@child.Url()">@childPage.PageTitleShort</a>
+                        </h3>
+                        <p class="card-text pb-2">
+                            @childPage.PageDescription
+                        </p>
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,211 @@
+// Tailored Travel palette
+// Overrides Bootstrap CSS custom properties via data-bs-theme-palette="tailored-travel"
+
+@import "colours";
+
+// Tier 1 palette map — drives the --tt-* custom property emission below.
+// Brand colours are pinned (same value in light and dark). Add/remove
+// entries here; the mixin handles the rest.
+$tt-palette: (
+    "blue":       $tt-blue,
+    "yellow":     $tt-yellow,
+    "green":      $tt-green,
+    "olive":      $tt-olive,
+    "gold":       $tt-gold,
+    "cornflower": $tt-cornflower,
+    "coral":      $tt-coral,
+    "orange":     $tt-orange,
+    "purple":     $tt-purple,
+    "red":        $tt-red,
+    "teal":       $tt-teal,
+    "grey":       $tt-grey,
+    "charcoal":   $tt-charcoal,
+    "midnight":   $tt-midnight,
+);
+
+// Each palette entry gets:
+//   --tt-{name}        — base hex (the 500 stop)
+//   --tt-{name}-rgb    — base as comma-separated rgb
+//   --tt-{name}-100    — lightest tint (80% mix toward white)
+//   --tt-{name}-200    — light tint (60%)
+//   --tt-{name}-300    — pale tint (40%) — typical canvas-tint zone
+//   --tt-{name}-400    — soft tint (20%)
+//   --tt-{name}-600    — soft shade (20% mix toward black) — hover zone
+//   --tt-{name}-700    — shade (40%)
+//   --tt-{name}-800    — dark shade (60%)
+//   --tt-{name}-900    — darkest shade (80%)
+//
+// 100-400 are tints (lighter); 600-900 are shades (darker); the base
+// hex is the 500 stop, faithful to the brand. Pattern mirrors Bootstrap's
+// own --bs-blue-100..900 ramps and the standard tonal palette convention.
+@mixin tt-palette-vars($palette) {
+    @each $name, $colour in $palette {
+        --tt-#{$name}: #{$colour};
+        --tt-#{$name}-rgb: #{red($colour)}, #{green($colour)}, #{blue($colour)};
+
+        // Each stop emits both the colour and its rgb triplet so Bootstrap's
+        // bg-opacity utilities (rgba(var(--bs-x-rgb), var(--bs-bg-opacity)))
+        // compose against it. Same convention as the base entry above.
+        // -50 is an extra-pale stop above the standard scale, intended for
+        // very subtle canvas tints where -100 reads as too present.
+        $tint-90: tint-color($colour, 90%);
+        $tint-80: tint-color($colour, 80%);
+        $tint-60: tint-color($colour, 60%);
+        $tint-40: tint-color($colour, 40%);
+        $tint-20: tint-color($colour, 20%);
+        $shade-20: shade-color($colour, 20%);
+        $shade-40: shade-color($colour, 40%);
+        $shade-60: shade-color($colour, 60%);
+        $shade-80: shade-color($colour, 80%);
+
+        --tt-#{$name}-50: #{$tint-90};
+        --tt-#{$name}-50-rgb: #{red($tint-90)}, #{green($tint-90)}, #{blue($tint-90)};
+        --tt-#{$name}-100: #{$tint-80};
+        --tt-#{$name}-100-rgb: #{red($tint-80)}, #{green($tint-80)}, #{blue($tint-80)};
+        --tt-#{$name}-200: #{$tint-60};
+        --tt-#{$name}-200-rgb: #{red($tint-60)}, #{green($tint-60)}, #{blue($tint-60)};
+        --tt-#{$name}-300: #{$tint-40};
+        --tt-#{$name}-300-rgb: #{red($tint-40)}, #{green($tint-40)}, #{blue($tint-40)};
+        --tt-#{$name}-400: #{$tint-20};
+        --tt-#{$name}-400-rgb: #{red($tint-20)}, #{green($tint-20)}, #{blue($tint-20)};
+        --tt-#{$name}-600: #{$shade-20};
+        --tt-#{$name}-600-rgb: #{red($shade-20)}, #{green($shade-20)}, #{blue($shade-20)};
+        --tt-#{$name}-700: #{$shade-40};
+        --tt-#{$name}-700-rgb: #{red($shade-40)}, #{green($shade-40)}, #{blue($shade-40)};
+        --tt-#{$name}-800: #{$shade-60};
+        --tt-#{$name}-800-rgb: #{red($shade-60)}, #{green($shade-60)}, #{blue($shade-60)};
+        --tt-#{$name}-900: #{$shade-80};
+        --tt-#{$name}-900-rgb: #{red($shade-80)}, #{green($shade-80)}, #{blue($shade-80)};
+    }
+}
+
+// Light mode overrides
+:host,
+:root,
+[data-bs-theme-palette="tailored-travel"] {
+    @include tt-palette-vars($tt-palette);
+
+    // Tier 2 — semantic Sass vars in light scope, emit --tt-* custom props
+    @import "variables";
+    @import "root";
+
+    // Surface basics — Tier 3 wiring (Phase C, increment 1)
+    --bs-body-color: var(--tt-body-color);
+    --bs-body-color-rgb: var(--tt-body-color-rgb);
+    --bs-body-bg: var(--tt-body-bg);
+    --bs-body-bg-rgb: var(--tt-body-bg-rgb);
+
+    --bs-emphasis-color: var(--tt-emphasis-color);
+    --bs-emphasis-color-rgb: var(--tt-emphasis-color-rgb);
+
+    // Primary — Tier 3 wiring (Phase C, increment 4)
+    --bs-primary: var(--tt-primary);
+    --bs-primary-rgb: var(--tt-primary-rgb);
+    --bs-primary-text-emphasis: #{shade-color($tt-primary, 40%)};
+    --bs-primary-bg-subtle: #{tint-color($tt-primary, 80%)};
+    --bs-primary-border-subtle: #{tint-color($tt-primary, 60%)};
+
+    // Links — Tier 3 wiring (Phase C, increment 2)
+    --bs-link-color: var(--tt-link-color);
+    --bs-link-color-rgb: var(--tt-link-color-rgb);
+    --bs-link-hover-color: var(--tt-link-hover-color);
+    --bs-link-hover-color-rgb: var(--tt-link-hover-color-rgb);
+
+    // Semantic slots — Tier 3 wiring (Phase C, increments 5 + 6)
+    // Warning points at amber (semantic urgency); gold stays a direct-use
+    // brand accent for non-semantic places (nav hover, CTAs).
+    --bs-secondary: var(--tt-secondary);
+    --bs-secondary-rgb: var(--tt-secondary-rgb);
+    --bs-success: var(--tt-success);
+    --bs-success-rgb: var(--tt-success-rgb);
+    --bs-danger: var(--tt-danger);
+    --bs-danger-rgb: var(--tt-danger-rgb);
+    --bs-warning: var(--tt-warning);
+    --bs-warning-rgb: var(--tt-warning-rgb);
+    --bs-info: var(--tt-info);
+    --bs-info-rgb: var(--tt-info-rgb);
+    --bs-light: var(--tt-light);
+    --bs-light-rgb: var(--tt-light-rgb);
+    --bs-dark: var(--tt-dark);
+    --bs-dark-rgb: var(--tt-dark-rgb);
+
+    // Heading — Tier 3 wiring (Phase C, increment 3)
+    --bs-heading-color: var(--tt-heading-color);
+
+    --bs-secondary-bg: #{tint-color($tt-primary, 90%)};
+    --bs-secondary-bg-rgb: #{red(tint-color($tt-primary, 90%))}, #{green(tint-color($tt-primary, 90%))}, #{blue(tint-color($tt-primary, 90%))};
+    --bs-tertiary-bg: var(--tt-tertiary-bg);
+    --bs-tertiary-bg-rgb: var(--tt-tertiary-bg-rgb);
+
+    // Border — Tier 3 wiring (Phase C, increment 2)
+    --bs-border-color: var(--tt-border-color);
+}
+
+// Dark mode overrides
+:host([data-bs-theme="dark"]),
+[data-bs-theme-palette="tailored-travel"][data-bs-theme="dark"] {
+    color-scheme: dark;
+
+    @include tt-palette-vars($tt-palette);
+
+    // Tier 2 — semantic Sass vars in dark scope, emit --tt-* custom props
+    @import "variables-dark";
+    @import "root";
+
+    // Surface basics — Tier 3 wiring (Phase C, increment 1)
+    --bs-body-color: var(--tt-body-color);
+    --bs-body-color-rgb: var(--tt-body-color-rgb);
+    --bs-body-bg: var(--tt-body-bg);
+    --bs-body-bg-rgb: var(--tt-body-bg-rgb);
+
+    --bs-emphasis-color: var(--tt-emphasis-color);
+    --bs-emphasis-color-rgb: var(--tt-emphasis-color-rgb);
+
+    // Primary — Tier 3 wiring (Phase C, increment 4)
+    --bs-primary: var(--tt-primary);
+    --bs-primary-rgb: var(--tt-primary-rgb);
+    --bs-primary-text-emphasis: #{tint-color($tt-primary, 40%)};
+    --bs-primary-bg-subtle: #{shade-color($tt-primary, 80%)};
+    --bs-primary-border-subtle: #{shade-color($tt-primary, 40%)};
+
+    // Links — Tier 3 wiring (Phase C, increment 2)
+    --bs-link-color: var(--tt-link-color);
+    --bs-link-color-rgb: var(--tt-link-color-rgb);
+    --bs-link-hover-color: var(--tt-link-hover-color);
+    --bs-link-hover-color-rgb: var(--tt-link-hover-color-rgb);
+
+    // Semantic slots — Tier 3 wiring (Phase C, increments 5 + 6)
+    // Warning points at amber (semantic urgency); gold stays a direct-use
+    // brand accent for non-semantic places (nav hover, CTAs).
+    --bs-secondary: var(--tt-secondary);
+    --bs-secondary-rgb: var(--tt-secondary-rgb);
+    --bs-success: var(--tt-success);
+    --bs-success-rgb: var(--tt-success-rgb);
+    --bs-danger: var(--tt-danger);
+    --bs-danger-rgb: var(--tt-danger-rgb);
+    --bs-warning: var(--tt-warning);
+    --bs-warning-rgb: var(--tt-warning-rgb);
+    --bs-info: var(--tt-info);
+    --bs-info-rgb: var(--tt-info-rgb);
+    --bs-light: var(--tt-light);
+    --bs-light-rgb: var(--tt-light-rgb);
+    --bs-dark: var(--tt-dark);
+    --bs-dark-rgb: var(--tt-dark-rgb);
+
+    // Heading — Tier 3 wiring (Phase C, increment 3)
+    --bs-heading-color: var(--tt-heading-color);
+
+    --bs-secondary-color: #{rgba(tint-color($tt-primary, 80%), .75)};
+    --bs-secondary-bg: #{shade-color($tt-primary, 70%)};
+    --bs-secondary-bg-rgb: #{red(shade-color($tt-primary, 70%))}, #{green(shade-color($tt-primary, 70%))}, #{blue(shade-color($tt-primary, 70%))};
+    --bs-tertiary-bg: var(--tt-tertiary-bg);
+    --bs-tertiary-bg-rgb: var(--tt-tertiary-bg-rgb);
+
+    // Border — Tier 3 wiring (Phase C, increment 2)
+    --bs-border-color: var(--tt-border-color);
+}
+
+// Country palette scopes (Phase E) — redefines Tier 2 tokens inside
+// [data-theme-country="..."] scopes. Mode-agnostic; sits outside the
+// light/dark blocks so the override applies in both.
+@import "countries";

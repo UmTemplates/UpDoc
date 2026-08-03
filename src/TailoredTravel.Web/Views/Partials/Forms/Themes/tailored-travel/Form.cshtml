@@ -1,0 +1,214 @@
+@using System.Text
+@using Umbraco.Forms.Core.Enums
+@using Umbraco.Forms.Web
+@using Umbraco.Forms.Web.Models
+@using Umbraco.Forms.Web.Services
+
+@model Umbraco.Forms.Web.Models.FormViewModel
+
+@inject IFormThemeResolver FormThemeResolver
+
+@{
+    // Use form-control on all inputs; form-select on dropdowns is handled per field type
+    Html.SetFormFieldClass("form-control");
+    Html.SetFormFieldWrapperClass("mb-3");
+}
+
+<div class="umbraco-forms-page" id="@(Model.CurrentPage != null ? Model.CurrentPage.Id : "umbraco-forms-summary-page")">
+
+    @if (Model.IsMultiPage && Model.ShowPagingOnMultiPageFormsAtTop)
+    {
+        await RenderPaging();
+    }
+
+    @if (Model.ShowSummaryPage)
+    {
+        var multiPageFormSummaryThemedView = FormThemeResolver.GetMultiPageFormSummaryView(Model);
+        await Html.RenderPartialAsync(multiPageFormSummaryThemedView);
+    }
+    else if (Model.CurrentPage is not null)
+    {
+        if (string.IsNullOrEmpty(Model.CurrentPage.Caption) == false)
+        {
+            <h4 class="umbraco-forms-caption">@Model.CurrentPage.Caption</h4>
+        }
+
+        if (Model.ShowValidationSummary)
+        {
+            @Html.ValidationSummary(false)
+        }
+
+        foreach (FieldsetViewModel fs in Model.CurrentPage.Fieldsets)
+        {
+            bool hideFieldSetWhenRendering = fs.HasCondition && fs.ConditionActionType == FieldConditionActionType.Show;
+
+            <fieldset class="umbraco-forms-fieldset @{ if (hideFieldSetWhenRendering) { <text>umbraco-forms-hidden</text> } }" id="@fs.Id">
+
+                @if (string.IsNullOrEmpty(fs.Caption) == false)
+                {
+                    <legend>@fs.Caption</legend>
+                }
+
+                <div class="grid">
+
+                    @foreach (var c in fs.Containers)
+                    {
+                        <div class="umbraco-forms-container g-col-12 g-col-sm-@c.Width">
+
+                            @foreach (FieldViewModel f in c.Fields)
+                            {
+                                bool hideFieldWhenRendering = f.HasCondition && f.ConditionActionType == FieldConditionActionType.Show;
+
+                                switch (f.FieldType?.RenderInputType ?? RenderInputType.Single)
+                                {
+                                    case RenderInputType.Single:
+                                        <div class="@Html.GetFormFieldWrapperClass(f.FieldTypeName) @f.CssClass @{ if (hideFieldWhenRendering) { <text> umbraco-forms-hidden</text> } }">
+
+                                            <label for="@f.Id" class="form-label umbraco-forms-label @{ if (f.HideLabel) { <text>umbraco-forms-hidden</text> } }">
+                                                @{
+                                                    RenderCaption(f);
+                                                }
+                                            </label>
+
+                                            @if (!string.IsNullOrEmpty(f.ToolTip))
+                                            {
+                                                <p id="@(f.Id)_description" class="umbraco-forms-tooltip form-text">@f.ToolTip</p>
+                                            }
+
+                                            @{
+                                                await RenderField(f);
+                                            }
+
+                                        </div>
+                                        break;
+
+                                    case RenderInputType.Multiple:
+                                        <fieldset class="@Html.GetFormFieldWrapperClass(f.FieldTypeName) @f.CssClass @{ if (hideFieldWhenRendering) { <text> umbraco-forms-hidden</text> } }">
+
+                                            <legend class="form-label umbraco-forms-legend @{ if (f.HideLabel) { <text>umbraco-forms-hidden</text> } }">
+                                                @{
+                                                    RenderCaption(f);
+                                                }
+                                            </legend>
+
+                                            @if (!string.IsNullOrEmpty(f.ToolTip))
+                                            {
+                                                <p id="@(f.Id)_description" class="umbraco-forms-tooltip form-text">@f.ToolTip</p>
+                                            }
+
+                                            @{
+                                                await RenderField(f);
+                                            }
+
+                                        </fieldset>
+                                        break;
+
+                                    case RenderInputType.Custom:
+                                        @await Html.PartialAsync(FormThemeResolver.GetFieldView(Model, f), f)
+                                        break;
+                                }
+                            }
+
+                        </div>
+                    }
+                </div>
+
+            </fieldset>
+        }
+    }
+
+    <div class="umbraco-forms-hidden" aria-hidden="true">
+        <input type="text" name="@Model.FormId.ToString().Replace("-", "")" />
+    </div>
+
+    <div class="umbraco-forms-navigation">
+        @if (Model.IsMultiPage)
+        {
+            if (!Model.IsFirstPage)
+            {
+                <input type="submit"
+                       hidden
+                       name="__next"
+                       data-form-navigate="next"
+                       data-umb="@(Model.IsLastPage ? "submit" : "next")-forms-form" />
+
+                <input class="btn btn-secondary umbraco-forms-prev me-2"
+                       type="submit"
+                       value="@Model.PreviousCaption"
+                       name="__prev"
+                       formnovalidate
+                       data-form-navigate="prev"
+                       data-umb="prev-forms-form" />
+            }
+
+            if (!Model.IsLastPage)
+            {
+                <input type="submit"
+                       class="btn btn-primary umbraco-forms-next"
+                       value="@Model.NextCaption"
+                       name="__next"
+                       data-form-navigate="next"
+                       data-umb="next-forms-form" />
+            }
+
+            if (Model.IsLastPage)
+            {
+                <input type="submit"
+                       class="btn btn-primary umbraco-forms-submit"
+                       value="@Model.SubmitCaption"
+                       name="__next"
+                       data-form-navigate="next"
+                       data-umb="submit-forms-form" />
+            }
+        }
+        else
+        {
+            <input type="submit"
+                   class="btn btn-primary umbraco-forms-submit"
+                   value="@Model.SubmitCaption"
+                   name="__next"
+                   data-form-navigate="next"
+                   data-umb="submit-forms-form" />
+        }
+    </div>
+
+    @if (Model.IsMultiPage && Model.ShowPagingOnMultiPageFormsAtBottom)
+    {
+        await RenderPaging();
+    }
+
+</div>
+
+@await Html.PartialAsync("Forms/Themes/default/ScrollToFormScript")
+
+@functions
+{
+    async Task RenderPaging()
+    {
+        var themedView = FormThemeResolver.GetMultiPageFormPagingDetailsView(Model);
+        await Html.RenderPartialAsync(themedView);
+    }
+
+    void RenderCaption(FieldViewModel field)
+    {
+        <text>@field.Caption</text>
+        if (field.ShowIndicator)
+        {
+            <span class="umbraco-forms-indicator">@Model.Indicator</span>
+        }
+    }
+
+    async Task RenderField(FieldViewModel field)
+    {
+        <div class="umbraco-forms-field-wrapper">
+
+            @await Html.PartialAsync(FormThemeResolver.GetFieldView(Model, field), field)
+
+            @if (Model.ShowFieldValidaton)
+            {
+                @Html.ValidationMessage(field.Name, new { role = "alert", id = $"{field.Id}_validation", @class = "text-danger" })
+            }
+
+        </div>
+    }
+}

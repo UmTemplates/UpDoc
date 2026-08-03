@@ -1,0 +1,55 @@
+@model TailoredTravel.Web.Models.MetaViewModel
+
+@{
+    const string baseUrl = "https://www.tailored-travel.co.uk";
+    var currentPage = Model.CurrentPage;
+    var siteSettings = Model.SiteSettings;
+
+    var pageTitle = currentPage.Value<string>("pageTitle");
+    var pageDescription = currentPage.Value<string>("pageDescription");
+    var pageThumbnailUrl = currentPage.HasValue("pageThumbnail") ? baseUrl + currentPage.Value<IPublishedContent>("pageThumbnail")?.GetCropUrl("social") + "&format=webp" : null;
+    var hasThumbnail = !string.IsNullOrEmpty(pageThumbnailUrl);
+
+    var siteName = siteSettings.SiteName;
+    var isHome = currentPage.ContentType.Alias == "home";
+    var title = isHome ? siteName : $"{pageTitle} | {siteName}";
+
+    // Filtered listing URLs (e.g. ?destination=italy) duplicate content already
+    // canonical on the destination pages. Tell crawlers not to index the filtered
+    // view but to follow the links so destination pages still get crawl signal.
+    var hasFilterQuery = Context.Request.Query.ContainsKey("destination");
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+@if (hasFilterQuery)
+{
+    <meta name="robots" content="noindex,follow" />
+}
+
+<!-- START SEO META DATA -->
+<title>@title</title>
+<meta name="description" content="@pageDescription" />
+@if (hasThumbnail)
+{
+    <meta name="thumbnail" content="@pageThumbnailUrl" />
+}
+<!-- END SEO META DATA -->
+<!-- START OPEN GRAPH META TAGS -->
+<meta property="og:title" content="@pageTitle" />
+<meta property="og:site_name" content="@siteName" />
+<meta property="og:description" content="@pageDescription" />
+@if (hasThumbnail)
+{
+    <meta property="og:image" content="@pageThumbnailUrl" />
+}
+<!-- END OPEN GRAPH META TAGS -->
+<!-- START TWITTER META TAGS -->
+<meta name="twitter:title" content="@pageTitle" />
+<meta name="twitter:description" content="@pageDescription" />
+@if (hasThumbnail)
+{
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:src" content="@pageThumbnailUrl" />
+}
+<!-- END TWITTER META TAGS -->

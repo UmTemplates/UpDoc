@@ -1,0 +1,64 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@*@using Umbraco.Cms.Core.Models.PublishedContent*@
+
+@{
+    IPublishedContent vThisPage = Umbraco.AssignedContentItem;
+    int intCurLevel = vThisPage.Level;
+    IPublishedContent thisSectionPage = vThisPage.Ancestor(2)!;
+    if (vThisPage.Level == 2) { thisSectionPage = vThisPage; }
+
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeatureHeaderMode"] = "link";
+    ViewData["FeatureHeaderHref"] = thisSectionPage.Url();
+    ViewData["FeatureHeaderTitle"] = thisSectionPage.Value<string>("pageTitleShort");
+    ViewData["FeatureDefaultBg"] = "body";
+}
+
+@{
+    void RenderLi(IPublishedContent navItem)
+    {
+        <li data-level="level-@navItem.Level" class=" @(navItem.IsAncestorOrSelf(vThisPage) ? " active" : "")@(navItem.IsDescendant(vThisPage) ? "descendant" : "")">
+            <a href="@navItem.Url()" class="list-group-item-action list-group-item ps-@navItem.Level @(navItem.IsAncestorOrSelf(vThisPage) ? " active" : "")@(navItem.IsDescendant(vThisPage) ? "descendant" : "")">@navItem.Value("pageTitleShort")</a>
+            @if (navItem.IsAncestorOrSelf(vThisPage) && navItem.Children().Any())
+            {
+                <ul class="list-group nav">
+                    @foreach (IPublishedContent listItemChild in navItem.Children())
+                    {
+                        RenderLi(listItemChild);
+                    }
+                </ul>
+            }
+        </li>
+    }
+}
+
+@{
+    var enableSticky = Model.Settings?.Value<bool>("featureSettingsEnableSticky") ?? false;
+}
+
+<nav class="nav-section d-none d-md-block @(enableSticky ? "sticky-nav" : "")">
+    <ul class="list-group list-group-flush nav">
+        @foreach (var navItem in thisSectionPage.Children())
+        {
+            RenderLi(navItem);
+        }
+    </ul>
+</nav>
+
+@* Mobile: the secondary area containing this feature is rendered as an
+   offcanvas-bottom drawer by area.cshtml when the layout detects this block.
+   No markup needed here — the trigger bar is added by the layout view. *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+

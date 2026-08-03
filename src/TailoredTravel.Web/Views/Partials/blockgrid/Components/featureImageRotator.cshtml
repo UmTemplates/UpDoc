@@ -1,0 +1,88 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<Umbraco.Cms.Web.Common.PublishedModels.FeatureImageRotator>>
+@using System.Text.Json
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "p-0";
+    ViewData["FeatureRadius"] = "rounded-0";
+    var rotatorId = "rotator-" + Guid.NewGuid().ToString("N");
+    var images = Model.Content.FeaturePropertyFeatureImages?.ToList() ?? new List<Umbraco.Cms.Core.Models.MediaWithCrops>();
+
+    var slides = images.Select(image =>
+    {
+        var altText = image.Value<string>("mediaPropertyAltText");
+        var title = image.Value<string>("mediaPropertyTitle");
+        var caption = !string.IsNullOrWhiteSpace(title) ? title : (altText ?? image.Name);
+        return new
+        {
+            src = image.GetCropUrl("content12Col") + "&format=webp",
+            srcset = string.Join(", ", new[]
+            {
+                image.GetCropUrl("content3Col") + "&format=webp 384w",
+                image.GetCropUrl("content6Col") + "&format=webp 768w",
+                image.GetCropUrl("content9Col") + "&format=webp 1152w",
+                image.GetCropUrl("content12Col") + "&format=webp 1536w"
+            }),
+            thumb = image.GetCropUrl("content3Col") + "&format=webp",
+            alt = altText ?? image.Name,
+            label = caption
+        };
+    }).ToList();
+
+    // Strip shows up to 3 thumbs (queue-shift); fewer if there are fewer images.
+    // 1 image is a degraded case where the same image appears in both stage and strip.
+    var stripCount = images.Count switch
+    {
+        0 => 0,
+        1 => 1,
+        _ => Math.Min(images.Count - 1, 3)
+    };
+}
+
+@if (slides.Any())
+{
+    var first = slides[0];
+
+    <div class="tt-rotator" id="@rotatorId" data-rotator>
+        <script type="application/json" data-rotator-slides>@Html.Raw(JsonSerializer.Serialize(slides))</script>
+
+        <div class="tt-rotator-grid">
+            <div class="tt-rotator-stage rounded-4 overflow-hidden position-relative">
+                <img class="tt-rotator-stage-img is-active"
+                     data-role="stage"
+                     src="@first.src"
+                     srcset="@first.srcset"
+                     sizes="(max-width: 992px) 100vw, 1152px"
+                     alt="@first.alt" />
+                <div class="tt-rotator-caption">
+                    <div class="tt-rotator-label btn btn-secondary rounded-3" data-role="label">@first.label</div>
+                    <div class="tt-rotator-counter btn btn-secondary rounded-3">
+                        <span data-role="current">1</span> / <span data-role="total">@slides.Count</span>
+                    </div>
+                </div>
+            </div>
+
+            @if (stripCount > 0)
+            {
+                <div class="tt-rotator-thumbs" role="tablist" aria-label="Rotator images">
+                    @for (int i = 0; i < stripCount; i++)
+                    {
+                        <button type="button"
+                                class="tt-rotator-thumb rounded-4 overflow-hidden"
+                                data-role="thumb"
+                                data-thumb-index="@i">
+                            @* Two stacked img layers per cell so the JS can crossfade
+                               (one fading out while the other fades in) instead of fading
+                               a single img to empty and back, which flashes.
+                               No loading="lazy" — the JS swaps src and needs the back
+                               layer ready to fade in immediately. *@
+                            <img data-role="thumb-img" data-layer="0" alt="" />
+                            <img data-role="thumb-img" data-layer="1" alt="" />
+                            <span class="tt-rotator-thumb-progress"></span>
+                        </button>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+}

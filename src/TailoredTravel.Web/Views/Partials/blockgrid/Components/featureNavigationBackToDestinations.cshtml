@@ -1,0 +1,36 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureNavigationBackToDestinations>>
+
+@{
+    Layout = "_Layout_Features.cshtml";
+
+    var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
+    var destinations = currentPage?.Value<IEnumerable<IPublishedContent>>("destinations")
+        ?? Enumerable.Empty<IPublishedContent>();
+
+    var groupToursRoot = Umbraco.ContentAtRoot()
+        .SelectMany(r => r.Descendants())
+        .FirstOrDefault(c => c.ContentType.Alias == "groupTours");
+
+    string Shorten(string name)
+    {
+        var skipWords = new[] { "and", "of", "the" };
+        var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (words.Length <= 1) return name;
+        var initials = string.Concat(words
+            .Take(words.Length - 1)
+            .Where(w => !skipWords.Contains(w.ToLowerInvariant()))
+            .Select(w => char.ToUpperInvariant(w[0])));
+        return $"{initials} {words[^1]}";
+    }
+}
+
+<div class="d-grid gap-2">
+    @foreach (var destination in destinations)
+    {
+        <a href="@destination.Url()" class="btn btn-country">Back to @Shorten(destination.Name) Tours</a>
+    }
+    @if (groupToursRoot != null)
+    {
+        <a href="@groupToursRoot.Url()" class="btn btn-primary">Back to Group Tours</a>
+    }
+</div>

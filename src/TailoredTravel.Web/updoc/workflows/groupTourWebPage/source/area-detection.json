@@ -1,0 +1,3197 @@
+{
+  "totalPages": 1,
+  "pages": [
+    {
+      "page": 1,
+      "areas": [
+        {
+          "name": "Header",
+          "color": "#90CAF9",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-0",
+                  "text": "View Your Tour",
+                  "fontSize": 11.2,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.home-view-your-tour/a.home-view-tour-button",
+                  "cssClasses": "home-view-tour-button",
+                  "isBold": true
+                },
+                {
+                  "id": "html-1",
+                  "text": "To discuss your group\u2019s tailor made tour",
+                  "fontSize": 12.8,
+                  "fontName": "ClarendonLTStdRoman",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "span",
+                  "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.callus/span.call",
+                  "cssClasses": "call"
+                },
+                {
+                  "id": "html-2",
+                  "text": "Call 020 7064 4970",
+                  "fontSize": 18,
+                  "fontName": "ClarendonLTStdRoman",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "span",
+                  "htmlContainerPath": "div.header-container/div#header/div#right_banner/div.callus/span.phone",
+                  "cssClasses": "phone"
+                }
+              ]
+            },
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-4",
+                  "text": "Call us",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "span",
+                  "htmlContainerPath": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-smallest",
+                  "cssClasses": "call-us-text-smallest"
+                },
+                {
+                  "id": "html-5",
+                  "text": "on 020 7064 4970",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "span",
+                  "htmlContainerPath": "div.header-container/div#header/a.mobile-call-us-wrapper/span.mobile-call-us/span.call-us-text-number",
+                  "cssClasses": "call-us-text-number"
+                },
+                {
+                  "id": "html-131",
+                  "text": "Information",
+                  "fontSize": 12,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/div.ft_header",
+                  "cssClasses": "ft_header"
+                },
+                {
+                  "id": "html-139",
+                  "text": "Types of Holiday",
+                  "fontSize": 12,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/div.ft_header",
+                  "cssClasses": "ft_header"
+                },
+                {
+                  "id": "html-143",
+                  "text": "Destinations",
+                  "fontSize": 12,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/div.ft_header",
+                  "cssClasses": "ft_header"
+                },
+                {
+                  "id": "html-157",
+                  "text": "Destinations",
+                  "fontSize": 12,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/div.ft_header",
+                  "cssClasses": "ft_header"
+                },
+                {
+                  "id": "html-171",
+                  "text": "Types of Holiday",
+                  "fontSize": 12,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/div.ft_header",
+                  "cssClasses": "ft_header"
+                }
+              ]
+            }
+          ],
+          "totalElements": 10
+        },
+        {
+          "name": "Navigation",
+          "color": "#CE93D8",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-3",
+                  "text": "Menu",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "span",
+                  "htmlContainerPath": "div.header-container/div#header/nav/a.mobile-menu/span.sb-toggle-right",
+                  "cssClasses": "sb-toggle-right menu_icon3"
+                },
+                {
+                  "id": "html-6",
+                  "text": "- Home",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-7",
+                  "text": "- Group Tours",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-8",
+                  "text": "- Group Organisers",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-9",
+                  "text": "- News",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-10",
+                  "text": "- About Us",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-11",
+                  "text": "- Contact Us",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.header-container/div.top-nav-container-wrapper/div.top-nav-container/div.top-nav/ul.top-nav-list",
+                  "cssClasses": ""
+                }
+              ]
+            }
+          ],
+          "totalElements": 7
+        },
+        {
+          "name": "Main Content",
+          "color": "#A5D6A7",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-15",
+                  "text": "\u201CThank you for arranging yet another wonderful 5 day tour. The content was very well balanced and the guides well informed. The hotel was comfortable and ideally situated. Our tour manager was charming and his history of art and of the Netherlands made the tour exceptional and our members were full of praise. He went out of his way to add that little extra which makes a tour memorable.\u201D",
+                  "fontSize": 9,
+                  "fontName": "ClarendonLTStdRoman",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_quote",
+                  "cssClasses": "tour_banner_quote"
+                },
+                {
+                  "id": "html-16",
+                  "text": "RW, Witham",
+                  "fontSize": 9,
+                  "fontName": "ClarendonLTStdLight",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-right/div#banner-overlap-wrapper-top/div.banner_text_wrapper/div.tour_banner_sig",
+                  "cssClasses": "tour_banner_sig",
+                  "isBold": true
+                },
+                {
+                  "id": "html-17",
+                  "text": "Home",
+                  "fontSize": 8.2,
+                  "fontName": "Open Sans",
+                  "color": "#6C8CBD",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-18",
+                  "text": "Group Tours",
+                  "fontSize": 8.2,
+                  "fontName": "Open Sans",
+                  "color": "#6C8CBD",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-19",
+                  "text": "Holland",
+                  "fontSize": 8.2,
+                  "fontName": "Open Sans",
+                  "color": "#6C8CBD",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/a",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-20",
+                  "text": "Holland \u0026 the Dutch Masters",
+                  "fontSize": 8.2,
+                  "fontName": "Open Sans",
+                  "color": "#6C8CBD",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "span",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#breadcrumb/span.lastitem",
+                  "cssClasses": "lastitem"
+                },
+                {
+                  "id": "html-21",
+                  "text": "- Suggested itinerary",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-22",
+                  "text": "- Featuring",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-23",
+                  "text": "- Hotel",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-24",
+                  "text": "- Extras",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-25",
+                  "text": "- Tailor-make this tour",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-26",
+                  "text": "- Reviews",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/ul.holland_tabs",
+                  "cssClasses": ""
+                }
+              ]
+            },
+            {
+              "heading": {
+                "id": "html-27",
+                "text": "Suggested Itinerary",
+                "fontSize": 10.5,
+                "fontName": "Arial",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h3",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/a.heading-link/span.tab-mob-heading",
+                "cssClasses": "",
+                "isBold": true
+              },
+              "children": [
+                {
+                  "id": "html-28",
+                  "text": "Day 1 \u2013 Ghent \u0026 The Hague",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-29",
+                  "text": "Board our private executive coach at your designated pick up points \u2013 take the cross Channel ferry from your preferred port \u2013 originally the capital of Flanders, Ghent has retained more historical buildings than any other Flemish city, including St Bavo\u2019s Cathedral, home to Van Eyck\u2019s famous 24 panel altarpiece \u2018The Adoration of the Mystic Lamb\u2019 \u2013 continue with our tour manager to the 4* Voco Hotel in The Hague.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-30",
+                  "text": "Day 2 \u2013 The Mauritshuis, Panorama Mesdag \u0026 Koninklijke Porcleyne Fles",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-31",
+                  "text": "The newly refurbished Mauritshuis is home to a marvellous collection from the 17th and 18th century old masters with \u2018Girl with a Pearl Earring\u2019 by Johannes Vermeer the stunning highlight of the museum \u2013 painted by Hendrik Willem Mesdag, the most famous painter at The Hague School, the Panorama Mesdag is a cylindrical painting over 14m high and 120m in circumference depicting the vista of the sea, the dunes and Scheveningen village \u2013 at Koninklijke Porcleyne Fles in Delft, the only remaining factory of the 32 earthenware factories that were established in Delft in the 17th century, after an included two course Dutch lunch our guided tour sees a master painter at work, visits the dining room of Vermeer and the Dutch Royal Family Chamber, the museum with antique Delft pieces, the historical courtyard and visit the factory.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-32",
+                  "text": "Day 3 \u2013 Amsterdam, Van Gogh Museum, Rijksmuseum \u0026 canal cruise",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-33",
+                  "text": "Travel to Amsterdam to see the wonderful collection at the Van Gogh Museum, home to the world\u2019s largest collection of paintings by Vincent van Gogh \u2013 guided tour of the newly refurbished Rijksmuseum whose world famous art collection includes many Dutch Old Masters such as Jan Steen, Frans Hals, Vermeer and Rembrandt\u2019s \u2018The Night Watch\u2019 \u2013 enjoy a relaxing canal cruise to admire some of Amsterdam\u2019s stunning architecture from a different perspective.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-34",
+                  "text": "Day 4 \u2013 Leiden, Delft \u0026 the Vermeer Centre",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-35",
+                  "text": "Morning at leisure in Leiden, the birthplace of Rembrandt and home to a wonderful 17th century book collection at the Bibliotheca Thysiana and one of the world\u2019s oldest botanical gardens \u2013 time at leisure in the lovely old town of Delft, one of the principal artistic centres of the Northern Netherlands and famous for the works of Fabritius, de Hooch and Vermeer, born here in 1632 \u2013 a visit to the Vermeer Centre introduces us to Vermeer\u2019s mastery of light, composition and colour.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-36",
+                  "text": "Day 5 \u2013 Bruges",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-37",
+                  "text": "Bruges, whose historic city centre is included on UNESCO\u2019s World Heritage List, is famous for lace making, chocolate and its picturesque network of canals \u2013 continue for our Channel crossing back to the UK and then return to our original departure points with comfort stops en route.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab1/div.tab-wrapper",
+                  "cssClasses": ""
+                }
+              ]
+            },
+            {
+              "heading": {
+                "id": "html-38",
+                "text": "Tour Features",
+                "fontSize": 10.5,
+                "fontName": "Arial",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h3",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/a.heading-link/span.tab-mob-heading",
+                "cssClasses": "",
+                "isBold": true
+              },
+              "children": [
+                {
+                  "id": "html-39",
+                  "text": "4* The Hague hotel",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-40",
+                  "text": "All excursions \u0026 guided tours included",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-41",
+                  "text": "Professional tour manager",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-42",
+                  "text": "Executive coach throughout",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-43",
+                  "text": "Return Channel ferry crossings",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-44",
+                  "text": "One free place per 10 paying passengers",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col1",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-45",
+                  "text": "Ghent",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-46",
+                  "text": "The Mauritshuis",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-47",
+                  "text": "Panorama Mesdag",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-48",
+                  "text": "Koninklijke Porcleyne Fles - lunch \u0026 guided tour",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-49",
+                  "text": "Van Gogh Museum",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-50",
+                  "text": "Rijksmuseum - guided tour",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-51",
+                  "text": "Amsterdam canal cruise",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-52",
+                  "text": "Leiden",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-53",
+                  "text": "Delft",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-54",
+                  "text": "The Vermeer Centre",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-55",
+                  "text": "Bruges",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab2/div.tab-wrapper/div.featuring_col2",
+                  "cssClasses": ""
+                }
+              ]
+            },
+            {
+              "heading": {
+                "id": "html-56",
+                "text": "Hotel",
+                "fontSize": 10.5,
+                "fontName": "Arial",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h3",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab3/a.heading-link/span.tab-mob-heading",
+                "cssClasses": "",
+                "isBold": true
+              },
+              "children": [
+                {
+                  "id": "html-57",
+                  "text": "Four nights on bed and breakfast basis at the centrally located 4* Voco Hotel in The Hague. Based in the Royal Quarter, facilities at the hotel include a restaurant and bar and all rooms are en suite.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab3/div.tab-wrapper",
+                  "cssClasses": ""
+                }
+              ]
+            },
+            {
+              "heading": {
+                "id": "html-58",
+                "text": "Extras",
+                "fontSize": 10.5,
+                "fontName": "Arial",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h3",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/a.heading-link/span.tab-mob-heading",
+                "cssClasses": "",
+                "isBold": true
+              },
+              "children": [
+                {
+                  "id": "html-59",
+                  "text": "Single room supplement \u00A3199",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-60",
+                  "text": "Insurance",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-61",
+                  "text": "Entrance fees to places of interest",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-62",
+                  "text": "Audio headphones",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-63",
+                  "text": "Gratuities",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab4/div.tab-wrapper",
+                  "cssClasses": ""
+                }
+              ]
+            },
+            {
+              "heading": {
+                "id": "html-64",
+                "text": "Tailor-make this tour",
+                "fontSize": 10.5,
+                "fontName": "Arial",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h3",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/a.heading-link/span.tab-mob-heading",
+                "cssClasses": "",
+                "isBold": true
+              },
+              "children": []
+            },
+            {
+              "heading": {
+                "id": "html-65",
+                "text": "Your tailor made tour",
+                "fontSize": 10.5,
+                "fontName": "ClarendonLTStdRoman",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h4",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
+                "cssClasses": ""
+              },
+              "children": [
+                {
+                  "id": "html-66",
+                  "text": "Here are some more suggested places of interest:",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-67",
+                  "text": "- Rembrandthuis, Amsterdam - Rembrandt\u2019s home between 1639 and 1660 houses almost every etching he made (around 250) and a collection of the master\u2019s possessions",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-68",
+                  "text": "- Frans Hals Museum, Haarlem - Hals was a contemporary of Rembrandt and this museum, housed in a 17th century building round a courtyard, is home to wonderful collection of paintings and craft objects from the Golden Age",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-69",
+                  "text": "- Kr\u00F6ller-M\u00FCller Museum - the private collection of late 19th century and early 20th century paintings includes 278 works by Van Gogh, an outstanding collection of Chinese porcelain and many hundreds of Delftware items",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab5/div.tab-wrapper/div.your-tailor-made-tour/ul",
+                  "cssClasses": ""
+                }
+              ]
+            },
+            {
+              "heading": {
+                "id": "html-70",
+                "text": "Tour Reviews",
+                "fontSize": 10.5,
+                "fontName": "Arial",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h3",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/a.heading-link/span.tab-mob-heading",
+                "cssClasses": "",
+                "isBold": true
+              },
+              "children": []
+            },
+            {
+              "heading": {
+                "id": "html-71",
+                "text": "Reviews for Holland \u0026 the Dutch Masters",
+                "fontSize": 10.5,
+                "fontName": "Arial",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h3",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper",
+                "cssClasses": "",
+                "isBold": true
+              },
+              "children": [
+                {
+                  "id": "html-72",
+                  "text": "Your coach, both drivers, the ferry crossings, and the roads on the other side, really were all excellent. The Club lounge on the ferry was a star feature! We \u0027bad travellers\u0027 were nicely surprised and appreciate your organisation of all that (although you probably didn\u0027t have a hand in the roads). There is a lot to said for using one vehicle from door to door when it is as comfortable, and as well and safely driven is this was. The latter had been a concern of mine: I\u0027m critical but couldn\u0027t fault Dave (nor the local short term driver). Everybody enjoyed the choice of the excellent hotel and its location, and our tour manager was kind, courteous, very conscientious and good company. We enjoyed all the itinerary, and the little known Panorama Mesdag (and its brilliant guide) was rated favourite venue by many, while the Amsterdam boat ride was disappointing, but we\u0027re glad to have done it. We thoroughly enjoyed our tour and you made it very easy for us. It had also been very easy and pleasant dealing with you and your team to set up the tour.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-73",
+                  "text": "RG, Ascot May 2024",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-74",
+                  "text": "I just wanted to thank you again and your excellent staff who organised our tour to Holland. This was the fourth tour you have organised for me and it was definitely the best. I have had numerous cards and emails from members expressing their thanks and wanting to know where the next tour will be! Our tour manager was in his usual good form and he and I work well as a team. Our driver was excellent, friendly and flexible. Thank you again for all your help.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-75",
+                  "text": "MP, Northwood June 2019",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-76",
+                  "text": "Having travelled with this group on many of your trips, I thought I would just like to write and say how much my husband and myself enjoyed our recent trip to the Netherlands. The itinerary was varied and interesting, but the trip was made extra special by our tour manager Paul. He made everything, even any mishaps enjoyable, with his great sense of humour and his numerous anecdotes. We look forward to future trips and hope that Paul will again be our anchor man.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-77",
+                  "text": "LT, Leatherhead September 2016",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-78",
+                  "text": "I know we spoke earlier today but I felt I must write and thank Tailored Travel for arranging yet another wonderful 5 day extended visit. The content was very well balanced and the guides well informed. The hotel was comfortable and ideally situated. Our tour manager, Terence, was charming and his history of art and of the Netherlands made the tour exceptional and our members were full of praise. He went out of his way to add that little extra which makes a tour memorable. This was my last extended visit for our Society and without exception every tour arranged by Tailored Travel has been of the highest quality. Yourself, Damian and all your staff I have spoken to over the years have been very helpful and knowledgeable and have given me the confidence needed to undertake these tours. Please pass on my thanks to everyone concerned. I started with a successful visit to Madrid and finished with another successful visit to The Hague; what could be more satisfying. Thank you Michael and all your team.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-79",
+                  "text": "RW, Witham May 2016",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-80",
+                  "text": "Just a note to say we arrived home safely last night after a great tour. The venues were good, the hotel fine, and the restaurant on the second night really good (they treated us like real diners not just a group, and 18 of us went back on our \u2018free night\u2019). Ludo our tour manager was very efficient and popular, and coped when one of our party forgot her passport, and our driver Mark was a star, and pleased to say they worked well together and got on. Happy to have either/both on future tours. So thanks so much for the organisation, and now looking forward to next year.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-81",
+                  "text": "CC, King\u2019s Lynn October 2015",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-82",
+                  "text": "I wanted to contact you direct following our return from Holland on Friday to report back and thank you personally for all your help and support. We had a very successful and happy visit to Holland and I have received many cards/emails and phone calls from members of our group saying how much they enjoyed everything. One of the visits which gave the most enjoyment was to the Panorama Mesdag which had a total wow factor and really caught the imagination of the whole group. Naturally all our visits won warm praise and approval and left everyone with a great feel-good feeling. We found the local people extremely helpful and polite, the restaurants of all ranges good value for money and convenient to our hotel. Food outlets at all places we visited were excellent and well organised. As for the Museum shops, wow \u2026\u2026..! Ludo was a wonderful Tour Manager and Tony not only a lovely personality but was a safe and careful driver. Several members of our group have asked me to thank both Ludo and Tony again for all they did for us and it goes without saying I wholeheartedly endorse this. Renewed thanks to you and all at Tailored Travel for helping us to arrange and enjoy such a successful and interesting tour.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-83",
+                  "text": "SB, Haslemere October 2015",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-84",
+                  "text": "I would like to say how much I enjoyed the trip to the Netherlands. I would especially like to thank the tour manager. He made the trip both interesting and fun and worked tirelessly to ensure everything ran smoothly. I would also like to thank the driver who also was excellent.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-85",
+                  "text": "JS, East Horsley September 2015",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-86",
+                  "text": "We have returned from Holland and I am writing to thank you for all your hard work. The holiday was excellent, everything was well planned and we had a very good time. The hotel was comfortable and the itinerary nicely varied with time to look around the various museums etc. Both Ludo and Tony were professional and friendly. I was impressed with Ludo\u2019s efficiency and organisational skills, he was helpful and made every effort to make sure that our group were happy and had the opportunity to visit the places they wanted on our free afternoon in Amsterdam. So, a successful trip, with members asking what we were going to do next, always a good sign.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-87",
+                  "text": "CK, Potters Bar July 2015",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-88",
+                  "text": "Arrived home all in one piece although a bit shattered! The weather was wonderful; there were even some comments that it was too hot on the second day!! Our Tour Guide, Ludo, was really good and our driver, Ian, drove us faultlessly in a very comfortable coach with lots of leg-room. The hotel was in a lovely area sort of Chelsea/South Kensington and very comfortable. The dinner on the first evening surprised me and I think was very well received by the group. The overnight ferry crossing was a pleasant surprise to most of us. Our itinerary was varied and we visited a lot of very beautiful and very interesting places. Holland is really spotlessly clean everywhere and the standard of all the cafes and restaurants at all the venues we came to was very high. It wasn\u0027t all culture as Margaret\u0027s suggestion of a visit to Leiden was really like being on holiday and we managed to get a 50 minute ride on the canal system before lunch and saw the beautiful city from a different view before finishing the day at the Frans Hals museum in Haarlem. I don\u0027t think any of us need see another work of art for a few weeks!!! But we have all brought back some exciting memories of Holland.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-89",
+                  "text": "DC, Aldeburgh June 2015",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-90",
+                  "text": "Just a short note to say that everybody enjoyed the Amsterdam holiday. The hotel was fine and located close to lots of restaurants. Our guide Marga was very helpful and even added some extra items like a visit to a Dutch cheese factory, a diamond museum and a visit to Delft to see how they make their famous porcelain. As usual the organisation of the holiday was impeccable so thanks to all the team at Tailored Travel.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-91",
+                  "text": "TC, Italy May 2015",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-92",
+                  "text": "It was an excellent tour, helped by brilliant weather, our superb Guide Tom Abbott, the excellent driver Robbie and the Whispers. These made a huge difference as Tom was able to keep in touch with us as he led us through the streets, or inside the museums. Some of the Dutch guides had never used them but they all appreciated them as they were able to talk quietly but we could all hear them. I would definitely recommend using them again. Thank you Louise for all your help and patience with me over the past few weeks as the final arrangements were made. I do appreciate your help and I realise that we are one of many Tours you are trying to finalise at the same time. Enjoy all that you are doing, and again thank you for all your help.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-93",
+                  "text": "VW, Kingston upon Thames April 2015",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-94",
+                  "text": "We had a very good trip to Holland. As always, we did not have enough time at the various museums but all the guides were very informative. I would just like to say a huge thank you to our tour manager. She was so kind and helpful and informative above and beyond the call of duty. Our driver also deserves a medal for coping with the narrow streets in The Hague and Amsterdam. The hotel was also very convenient and comfortable.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-95",
+                  "text": "SC, Teddington May 2014",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-96",
+                  "text": "Many thanks once again for organising such a wonderful holiday for us all. It was a really enriching, fun experience, which I thoroughly enjoyed. Lots of wonderful memories to treasure - especially the Kroller-Muller museum - what a find!",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-97",
+                  "text": "PD, Lewes March 2014",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-98",
+                  "text": "Our NADFAS trip to the Netherlands last week was highly enjoyable, largely due to the efficiency, good organisation and friendliness of Tailored Travel. We were very fortunate in having Mark to drive us - always safe and punctual - and Lance, who was a marvellous guide, welcoming, extremely helpful and very informative.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-99",
+                  "text": "SK, Lewes March 2014",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-100",
+                  "text": "I am writing to thank you for organising such a wonderful trip, the hotel was great but most of all the tour manager and the driver were knowledgeable and courteous. Last year I went with Hove NADFAS to Northumbria with Tailored Travel and it was all so good I jumped at the chance of going with your company again to Holland.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-101",
+                  "text": "JH, Hove March 2014",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-102",
+                  "text": "Thank you Tailored Travel. This was a wonderful trip. I couldn\u0027t fault the organisation, the itinerary (impossible to pick a favourite visit as I enjoyed each one), the comfortable coach, the excellent hotel. Lance and Mark did a marvellous job in looking after us too. I would recommend your company most highly.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-103",
+                  "text": "SM, Lancing March 2014",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-104",
+                  "text": "A very big thank you for arranging the Den Haag tour for our Art History Group. From beginning to end it went like clockwork. The coach driver, Paul, was very helpful and drove smoothly throughout the trip. His knowledge of Holland proved invaluable and several members of the party asked if he could be our driver for the Paris tour next April. The Park Hotel Den Haag with its central location was a 100% success. Several of the party who had been on eight Society tours previously which had been organised with other tour operators remarked it was the best accommodation they had experienced on the tours. I personally found the hotel staff excellent and they were very helpful at all times to the party. Would you please thank all at Tailored Travel who supported me both with the bookings and the administration that resulted in a stress free and a most enjoyable visit to Holland. Thank you once again for a \u2018first class\u2019 service. I look forward to future bookings on behalf of our Society.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-105",
+                  "text": "DR, Cheltenham October 2013",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-106",
+                  "text": "The tour to Holland was a great success. The itinerary was good, there was some flexibility and free time was appreciated. Everyone thought they were given plenty of information before travel. From my point of view I found your staff to be extremely helpful and I was appreciative of all the information supplied before travelling.",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-107",
+                  "text": "SP, Telford April 2009",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.holland_tab_container/div#tab6/div.tab-wrapper/div.review",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-108",
+                  "text": "Back to all Holland Tours",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "span",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div.tour-back-button/div.button-secondary/a.button-link/span.back-button",
+                  "cssClasses": "back-button"
+                },
+                {
+                  "id": "html-109",
+                  "text": "Call us on 020 7064 4970to tailor this tourfor your group",
+                  "fontSize": 10.5,
+                  "fontName": "ClarendonLTStdRoman",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.panel-wrapper/div.panel-inner-line/div.panel-call-us",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-123",
+                  "text": "Call us on 020 7064 4970to tailor make the perfect tourfor your group",
+                  "fontSize": 10.5,
+                  "fontName": "ClarendonLTStdRoman",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div#mobile-panel-wrapper/div.panel-inner-line/div.panel-call-us",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-124",
+                  "text": "Back to all Holland Tours",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "span",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.mobile-back-button/div.button-secondary/a.button-link/span.back-button",
+                  "cssClasses": "back-button"
+                }
+              ]
+            }
+          ],
+          "totalElements": 97
+        },
+        {
+          "name": "Page Header",
+          "color": "#FFCC80",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-12",
+                  "text": "5 days from",
+                  "fontSize": 12.8,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_days",
+                  "cssClasses": "tour_days"
+                },
+                {
+                  "id": "html-13",
+                  "text": "\u00A3899",
+                  "fontSize": 21,
+                  "fontName": "ClarendonLTStdRoman",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "div",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.day_price_wrapper/div.tour_price",
+                  "cssClasses": "tour_price"
+                }
+              ]
+            },
+            {
+              "heading": {
+                "id": "html-14",
+                "text": "Holland \u0026 the Dutch Masters",
+                "fontSize": 22.5,
+                "fontName": "ClarendonLTStdRoman",
+                "color": "#FFFFFF",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h1",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left/div#banner_overlap_wrapper/div.price-name-wrapper/div.tour_name",
+                "cssClasses": ""
+              },
+              "children": []
+            }
+          ],
+          "totalElements": 3
+        },
+        {
+          "name": "Tailor Make Your Tour",
+          "color": "#FFCC80",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": {
+                "id": "html-110",
+                "text": "Tailor make your group tour",
+                "fontSize": 10.5,
+                "fontName": "ClarendonLTStdRoman",
+                "color": "#2E5BA1",
+                "boundingBox": {
+                  "left": 0,
+                  "top": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "htmlTag": "h4",
+                "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour",
+                "cssClasses": ""
+              },
+              "children": [
+                {
+                  "id": "html-111",
+                  "text": "Remember these are just our suggestions. Every one of our tours is exclusively for your group and your group alone so each one can be tailor made to suit the interests and profile of your members. You could:",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-112",
+                  "text": "- travel by Eurostar",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-113",
+                  "text": "- stay at a 3* or 5* hotel",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-114",
+                  "text": "- with more dinners included",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-115",
+                  "text": "- for more (or fewer) days",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-116",
+                  "text": "- include different excursions \u2013 see \u2018Tailor-make this tour\u2019 tab for suggestions",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-117",
+                  "text": "- bring a specialist lecturer",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-118",
+                  "text": "- include all entrance fees \u0026 gratuities",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour/ul",
+                  "cssClasses": ""
+                }
+              ]
+            }
+          ],
+          "totalElements": 9
+        },
+        {
+          "name": "Right Column Button Wrapper",
+          "color": "#FFCC80",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-119",
+                  "text": "Back to all Holland Tours",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                  "cssClasses": "button-link holland-back"
+                },
+                {
+                  "id": "html-120",
+                  "text": "Back to all Destinations",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                  "cssClasses": "button-link about-our-tours"
+                },
+                {
+                  "id": "html-121",
+                  "text": "Request a Quote",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                  "cssClasses": "button-link request-a-quote"
+                },
+                {
+                  "id": "html-122",
+                  "text": "Request a Brochure",
+                  "fontSize": 10.5,
+                  "fontName": "Open Sans",
+                  "color": "#FFFFFF",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "a",
+                  "htmlContainerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper/div.button-secondary/a.button-link",
+                  "cssClasses": "button-link request-a-brochure"
+                }
+              ]
+            }
+          ],
+          "totalElements": 4
+        },
+        {
+          "name": "Footer",
+          "color": "#EF9A9A",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-125",
+                  "text": "020 7064 4970",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+                  "cssClasses": "",
+                  "isBold": true
+                },
+                {
+                  "id": "html-126",
+                  "text": "info@tailored-travel.co.uk",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-127",
+                  "text": "12 Jamaica Road",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-128",
+                  "text": "London",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-129",
+                  "text": "SE1 2RN",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div.footer-address",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-130",
+                  "text": "Tailored Travel holds a current ATOL licence. Air holiday packages shown are ATOL protected by the Civil Aviation Authority. Our ATOL number is ATOL 5605.",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "p",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-one/div#accreditations/div.atol-description",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-132",
+                  "text": "- Sitemap",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-133",
+                  "text": "- Terms \u0026 Conditions",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-134",
+                  "text": "- Privacy Policy",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-135",
+                  "text": "- Cookies",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-136",
+                  "text": "- Booking Conditions",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-137",
+                  "text": "- Insurance",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-138",
+                  "text": "- Financial Security",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_info/ul.listLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-140",
+                  "text": "- Tailor Made Tours for Groups",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-141",
+                  "text": "- School \u0026 College tours",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-142",
+                  "text": "- Tours for Individuals",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays-mob/ul.listLeftWide",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-144",
+                  "text": "- UK",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-145",
+                  "text": "- France",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-146",
+                  "text": "- Holland",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-147",
+                  "text": "- Portugal",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-148",
+                  "text": "- Belgium",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-149",
+                  "text": "- Southern Europe",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-150",
+                  "text": "- Italy",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-151",
+                  "text": "- Germany",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-152",
+                  "text": "- Spain",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-153",
+                  "text": "- Austria",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-154",
+                  "text": "- Ireland",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-155",
+                  "text": "- Central \u0026 Eastern Europe",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-156",
+                  "text": "- Worldwide",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_destinations/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-158",
+                  "text": "- UK",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-159",
+                  "text": "- Italy",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-160",
+                  "text": "- France",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-161",
+                  "text": "- Germany",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-162",
+                  "text": "- Holland",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-163",
+                  "text": "- Spain",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-164",
+                  "text": "- Portugal",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-165",
+                  "text": "- Austria",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-166",
+                  "text": "- Belgium",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-167",
+                  "text": "- Ireland",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-168",
+                  "text": "- Southern Europe",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-169",
+                  "text": "- Central \u0026 Eastern Europe",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-170",
+                  "text": "- Worldwide",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#footer-destinations-mob/ul.destlistLeft",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-172",
+                  "text": "- Tailor Made Tours for Groups",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-173",
+                  "text": "- School \u0026 College tours",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide",
+                  "cssClasses": ""
+                },
+                {
+                  "id": "html-174",
+                  "text": "- Tours for Individuals",
+                  "fontSize": 9.8,
+                  "fontName": "Open Sans",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div#sb-site/div#footer_wrapper/div#footer/div.footer-part-two/div.footer-part-two-left-column/div#ft_types_of_holidays/ul.listLeftWide",
+                  "cssClasses": ""
+                }
+              ]
+            }
+          ],
+          "totalElements": 45
+        },
+        {
+          "name": "Ungrouped",
+          "color": "#B0BEC5",
+          "boundingBox": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "page": 1,
+          "sections": [
+            {
+              "heading": null,
+              "children": [
+                {
+                  "id": "html-175",
+                  "text": "- Home",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-176",
+                  "text": "- Group Tours",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-177",
+                  "text": "- Group Organisers",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-178",
+                  "text": "- Testimonials",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-179",
+                  "text": "- Request a Brochure",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-180",
+                  "text": "- Request a Quote",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-181",
+                  "text": "- News",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-182",
+                  "text": "- About Us",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-183",
+                  "text": "- Contact Us",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                },
+                {
+                  "id": "html-184",
+                  "text": "- View Your Tour",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close view-your-tour-menu"
+                },
+                {
+                  "id": "html-185",
+                  "text": "- Close",
+                  "fontSize": 9.8,
+                  "fontName": "Arial",
+                  "color": "#2E5BA1",
+                  "boundingBox": {
+                    "left": 0,
+                    "top": 0,
+                    "width": 0,
+                    "height": 0
+                  },
+                  "htmlTag": "li",
+                  "htmlContainerPath": "div.sb-slidebar/ul.sb-menu",
+                  "cssClasses": "sb-close"
+                }
+              ]
+            }
+          ],
+          "totalElements": 11
+        }
+      ]
+    }
+  ],
+  "diagnostics": {
+    "totalPathsFound": 0,
+    "pathsAfterFiltering": 0,
+    "areasDetected": 8,
+    "elementsInAreas": 186
+  }
+}

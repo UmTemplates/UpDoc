@@ -1,0 +1,323 @@
+@using Microsoft.AspNetCore.Http
+@using TailoredTravel.Web.Helpers
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureInternalLinksPaginationGroupTours>>
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@* Note: Need to give attention to pagination logic and query string handling.
+Currently uses /?page=2#pagination as the query parameter for pagination.
+This not not deal with multiple paginations on the same page. *@
+
+@{
+    Layout = "_Layout_Features.cshtml";
+
+    var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
+    var allChildPages = currentPage?.Children()?.Where(c => c is IContentHeadingDefault)?.ToArray() ?? [];
+
+    var pageSize = 12;
+    var isPreviewMode = HttpContextAccessor.HttpContext == null;
+
+    var selectedDestinations = HttpContextAccessor.HttpContext?.Request.Query["destination"]
+        .Where(v => !string.IsNullOrWhiteSpace(v))
+        .ToArray() ?? [];
+
+    var visibleChildPages = allChildPages.Where(x => x.IsVisible()).ToArray();
+
+    var childPages = selectedDestinations.Length == 0
+        ? visibleChildPages
+        : visibleChildPages
+            .Where(c => c.Value<IEnumerable<IPublishedContent>>("destinations")?
+                .Any(d => selectedDestinations.Contains(d.UrlSegment, StringComparer.OrdinalIgnoreCase)) == true)
+            .ToArray();
+
+    var queryPageValue = HttpContextAccessor.HttpContext?.Request.Query["page"];
+    var currentPageNumber = string.IsNullOrWhiteSpace(queryPageValue) ? 1 : Convert.ToInt32(queryPageValue);
+
+    var startItemIndex = currentPageNumber * pageSize - pageSize;
+
+    var displayedPages = childPages
+        .OrderBy(x => x.SortOrder)
+        .Skip(startItemIndex)
+        .Take(pageSize);
+
+    var featureTitle = Model.Content.Value<string>("featurePropertyFeatureTitle");
+    var featureSlug = SlugHelper.ToSlug(featureTitle, Model.Content.ContentType.Alias, Model.ContentKey);
+
+    var destinationsRoot = Umbraco.ContentAtRoot()
+        .SelectMany(r => r.DescendantsOrSelfOfType("destinations"))
+        .FirstOrDefault();
+    var availableDestinations = destinationsRoot?.Children()
+        .Where(d => d.IsVisible())
+        .OrderBy(d => d.SortOrder)
+        .ToArray() ?? [];
+
+    string BuildDestinationToggleUrl(string segment, bool currentlySelected)
+    {
+        var destinations = (HttpContextAccessor.HttpContext?.Request.Query["destination"]
+            .Where(v => !string.IsNullOrWhiteSpace(v))
+            .Select(v => v!.ToString())
+            .ToList()) ?? new List<string>();
+
+        if (currentlySelected)
+        {
+            destinations.RemoveAll(c => string.Equals(c, segment, StringComparison.OrdinalIgnoreCase));
+        }
+        else if (!destinations.Contains(segment, StringComparer.OrdinalIgnoreCase))
+        {
+            destinations.Add(segment);
+        }
+
+        var parts = destinations
+            .Select(c => $"destination={Uri.EscapeDataString(c)}")
+            .ToList();
+
+        var path = HttpContextAccessor.HttpContext?.Request.Path.Value ?? "";
+        var qs = parts.Count == 0 ? "" : "?" + string.Join("&", parts);
+        return $"{path}{qs}";
+    }
+}
+
+@{
+    var totalPages = (int)Math.Ceiling((double)childPages.Length / pageSize);
+
+    string BuildPageQueryString(int pageNumber)
+    {
+        var queryString = HttpContextAccessor.HttpContext?.Request.QueryString.Value;
+        if (queryString?.Contains("page=") == true)
+        {
+            queryString = queryString.Replace("page=" + currentPageNumber, $"page={pageNumber}");
+        }
+        else
+        {
+            if (queryString?.Length > 0)
+            {
+                queryString += "&";
+            }
+            queryString += $"page={pageNumber}";
+        }
+        queryString = queryString?.TrimStart('?');
+        return $"?{queryString}";
+    }
+
+    var windowPages = new List<int>();
+    if (totalPages > 0)
+    {
+        windowPages.Add(1);
+        for (var i = currentPageNumber - 1; i <= currentPageNumber + 1; i++)
+        {
+            if (i > 1 && i < totalPages) windowPages.Add(i);
+        }
+        if (totalPages > 1) windowPages.Add(totalPages);
+    }
+
+    Func<object?, Microsoft.AspNetCore.Mvc.Razor.HelperResult> renderPaginationList = @<text>
+        <ul class="pagination mb-0">
+            @if (currentPageNumber > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@BuildPageQueryString(currentPageNumber - 1)" aria-label="Previous page">
+                        <span class="d-none d-sm-inline">Prev</span>
+                        <span class="d-sm-none" aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link" aria-label="Previous page">
+                        <span class="d-none d-sm-inline">Prev</span>
+                        <span class="d-sm-none" aria-hidden="true">&lsaquo;</span>
+                    </span>
+                </li>
+            }
+
+            @for (var idx = 0; idx < windowPages.Count; idx++)
+            {
+                var pageNumber = windowPages[idx];
+                var isActive = pageNumber == currentPageNumber;
+                var isEdge = pageNumber == 1 || pageNumber == totalPages;
+                var isNeighbour = Math.Abs(pageNumber - currentPageNumber) <= 1;
+                var hideOnXs = !isActive && !isNeighbour;
+
+                if (idx > 0 && pageNumber - windowPages[idx - 1] > 1)
+                {
+                    <li class="page-item disabled d-none d-sm-inline-flex" aria-hidden="true">
+                        <span class="page-link">&hellip;</span>
+                    </li>
+                }
+
+                <li class="page-item @(isActive ? "active" : "") @(hideOnXs ? "d-none d-sm-inline-flex" : "")">
+                    <a class="page-link" href="@BuildPageQueryString(pageNumber)" @(isActive ? "aria-current=page" : "")>@pageNumber</a>
+                </li>
+            }
+
+            @if (currentPageNumber < totalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@BuildPageQueryString(currentPageNumber + 1)" aria-label="Next page">
+                        <span class="d-none d-sm-inline">Next</span>
+                        <span class="d-sm-none" aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link" aria-label="Next page">
+                        <span class="d-none d-sm-inline">Next</span>
+                        <span class="d-sm-none" aria-hidden="true">&rsaquo;</span>
+                    </span>
+                </li>
+            }
+        </ul>
+    </text>;
+}
+
+@if (!isPreviewMode)
+{
+    <div class="d-flex flex-wrap justify-content-center justify-content-md-between gap-3 mb-4" data-tour-index-bar="@featureSlug">
+        <div class="d-flex flex-wrap gap-2">
+            <form role="search" aria-label="Filter Group Tours by destination">
+                <div class="dropdown" data-destination-filter="@featureSlug">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Destinations@(selectedDestinations.Length > 0 ? $" ({selectedDestinations.Length})" : "")
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (var destination in availableDestinations)
+                        {
+                            var segment = destination.UrlSegment ?? "";
+                            var isSelected = selectedDestinations.Contains(segment, StringComparer.OrdinalIgnoreCase);
+                            var toggleUrl = BuildDestinationToggleUrl(segment, isSelected);
+                            <li>
+                                <a class="dropdown-item @(isSelected ? "active" : "")" href="@toggleUrl">
+                                    @destination.Name@(isSelected ? " ✓" : "")
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </form>
+            @if (selectedDestinations.Length > 0)
+            {
+                var clearUrl = HttpContextAccessor.HttpContext?.Request.Path.Value ?? "";
+                <a class="btn btn-outline-secondary" href="@clearUrl" aria-label="Clear destination filters">Clear</a>
+            }
+        </div>
+        <nav aria-label="Group Tours pagination, top">
+            @renderPaginationList(null)
+        </nav>
+    </div>
+
+    <style>
+        body.tour-index-loading .grid { pointer-events: none; }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var key = 'destinationFilterOpen:@featureSlug';
+            var wrapper = document.querySelector('[data-destination-filter="@featureSlug"]');
+            if (!wrapper) return;
+            var toggle = wrapper.querySelector('[data-bs-toggle="dropdown"]');
+            if (!toggle) return;
+
+            wrapper.querySelectorAll('.dropdown-item').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    try { sessionStorage.setItem(key, '1'); } catch (e) { /* tracking prevention */ }
+                });
+            });
+
+            try {
+                if (sessionStorage.getItem(key) === '1') {
+                    sessionStorage.removeItem(key);
+                    bootstrap.Dropdown.getOrCreateInstance(toggle).show();
+                }
+            } catch (e) { /* tracking prevention */ }
+
+            document.querySelectorAll('[data-tour-index-bar="@featureSlug"] a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    document.body.classList.add('tour-index-loading');
+                });
+            });
+        });
+    </script>
+}
+else
+{
+    <div class="alert alert-secondary mb-3">
+        <strong>Internal Links - Pagination Group Tours Preview</strong>
+        <p class="mb-0">Displays child pages with pagination controls (9 per page).</p>
+    </div>
+}
+
+@if (childPages != null && childPages.Length > 0)
+{
+    <div class="grid">
+        @foreach (var child in displayedPages)
+        {
+            var varWebpage = (IContentHeadingDefault)child;
+            var thumbnail = varWebpage.PageThumbnail;
+            <div class="g-col-12 g-col-md-6 g-col-lg-4">
+                <article class="card h-100 shadow shadow-hover">
+                    @if (thumbnail is not null)
+                    {
+                        var altText = thumbnail.Value<string>("mediaPropertyAltText");
+
+                        <img src="@(thumbnail.GetCropUrl("content6Col"))&format=webp"
+                             srcset="@(thumbnail.GetCropUrl("content3Col"))&format=webp 384w,
+                                     @(thumbnail.GetCropUrl("content6Col"))&format=webp 768w"
+                             sizes="(max-width: 768px) 100vw,
+                                    (max-width: 992px) 50vw,
+                                    33vw"
+                             class="card-img-top"
+                             alt="@(altText ?? thumbnail.Name)">
+                    }
+                    <div class="card-body">
+                        <h3 class="h5 card-title pb-1"><a class="nav-link stretched-link" href="@child.Url()">@varWebpage.PageTitleShort</a></h3>
+                        <p class="card-text pb-2">
+                            @varWebpage.PageDescription
+                        </p>
+                    </div>
+                    @{
+                        var destinations = child.Value<IEnumerable<IPublishedContent>>("destinations")?.ToArray() ?? [];
+                    }
+                    <footer class="card-footer bg-transparent border-0 small d-flex flex-wrap gap-1">
+                        @foreach (var destination in destinations)
+                        {
+                            <a class="btn btn-sm btn-outline-primary rounded-pill position-relative"
+                               style="z-index: 1;"
+                               data-country="@destination.UrlSegment"
+                               href="@destination.Url()">@destination.Name</a>
+                        }
+                    </footer>
+                </article>
+            </div>
+        }
+    </div>
+
+    if (!isPreviewMode)
+    {
+        <div class="d-flex flex-wrap justify-content-center justify-content-md-between gap-3 mt-4">
+            <div class="d-flex flex-wrap align-items-center gap-1">
+                @if (selectedDestinations.Length > 0)
+                {
+                    <span class="me-1 small">Filtered by:</span>
+                    @foreach (var segment in selectedDestinations)
+                    {
+                        var match = availableDestinations.FirstOrDefault(d =>
+                            string.Equals(d.UrlSegment, segment, StringComparison.OrdinalIgnoreCase));
+                        if (match == null) continue;
+                        var removeUrl = BuildDestinationToggleUrl(match.UrlSegment ?? "", true);
+                        <a class="btn btn-sm btn-outline-primary rounded-pill"
+                           data-destination="@match.UrlSegment"
+                           href="@removeUrl"
+                           aria-label="Remove @match.Name filter">@match.Name <span aria-hidden="true">&times;</span></a>
+                    }
+                }
+            </div>
+            <nav aria-label="Group Tours pagination, bottom">
+                @renderPaginationList(null)
+            </nav>
+        </div>
+    }
+}
+

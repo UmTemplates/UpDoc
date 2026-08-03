@@ -1,0 +1,59 @@
+// Sticky nav: any area containing a .sticky-nav element
+// Desktop (lg+): .feature-items wrapper becomes sticky inside the area
+[class*="area-"]:has(.sticky-nav) .feature-items {
+    @include media-breakpoint-up(md) {
+        position: sticky;
+        top: calc(var(--navbar-height) + 1rem);
+    }
+}
+
+// Area-level sticky: an area opted in via the layout's Display tab
+// emits .sticky-items. Same behaviour as the .sticky-nav rule above,
+// but driven by a per-area layout setting rather than nav content.
+[class*="area-"].sticky-items .feature-items {
+    @include media-breakpoint-up(md) {
+        position: sticky;
+        top: calc(var(--navbar-height) + 1rem);
+    }
+}
+
+// Site navbar: drop shadow only when it's actually stuck to the top.
+// Same dual-detection as the TOC below — native @container scroll-state
+// where supported (Chrome/Edge/Opera), .is-stuck class fallback for
+// Firefox via IntersectionObserver.
+.navbar.sticky-top {
+    container-type: scroll-state;
+    transition: box-shadow 0.2s ease-in-out;
+
+    @supports (container-type: scroll-state) {
+        @container scroll-state(stuck: top) {
+            box-shadow: var(--bs-box-shadow);
+        }
+    }
+
+    &.is-stuck {
+        box-shadow: var(--bs-box-shadow);
+    }
+}
+
+// Table of Contents sticky
+.nav-toc-sticky {
+    position: sticky;
+    top: var(--navbar-height);
+    z-index: 1020;
+    container-type: scroll-state;
+
+    // CSS-native stuck detection (Chrome/Edge/Opera)
+    @supports (container-type: scroll-state) {
+        @container scroll-state(stuck: top) {
+            .card-header {
+                box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.15);
+            }
+        }
+    }
+
+    // JS fallback (Firefox) — .is-stuck class toggled by IntersectionObserver
+    &.is-stuck {
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.15);
+    }
+}

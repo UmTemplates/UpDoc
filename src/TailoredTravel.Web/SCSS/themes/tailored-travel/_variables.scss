@@ -1,0 +1,30 @@
+// Tailored Travel — Tier 2 Sass variables (light mode)
+//
+// Mirrors Bootstrap's --bs-* slot vocabulary with the tt- prefix, sourced
+// from the Tier 1 palette in _colours.scss. Phase C wires --bs-* to its
+// matching --tt-* counterpart.
+
+// Body / surfaces
+$tt-body-color:        $tt-midnight;
+$tt-body-bg:           #fff;
+$tt-emphasis-color:    $tt-midnight;
+$tt-secondary-bg:      tint-color($tt-blue, 90%);
+$tt-tertiary-bg:       #ebf6fc;
+$tt-border-color:      tint-color($tt-blue, 70%);
+
+// Links
+$tt-link-color:        $tt-blue;
+$tt-link-hover-color:  shade-color($tt-blue, 20%);
+
+// Headings
+$tt-heading-color:     $tt-blue;
+
+// Theme-colour roles
+$tt-primary:           $tt-blue;
+$tt-secondary:         $tt-grey;
+$tt-success:           $tt-green;
+$tt-danger:            $tt-red;
+$tt-warning:           $tt-orange;
+$tt-info:              $tt-teal;
+$tt-light:             tint-color($tt-blue, 90%);
+$tt-dark:              $tt-midnight;

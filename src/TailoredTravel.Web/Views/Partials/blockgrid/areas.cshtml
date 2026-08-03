@@ -1,0 +1,23 @@
+@using Umbraco.Community.BlockPreview.Extensions
+@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@* DEBUG: Areas container properties
+<div class="alert alert-secondary">
+    <strong>Areas Debug</strong><br />
+    ContentKey: @Model.ContentKey<br />
+    Alias: @Model.Content.ContentType.Alias<br />
+    GridColumns: @Model.GridColumns<br />
+    Areas: @Model.Areas.Count() (@string.Join(", ", Model.Areas.Select(a => a.Alias)))
+</div>
+*@
+
+<!-- START - AREAS -->
+<div class="areas grid container-xxl" data-LayoutContentKey="@Model.ContentKey" data-LayoutAlias="@Model.Content.ContentType.Alias" data-GridColumns="@Model.GridColumns">
+    @foreach (var area in Model.Areas)
+    {
+        @await Html.GetPreviewBlockGridItemAreaHtmlAsync(area)
+    }
+</div>
+
+<!-- END - AREAS -->

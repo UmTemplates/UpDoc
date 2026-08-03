@@ -1,0 +1,151 @@
+﻿@using Microsoft.AspNetCore.Http
+@using TailoredTravel.Web.Helpers
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureInternalLinksPagination>>
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@* Note: ?page= querystring is still shared between paginators on the same page.
+The #anchor target is now per-block (feature slug), so two paginators no
+longer clash on the jump target. *@
+
+@{
+    Layout = "_Layout_Features.cshtml";
+
+    var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
+    var childPages = currentPage?.Children()?.Where(c => c is IContentHeadingDefault)?.ToArray() ?? [];
+
+    var pageSize = 6;
+    var isPreviewMode = HttpContextAccessor.HttpContext == null;
+
+    var queryPageValue = HttpContextAccessor.HttpContext?.Request.Query["page"];
+    var currentPageNumber = string.IsNullOrWhiteSpace(queryPageValue) ? 1 : Convert.ToInt32(queryPageValue);
+
+    var startItemIndex = currentPageNumber * pageSize - pageSize;
+
+    var displayedPages = childPages
+        .Where(x => x.IsVisible())
+        .OrderBy(x => x.SortOrder)
+        .Skip(startItemIndex)
+        .Take(pageSize);
+
+    var featureTitle = Model.Content.Value<string>("featurePropertyFeatureTitle");
+    var featureSlug = SlugHelper.ToSlug(featureTitle, Model.Content.ContentType.Alias, Model.ContentKey);
+}
+
+@{
+    Func<object?, Microsoft.AspNetCore.Mvc.Razor.HelperResult> renderPaginationList = @<text>
+        <ul class="pagination g-col-12">
+            @if (currentPageNumber > 1)
+            {
+                var prevPageQueryString = $"?page={currentPageNumber - 1}#{featureSlug}";
+
+                <li class="page-item">
+                    <a class="page-link" href="@prevPageQueryString">Prev</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Prev</span>
+                </li>
+            }
+
+            @for (var i = 1; i <= Math.Ceiling((double)childPages.Length / pageSize); i++)
+            {
+                var queryString = HttpContextAccessor.HttpContext?.Request.QueryString.Value;
+                if (queryString?.Contains("page=") == true)
+                {
+                    queryString = queryString.Replace("page=" + currentPageNumber, $"page={i}");
+                }
+                else
+                {
+                    if (queryString?.Length > 0)
+                    {
+                        queryString += "&";
+                    }
+                    queryString += $"page={i}";
+                }
+                queryString = queryString?.TrimStart('?');
+
+                queryString = "?" + queryString;
+
+                queryString += $"#{featureSlug}";
+
+                <li class="page-item @(currentPageNumber == i ? "active" : "")">
+                    <a class="page-link" href="@queryString">@i</a>
+                </li>
+            }
+
+
+            @if (currentPageNumber < Math.Ceiling((double)childPages.Length / pageSize))
+            {
+                var nextPageQueryString = $"?page={currentPageNumber + 1}#{featureSlug}";
+
+                <li class="page-item">
+                    <a class="page-link" href="@nextPageQueryString">Next</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">Next</span>
+                </li>
+            }
+        </ul>
+    </text>;
+}
+
+@if (childPages != null && childPages.Length > 0)
+{
+    if (!isPreviewMode)
+    {
+        <nav class="pagination-top grid mb-4" style="place-items: center" aria-label="Pagination, top">
+            @renderPaginationList(null)
+        </nav>
+    }
+    else
+    {
+        <div class="alert alert-secondary mb-3">
+            <strong>Internal Links - Pagination Preview</strong>
+            <p class="mb-0">Displays child pages with pagination controls (6 per page).</p>
+        </div>
+    }
+
+    <div class="grid">
+        @foreach (var child in displayedPages)
+        {
+            var varWebpage = (IContentHeadingDefault)child;
+            var thumbnail = varWebpage.PageThumbnail;
+            <div class="g-col-12 g-col-md-6 g-col-lg-4">
+                <article class="card h-100 shadow shadow-hover">
+                    @if (thumbnail is not null)
+                    {
+                        var altText = thumbnail.Value<string>("mediaPropertyAltText");
+
+                        <img src="@(thumbnail.GetCropUrl("content6Col"))&format=webp"
+                             srcset="@(thumbnail.GetCropUrl("content3Col"))&format=webp 384w,
+                                     @(thumbnail.GetCropUrl("content6Col"))&format=webp 768w"
+                             sizes="(max-width: 768px) 100vw,
+                                    (max-width: 992px) 50vw,
+                                    33vw"
+                             class="card-img-top"
+                             alt="@(altText ?? thumbnail.Name)">
+                    }
+                    <div class="card-body">
+                        <h3 class="h5 card-title pb-1"><a class="nav-link stretched-link" href="@child.Url()">@varWebpage.PageTitleShort</a></h3>
+                        <p class="card-text pb-2">
+                            @varWebpage.PageDescription
+                        </p>
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+
+    if (!isPreviewMode)
+    {
+        <nav class="pagination-bottom grid mt-4" style="place-items: center" aria-label="Pagination, bottom">
+            @renderPaginationList(null)
+        </nav>
+    }
+}

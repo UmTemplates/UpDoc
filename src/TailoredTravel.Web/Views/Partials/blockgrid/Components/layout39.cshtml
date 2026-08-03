@@ -1,0 +1,60 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Community.BlockPreview.Extensions;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+    Layout = "_Layout_Layouts.cshtml";
+
+    var areaColors = new Dictionary<string, string>();
+    var primary = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutPrimaryAreaColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(primary)) areaColors["primary"] = primary;
+    var secondary = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutSecondaryAreaColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(secondary)) areaColors["secondary"] = secondary;
+
+    var areaBorderColours = new Dictionary<string, string>();
+    var primaryBorderColour = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutPrimaryAreaBorderColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(primaryBorderColour)) areaBorderColours["primary"] = primaryBorderColour;
+    var secondaryBorderColour = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutSecondaryAreaBorderColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(secondaryBorderColour)) areaBorderColours["secondary"] = secondaryBorderColour;
+
+    var areaBorderWidths = new Dictionary<string, int>();
+    var primaryBorderWidth = Model.Settings?.Value<decimal?>("layoutPrimaryAreaBorderWidth");
+    if (primaryBorderWidth.HasValue) areaBorderWidths["primary"] = Math.Clamp((int)Math.Round(primaryBorderWidth.Value), 1, 5);
+    var secondaryBorderWidth = Model.Settings?.Value<decimal?>("layoutSecondaryAreaBorderWidth");
+    if (secondaryBorderWidth.HasValue) areaBorderWidths["secondary"] = Math.Clamp((int)Math.Round(secondaryBorderWidth.Value), 1, 5);
+
+    ViewData["AreaBackgroundColors"] = areaColors;
+    ViewData["AreaBorderColours"] = areaBorderColours;
+    ViewData["AreaBorderWidths"] = areaBorderWidths;
+
+    var secondaryArea = Model.Areas.FirstOrDefault(a => (a.Alias ?? "").StartsWith("secondary"));
+    var secondaryHasDescendantsNav = secondaryArea != null
+        && secondaryArea.Any(item => item.Content.ContentType.Alias == "featureNavigationDescendants");
+
+    string drawerId = null;
+    if (secondaryHasDescendantsNav)
+    {
+        drawerId = $"tt-secondary-drawer-{Model.ContentKey}";
+        ViewData["SecondaryOffcanvasDrawerId"] = drawerId;
+    }
+}
+
+@await Html.GetPreviewBlockGridItemAreasHtmlAsync(Model)
+
+@if (drawerId != null)
+{
+    <nav class="navbar tt-area-drawer-toggle bg-primary d-md-none" data-bs-theme="dark" aria-label="In this section">
+        <button type="button"
+                class="navbar-toggler border-0 ms-auto"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#@drawerId"
+                aria-controls="@drawerId">
+            <span class="d-inline-flex align-items-center gap-2">
+                <span class="navbar-toggler-label">In this section</span>
+                <span class="navbar-toggler-icon"></span>
+            </span>
+        </button>
+    </nav>
+}
+
+

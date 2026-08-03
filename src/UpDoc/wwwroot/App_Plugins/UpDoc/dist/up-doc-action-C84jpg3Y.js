@@ -1,32 +1,33 @@
-import { U as A } from "./up-doc-modal.token-DHoS03yR.js";
-import { U as L } from "./blueprint-picker-modal.token-mXZoRNwG.js";
-import { f as G } from "./workflow.service-rwnAqyw6.js";
-import { s as O, c as J, a as _, b as E, d as S, m as I } from "./transforms-qqnY8EQ-.js";
-import { UmbEntityActionBase as M } from "@umbraco-cms/backoffice/entity-action";
-import { umbOpenModal as K } from "@umbraco-cms/backoffice/modal";
-import { UMB_NOTIFICATION_CONTEXT as j } from "@umbraco-cms/backoffice/notification";
-import { UMB_AUTH_CONTEXT as z } from "@umbraco-cms/backoffice/auth";
-import { UmbDocumentTypeStructureRepository as H } from "@umbraco-cms/backoffice/document-type";
-import { UmbDocumentBlueprintItemRepository as P } from "@umbraco-cms/backoffice/document-blueprint";
-import { UmbDocumentItemRepository as W } from "@umbraco-cms/backoffice/document";
-class ce extends M {
-  #n = new H(this);
-  #o = new P(this);
-  #a = new W(this);
-  constructor(o, i) {
-    super(o, i);
+import { U as A, a as L } from "./import-facts-DXyB0qw7.js";
+import { U as _ } from "./blueprint-picker-modal.token-mXZoRNwG.js";
+import { I as E } from "./workflow.types-QrurYwv2.js";
+import { f as M } from "./workflow.service-rwnAqyw6.js";
+import { s as N, c as G, a as J, b as j, d as S, m as K } from "./transforms-qqnY8EQ-.js";
+import { UmbEntityActionBase as P } from "@umbraco-cms/backoffice/entity-action";
+import { umbOpenModal as q } from "@umbraco-cms/backoffice/modal";
+import { UMB_NOTIFICATION_CONTEXT as z } from "@umbraco-cms/backoffice/notification";
+import { UMB_AUTH_CONTEXT as H } from "@umbraco-cms/backoffice/auth";
+import { UmbDocumentTypeStructureRepository as W } from "@umbraco-cms/backoffice/document-type";
+import { UmbDocumentBlueprintItemRepository as X } from "@umbraco-cms/backoffice/document-blueprint";
+import { UmbDocumentItemRepository as Q } from "@umbraco-cms/backoffice/document";
+class fe extends P {
+  #n = new W(this);
+  #o = new X(this);
+  #a = new Q(this);
+  constructor(o, s) {
+    super(o, s);
   }
   async execute() {
-    const o = await this.getContext(j), i = this.args.unique ?? null;
+    const o = await this.getContext(z), s = this.args.unique ?? null;
     try {
       let p = null;
-      if (i) {
-        const { data: s } = await this.#a.requestItems([i]);
-        s?.length && (p = s[0].documentType.unique);
+      if (s) {
+        const { data: a } = await this.#a.requestItems([s]);
+        a?.length && (p = a[0].documentType.unique);
       }
       const n = (await this.#n.requestAllowedChildrenOf(
         p,
-        i
+        s
       )).data;
       if (!n?.items?.length) {
         o.peek("danger", {
@@ -34,15 +35,15 @@ class ce extends M {
         });
         return;
       }
-      const t = await (await this.getContext(z)).getLatestToken(), a = await G(t), c = new Set(a.blueprintIds), r = [];
-      for (const s of n.items) {
-        const { data: b } = await this.#o.requestItemsByDocumentType(s.unique);
+      const t = await (await this.getContext(H)).getLatestToken(), i = await M(t), c = new Set(i.blueprintIds), r = [];
+      for (const a of n.items) {
+        const { data: b } = await this.#o.requestItemsByDocumentType(a.unique);
         if (b?.length) {
           const h = b.filter((v) => c.has(v.unique));
           h.length && r.push({
-            documentTypeUnique: s.unique,
-            documentTypeName: s.name,
-            documentTypeIcon: s.icon ?? null,
+            documentTypeUnique: a.unique,
+            documentTypeName: a.name,
+            documentTypeIcon: a.icon ?? null,
             blueprints: h.map((v) => ({
               blueprintUnique: v.unique,
               blueprintName: v.name
@@ -58,18 +59,18 @@ class ce extends M {
       }
       let u;
       try {
-        u = await K(this, L, {
+        u = await q(this, _, {
           data: { documentTypes: r }
         });
       } catch {
         return;
       }
-      const { blueprintUnique: m, documentTypeUnique: l } = u, f = r.find((s) => s.documentTypeUnique === l), y = f?.blueprints.find((s) => s.blueprintUnique === m);
+      const { blueprintUnique: m, documentTypeUnique: l } = u, f = r.find((a) => a.documentTypeUnique === l), y = f?.blueprints.find((a) => a.blueprintUnique === m);
       let k;
       try {
-        k = await K(this, A, {
+        k = await q(this, A, {
           data: {
-            unique: i,
+            unique: s,
             documentTypeName: f?.documentTypeName ?? "",
             blueprintName: y?.blueprintName ?? "",
             blueprintId: m
@@ -78,10 +79,10 @@ class ce extends M {
       } catch {
         return;
       }
-      const { name: g, mediaUnique: q, sourceUrl: V, sectionLookup: B, stableKeyLookup: N, config: T } = k;
-      if (!g || !T || !q && !V)
+      const { name: g, mediaUnique: D, sourceUrl: V, sectionLookup: C, stableKeyLookup: O, config: T } = k;
+      if (!g || !T || !D && !V)
         return;
-      const U = await fetch(
+      const I = await fetch(
         `/umbraco/management/api/v1/document-blueprint/${m}/scaffold`,
         {
           method: "GET",
@@ -91,34 +92,40 @@ class ce extends M {
           }
         }
       );
-      if (!U.ok) {
-        const s = await U.json();
-        console.error("Scaffold failed:", s), o.peek("danger", {
-          data: { message: `Failed to scaffold from blueprint: ${s.title || "Unknown error"}` }
+      if (!I.ok) {
+        const a = await I.json();
+        console.error("Scaffold failed:", a), o.peek("danger", {
+          data: { message: `Failed to scaffold from blueprint: ${a.title || "Unknown error"}` }
         });
         return;
       }
-      const $ = await U.json(), D = $.values ? JSON.parse(JSON.stringify($.values)) : [], C = /* @__PURE__ */ new Set();
-      for (const s of T.map.mappings) {
-        if (s.enabled === !1) continue;
-        let b = B[s.source];
-        if (!b && s.sourceKey && N) {
-          const h = N[s.sourceKey];
+      const $ = await I.json(), U = $.values ? JSON.parse(JSON.stringify($.values)) : [], B = /* @__PURE__ */ new Set();
+      for (const a of T.map.mappings) {
+        if (a.enabled === !1) continue;
+        if (a.source === E) {
+          if (!D) continue;
+          for (const h of a.destinations)
+            L(U, h, D);
+          continue;
+        }
+        let b = C[a.source];
+        if (!b && a.sourceKey && O) {
+          const h = O[a.sourceKey];
           if (h) {
-            const v = s.source.split(".").pop();
-            v && (b = B[`${h}.${v}`]);
+            const v = a.source.split(".").pop();
+            v && (b = C[`${h}.${v}`]);
           }
         }
         if (b)
-          for (const h of s.destinations)
-            this.#i(D, h, b, T, C);
+          for (const h of a.destinations)
+            this.#i(U, h, b, T, B);
       }
-      this.#s(D, T, C);
+      this.#s(U, T, B);
       const R = {
-        parent: i ? { id: i } : null,
+        parent: s ? { id: s } : null,
         documentType: { id: l },
         template: $.template ? { id: $.template.id } : null,
-        values: D,
+        values: U,
         variants: [
           {
             name: g,
@@ -135,23 +142,23 @@ class ce extends M {
         body: JSON.stringify(R)
       });
       if (!x.ok) {
-        const s = await x.json();
-        console.error("Document creation failed:", s), o.peek("danger", {
-          data: { message: `Failed to create document: ${s.title || s.detail || "Unknown error"}` }
+        const a = await x.json();
+        console.error("Document creation failed:", a), o.peek("danger", {
+          data: { message: `Failed to create document: ${a.title || a.detail || "Unknown error"}` }
         });
         return;
       }
       const w = x.headers.get("Location")?.split("/").pop();
       if (w) {
-        const s = await fetch(`/umbraco/management/api/v1/document/${w}`, {
+        const a = await fetch(`/umbraco/management/api/v1/document/${w}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${t}`
           }
         });
-        if (s.ok) {
-          const b = await s.json(), h = await fetch(`/umbraco/management/api/v1/document/${w}`, {
+        if (a.ok) {
+          const b = await a.json(), h = await fetch(`/umbraco/management/api/v1/document/${w}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -161,14 +168,14 @@ class ce extends M {
           });
           h.ok || console.warn("Document save failed, but document was created:", await h.text());
         } else
-          console.warn("Could not fetch document for save:", await s.text());
+          console.warn("Could not fetch document for save:", await a.text());
       }
       if (o.peek("positive", {
         data: { message: `Document "${g}" created successfully!` }
       }), w) {
-        const s = `/umbraco/section/content/workspace/document/edit/${w}`;
+        const a = `/umbraco/section/content/workspace/document/edit/${w}`;
         setTimeout(() => {
-          window.location.href = s;
+          window.location.href = a;
         }, 150);
       }
     } catch (p) {
@@ -183,39 +190,39 @@ class ce extends M {
    * mappedFields tracks which fields have been written by our mappings —
    * first write replaces the blueprint default, subsequent writes concatenate.
    */
-  #i(o, i, p, d, n) {
+  #i(o, s, p, d, n) {
     const e = p;
-    if (i.contentTypeKey) {
-      for (const a of [...d.destination.blockGrids ?? [], ...d.destination.blockLists ?? []])
-        this.#t(o, a.alias, i.contentTypeKey, i.target, e, n);
+    if (s.contentTypeKey) {
+      for (const i of [...d.destination.blockGrids ?? [], ...d.destination.blockLists ?? []])
+        this.#t(o, i.alias, s.contentTypeKey, s.target, e, n);
       return;
     }
-    if (i.blockKey) {
-      for (const a of [...d.destination.blockGrids ?? [], ...d.destination.blockLists ?? []]) {
-        const c = a.blocks.find((r) => r.key === i.blockKey);
+    if (s.blockKey) {
+      for (const i of [...d.destination.blockGrids ?? [], ...d.destination.blockLists ?? []]) {
+        const c = i.blocks.find((r) => r.key === s.blockKey);
         if (c) {
           const r = c.contentTypeKey;
-          r ? this.#t(o, a.alias, r, i.target, e, n) : c.identifyBy && this.#e(o, a.alias, c.identifyBy, i.target, e, n);
+          r ? this.#t(o, i.alias, r, s.target, e, n) : c.identifyBy && this.#e(o, i.alias, c.identifyBy, s.target, e, n);
           return;
         }
       }
-      console.log(`Block ${i.blockKey} not found in destination config`);
+      console.log(`Block ${s.blockKey} not found in destination config`);
       return;
     }
-    const t = i.target.split(".");
+    const t = s.target.split(".");
     if (t.length === 1) {
-      const a = t[0], c = o.find((r) => r.alias === a);
+      const i = t[0], c = o.find((r) => r.alias === i);
       if (c)
-        if (n.has(a)) {
+        if (n.has(i)) {
           const r = typeof c.value == "string" ? c.value : "";
           c.value = `${r} ${e}`;
         } else
           c.value = e;
       else
-        o.push({ alias: a, value: e });
-      n.add(a);
+        o.push({ alias: i, value: e });
+      n.add(i);
     } else if (t.length === 3) {
-      const [a, c, r] = t, m = [...d.destination.blockGrids ?? [], ...d.destination.blockLists ?? []].find((g) => g.key === a), l = m?.blocks.find((g) => g.key === c);
+      const [i, c, r] = t, m = [...d.destination.blockGrids ?? [], ...d.destination.blockLists ?? []].find((g) => g.key === i), l = m?.blocks.find((g) => g.key === c);
       if (!m || !l) return;
       const f = m.alias, y = l.properties?.find((g) => g.key === r)?.alias ?? r, k = l.identifyBy;
       if (!k) return;
@@ -227,11 +234,11 @@ class ce extends M {
    * Finds the block by searching for a property value match.
    * mappedFields tracks writes — first replaces blueprint default, subsequent concatenate.
    */
-  #e(o, i, p, d, n, e) {
-    const t = o.find((a) => a.alias === i);
+  #e(o, s, p, d, n, e) {
+    const t = o.find((i) => i.alias === s);
     if (!(!t || !t.value))
       try {
-        const a = typeof t.value == "string", c = a ? JSON.parse(t.value) : t.value, r = c.contentData;
+        const i = typeof t.value == "string", c = i ? JSON.parse(t.value) : t.value, r = c.contentData;
         if (!r) return;
         for (const u of r) {
           const m = u.values?.find((l) => l.alias === p.property);
@@ -250,9 +257,9 @@ ${n}`;
             break;
           }
         }
-        t.value = a ? JSON.stringify(c) : c;
-      } catch (a) {
-        console.error(`Failed to apply block mapping to ${i}:`, a);
+        t.value = i ? JSON.stringify(c) : c;
+      } catch (i) {
+        console.error(`Failed to apply block mapping to ${s}:`, i);
       }
   }
   /**
@@ -260,11 +267,11 @@ ${n}`;
    * Umbraco regenerates block instance keys when creating documents from blueprints,
    * so we match by element type GUID (contentTypeKey) which is stable across all documents.
    */
-  #t(o, i, p, d, n, e) {
-    const t = o.find((a) => a.alias === i);
+  #t(o, s, p, d, n, e) {
+    const t = o.find((i) => i.alias === s);
     if (!(!t || !t.value))
       try {
-        const a = typeof t.value == "string", c = a ? JSON.parse(t.value) : t.value, r = c.contentData;
+        const i = typeof t.value == "string", c = i ? JSON.parse(t.value) : t.value, r = c.contentData;
         if (!r) return;
         const u = r.find((f) => f.contentTypeKey === p);
         if (!u) return;
@@ -278,9 +285,9 @@ ${n}`;
             l.value = n;
         else
           u.values = u.values ?? [], u.values.push({ alias: d, value: n });
-        e.add(m), t.value = a ? JSON.stringify(c) : c;
-      } catch (a) {
-        console.error(`Failed to apply block mapping by content type to ${i}:`, a);
+        e.add(m), t.value = i ? JSON.stringify(c) : c;
+      } catch (i) {
+        console.error(`Failed to apply block mapping by content type to ${s}:`, i);
       }
   }
   /**
@@ -289,38 +296,38 @@ ${n}`;
    * Uses destination.json field types to auto-detect which fields need conversion.
    * Only converts fields that were written by our mappings (tracked by mappedFields).
    */
-  #s(o, i, p) {
-    for (const n of i.destination.fields)
+  #s(o, s, p) {
+    for (const n of s.destination.fields)
       if ((n.type === "text" || n.type === "textArea") && p.has(n.alias)) {
         const e = o.find((t) => t.alias === n.alias);
-        e && typeof e.value == "string" && (e.value = O(e.value));
+        e && typeof e.value == "string" && (e.value = N(e.value));
       }
-    for (const n of i.destination.fields)
+    for (const n of s.destination.fields)
       if (n.type === "number" && p.has(n.alias)) {
         const e = o.findIndex((t) => t.alias === n.alias);
         if (e !== -1 && typeof o[e].value == "string") {
-          const t = J(o[e].value);
+          const t = G(o[e].value);
           t === null ? (console.warn(`UpDoc: could not coerce "${o[e].value}" to an integer for field "${n.alias}" — leaving property unset.`), o.splice(e, 1)) : o[e].value = t;
         }
       }
-    for (const n of i.destination.fields)
+    for (const n of s.destination.fields)
       if (n.type === "date" && p.has(n.alias)) {
         const e = o.findIndex((t) => t.alias === n.alias);
         if (e !== -1 && typeof o[e].value == "string") {
-          const t = _(o[e].value);
-          t === null ? (console.warn(`UpDoc: could not coerce "${o[e].value}" to a date for field "${n.alias}" — leaving property unset.`), o.splice(e, 1)) : o[e].value = E(t);
+          const t = J(o[e].value);
+          t === null ? (console.warn(`UpDoc: could not coerce "${o[e].value}" to a date for field "${n.alias}" — leaving property unset.`), o.splice(e, 1)) : o[e].value = j(t);
         }
       }
-    for (const n of i.destination.fields)
+    for (const n of s.destination.fields)
       if (n.type === "richText" && p.has(n.alias)) {
         const e = o.find((t) => t.alias === n.alias);
-        e && typeof e.value == "string" && (e.value = S(I(e.value)));
+        e && typeof e.value == "string" && (e.value = S(K(e.value)));
       }
-    const d = [...i.destination.blockGrids ?? [], ...i.destination.blockLists ?? []];
+    const d = [...s.destination.blockGrids ?? [], ...s.destination.blockLists ?? []];
     for (const n of d) {
       const e = o.find((r) => r.alias === n.alias);
       if (!e?.value) continue;
-      const t = typeof e.value == "string", a = t ? JSON.parse(e.value) : e.value, c = a.contentData;
+      const t = typeof e.value == "string", i = t ? JSON.parse(e.value) : e.value, c = i.contentData;
       if (c) {
         for (const r of c)
           for (const u of n.blocks)
@@ -329,22 +336,22 @@ ${n}`;
                 const f = `${r.key}:${l.alias}`;
                 if ((l.type === "text" || l.type === "textArea") && p.has(f)) {
                   const y = r.values?.find((k) => k.alias === l.alias);
-                  y && typeof y.value == "string" && (y.value = O(y.value));
+                  y && typeof y.value == "string" && (y.value = N(y.value));
                 }
                 if (l.type === "richText" && p.has(f)) {
                   const y = r.values?.find((k) => k.alias === l.alias);
-                  y && typeof y.value == "string" && (y.value = S(I(y.value)));
+                  y && typeof y.value == "string" && (y.value = S(K(y.value)));
                 }
               }
               break;
             }
-        e.value = t ? JSON.stringify(a) : a;
+        e.value = t ? JSON.stringify(i) : i;
       }
     }
   }
 }
 export {
-  ce as UpDocEntityAction,
-  ce as default
+  fe as UpDocEntityAction,
+  fe as default
 };
-//# sourceMappingURL=up-doc-action-CBa41gkb.js.map
+//# sourceMappingURL=up-doc-action-C84jpg3Y.js.map

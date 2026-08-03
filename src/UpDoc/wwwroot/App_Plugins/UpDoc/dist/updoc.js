@@ -8,7 +8,7 @@ const o = [
     alias: "UpDoc.EntityAction",
     name: "UpDoc Entity Action",
     weight: 1100,
-    api: () => import("./up-doc-action-CBa41gkb.js"),
+    api: () => import("./up-doc-action-C84jpg3Y.js"),
     forEntityTypes: ["document"],
     meta: {
       icon: "icon-document",
@@ -40,7 +40,7 @@ const o = [
     kind: "button",
     alias: "UpDoc.CollectionAction",
     name: "UpDoc Collection Action",
-    element: () => import("./up-doc-collection-action.element-CM5EdyWA.js"),
+    element: () => import("./up-doc-collection-action.element-Bu4TLarS.js"),
     weight: 50,
     meta: {
       label: "Create from Source"

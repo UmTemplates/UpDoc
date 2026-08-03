@@ -1,29 +1,30 @@
 import { U as te } from "./blueprint-picker-modal.token-mXZoRNwG.js";
-import { U as ne } from "./up-doc-modal.token-DHoS03yR.js";
+import { U as ne, a as oe } from "./import-facts-DXyB0qw7.js";
+import { I as ae } from "./workflow.types-QrurYwv2.js";
 import { f as z } from "./workflow.service-rwnAqyw6.js";
-import { s as W, c as oe, a as ae, b as ie, d as G, m as J } from "./transforms-qqnY8EQ-.js";
-import { html as P, css as se, state as E, customElement as re } from "@umbraco-cms/backoffice/external/lit";
-import { UmbLitElement as ce } from "@umbraco-cms/backoffice/lit-element";
-import { UMB_DOCUMENT_WORKSPACE_CONTEXT as le } from "@umbraco-cms/backoffice/document";
+import { s as W, c as ie, a as se, b as re, d as G, m as J } from "./transforms-qqnY8EQ-.js";
+import { html as P, css as ce, state as V, customElement as le } from "@umbraco-cms/backoffice/external/lit";
+import { UmbLitElement as ue } from "@umbraco-cms/backoffice/lit-element";
+import { UMB_DOCUMENT_WORKSPACE_CONTEXT as fe } from "@umbraco-cms/backoffice/document";
 import { UMB_AUTH_CONTEXT as H } from "@umbraco-cms/backoffice/auth";
-import { UMB_NOTIFICATION_CONTEXT as ue } from "@umbraco-cms/backoffice/notification";
+import { UMB_NOTIFICATION_CONTEXT as pe } from "@umbraco-cms/backoffice/notification";
 import { umbOpenModal as j } from "@umbraco-cms/backoffice/modal";
-import { UmbDocumentTypeStructureRepository as fe } from "@umbraco-cms/backoffice/document-type";
-import { UmbDocumentBlueprintItemRepository as pe } from "@umbraco-cms/backoffice/document-blueprint";
-var de = Object.defineProperty, ye = Object.getOwnPropertyDescriptor, X = (e) => {
+import { UmbDocumentTypeStructureRepository as de } from "@umbraco-cms/backoffice/document-type";
+import { UmbDocumentBlueprintItemRepository as ye } from "@umbraco-cms/backoffice/document-blueprint";
+var he = Object.defineProperty, me = Object.getOwnPropertyDescriptor, X = (e) => {
   throw TypeError(e);
 }, D = (e, o, s, c) => {
-  for (var t = c > 1 ? void 0 : c ? ye(o, s) : o, n = e.length - 1, a; n >= 0; n--)
+  for (var t = c > 1 ? void 0 : c ? me(o, s) : o, n = e.length - 1, a; n >= 0; n--)
     (a = e[n]) && (t = (c ? a(o, s, t) : a(t)) || t);
-  return c && t && de(o, s, t), t;
-}, Q = (e, o, s) => o.has(e) || X("Cannot " + s), q = (e, o, s) => (Q(e, o, "read from private field"), s ? s.call(e) : o.get(e)), K = (e, o, s) => o.has(e) ? X("Cannot add the same private member more than once") : o instanceof WeakSet ? o.add(e) : o.set(e, s), k = (e, o, s) => (Q(e, o, "access private method"), s), O, S, m, I, Y, Z, A, V, F;
-let _ = class extends ce {
+  return c && t && he(o, s, t), t;
+}, Q = (e, o, s) => o.has(e) || X("Cannot " + s), O = (e, o, s) => (Q(e, o, "read from private field"), s ? s.call(e) : o.get(e)), N = (e, o, s) => o.has(e) ? X("Cannot add the same private member more than once") : o instanceof WeakSet ? o.add(e) : o.set(e, s), T = (e, o, s) => (Q(e, o, "access private method"), s), S, B, m, K, Y, Z, A, E, F;
+let _ = class extends ue {
   constructor() {
-    super(), K(this, m), K(this, O, new fe(this)), K(this, S, new pe(this)), this._hasWorkflows = !1, this.consumeContext(le, (e) => {
+    super(), N(this, m), N(this, S, new de(this)), N(this, B, new ye(this)), this._hasWorkflows = !1, this.consumeContext(fe, (e) => {
       this.observe(e?.unique, (o) => {
-        this._documentUnique = o, k(this, m, I).call(this);
+        this._documentUnique = o, T(this, m, K).call(this);
       }), this.observe(e?.contentTypeUnique, (o) => {
-        this._documentTypeUnique = o, k(this, m, I).call(this);
+        this._documentTypeUnique = o, T(this, m, K).call(this);
       });
     });
   }
@@ -33,25 +34,25 @@ let _ = class extends ce {
 				color="default"
 				look="outline"
 				label="Create from Source"
-				@click=${k(this, m, Y)}>
+				@click=${T(this, m, Y)}>
 				Create from Source
 			</uui-button>
 		` : P``;
   }
 };
-O = /* @__PURE__ */ new WeakMap();
 S = /* @__PURE__ */ new WeakMap();
+B = /* @__PURE__ */ new WeakMap();
 m = /* @__PURE__ */ new WeakSet();
-I = async function() {
+K = async function() {
   if (this._documentTypeUnique)
     try {
-      const o = await (await this.getContext(H)).getLatestToken(), s = await z(o), c = new Set(s.blueprintIds), { data: t } = await q(this, O).requestAllowedChildrenOf(
+      const o = await (await this.getContext(H)).getLatestToken(), s = await z(o), c = new Set(s.blueprintIds), { data: t } = await O(this, S).requestAllowedChildrenOf(
         this._documentTypeUnique,
         this._documentUnique || null
       );
       if (!t?.items?.length) return;
       for (const n of t.items) {
-        const { data: a } = await q(this, S).requestItemsByDocumentType(n.unique);
+        const { data: a } = await O(this, B).requestItemsByDocumentType(n.unique);
         if (a?.some((i) => c.has(i.unique))) {
           this._hasWorkflows = !0;
           return;
@@ -62,9 +63,9 @@ I = async function() {
 };
 Y = async function() {
   if (!this._documentTypeUnique) return;
-  const e = await this.getContext(ue), s = await (await this.getContext(H)).getLatestToken(), c = this._documentUnique ?? null;
+  const e = await this.getContext(pe), s = await (await this.getContext(H)).getLatestToken(), c = this._documentUnique ?? null;
   try {
-    const t = await z(s), n = new Set(t.blueprintIds), { data: a } = await q(this, O).requestAllowedChildrenOf(
+    const t = await z(s), n = new Set(t.blueprintIds), { data: a } = await O(this, S).requestAllowedChildrenOf(
       this._documentTypeUnique,
       c
     );
@@ -75,15 +76,15 @@ Y = async function() {
       return;
     }
     const i = [];
-    for (const u of a.items) {
-      const { data: v } = await q(this, S).requestItemsByDocumentType(u.unique);
-      if (v?.length) {
-        const T = v.filter((b) => n.has(b.unique));
-        T.length && i.push({
-          documentTypeUnique: u.unique,
-          documentTypeName: u.name,
-          documentTypeIcon: u.icon ?? null,
-          blueprints: T.map((b) => ({
+    for (const l of a.items) {
+      const { data: k } = await O(this, B).requestItemsByDocumentType(l.unique);
+      if (k?.length) {
+        const w = k.filter((b) => n.has(b.unique));
+        w.length && i.push({
+          documentTypeUnique: l.unique,
+          documentTypeName: l.name,
+          documentTypeIcon: l.icon ?? null,
+          blueprints: w.map((b) => ({
             blueprintUnique: b.unique,
             blueprintName: b.name
           }))
@@ -96,15 +97,15 @@ Y = async function() {
       });
       return;
     }
-    let l;
+    let u;
     try {
-      l = await j(this, te, {
+      u = await j(this, te, {
         data: { documentTypes: i }
       });
     } catch {
       return;
     }
-    const { blueprintUnique: r, documentTypeUnique: p } = l, f = i.find((u) => u.documentTypeUnique === p)?.blueprints.find((u) => u.blueprintUnique === r);
+    const { blueprintUnique: r, documentTypeUnique: p } = u, f = i.find((l) => l.documentTypeUnique === p)?.blueprints.find((l) => l.blueprintUnique === r);
     let d;
     try {
       d = await j(this, ne, {
@@ -117,9 +118,9 @@ Y = async function() {
     } catch {
       return;
     }
-    const { name: y, mediaUnique: w, sourceUrl: g, sectionLookup: L, stableKeyLookup: M, config: C } = d;
-    if (!y || !C || !w && !g) return;
-    const B = await fetch(
+    const { name: y, mediaUnique: v, sourceUrl: g, sectionLookup: L, stableKeyLookup: M, config: C } = d;
+    if (!y || !C || !v && !g) return;
+    const x = await fetch(
       `/umbraco/management/api/v1/document-blueprint/${r}/scaffold`,
       {
         method: "GET",
@@ -129,36 +130,42 @@ Y = async function() {
         }
       }
     );
-    if (!B.ok) {
-      const u = await B.json();
+    if (!x.ok) {
+      const l = await x.json();
       e.peek("danger", {
-        data: { message: `Failed to scaffold from blueprint: ${u.title || "Unknown error"}` }
+        data: { message: `Failed to scaffold from blueprint: ${l.title || "Unknown error"}` }
       });
       return;
     }
-    const $ = await B.json(), x = $.values ? JSON.parse(JSON.stringify($.values)) : [], R = /* @__PURE__ */ new Set();
-    for (const u of C.map.mappings) {
-      if (u.enabled === !1) continue;
-      let v = L[u.source];
-      if (!v && u.sourceKey && M) {
-        const T = M[u.sourceKey];
-        if (T) {
-          const b = u.source.split(".").pop();
-          b && (v = L[`${T}.${b}`]);
+    const $ = await x.json(), q = $.values ? JSON.parse(JSON.stringify($.values)) : [], R = /* @__PURE__ */ new Set();
+    for (const l of C.map.mappings) {
+      if (l.enabled === !1) continue;
+      if (l.source === ae) {
+        if (!v) continue;
+        for (const w of l.destinations)
+          oe(q, w, v);
+        continue;
+      }
+      let k = L[l.source];
+      if (!k && l.sourceKey && M) {
+        const w = M[l.sourceKey];
+        if (w) {
+          const b = l.source.split(".").pop();
+          b && (k = L[`${w}.${b}`]);
         }
       }
-      if (v)
-        for (const T of u.destinations)
-          k(this, m, Z).call(this, x, T, v, C, R);
+      if (k)
+        for (const w of l.destinations)
+          T(this, m, Z).call(this, q, w, k, C, R);
     }
-    k(this, m, F).call(this, x, C, R);
+    T(this, m, F).call(this, q, C, R);
     const ee = {
       parent: c ? { id: c } : null,
       documentType: { id: p },
       template: $.template ? { id: $.template.id } : null,
-      values: x,
+      values: q,
       variants: [{ name: y, culture: null, segment: null }]
-    }, N = await fetch("/umbraco/management/api/v1/document", {
+    }, I = await fetch("/umbraco/management/api/v1/document", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -166,34 +173,34 @@ Y = async function() {
       },
       body: JSON.stringify(ee)
     });
-    if (!N.ok) {
-      const u = await N.json();
+    if (!I.ok) {
+      const l = await I.json();
       e.peek("danger", {
-        data: { message: `Failed to create document: ${u.title || u.detail || "Unknown error"}` }
+        data: { message: `Failed to create document: ${l.title || l.detail || "Unknown error"}` }
       });
       return;
     }
-    const U = N.headers.get("Location")?.split("/").pop();
+    const U = I.headers.get("Location")?.split("/").pop();
     if (U) {
-      const u = await fetch(`/umbraco/management/api/v1/document/${U}`, {
+      const l = await fetch(`/umbraco/management/api/v1/document/${U}`, {
         method: "GET",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${s}` }
       });
-      if (u.ok) {
-        const v = await u.json();
+      if (l.ok) {
+        const k = await l.json();
         await fetch(`/umbraco/management/api/v1/document/${U}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json", Authorization: `Bearer ${s}` },
-          body: JSON.stringify(v)
+          body: JSON.stringify(k)
         });
       }
     }
     if (e.peek("positive", {
       data: { message: `Document "${y}" created successfully!` }
     }), U) {
-      const u = `/umbraco/section/content/workspace/document/edit/${U}`;
+      const l = `/umbraco/section/content/workspace/document/edit/${U}`;
       setTimeout(() => {
-        window.location.href = u;
+        window.location.href = l;
       }, 150);
     }
   } catch (t) {
@@ -206,15 +213,15 @@ Z = function(e, o, s, c, t) {
   const n = s;
   if (o.contentTypeKey) {
     for (const i of [...c.destination.blockGrids ?? [], ...c.destination.blockLists ?? []])
-      k(this, m, V).call(this, e, i.alias, o.contentTypeKey, o.target, n, t);
+      T(this, m, E).call(this, e, i.alias, o.contentTypeKey, o.target, n, t);
     return;
   }
   if (o.blockKey) {
     for (const i of [...c.destination.blockGrids ?? [], ...c.destination.blockLists ?? []]) {
-      const l = i.blocks.find((r) => r.key === o.blockKey);
-      if (l) {
-        const r = l.contentTypeKey;
-        r ? k(this, m, V).call(this, e, i.alias, r, o.target, n, t) : l.identifyBy && k(this, m, A).call(this, e, i.alias, l.identifyBy, o.target, n, t);
+      const u = i.blocks.find((r) => r.key === o.blockKey);
+      if (u) {
+        const r = u.contentTypeKey;
+        r ? T(this, m, E).call(this, e, i.alias, r, o.target, n, t) : u.identifyBy && T(this, m, A).call(this, e, i.alias, u.identifyBy, o.target, n, t);
         return;
       }
     }
@@ -223,29 +230,29 @@ Z = function(e, o, s, c, t) {
   }
   const a = o.target.split(".");
   if (a.length === 1) {
-    const i = a[0], l = e.find((r) => r.alias === i);
-    if (l)
+    const i = a[0], u = e.find((r) => r.alias === i);
+    if (u)
       if (t.has(i)) {
-        const r = typeof l.value == "string" ? l.value : "";
-        l.value = `${r} ${n}`;
+        const r = typeof u.value == "string" ? u.value : "";
+        u.value = `${r} ${n}`;
       } else
-        l.value = n;
+        u.value = n;
     else
       e.push({ alias: i, value: n });
     t.add(i);
   } else if (a.length === 3) {
-    const [i, l, r] = a, h = [...c.destination.blockGrids ?? [], ...c.destination.blockLists ?? []].find((g) => g.key === i), f = h?.blocks.find((g) => g.key === l);
+    const [i, u, r] = a, h = [...c.destination.blockGrids ?? [], ...c.destination.blockLists ?? []].find((g) => g.key === i), f = h?.blocks.find((g) => g.key === u);
     if (!h || !f) return;
-    const d = h.alias, y = f.properties?.find((g) => g.key === r)?.alias ?? r, w = f.identifyBy;
-    if (!w) return;
-    k(this, m, A).call(this, e, d, w, y, n, t);
+    const d = h.alias, y = f.properties?.find((g) => g.key === r)?.alias ?? r, v = f.identifyBy;
+    if (!v) return;
+    T(this, m, A).call(this, e, d, v, y, n, t);
   }
 };
 A = function(e, o, s, c, t, n) {
   const a = e.find((i) => i.alias === o);
   if (!(!a || !a.value))
     try {
-      const i = typeof a.value == "string", l = i ? JSON.parse(a.value) : a.value, r = l.contentData;
+      const i = typeof a.value == "string", u = i ? JSON.parse(a.value) : a.value, r = u.contentData;
       if (!r) return;
       for (const p of r) {
         const h = p.values?.find((f) => f.alias === s.property);
@@ -264,16 +271,16 @@ ${t}`;
           break;
         }
       }
-      a.value = i ? JSON.stringify(l) : l;
+      a.value = i ? JSON.stringify(u) : u;
     } catch (i) {
       console.error(`Failed to apply block mapping to ${o}:`, i);
     }
 };
-V = function(e, o, s, c, t, n) {
+E = function(e, o, s, c, t, n) {
   const a = e.find((i) => i.alias === o);
   if (!(!a || !a.value))
     try {
-      const i = typeof a.value == "string", l = i ? JSON.parse(a.value) : a.value, r = l.contentData;
+      const i = typeof a.value == "string", u = i ? JSON.parse(a.value) : a.value, r = u.contentData;
       if (!r) return;
       const p = r.find((d) => d.contentTypeKey === s);
       if (!p) return;
@@ -287,7 +294,7 @@ ${t}`;
           f.value = t;
       else
         p.values = p.values ?? [], p.values.push({ alias: c, value: t });
-      n.add(h), a.value = i ? JSON.stringify(l) : l;
+      n.add(h), a.value = i ? JSON.stringify(u) : u;
     } catch (i) {
       console.error(`Failed to apply block mapping by content type to ${o}:`, i);
     }
@@ -302,7 +309,7 @@ F = function(e, o, s) {
     if (t.type === "number" && s.has(t.alias)) {
       const n = e.findIndex((a) => a.alias === t.alias);
       if (n !== -1 && typeof e[n].value == "string") {
-        const a = oe(e[n].value);
+        const a = ie(e[n].value);
         a === null ? (console.warn(`UpDoc: could not coerce "${e[n].value}" to an integer for field "${t.alias}" — leaving property unset.`), e.splice(n, 1)) : e[n].value = a;
       }
     }
@@ -310,8 +317,8 @@ F = function(e, o, s) {
     if (t.type === "date" && s.has(t.alias)) {
       const n = e.findIndex((a) => a.alias === t.alias);
       if (n !== -1 && typeof e[n].value == "string") {
-        const a = ae(e[n].value);
-        a === null ? (console.warn(`UpDoc: could not coerce "${e[n].value}" to a date for field "${t.alias}" — leaving property unset.`), e.splice(n, 1)) : e[n].value = ie(a);
+        const a = se(e[n].value);
+        a === null ? (console.warn(`UpDoc: could not coerce "${e[n].value}" to a date for field "${t.alias}" — leaving property unset.`), e.splice(n, 1)) : e[n].value = re(a);
       }
     }
   for (const t of o.destination.fields)
@@ -323,19 +330,19 @@ F = function(e, o, s) {
   for (const t of c) {
     const n = e.find((r) => r.alias === t.alias);
     if (!n?.value) continue;
-    const a = typeof n.value == "string", i = a ? JSON.parse(n.value) : n.value, l = i.contentData;
-    if (l) {
-      for (const r of l)
+    const a = typeof n.value == "string", i = a ? JSON.parse(n.value) : n.value, u = i.contentData;
+    if (u) {
+      for (const r of u)
         for (const p of t.blocks)
           if (p.contentTypeKey ? r.contentTypeKey === p.contentTypeKey : r.key === p.key) {
             for (const f of p.properties ?? []) {
               const d = `${r.key}:${f.alias}`;
               if ((f.type === "text" || f.type === "textArea") && s.has(d)) {
-                const y = r.values?.find((w) => w.alias === f.alias);
+                const y = r.values?.find((v) => v.alias === f.alias);
                 y && typeof y.value == "string" && (y.value = W(y.value));
               }
               if (f.type === "richText" && s.has(d)) {
-                const y = r.values?.find((w) => w.alias === f.alias);
+                const y = r.values?.find((v) => v.alias === f.alias);
                 y && typeof y.value == "string" && (y.value = G(J(y.value)));
               }
             }
@@ -346,27 +353,27 @@ F = function(e, o, s) {
   }
 };
 _.styles = [
-  se`
+  ce`
 			:host {
 				display: contents;
 			}
 		`
 ];
 D([
-  E()
+  V()
 ], _.prototype, "_documentUnique", 2);
 D([
-  E()
+  V()
 ], _.prototype, "_documentTypeUnique", 2);
 D([
-  E()
+  V()
 ], _.prototype, "_hasWorkflows", 2);
 _ = D([
-  re("up-doc-collection-action")
+  le("up-doc-collection-action")
 ], _);
-const De = _;
+const Be = _;
 export {
   _ as UpDocCollectionActionElement,
-  De as default
+  Be as default
 };
-//# sourceMappingURL=up-doc-collection-action.element-CM5EdyWA.js.map
+//# sourceMappingURL=up-doc-collection-action.element-Bu4TLarS.js.map

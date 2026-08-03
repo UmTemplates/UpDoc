@@ -25,6 +25,22 @@ public class DestinationConfig
     [JsonPropertyName("blueprintName")]
     public string? BlueprintName { get; set; }
 
+    /// <summary>
+    /// Tab names in the order the backoffice shows them, taken from the property groups'
+    /// sort order. Without this the client would order tabs by whichever field happened to
+    /// appear first, which is not the same thing.
+    /// </summary>
+    [JsonPropertyName("tabOrder")]
+    public List<string>? TabOrder { get; set; }
+
+    /// <summary>
+    /// Group names within each tab, in backoffice order, keyed by tab name. Same reasoning
+    /// as TabOrder: the order a group's fields happen to be mapped in is not the order the
+    /// backoffice shows.
+    /// </summary>
+    [JsonPropertyName("groupOrder")]
+    public Dictionary<string, List<string>>? GroupOrder { get; set; }
+
     [JsonPropertyName("fields")]
     public List<DestinationField> Fields { get; set; } = new();
 
@@ -58,11 +74,28 @@ public class DestinationField
     [JsonPropertyName("tab")]
     public string? Tab { get; set; }
 
+    /// <summary>
+    /// The group within the tab, when the property sits in one. Null for properties that
+    /// sit directly on the tab. Mirrors Umbraco's tab → group → property structure so
+    /// UpDoc's tab strip matches what an editor sees in the backoffice.
+    /// </summary>
+    [JsonPropertyName("group")]
+    public string? Group { get; set; }
+
     [JsonPropertyName("mandatory")]
     public bool Mandatory { get; set; }
 
     [JsonPropertyName("acceptsFormats")]
     public List<string> AcceptsFormats { get; set; } = new() { "text" };
+
+    /// <summary>
+    /// Which mapping mechanisms can fill this field: "sourceContent" (text captured
+    /// from the source by a rule) and/or "importFact" (a value describing the import
+    /// itself, such as the picked file). A field may support both.
+    /// The client offers only the mechanisms the workflow's source type can supply.
+    /// </summary>
+    [JsonPropertyName("fillableBy")]
+    public List<string> FillableBy { get; set; } = new() { "sourceContent" };
 }
 
 /// <summary>
@@ -84,6 +117,12 @@ public class DestinationBlockGrid
 
     [JsonPropertyName("tab")]
     public string? Tab { get; set; }
+
+    /// <summary>
+    /// The group within the tab, when the container sits in one. See DestinationField.Group.
+    /// </summary>
+    [JsonPropertyName("group")]
+    public string? Group { get; set; }
 
     [JsonPropertyName("blocks")]
     public List<DestinationBlock> Blocks { get; set; } = new();
@@ -147,4 +186,10 @@ public class BlockProperty
 
     [JsonPropertyName("acceptsFormats")]
     public List<string>? AcceptsFormats { get; set; }
+
+    /// <summary>
+    /// Which mapping mechanisms can fill this block property. See DestinationField.FillableBy.
+    /// </summary>
+    [JsonPropertyName("fillableBy")]
+    public List<string> FillableBy { get; set; } = new() { "sourceContent" };
 }

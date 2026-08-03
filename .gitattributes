@@ -38,7 +38,11 @@ src/UpDoc/wwwroot/App_Plugins/UpDoc/src/**/*.ts text eol=lf
 src/UpDoc/wwwroot/App_Plugins/UpDoc/tests/**/*.ts text eol=lf
 
 # Workflow config files (read by both C# and TypeScript)
+# The running site rewrites these with CRLF, so without an explicit rule every
+# workflow edit reports the whole file as modified. The mirror needs the same
+# rule as the test site — it was added later and missed it.
 src/UpDoc.TestSite/updoc/**/*.json text eol=lf
+src/TailoredTravel.Web/updoc/**/*.json text eol=lf
 
 # Repo-level text
 *.md   text eol=lf

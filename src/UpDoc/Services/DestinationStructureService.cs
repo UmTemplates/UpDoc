@@ -26,7 +26,7 @@ public class DestinationStructureService : IDestinationStructureService
     private readonly IContentService _contentService;
     private readonly ILogger<DestinationStructureService> _logger;
 
-    // Property editor types that can receive mapped content.
+    // Property editor types that can receive content captured from the source by a rule.
     // "number" is included so integer/decimal fields are offered as mapping targets;
     // the captured string is coerced to an integer on write (client-side apply pass).
     // "date" likewise — the captured string is parsed and written as the JSON shape
@@ -34,6 +34,20 @@ public class DestinationStructureService : IDestinationStructureService
     private static readonly HashSet<string> TextMappableTypes = new(StringComparer.OrdinalIgnoreCase)
     {
         "text", "textArea", "richText", "number", "date"
+    };
+
+    // Property editor types that can receive an *import fact* — a value describing the
+    // import itself rather than anything captured from the source content. The file the
+    // editor picked (media picker) is the first; the URL typed for a web import will use
+    // the same mechanism, writing into a plain text field.
+    //
+    // Kept separate from TextMappableTypes rather than merged into it because the two are
+    // filled by different mechanisms, not merely different types. A type may legitimately
+    // appear in both (a URL goes into a "text" field), so eligibility is membership of
+    // either set, and FillableBy records which mechanisms apply.
+    private static readonly HashSet<string> ImportFactMappableTypes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "mediaPicker"
     };
 
     public DestinationStructureService(
@@ -86,15 +100,49 @@ public class DestinationStructureService : IDestinationStructureService
             return Task.FromResult(config);
         }
 
-        // Walk property groups (tabs) and their properties — use CompositionPropertyGroups
+        // Walk property groups and their properties — use CompositionPropertyGroups
         // to include properties from compositions, not just directly-defined ones
         var groupedPropertyAliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
+        // Umbraco models tabs and groups in one collection, distinguished by Type and by
+        // nesting encoded in Alias ("tourProperties/tourBrochure" is the Tour Brochure
+        // group inside the Tour Properties tab). Build an alias → name lookup first so a
+        // nested group can resolve its parent tab's display name, not just its alias.
+        var groupNamesByAlias = contentType.CompositionPropertyGroups
+            .Where(g => !string.IsNullOrWhiteSpace(g.Alias))
+            .GroupBy(g => g.Alias!, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(g => g.Key, g => g.First().Name ?? g.Key, StringComparer.OrdinalIgnoreCase);
+
+        // Record tab and group order from the property groups themselves. Discovering it
+        // from the fields instead would order by whichever field happened to come first,
+        // which is not the order the backoffice shows.
+        var tabOrder = new List<string>();
+        var groupOrder = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+
         foreach (var group in contentType.CompositionPropertyGroups.OrderBy(g => g.SortOrder))
         {
-            var tabName = group.Name ?? "General";
+            var (tabName, groupName) = ResolveTabAndGroup(group, groupNamesByAlias);
 
-            // All tabs are included — the TextMappableTypes filter in BuildFieldIfEligible
+            if (!tabOrder.Contains(tabName, StringComparer.OrdinalIgnoreCase))
+            {
+                tabOrder.Add(tabName);
+            }
+
+            if (groupName != null)
+            {
+                if (!groupOrder.TryGetValue(tabName, out var groups))
+                {
+                    groups = new List<string>();
+                    groupOrder[tabName] = groups;
+                }
+
+                if (!groups.Contains(groupName, StringComparer.OrdinalIgnoreCase))
+                {
+                    groups.Add(groupName);
+                }
+            }
+
+            // All tabs are included — the eligibility filter in BuildFieldIfEligible
             // ensures only relevant field types appear. Workflow authors can choose which
             // fields to map; no tabs are excluded at generation time.
 
@@ -104,7 +152,7 @@ public class DestinationStructureService : IDestinationStructureService
 
                 if (propertyType.PropertyEditorAlias == "Umbraco.BlockGrid")
                 {
-                    var blockGrid = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockGrid", tabName);
+                    var blockGrid = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockGrid", tabName, groupName);
                     if (blockGrid != null)
                     {
                         config.BlockGrids!.Add(blockGrid);
@@ -112,7 +160,7 @@ public class DestinationStructureService : IDestinationStructureService
                 }
                 else if (propertyType.PropertyEditorAlias == "Umbraco.BlockList")
                 {
-                    var blockList = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockList", tabName);
+                    var blockList = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockList", tabName, groupName);
                     if (blockList != null)
                     {
                         config.BlockLists!.Add(blockList);
@@ -120,7 +168,7 @@ public class DestinationStructureService : IDestinationStructureService
                 }
                 else
                 {
-                    var field = BuildFieldIfEligible(propertyType, tabName, blueprint);
+                    var field = BuildFieldIfEligible(propertyType, tabName, groupName, blueprint);
                     if (field != null)
                     {
                         config.Fields.Add(field);
@@ -134,9 +182,10 @@ public class DestinationStructureService : IDestinationStructureService
             .Where(p => !groupedPropertyAliases.Contains(p.Alias))
             .OrderBy(p => p.SortOrder))
         {
+            // Ungrouped properties sit directly on their tab, with no group.
             if (propertyType.PropertyEditorAlias == "Umbraco.BlockGrid")
             {
-                var blockGrid = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockGrid", "General");
+                var blockGrid = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockGrid", "General", null);
                 if (blockGrid != null)
                 {
                     config.BlockGrids!.Add(blockGrid);
@@ -144,7 +193,7 @@ public class DestinationStructureService : IDestinationStructureService
             }
             else if (propertyType.PropertyEditorAlias == "Umbraco.BlockList")
             {
-                var blockList = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockList", "General");
+                var blockList = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockList", "General", null);
                 if (blockList != null)
                 {
                     config.BlockLists!.Add(blockList);
@@ -152,13 +201,27 @@ public class DestinationStructureService : IDestinationStructureService
             }
             else
             {
-                var field = BuildFieldIfEligible(propertyType, "General", blueprint);
+                var field = BuildFieldIfEligible(propertyType, "General", null, blueprint);
                 if (field != null)
                 {
                     config.Fields.Add(field);
                 }
             }
         }
+
+        // Any tab that only holds ungrouped properties won't have been seen above.
+        foreach (var tab in config.Fields.Select(f => f.Tab)
+            .Concat(config.BlockGrids!.Select(g => g.Tab))
+            .Concat(config.BlockLists!.Select(l => l.Tab)))
+        {
+            if (!string.IsNullOrWhiteSpace(tab) && !tabOrder.Contains(tab, StringComparer.OrdinalIgnoreCase))
+            {
+                tabOrder.Add(tab);
+            }
+        }
+
+        config.TabOrder = tabOrder;
+        config.GroupOrder = groupOrder.Count > 0 ? groupOrder : null;
 
         _logger.LogInformation(
             "Built destination config for '{Alias}': {FieldCount} fields, {BlockGridCount} block grids, {BlockListCount} block lists",
@@ -168,17 +231,18 @@ public class DestinationStructureService : IDestinationStructureService
     }
 
     /// <summary>
-    /// Builds a DestinationField if the property is text-mappable.
-    /// All text-mappable properties are included as mapping targets, regardless of whether
+    /// Builds a DestinationField if the property can receive a mapped value — either
+    /// content captured from the source, or an import fact such as the picked file.
+    /// All eligible properties are included as mapping targets, regardless of whether
     /// they are populated in the blueprint. Properties like organiser fields are empty in the
     /// blueprint because they're meant to be filled from the source.
     /// </summary>
-    private DestinationField? BuildFieldIfEligible(IPropertyType propertyType, string tabName, IContent blueprint)
+    private DestinationField? BuildFieldIfEligible(IPropertyType propertyType, string tabName, string? groupName, IContent blueprint)
     {
         var fieldType = MapEditorAlias(propertyType.PropertyEditorAlias);
 
-        // Only include text-mappable types
-        if (!TextMappableTypes.Contains(fieldType))
+        var fillableBy = GetFillableBy(fieldType);
+        if (fillableBy.Count == 0)
         {
             return null;
         }
@@ -191,9 +255,75 @@ public class DestinationStructureService : IDestinationStructureService
             Description = propertyType.Description,
             Type = fieldType,
             Tab = tabName,
+            Group = groupName,
             Mandatory = propertyType.Mandatory,
-            AcceptsFormats = GetAcceptsFormats(fieldType)
+            AcceptsFormats = GetAcceptsFormats(fieldType),
+            FillableBy = fillableBy
         };
+    }
+
+    /// <summary>
+    /// Splits an Umbraco property group into the tab it lives on and, when it is a group
+    /// nested inside that tab, the group's own name.
+    ///
+    /// Umbraco encodes nesting in the alias: "pageProperties" is a tab in its own right,
+    /// while "tourProperties/tourBrochure" is the Tour Brochure group inside the Tour
+    /// Properties tab. The alias segment is not the display name, so the parent is looked
+    /// up by alias to get the name an editor actually sees.
+    ///
+    /// Previously only the leaf name was kept, which flattened groups into tabs and made
+    /// UpDoc's tab strip disagree with the backoffice.
+    /// </summary>
+    private static (string TabName, string? GroupName) ResolveTabAndGroup(
+        PropertyGroup group,
+        IReadOnlyDictionary<string, string> groupNamesByAlias)
+    {
+        var name = group.Name ?? "General";
+        var alias = group.Alias;
+
+        if (string.IsNullOrWhiteSpace(alias))
+        {
+            return (name, null);
+        }
+
+        var separatorIndex = alias.LastIndexOf('/');
+        if (separatorIndex <= 0)
+        {
+            // No nesting — the group is itself a tab.
+            return (name, null);
+        }
+
+        var parentAlias = alias[..separatorIndex];
+        var parentName = groupNamesByAlias.TryGetValue(parentAlias, out var resolved)
+            ? resolved
+            : parentAlias;
+
+        return (parentName, name);
+    }
+
+    /// <summary>
+    /// Which mapping mechanisms can fill a field of this type.
+    /// "sourceContent" — text captured from the source document by a rule.
+    /// "importFact" — a value describing the import itself (the picked file, the URL).
+    /// An empty list means the field cannot be mapped at all and is excluded.
+    /// A field may support both; it is the client's job to offer only the mechanisms
+    /// the workflow's source type can actually supply.
+    /// </summary>
+    private static List<string> GetFillableBy(string fieldType)
+    {
+        var fillableBy = new List<string>();
+
+        if (TextMappableTypes.Contains(fieldType))
+        {
+            fillableBy.Add("sourceContent");
+        }
+
+        if (ImportFactMappableTypes.Contains(fieldType))
+        {
+            fillableBy.Add("importFact");
+        }
+
+        return fillableBy;
     }
 
     /// <summary>
@@ -201,7 +331,7 @@ public class DestinationStructureService : IDestinationStructureService
     /// placed in the blueprint, rather than listing all allowed block types from the editor configuration.
     /// </summary>
     private DestinationBlockGrid? BuildBlockContainerFromBlueprint(
-        IPropertyType propertyType, IContent blueprint, string layoutKey, string tabName)
+        IPropertyType propertyType, IContent blueprint, string layoutKey, string tabName, string? groupName)
     {
         // Get block value from the blueprint — may be string, JsonElement, or JsonNode
         var rawObj = blueprint.GetValue(propertyType.Alias);
@@ -268,6 +398,7 @@ public class DestinationStructureService : IDestinationStructureService
                 Label = propertyType.Name ?? propertyType.Alias,
                 Description = propertyType.Description,
                 Tab = tabName,
+                Group = groupName,
                 Blocks = new List<DestinationBlock>()
             };
 
@@ -357,25 +488,27 @@ public class DestinationStructureService : IDestinationStructureService
             }
         }
 
-        // Collect text-mappable properties from the element type definition
+        // Collect mappable properties from the element type definition
         // Use CompositionPropertyTypes to include properties from compositions,
         // not just directly-defined ones (same pattern as the document type iteration)
-        var textMappableProperties = new List<BlockProperty>();
+        var mappableProperties = new List<BlockProperty>();
         BlockIdentifier? identifyBy = null;
 
         foreach (var elementProp in elementType.CompositionPropertyTypes.OrderBy(p => p.SortOrder))
         {
             var propType = MapEditorAlias(elementProp.PropertyEditorAlias);
 
-            if (TextMappableTypes.Contains(propType))
+            var propFillableBy = GetFillableBy(propType);
+            if (propFillableBy.Count > 0)
             {
-                textMappableProperties.Add(new BlockProperty
+                mappableProperties.Add(new BlockProperty
                 {
                     Key = elementProp.Key.ToString(),
                     Alias = elementProp.Alias,
                     Label = elementProp.Name,
                     Type = propType,
-                    AcceptsFormats = GetAcceptsFormats(propType)
+                    AcceptsFormats = GetAcceptsFormats(propType),
+                    FillableBy = propFillableBy
                 });
             }
 
@@ -392,8 +525,8 @@ public class DestinationStructureService : IDestinationStructureService
             }
         }
 
-        // Skip blocks that have no text-mappable properties (e.g., layout blocks)
-        if (textMappableProperties.Count == 0)
+        // Skip blocks that have no mappable properties (e.g., layout blocks)
+        if (mappableProperties.Count == 0)
         {
             return null;
         }
@@ -418,7 +551,7 @@ public class DestinationStructureService : IDestinationStructureService
             Label = label,
             Description = elementType.Description,
             IdentifyBy = identifyBy,
-            Properties = textMappableProperties
+            Properties = mappableProperties
         };
     }
 

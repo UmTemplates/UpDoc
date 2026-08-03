@@ -376,6 +376,10 @@ export interface DestinationConfig {
 	documentTypeName?: string;
 	blueprintId?: string;
 	blueprintName?: string;
+	/** Tab names in backoffice order. Absent on files generated before this existed. */
+	tabOrder?: string[];
+	/** Group names within each tab, in backoffice order, keyed by tab name. */
+	groupOrder?: Record<string, string[]>;
 	fields: DestinationField[];
 	blockGrids?: DestinationBlockGrid[];
 	blockLists?: DestinationBlockGrid[];
@@ -388,9 +392,33 @@ export interface DestinationField {
 	description?: string;
 	type: FieldType;
 	tab?: string;
+	/**
+	 * The group within the tab, when the field sits in one. Undefined for fields that sit
+	 * directly on the tab. Mirrors Umbraco's tab → group → property structure.
+	 */
+	group?: string;
 	mandatory?: boolean;
 	acceptsFormats?: ContentFormat[];
+	fillableBy?: FillMechanism[];
 }
+
+/**
+ * How a destination field can be filled.
+ * 'sourceContent' — text captured from the source document by a rule.
+ * 'importFact' — a value describing the import itself (the picked file, the URL typed).
+ *
+ * A field may support both. destination.json describes what the blueprint can accept;
+ * it does not know the workflow's source type, so the client is responsible for offering
+ * only the mechanisms the current source can actually supply.
+ */
+export type FillMechanism = 'sourceContent' | 'importFact';
+
+/**
+ * Reserved map.json source key meaning "the file the editor picked for this import",
+ * as opposed to content extracted from it. The "$" prefix marks it as an import fact
+ * rather than a section id, so section resolution skips it.
+ */
+export const IMPORT_FACT_SOURCE_FILE = '$sourceFile';
 
 export type FieldType =
 	| 'text'
@@ -412,6 +440,8 @@ export interface DestinationBlockGrid {
 	label: string;
 	description?: string;
 	tab?: string;
+	/** The group within the tab, when the container sits in one. See DestinationField.group. */
+	group?: string;
 	blocks: DestinationBlock[];
 }
 
@@ -436,6 +466,7 @@ export interface BlockProperty {
 	label?: string;
 	type: FieldType;
 	acceptsFormats?: ContentFormat[];
+	fillableBy?: FillMechanism[];
 }
 
 // ============================================================================

@@ -261,6 +261,20 @@
       ],
       "enabled": true,
       "comment": null
+    },
+    {
+      "source": "$sourceFile",
+      "sourceKey": null,
+      "destinations": [
+        {
+          "target": "brochurePdf",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
     }
   ]
 }

@@ -1,72 +1,73 @@
-import { b as at, d as S, r as nt } from "./workflow.service-DwTP3LNQ.js";
-import { c as st, d as rt, g as C, t as P } from "./destination-utils-BFSWOBvb.js";
-import { html as l, nothing as d, css as lt, state as v, customElement as ct } from "@umbraco-cms/backoffice/external/lit";
-import { UmbLitElement as ut } from "@umbraco-cms/backoffice/lit-element";
-import { UmbTextStyles as pt } from "@umbraco-cms/backoffice/style";
-import { UMB_AUTH_CONTEXT as _ } from "@umbraco-cms/backoffice/auth";
-import { UMB_WORKSPACE_CONTEXT as dt } from "@umbraco-cms/backoffice/workspace";
-import { umbOpenModal as q } from "@umbraco-cms/backoffice/modal";
-import { U as N } from "./blueprint-picker-modal.token-mXZoRNwG.js";
-var ht = Object.defineProperty, ft = Object.getOwnPropertyDescriptor, O = (t) => {
+import { I } from "./workflow.types-QrurYwv2.js";
+import { b as ut, d as L, r as pt, s as dt } from "./workflow.service-rwnAqyw6.js";
+import { c as ht, d as ft, g as M, t as q } from "./destination-utils-BFSWOBvb.js";
+import { html as l, nothing as h, css as bt, state as x, customElement as gt } from "@umbraco-cms/backoffice/external/lit";
+import { UmbLitElement as mt } from "@umbraco-cms/backoffice/lit-element";
+import { UmbTextStyles as vt } from "@umbraco-cms/backoffice/style";
+import { UMB_AUTH_CONTEXT as w } from "@umbraco-cms/backoffice/auth";
+import { UMB_WORKSPACE_CONTEXT as xt } from "@umbraco-cms/backoffice/workspace";
+import { umbOpenModal as F, UMB_MODAL_MANAGER_CONTEXT as _t, UMB_CONFIRM_MODAL as yt } from "@umbraco-cms/backoffice/modal";
+import { U as W } from "./blueprint-picker-modal.token-mXZoRNwG.js";
+var wt = Object.defineProperty, kt = Object.getOwnPropertyDescriptor, G = (t) => {
   throw TypeError(t);
-}, g = (t, e, i, n) => {
-  for (var s = n > 1 ? void 0 : n ? ft(e, i) : e, r = t.length - 1, c; r >= 0; r--)
-    (c = t[r]) && (s = (n ? c(e, i, s) : c(s)) || s);
-  return n && s && ht(e, i, s), s;
-}, z = (t, e, i) => e.has(t) || O("Cannot " + i), h = (t, e, i) => (z(t, e, "read from private field"), i ? i.call(t) : e.get(t)), $ = (t, e, i) => e.has(t) ? O("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(t) : e.set(t, i), R = (t, e, i, n) => (z(t, e, "write to private field"), e.set(t, i), i), a = (t, e, i) => (z(t, e, "access private method"), i), u, y, o, x, B, E, I, T, M, w, U, A, D, W, L, F, G, H, j, V, X, K, J, Q, Y, Z, tt, et, it;
-let f = class extends ut {
+}, m = (t, i, e, n) => {
+  for (var s = n > 1 ? void 0 : n ? kt(i, e) : i, r = t.length - 1, c; r >= 0; r--)
+    (c = t[r]) && (s = (n ? c(i, e, s) : c(s)) || s);
+  return n && s && wt(i, e, s), s;
+}, B = (t, i, e) => i.has(t) || G("Cannot " + e), d = (t, i, e) => (B(t, i, "read from private field"), e ? e.call(t) : i.get(t)), T = (t, i, e) => i.has(t) ? G("Cannot add the same private member more than once") : i instanceof WeakSet ? i.add(t) : i.set(t, e), E = (t, i, e, n) => (B(t, i, "write to private field"), i.set(t, e), e), a = (t, i, e) => (B(t, i, "access private method"), e), u, k, o, _, U, H, j, V, $, z, A, C, R, D, S, X, K, J, Q, Y, Z, tt, O, it, et, ot, at, nt, st, rt, lt, ct;
+let g = class extends mt {
   constructor() {
-    super(...arguments), $(this, o), this._config = null, this._loading = !0, this._error = null, this._activeTab = "", this._collapsedBlocks = /* @__PURE__ */ new Set(), this._collapsePopoverOpen = !1, this._blueprintMissing = !1, $(this, u, null), $(this, y, null);
+    super(...arguments), T(this, o), this._config = null, this._loading = !0, this._error = null, this._activeTab = "", this._collapsedBlocks = /* @__PURE__ */ new Set(), this._collapsePopoverOpen = !1, this._blueprintMissing = !1, T(this, u, null), T(this, k, null);
   }
   connectedCallback() {
-    super.connectedCallback(), this.consumeContext(dt, (t) => {
-      t && (R(this, y, t), t.setRefreshHandler(() => a(this, o, x).call(this, h(this, u))), this.observe(t.unique, (e) => {
-        e && (R(this, u, decodeURIComponent(e)), a(this, o, x).call(this, h(this, u)));
+    super.connectedCallback(), this.consumeContext(xt, (t) => {
+      t && (E(this, k, t), t.setRefreshHandler(() => a(this, o, _).call(this, d(this, u))), this.observe(t.unique, (i) => {
+        i && (E(this, u, decodeURIComponent(i)), a(this, o, _).call(this, d(this, u)));
       }));
     });
   }
   disconnectedCallback() {
-    super.disconnectedCallback(), h(this, y)?.setRefreshHandler(null);
+    super.disconnectedCallback(), d(this, k)?.setRefreshHandler(null);
   }
   render() {
     if (this._loading)
       return l`<div class="loading"><uui-loader-bar></uui-loader-bar></div>`;
     if (this._error)
       return l`<p style="color: var(--uui-color-danger);">${this._error}</p>`;
-    const t = a(this, o, M).call(this);
+    const t = a(this, o, A).call(this);
     return l`
 			<umb-body-layout header-fit-height>
 				<uui-tab-group slot="header" dropdown-content-direction="vertical">
 					${t.map(
-      (e) => l`
+      (i) => l`
 							<uui-tab
-								label=${e.label}
-								?active=${this._activeTab === e.id}
+								label=${i.label}
+								?active=${this._activeTab === i.id}
 								@click=${() => {
-        this._activeTab = e.id;
+        this._activeTab = i.id;
       }}>
-								${e.label}
+								${i.label}
 							</uui-tab>
 						`
     )}
 				</uui-tab-group>
-				${a(this, o, tt).call(this)}
-				${a(this, o, et).call(this)}
+				${a(this, o, rt).call(this)}
+				${a(this, o, lt).call(this)}
 				<uui-box class="page-box">
-					${a(this, o, it).call(this)}
+					${a(this, o, ct).call(this)}
 				</uui-box>
 			</umb-body-layout>
 		`;
   }
 };
 u = /* @__PURE__ */ new WeakMap();
-y = /* @__PURE__ */ new WeakMap();
+k = /* @__PURE__ */ new WeakMap();
 o = /* @__PURE__ */ new WeakSet();
-x = async function(t) {
+_ = async function(t) {
   this._loading = !0, this._error = null, this._blueprintMissing = !1;
   try {
-    const i = await (await this.getContext(_)).getLatestToken();
-    if (this._config = await at(t, i), !this._config) {
+    const e = await (await this.getContext(w)).getLatestToken();
+    if (this._config = await ut(t, e), !this._config) {
       this._error = `Workflow "${t}" not found`;
       return;
     }
@@ -74,28 +75,28 @@ x = async function(t) {
     if (n.blueprintId) {
       const r = await fetch(
         `/umbraco/management/api/v1/updoc/document-types/${encodeURIComponent(n.documentTypeAlias)}/blueprints`,
-        { headers: { Authorization: `Bearer ${i}` } }
+        { headers: { Authorization: `Bearer ${e}` } }
       );
       if (r.ok) {
         const c = await r.json();
         this._blueprintMissing = !c.some((p) => p.id === n.blueprintId);
       }
     }
-    const s = a(this, o, M).call(this);
+    const s = a(this, o, A).call(this);
     s.length > 0 && (this._activeTab = s[0].id);
-  } catch (e) {
-    this._error = e instanceof Error ? e.message : "Failed to load workflow", console.error("Failed to load workflow config:", e);
+  } catch (i) {
+    this._error = i instanceof Error ? i.message : "Failed to load workflow", console.error("Failed to load workflow config:", i);
   } finally {
     this._loading = !1;
   }
 };
-B = async function(t) {
-  const e = await fetch("/umbraco/management/api/v1/updoc/document-types", {
+U = async function(t) {
+  const i = await fetch("/umbraco/management/api/v1/updoc/document-types", {
     headers: { Authorization: `Bearer ${t}` }
   });
-  if (!e.ok) return { options: [], aliasMap: /* @__PURE__ */ new Map() };
-  const i = await e.json(), n = [], s = /* @__PURE__ */ new Map();
-  for (const r of i) {
+  if (!i.ok) return { options: [], aliasMap: /* @__PURE__ */ new Map() };
+  const e = await i.json(), n = [], s = /* @__PURE__ */ new Map();
+  for (const r of e) {
     s.set(r.id, r.alias);
     const c = await fetch(
       `/umbraco/management/api/v1/updoc/document-types/${encodeURIComponent(r.alias)}/blueprints`,
@@ -107,43 +108,43 @@ B = async function(t) {
       documentTypeUnique: r.id,
       documentTypeName: r.name,
       documentTypeIcon: r.icon ?? null,
-      blueprints: p.map((m) => ({
-        blueprintUnique: m.id,
-        blueprintName: m.name
+      blueprints: p.map((f) => ({
+        blueprintUnique: f.id,
+        blueprintName: f.name
       }))
     });
   }
   return { options: n, aliasMap: s };
 };
-E = async function() {
-  if (!h(this, u)) return;
-  const e = await (await this.getContext(_)).getLatestToken(), { options: i, aliasMap: n } = await a(this, o, B).call(this, e);
-  if (!i.length) return;
+H = async function() {
+  if (!d(this, u)) return;
+  const i = await (await this.getContext(w)).getLatestToken(), { options: e, aliasMap: n } = await a(this, o, U).call(this, i);
+  if (!e.length) return;
   let s;
   try {
-    s = await q(this, N, {
-      data: { documentTypes: i }
+    s = await F(this, W, {
+      data: { documentTypes: e }
     });
   } catch {
     return;
   }
-  const { blueprintUnique: r, documentTypeUnique: c } = s, p = i.find((b) => b.documentTypeUnique === c), m = p?.blueprints.find((b) => b.blueprintUnique === r), k = n.get(c) ?? "";
-  await S(
-    h(this, u),
-    k,
+  const { blueprintUnique: r, documentTypeUnique: c } = s, p = e.find((b) => b.documentTypeUnique === c), f = p?.blueprints.find((b) => b.blueprintUnique === r), y = n.get(c) ?? "";
+  await L(
+    d(this, u),
+    y,
     p?.documentTypeName ?? null,
     r,
-    m?.blueprintName ?? null,
-    e
-  ) && await a(this, o, x).call(this, h(this, u));
+    f?.blueprintName ?? null,
+    i
+  ) && await a(this, o, _).call(this, d(this, u));
 };
-I = async function() {
-  if (!h(this, u) || !this._config) return;
-  const e = await (await this.getContext(_)).getLatestToken(), i = this._config.destination, n = i.documentTypeAlias, { options: s, aliasMap: r } = await a(this, o, B).call(this, e), c = [...r.entries()].find(([, b]) => b === n)?.[0], p = s.find((b) => b.documentTypeUnique === c);
+j = async function() {
+  if (!d(this, u) || !this._config) return;
+  const i = await (await this.getContext(w)).getLatestToken(), e = this._config.destination, n = e.documentTypeAlias, { options: s, aliasMap: r } = await a(this, o, U).call(this, i), c = [...r.entries()].find(([, b]) => b === n)?.[0], p = s.find((b) => b.documentTypeUnique === c);
   if (!p) return;
-  let m;
+  let f;
   try {
-    m = await q(this, N, {
+    f = await F(this, W, {
       data: {
         documentTypes: [p],
         preSelectedDocTypeUnique: p.documentTypeUnique
@@ -152,49 +153,85 @@ I = async function() {
   } catch {
     return;
   }
-  const k = p.blueprints.find(
-    (b) => b.blueprintUnique === m.blueprintUnique
+  const y = p.blueprints.find(
+    (b) => b.blueprintUnique === f.blueprintUnique
   );
-  await S(
-    h(this, u),
+  await L(
+    d(this, u),
     n,
-    i.documentTypeName ?? null,
-    m.blueprintUnique,
-    k?.blueprintName ?? null,
-    e
-  ) && await a(this, o, x).call(this, h(this, u));
+    e.documentTypeName ?? null,
+    f.blueprintUnique,
+    y?.blueprintName ?? null,
+    i
+  ) && await a(this, o, _).call(this, d(this, u));
 };
-T = async function() {
-  if (!h(this, u)) return;
-  const e = await (await this.getContext(_)).getLatestToken();
-  await nt(h(this, u), e) && await a(this, o, x).call(this, h(this, u));
+V = async function(t, i) {
+  if (!d(this, u) || !this._config) return;
+  const e = a(this, o, $).call(this), n = await this.getContext(_t);
+  try {
+    await n.open(this, yt, {
+      data: {
+        headline: `Map to ${t.label}?`,
+        content: l`<p>
+						The ${e} used for each import will be written to
+						<strong>${t.label}</strong>.
+					</p>`,
+        confirmLabel: "Map",
+        color: "positive"
+      }
+    }).onSubmit();
+  } catch {
+    return;
+  }
+  const s = I, r = this._config.map?.mappings ?? [], c = r.find((v) => v.source === s), p = [
+    ...(c?.destinations ?? []).filter(
+      (v) => !(v.target === t.alias && v.blockKey === i)
+    ),
+    { target: t.alias, blockKey: i }
+  ], f = { source: s, destinations: p, enabled: !0 }, y = c ? r.map((v) => v.source === s ? f : v) : [...r, f], b = await (await this.getContext(w)).getLatestToken(), N = await dt(
+    d(this, u),
+    { ...this._config.map ?? { version: "1.0", mappings: [] }, mappings: y },
+    b
+  );
+  N && (this._config = { ...this._config, map: N });
 };
-M = function() {
-  return this._config ? st(this._config.destination) : [];
+$ = function() {
+  const t = Object.keys(this._config?.sources ?? {});
+  return t.length === 1 && t[0] === "web" ? "source URL" : "source file";
 };
-w = function(t, e) {
+z = async function() {
+  if (!d(this, u)) return;
+  const i = await (await this.getContext(w)).getLatestToken();
+  await pt(d(this, u), i) && await a(this, o, _).call(this, d(this, u));
+};
+A = function() {
+  return this._config ? ht(this._config.destination) : [];
+};
+C = function(t, i) {
   if (!this._config?.map?.mappings) return [];
-  const i = [];
+  const e = [];
   for (const n of this._config.map.mappings)
     if (n.enabled !== !1)
       for (const s of n.destinations)
-        s.target === t && (e ? s.blockKey === e : !s.blockKey) && i.push({ source: n.source, mapping: n });
-  return i;
+        s.target === t && (i ? s.blockKey === i : !s.blockKey) && e.push({ source: n.source, mapping: n });
+  return e;
 };
-U = function(t) {
-  const e = t.split("."), i = e[0], n = e[1], s = i.replace(/-/g, " ").replace(/\b\w/g, (r) => r.toUpperCase());
+R = function(t) {
+  if (t === I)
+    return a(this, o, $).call(this).replace(/\b\w/, (r) => r.toUpperCase());
+  const i = t.split("."), e = i[0], n = i[1], s = e.replace(/-/g, " ").replace(/\b\w/g, (r) => r.toUpperCase());
   if (n && n !== "content") {
     const r = n.replace(/\b\w/g, (c) => c.toUpperCase());
     return `${s} (${r})`;
   }
   return s;
 };
-A = function(t, e) {
-  const i = a(this, o, w).call(this, t, e);
-  return i.length === 0 ? d : i.map(
+D = function(t, i) {
+  const e = a(this, o, C).call(this, t, i);
+  return e.length === 0 ? h : e.map(
     ({ source: n }) => l`
 				<uui-tag color="positive" look="primary" class="mapped-tag" title="${n}">
-					${a(this, o, U).call(this, n)}
+					${a(this, o, R).call(this, n)}
 					<button class="unmap-x" title="Remove mapping" @click=${(s) => {
       s.stopPropagation();
     }}>&times;</button>
@@ -202,137 +239,160 @@ A = function(t, e) {
 			`
   );
 };
-D = function(t, e) {
-  return a(this, o, w).call(this, t, e).length > 0;
+S = function(t, i) {
+  return a(this, o, C).call(this, t, i).length > 0;
 };
-W = function(t) {
-  if (!t.properties?.length) return d;
-  const e = [];
-  for (const i of t.properties) {
-    const n = a(this, o, w).call(this, i.alias, t.key);
+X = function(t) {
+  if (!t.properties?.length) return h;
+  const i = [];
+  for (const e of t.properties) {
+    const n = a(this, o, C).call(this, e.alias, t.key);
     for (const { source: s } of n)
-      e.push(l`
+      i.push(l`
 					<uui-tag color="positive" look="primary" class="mapped-tag" title="${s}">
-						${a(this, o, U).call(this, s)}
+						${a(this, o, R).call(this, s)}
 						<button class="unmap-x" title="Remove mapping" @click=${(r) => {
         r.stopPropagation();
       }}>&times;</button>
 					</uui-tag>
 				`);
   }
-  return e.length > 0 ? e : d;
+  return i.length > 0 ? i : h;
 };
-L = function(t) {
-  const e = new Set(this._collapsedBlocks);
-  e.has(t) ? e.delete(t) : e.add(t), this._collapsedBlocks = e;
+K = function(t) {
+  const i = new Set(this._collapsedBlocks);
+  i.has(t) ? i.delete(t) : i.add(t), this._collapsedBlocks = i;
 };
-F = function(t) {
+J = function(t) {
   return this._collapsedBlocks.has(t);
 };
-G = function() {
+Q = function() {
   if (!this._config) return;
   const t = /* @__PURE__ */ new Set();
-  for (const e of C(this._config.destination))
-    if (P(e.tab ?? "Page Content") === this._activeTab)
-      for (const i of e.blocks)
-        t.add(i.key);
+  for (const i of M(this._config.destination))
+    if (q(i.tab ?? "Page Content") === this._activeTab)
+      for (const e of i.blocks)
+        t.add(e.key);
   this._collapsedBlocks = t;
 };
-H = function() {
+Y = function() {
   this._collapsedBlocks = /* @__PURE__ */ new Set();
 };
-j = function(t) {
+Z = function(t) {
   this._collapsePopoverOpen = t.newState === "open";
 };
-V = function() {
-  return this._config ? C(this._config.destination).some(
-    (t) => P(t.tab ?? "Page Content") === this._activeTab
+tt = function() {
+  return this._config ? M(this._config.destination).some(
+    (t) => q(t.tab ?? "Page Content") === this._activeTab
   ) : !1;
 };
-X = function(t) {
-  const e = a(this, o, D).call(this, t.alias);
+O = function(t, i) {
+  return t.fillableBy?.includes("importFact") ?? !1 ? l`
+			<uui-button
+				class="md-map-btn"
+				look="outline"
+				compact
+				label="Map"
+				title="Map the ${a(this, o, $).call(this)} to this field"
+				@click=${() => a(this, o, V).call(this, t, i)}>
+				<uui-icon name="icon-nodes"></uui-icon> Map
+			</uui-button>
+		` : l`
+				<uui-button
+					class="md-map-btn"
+					look="outline"
+					compact
+					disabled
+					label="Map"
+					title="Map this field from the Source tab">
+					<uui-icon name="icon-nodes"></uui-icon> Map
+				</uui-button>
+			`;
+};
+it = function(t) {
+  const i = a(this, o, S).call(this, t.alias);
   return l`
-			<div class="part-box ${e ? "" : "unmapped"}">
+			<div class="part-box ${i ? "" : "unmapped"}">
 				<div class="part-box-row">
 					<div class="part-box-info">
 						<div class="part-box-field-name">${t.label}</div>
 						<div class="part-box-field-meta">
 							<span class="field-alias">${t.alias}</span>
 							<span class="field-type-badge">${t.type}</span>
-							${t.mandatory ? l`<uui-tag look="primary" color="danger" class="required-badge">Required</uui-tag>` : d}
+							${t.mandatory ? l`<uui-tag look="primary" color="danger" class="required-badge">Required</uui-tag>` : h}
 						</div>
 					</div>
 					<div class="part-box-actions">
-						${a(this, o, A).call(this, t.alias)}
-						<uui-button class="md-map-btn" look="outline" compact label="Map"><uui-icon name="icon-nodes"></uui-icon> Map</uui-button>
+						${a(this, o, D).call(this, t.alias)}
+						${a(this, o, O).call(this, t)}
 					</div>
 				</div>
 			</div>
 		`;
 };
-K = function(t) {
-  const i = (this._config?.destination.blockGrids ?? []).some((n) => n.key === t.key) ? "icon-grid" : "icon-thumbnail-list";
+et = function(t) {
+  const e = (this._config?.destination.blockGrids ?? []).some((n) => n.key === t.key) ? "icon-grid" : "icon-thumbnail-list";
   return l`
 			<div class="section-box container-box">
 				<div class="section-box-header container-header">
-					<uui-icon name="${i}" class="level-icon"></uui-icon>
+					<uui-icon name="${e}" class="level-icon"></uui-icon>
 					<span class="section-box-label">${t.label}</span>
 				</div>
 				<div class="section-box-content">
-					${t.blocks.map((n) => a(this, o, J).call(this, n))}
+					${t.blocks.map((n) => a(this, o, ot).call(this, n))}
 				</div>
 			</div>
 		`;
 };
-J = function(t) {
-  const e = a(this, o, F).call(this, t.key);
+ot = function(t) {
+  const i = a(this, o, J).call(this, t.key);
   return l`
 			<div class="section-box">
-				<div class="section-box-header" @click=${() => a(this, o, L).call(this, t.key)}>
-					<uui-icon class="collapse-chevron" name="${e ? "icon-navigation-right" : "icon-navigation-down"}"></uui-icon>
+				<div class="section-box-header" @click=${() => a(this, o, K).call(this, t.key)}>
+					<uui-icon class="collapse-chevron" name="${i ? "icon-navigation-right" : "icon-navigation-down"}"></uui-icon>
 					<uui-icon name="icon-box" class="level-icon"></uui-icon>
 					<span class="section-box-label">${t.label}</span>
-					${t.identifyBy && !t.identifyBy.value.startsWith("[") ? l`<span class="block-identify">identified by: "${t.identifyBy.value}"</span>` : d}
+					${t.identifyBy && !t.identifyBy.value.startsWith("[") ? l`<span class="block-identify">identified by: "${t.identifyBy.value}"</span>` : h}
 					<span class="header-spacer"></span>
-					${e ? a(this, o, W).call(this, t) : d}
+					${i ? a(this, o, X).call(this, t) : h}
 				</div>
-				${!e && t.properties?.length ? l`
+				${!i && t.properties?.length ? l`
 						<div class="section-box-content">
-							${t.properties.map((i) => a(this, o, Q).call(this, i, t.key))}
+							${t.properties.map((e) => a(this, o, at).call(this, e, t.key))}
 						</div>
-					` : d}
+					` : h}
 			</div>
 		`;
 };
-Q = function(t, e) {
-  const i = a(this, o, D).call(this, t.alias, e);
+at = function(t, i) {
+  const e = a(this, o, S).call(this, t.alias, i);
   return l`
-			<div class="part-box ${i ? "" : "unmapped"}">
+			<div class="part-box ${e ? "" : "unmapped"}">
 				<div class="part-box-row">
 					<span class="part-box-label">${t.label || t.alias}</span>
 					<div class="part-box-info">
 						<div class="part-box-field-meta">
 							<span class="field-alias">${t.alias}</span>
 							<span class="field-type-badge">${t.type}</span>
-							${t.acceptsFormats?.length ? l`<span class="accepts-formats">${t.acceptsFormats.join(", ")}</span>` : d}
+							${t.acceptsFormats?.length ? l`<span class="accepts-formats">${t.acceptsFormats.join(", ")}</span>` : h}
 						</div>
 					</div>
 					<div class="part-box-actions">
-						${a(this, o, A).call(this, t.alias, e)}
-						<uui-button class="md-map-btn" look="outline" compact label="Map"><uui-icon name="icon-nodes"></uui-icon> Map</uui-button>
+						${a(this, o, D).call(this, t.alias, i)}
+						${a(this, o, O).call(this, t, i)}
 					</div>
 				</div>
 			</div>
 		`;
 };
-Y = function() {
+nt = function() {
   return this._config ? this._config.destination.fields.length : 0;
 };
-Z = function() {
-  return this._config ? C(this._config.destination).reduce((t, e) => t + e.blocks.length, 0) : 0;
+st = function() {
+  return this._config ? M(this._config.destination).reduce((t, i) => t + i.blocks.length, 0) : 0;
 };
-tt = function() {
-  if (!this._config) return d;
+rt = function() {
+  if (!this._config) return h;
   const t = this._config.destination;
   return l`
 			<div class="info-boxes">
@@ -342,7 +402,7 @@ tt = function() {
 						<span class="box-stat box-filename" title="${t.documentTypeName ?? t.documentTypeAlias}">${t.documentTypeName ?? t.documentTypeAlias}</span>
 						<span class="box-sub">${t.documentTypeAlias}</span>
 						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Change" @click=${a(this, o, E)}>
+							<uui-button look="primary" color="default" label="Change" @click=${a(this, o, H)}>
 								<uui-icon name="icon-document-dashed-line"></uui-icon> Change
 							</uui-button>
 						</div>
@@ -353,9 +413,9 @@ tt = function() {
 					<div class="box-content">
 						<uui-icon name="icon-blueprint" class="box-icon ${this._blueprintMissing ? "box-icon-warning" : ""}"></uui-icon>
 						<span class="box-stat box-filename ${this._blueprintMissing ? "box-filename-warning" : ""}" title="${t.blueprintName ?? "—"}">${t.blueprintName ?? "—"}</span>
-						${this._blueprintMissing ? l`<uui-tag color="warning" look="primary">Not found</uui-tag>` : d}
+						${this._blueprintMissing ? l`<uui-tag color="warning" look="primary">Not found</uui-tag>` : h}
 						<div class="box-buttons">
-							<uui-button look="primary" color="${this._blueprintMissing ? "warning" : "default"}" label="Change" @click=${a(this, o, I)}>
+							<uui-button look="primary" color="${this._blueprintMissing ? "warning" : "default"}" label="Change" @click=${a(this, o, j)}>
 								<uui-icon name="icon-blueprint"></uui-icon> Change
 							</uui-button>
 						</div>
@@ -365,10 +425,10 @@ tt = function() {
 				<uui-box headline="Fields" class="info-box-item">
 					<div class="box-content">
 						<uui-icon name="icon-layers" class="box-icon"></uui-icon>
-						<span class="box-stat">${a(this, o, Y).call(this)}</span>
+						<span class="box-stat">${a(this, o, nt).call(this)}</span>
 						<span class="box-sub">mappable</span>
 						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Regenerate" @click=${a(this, o, T)}>
+							<uui-button look="primary" color="default" label="Regenerate" @click=${a(this, o, z)}>
 								<uui-icon name="icon-layers"></uui-icon> Regenerate
 							</uui-button>
 						</div>
@@ -378,10 +438,10 @@ tt = function() {
 				<uui-box headline="Blocks" class="info-box-item">
 					<div class="box-content">
 						<uui-icon name="icon-box" class="box-icon"></uui-icon>
-						<span class="box-stat">${a(this, o, Z).call(this)}</span>
+						<span class="box-stat">${a(this, o, st).call(this)}</span>
 						<span class="box-sub">in blueprint</span>
 						<div class="box-buttons">
-							<uui-button look="primary" color="default" label="Regenerate" @click=${a(this, o, T)}>
+							<uui-button look="primary" color="default" label="Regenerate" @click=${a(this, o, z)}>
 								<uui-icon name="icon-box"></uui-icon> Regenerate
 							</uui-button>
 						</div>
@@ -390,8 +450,8 @@ tt = function() {
 			</div>
 		`;
 };
-et = function() {
-  return a(this, o, V).call(this) ? l`
+lt = function() {
+  return a(this, o, tt).call(this) ? l`
 			<div class="collapse-row">
 				<uui-button
 					look="outline"
@@ -404,44 +464,44 @@ et = function() {
 				<uui-popover-container
 					id="dest-collapse-popover"
 					placement="bottom-start"
-					@toggle=${a(this, o, j)}>
+					@toggle=${a(this, o, Z)}>
 					<umb-popover-layout>
 						<uui-menu-item
 							label="Expand All"
-							@click=${() => a(this, o, H).call(this)}>
+							@click=${() => a(this, o, Y).call(this)}>
 							<uui-icon slot="icon" name="icon-navigation-down"></uui-icon>
 						</uui-menu-item>
 						<uui-menu-item
 							label="Collapse All"
-							@click=${() => a(this, o, G).call(this)}>
+							@click=${() => a(this, o, Q).call(this)}>
 							<uui-icon slot="icon" name="icon-navigation-right"></uui-icon>
 						</uui-menu-item>
 					</umb-popover-layout>
 				</uui-popover-container>
 			</div>
-		` : d;
+		` : h;
 };
-it = function() {
-  if (!this._config) return d;
-  const t = rt(this._config.destination, this._activeTab);
+ct = function() {
+  if (!this._config) return h;
+  const t = ft(this._config.destination, this._activeTab);
   return t.length ? l`
-			${t.map(({ group: e, fields: i, containers: n }) => {
+			${t.map(({ group: i, fields: e, containers: n }) => {
     const s = l`
-					${i.map((r) => a(this, o, X).call(this, r))}
-					${n.map((r) => a(this, o, K).call(this, r))}
+					${e.map((r) => a(this, o, it).call(this, r))}
+					${n.map((r) => a(this, o, et).call(this, r))}
 				`;
-    return e ? l`
+    return i ? l`
 					<div class="group-panel">
-						<div class="group-panel-header">${e}</div>
+						<div class="group-panel-header">${i}</div>
 						<div class="group-panel-content">${s}</div>
 					</div>
 				` : s;
   })}
 		` : l`<p class="empty-message">Nothing in this tab.</p>`;
 };
-f.styles = [
-  pt,
-  lt`
+g.styles = [
+  vt,
+  bt`
 			:host {
 				display: block;
 				height: 100%;
@@ -748,33 +808,33 @@ f.styles = [
 			}
 		`
 ];
-g([
-  v()
-], f.prototype, "_config", 2);
-g([
-  v()
-], f.prototype, "_loading", 2);
-g([
-  v()
-], f.prototype, "_error", 2);
-g([
-  v()
-], f.prototype, "_activeTab", 2);
-g([
-  v()
-], f.prototype, "_collapsedBlocks", 2);
-g([
-  v()
-], f.prototype, "_collapsePopoverOpen", 2);
-g([
-  v()
-], f.prototype, "_blueprintMissing", 2);
-f = g([
-  ct("up-doc-workflow-destination-view")
-], f);
-const $t = f;
+m([
+  x()
+], g.prototype, "_config", 2);
+m([
+  x()
+], g.prototype, "_loading", 2);
+m([
+  x()
+], g.prototype, "_error", 2);
+m([
+  x()
+], g.prototype, "_activeTab", 2);
+m([
+  x()
+], g.prototype, "_collapsedBlocks", 2);
+m([
+  x()
+], g.prototype, "_collapsePopoverOpen", 2);
+m([
+  x()
+], g.prototype, "_blueprintMissing", 2);
+g = m([
+  gt("up-doc-workflow-destination-view")
+], g);
+const St = g;
 export {
-  f as UpDocWorkflowDestinationViewElement,
-  $t as default
+  g as UpDocWorkflowDestinationViewElement,
+  St as default
 };
-//# sourceMappingURL=up-doc-workflow-destination-view.element-Cmc2U7ja.js.map
+//# sourceMappingURL=up-doc-workflow-destination-view.element-CBgv6QuZ.js.map

@@ -1,12 +1,13 @@
 import type { DocumentTypeConfig, DestinationField, DestinationBlock, DestinationBlockGrid, BlockProperty, SectionMapping } from './workflow.types.js';
-import { fetchWorkflowByAlias, changeWorkflowDestination, regenerateDestination } from './workflow.service.js';
+import { IMPORT_FACT_SOURCE_FILE } from './workflow.types.js';
+import { fetchWorkflowByAlias, changeWorkflowDestination, regenerateDestination, saveMapConfig } from './workflow.service.js';
 import { getDestinationTabs, getAllBlockContainers, getTabGroups, toTabId } from './destination-utils.js';
 import { html, customElement, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
 import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
 import { UMB_AUTH_CONTEXT } from '@umbraco-cms/backoffice/auth';
 import { UMB_WORKSPACE_CONTEXT } from '@umbraco-cms/backoffice/workspace';
-import { umbOpenModal } from '@umbraco-cms/backoffice/modal';
+import { umbOpenModal, UMB_MODAL_MANAGER_CONTEXT, UMB_CONFIRM_MODAL } from '@umbraco-cms/backoffice/modal';
 import { UMB_BLUEPRINT_PICKER_MODAL } from './blueprint-picker-modal.token.js';
 import type { DocumentTypeOption } from './blueprint-picker-modal.token.js';
 
@@ -218,6 +219,76 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 	// Regenerate Destination
 	// =========================================================================
 
+	// =========================================================================
+	// Mapping
+	// =========================================================================
+
+	/**
+	 * Maps an import fact to a field. Unlike source content there is nothing to pick —
+	 * a PDF workflow has exactly one source file — so this confirms rather than opening
+	 * a picker. The reserved "$" prefix marks the source as an import fact rather than a
+	 * section id, so nothing tries to resolve it against extracted content.
+	 */
+	async #handleMapImportFact(field: DestinationField, blockKey?: string) {
+		if (!this.#workflowAlias || !this._config) return;
+
+		const sourceLabel = this.#importFactLabel();
+
+		const modalManager = await this.getContext(UMB_MODAL_MANAGER_CONTEXT);
+		try {
+			await modalManager.open(this, UMB_CONFIRM_MODAL, {
+				data: {
+					headline: `Map to ${field.label}?`,
+					content: html`<p>
+						The ${sourceLabel} used for each import will be written to
+						<strong>${field.label}</strong>.
+					</p>`,
+					confirmLabel: 'Map',
+					color: 'positive',
+				},
+			}).onSubmit();
+		} catch {
+			return; // Cancelled
+		}
+
+		const sourceKey = IMPORT_FACT_SOURCE_FILE;
+		const existingMappings = this._config.map?.mappings ?? [];
+		const existing = existingMappings.find((m) => m.source === sourceKey);
+
+		// Preserve any destinations already fed by this import fact — the same file can
+		// legitimately fill more than one field.
+		const destinations = [
+			...(existing?.destinations ?? []).filter(
+				(d) => !(d.target === field.alias && d.blockKey === blockKey),
+			),
+			{ target: field.alias, blockKey },
+		];
+
+		const newMapping: SectionMapping = { source: sourceKey, destinations, enabled: true };
+		const updatedMappings = existing
+			? existingMappings.map((m) => (m.source === sourceKey ? newMapping : m))
+			: [...existingMappings, newMapping];
+
+		const authContext = await this.getContext(UMB_AUTH_CONTEXT);
+		const token = await authContext.getLatestToken();
+
+		const saved = await saveMapConfig(
+			this.#workflowAlias,
+			{ ...(this._config.map ?? { version: '1.0', mappings: [] }), mappings: updatedMappings },
+			token,
+		);
+
+		if (saved) {
+			this._config = { ...this._config, map: saved };
+		}
+	}
+
+	/** How to describe the import fact for this workflow's source type. */
+	#importFactLabel(): string {
+		const sourceTypes = Object.keys(this._config?.sources ?? {});
+		return sourceTypes.length === 1 && sourceTypes[0] === 'web' ? 'source URL' : 'source file';
+	}
+
 	async #handleRegenerateDestination() {
 		if (!this.#workflowAlias) return;
 
@@ -267,6 +338,11 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 	 * Strips the .content/.title/.heading/.description/.summary suffix, then title-cases.
 	 */
 	#formatSourceLabel(sourceId: string): string {
+		// Import facts are not sections and have no part suffix to strip.
+		if (sourceId === IMPORT_FACT_SOURCE_FILE) {
+			return this.#importFactLabel().replace(/\b\w/, (c) => c.toUpperCase());
+		}
+
 		// Strip the part suffix
 		const parts = sourceId.split('.');
 		const sectionId = parts[0];
@@ -372,6 +448,42 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 	// Field rendering (part-box pattern)
 	// =========================================================================
 
+	/**
+	 * Import-fact fields map with a single confirm — there is only ever one source file,
+	 * so there is nothing to pick. Source-content fields need a source picker, which does
+	 * not exist yet (#28), so their button is disabled and says so rather than looking
+	 * live and doing nothing.
+	 */
+	#renderMapButton(field: DestinationField | BlockProperty, blockKey?: string) {
+		const isImportFact = field.fillableBy?.includes('importFact') ?? false;
+
+		if (!isImportFact) {
+			return html`
+				<uui-button
+					class="md-map-btn"
+					look="outline"
+					compact
+					disabled
+					label="Map"
+					title="Map this field from the Source tab">
+					<uui-icon name="icon-nodes"></uui-icon> Map
+				</uui-button>
+			`;
+		}
+
+		return html`
+			<uui-button
+				class="md-map-btn"
+				look="outline"
+				compact
+				label="Map"
+				title="Map the ${this.#importFactLabel()} to this field"
+				@click=${() => this.#handleMapImportFact(field as DestinationField, blockKey)}>
+				<uui-icon name="icon-nodes"></uui-icon> Map
+			</uui-button>
+		`;
+	}
+
 	#renderField(field: DestinationField) {
 		const isMapped = this.#hasAnyMapping(field.alias);
 
@@ -388,7 +500,7 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 					</div>
 					<div class="part-box-actions">
 						${this.#renderMappingBadges(field.alias)}
-						<uui-button class="md-map-btn" look="outline" compact label="Map"><uui-icon name="icon-nodes"></uui-icon> Map</uui-button>
+						${this.#renderMapButton(field)}
 					</div>
 				</div>
 			</div>
@@ -460,7 +572,7 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 					</div>
 					<div class="part-box-actions">
 						${this.#renderMappingBadges(prop.alias, blockKey)}
-						<uui-button class="md-map-btn" look="outline" compact label="Map"><uui-icon name="icon-nodes"></uui-icon> Map</uui-button>
+						${this.#renderMapButton(prop, blockKey)}
 					</div>
 				</div>
 			</div>

@@ -1,4 +1,4 @@
-import { b as N, g as V, v as F } from "./workflow.service-DwTP3LNQ.js";
+import { b as N, g as V, s as F } from "./workflow.service-rwnAqyw6.js";
 import { c as I, r as X, b as q, g as K } from "./destination-utils-BFSWOBvb.js";
 import { html as r, nothing as k, css as J, state as C, customElement as Q } from "@umbraco-cms/backoffice/external/lit";
 import { UmbLitElement as Y } from "@umbraco-cms/backoffice/lit-element";
@@ -8,8 +8,8 @@ import { UMB_WORKSPACE_CONTEXT as et } from "@umbraco-cms/backoffice/workspace";
 var at = Object.defineProperty, it = Object.getOwnPropertyDescriptor, T = (t) => {
   throw TypeError(t);
 }, z = (t, e, a, i) => {
-  for (var o = i > 1 ? void 0 : i ? it(e, a) : e, v = t.length - 1, g; v >= 0; v--)
-    (g = t[v]) && (o = (i ? g(e, a, o) : g(o)) || o);
+  for (var o = i > 1 ? void 0 : i ? it(e, a) : e, y = t.length - 1, g; y >= 0; y--)
+    (g = t[y]) && (o = (i ? g(e, a, o) : g(o)) || o);
   return i && o && at(e, a, o), o;
 }, E = (t, e, a) => e.has(t) || T("Cannot " + a), s = (t, e, a) => (E(t, e, "read from private field"), e.get(t)), m = (t, e, a) => e.has(t) ? T("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(t) : e.set(t, a), w = (t, e, a, i) => (E(t, e, "write to private field"), e.set(t, a), a), l = (t, e, a) => (E(t, e, "access private method"), a), x, $, h, _, M, n, W, L, O, U, A, B, P, R, G, j;
 let p = class extends Y {
@@ -150,9 +150,9 @@ R = function() {
   if (!this._config?.destination) return [];
   const t = this._config.destination, e = I(t), a = /* @__PURE__ */ new Map();
   for (let c = 0; c < this._config.map.mappings.length; c++) {
-    const d = this._config.map.mappings[c], y = d.destinations[0];
-    if (!y) continue;
-    const u = X(y, t) ?? "unmapped", b = e.find((H) => H.id === u)?.label ?? "Unmapped", f = y.blockKey, S = f ? q(f, t) : void 0, D = f ? `${u}:${f}` : u;
+    const d = this._config.map.mappings[c], v = d.destinations[0];
+    if (!v) continue;
+    const u = X(v, t) ?? "unmapped", b = e.find((H) => H.id === u)?.label ?? "Unmapped", f = v.blockKey, S = f ? q(f, t) : void 0, D = f ? `${u}:${f}` : u;
     a.has(D) || a.set(D, {
       tabId: u,
       tabLabel: b,
@@ -162,18 +162,18 @@ R = function() {
     }), a.get(D).mappings.push({ mapping: d, index: c });
   }
   const i = [], o = /* @__PURE__ */ new Map();
-  let v = 0;
+  let y = 0;
   for (const c of K(t))
     for (const d of c.blocks)
-      o.set(d.key, v++);
+      o.set(d.key, y++);
   for (const c of e) {
     const d = a.get(c.id);
     d && i.push(d);
-    const y = Array.from(a.entries()).filter(([u, b]) => b.tabId === c.id && b.blockKey).sort(([, u], [, b]) => {
+    const v = Array.from(a.entries()).filter(([u, b]) => b.tabId === c.id && b.blockKey).sort(([, u], [, b]) => {
       const f = o.get(u.blockKey) ?? 999, S = o.get(b.blockKey) ?? 999;
       return f - S;
     }).map(([, u]) => u);
-    i.push(...y);
+    i.push(...v);
   }
   const g = a.get("unmapped");
   return g && i.push(g), i;
@@ -364,4 +364,4 @@ export {
   p as UpDocWorkflowMapViewElement,
   pt as default
 };
-//# sourceMappingURL=up-doc-workflow-map-view.element-DqeRn22E.js.map
+//# sourceMappingURL=up-doc-workflow-map-view.element--Bu1AuJJ.js.map

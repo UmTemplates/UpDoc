@@ -25,19 +25,21 @@ function r(t) {
 function c(t) {
   return t.format ? t.format : t.action === "addAsList" ? "bulletListItem" : "auto";
 }
-function a(t) {
+const a = "$sourceFile";
+function o(t) {
   if (!t?.areas) return [];
   const e = [];
-  for (const n of t.areas) {
-    for (const s of n.groups)
-      e.push(...s.sections);
-    e.push(...n.sections);
+  for (const s of t.areas) {
+    for (const n of s.groups)
+      e.push(...n.sections);
+    e.push(...s.sections);
   }
   return e;
 }
 export {
-  a,
+  a as I,
+  o as a,
   c as b,
   r as g
 };
-//# sourceMappingURL=workflow.types-CVkhzFGj.js.map
+//# sourceMappingURL=workflow.types-QrurYwv2.js.map

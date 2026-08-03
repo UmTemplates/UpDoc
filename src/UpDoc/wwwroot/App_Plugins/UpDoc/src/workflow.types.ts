@@ -413,6 +413,13 @@ export interface DestinationField {
  */
 export type FillMechanism = 'sourceContent' | 'importFact';
 
+/**
+ * Reserved map.json source key meaning "the file the editor picked for this import",
+ * as opposed to content extracted from it. The "$" prefix marks it as an import fact
+ * rather than a section id, so section resolution skips it.
+ */
+export const IMPORT_FACT_SOURCE_FILE = '$sourceFile';
+
 export type FieldType =
 	| 'text'
 	| 'textArea'

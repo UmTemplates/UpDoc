@@ -376,6 +376,8 @@ export interface DestinationConfig {
 	documentTypeName?: string;
 	blueprintId?: string;
 	blueprintName?: string;
+	/** Tab names in backoffice order. Absent on files generated before this existed. */
+	tabOrder?: string[];
 	fields: DestinationField[];
 	blockGrids?: DestinationBlockGrid[];
 	blockLists?: DestinationBlockGrid[];

@@ -25,6 +25,14 @@ public class DestinationConfig
     [JsonPropertyName("blueprintName")]
     public string? BlueprintName { get; set; }
 
+    /// <summary>
+    /// Tab names in the order the backoffice shows them, taken from the property groups'
+    /// sort order. Without this the client would order tabs by whichever field happened to
+    /// appear first, which is not the same thing.
+    /// </summary>
+    [JsonPropertyName("tabOrder")]
+    public List<string>? TabOrder { get; set; }
+
     [JsonPropertyName("fields")]
     public List<DestinationField> Fields { get; set; } = new();
 

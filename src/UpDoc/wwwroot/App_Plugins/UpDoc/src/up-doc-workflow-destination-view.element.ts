@@ -520,7 +520,7 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 					<div class="box-content">
 						<uui-icon name="icon-layers" class="box-icon"></uui-icon>
 						<span class="box-stat">${this.#getFieldsCount()}</span>
-						<span class="box-sub">text-mappable</span>
+						<span class="box-sub">mappable</span>
 						<div class="box-buttons">
 							<uui-button look="primary" color="default" label="Regenerate" @click=${this.#handleRegenerateDestination}>
 								<uui-icon name="icon-layers"></uui-icon> Regenerate
@@ -593,14 +593,24 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 			return html`<p class="empty-message">Nothing in this tab.</p>`;
 		}
 
+		// Each group renders as its own panel, mirroring how the backoffice boxes a
+		// group within a tab. Ungrouped properties render bare, with no panel around them.
 		return html`
-			${groups.map(
-				({ group, fields, containers }) => html`
-					${group ? html`<h4 class="group-heading">${group}</h4>` : nothing}
+			${groups.map(({ group, fields, containers }) => {
+				const body = html`
 					${fields.map((field) => this.#renderField(field))}
 					${containers.map((container) => this.#renderBlockContainer(container))}
-				`,
-			)}
+				`;
+
+				if (!group) return body;
+
+				return html`
+					<div class="group-panel">
+						<div class="group-panel-header">${group}</div>
+						<div class="group-panel-content">${body}</div>
+					</div>
+				`;
+			})}
 		`;
 	}
 
@@ -657,18 +667,29 @@ export class UpDocWorkflowDestinationViewElement extends UmbLitElement {
 				padding: var(--uui-size-space-4);
 			}
 
-			/* Group heading within a tab (mirrors the backoffice's grouped properties) */
-			.group-heading {
-				margin: var(--uui-size-space-5) 0 var(--uui-size-space-3);
-				padding-bottom: var(--uui-size-space-2);
+			/* Group panel within a tab — mirrors how the backoffice boxes a group,
+			   so the workflow's destination reads like the document it creates. */
+			.group-panel {
+				border: 1px solid var(--uui-color-border);
+				border-radius: var(--uui-border-radius);
+				background: var(--uui-color-surface);
+				margin-bottom: var(--uui-size-space-4);
+			}
+
+			.group-panel:last-child {
+				margin-bottom: 0;
+			}
+
+			.group-panel-header {
+				padding: var(--uui-size-space-3) var(--uui-size-space-4);
 				border-bottom: 1px solid var(--uui-color-border);
 				font-size: var(--uui-type-default-size);
 				font-weight: 700;
 				color: var(--uui-color-text);
 			}
 
-			.group-heading:first-child {
-				margin-top: 0;
+			.group-panel-content {
+				padding: var(--uui-size-space-4);
 			}
 
 			/* Page box (matching Source tab) */

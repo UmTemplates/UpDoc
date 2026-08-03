@@ -1,4 +1,4 @@
-import { g as m } from "./destination-utils-CLn2mqLf.js";
+import { g as m } from "./destination-utils-DQDyJQ_T.js";
 import { html as r, nothing as d, css as D, state as _, customElement as E } from "@umbraco-cms/backoffice/external/lit";
 import { UmbModalBaseElement as L } from "@umbraco-cms/backoffice/modal";
 import { UmbTextStyles as U } from "@umbraco-cms/backoffice/style";
@@ -348,4 +348,4 @@ export {
   p as UpDocDestinationPickerModalElement,
   G as default
 };
-//# sourceMappingURL=destination-picker-modal.element-C6QfSlLg.js.map
+//# sourceMappingURL=destination-picker-modal.element-xZNmz2hz.js.map

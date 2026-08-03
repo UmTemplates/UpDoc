@@ -113,9 +113,19 @@ public class DestinationStructureService : IDestinationStructureService
             .GroupBy(g => g.Alias!, StringComparer.OrdinalIgnoreCase)
             .ToDictionary(g => g.Key, g => g.First().Name ?? g.Key, StringComparer.OrdinalIgnoreCase);
 
+        // Record tab order from the property groups themselves. Discovering it from the
+        // fields instead would order tabs by whichever field happened to come first,
+        // which is not the order the backoffice shows.
+        var tabOrder = new List<string>();
+
         foreach (var group in contentType.CompositionPropertyGroups.OrderBy(g => g.SortOrder))
         {
             var (tabName, groupName) = ResolveTabAndGroup(group, groupNamesByAlias);
+
+            if (!tabOrder.Contains(tabName, StringComparer.OrdinalIgnoreCase))
+            {
+                tabOrder.Add(tabName);
+            }
 
             // All tabs are included — the eligibility filter in BuildFieldIfEligible
             // ensures only relevant field types appear. Workflow authors can choose which
@@ -183,6 +193,19 @@ public class DestinationStructureService : IDestinationStructureService
                 }
             }
         }
+
+        // Any tab that only holds ungrouped properties won't have been seen above.
+        foreach (var tab in config.Fields.Select(f => f.Tab)
+            .Concat(config.BlockGrids!.Select(g => g.Tab))
+            .Concat(config.BlockLists!.Select(l => l.Tab)))
+        {
+            if (!string.IsNullOrWhiteSpace(tab) && !tabOrder.Contains(tab, StringComparer.OrdinalIgnoreCase))
+            {
+                tabOrder.Add(tab);
+            }
+        }
+
+        config.TabOrder = tabOrder;
 
         _logger.LogInformation(
             "Built destination config for '{Alias}': {FieldCount} fields, {BlockGridCount} block grids, {BlockListCount} block lists",

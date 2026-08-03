@@ -37,6 +37,21 @@ export function getDestinationTabs(destination: DestinationConfig): DestinationT
 		tabs.push({ id: toTabId(tabName), label: tabName });
 	};
 
+	// tabOrder carries the backoffice's own tab order, including tabs whose properties
+	// were all filtered out — skip those, or the strip shows tabs with nothing in them.
+	// Fall back to discovery for destination.json files generated before tabOrder existed.
+	const populated = new Set<string>();
+	for (const field of destination.fields) {
+		if (field.tab) populated.add(field.tab);
+	}
+	for (const container of getAllBlockContainers(destination)) {
+		populated.add(container.tab ?? 'Page Content');
+	}
+
+	for (const tabName of destination.tabOrder ?? []) {
+		if (populated.has(tabName)) addTab(tabName);
+	}
+
 	for (const field of destination.fields) {
 		if (field.tab) addTab(field.tab);
 	}
@@ -111,6 +126,26 @@ export function resolveDestinationTab(
 	}
 
 	return null;
+}
+
+/**
+ * Resolves which group within its tab a mapping destination belongs to.
+ * Returns null for destinations that sit directly on the tab, or can't be matched.
+ */
+export function resolveDestinationGroup(
+	dest: MappingDestination,
+	destination: DestinationConfig,
+): string | null {
+	if (dest.blockKey) {
+		for (const container of getAllBlockContainers(destination)) {
+			if (container.blocks.find((b) => b.key === dest.blockKey)) {
+				return container.group ?? null;
+			}
+		}
+		return null;
+	}
+
+	return destination.fields.find((f) => f.alias === dest.target)?.group ?? null;
 }
 
 /**

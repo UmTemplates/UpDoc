@@ -1,7 +1,7 @@
 import type { UmbUpDocModalData, UmbUpDocModalValue, SourceType } from './up-doc-modal.token.js';
 import { allTransformSections, type DocumentTypeConfig } from './workflow.types.js';
 import { fetchConfig, fetchWorkflowByAlias, transformAdhoc } from './workflow.service.js';
-import { getDestinationTabs, resolveDestinationTab, resolveBlockLabel, getAllBlockContainers } from './destination-utils.js';
+import { getDestinationTabs, resolveDestinationTab, resolveDestinationGroup, resolveBlockLabel, getAllBlockContainers } from './destination-utils.js';
 import { stripMarkdown } from './transforms.js';
 import { html, customElement, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
@@ -601,7 +601,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 	#buildGroupedPreview(): Array<{
 		tabId: string;
 		tabLabel: string;
-		items: Array<{ label: string; value: string; blockLabel?: string }>;
+		items: Array<{ label: string; value: string; blockLabel?: string; group?: string }>;
 	}> {
 		// Use per-workflow config (correct map for this source type), fall back to merged
 		const effectiveConfig = this._workflowConfig ?? this._config;
@@ -642,7 +642,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 		}
 
 		// Step 2: Classify each item into a destination tab
-		const tabItems = new Map<string, Array<{ label: string; value: string; blockLabel?: string }>>();
+		const tabItems = new Map<string, Array<{ label: string; value: string; blockLabel?: string; group?: string }>>();
 		const tabLabels = new Map<string, string>();
 
 		for (const [compoundKey, parts] of preview.entries()) {
@@ -679,6 +679,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 				label: fieldLabel,
 				value: parts.join(' '),
 				blockLabel: blockKey ? (resolveBlockLabel(blockKey, destination) ?? undefined) : undefined,
+				group: resolveDestinationGroup({ target: alias, blockKey }, destination) ?? undefined,
 			});
 		}
 
@@ -687,7 +688,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 		const result: Array<{
 			tabId: string;
 			tabLabel: string;
-			items: Array<{ label: string; value: string; blockLabel?: string }>;
+			items: Array<{ label: string; value: string; blockLabel?: string; group?: string }>;
 		}> = [];
 
 		for (const tab of allTabs) {
@@ -729,7 +730,7 @@ export class UpDocModalElement extends UmbModalBaseElement<
 		`;
 	}
 
-	#renderContentGroupItems(group: { tabId: string; items: Array<{ label: string; value: string; blockLabel?: string }> }) {
+	#renderContentGroupItems(group: { tabId: string; items: Array<{ label: string; value: string; blockLabel?: string; group?: string }> }) {
 		if (group.tabId === 'page-content') {
 			// Sub-group by block label
 			const blockGroups = new Map<string, Array<{ label: string; value: string }>>();
@@ -751,8 +752,33 @@ export class UpDocModalElement extends UmbModalBaseElement<
 			`;
 		}
 
+		// Group items under their backoffice group, so the preview reads like the
+		// document it will create. Ungrouped items render first, with no panel.
+		const byGroup = new Map<string | null, Array<{ label: string; value: string }>>();
+		for (const item of group.items) {
+			const key = item.group ?? null;
+			const arr = byGroup.get(key) ?? [];
+			arr.push(item);
+			byGroup.set(key, arr);
+		}
+
+		const ordered = Array.from(byGroup.entries()).sort(
+			([a], [b]) => (a === null ? -1 : b === null ? 1 : 0),
+		);
+
 		return html`
-			${group.items.map((item) => this.#renderSectionCard(item.label, item.value))}
+			${ordered.map(([groupName, items]) =>
+				groupName
+					? html`
+						<div class="group-panel">
+							<div class="group-panel-header">${groupName}</div>
+							<div class="group-panel-content">
+								${items.map((item) => this.#renderSectionCard(item.label, item.value))}
+							</div>
+						</div>
+					`
+					: items.map((item) => this.#renderSectionCard(item.label, item.value)),
+			)}
 		`;
 	}
 
@@ -981,6 +1007,31 @@ export class UpDocModalElement extends UmbModalBaseElement<
 
 			.block-group-header + .section-card .section-card-header {
 				border-radius: 0;
+			}
+
+			/* Group panel — mirrors how the backoffice boxes a group within a tab,
+			   so the preview reads like the document it will create. */
+			.group-panel {
+				border: 1px solid var(--uui-color-border);
+				border-radius: var(--uui-border-radius);
+				background: var(--uui-color-surface);
+				margin-bottom: var(--uui-size-space-4);
+			}
+
+			.group-panel:last-child {
+				margin-bottom: 0;
+			}
+
+			.group-panel-header {
+				padding: var(--uui-size-space-3) var(--uui-size-space-4);
+				border-bottom: 1px solid var(--uui-color-border);
+				font-weight: 700;
+				font-size: var(--uui-type-default-size);
+				color: var(--uui-color-text);
+			}
+
+			.group-panel-content {
+				padding: var(--uui-size-space-4);
 			}
 
 			/* Destination tab */

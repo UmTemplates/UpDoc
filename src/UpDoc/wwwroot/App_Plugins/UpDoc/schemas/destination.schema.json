@@ -78,6 +78,10 @@
           "type": "string",
           "description": "Which tab this property appears on."
         },
+        "group": {
+          "type": ["string", "null"],
+          "description": "The group within the tab, when the property sits in one. Null for properties directly on the tab. Mirrors Umbraco's tab / group / property structure."
+        },
         "mandatory": {
           "type": "boolean",
           "description": "Whether this field is required in Umbraco.",
@@ -116,6 +120,14 @@
         "description": {
           "type": "string",
           "description": "What this block grid is used for."
+        },
+        "tab": {
+          "type": ["string", "null"],
+          "description": "Which tab this block container appears on."
+        },
+        "group": {
+          "type": ["string", "null"],
+          "description": "The group within the tab, when the container sits in one."
         },
         "blocks": {
           "type": "array",

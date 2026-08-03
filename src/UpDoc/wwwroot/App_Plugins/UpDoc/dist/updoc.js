@@ -59,7 +59,7 @@ const o = [
     type: "modal",
     alias: "UpDoc.Modal",
     name: "UpDoc Modal",
-    element: () => import("./up-doc-modal.element-CH7ZY2U3.js")
+    element: () => import("./up-doc-modal.element-DfM9Dqhw.js")
   },
   {
     type: "modal",
@@ -77,13 +77,13 @@ const o = [
     type: "modal",
     alias: "UpDoc.WorkflowDetailModal",
     name: "Workflow Detail Modal",
-    element: () => import("./up-doc-workflow-detail-modal.element-DmDCgGWY.js")
+    element: () => import("./up-doc-workflow-detail-modal.element-CySu8VEX.js")
   },
   {
     type: "modal",
     alias: "UpDoc.DestinationPickerModal",
     name: "Destination Picker Modal",
-    element: () => import("./destination-picker-modal.element-BuD7esN7.js")
+    element: () => import("./destination-picker-modal.element-C6QfSlLg.js")
   },
   {
     type: "modal",
@@ -132,7 +132,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Destination",
     name: "Destination",
-    element: () => import("./up-doc-workflow-destination-view.element-CRg3LFei.js"),
+    element: () => import("./up-doc-workflow-destination-view.element-h6n0w6_p.js"),
     weight: 300,
     meta: {
       label: "Destination",
@@ -150,7 +150,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Source",
     name: "UpDoc Workflow Source View",
-    element: () => import("./up-doc-workflow-source-view.element-CWg4hX51.js"),
+    element: () => import("./up-doc-workflow-source-view.element-DoLehBar.js"),
     weight: 200,
     meta: {
       label: "Source",
@@ -168,7 +168,7 @@ const o = [
     type: "workspaceView",
     alias: "UpDoc.WorkflowWorkspaceView.Map",
     name: "UpDoc Workflow Map View",
-    element: () => import("./up-doc-workflow-map-view.element-CBEL_38t.js"),
+    element: () => import("./up-doc-workflow-map-view.element-p49yKhG9.js"),
     weight: 100,
     meta: {
       label: "Map",

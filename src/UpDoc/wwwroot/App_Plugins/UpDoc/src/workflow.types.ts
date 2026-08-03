@@ -388,6 +388,11 @@ export interface DestinationField {
 	description?: string;
 	type: FieldType;
 	tab?: string;
+	/**
+	 * The group within the tab, when the field sits in one. Undefined for fields that sit
+	 * directly on the tab. Mirrors Umbraco's tab → group → property structure.
+	 */
+	group?: string;
 	mandatory?: boolean;
 	acceptsFormats?: ContentFormat[];
 	fillableBy?: FillMechanism[];
@@ -424,6 +429,8 @@ export interface DestinationBlockGrid {
 	label: string;
 	description?: string;
 	tab?: string;
+	/** The group within the tab, when the container sits in one. See DestinationField.group. */
+	group?: string;
 	blocks: DestinationBlock[];
 }
 

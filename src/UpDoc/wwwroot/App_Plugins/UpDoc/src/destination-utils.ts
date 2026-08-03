@@ -1,4 +1,4 @@
-import type { DestinationBlockGrid, DestinationConfig, MappingDestination } from './workflow.types.js';
+import type { DestinationBlockGrid, DestinationConfig, DestinationField, MappingDestination } from './workflow.types.js';
 
 export interface DestinationTab {
 	id: string;
@@ -13,34 +13,76 @@ export function getAllBlockContainers(destination: DestinationConfig): Destinati
 	return [...(destination.blockGrids ?? []), ...(destination.blockLists ?? [])];
 }
 
+/** Converts a tab or group name to a stable DOM-safe id. */
+export function toTabId(name: string): string {
+	return name.toLowerCase().replace(/\s+/g, '-');
+}
+
 /**
  * Extracts the tab structure from a destination config.
  * Returns tabs in document order, with additional tabs for block containers.
+ *
+ * Tabs come from the `tab` property only. A field's `group` is a heading *within* a tab
+ * (Umbraco's tab → group → property structure) and must not become a tab of its own —
+ * doing so is what made UpDoc's tab strip disagree with the backoffice.
  */
 export function getDestinationTabs(destination: DestinationConfig): DestinationTab[] {
 	const tabs: DestinationTab[] = [];
-	const tabNames = new Set(destination.fields.map((f) => f.tab).filter(Boolean));
+	const seen = new Set<string>();
 
-	for (const tabName of tabNames) {
-		tabs.push({
-			id: tabName!.toLowerCase().replace(/\s+/g, '-'),
-			label: tabName!,
-		});
+	const addTab = (name: string | undefined) => {
+		const tabName = name ?? 'Page Content';
+		if (seen.has(tabName)) return;
+		seen.add(tabName);
+		tabs.push({ id: toTabId(tabName), label: tabName });
+	};
+
+	for (const field of destination.fields) {
+		if (field.tab) addTab(field.tab);
 	}
 
-	// Add tabs from block containers (grids default to "Page Content", lists use their tab)
+	// Block containers (grids default to "Page Content", lists use their tab)
 	for (const container of getAllBlockContainers(destination)) {
-		const containerTab = container.tab ?? 'Page Content';
-		if (!tabNames.has(containerTab)) {
-			tabNames.add(containerTab);
-			tabs.push({
-				id: containerTab.toLowerCase().replace(/\s+/g, '-'),
-				label: containerTab,
-			});
-		}
+		addTab(container.tab);
 	}
 
 	return tabs;
+}
+
+/**
+ * Groups a tab's fields and block containers under their `group` heading, preserving
+ * document order. Ungrouped entries come first, under a null heading, matching Umbraco:
+ * properties sitting directly on a tab appear above any groups.
+ */
+export function getTabGroups(
+	destination: DestinationConfig,
+	tabId: string,
+): Array<{ group: string | null; fields: DestinationField[]; containers: DestinationBlockGrid[] }> {
+	const order: Array<string | null> = [];
+	const byGroup = new Map<string | null, { fields: DestinationField[]; containers: DestinationBlockGrid[] }>();
+
+	const bucketFor = (group: string | null) => {
+		if (!byGroup.has(group)) {
+			byGroup.set(group, { fields: [], containers: [] });
+			order.push(group);
+		}
+		return byGroup.get(group)!;
+	};
+
+	for (const field of destination.fields) {
+		if (!field.tab || toTabId(field.tab) !== tabId) continue;
+		bucketFor(field.group ?? null).fields.push(field);
+	}
+
+	for (const container of getAllBlockContainers(destination)) {
+		if (toTabId(container.tab ?? 'Page Content') !== tabId) continue;
+		bucketFor(container.group ?? null).containers.push(container);
+	}
+
+	// Ungrouped first, then groups in the order they were encountered.
+	order.sort((a, b) => (a === null ? -1 : b === null ? 1 : 0));
+
+	return order.map((group) => ({ group, ...byGroup.get(group)! }));
 }
 
 /**

@@ -100,15 +100,24 @@ public class DestinationStructureService : IDestinationStructureService
             return Task.FromResult(config);
         }
 
-        // Walk property groups (tabs) and their properties — use CompositionPropertyGroups
+        // Walk property groups and their properties — use CompositionPropertyGroups
         // to include properties from compositions, not just directly-defined ones
         var groupedPropertyAliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
+        // Umbraco models tabs and groups in one collection, distinguished by Type and by
+        // nesting encoded in Alias ("tourProperties/tourBrochure" is the Tour Brochure
+        // group inside the Tour Properties tab). Build an alias → name lookup first so a
+        // nested group can resolve its parent tab's display name, not just its alias.
+        var groupNamesByAlias = contentType.CompositionPropertyGroups
+            .Where(g => !string.IsNullOrWhiteSpace(g.Alias))
+            .GroupBy(g => g.Alias!, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(g => g.Key, g => g.First().Name ?? g.Key, StringComparer.OrdinalIgnoreCase);
+
         foreach (var group in contentType.CompositionPropertyGroups.OrderBy(g => g.SortOrder))
         {
-            var tabName = group.Name ?? "General";
+            var (tabName, groupName) = ResolveTabAndGroup(group, groupNamesByAlias);
 
-            // All tabs are included — the TextMappableTypes filter in BuildFieldIfEligible
+            // All tabs are included — the eligibility filter in BuildFieldIfEligible
             // ensures only relevant field types appear. Workflow authors can choose which
             // fields to map; no tabs are excluded at generation time.
 
@@ -118,7 +127,7 @@ public class DestinationStructureService : IDestinationStructureService
 
                 if (propertyType.PropertyEditorAlias == "Umbraco.BlockGrid")
                 {
-                    var blockGrid = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockGrid", tabName);
+                    var blockGrid = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockGrid", tabName, groupName);
                     if (blockGrid != null)
                     {
                         config.BlockGrids!.Add(blockGrid);
@@ -126,7 +135,7 @@ public class DestinationStructureService : IDestinationStructureService
                 }
                 else if (propertyType.PropertyEditorAlias == "Umbraco.BlockList")
                 {
-                    var blockList = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockList", tabName);
+                    var blockList = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockList", tabName, groupName);
                     if (blockList != null)
                     {
                         config.BlockLists!.Add(blockList);
@@ -134,7 +143,7 @@ public class DestinationStructureService : IDestinationStructureService
                 }
                 else
                 {
-                    var field = BuildFieldIfEligible(propertyType, tabName, blueprint);
+                    var field = BuildFieldIfEligible(propertyType, tabName, groupName, blueprint);
                     if (field != null)
                     {
                         config.Fields.Add(field);
@@ -148,9 +157,10 @@ public class DestinationStructureService : IDestinationStructureService
             .Where(p => !groupedPropertyAliases.Contains(p.Alias))
             .OrderBy(p => p.SortOrder))
         {
+            // Ungrouped properties sit directly on their tab, with no group.
             if (propertyType.PropertyEditorAlias == "Umbraco.BlockGrid")
             {
-                var blockGrid = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockGrid", "General");
+                var blockGrid = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockGrid", "General", null);
                 if (blockGrid != null)
                 {
                     config.BlockGrids!.Add(blockGrid);
@@ -158,7 +168,7 @@ public class DestinationStructureService : IDestinationStructureService
             }
             else if (propertyType.PropertyEditorAlias == "Umbraco.BlockList")
             {
-                var blockList = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockList", "General");
+                var blockList = BuildBlockContainerFromBlueprint(propertyType, blueprint, "Umbraco.BlockList", "General", null);
                 if (blockList != null)
                 {
                     config.BlockLists!.Add(blockList);
@@ -166,7 +176,7 @@ public class DestinationStructureService : IDestinationStructureService
             }
             else
             {
-                var field = BuildFieldIfEligible(propertyType, "General", blueprint);
+                var field = BuildFieldIfEligible(propertyType, "General", null, blueprint);
                 if (field != null)
                 {
                     config.Fields.Add(field);
@@ -188,7 +198,7 @@ public class DestinationStructureService : IDestinationStructureService
     /// they are populated in the blueprint. Properties like organiser fields are empty in the
     /// blueprint because they're meant to be filled from the source.
     /// </summary>
-    private DestinationField? BuildFieldIfEligible(IPropertyType propertyType, string tabName, IContent blueprint)
+    private DestinationField? BuildFieldIfEligible(IPropertyType propertyType, string tabName, string? groupName, IContent blueprint)
     {
         var fieldType = MapEditorAlias(propertyType.PropertyEditorAlias);
 
@@ -206,10 +216,50 @@ public class DestinationStructureService : IDestinationStructureService
             Description = propertyType.Description,
             Type = fieldType,
             Tab = tabName,
+            Group = groupName,
             Mandatory = propertyType.Mandatory,
             AcceptsFormats = GetAcceptsFormats(fieldType),
             FillableBy = fillableBy
         };
+    }
+
+    /// <summary>
+    /// Splits an Umbraco property group into the tab it lives on and, when it is a group
+    /// nested inside that tab, the group's own name.
+    ///
+    /// Umbraco encodes nesting in the alias: "pageProperties" is a tab in its own right,
+    /// while "tourProperties/tourBrochure" is the Tour Brochure group inside the Tour
+    /// Properties tab. The alias segment is not the display name, so the parent is looked
+    /// up by alias to get the name an editor actually sees.
+    ///
+    /// Previously only the leaf name was kept, which flattened groups into tabs and made
+    /// UpDoc's tab strip disagree with the backoffice.
+    /// </summary>
+    private static (string TabName, string? GroupName) ResolveTabAndGroup(
+        PropertyGroup group,
+        IReadOnlyDictionary<string, string> groupNamesByAlias)
+    {
+        var name = group.Name ?? "General";
+        var alias = group.Alias;
+
+        if (string.IsNullOrWhiteSpace(alias))
+        {
+            return (name, null);
+        }
+
+        var separatorIndex = alias.LastIndexOf('/');
+        if (separatorIndex <= 0)
+        {
+            // No nesting — the group is itself a tab.
+            return (name, null);
+        }
+
+        var parentAlias = alias[..separatorIndex];
+        var parentName = groupNamesByAlias.TryGetValue(parentAlias, out var resolved)
+            ? resolved
+            : parentAlias;
+
+        return (parentName, name);
     }
 
     /// <summary>
@@ -242,7 +292,7 @@ public class DestinationStructureService : IDestinationStructureService
     /// placed in the blueprint, rather than listing all allowed block types from the editor configuration.
     /// </summary>
     private DestinationBlockGrid? BuildBlockContainerFromBlueprint(
-        IPropertyType propertyType, IContent blueprint, string layoutKey, string tabName)
+        IPropertyType propertyType, IContent blueprint, string layoutKey, string tabName, string? groupName)
     {
         // Get block value from the blueprint — may be string, JsonElement, or JsonNode
         var rawObj = blueprint.GetValue(propertyType.Alias);
@@ -309,6 +359,7 @@ public class DestinationStructureService : IDestinationStructureService
                 Label = propertyType.Name ?? propertyType.Alias,
                 Description = propertyType.Description,
                 Tab = tabName,
+                Group = groupName,
                 Blocks = new List<DestinationBlock>()
             };
 

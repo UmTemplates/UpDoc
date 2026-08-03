@@ -58,6 +58,14 @@ public class DestinationField
     [JsonPropertyName("tab")]
     public string? Tab { get; set; }
 
+    /// <summary>
+    /// The group within the tab, when the property sits in one. Null for properties that
+    /// sit directly on the tab. Mirrors Umbraco's tab → group → property structure so
+    /// UpDoc's tab strip matches what an editor sees in the backoffice.
+    /// </summary>
+    [JsonPropertyName("group")]
+    public string? Group { get; set; }
+
     [JsonPropertyName("mandatory")]
     public bool Mandatory { get; set; }
 
@@ -93,6 +101,12 @@ public class DestinationBlockGrid
 
     [JsonPropertyName("tab")]
     public string? Tab { get; set; }
+
+    /// <summary>
+    /// The group within the tab, when the container sits in one. See DestinationField.Group.
+    /// </summary>
+    [JsonPropertyName("group")]
+    public string? Group { get; set; }
 
     [JsonPropertyName("blocks")]
     public List<DestinationBlock> Blocks { get; set; } = new();

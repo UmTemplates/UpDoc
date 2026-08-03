@@ -34,6 +34,19 @@
       "type": "string",
       "description": "Human-readable blueprint name for UI display."
     },
+    "tabOrder": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tab names in the order the backoffice shows them, taken from the property groups' sort order."
+    },
+    "groupOrder": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "description": "Group names within each tab, in backoffice order, keyed by tab name."
+    },
     "fields": {
       "type": "array",
       "description": "Available properties on this document type.",
@@ -42,6 +55,11 @@
     "blockGrids": {
       "type": "array",
       "description": "Block grid properties with their nested block structure.",
+      "items": { "$ref": "#/$defs/blockGrid" }
+    },
+    "blockLists": {
+      "type": "array",
+      "description": "Block list properties with their nested block structure.",
       "items": { "$ref": "#/$defs/blockGrid" }
     }
   },

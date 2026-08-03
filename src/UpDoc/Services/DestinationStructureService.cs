@@ -113,10 +113,11 @@ public class DestinationStructureService : IDestinationStructureService
             .GroupBy(g => g.Alias!, StringComparer.OrdinalIgnoreCase)
             .ToDictionary(g => g.Key, g => g.First().Name ?? g.Key, StringComparer.OrdinalIgnoreCase);
 
-        // Record tab order from the property groups themselves. Discovering it from the
-        // fields instead would order tabs by whichever field happened to come first,
+        // Record tab and group order from the property groups themselves. Discovering it
+        // from the fields instead would order by whichever field happened to come first,
         // which is not the order the backoffice shows.
         var tabOrder = new List<string>();
+        var groupOrder = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
 
         foreach (var group in contentType.CompositionPropertyGroups.OrderBy(g => g.SortOrder))
         {
@@ -125,6 +126,20 @@ public class DestinationStructureService : IDestinationStructureService
             if (!tabOrder.Contains(tabName, StringComparer.OrdinalIgnoreCase))
             {
                 tabOrder.Add(tabName);
+            }
+
+            if (groupName != null)
+            {
+                if (!groupOrder.TryGetValue(tabName, out var groups))
+                {
+                    groups = new List<string>();
+                    groupOrder[tabName] = groups;
+                }
+
+                if (!groups.Contains(groupName, StringComparer.OrdinalIgnoreCase))
+                {
+                    groups.Add(groupName);
+                }
             }
 
             // All tabs are included — the eligibility filter in BuildFieldIfEligible
@@ -206,6 +221,7 @@ public class DestinationStructureService : IDestinationStructureService
         }
 
         config.TabOrder = tabOrder;
+        config.GroupOrder = groupOrder.Count > 0 ? groupOrder : null;
 
         _logger.LogInformation(
             "Built destination config for '{Alias}': {FieldCount} fields, {BlockGridCount} block grids, {BlockListCount} block lists",

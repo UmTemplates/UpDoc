@@ -1,5 +1,5 @@
 import { b as at, d as S, r as nt } from "./workflow.service-DwTP3LNQ.js";
-import { c as st, d as rt, g as C, t as P } from "./destination-utils-DQDyJQ_T.js";
+import { c as st, d as rt, g as C, t as P } from "./destination-utils-BFSWOBvb.js";
 import { html as l, nothing as d, css as lt, state as v, customElement as ct } from "@umbraco-cms/backoffice/external/lit";
 import { UmbLitElement as ut } from "@umbraco-cms/backoffice/lit-element";
 import { UmbTextStyles as pt } from "@umbraco-cms/backoffice/style";
@@ -777,4 +777,4 @@ export {
   f as UpDocWorkflowDestinationViewElement,
   $t as default
 };
-//# sourceMappingURL=up-doc-workflow-destination-view.element-BABRPhoF.js.map
+//# sourceMappingURL=up-doc-workflow-destination-view.element-Cmc2U7ja.js.map

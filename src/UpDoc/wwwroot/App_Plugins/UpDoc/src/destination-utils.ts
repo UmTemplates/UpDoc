@@ -94,10 +94,35 @@ export function getTabGroups(
 		bucketFor(container.group ?? null).containers.push(container);
 	}
 
-	// Ungrouped first, then groups in the order they were encountered.
-	order.sort((a, b) => (a === null ? -1 : b === null ? 1 : 0));
+	return sortGroupNames(order, destination, tabId).map((group) => ({
+		group,
+		...byGroup.get(group)!,
+	}));
+}
 
-	return order.map((group) => ({ group, ...byGroup.get(group)! }));
+/**
+ * Orders group names within a tab to match the backoffice: ungrouped first (those
+ * properties sit directly on the tab, above any groups), then groups in the order
+ * groupOrder records. Groups absent from groupOrder keep their existing relative
+ * position at the end, which is what happens for files generated before it existed.
+ */
+export function sortGroupNames(
+	names: Array<string | null>,
+	destination: DestinationConfig,
+	tabId: string,
+): Array<string | null> {
+	const tabName =
+		(destination.tabOrder ?? []).find((t) => toTabId(t) === tabId) ??
+		destination.fields.find((f) => f.tab && toTabId(f.tab) === tabId)?.tab;
+	const known = (tabName ? destination.groupOrder?.[tabName] : undefined) ?? [];
+
+	const rank = (name: string | null) => {
+		if (name === null) return -1;
+		const index = known.indexOf(name);
+		return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+	};
+
+	return [...names].sort((a, b) => rank(a) - rank(b));
 }
 
 /**

@@ -1,7 +1,7 @@
 import type { UmbUpDocModalData, UmbUpDocModalValue, SourceType } from './up-doc-modal.token.js';
 import { allTransformSections, type DocumentTypeConfig } from './workflow.types.js';
 import { fetchConfig, fetchWorkflowByAlias, transformAdhoc } from './workflow.service.js';
-import { getDestinationTabs, resolveDestinationTab, resolveDestinationGroup, resolveBlockLabel, getAllBlockContainers } from './destination-utils.js';
+import { getDestinationTabs, resolveDestinationTab, resolveDestinationGroup, resolveBlockLabel, getAllBlockContainers, sortGroupNames } from './destination-utils.js';
 import { stripMarkdown } from './transforms.js';
 import { html, customElement, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
@@ -762,9 +762,11 @@ export class UpDocModalElement extends UmbModalBaseElement<
 			byGroup.set(key, arr);
 		}
 
-		const ordered = Array.from(byGroup.entries()).sort(
-			([a], [b]) => (a === null ? -1 : b === null ? 1 : 0),
-		);
+		const destination = (this._workflowConfig ?? this._config)?.destination;
+		const groupNames = destination
+			? sortGroupNames(Array.from(byGroup.keys()), destination, group.tabId)
+			: Array.from(byGroup.keys());
+		const ordered = groupNames.map((name) => [name, byGroup.get(name)!] as const);
 
 		return html`
 			${ordered.map(([groupName, items]) =>

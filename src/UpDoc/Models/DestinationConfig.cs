@@ -33,6 +33,14 @@ public class DestinationConfig
     [JsonPropertyName("tabOrder")]
     public List<string>? TabOrder { get; set; }
 
+    /// <summary>
+    /// Group names within each tab, in backoffice order, keyed by tab name. Same reasoning
+    /// as TabOrder: the order a group's fields happen to be mapped in is not the order the
+    /// backoffice shows.
+    /// </summary>
+    [JsonPropertyName("groupOrder")]
+    public Dictionary<string, List<string>>? GroupOrder { get; set; }
+
     [JsonPropertyName("fields")]
     public List<DestinationField> Fields { get; set; } = new();
 

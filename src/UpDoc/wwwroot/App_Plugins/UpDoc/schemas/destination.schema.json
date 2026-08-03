@@ -34,6 +34,19 @@
       "type": "string",
       "description": "Human-readable blueprint name for UI display."
     },
+    "tabOrder": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tab names in the order the backoffice shows them, taken from the property groups' sort order."
+    },
+    "groupOrder": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "description": "Group names within each tab, in backoffice order, keyed by tab name."
+    },
     "fields": {
       "type": "array",
       "description": "Available properties on this document type.",
@@ -42,6 +55,11 @@
     "blockGrids": {
       "type": "array",
       "description": "Block grid properties with their nested block structure.",
+      "items": { "$ref": "#/$defs/blockGrid" }
+    },
+    "blockLists": {
+      "type": "array",
+      "description": "Block list properties with their nested block structure.",
       "items": { "$ref": "#/$defs/blockGrid" }
     }
   },
@@ -78,6 +96,10 @@
           "type": "string",
           "description": "Which tab this property appears on."
         },
+        "group": {
+          "type": ["string", "null"],
+          "description": "The group within the tab, when the property sits in one. Null for properties directly on the tab. Mirrors Umbraco's tab / group / property structure."
+        },
         "mandatory": {
           "type": "boolean",
           "description": "Whether this field is required in Umbraco.",
@@ -91,7 +113,8 @@
           },
           "description": "What content formats this field can accept.",
           "default": ["text"]
-        }
+        },
+        "fillableBy": { "$ref": "#/$defs/fillableBy" }
       }
     },
     "blockGrid": {
@@ -115,6 +138,14 @@
         "description": {
           "type": "string",
           "description": "What this block grid is used for."
+        },
+        "tab": {
+          "type": ["string", "null"],
+          "description": "Which tab this block container appears on."
+        },
+        "group": {
+          "type": ["string", "null"],
+          "description": "The group within the tab, when the container sits in one."
         },
         "blocks": {
           "type": "array",
@@ -202,8 +233,18 @@
             "enum": ["text", "markdown", "html"]
           },
           "description": "What content formats this property can accept."
-        }
+        },
+        "fillableBy": { "$ref": "#/$defs/fillableBy" }
       }
+    },
+    "fillableBy": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["sourceContent", "importFact"]
+      },
+      "description": "Which mapping mechanisms can fill this target. 'sourceContent' is text captured from the source document by a rule; 'importFact' is a value describing the import itself, such as the file the editor picked. A target may support both. This describes what the blueprint accepts, not what a given workflow can supply — the client offers only the mechanisms the workflow's source type provides.",
+      "default": ["sourceContent"]
     }
   }
 }

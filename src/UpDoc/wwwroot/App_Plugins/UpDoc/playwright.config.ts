@@ -8,7 +8,38 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export const STORAGE_STATE = join(__dirname, 'tests/e2e/.auth/user.json');
+// Two host sites can be tested: the test site (default) and the Tailored Travel
+// mirror. They are separate Umbraco installs with their own Playwright users, so
+// switching target means switching credentials too, not just the URL.
+//
+//   npx playwright test ...                 → test site
+//   TARGET=mirror npx playwright test ...   → mirror
+//
+// The testhelpers read these from the environment rather than from Playwright's
+// config, so the chosen target is written back over them here, before any helper
+// reads them. Note the helpers navigate using URL, not UMBRACO_URL — setting only
+// the latter changes Playwright's baseURL while goToBackOffice still goes to the
+// old site.
+if (process.env.TARGET === 'mirror') {
+  const missing = ['MIRROR_URL', 'MIRROR_USER_LOGIN', 'MIRROR_USER_PASSWORD'].filter(
+    (key) => !process.env[key],
+  );
+  if (missing.length) {
+    throw new Error(`TARGET=mirror needs ${missing.join(', ')} in .env — see .env.example.`);
+  }
+
+  process.env.URL = process.env.MIRROR_URL;
+  process.env.UMBRACO_URL = process.env.MIRROR_URL;
+  process.env.UMBRACO_USER_LOGIN = process.env.MIRROR_USER_LOGIN;
+  process.env.UMBRACO_USER_PASSWORD = process.env.MIRROR_USER_PASSWORD;
+}
+
+// Each target stores its auth separately, so switching between them cannot reuse
+// the other site's session and fail in a confusing way.
+export const STORAGE_STATE = join(
+  __dirname,
+  process.env.TARGET === 'mirror' ? 'tests/e2e/.auth/mirror.json' : 'tests/e2e/.auth/user.json',
+);
 
 // CRITICAL: Testhelpers read auth tokens from this file
 process.env.STORAGE_STAGE_PATH = STORAGE_STATE;

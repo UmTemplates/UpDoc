@@ -5,6 +5,19 @@
   "documentTypeName": "Tailored Tour",
   "blueprintId": "2e79e2f0-211e-4096-aa18-857d23f4afc0",
   "blueprintName": "[Tailored Tour Blueprint]",
+  "tabOrder": [
+    "Tour Properties",
+    "Page Properties",
+    "Page Content",
+    "Page Settings"
+  ],
+  "groupOrder": {
+    "Tour Properties": [
+      "Tour Details",
+      "Tour Organiser",
+      "Tour Brochure"
+    ]
+  },
   "fields": [
     {
       "key": "24cf1e18-15a0-45ca-aa0f-a2e0ad25e201",
@@ -12,10 +25,14 @@
       "label": "Tour Duration",
       "description": "Number of days",
       "type": "number",
-      "tab": "Tour Details",
+      "tab": "Tour Properties",
+      "group": "Tour Details",
       "mandatory": false,
       "acceptsFormats": [
         "text"
+      ],
+      "fillableBy": [
+        "sourceContent"
       ]
     },
     {
@@ -24,10 +41,14 @@
       "label": "Tour Price (from)",
       "description": "The starting price for this tour",
       "type": "number",
-      "tab": "Tour Details",
+      "tab": "Tour Properties",
+      "group": "Tour Details",
       "mandatory": false,
       "acceptsFormats": [
         "text"
+      ],
+      "fillableBy": [
+        "sourceContent"
       ]
     },
     {
@@ -36,10 +57,14 @@
       "label": "Tour Departure Date",
       "description": "The date this tour departs",
       "type": "date",
-      "tab": "Tour Details",
+      "tab": "Tour Properties",
+      "group": "Tour Details",
       "mandatory": false,
       "acceptsFormats": [
         "text"
+      ],
+      "fillableBy": [
+        "sourceContent"
       ]
     },
     {
@@ -49,9 +74,13 @@
       "description": "This will appear in pages",
       "type": "text",
       "tab": "Page Properties",
+      "group": null,
       "mandatory": true,
       "acceptsFormats": [
         "text"
+      ],
+      "fillableBy": [
+        "sourceContent"
       ]
     },
     {
@@ -61,9 +90,13 @@
       "description": "This will appear in navigation",
       "type": "text",
       "tab": "Page Properties",
+      "group": null,
       "mandatory": true,
       "acceptsFormats": [
         "text"
+      ],
+      "fillableBy": [
+        "sourceContent"
       ]
     },
     {
@@ -73,10 +106,46 @@
       "description": "This will appear in pages",
       "type": "textArea",
       "tab": "Page Properties",
+      "group": null,
       "mandatory": true,
       "acceptsFormats": [
         "text",
         "markdown"
+      ],
+      "fillableBy": [
+        "sourceContent"
+      ]
+    },
+    {
+      "key": "49cf2a6e-9aab-47f6-9780-46ec0eefbe9c",
+      "alias": "pageThumbnail",
+      "label": "Page Thumbnail",
+      "description": "This will appear in navigation",
+      "type": "mediaPicker",
+      "tab": "Page Properties",
+      "group": null,
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ],
+      "fillableBy": [
+        "importFact"
+      ]
+    },
+    {
+      "key": "f9063e61-8f71-40bf-ba22-884b93a909ea",
+      "alias": "pageSettingsBackgroundImagePicker",
+      "label": "Page Background Image",
+      "description": "",
+      "type": "mediaPicker",
+      "tab": "Page Settings",
+      "group": null,
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ],
+      "fillableBy": [
+        "importFact"
       ]
     },
     {
@@ -86,9 +155,29 @@
       "description": "These are redirects from the old URLs that have been added using the Skybrud Redirects Plugin",
       "type": "text",
       "tab": "Page Settings",
+      "group": null,
       "mandatory": false,
       "acceptsFormats": [
         "text"
+      ],
+      "fillableBy": [
+        "sourceContent"
+      ]
+    },
+    {
+      "key": "83adfb36-b6b7-4f12-8083-d3f5e12fa730",
+      "alias": "brochurePdf",
+      "label": "Brochure PDF",
+      "description": null,
+      "type": "mediaPicker",
+      "tab": "Tour Properties",
+      "group": "Tour Brochure",
+      "mandatory": false,
+      "acceptsFormats": [
+        "text"
+      ],
+      "fillableBy": [
+        "importFact"
       ]
     }
   ],
@@ -99,6 +188,7 @@
       "label": "Block Grid Tailored Tour",
       "description": "Hover \u0027Block Grid Editor\u0027 then click the 3 dots to switch to Sort Mode (a simplified view for rearranging the page).\nThe Block Grid Editor allows you to add Layout Blocks consisting of one or more Areas which in turn may contain Feature Blocks such as Text or Images",
       "tab": "Page Content",
+      "group": null,
       "blocks": [
         {
           "key": "ccfd5345-a590-4239-9453-ce9ea0b4937d",
@@ -115,6 +205,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -134,6 +227,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -144,6 +240,21 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
+              ]
+            },
+            {
+              "key": "f5871762-12c4-4524-998d-61f43bb29e8e",
+              "alias": "featurePropertyFeatureImages",
+              "label": "Images",
+              "type": "mediaPicker",
+              "acceptsFormats": [
+                "text"
+              ],
+              "fillableBy": [
+                "importFact"
               ]
             },
             {
@@ -155,6 +266,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -174,6 +288,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -196,6 +313,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -205,6 +325,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -224,6 +347,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -246,6 +372,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -256,6 +385,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -267,6 +399,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -278,6 +413,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -300,6 +438,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -310,6 +451,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -321,6 +465,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -332,6 +479,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -354,6 +504,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -364,6 +517,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -375,6 +531,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -386,6 +545,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -408,6 +570,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -418,6 +583,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -429,6 +597,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -440,6 +611,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -462,6 +636,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -472,6 +649,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -483,6 +663,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -494,6 +677,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -516,6 +702,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -526,6 +715,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -537,6 +729,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -548,6 +743,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -570,6 +768,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -580,6 +781,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -589,6 +793,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -600,6 +807,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -622,6 +832,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -632,6 +845,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -641,6 +857,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -652,6 +871,9 @@
                 "html",
                 "markdown",
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]
@@ -665,7 +887,8 @@
       "alias": "organisers",
       "label": "Organisers",
       "description": "",
-      "tab": "Tour Organiser",
+      "tab": "Tour Properties",
+      "group": "Tour Organiser",
       "blocks": [
         {
           "key": "91204016-657d-4a49-9bba-62fe18483d28",
@@ -685,6 +908,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -694,6 +920,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -703,6 +932,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -712,6 +944,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -721,6 +956,9 @@
               "type": "text",
               "acceptsFormats": [
                 "text"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             },
             {
@@ -731,6 +969,9 @@
               "acceptsFormats": [
                 "text",
                 "markdown"
+              ],
+              "fillableBy": [
+                "sourceContent"
               ]
             }
           ]

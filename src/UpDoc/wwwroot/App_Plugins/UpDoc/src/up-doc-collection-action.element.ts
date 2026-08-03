@@ -2,6 +2,8 @@ import { UMB_BLUEPRINT_PICKER_MODAL } from './blueprint-picker-modal.token.js';
 import { UMB_UP_DOC_MODAL } from './up-doc-modal.token.js';
 import type { DocumentTypeOption } from './blueprint-picker-modal.token.js';
 import type { DocumentTypeConfig, MappingDestination } from './workflow.types.js';
+import { IMPORT_FACT_SOURCE_FILE } from './workflow.types.js';
+import { applyImportFactMedia } from './import-facts.js';
 import { fetchActiveWorkflows } from './workflow.service.js';
 import { markdownToHtml, buildRteValue, stripMarkdown, coerceToInteger, coerceToDateOnly, buildDateValue } from './transforms.js';
 import { css, customElement, html, state } from '@umbraco-cms/backoffice/external/lit';
@@ -191,6 +193,17 @@ export class UpDocCollectionActionElement extends UmbLitElement {
 
 			for (const mapping of config.map.mappings) {
 				if (mapping.enabled === false) continue;
+
+				// Import facts describe the import itself rather than anything extracted
+				// from it, so they resolve from the modal's own value, not sectionLookup.
+				if (mapping.source === IMPORT_FACT_SOURCE_FILE) {
+					if (!mediaUnique) continue;
+					for (const dest of mapping.destinations) {
+						applyImportFactMedia(values, dest, mediaUnique);
+					}
+					continue;
+				}
+
 				let sectionValue = sectionLookup[mapping.source];
 
 				// StableKey fallback: if section ID changed but stableKey matches, resolve via new ID

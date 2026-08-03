@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.TailoredTour>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<!-- START - BLOCK GRID -->
+@await Html.GetBlockGridHtmlAsync(Model.BlockGridTailoredTour)
+<!-- END - BLOCK GRID -->

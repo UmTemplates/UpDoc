@@ -1,0 +1,32 @@
+// Variables
+// Imported after Bootstrap's _variables.scss (so Bootstrap's own vars are
+// available) and before _maps.scss (so derived maps pick up the extension).
+//
+// Extends Bootstrap's $theme-colors with the Tailored Travel Tier 1
+// palette. Bootstrap's utilities API then generates the full set of
+// utility classes (.bg-{name}, .text-bg-{name}, .border-{name}) and the
+// light/dark subtle/emphasis variants for every palette colour — the
+// standard Bootstrap custom-colour route.
+//
+// The $tt-* values are in scope here because _variables_overrides.scss
+// (imported earlier) pulls in themes/tailored-travel/_colours.scss.
+
+$theme-colors: map-merge(
+    $theme-colors,
+    (
+        "blue":       $tt-blue,
+        "yellow":     $tt-yellow,
+        "green":      $tt-green,
+        "olive":      $tt-olive,
+        "gold":       $tt-gold,
+        "cornflower": $tt-cornflower,
+        "coral":      $tt-coral,
+        "orange":     $tt-orange,
+        "purple":     $tt-purple,
+        "red":        $tt-red,
+        "teal":       $tt-teal,
+        "grey":       $tt-grey,
+        "charcoal":   $tt-charcoal,
+        "midnight":   $tt-midnight,
+    )
+);

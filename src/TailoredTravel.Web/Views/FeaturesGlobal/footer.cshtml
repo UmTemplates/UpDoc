@@ -1,0 +1,88 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SiteSettings>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = null;
+}
+
+<footer class="pt-3 bg-body-tertiary footer text-muted border-top border-primary">
+    <div class="container-xxl">
+        @* Organisation row — logo, contact, ATOL *@
+        <div class="grid gap-1 py-2 px-3">
+            <a class="g-col-4 g-start-1" href="/">
+                <img class="logo mw-100" src="@Model.Logo?.GetCropUrl())" alt="" />
+            </a>
+            <div class="g-col-4 g-start-5">
+                <p class="mb-1"><strong>020 7064 4970</strong></p>
+                <p class="mb-2"><a href="mailto:info@tailored-travel.co.uk">info@tailored-travel.co.uk</a></p>
+                <address class="mb-0">
+                    12 Jamaica Road<br />
+                    London<br />
+                    SE1 2RN
+                </address>
+            </div>
+            <div class="g-col-4 g-start-9 d-flex align-items-start gap-3">
+                @if (Model.AccreditationImage != null)
+                {
+                    var link = Model.AccreditationImageLink;
+                    if (link != null && !string.IsNullOrEmpty(link.Url))
+                    {
+                        <a href="@link.Url" target="@link.Target" rel="@(link.Target == "_blank" ? "noopener" : null)" class="d-inline-block w-25">
+                            <img class="mw-100" src="@Model.AccreditationImage.GetCropUrl()" alt="@link.Name" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img class="mw-100 w-25" src="@Model.AccreditationImage.GetCropUrl()" alt="" />
+                    }
+                }
+                <div>
+                    @Model.AccreditationText
+                </div>
+            </div>
+        </div>
+
+        @* Sitemap row — link columns *@
+        <div class="grid gap-1 py-2 px-3 border-top">
+            <div class="g-col-3 g-start-1">
+                <h2 class="h6">Information</h2>
+                <ul class="list-unstyled">
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Booking Conditions</a></li>
+                    <li><a href="#">Insurance</a></li>
+                    <li><a href="#">Financial Security</a></li>
+                </ul>
+            </div>
+            <div class="g-col-6 g-start-4">
+                <h2 class="h6">Destinations</h2>
+                <ul class="list-unstyled" style="column-count: 2;">
+                    <li><a href="#">UK</a></li>
+                    <li><a href="#">France</a></li>
+                    <li><a href="#">Holland</a></li>
+                    <li><a href="#">Portugal</a></li>
+                    <li><a href="#">Belgium</a></li>
+                    <li><a href="#">Southern Europe</a></li>
+                    <li><a href="#">Italy</a></li>
+                    <li><a href="#">Germany</a></li>
+                    <li><a href="#">Spain</a></li>
+                    <li><a href="#">Austria</a></li>
+                    <li><a href="#">Ireland</a></li>
+                    <li><a href="#">Central &amp; Eastern Europe</a></li>
+                    <li><a href="#">Worldwide</a></li>
+                </ul>
+            </div>
+            <div class="g-col-3 g-start-10">
+                <h2 class="h6">Types of Holiday</h2>
+                <ul class="list-unstyled">
+                    <li><a href="#">Tailor Made Tours for Groups</a></li>
+                    <li><a href="#">School &amp; College tours</a></li>
+                    <li><a href="#">Tours for Individuals</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="pt-3 mb-0 small">&copy; @DateTime.Now.Year - @Model.Copyright</p>
+    </div>
+</footer>

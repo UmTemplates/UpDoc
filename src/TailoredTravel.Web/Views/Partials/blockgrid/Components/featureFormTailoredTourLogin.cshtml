@@ -1,0 +1,41 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureFormTailoredTourLogin>>
+@using TailoredTravel.Web.Controllers;
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "p-3";
+    ViewData["FeatureDefaultBg"] = "body";
+    ViewData["FeatureDefaultBorderColour"] = "primary";
+}
+
+@* v1: all copy hardcoded. To be made editable via block properties later. *@
+<header class="feature__header mb-4">
+    <h2 class="border-bottom pb-1">View Your Tour</h2>
+    <p class="lead">Once your group&rsquo;s tour has been agreed with your Group Organiser, you can view and share full details of the tour and pay your final balance before departure.</p>
+</header>
+
+@if (TempData["TourLoginError"] is string error)
+{
+    <p class="text-danger" role="alert">@error</p>
+}
+
+@using (Html.BeginUmbracoForm<TailoredTourLoginController>(nameof(TailoredTourLoginController.Submit)))
+{
+    <div class="mb-3">
+        <label for="tourNumber" class="form-label">Online Tour Reference <span class="text-danger">*</span></label>
+        <input id="tourNumber" name="TourNumber" type="text" class="form-control" autocomplete="off" required
+               placeholder="Enter your Online Tour Reference here" />
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Find your tour</button>
+    </div>
+}
+
+<footer class="feature__footer mt-4">
+    <p><small>* You can find your Online Tour Reference in any one of three places:</small></p>
+    <ol>
+        <li>at the bottom of the front page of your group&rsquo;s 4 page tour brochure</li>
+        <li>in the first paragraph of the invoice you receive from Tailored Travel after booking on the tour</li>
+        <li>on the Client Information sheet that is sent to you 10 days or so prior to departure.</li>
+    </ol>
+</footer>

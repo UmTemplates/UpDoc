@@ -1,0 +1,75 @@
+{
+  "templateName": "tailored-tour-pdf",
+  "sourceFile": "",
+  "pageSize": {
+    "width": 595,
+    "height": 841.89
+  },
+  "createdAt": "2026-06-16T13:45:55.11Z",
+  "areas": [
+    {
+      "name": "Page Header",
+      "property": "",
+      "page": 1,
+      "type": "",
+      "bounds": {
+        "x": 15,
+        "y": 610.9,
+        "width": 381,
+        "height": 216
+      },
+      "color": "#e84855",
+      "sectionPattern": null,
+      "expectedSections": [],
+      "notes": ""
+    },
+    {
+      "name": "Main Content",
+      "property": "",
+      "page": 1,
+      "type": "",
+      "bounds": {
+        "x": 398,
+        "y": 157.9,
+        "width": 181,
+        "height": 567
+      },
+      "color": "#8338ec",
+      "sectionPattern": null,
+      "expectedSections": [],
+      "notes": ""
+    },
+    {
+      "name": "Organiser Information",
+      "property": "",
+      "page": 1,
+      "type": "",
+      "bounds": {
+        "x": 20,
+        "y": 29.9,
+        "width": 276,
+        "height": 107
+      },
+      "color": "#3185fc",
+      "sectionPattern": null,
+      "expectedSections": [],
+      "notes": ""
+    },
+    {
+      "name": "Itinerary",
+      "property": "",
+      "page": 2,
+      "type": "",
+      "bounds": {
+        "x": 204,
+        "y": 43.2,
+        "width": 352,
+        "height": 662.7
+      },
+      "color": "#5bba6f",
+      "sectionPattern": null,
+      "expectedSections": [],
+      "notes": ""
+    }
+  ]
+}

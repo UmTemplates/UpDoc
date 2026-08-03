@@ -1,0 +1,19 @@
+// Map overrides — extends Bootstrap's $theme-colors so its component
+// generators (buttons, alerts, list-groups, etc.) emit a full "country"
+// variant alongside primary/secondary/success/etc.
+//
+// The Sass-time value here only seeds Bootstrap's contrast / hover /
+// subtle calculations; the *visible* colour comes at browser time from
+// the country scope in themes/tailored-travel/_countries.scss, which
+// re-points the relevant --bs-*-* custom properties to --tt-primary
+// (which itself flips per country).
+//
+// Seeded with $tt-blue so any country-coloured component on a page with
+// no country scope (Home, About, etc.) falls back to the brand blue.
+
+$theme-colors: map-merge(
+    $theme-colors,
+    (
+        "country": $tt-blue,
+    )
+);

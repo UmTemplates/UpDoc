@@ -1,0 +1,31 @@
+@using Umbraco.Community.UmbNav.Core.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<SiteSettings>
+@{
+    Layout = null;
+    var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
+    var phoneNumber = Model.CompanyPhoneNumber;
+    var phoneHref = string.IsNullOrWhiteSpace(phoneNumber)
+        ? null
+        : "tel:" + new string(phoneNumber.Where(char.IsDigit).ToArray());
+}
+<header class="screen--header bg-body-tertiary">
+    <div class="container-xxl grid gap-1 py-2 px-3" style="--bs-rows: 2; align-items: center;">
+        <div class="g-col-6 g-col-sm-7 g-col-md-8 g-col-lg-9 g-start-1 p-0 p-sm-1 p-md-2" style="grid-row: 1 / span 2;">
+            <a href="/">
+                <img class="logo mw-100" src="@Model.Logo?.GetCropUrl())" alt="" />
+            </a>
+        </div>
+        <div class="g-col-6 g-col-sm-5 g-col-md-4 g-col-lg-3 g-start-7 g-start-sm-8 g-start-md-9 g-start-lg-10 p-0 p-sm-1 p-md-2 d-grid gap-2" style="grid-row: 1 / span 2;">
+            <a class="btn btn-lg-up btn-primary text-white" href="@phoneHref" aria-label="Call us on @phoneNumber" title="Click to call">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone" style="margin-bottom: 4px">
+                    <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
+                </svg><span> @phoneNumber</span>
+            </a>
+            <a class="btn btn-lg-up btn-yellow text-primary" href="/tailored-tours/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round" style="margin-bottom: 4px">
+                    <circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path>
+                </svg><span> View your tour</span>
+            </a>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,84 @@
+.nav-pills .nav-link:hover,
+.nav-pills .nav-link:focus,
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: var(--bs-primary);
+    transition: color 0.15s, background-color 0.15s;
+}
+
+// In-page navigation
+.sticky-nav .list-group {
+    padding-left: 0;
+    list-style: none;
+    gap: 0.25rem;
+}
+
+.sticky-nav .list-group-item {
+    // Transparent 1px border reserves the slot so highlighting Pay Final
+    // Balance's border below never reflows the other items.
+    border: 1px solid transparent;
+    padding-inline: 0.5rem;
+    border-radius: 0.5rem;
+
+    &.active {
+        background-color: var(--bs-list-group-action-hover-bg);
+        color: var(--bs-list-group-action-hover-color);
+    }
+
+    // Pressed (:active) — one step deeper than the resting tint on the
+    // country ramp, so mouse-down gives feedback in the destination's
+    // colour instead of Bootstrap's default blue. Falls back to the plain
+    // tint off-theme.
+    &:not(.active):active {
+        background-color: var(--tt-tertiary-bg-active, var(--bs-tertiary-bg));
+    }
+}
+
+.nav-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: $tt-primary;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Inside an offcanvas drawer, the nav-section is always visible regardless
+// of the d-none d-md-block that hides it below md in normal flow.
+.offcanvas-body .nav-section {
+    display: block !important;
+}
+
+// Section/descendants navigation — visual treatment shared with sticky-nav
+// but not dependent on sticky positioning being enabled
+.nav-section .list-group {
+    padding-left: 0;
+    list-style: none;
+    gap: 0.25rem;
+}
+
+.nav-section .list-group-item {
+    // Transparent 1px border reserves the slot so highlighting Pay Final
+    // Balance's border never reflows the other items.
+    border: 1px solid transparent;
+    padding-inline: 0.5rem;
+    border-radius: 0.5rem;
+
+    &.active {
+        background-color: var(--bs-list-group-action-hover-bg);
+        color: var(--bs-list-group-action-hover-color);
+        border-color: transparent;
+    }
+
+    // Pressed (:active) — one step deeper than the resting tint on the
+    // country ramp, so mouse-down gives feedback in the destination's
+    // colour instead of Bootstrap's default blue. Falls back to the plain
+    // tint off-theme.
+    &:not(.active):active {
+        background-color: var(--tt-tertiary-bg-active, var(--bs-tertiary-bg));
+    }
+}

@@ -1,0 +1,7 @@
+// Feature images — enforce 16:9 aspect ratio
+.featureImage img,
+.featureImageSlideshow img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+}

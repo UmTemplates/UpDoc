@@ -1,0 +1,100 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@*Need to review max items etc for block settings*@
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    var maxItems = 15;
+    var guid = Guid.NewGuid().ToString();
+    var carouselId = "carousel" + guid;
+    var slides = Model.Content.Value<IEnumerable<IPublishedContent>>("links")?.Take(maxItems).ToList() ?? new List<IPublishedContent>();
+
+    var showItemTitles = Model.Settings?.Value<bool>("showItemTitles") ?? false;
+    var showItemDescriptions = Model.Settings?.Value<bool>("showItemDescriptions") ?? false;
+    var showSlideCount = Model.Settings?.Value<bool>("showSlideCount") ?? false;
+    var showSlidePips = Model.Settings?.Value<bool>("showSlidePips") ?? true;
+}
+
+<div id="@carouselId" class="carousel slide" data-bs-ride="carousel">
+
+    @if (showSlidePips)
+    {
+        <div class="carousel-indicators">
+            @for (int i = 0; i < slides.Count; i++)
+            {
+                <button type="button"
+                        data-bs-target="#@carouselId"
+                        data-bs-slide-to="@i"
+                        class="@(i == 0 ? "active" : null)"
+                        aria-label="Slide @(i + 1)"></button>
+            }
+        </div>
+    }
+
+    <div class="carousel-inner rounded-4">
+        @{
+            int count = 0;
+            foreach (var item in slides)
+            {
+                count++;
+                var thumbnail = item.Value<IPublishedContent>("pageThumbnail");
+                var active = count == 1 ? "active" : "";
+                <div class="carousel-item @active">
+                    @if (thumbnail != null)
+                    {
+                        var altText = thumbnail.Value<string>("mediaPropertyAltText");
+
+                        <img src="@(thumbnail.GetCropUrl("content12Col"))&format=webp"
+                             srcset="@(thumbnail.GetCropUrl("content3Col"))&format=webp 384w,
+                                     @(thumbnail.GetCropUrl("content6Col"))&format=webp 768w,
+                                     @(thumbnail.GetCropUrl("content9Col"))&format=webp 1152w,
+                                     @(thumbnail.GetCropUrl("content12Col"))&format=webp 1536w"
+                             sizes="(max-width: 576px) 100vw,
+                                    (max-width: 992px) 100vw,
+                                    1536px"
+                             class="d-block w-100"
+                             alt="@(altText ?? thumbnail.Name)"
+                             @(count > 1 ? "loading=lazy" : "")>
+                    }
+                    @if (showItemTitles || showItemDescriptions || showSlideCount)
+                    {
+                        <div class="carousel-caption d-none d-md-block">
+                            <div class="btn btn-secondary rounded-3">
+                                @if (showItemTitles)
+                                {
+                                    <p class="mb-0 fs-4"><a class="nav-link stretched-link" href="@item.Url()">@item.Value("pageTitleShort")</a></p>
+                                }
+                                @if (showItemDescriptions)
+                                {
+                                    @if (showItemTitles)
+                                    {
+                                        <p>@item.Value("pageDescription")</p>
+                                    }
+                                    else
+                                    {
+                                        <p><a class="nav-link stretched-link" href="@item.Url()">@item.Value("pageDescription")</a></p>
+                                    }
+                                }
+                                @if (showSlideCount)
+                                {
+                                    <p>@(count) of @(slides.Count)</p>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#@carouselId" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon carousel-arrow-bg rounded-1" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#@carouselId" data-bs-slide="next">
+        <span class="carousel-control-next-icon carousel-arrow-bg rounded-1" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+

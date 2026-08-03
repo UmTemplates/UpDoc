@@ -1,0 +1,128 @@
+h1, h2, h3, h4, h5, h6 {
+    color: var(--bs-heading-color);
+    //color: red;
+    font-weight: 400;
+    font-style: normal;
+    text-wrap-style: balance;
+}
+
+.lead {
+    color: $tt-primary;
+    margin: 0;
+}
+
+h1 + .lead,
+h2 + .lead {
+    @include font-size(1.25rem);
+    margin-top: 1.5rem;
+}
+
+h3 + .lead {
+    @include font-size(1.125rem);
+    margin-top: 1rem;
+}
+
+h4 + .lead {
+    @include font-size(1rem);
+    margin-top: 1rem;
+}
+
+.eyebrow {
+    @include font-size(1.25rem);
+    font-weight: 600;
+    color: var(--tt-blue-400);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    text-wrap-style: balance;
+}
+
+h3, h4, h5, h6 {
+    font-family: $font-family-base;
+}
+
+h3 {
+    @include font-size(1.5rem);
+    font-weight: 600;
+}
+
+h4 {
+    @include font-size(1.25rem);
+}
+
+h3.card-title a {
+    @include font-size(1.25rem);
+    color: var(--bs-heading-color);
+    text-decoration: none;
+}
+
+.feature__header h2 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+p {
+    @include font-size(1rem);
+}
+
+p.card-text {
+    text-wrap: balance;
+}
+
+.text-balance {
+    text-wrap: balance;
+}
+
+.text-pretty {
+    text-wrap: pretty;
+}
+
+ul li::marker {
+    color: $tt-primary;
+    font-size: 1.25em;
+}
+
+// Bootstrap's .blockquote sets only font-size and margin, and the rich text
+// editor emits a bare <blockquote> without it, so quotes had no styling at all.
+//
+// The border uses --tt-tertiary-bg-active, the same token the in-page nav
+// uses for its hover state, so a quote picks up the tour's country tint
+// (the -100 stop) rather than the solid country colour, which is too heavy
+// next to body copy. Same fallback chain as _nav.scss.
+//
+// margin-left resets the browser's default 40px indent, which would
+// otherwise compound with the padding.
+// Body text sits at --bs-secondary-color (the $tt-grey token) so the quote
+// reads as a step quieter than the surrounding copy. Not italicised: these
+// quotes run to several lines and italic hurts readability at that length.
+blockquote {
+    border-left: 6px solid var(--tt-tertiary-bg-active, var(--bs-tertiary-bg));
+    padding-left: 1.25rem;
+    margin-left: 0;
+    color: var(--bs-secondary-color);
+}
+
+.display-1 {
+    font-weight: 400;
+}
+
+// When a Tailor feature follows another feature, tighten the join so the
+// pair reads as a section + its tailoring sub-section. Padding only, not
+// negative margin: the Tailor headings are jump-list anchor targets, and
+// negative margin would mis-position the scroll landing.
+//
+// !important is here because feature padding currently comes from the
+// Bootstrap .p-3 utility (which is itself !important). When feature
+// padding moves to a settings-driven custom property, drop !important
+// and override the variable instead.
+.feature-item:has(+ .feature-item.featureRichTextEditorMoreFeatures),
+.feature-item:has(+ .feature-item.featureRichTextEditorSightsMore),
+.feature-item:has(+ .feature-item.featureRichTextEditorAccommodationMore) {
+    padding-bottom: 0 !important;
+}
+
+.feature-item + .feature-item.featureRichTextEditorMoreFeatures,
+.feature-item + .feature-item.featureRichTextEditorSightsMore,
+.feature-item + .feature-item.featureRichTextEditorAccommodationMore {
+    padding-top: 0 !important;
+}
+

@@ -1,0 +1,8 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureRichTextEditorAccommodationMore, FeatureSettings>>
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeatureDefaultLevel"] = "h3";
+}
+
+@Model.Content.RichTextContent

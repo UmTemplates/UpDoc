@@ -1,0 +1,172 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+@using Umbraco.Community.BlockPreview.Extensions;
+@using TailoredTravel.Web.Helpers
+
+@{
+    Layout = null;
+
+    var featureTitle = Model.Content.Value<string>("featurePropertyFeatureTitle");
+    var featureDescription = Model.Content.Value<string>("featurePropertyFeatureDescription");
+    var featureSummary = Model.Content.Value<Umbraco.Cms.Core.Strings.IHtmlEncodedString>("featurePropertyFeatureSummary");
+
+    // Allow a feature to provide its own header title dynamically (e.g. descendants nav
+    // pulls the section page's short title). Wins only when the editor hasn't set one.
+    if (string.IsNullOrWhiteSpace(featureTitle))
+    {
+        featureTitle = ViewData["FeatureHeaderTitle"]?.ToString();
+    }
+
+    var slug = SlugHelper.ToSlug(featureTitle, Model.Content.ContentType.Alias, Model.ContentKey);
+
+    string? editorColorLabel = null;
+    string? borderColourLabel = null;
+    int borderWidth = 1;
+    bool? showFeature = null;
+    string? editorLevelLabel = null;
+
+    if (Model.Settings != null)
+    {
+        var backgroundColour = Model.Settings.Value<ColorPickerValueConverter.PickedColor>("featureSettingsColourPicker");
+        editorColorLabel = backgroundColour?.Label;
+
+        var borderColour = Model.Settings.Value<ColorPickerValueConverter.PickedColor>("featureBorderColour");
+        borderColourLabel = borderColour?.Label;
+
+        // Slider stores a single decimal; coerce to int 1-5. Defaults to 1 if unset.
+        if (Model.Settings.HasValue("featureBorderWidth"))
+        {
+            var w = Model.Settings.Value<decimal?>("featureBorderWidth");
+            if (w.HasValue) borderWidth = Math.Clamp((int)Math.Round(w.Value), 1, 5);
+        }
+
+        if (Model.Settings.HasValue("featureSettingsHideDisplay"))
+        {
+            showFeature = Model.Settings.Value<bool>("featureSettingsHideDisplay");
+        }
+
+        // Editor's level pick. Flexible Dropdown stores the label string.
+        editorLevelLabel = Model.Settings.Value<string>("featureSettingsLevel");
+    }
+
+    // Editor pick wins, else the feature's declared default, else nothing.
+    var defaultBg = ViewData["FeatureDefaultBg"]?.ToString();
+    var bgToken = !string.IsNullOrWhiteSpace(editorColorLabel) ? editorColorLabel : defaultBg;
+    var bgClass = PaletteClassHelper.Background(bgToken);
+
+    // Border: always reserve space via .border + .border-{width} + (transparent OR colour).
+    // Toggling the colour on/off therefore never reflows content.
+    // Editor pick wins, else the feature's declared default, else transparent.
+    var defaultBorderColour = ViewData["FeatureDefaultBorderColour"]?.ToString();
+    var borderColourToken = !string.IsNullOrWhiteSpace(borderColourLabel) ? borderColourLabel : defaultBorderColour;
+    var borderColourClass = !string.IsNullOrWhiteSpace(borderColourToken)
+        ? PaletteClassHelper.Border(borderColourToken)
+        : "border-transparent";
+    var borderClasses = $"border border-{borderWidth} {borderColourClass}";
+
+    // Padding: feature override via ViewData, else wrapper default.
+    var paddingClass = ViewData["FeaturePadding"]?.ToString() ?? "p-3";
+
+    // Border radius: feature override via ViewData, else wrapper default.
+    var radiusClass = ViewData["FeatureRadius"]?.ToString() ?? "rounded-4";
+
+    var isHidden = showFeature == false;
+    var isPreview = Context.Request.IsBlockPreviewRequest();
+
+    // Header mode: "default" = anchor-to-self (existing behaviour),
+    //              "link"    = link to an external URL via FeatureHeaderHref,
+    //              "plain"   = render title as text only, no link.
+    var headerMode = ViewData["FeatureHeaderMode"]?.ToString() ?? "default";
+    var headerHref = ViewData["FeatureHeaderHref"]?.ToString();
+
+    // Title level resolution: editor's pick wins, else feature view's
+    // declared default via ViewData, else h2. Editor stores friendly labels
+    // ("Level 2"/"Level 3"/"Level 4"); map to underlying tag here.
+    string? editorLevelTag = editorLevelLabel switch
+    {
+        "Level 2" => "h2",
+        "Level 3" => "h3",
+        "Level 4" => "h4",
+        _ => null
+    };
+    var headerLevel = editorLevelTag
+        ?? ViewData["FeatureDefaultLevel"]?.ToString()
+        ?? "h2";
+    if (headerLevel != "h2" && headerLevel != "h3" && headerLevel != "h4") headerLevel = "h2";
+
+    // Per-level heading treatment. h2 keeps the rule + padding; h3/h4 are
+    // sub-sections so they sit tighter and lose the rule.
+    var headerHasRule = headerLevel == "h2";
+    var headerClasses = headerHasRule ? "border-bottom pb-1" : "";
+
+    // Temporary hack — hide the wrapper header below md breakpoint when the feature says so.
+    // See planning/REVISIT.md: "Orphan feature title on mobile (in-page nav)".
+    var hideHeaderBelowMd = ViewData["FeatureHideHeaderBelowMd"] as bool? == true;
+    var headerVisibilityClass = hideHeaderBelowMd ? "d-none d-md-block" : "";
+}
+
+@* Hidden on front-end: emit nothing. In backoffice preview: render dimmed so editors can still see and edit. *@
+@if (isHidden && !isPreview)
+{
+    IgnoreBody();
+    return;
+}
+
+<!-- START - ITEM -->
+<section id="@slug"
+         class="feature-item @Model.Content.ContentType.Alias @bgClass @borderClasses @paddingClass @radiusClass @(isHidden ? "feature-item--hidden opacity-50" : "")"
+         data-FeatureAlias="@Model.Content.ContentType.Alias"
+         data-FeatureContentKey="@Model.ContentKey">
+    @* DEBUG: Feature block properties
+    <div class="alert alert-info">
+        <strong>Feature Debug</strong><br />
+        ContentKey: @Model.ContentKey<br />
+        Alias: @Model.Content.ContentType.Alias<br />
+        Content.Key: @Model.Content.Key<br />
+        SettingsKey: @Model.SettingsKey<br />
+        Title: @featureTitle<br />
+        Description: @featureDescription<br />
+        Summary: @featureSummary
+    </div>
+    *@
+    @if (!string.IsNullOrWhiteSpace(featureTitle) || !string.IsNullOrWhiteSpace(featureDescription))
+    {
+        <header class="feature__header mb-4 @headerVisibilityClass">
+            @if (!string.IsNullOrWhiteSpace(featureTitle))
+            {
+                @:<@(headerLevel) class="@headerClasses">
+                    @switch (headerMode)
+                    {
+                        case "link":
+                            <a href="@headerHref">@featureTitle</a>
+                            break;
+                        case "plain":
+                            @featureTitle
+                            break;
+                        default:
+                            <a href="#@slug" class="anchor-link">@featureTitle<sup class="anchor-hash">#</sup></a>
+                            break;
+                    }
+                @:</@(headerLevel)>
+            }
+            @if (!string.IsNullOrWhiteSpace(featureDescription))
+            {
+                <p class="lead">@featureDescription</p>
+            }
+        </header>
+    }
+    <div class="feature__body">
+        @RenderBody()
+    </div>
+    @if (!string.IsNullOrWhiteSpace(System.Text.RegularExpressions.Regex.Replace(featureSummary?.ToHtmlString() ?? "", "<[^>]*>", "")))
+    {
+        <footer class="feature__footer p-3 bg-body-tertiary border rounded-3 text-pretty">
+            @featureSummary
+        </footer>
+    }
+</section>
+<!-- END - ITEM -->
+
+
+
+                    

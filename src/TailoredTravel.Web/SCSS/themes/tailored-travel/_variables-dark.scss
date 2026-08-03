@@ -1,0 +1,30 @@
+// Tailored Travel — Tier 2 Sass variables (dark mode)
+//
+// Mirrors _variables.scss with dark-mode values. Imported inside the
+// dark-mode scope only — names shadow the light values just for that
+// block, the same pattern Bootstrap 5.3 uses in _variables-dark.scss.
+
+// Body / surfaces
+$tt-body-color:        tint-color($tt-blue, 80%);
+$tt-body-bg:           $tt-midnight;
+$tt-emphasis-color:    #fff;
+$tt-secondary-bg:      shade-color($tt-blue, 70%);
+$tt-tertiary-bg:       shade-color($tt-blue, 80%);
+$tt-border-color:      shade-color($tt-blue, 40%);
+
+// Links
+$tt-link-color:        tint-color($tt-blue, 40%);
+$tt-link-hover-color:  tint-color($tt-blue, 60%);
+
+// Headings
+$tt-heading-color:     tint-color($tt-blue, 60%);
+
+// Theme-colour roles — pinned (same hex as light)
+$tt-primary:           $tt-blue;
+$tt-secondary:         $tt-grey;
+$tt-success:           $tt-green;
+$tt-danger:            $tt-red;
+$tt-warning:           $tt-orange;
+$tt-info:              $tt-teal;
+$tt-light:             shade-color($tt-blue, 70%);
+$tt-dark:              $tt-midnight;

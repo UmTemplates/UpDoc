@@ -1,0 +1,48 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Community.BlockPreview.Extensions;
+
+@*
+    Tour header: the title plus the tour's details ("5 days from £779").
+
+    The details come from the structured tour properties via TourDetailsHelper, not
+    from Page Description. That frees Page Description to be real prose, which
+    renders in the body and feeds the meta description.
+
+    Group, Individual and Tailored tours get these properties from separate
+    compositions and share no interface, so the helper reads by alias and omits
+    whatever a given tour does not have. One component serves all three.
+*@
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "pt-3";
+
+    if (Umbraco.AssignedContentItem is not IContentHeadingDefault currentPage) return;
+
+    // In Block Preview an unfilled tour property shows as a bracketed placeholder,
+    // so the backoffice preview names the properties that feed this line. On a
+    // live page an unfilled property renders nothing.
+    var strapline = Context.Request.IsBlockPreviewRequest()
+        ? TourDetailsHelper.PreviewStrapline(Umbraco.AssignedContentItem)
+        : TourDetailsHelper.Strapline(Umbraco.AssignedContentItem);
+
+    // A tour can have several organisers, and a single society often names a lead
+    // contact and a deputy. Taking the first organiser would silently drop a second
+    // organisation, so ask the helper for the distinct organisations instead.
+    var organisations = TourOrganiserHelper.OrganisationLine(Umbraco.AssignedContentItem);
+    var presents = TourOrganiserHelper.Presents(Umbraco.AssignedContentItem);
+}
+
+<div class="container d-flex justify-content-center">
+    <div class="w-75 text-center">
+        @if (!string.IsNullOrWhiteSpace(organisations))
+        {
+            <p class="eyebrow mb-1">@organisations <br><span style="font-style: italic; text-transform: lowercase; font-size: 1rem;">@presents</span></p>
+        }
+        <h1 class="display-3">@currentPage.PageTitle</h1>
+        @if (!string.IsNullOrWhiteSpace(strapline))
+        {
+            <p class="lead">@strapline</p>
+        }
+    </div>
+</div>

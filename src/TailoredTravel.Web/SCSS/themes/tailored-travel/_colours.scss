@@ -1,0 +1,40 @@
+// Tailored Travel — Tier 1 palette
+//
+// Single source of truth for every Tailored Travel colour. Brand and
+// supporting colours sit as peers under the `tt-` namespace. Names are
+// descriptive (colour-led), never role-led, never country-led. Country /
+// region mapping happens in Phase E via [data-theme-country="..."] scopes
+// that consume these tokens — multiple countries can share one colour.
+//
+// Tints and shades are derived via Bootstrap's tint-color() / shade-color()
+// at Tier 2 or in components; do not add separate pastel entries here.
+
+// Brand
+$tt-blue:       #2e5ba1; // Tailored Travel brand blue — primary identity
+$tt-yellow:     #ffd738; // Tailored Travel brand yellow — nav hover, CTA accents
+
+// Supporting palette (drawn from the old tailored-travel.co.uk site)
+$tt-green:      #009136; // UK / Ireland tour group
+$tt-olive:      #486902; // Italy
+$tt-gold:       #a07b06; // France
+$tt-cornflower: #8baed8; // Spain / Portugal / Southern Europe
+$tt-coral:      #e3605a; // Germany / Austria
+$tt-orange:     #f5a601; // Holland / Belgium
+$tt-purple:     #941378; // Central & Eastern Europe
+$tt-red:        #ce0019; // Worldwide
+$tt-teal:       #5ba3bb; // Tours for Individuals / NADFAS
+
+// Neutrals
+$tt-grey:       #6f6f71; // Body grey
+$tt-charcoal:   #4e4e4e; // Darker grey
+$tt-midnight:   #1a1a2e; // Dark surface / dark-mode canvas
+
+// Legacy aliases — kept at file scope so existing SCSS that references
+// $tt-primary / $tt-accent / $tt-dark compiles. The Tier 2 _variables*
+// files declare $tt-primary / $tt-dark inside scoped blocks; these
+// top-level aliases are the fallback when the Tier 2 scope isn't in
+// effect (e.g. early compilation in _variables_overrides.scss before
+// theme partials are imported).
+$tt-primary:    $tt-blue;
+$tt-accent:     $tt-yellow;
+$tt-dark:       $tt-midnight;

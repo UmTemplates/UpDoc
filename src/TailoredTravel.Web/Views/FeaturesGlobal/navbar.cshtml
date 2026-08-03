@@ -1,0 +1,102 @@
+@using Umbraco.Community.UmbNav.Core.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<SiteSettings>
+@{
+    Layout = null;
+    var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
+}
+<nav id="site-navbar" class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top py-lg-0" data-bs-theme="dark">
+    <div class="container-xxl">
+        <button class="navbar-toggler border-0 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="d-inline-flex align-items-center gap-2">
+                <span class="navbar-toggler-label">Menu</span>
+                <span class="navbar-toggler-icon"></span>
+            </span>
+        </button>
+        <div class="offcanvas offcanvas-end bg-primary" id="mainNav" tabindex="-1" aria-labelledby="mainNavLabel" data-bs-theme="dark">
+            <div class="offcanvas-header justify-content-between p-0 ps-3 pe-3 pt-2">
+                @* Theme toggle inside the offcanvas — mobile placement.
+                   Hidden on desktop (where the toggle outside the offcanvas
+                   takes over). Shares behaviour with #themeToggleBtn via
+                   theme-toggler.js. *@
+                <button type="button" class="theme-toggle-btn btn btn-sm btn-outline-light border-0 my-1 d-lg-none" aria-label="Toggle colour theme">
+                    <span class="themeIcon bi bi-circle-half"></span>
+                </button>
+                <button type="button" class="navbar-toggler border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <span class="d-inline-flex align-items-center gap-2">
+                        <span class="navbar-toggler-label" id="mainNavLabel">Close</span>
+                        <span class="btn-close" aria-hidden="true"></span>
+                    </span>
+                </button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav">
+                    @{
+                        foreach (var menuItem in Model.TopNavigation!)
+                        {
+                            var childClass = "";
+                            if (menuItem.Children?.Any() == true)
+                            {
+                                childClass = "dropdown";
+                            }
+                            var isHome = menuItem.Content?.Level == 1;
+                            // Faux-active: Group Tours stays highlighted on Destinations + descendants.
+                            // Note: IPublishedContent.AncestorOrSelf(string) returns the current
+                            // node when no ancestor matches (not null), so walk explicitly here.
+                            var isActive = currentPage != null && (
+                                menuItem.IsActive(currentPage, includeDescendants: !isHome)
+                                || (menuItem.Content?.ContentType.Alias == "groupTours"
+                                    && currentPage.AncestorsOrSelf().Any(a => a.ContentType.Alias == "destinations"))
+                            );
+
+                            <li class="nav-item @childClass">
+                                @if (string.IsNullOrEmpty(childClass))
+                                {
+                                    <a class="nav-link px-3 @Html.If(isActive, "active")" href="@menuItem.Url()" target="@menuItem.Target">@menuItem.Name</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link dropdown-toggle px-3" href="@menuItem.Url()" target="@menuItem.Target" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @menuItem.Name
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @foreach (var subItem in menuItem.Children ?? [])
+                                        {
+                                            <li><a class="dropdown-item @Html.If(subItem.IsActive, "active")" href="@subItem.Url()">@subItem.Name</a></li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        @* Theme toggle — sits at the far right end of the navbar on desktop.
+           Source order matters: placed after the offcanvas so on desktop
+           (where Bootstrap unfolds the offcanvas inline) the nav items stay
+           on the left and ms-auto pushes the toggle to the right.
+           theme-toggler.js cycles light / dark / auto. *@
+        <button type="button" class="theme-toggle-btn btn btn-sm btn-outline-light border-0 ms-auto my-1 d-none d-lg-inline-block" aria-label="Toggle colour theme">
+            <span class="themeIcon bi bi-circle-half"></span>
+        </button>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Toggle .is-stuck on the navbar when it's actually stuck against
+        // the viewport top. Native @@container scroll-state handles this in
+        // CSS where supported (Chrome/Edge/Opera); this script is the
+        // Firefox fallback and is a no-op if the native query fires.
+        var navEl = document.getElementById('site-navbar');
+        if (!navEl || !('IntersectionObserver' in window)) return;
+        var sentinel = document.createElement('div');
+        sentinel.style.height = '1px';
+        sentinel.style.marginBottom = '-1px';
+        navEl.parentNode.insertBefore(sentinel, navEl);
+        var observer = new IntersectionObserver(function (entries) {
+            navEl.classList.toggle('is-stuck', !entries[0].isIntersecting);
+        }, { threshold: 0 });
+        observer.observe(sentinel);
+    });
+</script>

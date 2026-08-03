@@ -1,0 +1,28 @@
+@using TailoredTravel.Web.Services
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@inject INavIconResolver NavIconResolver
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "px-3";
+
+    var thisPage = Umbraco.AssignedContentItem;
+    var blockGridDataTypeIds = thisPage?.Properties
+        .Where(p => p.PropertyType.EditorAlias == "Umbraco.BlockGrid")
+        .Select(p => p.PropertyType.DataType.Id)
+        .Distinct()
+        .ToList() ?? new List<int>();
+
+    var icon = await NavIconResolver.GetIconAsync("featureShare", blockGridDataTypeIds) ?? DefaultIcon;
+}
+
+<div class="d-grid">
+    <button type="button" class="btn btn-outline-primary d-inline-flex align-items-center justify-content-center gap-2" data-share-button>
+        <span class="share-icon" aria-hidden="true">@Html.Raw(icon)</span>
+        <span data-share-label>Share this page</span>
+    </button>
+</div>
+
+@functions {
+    private const string DefaultIcon = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='18' cy='5' r='3'/><circle cx='6' cy='12' r='3'/><circle cx='18' cy='19' r='3'/><line x1='8.59' x2='15.42' y1='13.51' y2='17.49'/><line x1='15.41' x2='8.59' y1='6.51' y2='10.49'/></svg>";
+}

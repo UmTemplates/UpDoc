@@ -1,0 +1,86 @@
+:root {
+    --navbar-height: 3rem;
+    --bs-navbar-padding-y: 0.25rem;
+    --bs-navbar-toggler-padding-y: 0.5rem;
+}
+
+body {
+    min-height: 100vh;
+    height: 100%;
+}
+
+.document {
+    min-height: 100vh;
+    height: 100%;
+}
+
+.navbar.sticky-top {
+    position: sticky;
+}
+
+[data-FeatureContentKey] {
+    scroll-margin-top: calc(var(--navbar-height) + var(--toc-height, 0px) + 1rem);
+}
+
+// Stop layout-level bg-opacity-* utilities from leaking --bs-bg-opacity
+// into child areas. Areas own their own background opacity.
+[data-AreaAlias] {
+    --bs-bg-opacity: 1;
+}
+
+// Phase 1: layout363 tertiary off-canvas trigger.
+// Pinned full-width strip at the bottom of the viewport below md, holding
+// the trigger button on the right. Left side is reserved for future
+// content (e.g. "Back to" buttons). At md+ it disappears (d-md-none on
+// the element) and the area renders in flow.
+.tt-area-drawer-toggle {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1030;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-inline: var(--bs-gutter-x, 0.75rem);
+    box-shadow: 0 -0.25rem 0.75rem rgba(0, 0, 0, 0.3);
+
+    // The navbar-toggler button relies on these vars, which Bootstrap only
+    // sets inside .navbar. Defining them here so the button picks up its
+    // intended padding + icon size when used outside a navbar.
+    --bs-navbar-toggler-padding-x: 0.75rem;
+    --bs-navbar-toggler-font-size: 1.25rem;
+}
+
+// Reserve space at the bottom of the document so the fixed trigger never
+// covers the last in-flow content. Only applies below md, where the
+// trigger is visible.
+@include media-breakpoint-down(md) {
+    body:has(.tt-area-drawer-toggle) {
+        padding-bottom: 3.5rem;
+    }
+}
+
+// Drop shadow on the top edge of area-drawers when slid up.
+// Bootstrap's $enable-shadows is false in this project, so the offcanvas
+// box-shadow mixin no-ops — we set box-shadow directly.
+.area-3.tertiary.offcanvas-md.offcanvas-bottom,
+.area-3.secondary.offcanvas-md.offcanvas-bottom {
+    --bs-offcanvas-height: 50vh;
+
+    @include media-breakpoint-down(md) {
+        box-shadow: 0 -0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+    }
+
+    // At md+ Bootstrap's responsive offcanvas reset sets the body to
+    // display:flex (row direction) which collapses our vertical stack
+    // of features into a row. `display: contents` removes the body
+    // from the layout box tree entirely so .feature-items becomes a
+    // direct child of the area again — preserving stacking AND the
+    // sticky-positioning containing block.
+    @include media-breakpoint-up(md) {
+        .offcanvas-body {
+            display: contents;
+        }
+    }
+}

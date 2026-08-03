@@ -1,0 +1,1214 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "sourceTypes": [
+    "pdf"
+  ],
+  "globals": null,
+  "pages": [
+    1,
+    2
+  ],
+  "sections": [],
+  "sectionRules": null,
+  "areaRules": {
+    "organiser-information": {
+      "groups": [],
+      "rules": [
+        {
+          "id": "242ac20d-0d50-424a-a6eb-50ab62c07516",
+          "role": "Organiser Name",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 20,
+                "max": 27
+              },
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": null
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": [
+            {
+              "findType": "textEndsWith",
+              "find": " presents",
+              "replaceType": "replaceWith",
+              "replace": ""
+            }
+          ],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 20,
+                "max": 27
+              },
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
+        },
+        {
+          "id": "daa2526a-d8b5-4ca7-af36-c4af60c8bb8c",
+          "role": "Organiser Mobile",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "textMatchesPattern",
+              "value": "^(Mob:|Tel: 07)",
+              "sortOrder": null
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": [
+            {
+              "findType": "textBeginsWith",
+              "find": "Mob: ",
+              "replaceType": "replaceWith",
+              "replace": ""
+            },
+            {
+              "findType": "textBeginsWith",
+              "find": "Tel: ",
+              "replaceType": "replaceWith",
+              "replace": ""
+            }
+          ],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "textMatchesPattern",
+              "value": "^(Mob:|Tel: 07)",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
+        },
+        {
+          "id": "7e6b0588-db18-4dd7-ab66-c825d0de8fbb",
+          "role": "Organiser Telephone",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "textBeginsWith",
+              "value": "Tel:",
+              "sortOrder": null
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": [
+            {
+              "findType": "textBeginsWith",
+              "find": "Tel: ",
+              "replaceType": "replaceWith",
+              "replace": ""
+            }
+          ],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "textBeginsWith",
+              "value": "Tel:",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
+        },
+        {
+          "id": "0c0c06fb-1159-4364-878f-d2d55423b6ae",
+          "role": "Organiser Email",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": null
+            },
+            {
+              "type": "textBeginsWith",
+              "value": "Email:",
+              "sortOrder": null
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": [
+            {
+              "findType": "textBeginsWith",
+              "find": "Email: ",
+              "replaceType": "replaceWith",
+              "replace": ""
+            },
+            {
+              "findType": "textEndsWith",
+              "find": " ...............................................................",
+              "replaceType": "replaceWith",
+              "replace": ""
+            }
+          ],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": null
+            },
+            {
+              "type": "textBeginsWith",
+              "value": "Email:",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
+        },
+        {
+          "id": "75b31ea6-088d-4f74-a8c2-bc88a1cbc09b",
+          "role": "Organiser Address",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 10,
+                "max": 14
+              },
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF",
+              "sortOrder": null
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 10,
+                "max": 14
+              },
+              "sortOrder": null
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": null
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF",
+              "sortOrder": null
+            }
+          ],
+          "SegmentConditions": []
+        }
+      ]
+    },
+    "page-header": {
+      "groups": [],
+      "rules": [
+        {
+          "id": "35d2eb27-6901-4b31-a062-acde69cbc548",
+          "role": "Organisation",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 9,
+                "max": 14
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "HelveticaNeue-Medium",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 2
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": [
+            {
+              "findType": "textEndsWith",
+              "find": " presents",
+              "replaceType": "replaceWith",
+              "replace": ""
+            },
+            {
+              "findType": "textEndsWith",
+              "find": " present",
+              "replaceType": "replaceWith",
+              "replace": ""
+            }
+          ],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 9,
+                "max": 14
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "HelveticaNeue-Medium",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": []
+        },
+        {
+          "id": "d89bc5dc-cd92-4147-b9d5-69fbc1c325d8",
+          "role": "Tour Title",
+          "part": "content",
+          "action": null,
+          "format": "heading1",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 25,
+                "max": 35
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF",
+              "sortOrder": 2
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": [],
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 25,
+                "max": 35
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "Clarendon",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": []
+        },
+        {
+          "id": "60e01e2b-4d3f-4d1f-bdf7-b16afc7957dd",
+          "role": "Tour Description",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "HelveticaNeue-Medium",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 2
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": false,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "fontNameContains",
+              "value": "HelveticaNeue-Medium",
+              "sortOrder": 1
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": []
+        },
+        {
+          "id": "f437c9a1-028f-44a8-9df7-19baa5dfdabb",
+          "role": "Duration",
+          "part": "content",
+          "action": null,
+          "format": "auto",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            },
+            {
+              "type": "textContains",
+              "value": "days",
+              "sortOrder": 2
+            },
+            {
+              "type": "segment",
+              "value": null,
+              "sortOrder": 3
+            },
+            {
+              "type": "textPrecedes",
+              "value": "days",
+              "sortOrder": 4
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": true,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            },
+            {
+              "type": "textContains",
+              "value": "days",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": [
+            {
+              "type": "textPrecedes",
+              "value": "days",
+              "sortOrder": 4
+            }
+          ]
+        },
+        {
+          "id": "c6bac245-3d48-4c9f-814d-47aee2e69ce1",
+          "role": "Price",
+          "part": "content",
+          "action": null,
+          "format": "auto",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            },
+            {
+              "type": "textContains",
+              "value": "\u00A3",
+              "sortOrder": 2
+            },
+            {
+              "type": "segment",
+              "value": null,
+              "sortOrder": 3
+            },
+            {
+              "type": "textFollows",
+              "value": "\u00A3",
+              "sortOrder": 4
+            },
+            {
+              "type": "number",
+              "value": null,
+              "sortOrder": 5
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": true,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            },
+            {
+              "type": "textContains",
+              "value": "\u00A3",
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": [
+            {
+              "type": "textFollows",
+              "value": "\u00A3",
+              "sortOrder": 4
+            },
+            {
+              "type": "number",
+              "value": null,
+              "sortOrder": 5
+            }
+          ]
+        },
+        {
+          "id": "44b21d97-4d8d-4763-8fb7-f212c1c16e2c",
+          "role": "Departure Date",
+          "part": "content",
+          "action": null,
+          "format": "auto",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            },
+            {
+              "type": "textContains",
+              "value": [
+                "Departs",
+                "Departing"
+              ],
+              "sortOrder": 2
+            },
+            {
+              "type": "segment",
+              "value": "start",
+              "sortOrder": 3
+            },
+            {
+              "type": "textFollows",
+              "value": [
+                "Departs",
+                "Departing"
+              ],
+              "sortOrder": 4
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null,
+          "segment": null,
+          "HasSegmentMarker": true,
+          "MatchConditions": [
+            {
+              "type": "fontSizeRange",
+              "value": {
+                "min": 13,
+                "max": 16
+              },
+              "sortOrder": 0
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFD200",
+              "sortOrder": 1
+            },
+            {
+              "type": "textContains",
+              "value": [
+                "Departs",
+                "Departing"
+              ],
+              "sortOrder": 2
+            }
+          ],
+          "SegmentConditions": [
+            {
+              "type": "textFollows",
+              "value": [
+                "Departs",
+                "Departing"
+              ],
+              "sortOrder": 4
+            }
+          ]
+        }
+      ]
+    },
+    "main-content": {
+      "groups": [
+        {
+          "id": "ffc74a0b-2c49-48e0-970c-5b2619f750c0",
+          "name": "Main Content - Section",
+          "rules": [
+            {
+              "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+              "role": "Main Content - Section Title",
+              "part": "title",
+              "action": null,
+              "format": "heading2",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeEquals",
+                  "value": 12,
+                  "sortOrder": 0
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "Clarendon",
+                  "sortOrder": 1
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": 2
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeEquals",
+                  "value": 12,
+                  "sortOrder": 0
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "Clarendon",
+                  "sortOrder": 1
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": 2
+                }
+              ],
+              "SegmentConditions": []
+            },
+            {
+              "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+              "role": "Main Content - Section Content",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 8,
+                    "max": 10
+                  },
+                  "sortOrder": 0
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": 1
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": 2
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 8,
+                    "max": 10
+                  },
+                  "sortOrder": 0
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": 1
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": 2
+                }
+              ],
+              "SegmentConditions": []
+            },
+            {
+              "id": "79f3a691-1f11-444f-ba45-190516e9ade6",
+              "role": "Main Content - Section Summary",
+              "part": "summary",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 9
+                  },
+                  "sortOrder": 0
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": 1
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": 2
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 9
+                  },
+                  "sortOrder": 0
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": 1
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": 2
+                }
+              ],
+              "SegmentConditions": []
+            }
+          ]
+        }
+      ],
+      "rules": []
+    },
+    "test": {
+      "groups": [
+        {
+          "id": "a9c78e2a-2891-4162-90ed-93a94ad61d4d",
+          "name": "test",
+          "rules": [
+            {
+              "id": "07a27a9a-f193-4ab7-b336-af548ae9b6b9",
+              "role": "for-more-information",
+              "part": null,
+              "action": "createSection",
+              "format": null,
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9,
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#FFFFFF",
+                  "sortOrder": null
+                },
+                {
+                  "type": "positionFirst",
+                  "value": null,
+                  "sortOrder": null
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9,
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#FFFFFF",
+                  "sortOrder": null
+                },
+                {
+                  "type": "positionFirst",
+                  "value": null,
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
+            }
+          ]
+        }
+      ],
+      "rules": []
+    },
+    "tour-details": {
+      "groups": [
+        {
+          "id": "bd9a8665-84c1-4c78-a88d-dd92953a2aa3",
+          "name": "Tour Details - Section",
+          "rules": [
+            {
+              "id": "51169456-79ed-47cd-a10c-bef83d411387",
+              "role": "Tour Details - Section Title",
+              "part": "title",
+              "action": null,
+              "format": "heading2",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeEquals",
+                  "value": 12,
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "Clarendon",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeEquals",
+                  "value": 12,
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "Clarendon",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
+            },
+            {
+              "id": "9cd5950b-8082-4e63-aa17-12c5d8fb0b22",
+              "role": "Tour Details - Section Content",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 9
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 9
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
+            }
+          ]
+        }
+      ],
+      "rules": []
+    },
+    "itinerary": {
+      "groups": [
+        {
+          "id": "3c5727aa-57ae-4783-9c21-47cf611da8f7",
+          "name": "Itinerary",
+          "rules": [
+            {
+              "id": "06edbb77-e442-43ea-bb05-77dd2731078f",
+              "role": "Day Number",
+              "part": "content",
+              "action": null,
+              "format": "heading3",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 12
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                },
+                {
+                  "type": "textBeginsWith",
+                  "value": "Day",
+                  "sortOrder": null
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 12
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                },
+                {
+                  "type": "textBeginsWith",
+                  "value": "Day",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
+            },
+            {
+              "id": "6f495045-f372-4165-9316-42fee2b8e557",
+              "role": "Day Details",
+              "part": "content",
+              "action": null,
+              "format": "paragraph",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 12
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#221F1F",
+                  "sortOrder": null
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 12
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#221F1F",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
+            },
+            {
+              "id": "664dd3f9-da50-4ec0-bd9b-9e456f941050",
+              "role": "Disclaimer",
+              "part": "summary",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 9
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null,
+              "segment": null,
+              "HasSegmentMarker": false,
+              "MatchConditions": [
+                {
+                  "type": "fontSizeRange",
+                  "value": {
+                    "min": 7,
+                    "max": 9
+                  },
+                  "sortOrder": null
+                },
+                {
+                  "type": "fontNameContains",
+                  "value": "HelveticaNeue-Medium",
+                  "sortOrder": null
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#16549D",
+                  "sortOrder": null
+                }
+              ],
+              "SegmentConditions": []
+            }
+          ]
+        }
+      ],
+      "rules": []
+    }
+  },
+  "excludedAreas": null
+}

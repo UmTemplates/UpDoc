@@ -1,0 +1,139 @@
+// Generate RGB CSS custom properties for colour shade maps
+@mixin generate-rgb-variables($color-map) {
+    $rgb-values: map-loop($color-map, to-rgb, "$value");
+
+    :root,
+    [data-bs-theme=light] {
+        @each $key, $value in $rgb-values {
+            --bs-#{$key}-rgb: #{$value};
+        }
+    }
+}
+
+@include generate-rgb-variables($blues);
+@include generate-rgb-variables($indigos);
+@include generate-rgb-variables($purples);
+@include generate-rgb-variables($pinks);
+@include generate-rgb-variables($reds);
+@include generate-rgb-variables($oranges);
+@include generate-rgb-variables($yellows);
+@include generate-rgb-variables($greens);
+@include generate-rgb-variables($teals);
+@include generate-rgb-variables($cyans);
+@include generate-rgb-variables($grays);
+
+// Define color maps for different shades
+$all-shade-colors: map-merge-multiple(
+  $blues,
+  $indigos,
+  $purples,
+  $pinks,
+  $reds,
+  $oranges,
+  $yellows,
+  $greens,
+  $teals,
+  $cyans
+);
+
+// Existing $utilities map merge (keep this for Bootstrap utility API)
+$utilities: map-merge(
+  $utilities,
+  (
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "background-color"), "values"),
+          (
+            $all-shade-colors
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+// Add this loop for custom shade classes with opacity support:
+@each $color, $shades in (
+  "blue": $blues,
+  "indigo": $indigos,
+  "purple": $purples,
+  "pink": $pinks,
+  "red": $reds,
+  "orange": $oranges,
+  "yellow": $yellows,
+  "green": $greens,
+  "teal": $teals,
+  "cyan": $cyans,
+  "gray": $grays
+) {
+  @each $shade, $hex in $shades {
+    .bg-#{$shade}-rgb {
+      --bs-bg-opacity: 1;
+      background-color: rgba(var(--bs-#{$shade}-rgb), var(--bs-bg-opacity)) !important;
+    }
+  }
+}
+
+$custom-bg-opacities: (
+    0: 0,
+    12: .125,
+    25: .25,
+    38: .375,
+    50: .5,
+    62: .625,
+    75: .75,
+    87: .875,
+    100: 1,
+);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "bg-opacity": (
+      css-var: true,
+      class: bg-opacity,
+      values: map-merge(
+        map-get(map-get($utilities, "bg-opacity"), "values"),
+        $custom-bg-opacities
+      )
+    )
+  )
+);
+
+// Extend Bootstrap's border-color utility map with `transparent` so feature
+// and area wrappers can reserve a 1px border slot via .border-transparent
+// without it being visible. Toggling a coloured border on/off then never
+// reflows content because the border space is always present.
+$utilities: map-merge(
+  $utilities,
+  (
+    "border-color": map-merge(
+      map-get($utilities, "border-color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "border-color"), "values"),
+          (transparent: transparent)
+        )
+      )
+    )
+  )
+);
+
+// Custom shadow utilities
+.shadow-b {
+    box-shadow: 0 1rem 1rem rgb(0 0 0 / 15%);
+}
+
+// Hover-to-deepen on top of Bootstrap's .shadow utility.
+// Apply `.shadow .shadow-hover` together: .shadow gives the resting
+// shadow, .shadow-hover adds a transition and a stronger shadow on hover.
+.shadow-hover {
+    transition: box-shadow 0.4s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.35) !important;
+        transition: box-shadow 0.4s ease-in-out;
+    }
+}

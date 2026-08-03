@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <CompressionEnabled>false</CompressionEnabled> <!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
+    <UserSecretsId>7e898fc6-0b6e-4910-a6fe-748f8cb64b54</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NWebsec.AspNetCore.Middleware" Version="3.0.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageReference Include="Skybrud.Umbraco.Redirects" Version="17.0.5" />
+    <PackageReference Include="TagManager" Version="17.0.8" />
+    <PackageReference Include="Umbraco.AI" Version="1.14.0" />
+    <PackageReference Include="Umbraco.AI.Anthropic" Version="1.3.6" />
+    <PackageReference Include="Umbraco.AI.Prompt" Version="1.8.8" />
+    <PackageReference Include="Umbraco.Cms" Version="17.5.3" />
+    <PackageReference Include="Umbraco.Forms" Version="17.4.6" />
+    <PackageReference Include="Umbraco.Community.BlockPreview" Version="5.5.0" />
+    <PackageReference Include="Umbraco.Community.Contentment" Version="6.2.1" />
+    <PackageReference Include="Umbraco.Community.UmbNav" Version="4.1.8" />
+    <PackageReference Include="uSync" Version="17.3.6" />
+    <PackageReference Include="uSync.Complete" Version="17.3.11" />
+    <PackageReference Include="uSync.Forms" Version="17.1.0" />
+  </ItemGroup>
+
+  <!-- UpDoc is referenced as a project rather than the published NuGet package, so
+       changes to the RCL take effect here without a publish cycle. The live site
+       uses PackageReference Include="Umbraco.Community.UpDoc". -->
+  <ItemGroup>
+    <ProjectReference Include="..\UpDoc\UpDoc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
+    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\" />
+    <None Include="wwwroot\media\**\*">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
+    <!-- UpDoc reads its workflow definitions from the updoc/ folder on disk.
+         The SDK already includes the .json files as Content, but does not copy
+         them to the publish output by default, so the deployed container has no
+         workflows and UpDoc's import features (e.g. the "Create from Source"
+         button) do not appear. Update the existing items to copy them across. -->
+    <Content Update="updoc\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Views\Partials\Forms\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\deanl\.nuget\packages\umbraco.community.umbnav\4.0.0-beta0030\contentFiles\any\net9.0\json-example.json" />
+    <Content Remove="C:\Users\deanl\.nuget\packages\umbraco.community.umbnav\4.0.0-beta0030\contentFiles\any\net9.0\package-lock.json" />
+    <Content Remove="C:\Users\deanl\.nuget\packages\umbraco.community.umbnav\4.0.0-beta0030\contentFiles\any\net9.0\package.json" />
+    <Content Remove="C:\Users\deanl\.nuget\packages\umbraco.community.umbnav\4.0.0-beta0030\contentFiles\any\net9.0\tsconfig.json" />
+  </ItemGroup>
+ 
+</Project>

@@ -1,0 +1,30 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.TailoredTours>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@inject Umbraco.Cms.Core.Security.IMemberManager MemberManager
+@inject Umbraco.Cms.Core.Routing.IPublishedUrlProvider PublishedUrlProvider
+
+@{
+    if (User.Identity?.IsAuthenticated == true && !string.IsNullOrEmpty(User.Identity.Name))
+    {
+        var member = await MemberManager.FindByNameAsync(User.Identity.Name);
+        if (member is not null)
+        {
+            var memberContent = MemberManager.AsPublishedMember(member);
+            var tourPage = memberContent?.Value<IPublishedContent>("memberTourPage")
+                ?? memberContent?.Value<IEnumerable<IPublishedContent>>("memberTourPage")?.FirstOrDefault();
+            var tourUrl = tourPage?.Url(PublishedUrlProvider);
+            if (!string.IsNullOrEmpty(tourUrl))
+            {
+                Context.Response.Redirect(tourUrl);
+                return;
+            }
+        }
+    }
+
+    Layout = "_Layout.cshtml";
+}
+
+<!-- START - BLOCK GRID -->
+@await Html.GetBlockGridHtmlAsync(Model.ContentGrid)
+<!-- END - BLOCK GRID -->

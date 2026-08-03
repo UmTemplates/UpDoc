@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "pt-3";
+    // Get the current page
+    if(Umbraco.AssignedContentItem is not IContentHeadingDefault currentPage) return;
+}
+
+<div class="container d-flex justify-content-center">
+    <div class="w-75 text-center">
+        @if (Umbraco.AssignedContentItem is TailoredTour tour)
+        {
+            var org = tour.Organisers?.FirstOrDefault()?.Content as TourOrganiser;
+            if (!string.IsNullOrWhiteSpace(org?.OrganiserOrganisation))
+            {
+                <p class="eyebrow mb-1">@org.OrganiserOrganisation <br><span style="font-style: italic; text-transform: lowercase; font-size: 1rem;">presents</span></p>
+            }
+        }
+        <h1 class="display-3">@currentPage.PageTitle</h1>
+        <p class="lead">@currentPage.PageDescription</p>
+    </div>
+</div>

@@ -1,0 +1,534 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "sourceTypes": [
+    "web"
+  ],
+  "globals": null,
+  "pages": "all",
+  "sections": [],
+  "sectionRules": null,
+  "areaRules": {
+    "page-header": {
+      "groups": [],
+      "rules": [
+        {
+          "id": "e707e160-bb38-4ebd-a5e1-0f9aeeb0d333",
+          "role": "Tour Title",
+          "part": "title",
+          "action": null,
+          "format": "heading1",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "htmlTagEquals",
+              "value": "h1"
+            },
+            {
+              "type": "fontSizeEquals",
+              "value": 22.5
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF"
+            },
+            {
+              "type": "htmlContainerPathContains",
+              "value": "div.tour_name"
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": [
+            {
+              "findType": "textContains",
+              "find": " \u0026 ",
+              "replaceType": "replaceAll",
+              "replace": " and "
+            },
+            {
+              "findType": "textContains",
+              "find": " \u0026",
+              "replaceType": "replaceAll",
+              "replace": " and "
+            }
+          ]
+        },
+        {
+          "id": "f6b7e762-4615-4aef-a09e-cb94dd1f9a2a",
+          "role": "Tour Description",
+          "part": "content",
+          "action": null,
+          "format": "paragraph",
+          "exclude": false,
+          "conditions": [
+            {
+              "type": "htmlTagEquals",
+              "value": "div"
+            },
+            {
+              "type": "colorEquals",
+              "value": "#FFFFFF"
+            }
+          ],
+          "exceptions": null,
+          "textReplacements": null
+        }
+      ]
+    },
+    "suggested-itinerary": {
+      "groups": [
+        {
+          "id": "117a5c01-46f7-43aa-a1c2-02c21829ac76",
+          "name": "Itinery",
+          "rules": [
+            {
+              "id": "8ea649ee-c8de-4546-8f7b-9bb96d61a064",
+              "role": "Section Title",
+              "part": "title",
+              "action": null,
+              "format": "heading2",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "h3"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 10.5
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "span.tab-mob-heading"
+                },
+                {
+                  "type": "isBoldEquals",
+                  "value": "true"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
+              "id": "34612157-5aeb-4e40-8bb2-a5eb61353660",
+              "role": "Day Number",
+              "part": "content",
+              "action": null,
+              "format": "heading3",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.tab-wrapper"
+                },
+                {
+                  "type": "isBoldEquals",
+                  "value": "true"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
+              "id": "0c88890e-5a64-4e29-ae99-ff916dd22987",
+              "role": "Day Details",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.tab-wrapper"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        }
+      ],
+      "rules": []
+    },
+    "main-content": {
+      "groups": [
+        {
+          "id": "d9221793-9aee-4616-a1a5-2384060a70d2",
+          "name": "Suggested Itinerary",
+          "rules": [
+            {
+              "id": "5204a4e2-85f1-4312-b9b4-3ff282ddee77",
+              "role": "Day Title",
+              "part": "content",
+              "action": null,
+              "format": "heading3",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div#tab1"
+                },
+                {
+                  "type": "isBoldEquals",
+                  "value": "true"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
+              "id": "b8c4f1a2-7d3e-4b5a-9f6c-0e8d2a1c4b7e",
+              "role": "Day Title (h4 variant)",
+              "part": "content",
+              "action": null,
+              "format": "heading3",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "h4"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div#tab1"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
+              "id": "cbfc9983-0846-440d-a54c-edd34fd50373",
+              "role": "Day Content",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div#tab1"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        },
+        {
+          "id": "71d93124-ad46-453a-9d55-b6046b2655a5",
+          "name": "Features",
+          "rules": [
+            {
+              "id": "719e59fd-692f-4b33-a8f9-0132c5feee1e",
+              "role": "Features Content",
+              "part": "content",
+              "action": null,
+              "format": "bulletListItem",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.featuring_col1"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        },
+        {
+          "id": "a2492960-9ed8-49e1-b296-d8fee1d3c406",
+          "name": "Accommodation",
+          "rules": [
+            {
+              "id": "c91520e0-ae72-42cd-9d92-f0986c2cd983",
+              "role": "Accommodation Content",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "containerIdEquals",
+                  "value": "tab3"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        },
+        {
+          "id": "56505b73-d468-40b6-9969-23b9a0bb50b8",
+          "name": "Sights",
+          "rules": [
+            {
+              "id": "ada33681-df1b-4ccb-9319-398418d55c7c",
+              "role": "Sights Content",
+              "part": "content",
+              "action": null,
+              "format": "bulletListItem",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.featuring_col2"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        },
+        {
+          "id": "3d54d1e1-6e75-448f-b045-5c226b1ecf57",
+          "name": "More Sights",
+          "rules": [
+            {
+              "id": "d4f2a8e1-3b7c-4e9d-a5f0-1c8e6d9b2a43",
+              "role": "More Sights Description",
+              "part": "description",
+              "action": null,
+              "format": "paragraph",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.your-tailor-made-tour"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            },
+            {
+              "id": "e5a3b9f2-4c8d-4f0e-b6a1-2d7f9e0c3b54",
+              "role": "More Sights Content",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "li"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "htmlContainerPathContains",
+                  "value": "div.your-tailor-made-tour"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        },
+        {
+          "id": "23960080-566b-49bb-81f2-4c3daa189bbc",
+          "name": "Extras",
+          "rules": [
+            {
+              "id": "4233494a-8ed4-4a56-bfef-c8db3999ab61",
+              "role": "Extras Content",
+              "part": "content",
+              "action": null,
+              "format": "bulletListItem",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "p"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                },
+                {
+                  "type": "containerIdEquals",
+                  "value": "tab4"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        }
+      ],
+      "rules": []
+    },
+    "tailor-make-your-tour": {
+      "groups": [
+        {
+          "id": "32e1400d-6bb2-4423-ae80-8b16a156c3de",
+          "name": "More Features",
+          "rules": [
+            {
+              "id": "2b133d04-d004-442e-a63a-1a0b53cd6bcf",
+              "role": "More Features Content",
+              "part": "content",
+              "action": null,
+              "format": "auto",
+              "exclude": false,
+              "conditions": [
+                {
+                  "type": "htmlTagEquals",
+                  "value": "li"
+                },
+                {
+                  "type": "fontSizeEquals",
+                  "value": 9.8
+                },
+                {
+                  "type": "colorEquals",
+                  "value": "#2E5BA1"
+                }
+              ],
+              "exceptions": null,
+              "textReplacements": null
+            }
+          ]
+        }
+      ],
+      "rules": []
+    }
+  },
+  "excludedAreas": [
+    "navigation",
+    "header",
+    "footer",
+    "ungrouped",
+    "right-column-button-wrapper"
+  ],
+  "containerOverrides": [
+    {
+      "containerPath": "div.header-container/div#header/div#right_banner",
+      "action": "makeSection"
+    },
+    {
+      "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.country-banner/div.country-banner-left",
+      "action": "promoteToArea",
+      "label": "Page Header"
+    },
+    {
+      "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.left-column/div#tab_wrapper/div.ireland_tab_container/div#tab1",
+      "action": "makeSection"
+    },
+    {
+      "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.right-column-button-wrapper",
+      "action": "promoteToArea",
+      "label": "Right Column Button Wrapper"
+    },
+    {
+      "containerPath": "div#sb-site/div.body-wrapper/div#body_content/div.main-column/div#tour_wrapper/div.right-column/div.tailor-make-your-tour",
+      "action": "promoteToArea",
+      "label": "Tailor Make Your Tour"
+    }
+  ]
+}

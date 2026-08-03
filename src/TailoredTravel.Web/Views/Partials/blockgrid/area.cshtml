@@ -1,0 +1,122 @@
+﻿@using Umbraco.Community.BlockPreview.Extensions
+@using Umbraco.Extensions
+@using TailoredTravel.Web.Helpers
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridArea>
+
+@{
+    // Area alias is a whole class-string blob (e.g. "primary g-col-12 p-3 rounded-4").
+    // First token is the semantic alias ("primary" / "secondary" / "tertiary") we key by.
+    var areaKey = Model.Alias?.Split(' ', 2)[0] ?? "";
+
+    // Per-area colour dictionary populated by layout partials via ViewData.
+    // Stored value is the bare palette label (e.g. "blue", "white").
+    // PaletteClassHelper translates brand colours to text-bg-{name} and remaps
+    // the neutrals (white/grey/black) to Bootstrap's theme-aware surface tokens.
+    var areaColors = ViewData["AreaBackgroundColors"] as Dictionary<string, string>;
+    var areaBackgroundColors = areaColors != null && areaColors.TryGetValue(areaKey, out var c)
+        ? PaletteClassHelper.Background(c)
+        : "";
+
+    // Per-area border colour and width dictionaries (also from ViewData via layout partials).
+    // Always emit `border border-{width} border-{colour OR transparent}` so the 1px slot is
+    // reserved and toggling the colour on/off never reflows content.
+    var areaBorderColours = ViewData["AreaBorderColours"] as Dictionary<string, string>;
+    var areaBorderWidths = ViewData["AreaBorderWidths"] as Dictionary<string, int>;
+    var borderWidth = areaBorderWidths != null && areaBorderWidths.TryGetValue(areaKey, out var w) ? w : 1;
+    var borderColourLabel = areaBorderColours != null && areaBorderColours.TryGetValue(areaKey, out var bc) && !string.IsNullOrWhiteSpace(bc)
+        ? bc
+        : null;
+    var borderColourClass = borderColourLabel != null ? PaletteClassHelper.Border(borderColourLabel) : "border-transparent";
+    var areaBorderClasses = $"border border-{borderWidth} {borderColourClass}";
+
+    // Per-area sticky flag (set by the layout partial via ViewData). When true
+    // the area emits `sticky-items`, which _sticky.scss keys off to make the
+    // area's .feature-items wrapper position:sticky at md+.
+    var areaStickyFlags = ViewData["AreaSticky"] as Dictionary<string, bool>;
+    var areaStickyClass = areaStickyFlags != null && areaStickyFlags.TryGetValue(areaKey, out var sticky) && sticky
+        ? "sticky-items"
+        : "";
+
+    // Phase 1: a parent layout (currently layout363) can opt this area into
+    // off-canvas-on-mobile by setting TertiaryOffcanvasDrawerId in ViewData.
+    // We only opt in when the area is the tertiary slot. Below lg the area
+    // is hidden and only revealed by the layout's "Menu" trigger; at lg+
+    // .offcanvas-lg makes Bootstrap render it as a normal in-flow block.
+    var tertiaryDrawerId = ViewData["TertiaryOffcanvasDrawerId"] as string;
+    var isTertiaryDrawer = areaKey == "tertiary" && !string.IsNullOrEmpty(tertiaryDrawerId);
+
+    // Secondary area with a descendants nav becomes an offcanvas-bottom drawer
+    // on mobile (below md). The layout detects the nav block and sets this ID.
+    var secondaryDrawerId = ViewData["SecondaryOffcanvasDrawerId"] as string;
+    var isSecondaryDrawer = areaKey == "secondary" && !string.IsNullOrEmpty(secondaryDrawerId);
+
+    var isDrawer = isTertiaryDrawer || isSecondaryDrawer;
+    var drawerClasses = isDrawer ? "offcanvas-md offcanvas-bottom" : "";
+    var drawerIdAttr = isTertiaryDrawer ? tertiaryDrawerId : isSecondaryDrawer ? secondaryDrawerId : null;
+    var drawerLabelledBy = drawerIdAttr != null ? $"{drawerIdAttr}-title" : null;
+
+    // When an area has no blocks it renders an empty grid cell that becomes a
+    // blank full-width row once the grid stacks. Collapse it while stacked and
+    // reveal it at the breakpoint the area splits (derived from its own blob).
+    var emptyStackedHide = !Model.Any() ? AreaStackHelper.EmptyStackedHide(Model.Alias) : "";
+}
+
+@* DEBUG: Area properties
+<div class="alert alert-light">
+    <strong>Area Debug</strong><br />
+    Alias: @Model.Alias<br />
+    ColumnSpan: @Model.ColumnSpan<br />
+    RowSpan: @Model.RowSpan
+</div>
+*@
+
+<!-- START - AREA -->
+@if (isDrawer)
+{
+    <aside class="area-@Model.ColumnSpan @Model.Alias @areaBackgroundColors @areaBorderClasses @areaStickyClass @drawerClasses"
+           id="@drawerIdAttr"
+           tabindex="-1"
+           aria-labelledby="@drawerLabelledBy"
+           data-bs-backdrop="false"
+           data-bs-scroll="true"
+           data-AreaAlias="@Model.Alias">
+        <div class="offcanvas-header justify-content-end p-0 pe-3 pt-3 pb-2 d-md-none">
+            <button type="button" class="navbar-toggler border-0" data-bs-dismiss="offcanvas" data-bs-target="#@drawerIdAttr" aria-label="Close">
+                <span class="d-inline-flex align-items-center gap-2">
+                    <span class="navbar-toggler-label" id="@drawerLabelledBy">@(ViewData["TertiaryOffcanvasDrawerLabel"] as string ?? (isSecondaryDrawer ? "In this section" : "Contents"))</span>
+                    <span class="btn-close" aria-hidden="true"></span>
+                </span>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- START - ITEMS -->
+            @await Html.GetPreviewBlockGridItemsHtmlAsync(Model)
+            <!-- END - ITEMS -->
+        </div>
+    </aside>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Close the drawer after a jump-link tap so the user can see the
+            // section they navigated to. Above md the offcanvas-md variant
+            // means hide() is a no-op and the click just scrolls.
+            var drawerEl = document.getElementById('@drawerIdAttr');
+            if (!drawerEl) return;
+            drawerEl.querySelectorAll('a[href^="#"]').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    var instance = bootstrap.Offcanvas.getInstance(drawerEl);
+                    if (instance) instance.hide();
+                });
+            });
+        });
+    </script>
+}
+else
+{
+    <div class="area-@Model.ColumnSpan @Model.Alias @areaBackgroundColors @areaBorderClasses @areaStickyClass @emptyStackedHide" data-AreaAlias="@Model.Alias">
+        <!-- START - ITEMS -->
+        @await Html.GetPreviewBlockGridItemsHtmlAsync(Model)
+        <!-- END - ITEMS -->
+    </div>
+}
+<!-- END - AREA -->

@@ -1,0 +1,19 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureFormTailoredTourLogout>>
+@using TailoredTravel.Web.Controllers;
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "px-3";
+}
+
+@* v1: all copy hardcoded, no configuration. A single Log out button styled to
+   match the Share feature (outline, full width). Signs the member out and
+   returns them to the View Your Tour page. *@
+@using (Html.BeginUmbracoForm<TailoredTourLoginController>(nameof(TailoredTourLoginController.Logout), FormMethod.Post))
+{
+    <button type="submit" class="btn btn-outline-primary w-100 d-inline-flex align-items-center justify-content-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round">
+            <circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path>
+        </svg><span>Log out</span>
+    </button>
+}

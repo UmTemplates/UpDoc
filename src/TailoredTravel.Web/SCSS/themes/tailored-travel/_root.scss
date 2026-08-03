@@ -1,0 +1,52 @@
+// Tailored Travel — Tier 2 custom property emission
+//
+// Emits --tt-* CSS custom properties from the current Sass variable scope.
+// _index.scss includes this twice: once in the light-mode scope (where
+// _variables.scss values are in effect), once in the dark-mode scope
+// (where _variables-dark.scss values shadow them).
+//
+// Mirrors Bootstrap 5.3's _root.scss pattern: one file emitting the
+// variables, included in both light and dark contexts.
+
+& {
+    // Body / surfaces
+    --tt-body-color: #{$tt-body-color};
+--tt-body-color-rgb: #{red($tt-body-color)}, #{green($tt-body-color)}, #{blue($tt-body-color)};
+--tt-body-bg: #{$tt-body-bg};
+--tt-body-bg-rgb: #{red($tt-body-bg)}, #{green($tt-body-bg)}, #{blue($tt-body-bg)};
+--tt-emphasis-color: #{$tt-emphasis-color};
+--tt-emphasis-color-rgb: #{red($tt-emphasis-color)}, #{green($tt-emphasis-color)}, #{blue($tt-emphasis-color)};
+--tt-secondary-bg: #{$tt-secondary-bg};
+--tt-secondary-bg-rgb: #{red($tt-secondary-bg)}, #{green($tt-secondary-bg)}, #{blue($tt-secondary-bg)};
+--tt-tertiary-bg: #{$tt-tertiary-bg};
+--tt-tertiary-bg-rgb: #{red($tt-tertiary-bg)}, #{green($tt-tertiary-bg)}, #{blue($tt-tertiary-bg)};
+--tt-border-color: #{$tt-border-color};
+--tt-border-color-rgb: #{red($tt-border-color)}, #{green($tt-border-color)}, #{blue($tt-border-color)};
+
+// Links
+--tt-link-color: #{$tt-link-color};
+--tt-link-color-rgb: #{red($tt-link-color)}, #{green($tt-link-color)}, #{blue($tt-link-color)};
+--tt-link-hover-color: #{$tt-link-hover-color};
+--tt-link-hover-color-rgb: #{red($tt-link-hover-color)}, #{green($tt-link-hover-color)}, #{blue($tt-link-hover-color)};
+
+// Headings
+--tt-heading-color: #{$tt-heading-color};
+
+// Theme-colour roles
+--tt-primary: #{$tt-primary};
+--tt-primary-rgb: #{red($tt-primary)}, #{green($tt-primary)}, #{blue($tt-primary)};
+--tt-secondary: #{$tt-secondary};
+--tt-secondary-rgb: #{red($tt-secondary)}, #{green($tt-secondary)}, #{blue($tt-secondary)};
+--tt-success: #{$tt-success};
+--tt-success-rgb: #{red($tt-success)}, #{green($tt-success)}, #{blue($tt-success)};
+--tt-danger: #{$tt-danger};
+--tt-danger-rgb: #{red($tt-danger)}, #{green($tt-danger)}, #{blue($tt-danger)};
+--tt-warning: #{$tt-warning};
+--tt-warning-rgb: #{red($tt-warning)}, #{green($tt-warning)}, #{blue($tt-warning)};
+--tt-info: #{$tt-info};
+--tt-info-rgb: #{red($tt-info)}, #{green($tt-info)}, #{blue($tt-info)};
+--tt-light: #{$tt-light};
+--tt-light-rgb: #{red($tt-light)}, #{green($tt-light)}, #{blue($tt-light)};
+--tt-dark: #{$tt-dark};
+--tt-dark-rgb: #{red($tt-dark)}, #{green($tt-dark)}, #{blue($tt-dark)};
+}

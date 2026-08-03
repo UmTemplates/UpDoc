@@ -1,0 +1,23 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "px-3";
+
+    var thisPage = Umbraco.AssignedContentItem;
+    var ancestors = thisPage.Ancestors().Reverse().ToArray();
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0">
+        @foreach (var ancestor in ancestors)
+        {
+            <li class="breadcrumb-item">
+                <a href="@ancestor.Url()">@(ancestor.Value<string>("pageTitleShort") ?? ancestor.Name)</a>
+            </li>
+        }
+        <li class="breadcrumb-item active" aria-current="page">
+            @(thisPage.Value<string>("pageTitleShort") ?? thisPage.Name)
+        </li>
+    </ol>
+</nav>

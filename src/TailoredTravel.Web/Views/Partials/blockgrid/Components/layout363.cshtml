@@ -1,0 +1,84 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Community.BlockPreview.Extensions;
+@using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
+
+@{
+    Layout = "_Layout_Layouts.cshtml";
+
+    var areaColors = new Dictionary<string, string>();
+    var primary = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutPrimaryAreaColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(primary)) areaColors["primary"] = primary;
+    var secondary = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutSecondaryAreaColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(secondary)) areaColors["secondary"] = secondary;
+    var tertiary = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutTertiaryAreaColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(tertiary)) areaColors["tertiary"] = tertiary;
+
+    var areaBorderColours = new Dictionary<string, string>();
+    var primaryBorderColour = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutPrimaryAreaBorderColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(primaryBorderColour)) areaBorderColours["primary"] = primaryBorderColour;
+    var secondaryBorderColour = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutSecondaryAreaBorderColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(secondaryBorderColour)) areaBorderColours["secondary"] = secondaryBorderColour;
+    var tertiaryBorderColour = Model.Settings?.Value<ColorPickerValueConverter.PickedColor>("layoutTertiaryAreaBorderColour")?.Label;
+    if (!string.IsNullOrWhiteSpace(tertiaryBorderColour)) areaBorderColours["tertiary"] = tertiaryBorderColour;
+
+    var areaBorderWidths = new Dictionary<string, int>();
+    var primaryBorderWidth = Model.Settings?.Value<decimal?>("layoutPrimaryAreaBorderWidth");
+    if (primaryBorderWidth.HasValue) areaBorderWidths["primary"] = Math.Clamp((int)Math.Round(primaryBorderWidth.Value), 1, 5);
+    var secondaryBorderWidth = Model.Settings?.Value<decimal?>("layoutSecondaryAreaBorderWidth");
+    if (secondaryBorderWidth.HasValue) areaBorderWidths["secondary"] = Math.Clamp((int)Math.Round(secondaryBorderWidth.Value), 1, 5);
+    var tertiaryBorderWidth = Model.Settings?.Value<decimal?>("layoutTertiaryAreaBorderWidth");
+    if (tertiaryBorderWidth.HasValue) areaBorderWidths["tertiary"] = Math.Clamp((int)Math.Round(tertiaryBorderWidth.Value), 1, 5);
+
+    // Per-area sticky flags (Display tab). Toggle preset is off, so an unset
+    // value is false — only an explicit true opts the area into sticky.
+    var areaSticky = new Dictionary<string, bool>();
+    if (Model.Settings?.Value<bool>("layoutSecondaryAreaSticky") == true) areaSticky["secondary"] = true;
+    if (Model.Settings?.Value<bool>("layoutTertiaryAreaSticky") == true) areaSticky["tertiary"] = true;
+
+    ViewData["AreaBackgroundColors"] = areaColors;
+    ViewData["AreaBorderColours"] = areaBorderColours;
+    ViewData["AreaBorderWidths"] = areaBorderWidths;
+    ViewData["AreaSticky"] = areaSticky;
+
+    // Phase 2 (stepping stone): the tertiary area becomes an off-canvas
+    // drawer below md only when it contains an `featureNavigationInPage`
+    // block. Other tertiary content (testimonials, supporting cards) stays
+    // in flow as before. Drawer id is derived from this layout instance's
+    // content key so multiple 363 layouts on the same page each get their
+    // own drawer + trigger.
+    var tertiaryArea = Model.Areas.FirstOrDefault(a => (a.Alias ?? "").StartsWith("tertiary"));
+    var tertiaryHasInPageNav = tertiaryArea != null
+        && tertiaryArea.Any(item => item.Content.ContentType.Alias == "featureNavigationInPage");
+    var tertiaryHasDescendantsNav = tertiaryArea != null
+        && tertiaryArea.Any(item => item.Content.ContentType.Alias == "featureNavigationDescendants");
+
+    string drawerId = null;
+    string drawerLabel = null;
+    if (tertiaryHasInPageNav || tertiaryHasDescendantsNav)
+    {
+        drawerId = $"tt-tertiary-drawer-{Model.ContentKey}";
+        drawerLabel = tertiaryHasDescendantsNav ? "In this section" : "Contents";
+        ViewData["TertiaryOffcanvasDrawerId"] = drawerId;
+        ViewData["TertiaryOffcanvasDrawerLabel"] = drawerLabel;
+    }
+}
+
+@await Html.GetPreviewBlockGridItemAreasHtmlAsync(Model)
+
+@if (drawerId != null)
+{
+    <nav class="navbar tt-area-drawer-toggle bg-primary d-md-none" data-bs-theme="dark" aria-label="@drawerLabel">
+        <button type="button"
+                class="navbar-toggler border-0 ms-auto"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#@drawerId"
+                aria-controls="@drawerId">
+            <span class="d-inline-flex align-items-center gap-2">
+                <span class="navbar-toggler-label">@drawerLabel</span>
+                <span class="navbar-toggler-icon"></span>
+            </span>
+        </button>
+    </nav>
+}
+
+

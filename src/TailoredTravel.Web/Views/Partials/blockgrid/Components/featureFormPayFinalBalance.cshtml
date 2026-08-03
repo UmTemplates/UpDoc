@@ -1,0 +1,7 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureFormPayFinalBalance>>
+
+@{
+    Layout = "_Layout_Features.cshtml";
+}
+
+@await Component.InvokeAsync("RenderForm", new { formId = Guid.Parse("5c7b5d93-6013-4b57-954f-95268f4a062a"), theme = "tailored-travel" })

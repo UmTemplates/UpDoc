@@ -1,0 +1,266 @@
+{
+  "$schema": null,
+  "version": "1.0",
+  "name": "tailored-tour-pdf Mapping",
+  "description": "Mapping configuration for tailored-tour-pdf",
+  "mappings": [
+    {
+      "source": "tour-title.content",
+      "sourceKey": "d89bc5dc-cd92-4147-b9d5-69fbc1c325d8",
+      "destinations": [
+        {
+          "target": "pageTitle",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        },
+        {
+          "target": "pageTitleShort",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "tour-description.content",
+      "sourceKey": "60e01e2b-4d3f-4d1f-bdf7-b16afc7957dd",
+      "destinations": [
+        {
+          "target": "pageDescription",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "organisation.content",
+      "sourceKey": "35d2eb27-6901-4b31-a062-acde69cbc548",
+      "destinations": [
+        {
+          "target": "organiserOrganisation",
+          "blockKey": "91204016-657d-4a49-9bba-62fe18483d28",
+          "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "organiser-name.content",
+      "sourceKey": "242ac20d-0d50-424a-a6eb-50ab62c07516",
+      "destinations": [
+        {
+          "target": "organiserName",
+          "blockKey": "91204016-657d-4a49-9bba-62fe18483d28",
+          "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "organiser-telephone.content",
+      "sourceKey": "7e6b0588-db18-4dd7-ab66-c825d0de8fbb",
+      "destinations": [
+        {
+          "target": "organiserTelephone",
+          "blockKey": "91204016-657d-4a49-9bba-62fe18483d28",
+          "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "organiser-mobile.content",
+      "sourceKey": "daa2526a-d8b5-4ca7-af36-c4af60c8bb8c",
+      "destinations": [
+        {
+          "target": "organiserMobile",
+          "blockKey": "91204016-657d-4a49-9bba-62fe18483d28",
+          "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "organiser-email.content",
+      "sourceKey": "0c0c06fb-1159-4364-878f-d2d55423b6ae",
+      "destinations": [
+        {
+          "target": "organiserEmail",
+          "blockKey": "91204016-657d-4a49-9bba-62fe18483d28",
+          "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "organiser-address.content",
+      "sourceKey": "75b31ea6-088d-4f74-a8c2-bc88a1cbc09b",
+      "destinations": [
+        {
+          "target": "organiserAddress",
+          "blockKey": "91204016-657d-4a49-9bba-62fe18483d28",
+          "contentTypeKey": "e91b6cf0-0a92-4b3f-a1c9-b17aca85e345",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-itinerary-p2.content",
+      "sourceKey": "3c5727aa-57ae-4783-9c21-47cf611da8f7",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "9b673342-e9ed-4a3b-9513-ff87eed70337",
+          "contentTypeKey": "837beecf-4239-4b3d-b683-1d611af3da2e",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "preamble-itinerary-p2.summary",
+      "sourceKey": "3c5727aa-57ae-4783-9c21-47cf611da8f7",
+      "destinations": [
+        {
+          "target": "featurePropertyFeatureSummary",
+          "blockKey": "9b673342-e9ed-4a3b-9513-ff87eed70337",
+          "contentTypeKey": "837beecf-4239-4b3d-b683-1d611af3da2e",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "features.content",
+      "sourceKey": "e4aecc5d-9329-49df-a847-517bf76c7244",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "8eb3c980-73a8-4ed2-b8b6-0e12dbd57cf1",
+          "contentTypeKey": "34e5aa3b-db10-40a1-893d-79e98cd3f2f4",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "what-we-will-see.content",
+      "sourceKey": "e4aecc5d-9329-49df-a847-517bf76c7244",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "7fdeab50-dd0e-4fe6-acae-fd111150f35e",
+          "contentTypeKey": "2d9b0603-29ef-423a-8d3e-d9c039d3d7b1",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "accommodation.content",
+      "sourceKey": "e4aecc5d-9329-49df-a847-517bf76c7244",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "65fc6fe6-0b5c-4e68-a8c3-6fbbc4ecefad",
+          "contentTypeKey": "1d09b5af-b95a-4af5-b8f2-323db029e817",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "extras-to-your-tour.content",
+      "sourceKey": "e4aecc5d-9329-49df-a847-517bf76c7244",
+      "destinations": [
+        {
+          "target": "richTextContent",
+          "blockKey": "1bcbdd91-4871-45c0-972e-44b5fc6c07ba",
+          "contentTypeKey": "b773f1ac-4538-4d0a-a1ff-85918c8edbf0",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "duration.content",
+      "sourceKey": "f437c9a1-028f-44a8-9df7-19baa5dfdabb",
+      "destinations": [
+        {
+          "target": "pagePropertyTourDuration",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "price.content",
+      "sourceKey": "c6bac245-3d48-4c9f-814d-47aee2e69ce1",
+      "destinations": [
+        {
+          "target": "pagePropertyTourPriceFrom",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "departure-date.content",
+      "sourceKey": "44b21d97-4d8d-4763-8fb7-f212c1c16e2c",
+      "destinations": [
+        {
+          "target": "pagePropertyTourDepartureDate",
+          "blockKey": null,
+          "contentTypeKey": null,
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    },
+    {
+      "source": "extras-to-your-tour.summary",
+      "sourceKey": "e4aecc5d-9329-49df-a847-517bf76c7244",
+      "destinations": [
+        {
+          "target": "featurePropertyFeatureSummary",
+          "blockKey": "1bcbdd91-4871-45c0-972e-44b5fc6c07ba",
+          "contentTypeKey": "b773f1ac-4538-4d0a-a1ff-85918c8edbf0",
+          "transforms": null
+        }
+      ],
+      "enabled": true,
+      "comment": null
+    }
+  ]
+}

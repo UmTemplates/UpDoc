@@ -1,0 +1,5 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem<FeatureComponentTab>>
+
+<h4>@Model.Content.FeaturePropertyTabTitle</h4>
+
+@await Html.GetBlockListHtmlAsync(Model.Content.FeaturePropertyTabContent)

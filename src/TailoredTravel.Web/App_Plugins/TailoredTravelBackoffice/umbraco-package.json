@@ -1,0 +1,13 @@
+{
+  "id": "tailored-travel-backoffice",
+  "name": "Tailored Travel Backoffice",
+  "version": "1.0.1",
+  "extensions": [
+    {
+      "type": "bundle",
+      "alias": "TailoredTravel.Bundle",
+      "name": "Tailored Travel Bundle",
+      "js": "/App_Plugins/TailoredTravelBackoffice/dist/tailored-travel-backoffice-954f58d3.js"
+    }
+  ]
+}

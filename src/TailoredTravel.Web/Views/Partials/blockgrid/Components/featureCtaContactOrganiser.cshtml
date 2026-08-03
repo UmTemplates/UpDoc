@@ -1,0 +1,133 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels
+@using TailoredTravel.Web.Helpers
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeatureDefaultBg"] = "body";
+    ViewData["FeatureDefaultBorderColour"] = "primary";
+    // Grouping by organisation lives in TourOrganiserHelper so the page header and
+    // this section agree on how organisers group. One society with two contacts is
+    // one heading with two people under it.
+    var grouped = TourOrganiserHelper.ByOrganisation(Umbraco.AssignedContentItem);
+    if (grouped.Count == 0) return;
+
+    string TelHref(string number)
+    {
+        var digits = new string(number.Where(char.IsDigit).ToArray());
+        if (digits.StartsWith("0")) digits = "+44" + digits[1..];
+        return "tel:" + digits;
+    }
+}
+
+@foreach (var group in grouped)
+{
+    @if (!string.IsNullOrWhiteSpace(group.Key))
+    {
+        <ul class="d-flex flex-column gap-3 list-unstyled mb-2">
+            <li class="d-flex align-items-center gap-3"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12h4"/><path d="M10 8h4"/><path d="M14 21v-3a2 2 0 0 0-4 0v3"/><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/></svg></span> <span class="fw-semibold">@group.Key</span></li>
+        </ul>
+    }
+    @foreach (var organiser in group)
+    {
+        <ul class="d-flex flex-column gap-3 list-unstyled mb-4">
+            @if (!string.IsNullOrWhiteSpace(organiser.OrganiserName))
+            {
+                <li class="d-flex align-items-center gap-3"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21a8 8 0 0 1 10.821-7.487"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="8" r="5"/></svg></span> @organiser.OrganiserName</li>
+            }
+            @if (!string.IsNullOrWhiteSpace(organiser.OrganiserTelephone) && !organiser.OrganiserTelephone.StartsWith("["))
+            {
+                @if (organiser.OrganiserTelephone.StartsWith("07"))
+                {
+                    <li class="d-flex align-items-center gap-3"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg></span> <a href="@TelHref(organiser.OrganiserTelephone)">@organiser.OrganiserTelephone</a></li>
+                }
+                else
+                {
+                    <li class="d-flex align-items-center gap-3"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></span> <a href="@TelHref(organiser.OrganiserTelephone)">@organiser.OrganiserTelephone</a></li>
+                }
+            }
+            @if (!string.IsNullOrWhiteSpace(organiser.OrganiserMobile) && !organiser.OrganiserMobile.StartsWith("[") && organiser.OrganiserMobile != organiser.OrganiserTelephone)
+            {
+                <li class="d-flex align-items-center gap-3"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg></span> <a href="@TelHref(organiser.OrganiserMobile)">@organiser.OrganiserMobile</a></li>
+            }
+            @if (!string.IsNullOrWhiteSpace(organiser.OrganiserEmail))
+            {
+                <li class="d-flex align-items-center gap-3"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span> <a href="mailto:@organiser.OrganiserEmail" class="small text-break">@organiser.OrganiserEmail</a></li>
+            }
+            @if (!string.IsNullOrWhiteSpace(organiser.OrganiserAddress))
+            {
+                <li class="d-flex align-items-start gap-3"><span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22a1 1 0 0 1-1-1v-4a1 1 0 0 1 .445-.832l3-2a1 1 0 0 1 1.11 0l3 2A1 1 0 0 1 22 17v4a1 1 0 0 1-1 1z"/><path d="M18 10a8 8 0 0 0-16 0c0 4.993 5.539 10.193 7.399 11.799a1 1 0 0 0 .601.2"/><path d="M18 22v-3"/><circle cx="10" cy="10" r="3"/></svg></span> <span style="white-space: pre-line">@organiser.OrganiserAddress</span></li>
+            }
+        </ul>
+    }
+}
+
+@{
+    var brochureUrl = (Umbraco.AssignedContentItem is ITourBrochure brochurePage && brochurePage.BrochurePdf != null)
+        ? brochurePage.BrochurePdf.Url()
+        : null;
+
+    // Find the Pay Final Balance block on this page (if any) and link to its
+    // in-page anchor. The anchor is generated the same way the in-page nav and
+    // _Layout_Features do it, so the slugs match by construction.
+    var payFinalBalanceSlug = FindPayFinalBalanceSlug(Umbraco.AssignedContentItem);
+}
+
+@if (brochureUrl != null)
+{
+    <div class="small text-pretty p-3 bg-body-tertiary rounded-3">To book this holiday, download the brochure below, then complete and post the booking form inside it with your deposit as instructed.</div>
+}
+
+@if (brochureUrl != null || payFinalBalanceSlug != null)
+{
+    <div class="grid gap-2 py-3">
+        @if (brochureUrl != null)
+        {
+            <a href="@brochureUrl" class="btn btn-outline-primary g-col-12 g-col-md-6 g-col-lg-12" target="_blank" rel="noopener">Download Brochure <span class="visually-hidden">(opens in a new tab)</span></a>
+        }
+        @if (payFinalBalanceSlug != null)
+        {
+            <a href="#@payFinalBalanceSlug" class="btn btn-primary g-col-12 g-col-md-6 g-col-lg-12">Pay Final Balance</a>
+        }
+    </div>
+}
+
+
+@functions {
+    private static string? FindPayFinalBalanceSlug(IPublishedContent page)
+    {
+        var grids = page.Properties
+            .Where(p => p.GetValue() is BlockGridModel)
+            .Select(p => (BlockGridModel)p.GetValue()!);
+
+        foreach (var grid in grids)
+        {
+            foreach (var block in grid)
+            {
+                var found = MatchOrDescend(block);
+                if (found != null) return found;
+            }
+        }
+        return null;
+    }
+
+    private static string? MatchOrDescend(BlockGridItem block)
+    {
+        if (block.Content.ContentType.Alias == "featureFormPayFinalBalance")
+        {
+            var title = block.Content.Value<string>("featurePropertyFeatureTitle");
+            return SlugHelper.ToSlug(title, block.Content.ContentType.Alias, block.ContentKey);
+        }
+
+        foreach (var area in block.Areas)
+        {
+            foreach (var nested in area)
+            {
+                var found = MatchOrDescend(nested);
+                if (found != null) return found;
+            }
+        }
+        return null;
+    }
+}

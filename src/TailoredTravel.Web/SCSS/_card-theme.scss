@@ -1,0 +1,69 @@
+// Card theme colouring
+//
+// Generic [data-card-theme] attribute pattern for colouring card bodies on
+// index pages. Each scope sets --tt-card-bg to the full palette colour.
+// White text is applied unconditionally — colours are saturated enough in
+// all cases. No dark mode variant needed; the solid colours hold in both modes.
+//
+// Slugs mirror the Umbraco node Name lowercased with spaces replaced by
+// hyphens (same derivation as data-theme-country in _Layout.cshtml).
+
+[data-card-theme="uk"],
+[data-card-theme="ireland"] {
+    --tt-card-bg: var(--tt-green);
+}
+
+[data-card-theme="italy"] {
+    --tt-card-bg: var(--tt-olive);
+}
+
+[data-card-theme="france"] {
+    --tt-card-bg: var(--tt-gold);
+}
+
+[data-card-theme="spain"],
+[data-card-theme="portugal"],
+[data-card-theme="southern-europe"] {
+    --tt-card-bg: var(--tt-red);
+}
+
+[data-card-theme="germany"],
+[data-card-theme="austria"] {
+    --tt-card-bg: var(--tt-coral);
+}
+
+[data-card-theme="holland"],
+[data-card-theme="belgium"] {
+    --tt-card-bg: var(--tt-orange);
+}
+
+[data-card-theme="central-and-eastern-europe"] {
+    --tt-card-bg: var(--tt-purple);
+}
+
+[data-card-theme="worldwide"] {
+    --tt-card-bg: var(--tt-blue);
+}
+
+[data-card-theme="uk"],
+[data-card-theme="ireland"],
+[data-card-theme="italy"],
+[data-card-theme="france"],
+[data-card-theme="spain"],
+[data-card-theme="portugal"],
+[data-card-theme="southern-europe"],
+[data-card-theme="germany"],
+[data-card-theme="austria"],
+[data-card-theme="holland"],
+[data-card-theme="belgium"],
+[data-card-theme="central-and-eastern-europe"],
+[data-card-theme="worldwide"] {
+    .card-body {
+        background-color: var(--tt-card-bg);
+        color: #fff;
+    }
+
+    .card-body a {
+        color: #fff;
+    }
+}

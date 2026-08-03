@@ -1,0 +1,2272 @@
+{
+  "version": "1.0",
+  "sourceType": "pdf",
+  "source": {
+    "fileName": "TTM5063 Wensum Flemish Bruges Antwerp Ghent  lo.pdf",
+    "mediaKey": "d155485a-76a9-4d33-935c-146469ed9087",
+    "extractedDate": "2026-06-16T13:45:55.1295293Z",
+    "totalPages": 4,
+    "extractedPages": [
+      1,
+      2
+    ]
+  },
+  "elements": [
+    {
+      "id": "p1-e1",
+      "page": 1,
+      "text": "The Arts Society Wensum presents",
+      "metadata": {
+        "fontSize": 13.2,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 31.7,
+          "y": 815.7
+        },
+        "boundingBox": {
+          "left": 31.7,
+          "top": 815.7,
+          "width": 213.5,
+          "height": 9.6
+        },
+        "color": "#FFD200",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e2",
+      "page": 1,
+      "text": "Flemish Masters \u2013 Bruges, Antwerp \u0026 Ghent",
+      "metadata": {
+        "fontSize": 28,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 31.7,
+          "y": 795.7
+        },
+        "boundingBox": {
+          "left": 31.7,
+          "top": 795.7,
+          "width": 336.2,
+          "height": 44.9
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e3",
+      "page": 1,
+      "text": "5 days from \u00A31,199 Departing 30th September 2026",
+      "metadata": {
+        "fontSize": 14.4,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 31.9,
+          "y": 726.3
+        },
+        "boundingBox": {
+          "left": 31.9,
+          "top": 726.3,
+          "width": 350.8,
+          "height": 10.5
+        },
+        "color": "#FFD200",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e4",
+      "page": 1,
+      "text": "FEATURES",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 409.4,
+          "y": 703.3
+        },
+        "boundingBox": {
+          "left": 409.4,
+          "top": 703.3,
+          "width": 67.6,
+          "height": 8.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e5",
+      "page": 1,
+      "text": "\u2022 4* central Bruges hotel",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 688.1
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 688.1,
+          "width": 96.9,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e6",
+      "page": 1,
+      "text": "\u2022 Welcome dinner included",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 678
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 678,
+          "width": 107.3,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e7",
+      "page": 1,
+      "text": "\u2022 All excursions, entrance fees \u0026 guided tours included",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 668
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 668,
+          "width": 129.1,
+          "height": 15.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e8",
+      "page": 1,
+      "text": "\u2022 Canal cruise on Day 2 included",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 649.4
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 649.4,
+          "width": 130.7,
+          "height": 6.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e9",
+      "page": 1,
+      "text": "\u2022 Tour manager throughout",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 639.2
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 639.2,
+          "width": 107.3,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e10",
+      "page": 1,
+      "text": "\u2022 Eurotunnel crossings",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 629.1
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 629.1,
+          "width": 89.8,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e11",
+      "page": 1,
+      "text": "\u2022 Executive coach throughout",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 619
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 619,
+          "width": 118.3,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e12",
+      "page": 1,
+      "text": "\u2022 Porterage \u0026 local accommodation tax included",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 609
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 609,
+          "width": 142.5,
+          "height": 15.1
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e13",
+      "page": 1,
+      "text": "\u2022 Audio headsets included on Days 2 to 4",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 590.2
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 590.2,
+          "width": 117.7,
+          "height": 15.1
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e14",
+      "page": 1,
+      "text": "WHAT WE WILL SEE",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 409.4,
+          "y": 562.3
+        },
+        "boundingBox": {
+          "left": 409.4,
+          "top": 562.3,
+          "width": 127.2,
+          "height": 8.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e15",
+      "page": 1,
+      "text": "\u2022 Bruges \u2013 guided walking tour",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 547.2
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 547.2,
+          "width": 123,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e16",
+      "page": 1,
+      "text": "\u2022 Bruges Canal Cruise",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 537.2
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 537.2,
+          "width": 88.3,
+          "height": 6.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e17",
+      "page": 1,
+      "text": "\u2022 Groeninge Museum",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 527.2
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 527.2,
+          "width": 84.7,
+          "height": 6.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e18",
+      "page": 1,
+      "text": "\u2022 Antwerp \u2013 guided walking tour",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 517
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 517,
+          "width": 128,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e19",
+      "page": 1,
+      "text": "\u2022 Rubens House \u2013 guided tour",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 506.9
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 506.9,
+          "width": 120.7,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e20",
+      "page": 1,
+      "text": "\u2022 Ghent \u2013 guided walking tour",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 497
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 497,
+          "width": 118.8,
+          "height": 6.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e21",
+      "page": 1,
+      "text": "\u2022 St Bavo Cathedral \u0026 \u2018The Adoration of the Mystic Lamb\u2019",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 486.9
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 486.9,
+          "width": 147.2,
+          "height": 15.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e22",
+      "page": 1,
+      "text": "\u2022 Ghent Museum of Fine Arts \u2013 guided tour",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 468.2
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 468.2,
+          "width": 123,
+          "height": 15.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e23",
+      "page": 1,
+      "text": "\u2022 Palais des Beaux Arts at Lille \u2013 guided tour",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 449.3
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 449.3,
+          "width": 129,
+          "height": 15.1
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e24",
+      "page": 1,
+      "text": "ACCOMMODATION",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 409.4,
+          "y": 421.4
+        },
+        "boundingBox": {
+          "left": 409.4,
+          "top": 421.4,
+          "width": 116.2,
+          "height": 8.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e25",
+      "page": 1,
+      "text": "We stay four nights at the centrally located 4* Dukes\u2019 Academie Hotel (https://www.dukesacademie.com/) in Bruges. Located under a fifteen minute walk from the market square, facilities at the hotel include a breakfast room and bar. All rooms are en suite and feature television, tea \u0026 coffee making facilities, and an in room safe. A set three course dinner without drinks is included at the Maximiliaan van Oostenrijk Restaurant (located a 100 metres walk from the hotel) on the first evening. The remaining three nights are on a bed and breakfast basis.",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 406.3
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 406.3,
+          "width": 163.2,
+          "height": 127.7
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e26",
+      "page": 1,
+      "text": "EXTRAS TO YOUR TOUR",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 409.4,
+          "y": 265.8
+        },
+        "boundingBox": {
+          "left": 409.4,
+          "top": 265.8,
+          "width": 154.3,
+          "height": 8.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e27",
+      "page": 1,
+      "text": "\u2022 Single room supplement \u00A3199",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 250.8
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 250.8,
+          "width": 126.2,
+          "height": 6.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e28",
+      "page": 1,
+      "text": "\u2022 Insurance (including Covid cover) \u00A392",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 240.7
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 240.7,
+          "width": 156.8,
+          "height": 6.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e29",
+      "page": 1,
+      "text": "\u2022 Gratuities",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 230.6
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 230.6,
+          "width": 44.3,
+          "height": 6.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e30",
+      "page": 1,
+      "text": "\u2022 Dinners on Days 2, 3 \u0026 4",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 220.4
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 220.4,
+          "width": 104.8,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e31",
+      "page": 1,
+      "text": "\u2022 Lunches",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 210.3
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 210.3,
+          "width": 39.8,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e32",
+      "page": 1,
+      "text": "s e",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 21,
+          "y": 191.1
+        },
+        "boundingBox": {
+          "left": 21,
+          "top": 191.1,
+          "width": 4.9,
+          "height": 0.4
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e33",
+      "page": 1,
+      "text": "\u2022 Donations at any churches or",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 409.3,
+          "y": 200.3
+        },
+        "boundingBox": {
+          "left": 409.3,
+          "top": 200.3,
+          "width": 123.5,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e34",
+      "page": 1,
+      "text": "g",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 19.3,
+          "y": 180.5
+        },
+        "boundingBox": {
+          "left": 19.3,
+          "top": 180.5,
+          "width": 6.6,
+          "height": -4.8
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e35",
+      "page": 1,
+      "text": "cathedrals visited",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 415,
+          "y": 191.6
+        },
+        "boundingBox": {
+          "left": 415,
+          "top": 191.6,
+          "width": 70.5,
+          "height": 6.4
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e36",
+      "page": 1,
+      "text": "u r B",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 21.2,
+          "y": 175.2
+        },
+        "boundingBox": {
+          "left": 21.2,
+          "top": 175.2,
+          "width": 4.8,
+          "height": 3.8
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e37",
+      "page": 1,
+      "text": "Price based on twin share. Minimum numbers required. Normal booking conditions apply.",
+      "metadata": {
+        "fontSize": 8,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 408.6,
+          "y": 178.7
+        },
+        "boundingBox": {
+          "left": 408.6,
+          "top": 178.7,
+          "width": 157.5,
+          "height": 13.7
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e38",
+      "page": 1,
+      "text": "For more information on this tour contact your Group Organiser",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 26.7,
+          "y": 144.7
+        },
+        "boundingBox": {
+          "left": 26.7,
+          "top": 144.7,
+          "width": 254.3,
+          "height": 6.6
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e39",
+      "page": 1,
+      "text": "Susanna Smart",
+      "metadata": {
+        "fontSize": 20,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 26.7,
+          "y": 130.9
+        },
+        "boundingBox": {
+          "left": 26.7,
+          "top": 130.9,
+          "width": 149.4,
+          "height": 13.7
+        },
+        "color": "#FFD200",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e40",
+      "page": 1,
+      "text": "Tel: 07710 749263",
+      "metadata": {
+        "fontSize": 19,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 26.7,
+          "y": 107.9
+        },
+        "boundingBox": {
+          "left": 26.7,
+          "top": 107.9,
+          "width": 170.7,
+          "height": 12.6
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e41",
+      "page": 1,
+      "text": "Email: susannasmart@outlook.com Tailored Travel\u2019s ATOL",
+      "metadata": {
+        "fontSize": 15,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 26.7,
+          "y": 86.5
+        },
+        "boundingBox": {
+          "left": 26.7,
+          "top": 86.5,
+          "width": 349.4,
+          "height": 13.7
+        },
+        "color": "#FFD200",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e42",
+      "page": 1,
+      "text": ".................................................................. number is 5605",
+      "metadata": {
+        "fontSize": 14,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 26.7,
+          "y": 69.7
+        },
+        "boundingBox": {
+          "left": 26.7,
+          "top": 69.7,
+          "width": 340.8,
+          "height": 5.4
+        },
+        "color": "#FFD200",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e43",
+      "page": 1,
+      "text": "80 Thorpe Road, Norwich NR1 1BA",
+      "metadata": {
+        "fontSize": 14,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 26.7,
+          "y": 54.7
+        },
+        "boundingBox": {
+          "left": 26.7,
+          "top": 54.7,
+          "width": 244.4,
+          "height": 9.5
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e44",
+      "page": 1,
+      "text": "Great Market Square, Antwerp",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 446.3,
+          "y": 40.3
+        },
+        "boundingBox": {
+          "left": 446.3,
+          "top": 40.3,
+          "width": 129.9,
+          "height": 6.6
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p1-e45",
+      "page": 1,
+      "text": "Vie w a nd sha r e this to u r o nlin e - click o n Vie w Yo u r To u r at w w w.tailo r ed-tr a v el. c o . uk a nd qu ote w e nd261",
+      "metadata": {
+        "fontSize": 9.5,
+        "fontName": "ADAKFK\u002BSwiss721BT-Bold",
+        "position": {
+          "x": 20.1,
+          "y": 21.5
+        },
+        "boundingBox": {
+          "left": 20.1,
+          "top": 21.5,
+          "width": 555,
+          "height": 6.8
+        },
+        "color": "#CC161E",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e46",
+      "page": 2,
+      "text": "The Arts Society Wensum presents",
+      "metadata": {
+        "fontSize": 10.2,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 210.3,
+          "y": 807.5
+        },
+        "boundingBox": {
+          "left": 210.3,
+          "top": 807.5,
+          "width": 185.8,
+          "height": 7.5
+        },
+        "color": "#FFD200",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e47",
+      "page": 2,
+      "text": "Flemish Masters \u2013 Bruges, Antwerp \u0026 Ghent",
+      "metadata": {
+        "fontSize": 28,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 209.4,
+          "y": 788.4
+        },
+        "boundingBox": {
+          "left": 209.4,
+          "top": 788.4,
+          "width": 336.2,
+          "height": 44.9
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e48",
+      "page": 2,
+      "text": "5 days from \u00A31,199 Departing 30th September 2026",
+      "metadata": {
+        "fontSize": 14.4,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 212.3,
+          "y": 721.1
+        },
+        "boundingBox": {
+          "left": 212.3,
+          "top": 721.1,
+          "width": 350.8,
+          "height": 10.5
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e49",
+      "page": 2,
+      "text": "WHAT WE WILL SEE",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMB\u002BClarendon",
+        "position": {
+          "x": 30,
+          "y": 703.3
+        },
+        "boundingBox": {
+          "left": 30,
+          "top": 703.3,
+          "width": 127.2,
+          "height": 8.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e50",
+      "page": 2,
+      "text": "Day 1",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 212.6,
+          "y": 696.8
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 696.8,
+          "width": 27.6,
+          "height": 7.5
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e51",
+      "page": 2,
+      "text": "We depart by executive coach from our designated pick up point and",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 683.5
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 683.5,
+          "width": 324.4,
+          "height": 7.6
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e52",
+      "page": 2,
+      "text": "Guided walking tour",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 676.6
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 676.6,
+          "width": 107.8,
+          "height": 8.8
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e53",
+      "page": 2,
+      "text": "travel with our tour manager to Folkestone for our Eurotunnel crossing to",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 670.1
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 670.1,
+          "width": 340.7,
+          "height": 7.6
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e54",
+      "page": 2,
+      "text": "of Bruges",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 661.1
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 661.1,
+          "width": 52,
+          "height": 8.7
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e55",
+      "page": 2,
+      "text": "Calais. On arrival in Bruges we check into the 4* Dukes\u2019 Academie Hotel for a four night stay. A welcome dinner is included at a restaurant close to",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 656.8
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 656.8,
+          "width": 344.6,
+          "height": 21.1
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e56",
+      "page": 2,
+      "text": "Bruges Canal Cruise",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 637.3
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 637.3,
+          "width": 110.2,
+          "height": 8.8
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e57",
+      "page": 2,
+      "text": "our hotel this evening.",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 629.9
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 629.9,
+          "width": 103.5,
+          "height": 7.5
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e58",
+      "page": 2,
+      "text": "Groeninge Museum",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 613.4
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 613.4,
+          "width": 105.4,
+          "height": 8.8
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e59",
+      "page": 2,
+      "text": "Day 2",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 212.6,
+          "y": 610.8
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 610.8,
+          "width": 27,
+          "height": 7.5
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e60",
+      "page": 2,
+      "text": "This morning, we enjoy an included guided walking tour of Bruges, whose",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 597.5
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 597.5,
+          "width": 346.1,
+          "height": 7.6
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e61",
+      "page": 2,
+      "text": "Guided walking tour",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 589.5
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 589.5,
+          "width": 107.8,
+          "height": 8.8
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e62",
+      "page": 2,
+      "text": "historic city centre is a UNESCO World Heritage Site. Known as the",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 584.2
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 584.2,
+          "width": 315.6,
+          "height": 7.7
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e63",
+      "page": 2,
+      "text": "of Antwerp",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 574
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 574,
+          "width": 58.7,
+          "height": 8.7
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e64",
+      "page": 2,
+      "text": "\u2018Venice of the North\u2019, Bruges is famous for lace making, chocolate and its picturesque network of canals. An included 45 minute cruise on the",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 570.8
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 570.8,
+          "width": 344.4,
+          "height": 21
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e65",
+      "page": 2,
+      "text": "Rubens House",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 550
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 550,
+          "width": 79.1,
+          "height": 8.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e66",
+      "page": 2,
+      "text": "picturesque canals of Bruges enables us to see the city from a different perspective. This afternoon we visit the Groeninge Museum in Bruges,",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 544
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 544,
+          "width": 333.3,
+          "height": 21
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e67",
+      "page": 2,
+      "text": "Guided walking tour",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 526.3
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 526.3,
+          "width": 107.8,
+          "height": 8.8
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e68",
+      "page": 2,
+      "text": "home to a fine collection of Flemish and Belgian painting from Jan Van",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 517.2
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 517.2,
+          "width": 329.9,
+          "height": 7.6
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e69",
+      "page": 2,
+      "text": "of Ghent",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 510.9
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 510.9,
+          "width": 46.5,
+          "height": 8.8
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e70",
+      "page": 2,
+      "text": "Eyck to Marcel Broodthears, a wide range of Renaissance and Baroque",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 503.9
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 503.9,
+          "width": 334.9,
+          "height": 7.6
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e71",
+      "page": 2,
+      "text": "St Bavo Cathedral \u0026 \u2018The",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 487
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 487,
+          "width": 135.6,
+          "height": 8.8
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e72",
+      "page": 2,
+      "text": "Masters and representations of Belgian Symbolism and Modernism.",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 490.6
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 490.6,
+          "width": 318.4,
+          "height": 7.7
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e73",
+      "page": 2,
+      "text": "Adoration of the Mystic",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 471.5
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 471.5,
+          "width": 124.9,
+          "height": 8.7
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e74",
+      "page": 2,
+      "text": "Day 3",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 212.6,
+          "y": 471.3
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 471.3,
+          "width": 27,
+          "height": 7.5
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e75",
+      "page": 2,
+      "text": "Lamb\u2019",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 456
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 456,
+          "width": 33.8,
+          "height": 8.6
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e76",
+      "page": 2,
+      "text": "Our morning guided tour of Antwerp takes in sights such as the Great Market Square, Town Hall, Butchers\u2019 Guild House and the Cathedral of",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 458.1
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 458.1,
+          "width": 331.2,
+          "height": 21.1
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e77",
+      "page": 2,
+      "text": "Ghent Museum of Fine Arts Our Lady. This afternoon we visit Rubens House, the former house of",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 432.3
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 432.3,
+          "width": 505,
+          "height": 8.8
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e78",
+      "page": 2,
+      "text": "Peter Rubens from 1616 until his death in 1640. The house was built",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 417.9
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 417.9,
+          "width": 319.8,
+          "height": 7.6
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e79",
+      "page": 2,
+      "text": "Palais des Beaux Arts at Lille around an inner courtyard and the Baroque portico between the",
+      "metadata": {
+        "fontSize": 12,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 31.2,
+          "y": 408.2
+        },
+        "boundingBox": {
+          "left": 31.2,
+          "top": 408.2,
+          "width": 480.3,
+          "height": 11.2
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e80",
+      "page": 2,
+      "text": "courtyard and the Flemish-Italian Renaissance garden was designed by the master himself. Our guided tour of the House introduces us to the life and works of Rubens, including his self portrait, \u2018Adam and Eve in Paradise\u2019, \u2018Henry IV in the battle for Paris\u2019 and a portrait of Sir Anthony Van Dyck as a boy.",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 391.1
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 391.1,
+          "width": 341.9,
+          "height": 61
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e81",
+      "page": 2,
+      "text": "Day 4",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 212.6,
+          "y": 318.5
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 318.5,
+          "width": 27,
+          "height": 7.5
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e82",
+      "page": 2,
+      "text": "We visit Ghent this morning for a guided walking tour. Originally the",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 305.3
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 305.3,
+          "width": 314.5,
+          "height": 7.7
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e83",
+      "page": 2,
+      "text": "St Bavo Cathedral,",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 34.9,
+          "y": 294.9
+        },
+        "boundingBox": {
+          "left": 34.9,
+          "top": 294.9,
+          "width": 78.2,
+          "height": 6.6
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e84",
+      "page": 2,
+      "text": "capital of Flanders, Ghent retains more historical buildings than any other",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 291.9
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 291.9,
+          "width": 342.9,
+          "height": 7.7
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e85",
+      "page": 2,
+      "text": "\u2018The Adoration of the Mystic Lamb\u2019",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 34.9,
+          "y": 284.7
+        },
+        "boundingBox": {
+          "left": 34.9,
+          "top": 284.7,
+          "width": 146.1,
+          "height": 6.4
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e86",
+      "page": 2,
+      "text": "Flemish city. Here we visit St Bavo Cathedral, which is home to the famous 24-panel altarpiece \u2018The Adoration of the Mystic Lamb\u2019. This afternoon we have a guided tour at the Ghent Museum of Fine Arts with works ranging from 19th century Realism, Romanticism, Impressionism, Symbolism and Expressionism to 20th century Surrealism, including two works by Hieronymus Bosch.",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 278.5
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 278.5,
+          "width": 338.8,
+          "height": 74.6
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e87",
+      "page": 2,
+      "text": "Day 5",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 212.6,
+          "y": 192.4
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 192.4,
+          "width": 27,
+          "height": 7.5
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e88",
+      "page": 2,
+      "text": "After checking out of our hotel we enjoy a guided tour at the Palais des",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 179.1
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 179.1,
+          "width": 332.5,
+          "height": 7.6
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e89",
+      "page": 2,
+      "text": "Ghent",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 34.9,
+          "y": 164.5
+        },
+        "boundingBox": {
+          "left": 34.9,
+          "top": 164.5,
+          "width": 25.7,
+          "height": 6.6
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e90",
+      "page": 2,
+      "text": "Beaux Arts at Lille, considered by many to be one of France\u2019s most important galleries. Taking carefully selected comfort stops en route, we return to Calais for our return Eurotunnel crossing to Folkestone, and onwards coach travel back to our original pick up point.",
+      "metadata": {
+        "fontSize": 10.5,
+        "fontName": "ADABMA\u002BHelveticaNeue",
+        "position": {
+          "x": 212.6,
+          "y": 165.8
+        },
+        "boundingBox": {
+          "left": 212.6,
+          "top": 165.8,
+          "width": 336.6,
+          "height": 47.7
+        },
+        "color": "#221F1F",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e91",
+      "page": 2,
+      "text": "NB:- Due to regulations in Bruges, coaches have restricted access within the city centre.",
+      "metadata": {
+        "fontSize": 8,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 213.3,
+          "y": 109.2
+        },
+        "boundingBox": {
+          "left": 213.3,
+          "top": 109.2,
+          "width": 326.3,
+          "height": 5.7
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e92",
+      "page": 2,
+      "text": "On the first and last days of the tour, the coach will drop us off at a designated point which is less than a three minute walk away from the hotel. Porterage between the coach and hotel is included in the cost of the tour (one piece of luggage per person). Please note we reserve the right to alter the above itinerary if required for operational reasons. Given the historic nature of the places visited, a certain degree of walking will be involved, and this holiday may not be suitable for those with mobility problems.",
+      "metadata": {
+        "fontSize": 8,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 232.1,
+          "y": 101.4
+        },
+        "boundingBox": {
+          "left": 232.1,
+          "top": 101.4,
+          "width": 317.6,
+          "height": 51.5
+        },
+        "color": "#16549D",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e93",
+      "page": 2,
+      "text": "Lille Fine Arts Museum",
+      "metadata": {
+        "fontSize": 9,
+        "fontName": "ADABKN\u002BHelveticaNeue-Medium",
+        "position": {
+          "x": 34.9,
+          "y": 51.2
+        },
+        "boundingBox": {
+          "left": 34.9,
+          "top": 51.2,
+          "width": 97.4,
+          "height": 6.4
+        },
+        "color": "#FFFFFF",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    },
+    {
+      "id": "p2-e94",
+      "page": 2,
+      "text": "Vie w a nd sha r e this to u r o nlin e - click o n Vie w Yo u r To u r at w w w.tailo r ed-tr a v el. c o . uk a nd qu ote w e nd261",
+      "metadata": {
+        "fontSize": 9.5,
+        "fontName": "ADAKFK\u002BSwiss721BT-Bold",
+        "position": {
+          "x": 20.1,
+          "y": 21.1
+        },
+        "boundingBox": {
+          "left": 20.1,
+          "top": 21.1,
+          "width": 555,
+          "height": 6.8
+        },
+        "color": "#CC161E",
+        "htmlArea": "",
+        "htmlTag": "",
+        "htmlContainerPath": "",
+        "cssClasses": ""
+      }
+    }
+  ]
+}

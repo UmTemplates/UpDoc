@@ -1,0 +1,58 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureInternalLinks>>
+@using TailoredTravel.Web.Helpers
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    var typedMultiNodeTreePicker = Model.Content.Links?.Where(c => c is IContentHeadingDefault);
+    var settings = Model.Settings as FeatureSettingsInternalLinks;
+    var showItemTitles = settings?.ShowItemTitles == true;
+    var showItemDescriptions = settings?.ShowItemDescriptions == true;
+    int.TryParse(settings?.ItemsLayoutColumns, out var columns);
+    var itemClasses = GridColumnsHelper.ClassesFor(columns);
+}
+
+@if (typedMultiNodeTreePicker != null && typedMultiNodeTreePicker.Any())
+{
+    <div class="grid">
+        @foreach (var item in typedMultiNodeTreePicker)
+        {
+            var childPage = (IContentHeadingDefault)item;
+            var pageThumbnail = childPage.PageThumbnail;
+            <div class="@itemClasses">
+                @{ var cardTheme = item.Name?.ToLowerInvariant().Replace("&", "and").Replace(" ", "-"); }
+                <article class="card h-100 shadow shadow-hover"@(cardTheme is null ? null : Html.Raw($" data-card-theme=\"{cardTheme}\""))>
+                    @if (pageThumbnail is not null)
+                    {
+                        var altText = pageThumbnail.Value<string>("mediaPropertyAltText");
+
+                        <img src="@(pageThumbnail.GetCropUrl("content6Col"))&format=webp"
+                             srcset="@(pageThumbnail.GetCropUrl("content3Col"))&format=webp 384w,
+                                     @(pageThumbnail.GetCropUrl("content6Col"))&format=webp 768w"
+                             sizes="(max-width: 768px) 100vw,
+                                    (max-width: 992px) 50vw,
+                                    33vw"
+                             class="card-img-top"
+                             alt="@(altText ?? pageThumbnail.Name)">
+                    }
+                    <div class="card-body text-center">
+                        @if (showItemTitles)
+                        {
+                            <h3 class="card-title pb-1">
+                                <a class="stretched-link"
+                                   href="@item.Url()">@childPage.PageTitleShort</a>
+                            </h3>
+                        }
+                        else
+                        {
+                            <a class="stretched-link" href="@item.Url()" aria-label="@childPage.PageTitleShort"></a>
+                        }
+                        @if (showItemDescriptions && !string.IsNullOrWhiteSpace(childPage.PageDescription))
+                        {
+                            <p class="card-text pb-2">@childPage.PageDescription</p>
+                        }
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,10 @@
+@model Umbraco.Forms.Web.Models.FieldViewModel
+@using Umbraco.Forms.Web
+@inject Umbraco.Cms.Core.Templates.HtmlLocalLinkParser htmlLocalLinkParser
+
+@if (Model.AdditionalSettings.TryGetValue("Html", out string? value) && !string.IsNullOrWhiteSpace(value))
+{
+    <div class="p-3 bg-body-tertiary border rounded-3">
+        <small>@Html.Raw(htmlLocalLinkParser.EnsureInternalLinks(value))</small>
+    </div>
+}

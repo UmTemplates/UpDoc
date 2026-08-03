@@ -1,0 +1,19 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureCtaCallUs>>
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "p-3";
+    ViewData["FeatureDefaultBg"] = "primary";
+
+    var siteSettings = Umbraco.ContentAtRoot().FirstOrDefault()?.FirstChild<SiteSettings>();
+    var phoneNumber = siteSettings?.CompanyPhoneNumber;
+    var phoneHref = string.IsNullOrWhiteSpace(phoneNumber)
+        ? null
+        : "tel:" + new string(phoneNumber.Where(char.IsDigit).ToArray());
+}
+
+<div class="text-center">
+    <p class="mb-1">Call us on</p>
+    <p class="fs-3 mb-1"><a class="text-yellow text-decoration-none" href="@phoneHref" aria-label="Call us on @phoneNumber" title="Click to call">@phoneNumber</a></p>
+    <p class="mb-0">to tailor this tour<br />for your group</p>
+</div>

@@ -1,0 +1,185 @@
+// Image Rotator feature
+// Lightweight replacement for Bootstrap carousel: main image + thumbs in 9/3 grid,
+// auto-rotating with Ken Burns pan/zoom and crossfade.
+//
+// Layout: single CSS grid (12 cols x 3 rows) so stage + thumbs share one grid context.
+// The stage spans cols 1-9 across all 3 rows. The thumbs occupy cols 10-12, one per row.
+// This way the gaps between thumb rows are subtracted from the column total automatically,
+// keeping the thumb column flush with the stage's bottom edge.
+
+.tt-rotator {
+    .tt-rotator-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    .tt-rotator-stage {
+        grid-column: 1 / span 9;
+        grid-row: 1 / span 3;
+        aspect-ratio: 16 / 9;
+        background-color: var(--bs-tertiary-bg);
+    }
+
+    .tt-rotator-stage-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+        will-change: opacity, transform;
+    }
+
+    .tt-rotator-stage-img.is-active {
+        opacity: 1;
+        animation: tt-rotator-ken-burns 7s ease-out forwards;
+    }
+
+    .tt-rotator-stage-img.is-active.kb-alt {
+        animation-name: tt-rotator-ken-burns-alt;
+    }
+
+    .tt-rotator-caption {
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1rem;
+        color: #fff;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .tt-rotator-label,
+    .tt-rotator-counter {
+        --bs-btn-bg: rgba(var(--bs-secondary-rgb), 0.25);
+        --bs-btn-border-color: transparent;
+        --bs-btn-hover-bg: rgba(var(--bs-secondary-rgb), 1);
+        --bs-btn-hover-border-color: transparent;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+
+    .tt-rotator-thumbs {
+        grid-column: 10 / span 3;
+        grid-row: 1 / span 3;
+        display: contents; // children participate directly in the parent grid
+    }
+
+    .tt-rotator-thumb {
+        grid-column: 10 / span 3;
+        position: relative;
+        border: none;
+        padding: 0;
+        background: #dfe6f1;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .tt-rotator-thumb img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        opacity: 1;
+        transition: transform 0.4s ease, filter 0.3s ease, opacity 0.6s ease;
+        filter: saturate(0.9) brightness(0.94);
+    }
+
+    // The .is-front layer is fully visible. The other layer sits behind it at opacity 0,
+    // ready to be swapped in. On a crossfade, the back layer's src is updated, then the
+    // front class is moved to it, which fades it up while the previous front fades down.
+    .tt-rotator-thumb img[data-layer] {
+        opacity: 0;
+    }
+
+    .tt-rotator-thumb img.is-front {
+        opacity: 1;
+    }
+
+    // Top thumbs in a queue-shift use a faster crossfade so the eye reads the bottom thumb
+    // (slower) as "the new arrival" while the others feel like they slid into place.
+    .tt-rotator-thumb img.is-fast {
+        transition-duration: 0.2s;
+    }
+
+    .tt-rotator-thumb::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 2px solid transparent;
+        border-radius: inherit;
+        transition: border-color 0.25s ease;
+        pointer-events: none;
+    }
+
+    .tt-rotator-thumb:hover img {
+        transform: scale(1.06);
+        filter: saturate(1) brightness(1);
+    }
+
+    .tt-rotator-thumb:focus-visible {
+        outline: none;
+    }
+
+    .tt-rotator-thumb:focus-visible::after {
+        border-color: $tt-accent;
+    }
+
+    .tt-rotator-thumb-progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 0;
+        background: $tt-accent;
+        z-index: 2;
+        pointer-events: none;
+        transition: width linear;
+    }
+
+    @include media-breakpoint-down(lg) {
+        .tt-rotator-grid {
+            display: block;
+            aspect-ratio: auto;
+        }
+
+        .tt-rotator-stage {
+            aspect-ratio: 16 / 9;
+            margin-bottom: 1rem;
+        }
+
+        .tt-rotator-thumbs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .tt-rotator-thumb {
+            grid-column: auto;
+            aspect-ratio: 16 / 9;
+        }
+    }
+}
+
+// Subtle Ken Burns: minimum scale stays comfortably above the maximum translate so the
+// image always over-covers the rounded clip. Translate stays small enough that the pan
+// is felt rather than seen.
+@keyframes tt-rotator-ken-burns {
+    0%   { transform: scale(1.03) translate(0, 0); }
+    100% { transform: scale(1.10) translate(-0.6%, -0.4%); }
+}
+
+@keyframes tt-rotator-ken-burns-alt {
+    0%   { transform: scale(1.10) translate(-0.4%, 0); }
+    100% { transform: scale(1.03) translate(0.6%, -0.4%); }
+}

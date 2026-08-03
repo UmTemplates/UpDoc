@@ -1,0 +1,43 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<FeatureCtaTailorYourTour>>
+
+@{
+    Layout = "_Layout_Features.cshtml";
+    ViewData["FeaturePadding"] = "p-3";
+    ViewData["FeatureDefaultBg"] = "body";
+    ViewData["FeatureDefaultBorderColour"] = "primary";
+
+    var currentPage = UmbracoContext?.PublishedRequest?.PublishedContent;
+    var pageTitleShort = currentPage?.Value<string>("pageTitleShort");
+
+    // The details come from the structured tour properties, not from
+    // Page Description. Page Description is prose, and stapling "per person"
+    // onto the end of a paragraph of prose would read as nonsense.
+    var strapline = TourDetailsHelper.Strapline(currentPage, perPerson: true);
+
+    var title = "Tailor your tour";
+    var description = "Get in touch now using this tour as an example";
+}
+
+<header class="feature__header mb-4">
+    <h2 class="border-bottom pb-1">@title</h2>
+    <p class="lead">@description</p>
+</header>
+
+@if (!string.IsNullOrWhiteSpace(pageTitleShort))
+{
+    <h3 class="fs-5">@pageTitleShort</h3>
+}
+
+@if (!string.IsNullOrWhiteSpace(strapline))
+{
+    <p>@strapline</p>
+}
+
+<div class="d-grid gap-2 py-3">
+    <a href="/contact-us/request-a-quote/" class="btn btn-primary">Request a Tailored Quote</a>
+    <a href="/contact-us/request-a-brochure/" class="btn btn-outline-primary">Request a brochure</a>
+</div>
+
+<footer class="feature__footer p-3 bg-body-tertiary border rounded-3">
+    <p>Ask us about any customisations you wish for your group</p>
+</footer>

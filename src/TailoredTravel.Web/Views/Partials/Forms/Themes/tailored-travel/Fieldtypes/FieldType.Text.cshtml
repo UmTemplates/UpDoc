@@ -1,0 +1,72 @@
+@model Umbraco.Forms.Web.Models.FieldViewModel
+@using Umbraco.Forms.Web
+
+@{
+    var settings = Model.AdditionalSettings;
+    var hasCaption = settings.ContainsKey("Caption") && !string.IsNullOrEmpty(settings["Caption"]);
+    var hasBody = settings.ContainsKey("BodyText") && !string.IsNullOrEmpty(settings["BodyText"]);
+}
+
+@if (string.Equals(Model.Alias, "paymentAmountNote", StringComparison.OrdinalIgnoreCase))
+{
+    <div class="p-3 bg-body-tertiary border rounded-3 d-flex justify-content-between align-items-center gap-3">
+        <small>@(hasBody ? settings["BodyText"] : "")</small>
+        <button type="button" class="btn btn-outline-primary btn-sm text-nowrap" data-bs-toggle="modal" data-bs-target="#paymentAmountModal">
+            Show me
+        </button>
+    </div>
+
+    <div class="modal fade" id="paymentAmountModal" tabindex="-1" aria-labelledby="paymentAmountModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentAmountModalLabel">Where to find your Payment Amount</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assets/images/forms/Confirmation-and-Invoice-final-payment.png"
+                         alt="Confirmation and Invoice showing the Payment Amount highlighted in the bottom right corner of the Remittance Advice tear-off"
+                         class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (string.Equals(Model.Alias, "bookingRefNote", StringComparison.OrdinalIgnoreCase))
+{
+    <div class="p-3 bg-body-tertiary border rounded-3 d-flex justify-content-between align-items-center gap-3">
+        <small>@(hasBody ? settings["BodyText"] : "")</small>
+        <button type="button" class="btn btn-outline-primary btn-sm text-nowrap" data-bs-toggle="modal" data-bs-target="#bookingRefModal">
+            Show me
+        </button>
+    </div>
+
+    <div class="modal fade" id="bookingRefModal" tabindex="-1" aria-labelledby="bookingRefModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingRefModalLabel">Where to find your Booking Ref</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assets/images/forms/Confirmation-and-Invoice-booking-ref.png"
+                         alt="Confirmation and Invoice showing the Booking Ref highlighted in the bottom left corner of the Remittance Advice tear-off"
+                         class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (hasCaption || hasBody)
+{
+    <div class="p-3 bg-body-tertiary border rounded-3">
+        @if (hasCaption)
+        {
+            <p class="fw-semibold mb-1">@settings["Caption"]</p>
+        }
+        @if (hasBody)
+        {
+            <p class="mb-0"><small>@settings["BodyText"]</small></p>
+        }
+    </div>
+}

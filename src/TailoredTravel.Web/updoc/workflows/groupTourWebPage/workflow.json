@@ -1,0 +1,10 @@
+{
+  "Name": "Group Tour - Web Page",
+  "Alias": "groupTourWebPage",
+  "DocumentTypeAlias": "groupTour",
+  "DocumentTypeName": "Group Tour",
+  "BlueprintId": "14fbe075-6d12-4c36-952f-fbea93b6e446",
+  "BlueprintName": "[Group Tour Template]",
+  "SourceType": "web",
+  "Version": "1.0"
+}

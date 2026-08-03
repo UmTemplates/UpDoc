@@ -1,0 +1,88 @@
+@model Umbraco.Forms.Web.Models.FieldViewModel
+
+@if (Model.FormId == Guid.Parse("5c7b5d93-6013-4b57-954f-95268f4a062a") && string.Equals(Model.Alias, "bookingRef", StringComparison.OrdinalIgnoreCase))
+{
+    <div class="tt-booking-ref d-flex gap-2">
+        @for (int i = 0; i < 5; i++)
+        {
+            <input type="text"
+                   inputmode="numeric"
+                   maxlength="1"
+                   pattern="[0-9]"
+                   class="form-control text-center tt-booking-ref-digit"
+                   style="width: 3rem;"
+                   aria-label="Digit @(i + 1) of 5"
+                   autocomplete="off"
+                   data-index="@i" />
+        }
+        <input type="hidden"
+               id="@Model.Id"
+               name="@Model.Name"
+               data-umb="@Model.Id"
+               tabindex="-1"
+               @if (Model.Mandatory)
+               {
+                   <text>data-val="true"
+                   data-val-required="@Model.RequiredErrorMessage"
+                   data-val-regex="@Model.InvalidErrorMessage"
+                   data-val-regex-pattern="^[0-9]{5}$"</text>
+               }
+               aria-describedby="@(Model.Id)_validation" />
+    </div>
+
+    <script>
+        (function () {
+            var container = document.currentScript.previousElementSibling;
+            var digits = container.querySelectorAll('.tt-booking-ref-digit');
+            var hidden = container.querySelector('input[type="hidden"]');
+
+            function sync() {
+                hidden.value = Array.from(digits).map(function (d) { return d.value; }).join('');
+            }
+
+            digits.forEach(function (input, idx) {
+                input.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^0-9]/g, '').slice(-1);
+                    sync();
+                    if (this.value && idx < digits.length - 1) {
+                        digits[idx + 1].focus();
+                    }
+                });
+
+                input.addEventListener('keydown', function (e) {
+                    if (e.key === 'Backspace' && !this.value && idx > 0) {
+                        digits[idx - 1].focus();
+                    }
+                });
+
+                input.addEventListener('paste', function (e) {
+                    e.preventDefault();
+                    var text = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+                    digits.forEach(function (d, i) { d.value = text[i] || ''; });
+                    sync();
+                    var next = Math.min(text.length, digits.length - 1);
+                    digits[next].focus();
+                });
+            });
+        })();
+    </script>
+}
+else
+{
+    <input type="@(Model.AdditionalSettings.ContainsKey("FieldType") ? Model.AdditionalSettings["FieldType"] : "text")"
+           name="@Model.Name"
+           id="@Model.Id"
+           class="@Html.GetFormFieldClass(Model.FieldTypeName) @Model.CssClass"
+           @if (Model.Mandatory)
+           {
+               <text>data-val="true"
+               data-val-required="@Model.RequiredErrorMessage"</text>
+           }
+           @if (!string.IsNullOrEmpty(Model.Regex))
+           {
+               <text>data-val-regex="@Model.InvalidErrorMessage"
+               data-val-regex-pattern="@Model.Regex"</text>
+           }
+           aria-describedby="@(Model.Id)_validation@(!string.IsNullOrEmpty(Model.ToolTip) ? $" {Model.Id}_description" : "")"
+           data-umb="@Model.Id" />
+}

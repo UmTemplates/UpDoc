@@ -1,0 +1,10 @@
+{
+  "Name": "Tailored Tour - PDF",
+  "Alias": "tailoredTourPdf",
+  "DocumentTypeAlias": "tailoredTour",
+  "DocumentTypeName": "Tailored Tour",
+  "BlueprintId": "2e79e2f0-211e-4096-aa18-857d23f4afc0",
+  "BlueprintName": "[Tailored Tour Blueprint]",
+  "SourceType": "pdf",
+  "Version": "1.0"
+}

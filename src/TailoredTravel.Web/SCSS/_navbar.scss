@@ -1,0 +1,66 @@
+// Pin the navbar to Tailored Travel brand blue in both light and dark mode.
+// The navbar uses bg-primary with data-bs-theme="dark" for white text;
+// in site dark mode Bootstrap would otherwise tint --bs-primary lighter.
+.navbar-dark {
+    --bs-primary: #{$tt-primary};
+    --bs-primary-rgb: #{red($tt-primary)}, #{green($tt-primary)}, #{blue($tt-primary)};
+}
+
+// Temporarily disabled while header is being rebuilt (#267).
+// .navbar-brand img {
+//     width: clamp(6rem, 12vw, 12rem);
+//     height: auto;
+// }
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-dark .navbar-toggler-label,
+[data-bs-theme="dark"] .navbar-toggler-label {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+}
+
+.navbar-dark .navbar-toggler-icon,
+[data-bs-theme="dark"] .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+
+    &:hover,
+    &:focus {
+        background-color: $tt-accent;
+        color: $tt-primary;
+    }
+
+    &.active {
+        background-color: $tt-accent;
+        color: $tt-primary;
+    }
+
+    // Vertical separators — desktop only
+    @include media-breakpoint-up(lg) {
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+    }
+}
+
+.navbar-dark .navbar-nav .nav-item:last-child .nav-link {
+    @include media-breakpoint-up(lg) {
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+}
+
+// In-page nav toggler: dark SVG for light mode, light SVG for dark mode
+.card .navbar-toggler-icon,
+.nav-in-page-bar .navbar-toggler-icon {
+    [data-bs-theme="light"] & {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    [data-bs-theme="dark"] & {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+}

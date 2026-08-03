@@ -1,0 +1,133 @@
+// Country palette scopes (Phase E)
+//
+// Each scope defines a small set of Tier 2 --tt-* tokens for a country
+// (or a group of countries that share a palette). Country palettes are
+// OPT-IN, per property, per component — they do NOT override brand
+// tokens. Components that should follow the country accent must
+// explicitly use the .btn-country / .bg-country / .text-country /
+// .border-country utilities (or read --tt-country directly).
+//
+// Tokens defined per scope:
+//   --tt-country (+ -rgb)       — the country accent. Read by
+//                                 .btn-country / .bg-country / etc.
+//   --tt-country-hover (+ -rgb) — darker shade for hover/active states
+//                                 on country-coloured components
+//                                 (sourced from the colour's -600 stop
+//                                 in the Tier 1 tonal scale).
+//   --tt-tertiary-bg (+ -rgb)   — page canvas tint (-50 stop, very pale).
+//                                 -rgb required for Bootstrap's
+//                                 bg-body-tertiary rgba() utility. This
+//                                 is the standing "always follow country"
+//                                 signal — the canvas itself carries the
+//                                 country flavour even when individual
+//                                 components stay brand.
+//   --tt-tertiary-bg-active     — one step deeper than the canvas tint
+//     (+ -rgb)                    (-100 stop), for the pressed (:active)
+//                                 state on components that rest on the
+//                                 canvas tint (e.g. in-page nav items).
+//
+// Countries that share a palette (UK + Ireland on green; Spain + Portugal
+// + Southern Europe on sky; Holland + Belgium on amber; Germany + Austria
+// on coral) are grouped via comma-separated selectors. Tier 1 colour
+// reuse is faithful to the previous tailored-travel.co.uk site.
+
+// British Isles — UK, Ireland share green
+[data-theme-country="uk"],
+[data-theme-country="ireland"] {
+    --tt-country: var(--tt-green);
+    --tt-country-rgb: var(--tt-green-rgb);
+    --tt-country-hover: var(--tt-green-600);
+    --tt-country-hover-rgb: var(--tt-green-600-rgb);
+    --tt-tertiary-bg: var(--tt-green-50);
+    --tt-tertiary-bg-rgb: var(--tt-green-50-rgb);
+    --tt-tertiary-bg-active: var(--tt-green-100);
+    --tt-tertiary-bg-active-rgb: var(--tt-green-100-rgb);
+}
+
+// Italy
+[data-theme-country="italy"] {
+    --tt-country: var(--tt-olive);
+    --tt-country-rgb: var(--tt-olive-rgb);
+    --tt-country-hover: var(--tt-olive-600);
+    --tt-country-hover-rgb: var(--tt-olive-600-rgb);
+    --tt-tertiary-bg: var(--tt-olive-50);
+    --tt-tertiary-bg-rgb: var(--tt-olive-50-rgb);
+    --tt-tertiary-bg-active: var(--tt-olive-100);
+    --tt-tertiary-bg-active-rgb: var(--tt-olive-100-rgb);
+}
+
+// France
+[data-theme-country="france"] {
+    --tt-country: var(--tt-gold);
+    --tt-country-rgb: var(--tt-gold-rgb);
+    --tt-country-hover: var(--tt-gold-600);
+    --tt-country-hover-rgb: var(--tt-gold-600-rgb);
+    --tt-tertiary-bg: var(--tt-gold-50);
+    --tt-tertiary-bg-rgb: var(--tt-gold-50-rgb);
+    --tt-tertiary-bg-active: var(--tt-gold-100);
+    --tt-tertiary-bg-active-rgb: var(--tt-gold-100-rgb);
+}
+
+// Iberian + Southern Europe — Spain, Portugal, Southern Europe share red
+[data-theme-country="spain"],
+[data-theme-country="portugal"],
+[data-theme-country="southern-europe"] {
+    --tt-country: var(--tt-red);
+    --tt-country-rgb: var(--tt-red-rgb);
+    --tt-country-hover: var(--tt-red-600);
+    --tt-country-hover-rgb: var(--tt-red-600-rgb);
+    --tt-tertiary-bg: var(--tt-red-50);
+    --tt-tertiary-bg-rgb: var(--tt-red-50-rgb);
+    --tt-tertiary-bg-active: var(--tt-red-100);
+    --tt-tertiary-bg-active-rgb: var(--tt-red-100-rgb);
+}
+
+// Germanic — Germany, Austria share coral
+[data-theme-country="germany"],
+[data-theme-country="austria"] {
+    --tt-country: var(--tt-coral);
+    --tt-country-rgb: var(--tt-coral-rgb);
+    --tt-country-hover: var(--tt-coral-600);
+    --tt-country-hover-rgb: var(--tt-coral-600-rgb);
+    --tt-tertiary-bg: var(--tt-coral-50);
+    --tt-tertiary-bg-rgb: var(--tt-coral-50-rgb);
+    --tt-tertiary-bg-active: var(--tt-coral-100);
+    --tt-tertiary-bg-active-rgb: var(--tt-coral-100-rgb);
+}
+
+// Low Countries — Holland, Belgium share amber
+[data-theme-country="holland"],
+[data-theme-country="belgium"] {
+    --tt-country: var(--tt-orange);
+    --tt-country-rgb: var(--tt-orange-rgb);
+    --tt-country-hover: var(--tt-orange-600);
+    --tt-country-hover-rgb: var(--tt-orange-600-rgb);
+    --tt-tertiary-bg: var(--tt-orange-50);
+    --tt-tertiary-bg-rgb: var(--tt-orange-50-rgb);
+    --tt-tertiary-bg-active: var(--tt-orange-100);
+    --tt-tertiary-bg-active-rgb: var(--tt-orange-100-rgb);
+}
+
+// Central and Eastern Europe — magenta
+[data-theme-country="central-and-eastern-europe"] {
+    --tt-country: var(--tt-purple);
+    --tt-country-rgb: var(--tt-purple-rgb);
+    --tt-country-hover: var(--tt-purple-600);
+    --tt-country-hover-rgb: var(--tt-purple-600-rgb);
+    --tt-tertiary-bg: var(--tt-purple-50);
+    --tt-tertiary-bg-rgb: var(--tt-purple-50-rgb);
+    --tt-tertiary-bg-active: var(--tt-purple-100);
+    --tt-tertiary-bg-active-rgb: var(--tt-purple-100-rgb);
+}
+
+// Worldwide — brand blue
+[data-theme-country="worldwide"] {
+    --tt-country: var(--tt-blue);
+    --tt-country-rgb: var(--tt-blue-rgb);
+    --tt-country-hover: var(--tt-blue-600);
+    --tt-country-hover-rgb: var(--tt-blue-600-rgb);
+    --tt-tertiary-bg: var(--tt-blue-50);
+    --tt-tertiary-bg-rgb: var(--tt-blue-50-rgb);
+    --tt-tertiary-bg-active: var(--tt-blue-100);
+    --tt-tertiary-bg-active-rgb: var(--tt-blue-100-rgb);
+}

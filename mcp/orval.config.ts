@@ -58,11 +58,11 @@ const stampTargetMajor = createUmbracoTargetMajorTransformer({
  */
 export default defineConfig({
   // Main API client generation
-  exampleApi: {
+  umbracoManagementApi: {
     input: {
       // Use the included example OpenAPI spec
       // Replace with your add-on's spec path or URL
-      target: "./src/umbraco-api/api/openapi.yaml",
+      target: "https://localhost:44351/umbraco/swagger/management/swagger.json",
       unsafeDisableValidation: true,
       override: {
         // Transformers compose. `stampTargetMajor` leaves the spec untouched —
@@ -74,7 +74,7 @@ export default defineConfig({
       },
     },
     output: {
-      target: "./src/umbraco-api/api/generated/exampleApi.ts",
+      target: "./src/umbraco-api/api/generated/umbracoManagementApi.ts",
       client: "axios",
       mode: "single",
       clean: false,
@@ -91,16 +91,16 @@ export default defineConfig({
   },
 
   // Zod schema generation for validation
-  exampleApiZod: {
+  umbracoManagementApiZod: {
     input: {
-      target: "./src/umbraco-api/api/openapi.yaml",
+      target: "https://localhost:44351/umbraco/swagger/management/swagger.json",
       unsafeDisableValidation: true,
       override: {
         transformer: relaxUntypedArrays,
       },
     },
     output: {
-      target: "./src/umbraco-api/api/generated/exampleApi.zod.ts",
+      target: "./src/umbraco-api/api/generated/umbracoManagementApi.zod.ts",
       client: "zod",
       mode: "single",
       clean: false,

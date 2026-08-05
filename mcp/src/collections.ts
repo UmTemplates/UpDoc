@@ -19,13 +19,11 @@
  * ```
  */
 
-import exampleCollection from "./umbraco-api/tools/example/index.js";
-import example2Collection from "./umbraco-api/tools/example-2/index.js";
+import workflowsCollection from "./umbraco-api/tools/workflows/index.js";
 import umbracoServerCollection from "./umbraco-api/tools/umbraco-server/index.js";
 
 export const collections = [
-  exampleCollection,
-  example2Collection,
+  workflowsCollection,
   umbracoServerCollection,
 ];
 

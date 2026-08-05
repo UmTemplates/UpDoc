@@ -31,11 +31,10 @@ import {
 } from "@umbraco-cms/mcp-server-sdk";
 
 // Import the Orval-generated API client
-import { getExampleUmbracoAddOnAPI } from "./umbraco-api/api/generated/exampleApi.js";
+import { getUpDocAPI } from "./umbraco-api/api/generated/updocApi.js";
 
 // Import tool collections
-import exampleCollection from "./umbraco-api/tools/example/index.js";
-import example2Collection from "./umbraco-api/tools/example-2/index.js";
+import workflowsCollection from "./umbraco-api/tools/workflows/index.js";
 import chainedCollection from "./umbraco-api/tools/chained/index.js";
 
 // Import MCP client manager (for chaining to other MCP servers)
@@ -63,9 +62,13 @@ if (clientId) {
   initializeUmbracoFetch({ baseUrl, clientId, clientSecret });
 }
 
-// Configure the API client for use with toolkit helpers
-// This connects your generated Orval client to executeGetApiCall, executeVoidApiCall, etc.
-configureApiClient(() => getExampleUmbracoAddOnAPI());
+// Connects the generated Orval client to executeGetApiCall, executeVoidApiCall
+// and friends. There is one client for the whole server, so it points at
+// UpDoc's own API — the endpoints these tools exist to expose.
+//
+// Umbraco's own API is reached by chaining to @umbraco-cms/mcp-dev rather than
+// by swapping this over, which is what makes one global client workable.
+configureApiClient(() => getUpDocAPI());
 
 // ============================================================================
 // Tool Filtering Setup
@@ -91,7 +94,7 @@ const filterConfig: CollectionConfiguration = configLoader.loadFromConfig(server
 // CLI Introspection (runs before server start, exits immediately)
 // ============================================================================
 
-const collections = [exampleCollection, example2Collection, chainedCollection];
+const collections = [workflowsCollection, chainedCollection];
 
 // handleCliCommands checks --list-tools, --describe-tool, --generate-context, --call.
 // If any flag is set it prints output and calls process.exit(0).

@@ -51,7 +51,7 @@ import { collections, allModes, allModeNames, allSliceNames } from "./collection
 import { UMBRACO_TARGET_MAJOR } from "./config/index.js";
 
 // Import the Orval-generated API client (same factory as stdio mode)
-import { getExampleUmbracoAddOnAPI } from "./umbraco-api/api/generated/exampleApi.js";
+import { getUpDocAPI } from "./umbraco-api/api/generated/updocApi.js";
 
 // Uncomment for in-process chaining:
 // import {
@@ -87,7 +87,7 @@ const options = {
   allSliceNames,
   // Connect the Orval-generated API client so tool handlers can call
   // Umbraco's Management API using the authenticated user's token.
-  clientFactory: () => getExampleUmbracoAddOnAPI(),
+  clientFactory: () => getUpDocAPI(),
   // Show tool mode/collection/slice checkboxes on the consent screen
   enableConsentToolSelection: true,
   // Show "Log in as different user" button on the consent screen after first auth

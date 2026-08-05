@@ -281,8 +281,12 @@ public class WorkflowService : IWorkflowService
 
                 // Check source exists in this source config
                 // Skip when sections is empty — area-rules workflows produce sections
-                // dynamically via the transform pipeline, not statically in source.json
-                if (validSourceKeys.Count > 0 && !validSourceKeys.Contains(mapping.Source))
+                // dynamically via the transform pipeline, not statically in source.json.
+                // Import facts are skipped too: they describe the import rather than
+                // naming a section, so no source config will ever list them.
+                if (validSourceKeys.Count > 0
+                    && !ImportFacts.IsImportFact(mapping.Source)
+                    && !validSourceKeys.Contains(mapping.Source))
                 {
                     errors.Add($"WARN: map.json source '{mapping.Source}' not found in source-{sourceType}.json (will be skipped for this source type)");
                 }
@@ -365,6 +369,11 @@ public class WorkflowService : IWorkflowService
                     foreach (var mapping in config.Map.Mappings)
                     {
                         if (!mapping.Enabled) continue;
+
+                        // Import facts describe the import rather than naming a section,
+                        // so there is nothing in transform.json for them to match.
+                        if (ImportFacts.IsImportFact(mapping.Source)) continue;
+
                         if (!validSectionKeys.Contains(mapping.Source))
                         {
                             errors.Add($"WARN: source '{mapping.Source}' not found in transform.json (orphaned source)");
@@ -1698,6 +1707,10 @@ public class WorkflowService : IWorkflowService
                     foreach (var mapping in mapConfig.Mappings)
                     {
                         if (!string.IsNullOrEmpty(mapping.SourceKey)) continue;
+
+                        // Import facts have no section behind them, so there is no
+                        // stableKey to backfill.
+                        if (ImportFacts.IsImportFact(mapping.Source)) continue;
 
                         // Extract section ID from source (e.g., "features.content" → "features")
                         var dotIndex = mapping.Source.LastIndexOf('.');

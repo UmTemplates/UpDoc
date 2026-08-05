@@ -1,0 +1,76 @@
+{
+  "name": "@umtemplates/updoc-mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "MCP server for UpDoc — create Umbraco documents from PDFs, web pages and markdown using UpDoc workflows",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./collections": "./dist/collections.js",
+    "./tool-types": {
+      "types": "./dist/tool-types.d.ts"
+    }
+  },
+  "bin": {
+    "updoc-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsup --config tsup.config.ts",
+    "postbuild": "umbraco-mcp-generate-types",
+    "compile": "tsc --noEmit",
+    "watch": "tsup --config tsup.config.ts --watch",
+    "generate": "orval --config orval.config.ts",
+    "start:umbraco": "bash scripts/start-umbraco.sh",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=__tests__ --runInBand",
+    "test:evals": "npm run build && node --experimental-vm-modules node_modules/jest/bin/jest.js --config tests/evals/jest.config.ts --runInBand --forceExit",
+    "test:all": "npm run build && node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=__tests__ --runInBand --forceExit && node --experimental-vm-modules node_modules/jest/bin/jest.js --config tests/evals/jest.config.ts --runInBand --forceExit",
+    "test:e2e": "npx playwright test --config tests/hosted-e2e/playwright.config.ts",
+    "dev:worker": "npx wrangler dev",
+    "deploy:worker": "npx wrangler deploy"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "Umbraco",
+    "MCP",
+    "Model Context Protocol"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.191",
+    "@cloudflare/workers-oauth-provider": "^0.8.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@umbraco-cms/mcp-hosted": "1.0.0-beta.35",
+    "@umbraco-cms/mcp-server-sdk": "1.0.0-beta.35",
+    "agents": "^0.6.0",
+    "dotenv": "^17.4.2",
+    "uuid": "^11.1.0",
+    "yargs": "^18.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@jest/types": "^29.6.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.1.2",
+    "@types/uuid": "^10.0.0",
+    "@types/yargs": "^17.0.33",
+    "jest": "^30.4.2",
+    "msw": "^2.14.6",
+    "orval": "^8.19.0",
+    "rimraf": "^6.1.3",
+    "ts-jest": "^29.4.11",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.4.0",
+    "undici": "^8.9.0",
+    "@playwright/test": "^1.61.1",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.104.0"
+  }
+}

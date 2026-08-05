@@ -121,4 +121,67 @@ export default defineConfig({
       afterAllFilesWrite: postProcessZodFiles as HookFunction,
     },
   },
+
+  // UpDoc's own API — workflows, extraction, transformation. Described at
+  // /umbraco/swagger/updoc/swagger.json since the document was registered
+  // (UpDoc #134); before that the endpoints existed but no spec did.
+  //
+  // Deliberately not stamped with stampTargetMajor: that writes the Umbraco
+  // target major as a side effect, and running it twice per generate would
+  // make a second call to the instance for a value the Umbraco entries above
+  // have already resolved.
+  updocApi: {
+    input: {
+      target: "https://localhost:44351/umbraco/swagger/updoc/swagger.json",
+      unsafeDisableValidation: true,
+      override: {
+        transformer: relaxUntypedArrays,
+      },
+    },
+    output: {
+      target: "./src/umbraco-api/api/generated/updocApi.ts",
+      client: "axios",
+      mode: "single",
+      clean: false,
+      override: {
+        mutator: {
+          path: "./src/umbraco-api/api/client.ts",
+          name: "customInstance",
+        },
+      },
+    },
+    hooks: {
+      afterAllFilesWrite: orvalImportFixer as HookFunction,
+    },
+  },
+
+  updocApiZod: {
+    input: {
+      target: "https://localhost:44351/umbraco/swagger/updoc/swagger.json",
+      unsafeDisableValidation: true,
+      override: {
+        transformer: relaxUntypedArrays,
+      },
+    },
+    output: {
+      target: "./src/umbraco-api/api/generated/updocApi.zod.ts",
+      client: "zod",
+      mode: "single",
+      clean: false,
+      override: {
+        zod: {
+          dateTimeOptions: {
+            local: true,
+            offset: true,
+          },
+          coerce: {
+            query: ["number", "boolean"],
+          },
+        },
+      },
+    },
+    hooks: {
+      afterAllFilesWrite: postProcessZodFiles as HookFunction,
+    },
+  },
 });

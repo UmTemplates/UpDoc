@@ -1,0 +1,10 @@
+# Build output. Unlike the RCL's App_Plugins/UpDoc/dist, this is not shipped in
+# a package that needs it committed — it is rebuilt from source on install.
+dist/
+
+# The demo Umbraco site the toolkit can scaffold for integration tests.
+umbraco/
+
+# Typed client generated from the target site's Swagger by `orval`. Regenerated
+# with `npm run generate`, and specific to whichever instance it was pointed at.
+src/umbraco-api/api/generated/

@@ -1,9 +1,12 @@
+using UpDoc.OpenApi;
 using UpDoc.Services;
 using UpDoc.NotificationHandlers;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace UpDoc.Composers;
 
@@ -24,5 +27,9 @@ public class UpDocComposer : IComposer
         builder.Services.AddScoped<IDestinationStructureService, DestinationStructureService>();
         builder.Services.AddSingleton<IContentTransformService, ContentTransformService>();
         builder.AddNotificationHandler<UmbracoApplicationStartedNotification, WorkflowMigrationHandler>();
+
+        // Describes UpDoc's API at /umbraco/swagger/updoc/swagger.json. The controllers
+        // already declare [MapToApi] but nothing created the document they name.
+        builder.Services.ConfigureOptions<ConfigureUpDocSwaggerGenOptions>();
     }
 }

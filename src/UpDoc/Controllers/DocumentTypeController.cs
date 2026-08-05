@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using UpDoc.OpenApi;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Api.Common.Attributes;
@@ -11,7 +12,7 @@ namespace UpDoc.Controllers;
 [ApiController]
 [ApiVersion("1.0")]
 [Route("umbraco/management/api/v{version:apiVersion}/updoc/document-types")]
-[MapToApi("updoc")]
+[MapToApi(UpDocApiConfiguration.ApiName)]
 [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
 [JsonOptionsName("UmbracoManagementApi")]
 public class DocumentTypeController : ControllerBase

@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using UpDoc.OpenApi;
 using UpDoc.Models;
 using UpDoc.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +16,7 @@ namespace UpDoc.Controllers;
 [ApiController]
 [ApiVersion("1.0")]
 [Route("umbraco/management/api/v{version:apiVersion}/updoc/workflows")]
-[MapToApi("updoc")]
+[MapToApi(UpDocApiConfiguration.ApiName)]
 [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
 [JsonOptionsName("UmbracoManagementApi")]
 public class WorkflowController : ControllerBase

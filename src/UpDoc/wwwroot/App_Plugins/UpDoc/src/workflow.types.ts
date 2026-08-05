@@ -417,8 +417,19 @@ export type FillMechanism = 'sourceContent' | 'importFact';
  * Reserved map.json source key meaning "the file the editor picked for this import",
  * as opposed to content extracted from it. The "$" prefix marks it as an import fact
  * rather than a section id, so section resolution skips it.
+ *
+ * Mirrored in C# by ImportFacts (src/UpDoc/Models/ImportFacts.cs), which the server
+ * uses to skip these when validating and resolving sources. The two must agree.
  */
 export const IMPORT_FACT_SOURCE_FILE = '$sourceFile';
+
+/** Marks a map.json source as an import fact rather than a section id. */
+export const IMPORT_FACT_PREFIX = '$';
+
+/** Whether a map.json source describes the import rather than naming a section. */
+export function isImportFact(source: string): boolean {
+	return source.startsWith(IMPORT_FACT_PREFIX);
+}
 
 export type FieldType =
 	| 'text'

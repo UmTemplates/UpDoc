@@ -134,6 +134,14 @@ Every one is a port rather than a reimplementation. The TypeScript had run sixty
 
 ### 4. Build the tool
 
+The server itself was scaffolded with [`create-umbraco-mcp-server`](https://docs.umbraco.com/umbraco-in-ai/mcp/base-mcp/create-umbraco-mcp-server), which handles the parts nobody wants to write: OAuth against the Management API, tool registration, filtering, a CLI for calling tools without an MCP client, and chaining to other servers.
+
+Two things caught us out there, both worth knowing before you start. Its `init` step asks for a base URL and means the **host**, not the Swagger URL — giving it the full `/swagger.json` path returns a 404. And its `discover` step reads Swagger, so an API that describes nothing is invisible to it. UpDoc's controllers declared `[MapToApi("updoc")]` but nothing had ever created the document they named, so the whole API simply did not appear.
+
+The [instance preparation guide](https://docs.umbraco.com/umbraco-in-ai/mcp/base-mcp/create-umbraco-mcp-server/development-workflow#instance-preparation) covers setting up the API user you will need.
+
+With that in place, the tool is small:
+
 ```typescript
 const createFromSourceTool = {
   name: "create-from-source",
@@ -249,8 +257,26 @@ That is deliberately not done yet. The browser path is what real client work dep
 
 Markdown and web sources return a message pointing at the backoffice. PDF was enough to prove the shape.
 
-And the tool is not published to npm yet. Installing UpDoc's NuGet package does not, and should not, bring a Node process with it.
+And the tool is not published to npm yet. Installing UpDoc's NuGet package does not, and should not, bring a Node process with it. They are different runtimes on different machines, so a package author ships two things: the NuGet package that provides the endpoints, and an npm package that provides the tools calling them.
+
+## Useful links
+
+**Building one of these**
+
+- [create-umbraco-mcp-server](https://docs.umbraco.com/umbraco-in-ai/mcp/base-mcp/create-umbraco-mcp-server) — the scaffolding tool. Start here.
+- [Development workflow: instance preparation](https://docs.umbraco.com/umbraco-in-ai/mcp/base-mcp/create-umbraco-mcp-server/development-workflow#instance-preparation) — setting up the API user your server authenticates as.
+- [Umbraco in AI](https://docs.umbraco.com/umbraco-in-ai) — the wider documentation this sits in.
+
+**Reference implementations**
+
+- [Umbraco-CMS-MCP-Dev](https://github.com/umbraco/Umbraco-CMS-MCP-Dev) — the developer server, published as `@umbraco-cms/mcp-dev`. UpDoc's server chains to it, so Umbraco's own tools are available alongside UpDoc's without reimplementing any of them.
+
+**UpDoc**
+
+- [UpDoc on GitHub](https://github.com/UmTemplates/UpDoc) — the MCP server is in `mcp/`, the endpoint in `src/UpDoc/Controllers/CreateFromSourceController.cs`.
+- [UpDoc on NuGet](https://www.nuget.org/packages/Umbraco.Community.UpDoc)
+- [Model Context Protocol](https://modelcontextprotocol.io/) — the specification itself, if tools and servers are new to you.
 
 ---
 
-*UpDoc is an Umbraco package for creating documents from PDFs, web pages and markdown. It is [on GitHub](https://github.com/UmTemplates/UpDoc) and on [NuGet](https://www.nuget.org/packages/Umbraco.Community.UpDoc).*
+*UpDoc is an Umbraco package for creating documents from PDFs, web pages and markdown.*

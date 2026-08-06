@@ -57,9 +57,11 @@ const workflowSummary = getUmbracoManagementApiV1UpdocWorkflowsResponseItem.desc
     ),
 });
 
-const outputSchema = z.object({
-  items: z.array(workflowSummary),
-});
+// A bare array, matching what the endpoint returns. It was declared as
+// { items: [...] } when the schema was hand-written, which the CLI never
+// caught because it does not validate output - only calling the tool over MCP
+// surfaced the mismatch.
+const outputSchema = z.array(workflowSummary);
 
 const listWorkflowsTool: ToolDefinition<typeof inputSchema, typeof outputSchema> = {
   name: "list-workflows",

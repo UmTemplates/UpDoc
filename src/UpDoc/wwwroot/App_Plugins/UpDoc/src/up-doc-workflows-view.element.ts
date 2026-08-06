@@ -6,7 +6,7 @@ import { UMB_MODAL_MANAGER_CONTEXT, UMB_CONFIRM_MODAL, umbOpenModal } from '@umb
 import { UMB_BLUEPRINT_PICKER_MODAL } from './blueprint-picker-modal.token.js';
 import type { DocumentTypeOption } from './blueprint-picker-modal.token.js';
 import { UMB_CREATE_WORKFLOW_SIDEBAR } from './create-workflow-sidebar.token.js';
-import { clearConfigCache, triggerSampleExtraction, triggerTransform } from './workflow.service.js';
+import { clearConfigCache, readApiError, triggerSampleExtraction, triggerTransform } from './workflow.service.js';
 
 interface WorkflowSummary {
 	name: string;
@@ -159,8 +159,7 @@ export class UpDocWorkflowsViewElement extends UmbLitElement {
 			});
 
 			if (!response.ok) {
-				const error = await response.json();
-				throw new Error(error.error || `Failed to create workflow: ${response.statusText}`);
+				throw new Error(await readApiError(response, 'Failed to create workflow'));
 			}
 
 			// Step 6: Save page selection if user chose specific pages
@@ -246,8 +245,7 @@ export class UpDocWorkflowsViewElement extends UmbLitElement {
 			});
 
 			if (!response.ok) {
-				const error = await response.json();
-				throw new Error(error.error || `Failed to delete workflow: ${response.statusText}`);
+				throw new Error(await readApiError(response, 'Failed to delete workflow'));
 			}
 
 			// Clear the client-side cache so the condition re-evaluates

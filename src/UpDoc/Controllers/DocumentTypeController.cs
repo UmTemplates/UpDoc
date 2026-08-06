@@ -15,7 +15,7 @@ namespace UpDoc.Controllers;
 [MapToApi(UpDocApiConfiguration.ApiName)]
 [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
 [JsonOptionsName("UmbracoManagementApi")]
-public class DocumentTypeController : ControllerBase
+public class DocumentTypeController : UpDocControllerBase
 {
     private readonly IContentTypeService _contentTypeService;
     private readonly IContentService _contentService;
@@ -49,7 +49,7 @@ public class DocumentTypeController : ControllerBase
         var contentType = _contentTypeService.Get(alias);
         if (contentType == null)
         {
-            return NotFound(new { error = $"Document type '{alias}' not found." });
+            return NotFoundProblem($"Document type '{alias}' not found.");
         }
 
         var blueprints = _contentService.GetBlueprintsForContentTypes(contentType.Id)

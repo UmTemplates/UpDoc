@@ -4,6 +4,7 @@ using UpDoc.Models;
 using UpDoc.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Api.Common.Attributes;
@@ -19,7 +20,7 @@ namespace UpDoc.Controllers;
 [MapToApi(UpDocApiConfiguration.ApiName)]
 [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
 [JsonOptionsName("UmbracoManagementApi")]
-public class WorkflowController : ControllerBase
+public class WorkflowController : UpDocControllerBase
 {
     private readonly IWorkflowService _workflowService;
     private readonly IDestinationStructureService _destinationStructureService;
@@ -57,6 +58,7 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType<IEnumerable<WorkflowSummary>>(StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var summaries = _workflowService.GetAllWorkflowSummaries();
@@ -78,34 +80,42 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpGet("active")]
+    [ProducesResponseType<ActiveWorkflowsResponse>(StatusCodes.Status200OK)]
     public IActionResult GetActive()
     {
         var summaries = _workflowService.GetAllWorkflowSummaries();
         var complete = summaries.Where(s => s.IsComplete).ToList();
 
-        return Ok(new
+        return Ok(new ActiveWorkflowsResponse
         {
-            documentTypeAliases = complete
+            // OfType<string>() rather than Where(a => !string.IsNullOrEmpty(a)):
+            // the filter drops nulls but the compiler cannot see that, so the
+            // result stays string?[] and will not fit string[] (CS8619).
+            DocumentTypeAliases = complete
                 .Select(s => s.DocumentTypeAlias)
-                .Where(a => !string.IsNullOrEmpty(a))
+                .OfType<string>()
+                .Where(a => a.Length > 0)
                 .Distinct()
                 .ToArray(),
-            blueprintIds = complete
+            BlueprintIds = complete
                 .Select(s => s.BlueprintId)
-                .Where(id => !string.IsNullOrEmpty(id))
+                .OfType<string>()
+                .Where(id => id.Length > 0)
                 .Distinct()
                 .ToArray(),
         });
     }
 
     [HttpGet("{alias}")]
+    [ProducesResponseType<DocumentTypeConfig>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetByAlias(string alias)
     {
         var config = _workflowService.GetConfigByAlias(alias);
 
         if (config == null)
         {
-            return NotFound(new { error = $"No workflow found with alias '{alias}'" });
+            return NotFoundProblem($"No workflow found with alias '{alias}'");
         }
 
         // Always regenerate destination from blueprint to ensure it reflects
@@ -138,21 +148,24 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType<WorkflowIdentityResponse>(StatusCodes.Status201Created)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Create([FromBody] CreateWorkflowRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.Name))
         {
-            return BadRequest(new { error = "Workflow name is required." });
+            return BadRequestProblem("Workflow name is required.");
         }
 
         if (string.IsNullOrWhiteSpace(request.DocumentTypeAlias))
         {
-            return BadRequest(new { error = "Document type alias is required." });
+            return BadRequestProblem("Document type alias is required.");
         }
 
         if (string.IsNullOrWhiteSpace(request.SourceType))
         {
-            return BadRequest(new { error = "Source type is required." });
+            return BadRequestProblem("Source type is required.");
         }
 
         try
@@ -194,20 +207,23 @@ public class WorkflowController : ControllerBase
 
             return Created(
                 $"/umbraco/management/api/v1/updoc/workflows/{alias}",
-                new { name = request.Name, alias });
+                new WorkflowIdentityResponse { Name = request.Name, Alias = alias });
         }
         catch (InvalidOperationException ex)
         {
-            return Conflict(new { error = ex.Message });
+            return ConflictProblem(ex.Message);
         }
     }
 
     [HttpDelete("{alias}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult Delete(string alias)
     {
         if (string.IsNullOrWhiteSpace(alias))
         {
-            return BadRequest(new { error = "Workflow alias is required." });
+            return BadRequestProblem("Workflow alias is required.");
         }
 
         try
@@ -217,58 +233,64 @@ public class WorkflowController : ControllerBase
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
         catch (InvalidOperationException ex)
         {
-            return BadRequest(new { error = ex.Message });
+            return BadRequestProblem(ex.Message);
         }
     }
 
     [HttpPut("{alias}/identity")]
+    [ProducesResponseType<WorkflowIdentityResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateIdentity(string alias, [FromBody] UpdateIdentityRequest request)
     {
         if (string.IsNullOrWhiteSpace(alias))
         {
-            return BadRequest(new { error = "Workflow alias is required." });
+            return BadRequestProblem("Workflow alias is required.");
         }
 
         if (string.IsNullOrWhiteSpace(request.Name))
         {
-            return BadRequest(new { error = "Workflow name is required." });
+            return BadRequestProblem("Workflow name is required.");
         }
 
         if (string.IsNullOrWhiteSpace(request.Alias))
         {
-            return BadRequest(new { error = "Workflow alias is required." });
+            return BadRequestProblem("Workflow alias is required.");
         }
 
         try
         {
             var newAlias = _workflowService.UpdateWorkflowIdentity(alias, request.Name, request.Alias);
-            return Ok(new { name = request.Name, alias = newAlias });
+            return Ok(new WorkflowIdentityResponse { Name = request.Name, Alias = newAlias });
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
         catch (InvalidOperationException ex)
         {
-            return BadRequest(new { error = ex.Message });
+            return BadRequestProblem(ex.Message);
         }
     }
 
     [HttpPut("{alias}/destination")]
+    [ProducesResponseType<RegenerateDestinationResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ChangeDestination(string alias, [FromBody] ChangeDestinationRequest request)
     {
         if (string.IsNullOrWhiteSpace(alias))
-            return BadRequest(new { error = "Workflow alias is required." });
+            return BadRequestProblem("Workflow alias is required.");
 
         if (string.IsNullOrWhiteSpace(request.DocumentTypeAlias))
-            return BadRequest(new { error = "Document type alias is required." });
+            return BadRequestProblem("Document type alias is required.");
 
         if (string.IsNullOrWhiteSpace(request.BlueprintId))
-            return BadRequest(new { error = "Blueprint ID is required." });
+            return BadRequestProblem("Blueprint ID is required.");
 
         try
         {
@@ -311,15 +333,18 @@ public class WorkflowController : ControllerBase
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
         catch (InvalidOperationException ex)
         {
-            return BadRequest(new { error = ex.Message });
+            return BadRequestProblem(ex.Message);
         }
     }
 
     [HttpPost("{alias}/sample-extraction")]
+    [ProducesResponseType<RichExtractionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ExtractSample(string alias, [FromBody] SampleExtractionRequest request)
     {
         // Detect source type from workflow config
@@ -340,7 +365,7 @@ public class WorkflowController : ControllerBase
             // Web extraction from uploaded HTML file (fallback)
             var absolutePath = ResolveMediaFilePath(request.MediaKey);
             if (absolutePath == null)
-                return NotFound(new { error = "Media item not found or file not on disk" });
+                return NotFoundProblem("Media item not found or file not on disk");
             result = _htmlExtractionService.ExtractRichFromFile(absolutePath);
             var media = _mediaService.GetById(request.MediaKey);
             fileName = media?.Name ?? Path.GetFileName(absolutePath);
@@ -350,7 +375,7 @@ public class WorkflowController : ControllerBase
             // PDF or Markdown — require media key
             var absolutePath = ResolveMediaFilePath(request.MediaKey);
             if (absolutePath == null)
-                return NotFound(new { error = "Media item not found or file not on disk" });
+                return NotFoundProblem("Media item not found or file not on disk");
 
             var media = _mediaService.GetById(request.MediaKey);
             fileName = media?.Name ?? Path.GetFileName(absolutePath);
@@ -369,7 +394,7 @@ public class WorkflowController : ControllerBase
 
         if (!string.IsNullOrEmpty(result.Error))
         {
-            return BadRequest(new { error = result.Error });
+            return BadRequestProblem(result.Error);
         }
 
         // Populate source metadata
@@ -408,7 +433,7 @@ public class WorkflowController : ControllerBase
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
 
         _logger.LogInformation("Extracted and saved sample for workflow '{Alias}' ({SourceType}): {Count} elements from {FileName}",
@@ -418,6 +443,9 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpPost("{alias}/regenerate-destination")]
+    [ProducesResponseType<RegenerateDestinationResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RegenerateDestination(string alias)
     {
         var configs = _workflowService.GetAllConfigs();
@@ -426,7 +454,7 @@ public class WorkflowController : ControllerBase
 
         if (config == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
 
         try
@@ -454,15 +482,16 @@ public class WorkflowController : ControllerBase
         }
         catch (InvalidOperationException ex)
         {
-            return BadRequest(new { error = ex.Message });
+            return BadRequestProblem(ex.Message);
         }
     }
 
     [HttpPost("{alias}/backfill-content-type-keys")]
+    [ProducesResponseType<BackfillResponse>(StatusCodes.Status200OK)]
     public IActionResult BackfillContentTypeKeys(string alias)
     {
         var count = _workflowService.BackfillContentTypeKeysForWorkflow(alias);
-        return Ok(new { backfilled = count });
+        return Ok(new BackfillResponse { Backfilled = count });
     }
 
     private ReconciliationResult ReconcileBlockKeys(
@@ -667,6 +696,8 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpPut("{alias}/map")]
+    [ProducesResponseType<MapConfig>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateMap(string alias, [FromBody] MapConfig config)
     {
         try
@@ -676,29 +707,33 @@ public class WorkflowController : ControllerBase
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
     }
 
     [HttpGet("{alias}/sample-extraction")]
+    [ProducesResponseType<RichExtractionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetSampleExtraction(string alias)
     {
         var result = _workflowService.GetSampleExtraction(alias);
         if (result == null)
         {
-            return NotFound(new { error = $"No sample extraction found for workflow '{alias}'." });
+            return NotFoundProblem($"No sample extraction found for workflow '{alias}'.");
         }
 
         return Ok(result);
     }
 
     [HttpPost("detect-areas")]
+    [ProducesResponseType<AreaDetectionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult DetectAreas([FromBody] SampleExtractionRequest request)
     {
         var absolutePath = ResolveMediaFilePath(request.MediaKey);
         if (absolutePath == null)
         {
-            return NotFound(new { error = "Media item not found or file not on disk" });
+            return NotFoundProblem("Media item not found or file not on disk");
         }
 
         var result = _pdfPagePropertiesService.DetectAreas(absolutePath);
@@ -712,12 +747,14 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpPost("{alias}/area-detection")]
+    [ProducesResponseType<AreaDetectionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractAreaDetection(string alias, [FromBody] SampleExtractionRequest request)
     {
         var absolutePath = ResolveMediaFilePath(request.MediaKey);
         if (absolutePath == null)
         {
-            return NotFound(new { error = "Media item not found or file not on disk" });
+            return NotFoundProblem("Media item not found or file not on disk");
         }
 
         // Read page selection and area template from workflow
@@ -733,7 +770,7 @@ public class WorkflowController : ControllerBase
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
 
         _logger.LogInformation("Area detection saved for workflow '{Alias}': {Areas} areas, {Elements} elements extracted",
@@ -743,24 +780,28 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpGet("{alias}/area-detection")]
+    [ProducesResponseType<AreaDetectionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetAreaDetection(string alias)
     {
         var result = _workflowService.GetAreaDetection(alias);
         if (result == null)
         {
-            return NotFound(new { error = $"No area detection found for workflow '{alias}'." });
+            return NotFoundProblem($"No area detection found for workflow '{alias}'.");
         }
 
         return Ok(result);
     }
 
     [HttpPost("{alias}/transform")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractTransform(string alias, [FromBody] SampleExtractionRequest request)
     {
         var absolutePath = ResolveMediaFilePath(request.MediaKey);
         if (absolutePath == null)
         {
-            return NotFound(new { error = "Media item not found or file not on disk" });
+            return NotFoundProblem("Media item not found or file not on disk");
         }
 
         // Read page selection and area template from workflow
@@ -777,7 +818,7 @@ public class WorkflowController : ControllerBase
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
 
         // Step 2: Run transform on area detection output, preserving existing include/exclude state
@@ -803,12 +844,14 @@ public class WorkflowController : ControllerBase
     /// Used by web/markdown sources after saving area rules, since they don't have a mediaKey.
     /// </summary>
     [HttpPost("{alias}/retransform")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult Retransform(string alias)
     {
         var areaDetection = _workflowService.GetAreaDetection(alias);
         if (areaDetection == null)
         {
-            return NotFound(new { error = $"No area detection found for workflow '{alias}'." });
+            return NotFoundProblem($"No area detection found for workflow '{alias}'.");
         }
 
         var sourceConfig = _workflowService.GetSourceConfig(alias);
@@ -825,18 +868,24 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpGet("{alias}/transform")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetTransform(string alias)
     {
         var result = _workflowService.GetTransformResult(alias);
         if (result == null)
         {
-            return NotFound(new { error = $"No transform result found for workflow '{alias}'." });
+            return NotFoundProblem($"No transform result found for workflow '{alias}'.");
         }
 
         return Ok(result);
     }
 
     [HttpPost("{alias}/transform-adhoc")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> TransformAdhoc(string alias, [FromBody] SampleExtractionRequest request)
     {
         try
@@ -855,12 +904,12 @@ public class WorkflowController : ControllerBase
                 {
                     var absolutePath = ResolveMediaFilePath(request.MediaKey);
                     if (absolutePath == null)
-                        return NotFound(new { error = "Media item not found or file not on disk" });
+                        return NotFoundProblem("Media item not found or file not on disk");
                     extraction = _htmlExtractionService.ExtractRichFromFile(absolutePath);
                 }
                 else
                 {
-                    return BadRequest(new { error = "URL or media key is required for web extraction" });
+                    return BadRequestProblem("URL or media key is required for web extraction");
                 }
 
                 var areaDetection = BuildAreaDetectionFromWeb(extraction, sourceConfig?.ContainerOverrides);
@@ -872,7 +921,7 @@ public class WorkflowController : ControllerBase
             {
                 var absolutePath = ResolveMediaFilePath(request.MediaKey);
                 if (absolutePath == null)
-                    return NotFound(new { error = "Media item not found or file not on disk" });
+                    return NotFoundProblem("Media item not found or file not on disk");
                 var extraction = _markdownExtractionService.ExtractRich(absolutePath);
                 var areaDetection = BuildAreaDetectionFromMarkdown(extraction);
                 var previousTransform = _workflowService.GetTransformResult(alias);
@@ -884,7 +933,7 @@ public class WorkflowController : ControllerBase
                 // PDF: area detection + rule-based transform
                 var absolutePath = ResolveMediaFilePath(request.MediaKey);
                 if (absolutePath == null)
-                    return NotFound(new { error = "Media item not found or file not on disk" });
+                    return NotFoundProblem("Media item not found or file not on disk");
                 var includePages = ResolveIncludePages(absolutePath, sourceConfig);
                 var areaTemplate = _workflowService.GetAreaTemplate(alias);
 
@@ -897,41 +946,47 @@ public class WorkflowController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "Transform-adhoc failed for workflow '{Alias}' with media {MediaKey}", alias, request.MediaKey);
-            return StatusCode(500, new { error = ex.Message, stackTrace = ex.StackTrace });
+            return ServerErrorProblem("Transform failed", ex.Message);
         }
     }
 
     [HttpPatch("{alias}/transform/sections/{sectionId}/included")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateSectionInclusion(string alias, string sectionId, [FromBody] SectionInclusionRequest request)
     {
         var result = _workflowService.UpdateSectionInclusion(alias, sectionId, request.Included);
         if (result == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' or section '{sectionId}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' or section '{sectionId}' not found.");
         }
 
         return Ok(result);
     }
 
     [HttpPut("{alias}/transform/sort-order")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateSortOrder(string alias, [FromBody] SortOrderRequest request)
     {
         var result = _workflowService.UpdateSortOrder(alias, request.Page, request.AreaName, request.SortedIds);
         if (result == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found or transform.json missing." });
+            return NotFoundProblem($"Workflow '{alias}' not found or transform.json missing.");
         }
 
         return Ok(result);
     }
 
     [HttpPut("{alias}/pages")]
+    [ProducesResponseType<PageSelectionResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdatePageSelection(string alias, [FromBody] PageSelectionRequest request)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
         if (sourceConfig == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
+            return NotFoundProblem($"Workflow '{alias}' not found or has no source.json.");
         }
 
         // Update just the pages property
@@ -949,16 +1004,18 @@ public class WorkflowController : ControllerBase
         _logger.LogInformation("Updated page selection for workflow '{Alias}': {Pages}",
             alias, sourceConfig.Pages.IsAll ? "all" : string.Join(", ", sourceConfig.Pages.PageNumbers!));
 
-        return Ok(new { pages = sourceConfig.Pages });
+        return Ok(new PageSelectionResponse { Pages = sourceConfig.Pages });
     }
 
     [HttpPut("{alias}/excluded-areas")]
+    [ProducesResponseType<ExcludedAreasResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateExcludedAreas(string alias, [FromBody] ExcludedAreasRequest request)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
         if (sourceConfig == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
+            return NotFoundProblem($"Workflow '{alias}' not found or has no source.json.");
         }
 
         sourceConfig.ExcludedAreas = request.ExcludedAreas?.Count > 0 ? request.ExcludedAreas : null;
@@ -977,16 +1034,18 @@ public class WorkflowController : ControllerBase
         _logger.LogInformation("Updated excluded areas for workflow '{Alias}': {Areas}",
             alias, sourceConfig.ExcludedAreas != null ? string.Join(", ", sourceConfig.ExcludedAreas) : "none");
 
-        return Ok(new { excludedAreas = sourceConfig.ExcludedAreas ?? new List<string>() });
+        return Ok(new ExcludedAreasResponse { ExcludedAreas = sourceConfig.ExcludedAreas ?? [] });
     }
 
     [HttpPut("{alias}/container-overrides")]
+    [ProducesResponseType<ContainerOverridesResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateContainerOverrides(string alias, [FromBody] ContainerOverridesRequest request)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
         if (sourceConfig == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
+            return NotFoundProblem($"Workflow '{alias}' not found or has no source.json.");
         }
 
         sourceConfig.ContainerOverrides = request.Overrides?.Count > 0 ? request.Overrides : null;
@@ -1008,16 +1067,18 @@ public class WorkflowController : ControllerBase
         _logger.LogInformation("Updated container overrides for workflow '{Alias}': {Count} overrides",
             alias, sourceConfig.ContainerOverrides?.Count ?? 0);
 
-        return Ok(new { containerOverrides = sourceConfig.ContainerOverrides ?? new List<ContainerOverride>() });
+        return Ok(new ContainerOverridesResponse { ContainerOverrides = sourceConfig.ContainerOverrides ?? [] });
     }
 
     [HttpPut("{alias}/section-rules")]
+    [ProducesResponseType<Dictionary<string, SectionRuleSet>>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateSectionRules(string alias, [FromBody] Dictionary<string, SectionRuleSet> sectionRules)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
         if (sourceConfig == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
+            return NotFoundProblem($"Workflow '{alias}' not found or has no source.json.");
         }
 
         sourceConfig.SectionRules = sectionRules;
@@ -1040,12 +1101,14 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpPut("{alias}/area-rules")]
+    [ProducesResponseType<Dictionary<string, AreaRules>>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateAreaRules(string alias, [FromBody] Dictionary<string, AreaRules> areaRules)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
         if (sourceConfig == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
+            return NotFoundProblem($"Workflow '{alias}' not found or has no source.json.");
         }
 
         // Backfill stable GUIDs on any rules/groups that don't have one yet
@@ -1081,18 +1144,22 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpGet("{alias}/source")]
+    [ProducesResponseType<SourceConfig>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetSource(string alias)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
         if (sourceConfig == null)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found or has no source.json." });
+            return NotFoundProblem($"Workflow '{alias}' not found or has no source.json.");
         }
 
         return Ok(sourceConfig);
     }
 
     [HttpPut("{alias}/area-template")]
+    [ProducesResponseType<AreaTemplate>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateAreaTemplate(string alias, [FromBody] AreaTemplate template)
     {
         try
@@ -1102,34 +1169,39 @@ public class WorkflowController : ControllerBase
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
     }
 
     [HttpGet("{alias}/area-template")]
+    [ProducesResponseType<AreaTemplate>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetAreaTemplate(string alias)
     {
         var template = _workflowService.GetAreaTemplate(alias);
         if (template == null)
         {
-            return NotFound(new { error = $"No area template found for workflow '{alias}'." });
+            return NotFoundProblem($"No area template found for workflow '{alias}'.");
         }
 
         return Ok(template);
     }
 
     [HttpGet("media-pdf")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetMediaPdf([FromQuery] Guid mediaKey)
     {
         if (mediaKey == Guid.Empty)
         {
-            return BadRequest(new { error = "Media key is required." });
+            return BadRequestProblem("Media key is required.");
         }
 
         var absolutePath = ResolveMediaFilePath(mediaKey);
         if (absolutePath == null)
         {
-            return NotFound(new { error = "Media item not found or file not on disk." });
+            return NotFoundProblem("Media item not found or file not on disk.");
         }
 
         var fileStream = new FileStream(absolutePath, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -1137,6 +1209,9 @@ public class WorkflowController : ControllerBase
     }
 
     [HttpGet("{alias}/pdf")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetPdf(string alias, [FromQuery] Guid? mediaKey = null)
     {
         // If mediaKey not provided, try to get it from the stored sample extraction
@@ -1145,7 +1220,7 @@ public class WorkflowController : ControllerBase
             var extraction = _workflowService.GetSampleExtraction(alias);
             if (extraction?.Source?.MediaKey == null || !Guid.TryParse(extraction.Source.MediaKey, out var parsedKey))
             {
-                return BadRequest(new { error = "No media key provided and no sample extraction found." });
+                return BadRequestProblem("No media key provided and no sample extraction found.");
             }
             mediaKey = parsedKey;
         }
@@ -1153,7 +1228,7 @@ public class WorkflowController : ControllerBase
         var absolutePath = ResolveMediaFilePath(mediaKey.Value);
         if (absolutePath == null)
         {
-            return NotFound(new { error = "Media item not found or file not on disk." });
+            return NotFoundProblem("Media item not found or file not on disk.");
         }
 
         var fileStream = new FileStream(absolutePath, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -1167,6 +1242,9 @@ public class WorkflowController : ControllerBase
     /// elements from non-heading elements in the same area.
     /// </summary>
     [HttpPost("{alias}/infer-section-pattern")]
+    [ProducesResponseType<InferSectionPatternResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult InferSectionPattern(string alias, [FromBody] InferSectionPatternRequest request)
     {
         try
@@ -1174,10 +1252,10 @@ public class WorkflowController : ControllerBase
             // Load the area template to get area definitions
             var areaTemplate = _workflowService.GetAreaTemplate(alias);
             if (areaTemplate == null)
-                return NotFound(new { error = $"No area template found for workflow '{alias}'." });
+                return NotFoundProblem($"No area template found for workflow '{alias}'.");
 
             if (request.AreaIndex < 0 || request.AreaIndex >= areaTemplate.Areas.Count)
-                return BadRequest(new { error = $"Area index {request.AreaIndex} is out of range (0-{areaTemplate.Areas.Count - 1})." });
+                return BadRequestProblem($"Area index {request.AreaIndex} is out of range (0-{areaTemplate.Areas.Count - 1}).");
 
             // Get the source config for page selection
             var config = _workflowService.GetConfigByAlias(alias);
@@ -1186,11 +1264,11 @@ public class WorkflowController : ControllerBase
             // Get the PDF file path
             var extraction = _workflowService.GetSampleExtraction(alias);
             if (extraction?.Source?.MediaKey == null || !Guid.TryParse(extraction.Source.MediaKey, out var mediaKey))
-                return BadRequest(new { error = "No sample extraction found. Extract a PDF first." });
+                return BadRequestProblem("No sample extraction found. Extract a PDF first.");
 
             var filePath = ResolveMediaFilePath(mediaKey);
             if (filePath == null)
-                return NotFound(new { error = "PDF file not found on disk." });
+                return NotFoundProblem("PDF file not found on disk.");
 
             // Run area detection to get current elements
             var includePages = ResolveIncludePages(filePath, sourceConfig);
@@ -1206,7 +1284,7 @@ public class WorkflowController : ControllerBase
             }
 
             if (targetArea == null)
-                return NotFound(new { error = $"Area '{targetAreaDef.Name}' not found in detection result." });
+                return NotFoundProblem($"Area '{targetAreaDef.Name}' not found in detection result.");
 
             // Find the clicked element
             var allElements = targetArea.Sections.SelectMany(s =>
@@ -1219,7 +1297,7 @@ public class WorkflowController : ControllerBase
 
             var clickedElement = allElements.FirstOrDefault(e => e.Id == request.ElementId);
             if (clickedElement == null)
-                return NotFound(new { error = $"Element '{request.ElementId}' not found in area '{targetAreaDef.Name}'." });
+                return NotFoundProblem($"Element '{request.ElementId}' not found in area '{targetAreaDef.Name}'.");
 
             // Infer the minimum distinguishing conditions
             var otherElements = allElements.Where(e => e.Id != request.ElementId).ToList();
@@ -1241,7 +1319,7 @@ public class WorkflowController : ControllerBase
         }
         catch (DirectoryNotFoundException)
         {
-            return NotFound(new { error = $"Workflow '{alias}' not found." });
+            return NotFoundProblem($"Workflow '{alias}' not found.");
         }
     }
 

@@ -88,14 +88,19 @@ public class WorkflowController : UpDocControllerBase
 
         return Ok(new ActiveWorkflowsResponse
         {
+            // OfType<string>() rather than Where(a => !string.IsNullOrEmpty(a)):
+            // the filter drops nulls but the compiler cannot see that, so the
+            // result stays string?[] and will not fit string[] (CS8619).
             DocumentTypeAliases = complete
                 .Select(s => s.DocumentTypeAlias)
-                .Where(a => !string.IsNullOrEmpty(a))
+                .OfType<string>()
+                .Where(a => a.Length > 0)
                 .Distinct()
                 .ToArray(),
             BlueprintIds = complete
                 .Select(s => s.BlueprintId)
-                .Where(id => !string.IsNullOrEmpty(id))
+                .OfType<string>()
+                .Where(id => id.Length > 0)
                 .Distinct()
                 .ToArray(),
         });

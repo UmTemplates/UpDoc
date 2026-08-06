@@ -179,6 +179,13 @@ export default defineConfig({
 						{ label: 'Drag-and-drop dead zone', slug: 'errors/drag-drop-dead-zone' },
 					],
 				},
+				{
+					label: 'Articles',
+					collapsed: true,
+					items: [
+						{ label: 'Giving a package its own MCP server', slug: 'article-mcp-server' },
+					],
+				},
 				{ label: 'About This Documentation', slug: 'about-these-docs' },
 			],
 		}),

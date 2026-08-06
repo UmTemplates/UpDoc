@@ -20,10 +20,12 @@
  */
 
 import workflowsCollection from "./umbraco-api/tools/workflows/index.js";
+import importsCollection from "./umbraco-api/tools/imports/index.js";
 import umbracoServerCollection from "./umbraco-api/tools/umbraco-server/index.js";
 
 export const collections = [
   workflowsCollection,
+  importsCollection,
   umbracoServerCollection,
 ];
 

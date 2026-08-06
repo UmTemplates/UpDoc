@@ -26,6 +26,14 @@ public class UpDocComposer : IComposer
         builder.Services.AddSingleton<IWorkflowService, WorkflowService>();
         builder.Services.AddScoped<IDestinationStructureService, DestinationStructureService>();
         builder.Services.AddSingleton<IContentTransformService, ContentTransformService>();
+
+        // Creating a document from a source, server-side. Until this existed the
+        // logic lived only in the backoffice's TypeScript, so nothing but a
+        // browser could run an import.
+        builder.Services.AddScoped<IMediaFilePathResolver, MediaFilePathResolver>();
+        builder.Services.AddSingleton<IMarkdownConversionService, MarkdownConversionService>();
+        builder.Services.AddScoped<IMappingApplicationService, MappingApplicationService>();
+        builder.Services.AddScoped<IDocumentCreationService, DocumentCreationService>();
         builder.AddNotificationHandler<UmbracoApplicationStartedNotification, WorkflowMigrationHandler>();
 
         // Describes UpDoc's API at /umbraco/swagger/updoc/swagger.json. The controllers

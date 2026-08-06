@@ -1,9 +1,10 @@
 import { expect, Page } from '@playwright/test';
 import { ConstantHelper, test } from '@umbraco/playwright-testhelpers';
 
-// Test PDF — stored in Media > PDF > Winchester
+// Test PDF — Media > Tailored Tours, where the brochures actually live.
+// Flat, not the PDF > {society} nesting the old test site used.
 const TEST_PDF = 'TTM5092 Winchester Istanbul lo.pdf';
-const TEST_PDF_FOLDER = 'Winchester';
+const TEST_PDF_FOLDER = 'Tailored Tours';
 
 /**
  * Selects a blueprint through the two-step blueprint picker dialog.
@@ -37,16 +38,11 @@ async function selectPdf(page: Page, folderName: string, pdfName: string) {
 
   await expect(page.getByRole('heading', { name: 'Choose media' })).toBeVisible({ timeout: 10000 });
 
-  // Navigate into PDF folder
-  const pdfFolderButton = page.getByRole('button', { name: 'PDF', exact: true });
-  await pdfFolderButton.waitFor({ timeout: 5000 });
-  await pdfFolderButton.dblclick();
-  await page.waitForTimeout(1000);
-
-  // Navigate into the society subfolder
-  const subFolderButton = page.getByRole('button', { name: folderName, exact: true });
-  await subFolderButton.waitFor({ timeout: 5000 });
-  await subFolderButton.dblclick();
+  // Navigate into the folder holding the brochures. One level: they sit directly
+  // in Tailored Tours, unlike the old test site's PDF > {society} nesting.
+  const folderButton = page.getByRole('button', { name: folderName, exact: true });
+  await folderButton.waitFor({ timeout: 5000 });
+  await folderButton.dblclick();
   await page.waitForTimeout(1000);
 
   // Select the PDF

@@ -42,6 +42,12 @@ export const toolModes: ToolModeDefinition[] = [
     description: 'Server information and status from the Umbraco Management API',
     collections: ['umbraco-server']
   },
+  {
+    name: 'updoc',
+    displayName: 'UpDoc',
+    description: 'Discover UpDoc workflows and create documents from source files',
+    collections: ['workflows', 'imports']
+  },
   // Add your modes here as you build out your MCP server
   // {
   //   name: 'content',

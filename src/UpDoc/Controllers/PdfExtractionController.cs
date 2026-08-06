@@ -4,6 +4,7 @@ using UpDoc.Models;
 using UpDoc.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Services;
@@ -48,6 +49,9 @@ public class PdfExtractionController : UpDocControllerBase
     }
 
     [HttpGet("extract")]
+    [ProducesResponseType<ExtractTextResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult Extract(Guid mediaKey)
     {
         var media = _mediaService.GetById(mediaKey);
@@ -95,14 +99,17 @@ public class PdfExtractionController : UpDocControllerBase
             return BadRequestProblem(result.Error);
         }
 
-        return Ok(new
+        return Ok(new ExtractTextResponse
         {
-            text = result.RawText,
-            pageCount = result.PageCount
+            Text = result.RawText,
+            PageCount = result.PageCount
         });
     }
 
     [HttpGet("page-properties")]
+    [ProducesResponseType<PagePropertiesResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetPageProperties(Guid mediaKey)
     {
         var media = _mediaService.GetById(mediaKey);
@@ -153,14 +160,17 @@ public class PdfExtractionController : UpDocControllerBase
         _logger.LogInformation("Description → Page Description: {Description}", result.Description);
         _logger.LogInformation("===========================");
 
-        return Ok(new
+        return Ok(new PagePropertiesResponse
         {
-            title = result.Title,
-            description = result.Description
+            Title = result.Title,
+            Description = result.Description
         });
     }
 
     [HttpGet("page-section")]
+    [ProducesResponseType<PageSectionResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetPageSection(Guid mediaKey, string heading)
     {
         if (string.IsNullOrWhiteSpace(heading))
@@ -215,14 +225,17 @@ public class PdfExtractionController : UpDocControllerBase
         _logger.LogInformation("Content length: {Length} chars", result.Content.Length);
         _logger.LogInformation("==============================");
 
-        return Ok(new
+        return Ok(new PageSectionResponse
         {
-            heading = result.Heading,
-            content = result.Content
+            Heading = result.Heading,
+            Content = result.Content
         });
     }
 
     [HttpGet("extract-markdown")]
+    [ProducesResponseType<ExtractMarkdownResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractMarkdown(Guid mediaKey)
     {
         var media = _mediaService.GetById(mediaKey);
@@ -273,16 +286,19 @@ public class PdfExtractionController : UpDocControllerBase
         _logger.LogInformation("Markdown length: {Length} chars", result.Markdown.Length);
         _logger.LogInformation("================================");
 
-        return Ok(new
+        return Ok(new ExtractMarkdownResponse
         {
-            title = result.Title,
-            subtitle = result.Subtitle,
-            markdown = result.Markdown,
-            rawText = result.RawText
+            Title = result.Title,
+            Subtitle = result.Subtitle,
+            Markdown = result.Markdown,
+            RawText = result.RawText
         });
     }
 
     [HttpGet("extract-rich")]
+    [ProducesResponseType<RichExtractionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractRich(Guid mediaKey)
     {
         var absolutePath = ResolveMediaFilePath(mediaKey);
@@ -315,6 +331,8 @@ public class PdfExtractionController : UpDocControllerBase
     }
 
     [HttpGet("config/{blueprintId}")]
+    [ProducesResponseType<DocumentTypeConfig>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetConfigForBlueprint(Guid blueprintId)
     {
         var config = _workflowService.GetConfigForBlueprint(blueprintId);
@@ -327,6 +345,9 @@ public class PdfExtractionController : UpDocControllerBase
     }
 
     [HttpGet("extract-sections")]
+    [ProducesResponseType<ExtractSectionsResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractSections(Guid mediaKey, Guid blueprintId, string sourceType = "pdf")
     {
         var config = _workflowService.GetConfigForBlueprint(blueprintId);
@@ -366,10 +387,10 @@ public class PdfExtractionController : UpDocControllerBase
         }
         _logger.LogInformation("================================================");
 
-        return Ok(new
+        return Ok(new ExtractSectionsResponse
         {
-            sections = result.Sections,
-            config = config,
+            Sections = result.Sections,
+            Config = config,
         });
     }
 

@@ -4,6 +4,7 @@ using UpDoc.Models;
 using UpDoc.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Api.Common.Attributes;
@@ -57,6 +58,7 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType<IEnumerable<WorkflowSummary>>(StatusCodes.Status200OK)]
     public IActionResult GetAll()
     {
         var summaries = _workflowService.GetAllWorkflowSummaries();
@@ -78,19 +80,20 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("active")]
+    [ProducesResponseType<ActiveWorkflowsResponse>(StatusCodes.Status200OK)]
     public IActionResult GetActive()
     {
         var summaries = _workflowService.GetAllWorkflowSummaries();
         var complete = summaries.Where(s => s.IsComplete).ToList();
 
-        return Ok(new
+        return Ok(new ActiveWorkflowsResponse
         {
-            documentTypeAliases = complete
+            DocumentTypeAliases = complete
                 .Select(s => s.DocumentTypeAlias)
                 .Where(a => !string.IsNullOrEmpty(a))
                 .Distinct()
                 .ToArray(),
-            blueprintIds = complete
+            BlueprintIds = complete
                 .Select(s => s.BlueprintId)
                 .Where(id => !string.IsNullOrEmpty(id))
                 .Distinct()
@@ -99,6 +102,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("{alias}")]
+    [ProducesResponseType<DocumentTypeConfig>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetByAlias(string alias)
     {
         var config = _workflowService.GetConfigByAlias(alias);
@@ -138,6 +143,9 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType<WorkflowIdentityResponse>(StatusCodes.Status201Created)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Create([FromBody] CreateWorkflowRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.Name))
@@ -194,7 +202,7 @@ public class WorkflowController : UpDocControllerBase
 
             return Created(
                 $"/umbraco/management/api/v1/updoc/workflows/{alias}",
-                new { name = request.Name, alias });
+                new WorkflowIdentityResponse { Name = request.Name, Alias = alias });
         }
         catch (InvalidOperationException ex)
         {
@@ -203,6 +211,9 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpDelete("{alias}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult Delete(string alias)
     {
         if (string.IsNullOrWhiteSpace(alias))
@@ -226,6 +237,9 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPut("{alias}/identity")]
+    [ProducesResponseType<WorkflowIdentityResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateIdentity(string alias, [FromBody] UpdateIdentityRequest request)
     {
         if (string.IsNullOrWhiteSpace(alias))
@@ -246,7 +260,7 @@ public class WorkflowController : UpDocControllerBase
         try
         {
             var newAlias = _workflowService.UpdateWorkflowIdentity(alias, request.Name, request.Alias);
-            return Ok(new { name = request.Name, alias = newAlias });
+            return Ok(new WorkflowIdentityResponse { Name = request.Name, Alias = newAlias });
         }
         catch (DirectoryNotFoundException)
         {
@@ -259,6 +273,9 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPut("{alias}/destination")]
+    [ProducesResponseType<RegenerateDestinationResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ChangeDestination(string alias, [FromBody] ChangeDestinationRequest request)
     {
         if (string.IsNullOrWhiteSpace(alias))
@@ -320,6 +337,9 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPost("{alias}/sample-extraction")]
+    [ProducesResponseType<RichExtractionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ExtractSample(string alias, [FromBody] SampleExtractionRequest request)
     {
         // Detect source type from workflow config
@@ -418,6 +438,9 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPost("{alias}/regenerate-destination")]
+    [ProducesResponseType<RegenerateDestinationResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RegenerateDestination(string alias)
     {
         var configs = _workflowService.GetAllConfigs();
@@ -459,10 +482,11 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPost("{alias}/backfill-content-type-keys")]
+    [ProducesResponseType<BackfillResponse>(StatusCodes.Status200OK)]
     public IActionResult BackfillContentTypeKeys(string alias)
     {
         var count = _workflowService.BackfillContentTypeKeysForWorkflow(alias);
-        return Ok(new { backfilled = count });
+        return Ok(new BackfillResponse { Backfilled = count });
     }
 
     private ReconciliationResult ReconcileBlockKeys(
@@ -667,6 +691,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPut("{alias}/map")]
+    [ProducesResponseType<MapConfig>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateMap(string alias, [FromBody] MapConfig config)
     {
         try
@@ -681,6 +707,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("{alias}/sample-extraction")]
+    [ProducesResponseType<RichExtractionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetSampleExtraction(string alias)
     {
         var result = _workflowService.GetSampleExtraction(alias);
@@ -693,6 +721,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPost("detect-areas")]
+    [ProducesResponseType<AreaDetectionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult DetectAreas([FromBody] SampleExtractionRequest request)
     {
         var absolutePath = ResolveMediaFilePath(request.MediaKey);
@@ -712,6 +742,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPost("{alias}/area-detection")]
+    [ProducesResponseType<AreaDetectionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractAreaDetection(string alias, [FromBody] SampleExtractionRequest request)
     {
         var absolutePath = ResolveMediaFilePath(request.MediaKey);
@@ -743,6 +775,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("{alias}/area-detection")]
+    [ProducesResponseType<AreaDetectionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetAreaDetection(string alias)
     {
         var result = _workflowService.GetAreaDetection(alias);
@@ -755,6 +789,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPost("{alias}/transform")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractTransform(string alias, [FromBody] SampleExtractionRequest request)
     {
         var absolutePath = ResolveMediaFilePath(request.MediaKey);
@@ -803,6 +839,8 @@ public class WorkflowController : UpDocControllerBase
     /// Used by web/markdown sources after saving area rules, since they don't have a mediaKey.
     /// </summary>
     [HttpPost("{alias}/retransform")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult Retransform(string alias)
     {
         var areaDetection = _workflowService.GetAreaDetection(alias);
@@ -825,6 +863,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("{alias}/transform")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetTransform(string alias)
     {
         var result = _workflowService.GetTransformResult(alias);
@@ -837,6 +877,10 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPost("{alias}/transform-adhoc")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> TransformAdhoc(string alias, [FromBody] SampleExtractionRequest request)
     {
         try
@@ -902,6 +946,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPatch("{alias}/transform/sections/{sectionId}/included")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateSectionInclusion(string alias, string sectionId, [FromBody] SectionInclusionRequest request)
     {
         var result = _workflowService.UpdateSectionInclusion(alias, sectionId, request.Included);
@@ -914,6 +960,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPut("{alias}/transform/sort-order")]
+    [ProducesResponseType<TransformResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateSortOrder(string alias, [FromBody] SortOrderRequest request)
     {
         var result = _workflowService.UpdateSortOrder(alias, request.Page, request.AreaName, request.SortedIds);
@@ -926,6 +974,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPut("{alias}/pages")]
+    [ProducesResponseType<PageSelectionResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdatePageSelection(string alias, [FromBody] PageSelectionRequest request)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
@@ -949,10 +999,12 @@ public class WorkflowController : UpDocControllerBase
         _logger.LogInformation("Updated page selection for workflow '{Alias}': {Pages}",
             alias, sourceConfig.Pages.IsAll ? "all" : string.Join(", ", sourceConfig.Pages.PageNumbers!));
 
-        return Ok(new { pages = sourceConfig.Pages });
+        return Ok(new PageSelectionResponse { Pages = sourceConfig.Pages });
     }
 
     [HttpPut("{alias}/excluded-areas")]
+    [ProducesResponseType<ExcludedAreasResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateExcludedAreas(string alias, [FromBody] ExcludedAreasRequest request)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
@@ -977,10 +1029,12 @@ public class WorkflowController : UpDocControllerBase
         _logger.LogInformation("Updated excluded areas for workflow '{Alias}': {Areas}",
             alias, sourceConfig.ExcludedAreas != null ? string.Join(", ", sourceConfig.ExcludedAreas) : "none");
 
-        return Ok(new { excludedAreas = sourceConfig.ExcludedAreas ?? new List<string>() });
+        return Ok(new ExcludedAreasResponse { ExcludedAreas = sourceConfig.ExcludedAreas ?? [] });
     }
 
     [HttpPut("{alias}/container-overrides")]
+    [ProducesResponseType<ContainerOverridesResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateContainerOverrides(string alias, [FromBody] ContainerOverridesRequest request)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
@@ -1008,10 +1062,12 @@ public class WorkflowController : UpDocControllerBase
         _logger.LogInformation("Updated container overrides for workflow '{Alias}': {Count} overrides",
             alias, sourceConfig.ContainerOverrides?.Count ?? 0);
 
-        return Ok(new { containerOverrides = sourceConfig.ContainerOverrides ?? new List<ContainerOverride>() });
+        return Ok(new ContainerOverridesResponse { ContainerOverrides = sourceConfig.ContainerOverrides ?? [] });
     }
 
     [HttpPut("{alias}/section-rules")]
+    [ProducesResponseType<Dictionary<string, SectionRuleSet>>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateSectionRules(string alias, [FromBody] Dictionary<string, SectionRuleSet> sectionRules)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
@@ -1040,6 +1096,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPut("{alias}/area-rules")]
+    [ProducesResponseType<Dictionary<string, AreaRules>>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateAreaRules(string alias, [FromBody] Dictionary<string, AreaRules> areaRules)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
@@ -1081,6 +1139,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("{alias}/source")]
+    [ProducesResponseType<SourceConfig>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetSource(string alias)
     {
         var sourceConfig = _workflowService.GetSourceConfig(alias);
@@ -1093,6 +1153,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpPut("{alias}/area-template")]
+    [ProducesResponseType<AreaTemplate>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult UpdateAreaTemplate(string alias, [FromBody] AreaTemplate template)
     {
         try
@@ -1107,6 +1169,8 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("{alias}/area-template")]
+    [ProducesResponseType<AreaTemplate>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetAreaTemplate(string alias)
     {
         var template = _workflowService.GetAreaTemplate(alias);
@@ -1119,6 +1183,9 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("media-pdf")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetMediaPdf([FromQuery] Guid mediaKey)
     {
         if (mediaKey == Guid.Empty)
@@ -1137,6 +1204,9 @@ public class WorkflowController : UpDocControllerBase
     }
 
     [HttpGet("{alias}/pdf")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetPdf(string alias, [FromQuery] Guid? mediaKey = null)
     {
         // If mediaKey not provided, try to get it from the stored sample extraction
@@ -1167,6 +1237,9 @@ public class WorkflowController : UpDocControllerBase
     /// elements from non-heading elements in the same area.
     /// </summary>
     [HttpPost("{alias}/infer-section-pattern")]
+    [ProducesResponseType<InferSectionPatternResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult InferSectionPattern(string alias, [FromBody] InferSectionPatternRequest request)
     {
         try

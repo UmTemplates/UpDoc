@@ -21,12 +21,33 @@ a separate decision that is his alone, including which version number to use.
 
 At the start of **every session or continued conversation**, you MUST read the following files using the Read tool before doing ANY other work. Do not rely on summaries, system reminders, or compacted context for these files — read them fresh every time.
 
-1. `planning/REFACTOR_TO_CONFIGURABLE.md` — Config-driven extraction and mapping architecture
-2. `planning/CREATE_FROM_SOURCE_SIDEBAR.md` — Unified sidebar modal design
-3. `planning/CREATE_FROM_SOURCE_UI.md` — Single entry point UI design
-4. `planning/DESTINATION_DRIVEN_MAPPING.md` — Outlook-rules-inspired destination-driven mapping (Phases 2-5)
+**Read the documentation first.** It describes what UpDoc currently *is*, and you
+did not write it — a previous session did, and that context is gone. Start in the
+docs worktree at `.worktrees/docs/docs/src/content/docs/`:
 
-These files contain agreed-upon design decisions, config schemas, and implementation roadmaps. You must have their full content in your working context before answering questions, entering plan mode, or writing any code. If you find yourself unsure about an architectural decision, the answer is almost certainly in these files.
+1. `introduction.md` — what UpDoc is, its concepts and vocabulary
+2. `backend/index.md` and `frontend/index.md` — where the code lives and what each part does
+3. `usage.md` — the flow an editor actually follows, including both entry points
+4. Whatever else is relevant to the task in hand — `mapping-directions.md`,
+   `creating-a-workflow.md`, `source-files/`, `errors/`
+
+**Then the planning docs**, for the decisions behind the design:
+
+5. `planning/REFACTOR_TO_CONFIGURABLE.md` — Config-driven extraction and mapping architecture
+6. `planning/CREATE_FROM_SOURCE_SIDEBAR.md` — Unified sidebar modal design
+7. `planning/CREATE_FROM_SOURCE_UI.md` — Single entry point UI design
+8. `planning/DESTINATION_DRIVEN_MAPPING.md` — Outlook-rules-inspired destination-driven mapping (Phases 2-5)
+
+These contain agreed-upon design decisions, config schemas and implementation
+roadmaps. If you are unsure about an architectural decision, the answer is
+almost certainly in one of them.
+
+**But read them as history, not as current state.** They still use the old
+`CreateFromPdf` naming, and several describe phases long since completed. Where a
+planning doc and the documentation disagree, the documentation is right.
+
+Note anything missing or wrong in the docs as you read. Gaps are worth reporting
+even when nobody asked.
 
 ---
 

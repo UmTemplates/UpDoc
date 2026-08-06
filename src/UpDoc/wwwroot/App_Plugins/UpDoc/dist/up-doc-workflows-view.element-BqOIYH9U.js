@@ -1,11 +1,11 @@
-import { html as p, css as W, state as b, customElement as O } from "@umbraco-cms/backoffice/external/lit";
-import { UmbLitElement as B } from "@umbraco-cms/backoffice/lit-element";
-import { UmbTextStyles as M } from "@umbraco-cms/backoffice/style";
-import { UMB_AUTH_CONTEXT as y } from "@umbraco-cms/backoffice/auth";
-import { UmbModalToken as R, umbOpenModal as v, UMB_MODAL_MANAGER_CONTEXT as P, UMB_CONFIRM_MODAL as I } from "@umbraco-cms/backoffice/modal";
-import { U as z } from "./blueprint-picker-modal.token-mXZoRNwG.js";
-import { m as L, l as F, z as j } from "./workflow.service-rwnAqyw6.js";
-const q = new R(
+import { html as p, css as O, state as w, customElement as B } from "@umbraco-cms/backoffice/external/lit";
+import { UmbLitElement as M } from "@umbraco-cms/backoffice/lit-element";
+import { UmbTextStyles as R } from "@umbraco-cms/backoffice/style";
+import { UMB_AUTH_CONTEXT as b } from "@umbraco-cms/backoffice/auth";
+import { UmbModalToken as P, umbOpenModal as v, UMB_MODAL_MANAGER_CONTEXT as I, UMB_CONFIRM_MODAL as z } from "@umbraco-cms/backoffice/modal";
+import { U as L } from "./blueprint-picker-modal.token-mXZoRNwG.js";
+import { z as U, m as F, l as q, A as j } from "./workflow.service-Coqu6zLj.js";
+const V = new P(
   "UpDoc.CreateWorkflowSidebar",
   {
     modal: {
@@ -14,34 +14,34 @@ const q = new R(
     }
   }
 );
-var V = Object.defineProperty, G = Object.getOwnPropertyDescriptor, U = (e) => {
+var G = Object.defineProperty, J = Object.getOwnPropertyDescriptor, E = (e) => {
   throw TypeError(e);
 }, m = (e, t, o, s) => {
-  for (var r = s > 1 ? void 0 : s ? G(t, o) : t, u = e.length - 1, d; u >= 0; u--)
-    (d = e[u]) && (r = (s ? d(t, o, r) : d(r)) || r);
-  return s && r && V(t, o, r), r;
-}, J = (e, t, o) => t.has(e) || U("Cannot " + o), K = (e, t, o) => t.has(e) ? U("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, o), l = (e, t, o) => (J(e, t, "access private method"), o), n, h, k, E, x, $, A, D;
-let c = class extends B {
+  for (var i = s > 1 ? void 0 : s ? J(t, o) : t, c = e.length - 1, d; c >= 0; c--)
+    (d = e[c]) && (i = (s ? d(t, o, i) : d(i)) || i);
+  return s && i && G(t, o, i), i;
+}, K = (e, t, o) => t.has(e) || E("Cannot " + o), X = (e, t, o) => t.has(e) ? E("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, o), n = (e, t, o) => (K(e, t, "access private method"), o), r, h, y, x, $, A, D, N;
+let u = class extends M {
   constructor() {
-    super(...arguments), K(this, n), this._workflows = [], this._loading = !0, this._error = null;
+    super(...arguments), X(this, r), this._workflows = [], this._loading = !0, this._error = null;
   }
   async connectedCallback() {
-    super.connectedCallback(), await l(this, n, h).call(this);
+    super.connectedCallback(), await n(this, r, h).call(this);
   }
   render() {
     return this._loading ? p`<uui-loader-bar></uui-loader-bar>` : this._error ? p`
 				<uui-box>
 					<p style="color: var(--uui-color-danger);">Error: ${this._error}</p>
-					<uui-button look="secondary" @click=${() => l(this, n, h).call(this)}>Retry</uui-button>
+					<uui-button look="secondary" @click=${() => n(this, r, h).call(this)}>Retry</uui-button>
 				</uui-box>
-			` : this._workflows.length === 0 ? l(this, n, A).call(this) : l(this, n, D).call(this);
+			` : this._workflows.length === 0 ? n(this, r, D).call(this) : n(this, r, N).call(this);
   }
 };
-n = /* @__PURE__ */ new WeakSet();
+r = /* @__PURE__ */ new WeakSet();
 h = async function() {
   this._loading = !0, this._error = null;
   try {
-    const t = await (await this.getContext(y)).getLatestToken(), o = await fetch("/umbraco/management/api/v1/updoc/workflows", {
+    const t = await (await this.getContext(b)).getLatestToken(), o = await fetch("/umbraco/management/api/v1/updoc/workflows", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -57,59 +57,59 @@ h = async function() {
     this._loading = !1;
   }
 };
-k = async function() {
+y = async function() {
   try {
-    const t = await (await this.getContext(y)).getLatestToken(), o = await fetch("/umbraco/management/api/v1/updoc/document-types", {
+    const t = await (await this.getContext(b)).getLatestToken(), o = await fetch("/umbraco/management/api/v1/updoc/document-types", {
       headers: { Authorization: `Bearer ${t}` }
     });
     if (!o.ok)
       throw new Error("Failed to load document types");
-    const s = await o.json(), r = [];
-    for (const i of s) {
+    const s = await o.json(), i = [];
+    for (const l of s) {
       const _ = await fetch(
-        `/umbraco/management/api/v1/updoc/document-types/${encodeURIComponent(i.alias)}/blueprints`,
+        `/umbraco/management/api/v1/updoc/document-types/${encodeURIComponent(l.alias)}/blueprints`,
         { headers: { Authorization: `Bearer ${t}` } }
       );
       if (!_.ok) continue;
       const T = await _.json();
-      T.length > 0 && r.push({
-        documentTypeUnique: i.id,
-        documentTypeName: i.name,
-        documentTypeIcon: i.icon ?? null,
+      T.length > 0 && i.push({
+        documentTypeUnique: l.id,
+        documentTypeName: l.name,
+        documentTypeIcon: l.icon ?? null,
         blueprints: T.map((C) => ({
           blueprintUnique: C.id,
           blueprintName: C.name
         }))
       });
     }
-    if (!r.length) {
+    if (!i.length) {
       this._error = "No document types with blueprints found. Create a Document Blueprint first.";
       return;
     }
-    let u;
+    let c;
     try {
-      u = await v(this, z, {
-        data: { documentTypes: r }
+      c = await v(this, L, {
+        data: { documentTypes: i }
       });
     } catch {
       return;
     }
-    const { blueprintUnique: d, documentTypeUnique: f } = u, g = r.find((i) => i.documentTypeUnique === f), N = g?.blueprints.find((i) => i.blueprintUnique === d), S = s.find((i) => i.id === f);
+    const { blueprintUnique: d, documentTypeUnique: f } = c, k = i.find((l) => l.documentTypeUnique === f), S = k?.blueprints.find((l) => l.blueprintUnique === d), W = s.find((l) => l.id === f);
     let a;
     try {
-      a = await v(this, q, {
+      a = await v(this, V, {
         data: {
           documentTypeUnique: f,
-          documentTypeName: g?.documentTypeName ?? "",
-          documentTypeAlias: S?.alias ?? "",
+          documentTypeName: k?.documentTypeName ?? "",
+          documentTypeAlias: W?.alias ?? "",
           blueprintUnique: d,
-          blueprintName: N?.blueprintName ?? ""
+          blueprintName: S?.blueprintName ?? ""
         }
       });
     } catch {
       return;
     }
-    const w = await fetch("/umbraco/management/api/v1/updoc/workflows", {
+    const g = await fetch("/umbraco/management/api/v1/updoc/workflows", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,10 +124,8 @@ k = async function() {
         blueprintName: a.blueprintName
       })
     });
-    if (!w.ok) {
-      const i = await w.json();
-      throw new Error(i.error || `Failed to create workflow: ${w.statusText}`);
-    }
+    if (!g.ok)
+      throw new Error(await U(g, "Failed to create workflow"));
     if (a.selectedPages && a.selectedPages.length > 0 && await fetch(
       `/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(a.alias)}/pages`,
       {
@@ -140,32 +138,32 @@ k = async function() {
       }
     ), a.mediaUnique || a.sourceUrl)
       try {
-        await L(
+        await F(
           a.alias,
           a.mediaUnique ?? "",
           t,
           a.sourceUrl ?? void 0
-        ), a.mediaUnique && await F(
+        ), a.mediaUnique && await q(
           a.alias,
           a.mediaUnique,
           t
         );
-      } catch (i) {
-        console.warn("Sample extraction during workflow creation failed:", i);
+      } catch (l) {
+        console.warn("Sample extraction during workflow creation failed:", l);
       }
-    await l(this, n, h).call(this);
+    await n(this, r, h).call(this);
   } catch (e) {
     e instanceof Error && (this._error = e.message, console.error("Failed to create workflow:", e));
   }
 };
-E = function(e) {
+x = function(e) {
   const t = encodeURIComponent(e.alias);
   window.history.pushState({}, "", `section/settings/workspace/updoc-workflow/edit/${t}`), window.dispatchEvent(new PopStateEvent("popstate"));
 };
-x = async function(e) {
-  const t = await this.getContext(P);
+$ = async function(e) {
+  const t = await this.getContext(I);
   try {
-    await t.open(this, I, {
+    await t.open(this, z, {
       data: {
         headline: `Delete "${e.name}"?`,
         content: p`<p>This will permanently delete the workflow folder and all its configuration files (destination, map, and source configs).</p>
@@ -178,27 +176,25 @@ x = async function(e) {
     return;
   }
   try {
-    const s = await (await this.getContext(y)).getLatestToken(), r = await fetch(`/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(e.alias)}`, {
+    const s = await (await this.getContext(b)).getLatestToken(), i = await fetch(`/umbraco/management/api/v1/updoc/workflows/${encodeURIComponent(e.alias)}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${s}`
       }
     });
-    if (!r.ok) {
-      const u = await r.json();
-      throw new Error(u.error || `Failed to delete workflow: ${r.statusText}`);
-    }
-    j(), await l(this, n, h).call(this);
+    if (!i.ok)
+      throw new Error(await U(i, "Failed to delete workflow"));
+    j(), await n(this, r, h).call(this);
   } catch (o) {
     this._error = o instanceof Error ? o.message : "Unknown error", console.error("Failed to delete workflow:", o);
   }
 };
-$ = function(e) {
+A = function(e) {
   if (!e.length) return "—";
   const t = { pdf: "PDF", markdown: "Markdown", web: "Web", doc: "Word" };
   return e.map((o) => t[o] ?? o).join(", ");
 };
-A = function() {
+D = function() {
   return p`
 			<uui-box headline="No workflows configured">
 				<p>
@@ -213,18 +209,18 @@ A = function() {
 					look="primary"
 					color="positive"
 					label="Create Workflow"
-					@click=${l(this, n, k)}></uui-button>
+					@click=${n(this, r, y)}></uui-button>
 			</uui-box>
 		`;
 };
-D = function() {
+N = function() {
   return p`
 			<div class="header">
 				<uui-button
 					look="primary"
 					color="positive"
 					label="Create Workflow"
-					@click=${l(this, n, k)}></uui-button>
+					@click=${n(this, r, y)}></uui-button>
 			</div>
 			<uui-box>
 				<uui-table>
@@ -240,12 +236,12 @@ D = function() {
 					</uui-table-head>
 					${this._workflows.map(
     (e) => p`
-							<uui-table-row class="clickable-row" @click=${() => l(this, n, E).call(this, e)}>
+							<uui-table-row class="clickable-row" @click=${() => n(this, r, x).call(this, e)}>
 								<uui-table-cell>${e.name}</uui-table-cell>
 								<uui-table-cell class="alias-cell">${e.alias}</uui-table-cell>
 								<uui-table-cell>${e.documentTypeName ?? e.documentTypeAlias}</uui-table-cell>
 								<uui-table-cell>${e.blueprintName ?? e.blueprintId ?? "—"}</uui-table-cell>
-								<uui-table-cell>${l(this, n, $).call(this, e.sourceTypes)}</uui-table-cell>
+								<uui-table-cell>${n(this, r, A).call(this, e.sourceTypes)}</uui-table-cell>
 								<uui-table-cell>${e.mappingCount}</uui-table-cell>
 								<uui-table-cell>
 									<uui-tag
@@ -261,7 +257,7 @@ D = function() {
 										label="Delete"
 										compact
 										@click=${(t) => {
-      t.stopPropagation(), l(this, n, x).call(this, e);
+      t.stopPropagation(), n(this, r, $).call(this, e);
     }}>
 										<uui-icon name="icon-trash"></uui-icon>
 									</uui-button>
@@ -273,9 +269,9 @@ D = function() {
 			</uui-box>
 		`;
 };
-c.styles = [
-  M,
-  W`
+u.styles = [
+  R,
+  O`
 			:host {
 				display: block;
 				padding: var(--uui-size-layout-1);
@@ -303,20 +299,20 @@ c.styles = [
 		`
 ];
 m([
-  b()
-], c.prototype, "_workflows", 2);
+  w()
+], u.prototype, "_workflows", 2);
 m([
-  b()
-], c.prototype, "_loading", 2);
+  w()
+], u.prototype, "_loading", 2);
 m([
-  b()
-], c.prototype, "_error", 2);
-c = m([
-  O("up-doc-workflows-view")
-], c);
-const oe = c;
+  w()
+], u.prototype, "_error", 2);
+u = m([
+  B("up-doc-workflows-view")
+], u);
+const ae = u;
 export {
-  c as UpDocWorkflowsViewElement,
-  oe as default
+  u as UpDocWorkflowsViewElement,
+  ae as default
 };
-//# sourceMappingURL=up-doc-workflows-view.element-Bk4NJEWb.js.map
+//# sourceMappingURL=up-doc-workflows-view.element-BqOIYH9U.js.map

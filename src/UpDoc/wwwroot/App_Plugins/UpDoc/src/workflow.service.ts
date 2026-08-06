@@ -2,6 +2,30 @@ import type { DocumentTypeConfig, ExtractSectionsResponse, MapConfig, RichExtrac
 
 const configCache = new Map<string, DocumentTypeConfig>();
 
+/**
+ * Reads a human-readable message out of a failed UpDoc API response.
+ *
+ * UpDoc returns errors as RFC 7807 ProblemDetails, matching the rest of Umbraco's
+ * Management API, so the message is in `title` with optional extra in `detail`.
+ * Falls back to the status text when the body is missing or is not JSON, which is
+ * what happens on a 401 or when the server returns HTML.
+ */
+export async function readApiError(response: Response, fallback: string): Promise<string> {
+	try {
+		const problem = await response.json();
+		const title = problem?.title;
+		if (typeof title === 'string' && title.length > 0) {
+			return typeof problem.detail === 'string' && problem.detail.length > 0
+				? `${title}: ${problem.detail}`
+				: title;
+		}
+	} catch {
+		// Body absent or not JSON — fall through to the status text.
+	}
+
+	return `${fallback}: ${response.statusText}`;
+}
+
 export interface ActiveWorkflows {
 	documentTypeAliases: string[];
 	blueprintIds: string[];

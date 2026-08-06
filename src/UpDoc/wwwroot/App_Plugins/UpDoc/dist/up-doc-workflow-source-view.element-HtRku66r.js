@@ -1,5 +1,5 @@
 import { a as Me } from "./workflow.types-QrurYwv2.js";
-import { g as ct, b as ut, h as dt, i as T, j as C, k as pt, l as ue, m as te, n as de, o as ht, p as mt, q as ft, u as gt, v as bt, s as Re, w as Pe, x as vt, y as xt } from "./workflow.service-rwnAqyw6.js";
+import { g as ct, b as ut, h as dt, i as T, j as C, k as pt, l as ue, m as te, n as de, o as ht, p as mt, q as ft, u as gt, v as bt, s as Re, w as Pe, x as vt, y as xt } from "./workflow.service-Coqu6zLj.js";
 import { m as R, n as L } from "./transforms-qqnY8EQ-.js";
 import { g as Se } from "./destination-utils-BFSWOBvb.js";
 import { UmbModalToken as V, UMB_MODAL_MANAGER_CONTEXT as A } from "@umbraco-cms/backoffice/modal";
@@ -2417,4 +2417,4 @@ export {
   b as UpDocWorkflowSourceViewElement,
   jt as default
 };
-//# sourceMappingURL=up-doc-workflow-source-view.element-DdmmYvgE.js.map
+//# sourceMappingURL=up-doc-workflow-source-view.element-HtRku66r.js.map

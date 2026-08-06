@@ -4,6 +4,7 @@ using UpDoc.Models;
 using UpDoc.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Services;
@@ -19,7 +20,7 @@ namespace UpDoc.Controllers;
 [MapToApi(UpDocApiConfiguration.ApiName)]
 [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
 [JsonOptionsName("UmbracoManagementApi")]
-public class PdfExtractionController : ControllerBase
+public class PdfExtractionController : UpDocControllerBase
 {
     private readonly IMediaService _mediaService;
     private readonly IPdfExtractionService _pdfExtractionService;
@@ -48,18 +49,21 @@ public class PdfExtractionController : ControllerBase
     }
 
     [HttpGet("extract")]
+    [ProducesResponseType<ExtractTextResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult Extract(Guid mediaKey)
     {
         var media = _mediaService.GetById(mediaKey);
         if (media == null)
         {
-            return NotFound(new { error = "Media item not found" });
+            return NotFoundProblem("Media item not found");
         }
 
         var umbracoFile = media.GetValue<string>("umbracoFile");
         if (string.IsNullOrEmpty(umbracoFile))
         {
-            return BadRequest(new { error = "Media item has no file" });
+            return BadRequestProblem("Media item has no file");
         }
 
         // The umbracoFile value can be JSON or a simple path
@@ -77,7 +81,7 @@ public class PdfExtractionController : ControllerBase
 
         if (string.IsNullOrEmpty(filePath))
         {
-            return BadRequest(new { error = "Could not determine file path" });
+            return BadRequestProblem("Could not determine file path");
         }
 
         // Convert relative path to absolute file system path
@@ -85,36 +89,39 @@ public class PdfExtractionController : ControllerBase
 
         if (!System.IO.File.Exists(absolutePath))
         {
-            return NotFound(new { error = $"File not found on disk: {filePath}" });
+            return NotFoundProblem($"File not found on disk: {filePath}");
         }
 
         var result = _pdfExtractionService.ExtractFromFile(absolutePath);
 
         if (!string.IsNullOrEmpty(result.Error))
         {
-            return BadRequest(new { error = result.Error });
+            return BadRequestProblem(result.Error);
         }
 
-        return Ok(new
+        return Ok(new ExtractTextResponse
         {
-            text = result.RawText,
-            pageCount = result.PageCount
+            Text = result.RawText,
+            PageCount = result.PageCount
         });
     }
 
     [HttpGet("page-properties")]
+    [ProducesResponseType<PagePropertiesResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetPageProperties(Guid mediaKey)
     {
         var media = _mediaService.GetById(mediaKey);
         if (media == null)
         {
-            return NotFound(new { error = "Media item not found" });
+            return NotFoundProblem("Media item not found");
         }
 
         var umbracoFile = media.GetValue<string>("umbracoFile");
         if (string.IsNullOrEmpty(umbracoFile))
         {
-            return BadRequest(new { error = "Media item has no file" });
+            return BadRequestProblem("Media item has no file");
         }
 
         string filePath;
@@ -130,21 +137,21 @@ public class PdfExtractionController : ControllerBase
 
         if (string.IsNullOrEmpty(filePath))
         {
-            return BadRequest(new { error = "Could not determine file path" });
+            return BadRequestProblem("Could not determine file path");
         }
 
         var absolutePath = Path.Combine(_webHostEnvironment.WebRootPath, filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
 
         if (!System.IO.File.Exists(absolutePath))
         {
-            return NotFound(new { error = $"File not found on disk: {filePath}" });
+            return NotFoundProblem($"File not found on disk: {filePath}");
         }
 
         var result = _pdfPagePropertiesService.ExtractFromFile(absolutePath);
 
         if (!string.IsNullOrEmpty(result.Error))
         {
-            return BadRequest(new { error = result.Error });
+            return BadRequestProblem(result.Error);
         }
 
         // Log to console for testing
@@ -153,31 +160,34 @@ public class PdfExtractionController : ControllerBase
         _logger.LogInformation("Description → Page Description: {Description}", result.Description);
         _logger.LogInformation("===========================");
 
-        return Ok(new
+        return Ok(new PagePropertiesResponse
         {
-            title = result.Title,
-            description = result.Description
+            Title = result.Title,
+            Description = result.Description
         });
     }
 
     [HttpGet("page-section")]
+    [ProducesResponseType<PageSectionResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetPageSection(Guid mediaKey, string heading)
     {
         if (string.IsNullOrWhiteSpace(heading))
         {
-            return BadRequest(new { error = "Heading parameter is required" });
+            return BadRequestProblem("Heading parameter is required");
         }
 
         var media = _mediaService.GetById(mediaKey);
         if (media == null)
         {
-            return NotFound(new { error = "Media item not found" });
+            return NotFoundProblem("Media item not found");
         }
 
         var umbracoFile = media.GetValue<string>("umbracoFile");
         if (string.IsNullOrEmpty(umbracoFile))
         {
-            return BadRequest(new { error = "Media item has no file" });
+            return BadRequestProblem("Media item has no file");
         }
 
         string filePath;
@@ -193,21 +203,21 @@ public class PdfExtractionController : ControllerBase
 
         if (string.IsNullOrEmpty(filePath))
         {
-            return BadRequest(new { error = "Could not determine file path" });
+            return BadRequestProblem("Could not determine file path");
         }
 
         var absolutePath = Path.Combine(_webHostEnvironment.WebRootPath, filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
 
         if (!System.IO.File.Exists(absolutePath))
         {
-            return NotFound(new { error = $"File not found on disk: {filePath}" });
+            return NotFoundProblem($"File not found on disk: {filePath}");
         }
 
         var result = _pdfPagePropertiesService.ExtractSectionByHeading(absolutePath, heading);
 
         if (!string.IsNullOrEmpty(result.Error))
         {
-            return BadRequest(new { error = result.Error });
+            return BadRequestProblem(result.Error);
         }
 
         _logger.LogInformation("=== PDF Section Extraction ===");
@@ -215,26 +225,29 @@ public class PdfExtractionController : ControllerBase
         _logger.LogInformation("Content length: {Length} chars", result.Content.Length);
         _logger.LogInformation("==============================");
 
-        return Ok(new
+        return Ok(new PageSectionResponse
         {
-            heading = result.Heading,
-            content = result.Content
+            Heading = result.Heading,
+            Content = result.Content
         });
     }
 
     [HttpGet("extract-markdown")]
+    [ProducesResponseType<ExtractMarkdownResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractMarkdown(Guid mediaKey)
     {
         var media = _mediaService.GetById(mediaKey);
         if (media == null)
         {
-            return NotFound(new { error = "Media item not found" });
+            return NotFoundProblem("Media item not found");
         }
 
         var umbracoFile = media.GetValue<string>("umbracoFile");
         if (string.IsNullOrEmpty(umbracoFile))
         {
-            return BadRequest(new { error = "Media item has no file" });
+            return BadRequestProblem("Media item has no file");
         }
 
         string filePath;
@@ -250,21 +263,21 @@ public class PdfExtractionController : ControllerBase
 
         if (string.IsNullOrEmpty(filePath))
         {
-            return BadRequest(new { error = "Could not determine file path" });
+            return BadRequestProblem("Could not determine file path");
         }
 
         var absolutePath = Path.Combine(_webHostEnvironment.WebRootPath, filePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
 
         if (!System.IO.File.Exists(absolutePath))
         {
-            return NotFound(new { error = $"File not found on disk: {filePath}" });
+            return NotFoundProblem($"File not found on disk: {filePath}");
         }
 
         var result = _pdfPagePropertiesService.ExtractAsMarkdown(absolutePath);
 
         if (!string.IsNullOrEmpty(result.Error))
         {
-            return BadRequest(new { error = result.Error });
+            return BadRequestProblem(result.Error);
         }
 
         _logger.LogInformation("=== PDF Markdown Extraction ===");
@@ -273,22 +286,25 @@ public class PdfExtractionController : ControllerBase
         _logger.LogInformation("Markdown length: {Length} chars", result.Markdown.Length);
         _logger.LogInformation("================================");
 
-        return Ok(new
+        return Ok(new ExtractMarkdownResponse
         {
-            title = result.Title,
-            subtitle = result.Subtitle,
-            markdown = result.Markdown,
-            rawText = result.RawText
+            Title = result.Title,
+            Subtitle = result.Subtitle,
+            Markdown = result.Markdown,
+            RawText = result.RawText
         });
     }
 
     [HttpGet("extract-rich")]
+    [ProducesResponseType<RichExtractionResult>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractRich(Guid mediaKey)
     {
         var absolutePath = ResolveMediaFilePath(mediaKey);
         if (absolutePath == null)
         {
-            return NotFound(new { error = "Media item not found or file not on disk" });
+            return NotFoundProblem("Media item not found or file not on disk");
         }
 
         var media = _mediaService.GetById(mediaKey);
@@ -298,7 +314,7 @@ public class PdfExtractionController : ControllerBase
 
         if (!string.IsNullOrEmpty(result.Error))
         {
-            return BadRequest(new { error = result.Error });
+            return BadRequestProblem(result.Error);
         }
 
         // Populate source metadata
@@ -315,35 +331,40 @@ public class PdfExtractionController : ControllerBase
     }
 
     [HttpGet("config/{blueprintId}")]
+    [ProducesResponseType<DocumentTypeConfig>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult GetConfigForBlueprint(Guid blueprintId)
     {
         var config = _workflowService.GetConfigForBlueprint(blueprintId);
         if (config == null)
         {
-            return NotFound(new { error = $"No config found for blueprint {blueprintId}" });
+            return NotFoundProblem($"No config found for blueprint {blueprintId}");
         }
 
         return Ok(config);
     }
 
     [HttpGet("extract-sections")]
+    [ProducesResponseType<ExtractSectionsResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
     public IActionResult ExtractSections(Guid mediaKey, Guid blueprintId, string sourceType = "pdf")
     {
         var config = _workflowService.GetConfigForBlueprint(blueprintId);
         if (config == null)
         {
-            return NotFound(new { error = $"No config found for blueprint {blueprintId}" });
+            return NotFoundProblem($"No config found for blueprint {blueprintId}");
         }
 
         if (!config.Sources.TryGetValue(sourceType, out var sourceConfig))
         {
-            return BadRequest(new { error = $"Config does not support '{sourceType}' source type. Available: {string.Join(", ", config.Sources.Keys)}" });
+            return BadRequestProblem($"Config does not support '{sourceType}' source type. Available: {string.Join(", ", config.Sources.Keys)}");
         }
 
         var absolutePath = ResolveMediaFilePath(mediaKey);
         if (absolutePath == null)
         {
-            return NotFound(new { error = "Media item not found or file not on disk" });
+            return NotFoundProblem("Media item not found or file not on disk");
         }
 
         // Route to correct extraction service based on source type
@@ -356,7 +377,7 @@ public class PdfExtractionController : ControllerBase
 
         if (!string.IsNullOrEmpty(result.Error))
         {
-            return BadRequest(new { error = result.Error });
+            return BadRequestProblem(result.Error);
         }
 
         _logger.LogInformation("=== {SourceType} Section Extraction (Strategy-driven) ===", sourceType);
@@ -366,10 +387,10 @@ public class PdfExtractionController : ControllerBase
         }
         _logger.LogInformation("================================================");
 
-        return Ok(new
+        return Ok(new ExtractSectionsResponse
         {
-            sections = result.Sections,
-            config = config,
+            Sections = result.Sections,
+            Config = config,
         });
     }
 

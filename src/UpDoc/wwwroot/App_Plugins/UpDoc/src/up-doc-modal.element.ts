@@ -3,6 +3,7 @@ import { allTransformSections, type DocumentTypeConfig } from './workflow.types.
 import { fetchConfig, fetchWorkflowByAlias, transformAdhoc } from './workflow.service.js';
 import { getDestinationTabs, resolveDestinationTab, resolveDestinationGroup, resolveBlockLabel, getAllBlockContainers, sortGroupNames } from './destination-utils.js';
 import { stripMarkdown } from './transforms.js';
+import { buildSectionLookups } from './create-from-source.js';
 import { html, customElement, css, state, nothing } from '@umbraco-cms/backoffice/external/lit';
 import { UmbTextStyles } from '@umbraco-cms/backoffice/style';
 import { UmbModalBaseElement } from '@umbraco-cms/backoffice/modal';
@@ -185,33 +186,9 @@ export class UpDocModalElement extends UmbModalBaseElement<
 				return;
 			}
 
-			// Build section ID → text lookup (e.g., "features.heading", "features.content")
-			const sectionLookup: Record<string, string> = {};
-			const stableKeyLookup: Record<string, string> = {};
-			for (const section of allSections) {
-				if (!section.included) continue;
-				if (section.heading) {
-					// For role sections, heading is just a label (e.g., "Tour Title"), not document text.
-					// Map .heading to the content so existing mappings resolve to actual text.
-					sectionLookup[`${section.id}.heading`] =
-						section.pattern === 'role' ? section.content : section.heading;
-					// .title is the new canonical key for heading text (backward compat: .heading still works)
-					sectionLookup[`${section.id}.title`] =
-						section.pattern === 'role' ? section.content : section.heading;
-				}
-				sectionLookup[`${section.id}.content`] = section.content;
-				// Add description and summary parts if present
-				if (section.description) {
-					sectionLookup[`${section.id}.description`] = section.description;
-				}
-				if (section.summary) {
-					sectionLookup[`${section.id}.summary`] = section.summary;
-				}
-				// Build stableKey → sectionId lookup for fallback resolution
-				if (section.stableKey) {
-					stableKeyLookup[section.stableKey] = section.id;
-				}
-			}
+			// Build the `sectionId.part` → text lookups map.json addresses.
+			// Shared with UpDoc's MCP server — see create-from-source.ts.
+			const { sectionLookup, stableKeyLookup } = buildSectionLookups(allSections);
 			this._sectionLookup = sectionLookup;
 			this.#stableKeyLookup = stableKeyLookup;
 

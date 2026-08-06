@@ -1,6 +1,7 @@
-import { U as D, c as B } from "./create-from-source-IxHUduRB.js";
-import { U as C } from "./blueprint-picker-modal.token-mXZoRNwG.js";
-import { f as x } from "./workflow.service-Coqu6zLj.js";
+import { U as D } from "./up-doc-modal.token-DHoS03yR.js";
+import { U as B } from "./blueprint-picker-modal.token-mXZoRNwG.js";
+import { f as C } from "./workflow.service-Coqu6zLj.js";
+import { c as x } from "./create-from-source-Lr3UzQBc.js";
 import { UmbEntityActionBase as O } from "@umbraco-cms/backoffice/entity-action";
 import { umbOpenModal as g } from "@umbraco-cms/backoffice/modal";
 import { UMB_NOTIFICATION_CONTEXT as _ } from "@umbraco-cms/backoffice/notification";
@@ -8,7 +9,7 @@ import { UMB_AUTH_CONTEXT as A } from "@umbraco-cms/backoffice/auth";
 import { UmbDocumentTypeStructureRepository as R } from "@umbraco-cms/backoffice/document-type";
 import { UmbDocumentBlueprintItemRepository as E } from "@umbraco-cms/backoffice/document-blueprint";
 import { UmbDocumentItemRepository as M } from "@umbraco-cms/backoffice/document";
-class G extends O {
+class J extends O {
   #e = new R(this);
   #t = new E(this);
   #o = new M(this);
@@ -33,7 +34,7 @@ class G extends O {
         });
         return;
       }
-      const m = await (await this.getContext(A)).getLatestToken(), U = await x(m), b = new Set(U.blueprintIds), i = [];
+      const m = await (await this.getContext(A)).getLatestToken(), U = await C(m), b = new Set(U.blueprintIds), i = [];
       for (const e of c.items) {
         const { data: y } = await this.#t.requestItemsByDocumentType(e.unique);
         if (y?.length) {
@@ -57,7 +58,7 @@ class G extends O {
       }
       let p;
       try {
-        p = await g(this, C, {
+        p = await g(this, B, {
           data: { documentTypes: i }
         });
       } catch {
@@ -80,7 +81,7 @@ class G extends O {
       const { name: u, mediaUnique: h, sourceUrl: I, sectionLookup: k, stableKeyLookup: N, config: w } = f;
       if (!u || !w || !h && !I)
         return;
-      const n = await B({
+      const n = await x({
         parentUnique: o,
         documentTypeUnique: l,
         blueprintUnique: s,
@@ -115,7 +116,7 @@ class G extends O {
   }
 }
 export {
-  G as UpDocEntityAction,
-  G as default
+  J as UpDocEntityAction,
+  J as default
 };
-//# sourceMappingURL=up-doc-action-1KqSZZnY.js.map
+//# sourceMappingURL=up-doc-action-DwhtaGiO.js.map

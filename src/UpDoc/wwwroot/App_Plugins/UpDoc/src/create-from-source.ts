@@ -19,7 +19,7 @@
  * shared.
  */
 
-import type { DocumentTypeConfig, MappingDestination } from './workflow.types.js';
+import type { DocumentTypeConfig, MappingDestination, TransformedSection } from './workflow.types.js';
 import { IMPORT_FACT_SOURCE_FILE } from './workflow.types.js';
 import { applyImportFactMedia } from './import-facts.js';
 import {
@@ -66,6 +66,53 @@ export interface CreateFromSourceRequest {
 export type CreateFromSourceResult =
 	| { ok: true; documentId: string | undefined }
 	| { ok: false; stage: 'scaffold' | 'create'; message: string };
+
+/** The two lookups a mapping run needs, built from a transform result. */
+export interface SectionLookups {
+	/** `sectionId.part` → text, e.g. `features.content`. */
+	sectionLookup: Record<string, string>;
+	/** stableKey → section id, for resolving mappings when section ids shift. */
+	stableKeyLookup: Record<string, string>;
+}
+
+/**
+ * Turns transform sections into the lookups `map.json` addresses.
+ *
+ * Excluded sections are skipped, so anything the workflow author turned off in
+ * the Transformed view stays out of the created document.
+ */
+export function buildSectionLookups(sections: TransformedSection[]): SectionLookups {
+	const sectionLookup: Record<string, string> = {};
+	const stableKeyLookup: Record<string, string> = {};
+
+	for (const section of sections) {
+		if (!section.included) continue;
+
+		if (section.heading) {
+			// On a role section the heading is a label ("Tour Title"), not document
+			// text, so both keys resolve to the content instead.
+			const headingText = section.pattern === 'role' ? section.content : section.heading;
+			// `.title` is the canonical key; `.heading` stays for existing maps.
+			sectionLookup[`${section.id}.heading`] = headingText;
+			sectionLookup[`${section.id}.title`] = headingText;
+		}
+
+		sectionLookup[`${section.id}.content`] = section.content;
+
+		if (section.description) {
+			sectionLookup[`${section.id}.description`] = section.description;
+		}
+		if (section.summary) {
+			sectionLookup[`${section.id}.summary`] = section.summary;
+		}
+
+		if (section.stableKey) {
+			stableKeyLookup[section.stableKey] = section.id;
+		}
+	}
+
+	return { sectionLookup, stableKeyLookup };
+}
 
 /**
  * Scaffolds from a blueprint, applies the workflow's mappings and creates the

@@ -209,8 +209,9 @@ public class MappingApplicationService : IMappingApplicationService
         HashSet<string> mappedFields)
         => EditBlockContainer(values, containerAlias, contentData =>
         {
-            var block = contentData.FirstOrDefault(b =>
-                b?["contentTypeKey"]?.GetValue<string>() == contentTypeKey);
+            var block = contentData
+                .OfType<JsonObject>()
+                .FirstOrDefault(b => b["contentTypeKey"]?.GetValue<string>() == contentTypeKey);
 
             if (block is not null)
                 WriteBlockProperty(block, targetProperty, value, mappedFields);
@@ -229,11 +230,8 @@ public class MappingApplicationService : IMappingApplicationService
         HashSet<string> mappedFields)
         => EditBlockContainer(values, containerAlias, contentData =>
         {
-            foreach (var block in contentData)
+            foreach (var block in contentData.OfType<JsonObject>())
             {
-                if (block is null)
-                    continue;
-
                 var searchValue = FindBlockValue(block, identifier.Property)?.GetValue<string>();
                 if (searchValue is null ||
                     !searchValue.Contains(identifier.Value, StringComparison.OrdinalIgnoreCase))
@@ -253,7 +251,7 @@ public class MappingApplicationService : IMappingApplicationService
     /// differ in the underlying JSON depending on the blueprint's editing history.
     /// </summary>
     private static void WriteBlockProperty(
-        JsonNode block,
+        JsonObject block,
         string targetProperty,
         string value,
         HashSet<string> mappedFields)
@@ -305,14 +303,21 @@ public class MappingApplicationService : IMappingApplicationService
                 ? JsonNode.Parse((string)raw)
                 : JsonSerializer.SerializeToNode(raw);
 
-            if (container?["contentData"] is not JsonArray contentData)
+            // Must be an object before contentData can be read. JsonNode's indexer
+            // throws on a non-object rather than returning null, and a property
+            // that is not a block container - a media picker holds an array - would
+            // otherwise take down the whole import.
+            if (container is not JsonObject containerObject)
+                return;
+
+            if (containerObject["contentData"] is not JsonArray contentData)
                 return;
 
             edit(contentData);
 
             values[containerAlias] = wasString
-                ? container.ToJsonString()
-                : container;
+                ? containerObject.ToJsonString()
+                : containerObject;
         }
         catch (JsonException ex)
         {
@@ -320,11 +325,11 @@ public class MappingApplicationService : IMappingApplicationService
         }
     }
 
-    private static JsonNode? FindBlockValue(JsonNode block, string alias)
+    private static JsonNode? FindBlockValue(JsonObject block, string alias)
         => block["values"] is JsonArray values ? FindBlockValueNode(values, alias)?["value"] : null;
 
-    private static JsonNode? FindBlockValueNode(JsonArray values, string alias)
-        => values.FirstOrDefault(v => v?["alias"]?.GetValue<string>() == alias);
+    private static JsonObject? FindBlockValueNode(JsonArray values, string alias)
+        => values.OfType<JsonObject>().FirstOrDefault(v => v["alias"]?.GetValue<string>() == alias);
 
     /// <summary>Applies an import fact - a value describing the import, not its content.</summary>
     private static void ApplyImportFactMedia(
@@ -430,11 +435,8 @@ public class MappingApplicationService : IMappingApplicationService
         {
             EditBlockContainer(values, container.Alias, contentData =>
             {
-                foreach (var block in contentData)
+                foreach (var block in contentData.OfType<JsonObject>())
                 {
-                    if (block is null)
-                        continue;
-
                     var blockContentTypeKey = block["contentTypeKey"]?.GetValue<string>();
                     var blockKey = block["key"]?.GetValue<string>() ?? string.Empty;
 

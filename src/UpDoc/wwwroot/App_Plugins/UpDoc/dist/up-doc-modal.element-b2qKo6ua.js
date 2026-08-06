@@ -2,24 +2,25 @@ import { a as P } from "./workflow.types-QrurYwv2.js";
 import { a as dt, b as W, t as F } from "./workflow.service-Coqu6zLj.js";
 import { r as pt, g as ht, a as ft, b as bt, c as mt, s as gt } from "./destination-utils-BFSWOBvb.js";
 import { s as I } from "./transforms-qqnY8EQ-.js";
-import { html as p, css as vt, state as m, customElement as _t, nothing as O } from "@umbraco-cms/backoffice/external/lit";
-import { UmbTextStyles as yt } from "@umbraco-cms/backoffice/style";
-import { UmbModalBaseElement as kt } from "@umbraco-cms/backoffice/modal";
-import { UMB_AUTH_CONTEXT as L } from "@umbraco-cms/backoffice/auth";
-var wt = Object.defineProperty, xt = Object.getOwnPropertyDescriptor, G = (t) => {
+import { b as vt } from "./create-from-source-Lr3UzQBc.js";
+import { html as d, css as _t, state as m, customElement as yt, nothing as O } from "@umbraco-cms/backoffice/external/lit";
+import { UmbTextStyles as kt } from "@umbraco-cms/backoffice/style";
+import { UmbModalBaseElement as wt } from "@umbraco-cms/backoffice/modal";
+import { UMB_AUTH_CONTEXT as M } from "@umbraco-cms/backoffice/auth";
+var xt = Object.defineProperty, Tt = Object.getOwnPropertyDescriptor, G = (t) => {
   throw TypeError(t);
-}, f = (t, i, e, r) => {
-  for (var c = r > 1 ? void 0 : r ? xt(i, e) : i, l = t.length - 1, u; l >= 0; l--)
-    (u = t[l]) && (c = (r ? u(i, e, c) : u(c)) || c);
-  return r && c && wt(i, e, c), c;
-}, A = (t, i, e) => i.has(t) || G("Cannot " + e), U = (t, i, e) => (A(t, i, "read from private field"), e ? e.call(t) : i.get(t)), q = (t, i, e) => i.has(t) ? G("Cannot add the same private member more than once") : i instanceof WeakSet ? i.add(t) : i.set(t, e), B = (t, i, e, r) => (A(t, i, "write to private field"), i.set(t, e), e), a = (t, i, e) => (A(t, i, "access private method"), e), y, o, j, R, N, D, Y, M, K, H, X, J, Q, V, Z, tt, C, T, z, et, it, ot, $, at, nt, rt, st, ct, ut;
-const Tt = {
+}, f = (t, i, e, n) => {
+  for (var s = n > 1 ? void 0 : n ? Tt(i, e) : i, u = t.length - 1, c; u >= 0; u--)
+    (c = t[u]) && (s = (n ? c(i, e, s) : c(s)) || s);
+  return n && s && xt(i, e, s), s;
+}, A = (t, i, e) => i.has(t) || G("Cannot " + e), U = (t, i, e) => (A(t, i, "read from private field"), e ? e.call(t) : i.get(t)), q = (t, i, e) => i.has(t) ? G("Cannot add the same private member more than once") : i instanceof WeakSet ? i.add(t) : i.set(t, e), B = (t, i, e, n) => (A(t, i, "write to private field"), i.set(t, e), e), a = (t, i, e) => (A(t, i, "access private method"), e), y, o, j, R, N, D, Y, L, K, H, X, J, Q, V, Z, tt, C, T, S, et, it, ot, $, at, nt, rt, st, ct, ut;
+const $t = {
   pdf: "PDF Document",
   markdown: "Markdown",
   web: "Web Page",
   doc: "Word Document"
 };
-let h = class extends kt {
+let p = class extends wt {
   constructor() {
     super(...arguments), q(this, o), this._activeTab = "source", this._documentName = "", this._sourceType = "", this._sourceUrl = "", this._selectedMediaUnique = null, this._sectionLookup = {}, q(this, y, {}), this._config = null, this._workflowConfig = null, this._isExtracting = !1, this._extractionError = null, this._contentActiveTab = "", this._availableSourceTypes = [], this._loadingSourceTypes = !0;
   }
@@ -28,7 +29,7 @@ let h = class extends kt {
   }
   render() {
     const t = a(this, o, ct).call(this);
-    return p`
+    return d`
 			<umb-body-layout headline="Create from Source">
 				${a(this, o, et).call(this)}
 
@@ -60,8 +61,8 @@ j = async function() {
   try {
     const t = this.data?.blueprintId;
     if (!t) return;
-    const e = await (await this.getContext(L)).getLatestToken(), r = await dt(t, e);
-    r && (this._config = r, r.sources && (this._availableSourceTypes = Object.keys(r.sources), this._availableSourceTypes.length === 1 && (this._sourceType = this._availableSourceTypes[0])));
+    const e = await (await this.getContext(M)).getLatestToken(), n = await dt(t, e);
+    n && (this._config = n, n.sources && (this._availableSourceTypes = Object.keys(n.sources), this._availableSourceTypes.length === 1 && (this._sourceType = this._availableSourceTypes[0])));
   } catch (t) {
     console.error("Failed to load available source types:", t);
   } finally {
@@ -82,48 +83,46 @@ D = function() {
 Y = async function(t) {
   this._isExtracting = !0, this._extractionError = null;
   try {
-    const e = await (await this.getContext(L)).getLatestToken(), r = a(this, o, D).call(this);
-    if (!r) {
+    const e = await (await this.getContext(M)).getLatestToken(), n = a(this, o, D).call(this);
+    if (!n) {
       this._extractionError = "No workflow configured for this blueprint";
       return;
     }
-    const c = await W(r, e);
-    c && (this._workflowConfig = c);
-    const l = await F(r, t, e), u = P(l);
-    if (!u.length) {
+    const s = await W(n, e);
+    s && (this._workflowConfig = s);
+    const u = await F(n, t, e), c = P(u);
+    if (!c.length) {
       this._extractionError = "Failed to extract content from source";
       return;
     }
-    const d = {}, s = {};
-    for (const n of u)
-      n.included && (n.heading && (d[`${n.id}.heading`] = n.pattern === "role" ? n.content : n.heading, d[`${n.id}.title`] = n.pattern === "role" ? n.content : n.heading), d[`${n.id}.content`] = n.content, n.description && (d[`${n.id}.description`] = n.description), n.summary && (d[`${n.id}.summary`] = n.summary), n.stableKey && (s[n.stableKey] = n.id));
-    this._sectionLookup = d, B(this, y, s), !this._documentName && (this._workflowConfig || this._config) && a(this, o, K).call(this, d);
+    const { sectionLookup: l, stableKeyLookup: r } = vt(c);
+    this._sectionLookup = l, B(this, y, r), !this._documentName && (this._workflowConfig || this._config) && a(this, o, K).call(this, l);
   } catch (i) {
     this._extractionError = "Failed to connect to extraction service", console.error("Extraction error:", i);
   } finally {
     this._isExtracting = !1;
   }
 };
-M = async function() {
+L = async function() {
   if (this._sourceUrl) {
     this._isExtracting = !0, this._extractionError = null;
     try {
-      const i = await (await this.getContext(L)).getLatestToken(), e = a(this, o, D).call(this);
+      const i = await (await this.getContext(M)).getLatestToken(), e = a(this, o, D).call(this);
       if (!e) {
         this._extractionError = "No workflow configured for this blueprint";
         return;
       }
-      const r = await W(e, i);
-      r && (this._workflowConfig = r);
-      const c = await F(e, "", i, this._sourceUrl), l = P(c);
-      if (!l.length) {
+      const n = await W(e, i);
+      n && (this._workflowConfig = n);
+      const s = await F(e, "", i, this._sourceUrl), u = P(s);
+      if (!u.length) {
         this._extractionError = "Failed to extract content from web page";
         return;
       }
-      const u = {}, d = {};
-      for (const s of l)
-        s.included && (s.heading && (u[`${s.id}.heading`] = s.pattern === "role" ? s.content : s.heading, u[`${s.id}.title`] = s.pattern === "role" ? s.content : s.heading), u[`${s.id}.content`] = s.content, s.description && (u[`${s.id}.description`] = s.description), s.summary && (u[`${s.id}.summary`] = s.summary), s.stableKey && (d[s.stableKey] = s.id));
-      this._sectionLookup = u, B(this, y, d), !this._documentName && (this._workflowConfig || this._config) && a(this, o, K).call(this, u);
+      const c = {}, l = {};
+      for (const r of u)
+        r.included && (r.heading && (c[`${r.id}.heading`] = r.pattern === "role" ? r.content : r.heading, c[`${r.id}.title`] = r.pattern === "role" ? r.content : r.heading), c[`${r.id}.content`] = r.content, r.description && (c[`${r.id}.description`] = r.description), r.summary && (c[`${r.id}.summary`] = r.summary), r.stableKey && (l[r.stableKey] = r.id));
+      this._sectionLookup = c, B(this, y, l), !this._documentName && (this._workflowConfig || this._config) && a(this, o, K).call(this, c);
     } catch (t) {
       this._extractionError = "Failed to extract from web page", console.error("Web extraction error:", t);
     } finally {
@@ -135,42 +134,42 @@ K = function(t) {
   const i = this._workflowConfig ?? this._config;
   if (i?.map?.mappings?.length) {
     let e = null;
-    for (const r of i.map.mappings) {
-      if (r.enabled === !1) continue;
-      const c = r.destinations.find(
-        (l) => !l.blockKey && l.target === "pageTitle"
+    for (const n of i.map.mappings) {
+      if (n.enabled === !1) continue;
+      const s = n.destinations.find(
+        (u) => !u.blockKey && u.target === "pageTitle"
       );
-      if (c) {
-        e = c.target;
+      if (s) {
+        e = s.target;
         break;
       }
     }
     if (!e)
-      for (const r of i.map.mappings) {
-        if (r.enabled === !1) continue;
-        const c = r.destinations.find((l) => !l.blockKey);
-        if (c) {
-          e = c.target;
+      for (const n of i.map.mappings) {
+        if (n.enabled === !1) continue;
+        const s = n.destinations.find((u) => !u.blockKey);
+        if (s) {
+          e = s.target;
           break;
         }
       }
     if (e) {
-      const r = [];
-      for (const c of i.map.mappings) {
-        if (c.enabled === !1) continue;
-        c.destinations.some(
-          (u) => u.target === e && !u.blockKey
-        ) && t[c.source] && r.push(t[c.source]);
+      const n = [];
+      for (const s of i.map.mappings) {
+        if (s.enabled === !1) continue;
+        s.destinations.some(
+          (c) => c.target === e && !c.blockKey
+        ) && t[s.source] && n.push(t[s.source]);
       }
-      if (r.length > 0) {
-        this._documentName = I(r.join(" "));
+      if (n.length > 0) {
+        this._documentName = I(n.join(" "));
         return;
       }
     }
   }
-  for (const [e, r] of Object.entries(t))
-    if (e.endsWith(".heading") && r) {
-      this._documentName = I(r);
+  for (const [e, n] of Object.entries(t))
+    if (e.endsWith(".heading") && n) {
+      this._documentName = I(n);
       return;
     }
 };
@@ -204,7 +203,7 @@ J = function() {
   }
 };
 Q = function() {
-  return p`
+  return d`
 			<umb-property-layout label="PDF File" orientation="vertical">
 				<div slot="editor">
 					<umb-input-media
@@ -212,13 +211,13 @@ Q = function() {
 						.selection=${this._selectedMediaUnique ? [this._selectedMediaUnique] : []}
 						@change=${a(this, o, N)}>
 					</umb-input-media>
-					${a(this, o, z).call(this)}
+					${a(this, o, S).call(this)}
 				</div>
 			</umb-property-layout>
 		`;
 };
 V = function() {
-  return p`
+  return d`
 			<umb-property-layout label="Markdown File" orientation="vertical">
 				<div slot="editor">
 					<umb-input-media
@@ -226,13 +225,13 @@ V = function() {
 						.selection=${this._selectedMediaUnique ? [this._selectedMediaUnique] : []}
 						@change=${a(this, o, N)}>
 					</umb-input-media>
-					${a(this, o, z).call(this)}
+					${a(this, o, S).call(this)}
 				</div>
 			</umb-property-layout>
 		`;
 };
 Z = function() {
-  return p`
+  return d`
 			<umb-property-layout label="Web Page URL" orientation="vertical">
 				<div slot="editor">
 					<div style="display: flex; gap: 8px; align-items: center;">
@@ -243,24 +242,24 @@ Z = function() {
 							.value=${this._sourceUrl}
 							@input=${(t) => this._sourceUrl = t.target.value}
 							@keydown=${(t) => {
-    t.key === "Enter" && this._sourceUrl && a(this, o, M).call(this);
+    t.key === "Enter" && this._sourceUrl && a(this, o, L).call(this);
   }}>
 						</uui-input>
 						<uui-button
 							look="primary"
 							label="Extract"
 							?disabled=${!this._sourceUrl || this._isExtracting}
-							@click=${() => a(this, o, M).call(this)}>
+							@click=${() => a(this, o, L).call(this)}>
 							Extract
 						</uui-button>
 					</div>
-					${a(this, o, z).call(this)}
+					${a(this, o, S).call(this)}
 				</div>
 			</umb-property-layout>
 		`;
 };
 tt = function() {
-  return p`
+  return d`
 			<umb-property-layout label="Word Document" orientation="vertical">
 				<div slot="editor">
 					<umb-input-media
@@ -284,21 +283,21 @@ C = function() {
 T = function(t) {
   t === "content" && !a(this, o, C).call(this) || (this._activeTab = t);
 };
-z = function() {
-  return this._isExtracting ? p`<div class="extraction-status extracting">
+S = function() {
+  return this._isExtracting ? d`<div class="extraction-status extracting">
 				<uui-loader-bar></uui-loader-bar>
 				<span>Extracting content from source...</span>
-			</div>` : this._extractionError ? p`<div class="extraction-status error">
+			</div>` : this._extractionError ? d`<div class="extraction-status error">
 				<uui-icon name="icon-alert"></uui-icon>
 				<span>${this._extractionError}</span>
-			</div>` : Object.values(this._sectionLookup).some((i) => i.length > 0) ? p`<div class="extraction-status success">
+			</div>` : Object.values(this._sectionLookup).some((i) => i.length > 0) ? d`<div class="extraction-status success">
 				<uui-icon name="icon-check"></uui-icon>
 				<span>Content extracted successfully</span>
 			</div>` : O;
 };
 et = function() {
   const t = a(this, o, C).call(this);
-  return p`
+  return d`
 			<uui-tab-group slot="navigation">
 				<uui-tab
 					label="Source"
@@ -329,7 +328,7 @@ et = function() {
 		`;
 };
 it = function() {
-  return p`
+  return d`
 			<uui-box headline="Document Name">
 				<p>Enter a document name or let it be populated from the source. You can edit this later.</p>
 				<uui-input
@@ -342,7 +341,7 @@ it = function() {
 			</uui-box>
 
 			<uui-box headline="Source">
-				${this._loadingSourceTypes ? p`<uui-loader-bar></uui-loader-bar>` : this._availableSourceTypes.length === 0 ? p`<p style="color: var(--uui-color-danger);">No source types configured for this workflow.</p>` : p`
+				${this._loadingSourceTypes ? d`<uui-loader-bar></uui-loader-bar>` : this._availableSourceTypes.length === 0 ? d`<p style="color: var(--uui-color-danger);">No source types configured for this workflow.</p>` : d`
 							<umb-property-layout label="Source Type" orientation="vertical">
 								<div slot="editor">
 									<uui-select
@@ -350,7 +349,7 @@ it = function() {
 										.options=${[
     ...this._availableSourceTypes.length > 1 ? [{ name: "Choose a source...", value: "", selected: this._sourceType === "" }] : [],
     ...this._availableSourceTypes.map((t) => ({
-      name: Tt[t] || t,
+      name: $t[t] || t,
       value: t,
       selected: this._sourceType === t
     }))
@@ -368,30 +367,30 @@ it = function() {
 ot = function() {
   const t = this._workflowConfig ?? this._config;
   if (!t?.map?.mappings?.length || !t?.destination) return [];
-  const i = t.destination, e = /* @__PURE__ */ new Map(), r = /* @__PURE__ */ new Map();
-  for (const n of t.map.mappings) {
-    if (n.enabled === !1) continue;
-    let v = this._sectionLookup[n.source];
-    if (!v && n.sourceKey && U(this, y)) {
-      const g = U(this, y)[n.sourceKey];
+  const i = t.destination, e = /* @__PURE__ */ new Map(), n = /* @__PURE__ */ new Map();
+  for (const h of t.map.mappings) {
+    if (h.enabled === !1) continue;
+    let v = this._sectionLookup[h.source];
+    if (!v && h.sourceKey && U(this, y)) {
+      const g = U(this, y)[h.sourceKey];
       if (g) {
-        const b = n.source.split(".").pop();
+        const b = h.source.split(".").pop();
         b && (v = this._sectionLookup[`${g}.${b}`]);
       }
     }
     if (v)
-      for (const g of n.destinations) {
+      for (const g of h.destinations) {
         const b = g.blockKey ? `${g.blockKey}:${g.target}` : g.target, _ = e.get(b) ?? [];
-        _.push(v), e.set(b, _), r.has(b) || r.set(b, { alias: g.target, blockKey: g.blockKey });
+        _.push(v), e.set(b, _), n.has(b) || n.set(b, { alias: g.target, blockKey: g.blockKey });
       }
   }
-  const c = /* @__PURE__ */ new Map(), l = /* @__PURE__ */ new Map();
-  for (const [n, v] of e.entries()) {
-    const g = r.get(n), b = g?.alias ?? n, _ = g?.blockKey, S = pt(
+  const s = /* @__PURE__ */ new Map(), u = /* @__PURE__ */ new Map();
+  for (const [h, v] of e.entries()) {
+    const g = n.get(h), b = g?.alias ?? h, _ = g?.blockKey, z = pt(
       { target: b, blockKey: _ },
       i
     ) ?? "other";
-    c.has(S) || c.set(S, []);
+    s.has(z) || s.set(z, []);
     let E = b;
     if (_)
       for (const w of ht(i)) {
@@ -406,23 +405,23 @@ ot = function() {
       const w = i.fields.find((x) => x.alias === b);
       w && (E = w.label);
     }
-    c.get(S).push({
+    s.get(z).push({
       label: E,
       value: v.join(" "),
       blockLabel: _ ? bt(_, i) ?? void 0 : void 0,
       group: ft({ target: b, blockKey: _ }, i) ?? void 0
     });
   }
-  const u = mt(i), d = [];
-  for (const n of u) {
-    const v = c.get(n.id);
-    v?.length && (l.set(n.id, n.label), d.push({ tabId: n.id, tabLabel: n.label, items: v }));
+  const c = mt(i), l = [];
+  for (const h of c) {
+    const v = s.get(h.id);
+    v?.length && (u.set(h.id, h.label), l.push({ tabId: h.id, tabLabel: h.label, items: v }));
   }
-  const s = c.get("other");
-  return s?.length && d.push({ tabId: "other", tabLabel: "Other", items: s }), d;
+  const r = s.get("other");
+  return r?.length && l.push({ tabId: "other", tabLabel: "Other", items: r }), l;
 };
 $ = function(t, i) {
-  return p`
+  return d`
 			<div class="section-card">
 				<div class="section-card-header">
 					<span class="section-card-label">${t}</span>
@@ -444,53 +443,53 @@ $ = function(t, i) {
 };
 at = function(t) {
   if (t.tabId === "page-content") {
-    const l = /* @__PURE__ */ new Map();
-    for (const u of t.items) {
-      const d = u.blockLabel ?? "Other", s = l.get(d) ?? [];
-      s.push(u), l.set(d, s);
+    const u = /* @__PURE__ */ new Map();
+    for (const c of t.items) {
+      const l = c.blockLabel ?? "Other", r = u.get(l) ?? [];
+      r.push(c), u.set(l, r);
     }
-    return p`
-				${Array.from(l.entries()).map(([u, d]) => p`
+    return d`
+				${Array.from(u.entries()).map(([c, l]) => d`
 					<div class="block-group-header">
 						<umb-icon name="icon-box"></umb-icon>
-						<span>${u}</span>
+						<span>${c}</span>
 					</div>
-					${d.map((s) => a(this, o, $).call(this, s.label, s.value))}
+					${l.map((r) => a(this, o, $).call(this, r.label, r.value))}
 				`)}
 			`;
   }
   const i = /* @__PURE__ */ new Map();
-  for (const l of t.items) {
-    const u = l.group ?? null, d = i.get(u) ?? [];
-    d.push(l), i.set(u, d);
+  for (const u of t.items) {
+    const c = u.group ?? null, l = i.get(c) ?? [];
+    l.push(u), i.set(c, l);
   }
-  const e = (this._workflowConfig ?? this._config)?.destination, c = (e ? gt(Array.from(i.keys()), e, t.tabId) : Array.from(i.keys())).map((l) => [l, i.get(l)]);
-  return p`
-			${c.map(
-    ([l, u]) => l ? p`
+  const e = (this._workflowConfig ?? this._config)?.destination, s = (e ? gt(Array.from(i.keys()), e, t.tabId) : Array.from(i.keys())).map((u) => [u, i.get(u)]);
+  return d`
+			${s.map(
+    ([u, c]) => u ? d`
 						<div class="group-panel">
-							<div class="group-panel-header">${l}</div>
+							<div class="group-panel-header">${u}</div>
 							<div class="group-panel-content">
-								${u.map((d) => a(this, o, $).call(this, d.label, d.value))}
+								${c.map((l) => a(this, o, $).call(this, l.label, l.value))}
 							</div>
 						</div>
-					` : u.map((d) => a(this, o, $).call(this, d.label, d.value))
+					` : c.map((l) => a(this, o, $).call(this, l.label, l.value))
   )}
 		`;
 };
 nt = function() {
   const t = a(this, o, ot).call(this);
   if (t.length === 0)
-    return p`
+    return d`
 				<div class="content-editor">
 					<p class="content-editor-intro">No mapped content to preview. Create mappings in the workflow editor first.</p>
 				</div>
 			`;
   (!this._contentActiveTab || !t.find((e) => e.tabId === this._contentActiveTab)) && (this._contentActiveTab = t[0].tabId);
   const i = t.find((e) => e.tabId === this._contentActiveTab) ?? t[0];
-  return p`
+  return d`
 			<uui-tab-group class="content-inner-tabs">
-				${t.map((e) => p`
+				${t.map((e) => d`
 					<uui-tab
 						label=${e.tabLabel}
 						?active=${this._contentActiveTab === e.tabId}
@@ -505,7 +504,7 @@ nt = function() {
 		`;
 };
 rt = function() {
-  return p`
+  return d`
 			<uui-box headline="Document Type">
 				<div class="destination-value">
 					<umb-icon name="icon-document-dashed-line"></umb-icon>
@@ -552,9 +551,9 @@ ut = function() {
       return a(this, o, rt).call(this);
   }
 };
-h.styles = [
-  yt,
-  vt`
+p.styles = [
+  kt,
+  _t`
 			/* Navigation tabs */
 			uui-tab[disabled] {
 				opacity: 0.5;
@@ -750,49 +749,49 @@ h.styles = [
 ];
 f([
   m()
-], h.prototype, "_activeTab", 2);
+], p.prototype, "_activeTab", 2);
 f([
   m()
-], h.prototype, "_documentName", 2);
+], p.prototype, "_documentName", 2);
 f([
   m()
-], h.prototype, "_sourceType", 2);
+], p.prototype, "_sourceType", 2);
 f([
   m()
-], h.prototype, "_sourceUrl", 2);
+], p.prototype, "_sourceUrl", 2);
 f([
   m()
-], h.prototype, "_selectedMediaUnique", 2);
+], p.prototype, "_selectedMediaUnique", 2);
 f([
   m()
-], h.prototype, "_sectionLookup", 2);
+], p.prototype, "_sectionLookup", 2);
 f([
   m()
-], h.prototype, "_config", 2);
+], p.prototype, "_config", 2);
 f([
   m()
-], h.prototype, "_workflowConfig", 2);
+], p.prototype, "_workflowConfig", 2);
 f([
   m()
-], h.prototype, "_isExtracting", 2);
+], p.prototype, "_isExtracting", 2);
 f([
   m()
-], h.prototype, "_extractionError", 2);
+], p.prototype, "_extractionError", 2);
 f([
   m()
-], h.prototype, "_contentActiveTab", 2);
+], p.prototype, "_contentActiveTab", 2);
 f([
   m()
-], h.prototype, "_availableSourceTypes", 2);
+], p.prototype, "_availableSourceTypes", 2);
 f([
   m()
-], h.prototype, "_loadingSourceTypes", 2);
-h = f([
-  _t("up-doc-modal")
-], h);
-const At = h;
+], p.prototype, "_loadingSourceTypes", 2);
+p = f([
+  yt("up-doc-modal")
+], p);
+const Dt = p;
 export {
-  h as UpDocModalElement,
-  At as default
+  p as UpDocModalElement,
+  Dt as default
 };
-//# sourceMappingURL=up-doc-modal.element-Axj-tokT.js.map
+//# sourceMappingURL=up-doc-modal.element-b2qKo6ua.js.map

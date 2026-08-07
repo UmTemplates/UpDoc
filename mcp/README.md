@@ -1,161 +1,91 @@
-# mcp
+# @umtemplates/updoc-mcp
 
-MCP server template for Umbraco add-ons using the @umbraco-cms/mcp-server-sdk.
+An MCP server for [UpDoc](https://github.com/UmTemplates/UpDoc), letting an AI assistant create Umbraco documents from PDFs.
 
-## Getting Started
+UpDoc extracts content from a source document and maps it into a document blueprint using a configured workflow. This server exposes that as tools, so an assistant can run an import without driving the backoffice.
 
-### 1. Install Dependencies
+## Requirements
 
-```bash
-npm install
+- **Umbraco 17** with [Umbraco.Community.UpDoc](https://www.nuget.org/packages/Umbraco.Community.UpDoc) **17.5.3.6 or later** installed
+- At least one UpDoc workflow configured on the site
+- An Umbraco API user the server can authenticate as
+- Node 22 or later
+
+The version matters: the endpoint these tools call was added in 17.5.3.6.
+
+## Setup
+
+### 1. Create an API user
+
+In the Umbraco backoffice, go to **Users**, create an API user, and give it permission to read and create content. Note its client ID and secret.
+
+### 2. Register the server
+
+Add it to your MCP client's configuration. For Claude Code, that is `.mcp.json` in your project:
+
+```json
+{
+  "mcpServers": {
+    "updoc": {
+      "command": "npx",
+      "args": ["-y", "@umtemplates/updoc-mcp"],
+      "env": {
+        "UMBRACO_BASE_URL": "https://your-site.com",
+        "UMBRACO_CLIENT_ID": "your-api-user-client-id",
+        "UMBRACO_CLIENT_SECRET": "your-api-user-secret"
+      }
+    }
+  }
+}
 ```
 
-### 2. Configure Environment
+Running against a local site with a self-signed certificate? Add `"NODE_TLS_REJECT_UNAUTHORIZED": "0"` to `env`. Never do that against a production site.
 
-Copy `.env.example` to `.env` and fill in your Umbraco connection details:
+Keep this file out of version control — it holds a secret.
 
-```bash
-cp .env.example .env
-```
+### 3. Restart your MCP client
 
-### 3. Generate API Client (Optional)
+Servers connect at startup, so the tools will not appear until you restart.
 
-If you have an OpenAPI spec for your add-on:
+## Tools
 
-1. Update `orval.config.ts` to point to your spec
-2. Run the generator:
+### `list-workflows`
 
-```bash
-npm run generate
-```
+Lists the workflows configured on the site: which document type and blueprint each produces, which source types it accepts, and whether it is complete.
 
-### 4. Build and Test
+Start here. Other tools need the blueprint id, and this is where you find it.
 
-```bash
-# Build the server
-npm run build
+### `create-from-source`
 
-# Run tests
-npm test
+Creates a document from a PDF already in the media library.
 
-# Test with MCP Inspector
-npm run inspect
-```
+| Argument | Description |
+|----------|-------------|
+| `parentId` | Document to create under |
+| `documentTypeId` | The document type to create |
+| `blueprintId` | The blueprint to build from — also selects the workflow |
+| `mediaId` | The PDF in the media library |
+| `documentName` | Name for the new document |
+| `sourceType` | Optional; defaults to the workflow's own |
 
-## Project Structure
+Returns the new document's id, the workflow used, and how many values the mappings wrote.
 
-```
-├── src/
-│   ├── api/
-│   │   ├── client.ts           # API client configuration
-│   │   └── generated/          # Orval-generated API code
-│   ├── tools/
-│   │   └── example/            # Example tool collection
-│   │       ├── get/
-│   │       ├── post/
-│   │       └── index.ts
-│   └── index.ts                # Server entry point
-├── scripts/
-│   └── tunnels.sh              # Cloudflare tunnels for remote MCP client testing
-├── umbraco/
-│   ├── McpOAuthComposer.cs                            # Self-hosted: OAuth client for your own Worker
-│   ├── McpHostedClientsComposer.Cloud.cs              # Cloud only (commented out): one or more hosted MCP clients (Editor / Dev / …) chosen via array
-│   └── McpExternalLoginShortCircuitComposer.Cloud.cs  # Cloud only (commented out): redirects to Umbraco SSO instead of dead-ending at /umbraco/login
-├── __tests__/
-│   └── example/                # Example tests
-├── package.json
-├── tsconfig.json
-├── tsup.config.ts
-├── jest.config.ts
-├── orval.config.ts
-└── .env.example
-```
+**The document is created as a draft.** Review it, then publish separately.
 
-## Adding Your Own Tools
+**The PDF must already be uploaded.** This creates documents, it does not upload files — use Umbraco's own MCP server for that.
 
-1. Create a new folder under `src/tools/` for your tool collection
-2. Create tool files following the example pattern:
-   - `get/` for GET operations
-   - `post/` for POST operations
-   - `put/` for PUT operations
-   - `delete/` for DELETE operations
-3. Create an `index.ts` that exports the collection
-4. Register the collection in `src/index.ts`
+## Notes
 
-### Tool Pattern Example
+Only PDF sources are supported today. Markdown and web sources still go through the backoffice.
 
-```typescript
-import { z } from "zod";
-import {
-  withStandardDecorators,
-  executeGetApiCall,
-  CAPTURE_RAW_HTTP_RESPONSE,
-  ToolDefinition,
-} from "@umbraco-cms/mcp-server-sdk";
+`mappedValueCount` is worth checking against the workflow's `mappingCount` from `list-workflows`. A lower number means some mappings did not resolve, and the document is worth a look before publishing.
 
-const inputSchema = {
-  id: z.string().uuid(),
-};
+## Documentation
 
-const myTool: ToolDefinition<typeof inputSchema> = {
-  name: "my-tool",
-  description: "Does something useful",
-  inputSchema,
-  slices: ["read"],
-  annotations: { readOnlyHint: true },
-  handler: async ({ id }) => {
-    return executeGetApiCall((client) =>
-      client.getMyItem(id, CAPTURE_RAW_HTTP_RESPONSE)
-    );
-  },
-};
+- [UpDoc documentation](https://umtemplates.github.io/UpDoc/)
+- [How and why this was built](https://umtemplates.github.io/UpDoc/article-mcp-server/)
+- [Source and issues](https://github.com/UmTemplates/UpDoc)
 
-export default withStandardDecorators(myTool);
-```
-
-## Testing
-
-Tests use Jest with the MCP toolkit's testing helpers:
-
-```typescript
-import {
-  setupTestEnvironment,
-  createSnapshotResult,
-  createMockRequestHandlerExtra,
-} from "@umbraco-cms/mcp-server-sdk/testing";
-
-describe("my-tool", () => {
-  setupTestEnvironment();
-
-  it("should do something", async () => {
-    const result = await myTool.handler({ id: "..." }, createMockRequestHandlerExtra());
-    expect(createSnapshotResult(result)).toMatchSnapshot();
-  });
-});
-```
-
-## Testing with Claude Code
-
-This project ships with a `.mcp.json` that registers the MCP server with Claude Code automatically. Once you have run `init`, `discover`, and `npm run build`, open the project directory in Claude Code and the server is available immediately — no manual `claude mcp add` required.
-
-```bash
-# One-time setup
-npx @umbraco-cms/create-umbraco-mcp-server init   # writes credentials to .env
-npx @umbraco-cms/create-umbraco-mcp-server discover # generates API client
-npm run build                                       # compiles dist/index.js
-
-# Open in Claude Code — .mcp.json is picked up automatically
-claude .
-```
-
-The server reads credentials from `.env` via `node --env-file=.env ./dist/index.js`, so no secrets are committed to source control.
-
-## Publishing
-
-1. Update `package.json` with your package name and details
-2. Build: `npm run build`
-3. Publish: `npm publish`
-
-## License
+## Licence
 
 MIT

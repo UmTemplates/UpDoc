@@ -36,7 +36,6 @@ import { getUpDocAPI } from "./umbraco-api/api/generated/updocApi.js";
 // Import tool collections
 import workflowsCollection from "./umbraco-api/tools/workflows/index.js";
 import importsCollection from "./umbraco-api/tools/imports/index.js";
-import chainedCollection from "./umbraco-api/tools/chained/index.js";
 
 // Import MCP client manager (for chaining to other MCP servers)
 import { mcpClientManager } from "./umbraco-api/mcp-client.js";
@@ -95,7 +94,7 @@ const filterConfig: CollectionConfiguration = configLoader.loadFromConfig(server
 // CLI Introspection (runs before server start, exits immediately)
 // ============================================================================
 
-const collections = [workflowsCollection, importsCollection, chainedCollection];
+const collections = [workflowsCollection, importsCollection];
 
 // handleCliCommands checks --list-tools, --describe-tool, --generate-context, --call.
 // If any flag is set it prints output and calls process.exit(0).

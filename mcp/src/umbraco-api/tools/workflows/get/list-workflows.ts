@@ -57,11 +57,20 @@ const workflowSummary = getUmbracoManagementApiV1UpdocWorkflowsResponseItem.desc
     ),
 });
 
-// A bare array, matching what the endpoint returns. It was declared as
-// { items: [...] } when the schema was hand-written, which the CLI never
-// caught because it does not validate output - only calling the tool over MCP
-// surfaced the mismatch.
-const outputSchema = z.array(workflowSummary);
+// An object wrapping the array, not a bare array.
+//
+// The endpoint returns a bare array, and declaring the schema that way looks
+// like the honest thing to do. It is not: the SDK's decorators assume an object
+// output schema throughout - withCursorPagination reaches for .extend() to add
+// nextCursor, and z.array() has no .extend - which surfaces at call time as
+// "Cannot read properties of undefined (reading '_zod')".
+//
+// So the tool wraps the response instead, and the handler below does the
+// wrapping. Both mistakes here were only ever visible through a real MCP client;
+// the CLI does not validate tool output and calls the handler directly.
+const outputSchema = z.object({
+  items: z.array(workflowSummary).describe("The workflows configured on this site"),
+});
 
 const listWorkflowsTool: ToolDefinition<typeof inputSchema, typeof outputSchema> = {
   name: "list-workflows",
@@ -77,12 +86,24 @@ const listWorkflowsTool: ToolDefinition<typeof inputSchema, typeof outputSchema>
     readOnlyHint: true,
   },
   handler: async () => {
-    return executeGetApiCall<
+    const result = await executeGetApiCall<
       ReturnType<UpDocApiClient["getUmbracoManagementApiV1UpdocWorkflows"]>,
       UpDocApiClient
     >((client) =>
       client.getUmbracoManagementApiV1UpdocWorkflows(CAPTURE_RAW_HTTP_RESPONSE),
     );
+
+    // The endpoint returns a bare array; the schema above declares an object.
+    // Wrapping here keeps the two in step. Left untouched on an error result,
+    // which has no structuredContent to wrap.
+    if (Array.isArray(result.structuredContent)) {
+      return {
+        ...result,
+        structuredContent: { items: result.structuredContent },
+      };
+    }
+
+    return result;
   },
 };
 

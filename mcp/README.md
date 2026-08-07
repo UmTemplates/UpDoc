@@ -76,6 +76,8 @@ Returns the new document's id, the workflow used, and how many values the mappin
 
 ## Notes
 
+This is an early release, and it depends on `@umbraco-cms/mcp-server-sdk`, which is currently in beta. Pin a version rather than tracking the latest if that matters to you.
+
 Only PDF sources are supported today. Markdown and web sources still go through the backoffice.
 
 `mappedValueCount` is worth checking against the workflow's `mappingCount` from `list-workflows`. A lower number means some mappings did not resolve, and the document is worth a look before publishing.

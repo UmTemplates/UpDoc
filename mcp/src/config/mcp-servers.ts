@@ -65,15 +65,23 @@ const realCmsServer: McpServerConfig = {
  * 3. Receive the same filter configuration (tools, slices, modes) as this server
  */
 export const mcpServers: McpServerConfig[] = [
-  // Use mock server for testing, real server otherwise
-  useMockChain ? mockCmsServer : realCmsServer,
-
-  // Add more chained MCP servers here as needed
-  // {
-  //   name: "another-mcp",
-  //   command: "npx",
-  //   args: ["-y", "@scope/another-mcp"],
-  //   env: { ... },
-  //   proxyTools: true,
-  // },
+  // Chaining to Umbraco's own MCP server is OFF by default, and deliberately so.
+  //
+  // The scaffold enables it, which spawns `npx -y @umbraco-cms/mcp-dev` at
+  // startup and proxies its ~350 tools through this server. Three problems for a
+  // published package:
+  //
+  //   1. The first run of a fresh install hangs, silently, while npx downloads
+  //      mcp-dev. Locally it looks instant only because the package is cached.
+  //   2. ~350 tools nobody asked for appear in the consumer's tool list.
+  //   3. Anyone already running Umbraco's server sees every tool twice, and has
+  //      to guess which to call.
+  //
+  // UpDoc's own tools do not delegate to it - they call UpDoc's endpoints. So
+  // the chain earns nothing here and costs all three.
+  //
+  // Set UMBRACO_MCP_CHAIN=true to turn it back on.
+  ...(process.env.UMBRACO_MCP_CHAIN === "true"
+    ? [useMockChain ? mockCmsServer : realCmsServer]
+    : []),
 ];

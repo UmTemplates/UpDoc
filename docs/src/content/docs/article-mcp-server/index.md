@@ -257,7 +257,32 @@ That is deliberately not done yet. The browser path is what real client work dep
 
 Markdown and web sources return a message pointing at the backoffice. PDF was enough to prove the shape.
 
-And the tool is not published to npm yet. Installing UpDoc's NuGet package does not, and should not, bring a Node process with it. They are different runtimes on different machines, so a package author ships two things: the NuGet package that provides the endpoints, and an npm package that provides the tools calling them.
+## Two packages, two registries
+
+A package author doing this ships **two** things, and they cannot travel together.
+
+Installing UpDoc's NuGet package does not, and should not, bring a Node process with it. The extension runs inside Umbraco on a server. The MCP server runs on the developer's own machine, next to their AI client, and talks to the site over HTTP. Different runtimes, different machines, different lifecycles.
+
+So:
+
+| | Registry | Provides |
+|---|---------|----------|
+| `Umbraco.Community.UpDoc` | NuGet | The endpoints |
+| `@umtemplates/updoc-mcp` | npm | The tools that call them |
+
+Both are now published. A fix to one does not require releasing the other, which is worth knowing before you go looking for a bug in the wrong place.
+
+### What the dry run caught
+
+Publishing to npm is irreversible — a version can be superseded but never replaced — so it is worth packing the tarball, installing it into an empty directory, and running it as a consumer would. That found five things the manifest could not:
+
+- **`yargs` was a runtime dependency.** Nothing in the bundle imports it, so it looked safe to move to devDependencies. The SDK loads it *dynamically* to parse `--call` and `--list-tools`. Without it, both flags are silently ignored and the server simply starts instead.
+- **Chaining hung a fresh install.** The scaffold spawns `npx -y @umbraco-cms/mcp-dev` at startup and proxies its ~350 tools. Locally that looks instant because the package is cached; on a clean machine the first run hangs with no output while it downloads. It also duplicates every Umbraco tool for anyone already running Umbraco's own server. Off by default now.
+- **Four dependencies did not belong.** Cloudflare Worker and eval-test packages that never ship in `dist/`. A clean install went to 40 packages.
+- **The README was the scaffold's**, titled `# mcp`, explaining how to build a template. It is the npm front page.
+- **No `repository` field**, so nothing linked npm back to the source.
+
+None of those are visible from reading the source tree. All five came from installing the thing and running it.
 
 ## Useful links
 
@@ -274,7 +299,8 @@ And the tool is not published to npm yet. Installing UpDoc's NuGet package does 
 **UpDoc**
 
 - [UpDoc on GitHub](https://github.com/UmTemplates/UpDoc) — the MCP server is in `mcp/`, the endpoint in `src/UpDoc/Controllers/CreateFromSourceController.cs`.
-- [UpDoc on NuGet](https://www.nuget.org/packages/Umbraco.Community.UpDoc)
+- [UpDoc on NuGet](https://www.nuget.org/packages/Umbraco.Community.UpDoc) — the extension and its endpoints
+- [@umtemplates/updoc-mcp on npm](https://www.npmjs.com/package/@umtemplates/updoc-mcp) — the MCP server
 - [Model Context Protocol](https://modelcontextprotocol.io/) — the specification itself, if tools and servers are new to you.
 
 ---

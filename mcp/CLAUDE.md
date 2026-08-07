@@ -2,9 +2,23 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with the MCP server template.
 
-## Template Overview
+## Overview
 
-Starter kit for creating new Umbraco MCP server projects. Copy this folder to start a new project. Not published to npm.
+UpDoc's MCP server, published to npm as `@umtemplates/updoc-mcp`. It exposes UpDoc's
+workflows and its create-from-source endpoint as tools, so an AI assistant can run an
+import without driving the backoffice.
+
+Scaffolded from `@umbraco-cms/create-umbraco-mcp-server`, so much of the structure
+below is the template's rather than ours.
+
+**It is published, so the tool contract is a promise.** Renaming a tool, removing one,
+or changing its arguments breaks anyone who has pinned a version. Versioning is semver
+and independent of UpDoc's NuGet version: patch for a fix, minor for a new tool, major
+for anything that breaks a caller.
+
+The published package contains `dist/` only. Its runtime dependencies are the five in
+`dependencies` — everything supporting the Cloudflare Worker and the eval tests is a
+devDependency, so consumers do not install it.
 
 ## Commands
 

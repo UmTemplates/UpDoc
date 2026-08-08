@@ -74,6 +74,23 @@ Returns the new document's id, the workflow used, and how many values the mappin
 
 **The PDF must already be uploaded.** This creates documents, it does not upload files — use Umbraco's own MCP server for that.
 
+## Working alongside Umbraco's own MCP server
+
+This server provides UpDoc's tools only. For everything else — uploading media, reading a document back, publishing — register [`@umbraco-cms/mcp-dev`](https://www.npmjs.com/package/@umbraco-cms/mcp-dev) as a second server:
+
+```json
+{
+  "mcpServers": {
+    "umbraco": { "command": "npx", "args": ["-y", "@umbraco-cms/mcp-dev"], "env": { } },
+    "updoc":   { "command": "npx", "args": ["-y", "@umtemplates/updoc-mcp"], "env": { } }
+  }
+}
+```
+
+A typical import is two calls: upload the PDF with Umbraco's `create-media`, then pass the media id to `create-from-source`.
+
+This server *can* chain to Umbraco's and proxy its tools, but that is off by default. Chaining spawns a second server at startup, which makes the first run on a clean machine hang while npm fetches it, and it re-exposes around 350 tools that appear twice for anyone already running Umbraco's server directly. Set `UMBRACO_MCP_CHAIN=true` if you want it.
+
 ## Notes
 
 This is an early release, and it depends on `@umbraco-cms/mcp-server-sdk`, which is currently in beta. Pin a version rather than tracking the latest if that matters to you.

@@ -272,6 +272,22 @@ So:
 
 Both are now published. A fix to one does not require releasing the other, which is worth knowing before you go looking for a bug in the wrong place.
 
+### On chaining
+
+The scaffold can chain to other MCP servers, proxying their tools through yours. It is on by default, pointed at `@umbraco-cms/mcp-dev`.
+
+We turned it off. Three reasons, and only the third is arguable.
+
+**The example tool had never worked.** `get-chained-info` ships with the scaffold to demonstrate the technique. It calls `get-server-info` on `mcp-dev`, which has no tool by that name, so it fails on first invocation with `Tool get-server-info not found`. It had been sitting there since the project was created, unnoticed, because nothing had called it. We removed it rather than fixing it.
+
+**A fresh install hangs.** Chaining spawns `npx -y @umbraco-cms/mcp-dev` at startup. On a machine that has never fetched it, that downloads before responding: no output, no error, just a wait. Locally it looks instant because the package is cached — which is exactly why this survived until the packed tarball was installed into an empty directory.
+
+**Around 350 tools get duplicated.** With `proxyTools`, every tool on the chained server is re-exposed through yours. Anyone already running `mcp-dev` alongside sees each tool twice and has to choose between them. Ours came back reported from the site using it: *"the updoc server now proxies the full Umbraco CMS API. Not something we asked for."*
+
+That last one is a judgement rather than a bug. Chaining is right for a server meant to be the only one registered. It is wrong for an add-on server whose likely consumer already runs Umbraco's, which is the situation any package author is in.
+
+`UMBRACO_MCP_CHAIN=true` turns it back on if a tool ever needs to delegate.
+
 ### What the dry run caught
 
 Publishing to npm is irreversible — a version can be superseded but never replaced — so it is worth packing the tarball, installing it into an empty directory, and running it as a consumer would. That found five things the manifest could not:
@@ -294,7 +310,7 @@ None of those are visible from reading the source tree. All five came from insta
 
 **Reference implementations**
 
-- [Umbraco-CMS-MCP-Dev](https://github.com/umbraco/Umbraco-CMS-MCP-Dev) — the developer server, published as `@umbraco-cms/mcp-dev`. UpDoc's server chains to it, so Umbraco's own tools are available alongside UpDoc's without reimplementing any of them.
+- [Umbraco-CMS-MCP-Dev](https://github.com/umbraco/Umbraco-CMS-MCP-Dev) — the developer server, published as `@umbraco-cms/mcp-dev`. Register it alongside UpDoc's rather than expecting UpDoc's to provide Umbraco's tools; see the note on chaining below.
 
 **UpDoc**
 

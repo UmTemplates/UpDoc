@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "PowerShell($j = Get-Content 'src/UpDoc.TestSite/appsettings.Development.json' -Raw | ConvertFrom-Json; Write-Output \"JSON valid\"; $j.Umbraco.CMS.Security | ConvertTo-Json -Depth 5)",
+      "Bash(git -C .worktrees/docs status --short)",
+      "Bash(git rev-list *)"
+    ]
+  }
+}

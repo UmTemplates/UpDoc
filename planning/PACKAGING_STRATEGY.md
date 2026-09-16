@@ -84,7 +84,7 @@ UpDoc/
 ├── umbraco-marketplace-readme.md ← Marketplace README (PHASE B ONLY)
 └── .github/
     ├── workflows/
-    │   ├── RELEASE_NUGET.yml     ← NuGet publish on tag (NEW)
+    │   ├── release.yml           ← NuGet publish on tag (NEW)
     │   └── add-to-project.yml    ← Auto-add issues to board (NEW)
     └── ISSUE_TEMPLATE/
         ├── bug_report.yml        ← (NEW)
@@ -367,48 +367,58 @@ Short summary with links (see section 4 for content).
 - [x] **`NUGET_API_KEY`** — NOT NEEDED. Using NuGet Trusted Publishing instead. Policy "UpDoc" configured on nuget.org for `UmTemplates/UpDoc` → `release.yml`.
 - [x] **`ADD_TO_PROJECT_PAT`** — already exists org-wide for UmTemplates (expires Mar 11 2027). UpDoc is in the org so should be covered.
 
+##### Ignore NuGet's API key expiry emails
+
+NuGet still emails "your API key has expired" warnings for any key on the
+account, whether or not anything uses it. UpDoc's releases do not use a stored
+key, so these emails are noise. **Do not generate a replacement key.** Doing so
+recreates the credential Trusted Publishing exists to remove.
+
+The old `umbtemplates` key expired and was deleted in September 2026. Releases
+continued to work, which is the practical proof that OIDC is doing the
+publishing.
+
+Two pages on nuget.org both have a "Manage" heading and are easy to confuse:
+
+| Page | Icon | Contains | Action |
+|---|---|---|---|
+| [Trusted Publishing](https://www.nuget.org/account/trustedpublishing) | shield | The `UpDoc` / Active policy | **Never delete.** This publishes the package. |
+| [API keys](https://www.nuget.org/account/ApiKeys) | key | Legacy push keys, with a glob pattern | Safe to delete |
+
+If a release ever fails to authenticate, the cause is a mismatch between the
+policy and the workflow, not a missing key. All five of these must agree:
+repository owner, repository name, workflow filename, `permissions: id-token:
+write`, and the `user:` given to `nuget/login` matching the policy's package
+owner.
+
 #### 9.2 NuGet Publish Workflow
 
-`.github/workflows/RELEASE_NUGET.yml` — triggered by semver tag push. Adapted from UmBootstrap but for a library package:
+The live workflow is `.github/workflows/release.yml`. **Read that file rather
+than a copy here** — the snippet this section used to carry was the original
+UmBootstrap-adapted plan and had drifted badly from what actually ships
+(`windows-latest`, a stored `NUGET_API_KEY`, three-part tags only, and the wrong
+filename).
 
-```yaml
-name: Release Package
+What the real workflow does, and why:
 
-on:
-  push:
-    tags:
-      - '[0-9]*.[0-9]*.[0-9]*'
-      - '[0-9]*.[0-9]*.[0-9]*-*'
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: |
-          10.x
-
-    - name: Build
-      run: dotnet build src\UpDoc\UpDoc.csproj -c Release /p:Version=${{github.ref_name}}
-
-    - name: Pack
-      run: dotnet pack src\UpDoc\UpDoc.csproj -c Release /p:Version=${{github.ref_name}} --no-build --output .
-
-    - name: Push to NuGet
-      run: dotnet nuget push **\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-```
+- Triggered by a version tag push, or `workflow_dispatch`.
+- Tag patterns accept **four-part** versions as well as three, because UpDoc's
+  first three parts track the Umbraco version it targets and the fourth is
+  UpDoc's own build number on that CMS version. See [Versioning](#versioning).
+- `permissions: id-token: write` is required for the OIDC token that Trusted
+  Publishing exchanges. `contents: read`, because nothing writes to the repo.
+- `nuget/login@v1` with `user: dean.leigh` exchanges that token for a
+  short-lived push key, surfaced as a step output. The `--api-key` on the push
+  step therefore carries a key that exists for minutes, not a stored secret.
+- There is deliberately **no** "Create GitHub Release" step. Releases are created
+  by hand in the GitHub UI, which writes tag and release together; a
+  `gh release create` step raced that and could overwrite handwritten notes. The
+  reasoning is preserved as a comment at the foot of the workflow.
 
 **Key differences from UmBootstrap:**
-- Builds `src\UpDoc\UpDoc.csproj` (not a template csproj at the root)
-- Uses `actions/checkout@v4` and `actions/setup-dotnet@v4` (updated from v3)
-- Standard library build/pack (no template-specific flags)
+- Builds `src/UpDoc/UpDoc.csproj` (not a template csproj at the root)
+- Standard library pack (no template-specific flags)
+- Trusted Publishing rather than a stored API key secret
 
 #### 9.3 Auto-Add to Project Board
 

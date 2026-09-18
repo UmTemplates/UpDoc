@@ -144,8 +144,25 @@ The MCP server uses semver and versions independently of the NuGet package. A fi
 | `Umbraco.Community.UpDoc` | NuGet | The endpoints |
 | `@umtemplates/updoc-mcp` | npm | The tools that call them |
 
+## How this was built
+
+The pages below record why the MCP server is the way it is: the decisions, the reversals, and the mistakes worth not repeating.
+
+| Page | Answers |
+|---|---|
+| [Why UpDoc Needed an API](./why-an-api/) | Why a tool triggers rather than performs |
+| [Routes Considered](./routes-considered/) | Five options, and why the build reversed the plan |
+| [Making the API Visible](./making-the-api-visible/) | Why UpDoc's API was invisible for two years |
+| [Describing the Responses](./describing-responses/) | Why response types come before tools |
+| [Porting the Mapping to C#](./porting-to-csharp/) | What moved, and the four things that behaved differently |
+| [Two Implementations](./two-implementations/) | Why the create logic exists twice, and what must agree |
+| [Building the Tools](./building-the-tools/) | The two tools, and why descriptions matter |
+| [Chaining](./chaining/) | Why it is off, and both kill switches |
+| [Testing Traps](./testing-traps/) | Three bugs in six lines, all invisible to the CLI |
+| [Publishing to npm](./publishing/) | Two registries, and what a dry run caught |
+| [What Is Still Open](./still-open/) | Deliberate gaps and known defects |
+
 ## Further reading
 
-- [The UpDoc API](../api/) — the endpoints these tools wrap
-- [Giving a package its own MCP server](../article-mcp-server/) — how and why this was built
+- [The UpDoc API](../api/): the endpoints these tools wrap
 - [@umtemplates/updoc-mcp on npm](https://www.npmjs.com/package/@umtemplates/updoc-mcp)

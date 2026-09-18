@@ -32,3 +32,12 @@ Until these existed, creating a document from a source was browser TypeScript on
 | [MarkdownConversionService.cs](../source-files/markdown-conversion-service.md) | Markdown to HTML for rich text destinations |
 | [MediaFilePathResolver.cs](../source-files/media-file-path-resolver.md) | Turns a media key into a file on disk |
 | [UpDocControllerBase.cs](../source-files/up-doc-controller-base.md) | Shared `ProblemDetails` error responses |
+
+## Design notes
+
+Problems recorded with their reasoning, whether or not they are fixed yet.
+
+| Note | Covers |
+|------|--------|
+| [Stable Section Identity](stable-section-identity.md) | Why section IDs shift when a workflow is restructured, and how they are kept stable |
+| [Multi-Workflow Blueprint Resolution](multi-workflow-blueprint-resolution.md) | **Known defect.** Two workflows on one blueprint apply the wrong map, and corrupt the singleton cache doing it |

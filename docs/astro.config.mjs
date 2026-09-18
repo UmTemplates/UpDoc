@@ -116,6 +116,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Overview', slug: 'backend' },
 						{ label: 'Stable Section Identity', slug: 'backend/stable-section-identity' },
+						{ label: 'Multi-Workflow Blueprint Resolution', slug: 'backend/multi-workflow-blueprint-resolution' },
 						{ label: 'PdfExtractionService.cs', slug: 'source-files/pdf-extraction-service' },
 						{ label: 'PdfPagePropertiesService.cs', slug: 'source-files/pdf-page-properties-service' },
 						{ label: 'MarkdownExtractionService.cs', slug: 'source-files/markdown-extraction-service' },

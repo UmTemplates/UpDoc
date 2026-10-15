@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="4.1.2" />
     <PackageReference Include="Umbraco.Cms" Version="17.5.3" />
     <PackageReference Include="Umbraco.Community.BlockPreview" Version="5.5.0" />
     <PackageReference Include="Umbraco.Community.Contentment" Version="6.2.1" />
